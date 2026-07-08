@@ -34,10 +34,6 @@ Agentic systems often spend substantial time outside model inference, especially
 
 Treat repeated agent turns as a throughput problem, not only an inference problem. If the model is fast enough, optimize connection reuse, state reuse, and post-inference overlap before chasing marginal model gains.
 
-## Related Topics
-
-- agentic-workflows
-
 ## Evidence / supporting sources
 
 ### Speeding up agentic workflows with WebSockets in the Responses API (2026-04-22)
@@ -56,7 +52,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agentic-workflows
+- [[topics/agentic-workflows|Agentic Workflows]]
 
 ## Sources
 

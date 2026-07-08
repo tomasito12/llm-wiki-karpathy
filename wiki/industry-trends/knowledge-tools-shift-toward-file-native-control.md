@@ -26,10 +26,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Personal knowledge tools can gain user trust by keeping notes as plain files with version control instead of opaque app-local databases. The pattern favors portability, auditability, and external automation over lock-in. It is especially relevant for products that want to support AI-assisted editing while preserving user ownership of the workspace.
 
-## Related Trends
-
-- ai-products-shift-from-models-to-systems
-
 ## Supporting Data Points
 
 - Every note is a Markdown file with YAML frontmatter.
@@ -64,7 +60,7 @@ The evidence is a single product review, so it shows a plausible design directio
 
 ## Related pages
 
-- ai-products-shift-from-models-to-systems
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 
 ## Sources
 

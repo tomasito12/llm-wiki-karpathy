@@ -29,12 +29,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Enterprise AI systems are increasingly being deployed as operational customer-service infrastructure rather than as isolated chat experiences. The pattern depends on integration with billing, CRM, support desks, and other backend systems so the agent can complete tasks, not just answer questions. The practical result is a service layer that can route requests, retrieve account data, and escalate exceptions inside the same workflow.
 
-## Related Trends
-
-- support-automation-as-operating-model
-- runtime-centralization
-- support-automation-shifts-toward-agentic-workflow-completion
-
 ## Supporting Data Points
 
 - WhatsApp conversations exceeded 1,100,000 in peak months.
@@ -105,9 +99,8 @@ The trend is supported by one vendor-authored case study, so it may overstate ea
 
 ## Related pages
 
-- runtime-centralization
-- support-automation-as-operating-model
-- support-automation-shifts-toward-agentic-workflow-completion
+- [[industry-trends/support-automation-as-operating-model|Support Automation as an Operating Model]]
+- [[industry-trends/support-automation-shifts-toward-agentic-workflow-completion|Support Automation Shifts Toward Workflow Completion]]
 
 ## Sources
 

@@ -55,10 +55,6 @@ The source gives no explicit pricing, but the architectural shift suggests a pos
 
 Google
 
-## Related Models
-
-- Voxtral TTS
-
 ## Service automation implications
 
 Most relevant for conversational systems, voicebots, and contact-center style interactions because barge-in and low-latency bidirectional audio are core requirements. The model may reduce the awkwardness of interruptible conversations if it performs as described. The source does not give enough detail to judge containment, handoff quality, or compliance behavior.
@@ -95,7 +91,7 @@ The source does not provide full evaluation details beyond one benchmark score a
 
 ## Related pages
 
-- Voxtral TTS
+- [[foundation-models/voxtral-tts|Voxtral TTS]]
 
 ## Sources
 

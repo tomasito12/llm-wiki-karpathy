@@ -36,10 +36,6 @@ When a technology produces large profits for a narrow set of owners, governments
 
 The transferable lesson for AI governance is that value capture becomes a design problem once AI profits look like rents rather than competitive returns. Practitioners should assume ownership and tax questions will be part of the deployment environment if AI creates visible concentration of gains.
 
-## Related Topics
-
-- ai-jobs-risks-and-safety-nets
-
 ## Evidence / supporting sources
 
 ### Prepare for an AI jobs apocalypse (2026-05-14)
@@ -59,7 +55,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- ai-jobs-risks-and-safety-nets
+- [[topics/ai-jobs-risks-and-safety-nets|AI Jobs Risk and Safety Nets]]
 
 ## Sources
 

@@ -47,12 +47,6 @@ A cloud workspace platform with built-in AI agents, workspace search, and struct
 
 As of 2026-05-02, the source presents Notion 3.0 and 3.3 as a serious, mature product line with autonomous agents and custom agent workflows. Its maturity signal is product breadth and polish, but the article treats it as a hosted platform with firm usage and policy boundaries rather than a freely extensible agent substrate.
 
-## Related Tools
-
-- Obsidian
-- Claude Code
-- Confluence + Rovo
-
 ## Strengths
 
 - Provides autonomous AI agents that can execute multi-step workflows rather than only suggest edits.
@@ -98,9 +92,8 @@ As of 2026-05-02, the source presents Notion 3.0 and 3.3 as a serious, mature pr
 
 ## Related pages
 
-- Claude Code
-- Confluence + Rovo
-- Obsidian
+- [[tools/obsidian|Obsidian]]
+- [[tools/claude-code|Claude Code]]
 
 ## Sources
 

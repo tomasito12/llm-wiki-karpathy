@@ -49,11 +49,6 @@ Recall 2.0 is a cloud-based personal knowledge tool that captures saved articles
 
 As of 2026-04-24, the product is presented as version 2.0 after a multi-year build, which suggests it has moved beyond a prototype. The article describes a fairly complete consumer workflow across capture, graphing, chat, review, and audio, but it does not provide adoption numbers or third-party validation. That makes it look like a reasonably mature consumer SaaS product, not a verified enterprise platform.
 
-## Related Tools
-
-- Obsidian
-- Claude
-
 ## Strengths
 
 - One-tap capture lowers the barrier to saving material from many sources, which matters because the article frames manual organization as the main reason knowledge tools fail for ordinary users.
@@ -96,8 +91,8 @@ The article is explicit that the service is subscription-based and cloud-hosted,
 
 ## Related pages
 
-- Claude
-- Obsidian
+- [[tools/obsidian|Obsidian]]
+- [[tools/claude|Claude]]
 
 ## Sources
 

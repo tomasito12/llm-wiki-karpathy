@@ -60,13 +60,6 @@ Its 3.0 minute average conversation length is shorter than the benchmark leader,
 
 OpenAI
 
-## Related Models
-
-- Grok Voice Think Fast 1.0
-- GPT-Realtime-1.5
-- Gemini 3.1 Flash Live Preview - High
-- Gemini 2.5 Flash Native Audio Preview
-
 ## Service automation implications
 
 Potentially useful for support automation where partial completion and fast turnaround are acceptable, but the reported success rate implies substantial handoff logic is still required as of 2026-05-12.
@@ -104,10 +97,8 @@ The source frames even strong speech-to-speech models as resolving only about ha
 
 ## Related pages
 
-- GPT-Realtime-1.5
-- Gemini 2.5 Flash Native Audio Preview
-- Gemini 3.1 Flash Live Preview - High
-- Grok Voice Think Fast 1.0
+- [[foundation-models/grok-voice-think-fast-1-0|Grok Voice Think Fast 1.0]]
+- [[foundation-models/gpt-realtime-1-5|gpt-realtime-1.5]]
 
 ## Sources
 

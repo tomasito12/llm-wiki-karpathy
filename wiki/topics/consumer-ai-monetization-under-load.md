@@ -35,10 +35,6 @@ High-usage consumer AI creates an economic problem: token growth, compute cost, 
 
 When consumer AI usage becomes large enough, pricing, caps, and ads stop being side issues and become core architecture choices.
 
-## Related Topics
-
-- compute-supply-and-capex-in-ai
-
 ## Evidence / supporting sources
 
 ### Google is dethroning OpenAI as the king of consumer AI (2026-05-20)
@@ -57,7 +53,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- compute-supply-and-capex-in-ai
+- [[topics/compute-supply-and-capex-in-ai|Compute Supply and Capex in AI]]
 
 ## Sources
 

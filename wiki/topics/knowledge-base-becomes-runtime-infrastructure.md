@@ -34,11 +34,6 @@ A note repository becomes more valuable when software can operate on it directly
 
 Treat the vault as an operational substrate, not a passive archive. If an agent can read and write it safely, the knowledge base can generate reviews, drafts, and reminders with far less manual searching.
 
-## Related Topics
-
-- agentic-workflows
-- context-engineering
-
 ## Evidence / supporting sources
 
 ### Obsidian + Claude Code is your 24×7 AI Agent: Here is how to build yours (2026-04-23)
@@ -57,8 +52,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agentic-workflows
-- context-engineering
+- [[topics/agentic-workflows|Agentic Workflows]]
+- [[topics/context-engineering|Context Engineering]]
 
 ## Sources
 

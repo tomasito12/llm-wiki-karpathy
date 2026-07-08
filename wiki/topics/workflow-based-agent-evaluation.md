@@ -38,11 +38,6 @@ Agent evaluation is more useful when it measures end-to-end delivery work rather
 
 Measure agents on the work that actually consumes engineering time: getting from prompt to reviewed change with minimal rework. If the evaluation omits review cost, CI fallout, or supervision burden, it can overstate practical value.
 
-## Related Topics
-
-- verification-loops-in-ai-workflows
-- harness-engineering
-
 ## Evidence / supporting sources
 
 ### Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong (2026-05-04)
@@ -62,8 +57,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- harness-engineering
-- verification-loops-in-ai-workflows
+- [[topics/verification-loops-in-ai-workflows|Verification Loops in AI Workflows]]
+- [[topics/harness-engineering|Harness Engineering]]
 
 ## Sources
 

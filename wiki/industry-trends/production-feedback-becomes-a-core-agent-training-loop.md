@@ -25,10 +25,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Agent products increasingly use live production interactions as a training source, not only offline datasets or synthetic simulations. The shift matters because deployed user behavior can expose model weaknesses that benchmarks and simulated environments miss, especially when the human in the loop is part of the task. This changes the product boundary: telemetry, reward extraction, evaluation, and redeployment become part of the model-improvement system. The pattern is most viable where feedback is frequent enough to support quick iteration and where deployment can stay close to the policy that generated the data.
 
-## Related Trends
-
-- verification-loops-become-central-to-ai-workflows
-
 ## Supporting Data Points
 
 - Real-time RL loop takes about five hours.
@@ -63,7 +59,7 @@ The evidence is limited to one first-party engineering case study, so it shows f
 
 ## Related pages
 
-- verification-loops-become-central-to-ai-workflows
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
 
 ## Sources
 

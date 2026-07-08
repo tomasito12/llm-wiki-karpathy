@@ -37,12 +37,6 @@ AI demand can exceed the physical ability to add compute across the stack, makin
 
 Treat compute availability as a supply-chain problem, not just a cloud-billing problem. AI teams should plan for long procurement lead times, reserve capacity early, expect component-specific shortages, and design fallback modes such as throttling, queueing, or reduced service scope when hardware supply tightens.
 
-## Related Topics
-
-- agentic-workload-hardware-mix
-- agent-infrastructure
-- serving-infrastructure
-
 ## Evidence / supporting sources
 
 ### The AI rush is hitting a bottleneck (2026-04-27)
@@ -62,9 +56,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-infrastructure
-- agentic-workload-hardware-mix
-- serving-infrastructure
+- [[topics/agent-infrastructure|Agent Infrastructure]]
 
 ## Sources
 

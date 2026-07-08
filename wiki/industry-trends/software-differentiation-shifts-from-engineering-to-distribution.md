@@ -27,10 +27,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Software advantage can shift away from pure product quality and toward control of distribution, policy, data access, and platform relationships. In that pattern, companies compete less by building the best standalone tool and more by owning the channels and constraints through which customers must operate. This matters because product quality alone may no longer explain market power when distribution and governance are the real levers.
 
-## Related Trends
-
-- models-becoming-execution-layers
-
 ## Supporting Data Points
 
 - The article links cloud subscriptions and platform control to the industry’s value capture model.
@@ -83,7 +79,7 @@ The source is argumentative and does not quantify how much of software advantage
 
 ## Related pages
 
-- models-becoming-execution-layers
+- [[industry-trends/models-becoming-execution-layers|Models Become Execution Layers]]
 
 ## Sources
 

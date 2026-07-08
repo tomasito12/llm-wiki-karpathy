@@ -25,12 +25,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Coding agents are shifting from interchangeable general assistants toward specialized products optimized for distinct control surfaces and review paths. The relevant differentiation is increasingly terminal versus IDE versus remote desktop versus GitHub-native workflow, not raw model score alone. This matters because procurement and adoption depend on where the work happens and how much autonomy the team is willing to delegate.
 
-## Related Trends
-
-- workflow-restructuring-around-ai-agents
-- ai-products-shift-from-models-to-systems
-- agent-tooling-shifts-from-prompting-to-workflow-architecture
-
 ## Supporting Data Points
 
 - Claude Code is described as terminal-first and best for cross-cutting refactors.
@@ -83,9 +77,9 @@ This is a snapshot from one comparative article, not a controlled market study. 
 
 ## Related pages
 
-- agent-tooling-shifts-from-prompting-to-workflow-architecture
-- ai-products-shift-from-models-to-systems
-- workflow-restructuring-around-ai-agents
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]]
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
+- [[industry-trends/agent-tooling-shifts-from-prompting-to-workflow-architecture|Agent Performance Shifts From Prompting to Workflow Architecture]]
 
 ## Sources
 

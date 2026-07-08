@@ -37,11 +37,6 @@ AI safety diplomacy can become entangled with broader geopolitical leverage, esp
 
 When AI safety is treated as a bargaining chip in wider state competition, technically sensible guardrails may stall unless the parties first reduce suspicion about hidden strategic motives and data leakage.
 
-## Related Topics
-
-- verifiable-ai-governance
-- frontier-models-as-national-infrastructure
-
 ## Evidence / supporting sources
 
 ### AI creates a fearsome cold-war-style dilemma (2026-05-09)
@@ -62,8 +57,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- frontier-models-as-national-infrastructure
-- verifiable-ai-governance
+- [[topics/verifiable-ai-governance|Verifiable AI Governance]]
+- [[topics/frontier-models-as-national-infrastructure|Frontier Models as National Infrastructure]]
 
 ## Sources
 

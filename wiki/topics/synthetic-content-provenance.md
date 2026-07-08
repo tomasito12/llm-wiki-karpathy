@@ -36,10 +36,6 @@ Synthetic content provenance is the practice of marking AI-generated media so do
 
 Treat provenance as a multi-layer control surface, not as a cosmetic watermark. The durable engineering lesson is to design for reuse, tampering, and third-party verification from the start.
 
-## Related Topics
-
-- eu-ai-act-three-clock-compliance
-
 ## Evidence / supporting sources
 
 ### The EU Banned an Entire AI Product Category Yesterday. Most Builders Missed It. (2026-05-18)
@@ -58,7 +54,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- eu-ai-act-three-clock-compliance
+- [[topics/eu-ai-act-three-clock-compliance|EU AI Act Three-Clock Compliance]]
 
 ## Sources
 

@@ -25,10 +25,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Some AI adoption programs are being packaged as government-mediated access flows rather than direct consumer subscriptions. The pattern combines public training, eligibility management, and centralized distribution, which makes rollout and governance part of the adoption mechanism. This can lower onboarding friction for large populations, but it also shifts responsibility for access control and program design to public institutions.
 
-## Related Trends
-
-- enterprise-ai-moves-toward-governed-human-oversight-workflows
-
 ## Supporting Data Points
 
 - ChatGPT Plus is provided for one year at no cost after course completion.
@@ -63,7 +59,7 @@ The source is a vendor announcement, so it shows program design and intent, not 
 
 ## Related pages
 
-- enterprise-ai-moves-toward-governed-human-oversight-workflows
+- [[industry-trends/enterprise-ai-moves-toward-governed-human-oversight-workflows|Enterprise AI Moves Toward Governed Human Oversight Workflows]]
 
 ## Sources
 

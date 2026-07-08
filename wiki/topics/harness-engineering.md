@@ -52,12 +52,6 @@ The source describes a shared hook contract across "Claude Code, OpenAI's Codex,
 
 Treat the harness as production infrastructure, not as a thin wrapper around a model call, because it controls reliability, security, and recoverability.
 
-## Related Topics
-
-- agent-workspace-layering
-- agent-infrastructure
-- agentic-workflows
-
 ## Evidence / supporting sources
 
 ### The next evolution of the Agents SDK (2026-04-15)
@@ -98,9 +92,9 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-infrastructure
-- agent-workspace-layering
-- agentic-workflows
+- [[topics/agent-workspace-layering|Agent Workspace Layering]]
+- [[topics/agent-infrastructure|Agent Infrastructure]]
+- [[topics/agentic-workflows|Agentic Workflows]]
 
 ## Sources
 

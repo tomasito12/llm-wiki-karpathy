@@ -26,11 +26,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Software creation is moving away from loose prompt-and-edit loops toward workflows where humans define specifications and agents perform implementation under review. The shift is not toward less engineering judgment; it is toward different human leverage, with architecture, validation, and replanning becoming more central. This pattern is most relevant where generated code must fit shared conventions, preserve decisions, and survive multiple sessions or contributors.
 
-## Related Trends
-
-- verification-loops-become-central-to-ai-workflows
-- workflow-restructuring-around-ai-agents
-
 ## Supporting Data Points
 
 - The author contrasts vibe coding with a repository-based specification workflow.
@@ -65,8 +60,8 @@ The evidence is a single personal build and a practitioner argument, not a contr
 
 ## Related pages
 
-- verification-loops-become-central-to-ai-workflows
-- workflow-restructuring-around-ai-agents
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]]
 
 ## Sources
 

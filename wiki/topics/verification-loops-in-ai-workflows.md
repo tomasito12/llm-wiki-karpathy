@@ -88,18 +88,6 @@ The source gives a concrete pattern: “Write test: password change → old sess
 
 Treat verification as a first-class workflow stage, not a postscript. The source shows that automated review can catch defects before production and that open-ended tasks improve when models can judge next steps, not just generate outputs.
 
-## Related Topics
-
-- agentic-coding-workflows
-- agent-self-verification
-- behavioral-instruction-layers-for-agents
-- structured-specification-for-agentic-development
-- agent-runtime-architecture
-- agent-runtime-architecture-for-voice
-- agent-native-auditability
-- provenance-tracking
-- organizational-ai-readiness
-
 ## Evidence / supporting sources
 
 ### Advancing content provenance for a safer, more transparent AI ecosystem | OpenAI (2026-05-19)
@@ -215,15 +203,15 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-native-auditability
-- agent-runtime-architecture
-- agent-runtime-architecture-for-voice
-- agent-self-verification
-- agentic-coding-workflows
-- behavioral-instruction-layers-for-agents
-- organizational-ai-readiness
-- provenance-tracking
-- structured-specification-for-agentic-development
+- [[topics/agentic-coding-workflows|Agentic Coding Workflows]]
+- [[topics/agent-self-verification|Agent Self-Verification]]
+- [[topics/behavioral-instruction-layers-for-agents|Behavioral Instruction Layers]]
+- [[topics/structured-specification-for-agentic-development|Structured Specification for Agentic Development]]
+- [[topics/agent-runtime-architecture|Agent Runtime Architecture]]
+- [[topics/agent-runtime-architecture-for-voice|Agent Runtime Architecture for Voice]]
+- [[topics/agent-native-auditability|Agent-Native Auditability]]
+- [[topics/provenance-tracking|Provenance Tracking]]
+- [[topics/organizational-ai-readiness|Organizational AI Readiness]]
 
 ## Sources
 

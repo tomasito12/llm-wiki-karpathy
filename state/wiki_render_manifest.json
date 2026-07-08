@@ -3,27 +3,27 @@
   "files": [
     {
       "path": "foundation-models/apex-1-0.md",
-      "sha256": "0d8f86b542fc57f43673fce547f97a853ee2943d89aadb81d4d859d2ce95a331"
+      "sha256": "f78febcb98f6117636c056de64e0864178220f336ba9de8052bbb806757c9aac"
     },
     {
       "path": "foundation-models/apex-flash.md",
-      "sha256": "f93e705814612d324f4b5ff4cf7c6bf6ca0e8407e91a149986c742f1c3b30211"
+      "sha256": "dfd4e2796c9e10d9e8fc91106ecd5858f13301452ac13de81579d1b8ebf49ca3"
     },
     {
       "path": "foundation-models/apple-foundation-models.md",
-      "sha256": "9987dfa13911467d2b7953d22db2352589636782c61e8123a046439da3f79d20"
+      "sha256": "1b7da81dffaf5c08e431b5cce085c676c7c0f0fba8f661b06b3ef8a9abeddd34"
     },
     {
       "path": "foundation-models/claude-opus-4-6.md",
-      "sha256": "58265c438ffe193fe2a12a6c16c8741f3b724665b0c2e8c870aa74f343d9530f"
+      "sha256": "fde98430122ff5373eb3d30dc721152e85e958644cd7c34503836e6fdc46e305"
     },
     {
       "path": "foundation-models/claude-opus-4-7.md",
-      "sha256": "ced42947c29ef6fdba7dbd4e3a35f2cebe037e54c0597d8e9c82c592859b3062"
+      "sha256": "912c0c9b6037cb2afa31e312bb516f45be8f9bdf68fc0bb5f6748359d5bee080"
     },
     {
       "path": "foundation-models/claude-opus-4-8.md",
-      "sha256": "3222b24195a600d260dbc343d59551f07fb95e8cd023560d148982072bc63123"
+      "sha256": "aa1dfa95e16b50bd0b644c9637fc067f1406558666235eb80f4aad1bfaeed2b3"
     },
     {
       "path": "foundation-models/claude.md",
@@ -31,51 +31,51 @@
     },
     {
       "path": "foundation-models/composer-2.md",
-      "sha256": "6083dc1763942a2041b1036889ea228cb3fb85c82ab36e1294d448541cf9d40c"
+      "sha256": "82133c39165aec838840362b44169420d4efbb0d8ad6d88e1408cf3083769924"
     },
     {
       "path": "foundation-models/deepseek-v4.md",
-      "sha256": "b2c49ec6b81e86ca12ee6d68a533f7b4c8fc13de079e8dbd8c5eff852727b76f"
+      "sha256": "ca5154c5e643b524e0cbfb7135208df27a071edfb17c347764f551c2caa48817"
     },
     {
       "path": "foundation-models/gemini-3-1-flash-live.md",
-      "sha256": "7e4a7ea0e5d3c873ce0bac089ab19c9f1f0ca8bef97c82f9a0f5cfd625a9a1d6"
+      "sha256": "785a9ac6640aa7066d52783927f37b5e444080aec06d4996f80679d40a2cb252"
     },
     {
       "path": "foundation-models/gemini-3-5-flash.md",
-      "sha256": "1be9996e2e2a0e1b29e17c8adb9bb66c15d8ae62b33e234462dfacb604576db0"
+      "sha256": "2cf1aafae0bc6bf4eed48bac6a522cbe9a778fdc573b1aa800573c4e42fb1ffd"
     },
     {
       "path": "foundation-models/gemini-3-pro.md",
-      "sha256": "3bde39ddb220013a0d12ec4e2029e9ccd9c3aa45f4228dce461f7304d7ac3e81"
+      "sha256": "eb847351cd01bc4db26c3672a9e11f63d989bd0b0b0c9fa85b5e67a2ee92b78a"
     },
     {
       "path": "foundation-models/gemma-4.md",
-      "sha256": "3fc16d50c6a7f2dc254e4b7aca7b8b51acc4efaf494bfa7948a242661366bcac"
+      "sha256": "3f0654eb6098ee0fb88b11c5fe8d973945b1b895804adad8573e59f4532d800a"
     },
     {
       "path": "foundation-models/gpt-5-4-cyber.md",
-      "sha256": "7d065f9d8633406c6e278042ed9dc02cfff528ead43fa418f8a0944403c59d67"
+      "sha256": "08bb7bae8734258dfd15eb45d0f0789497c41f8cd10b24fa9931b7e3aed03a6a"
     },
     {
       "path": "foundation-models/gpt-5-4.md",
-      "sha256": "c5e3bdb4a094f818052bfd7147f7de18ad86d3d7f0dfae758701d2a37dc40619"
+      "sha256": "5cec9bc9b90a8877fd2089e5eaf317d1cddf8f5fb093a96395e7178b92c39af1"
     },
     {
       "path": "foundation-models/gpt-5-5-cyber.md",
-      "sha256": "30375e1d73081aa09ea104c9c3a478a6bad30a59e65fdf6d2d27264500fa2eb6"
+      "sha256": "25787c8ea703b2a110598118fa5b3d81bd2b3f5a99b7cefa33f72f5ab873edb0"
     },
     {
       "path": "foundation-models/gpt-5-5-instant.md",
-      "sha256": "cd64c1e16bcad578d93394462f950051c23160ed2c0d3b21e1fe9d57294d2b59"
+      "sha256": "761f786f0a433904c9e30a2010c413ac9310f5eebd398a33d697b081d89a401e"
     },
     {
       "path": "foundation-models/gpt-5-5.md",
-      "sha256": "2a4c62254418822b9595d6f9b6e4a7dd70c2345fd24cafe56612c65b1628403f"
+      "sha256": "830a1d4418eb1e5a4d7f807efba0512e11f5e1acc721d70ea24a106de28e706a"
     },
     {
       "path": "foundation-models/gpt-image-2.md",
-      "sha256": "0da8378757ad8edac3f673dc2a4973758db3e172f118144511367b5b2a1f7352"
+      "sha256": "95d3f4b25d8ee7cd80ba5d231d1706d6d4e5264b6ce333a6930d0b1ccf77f7e8"
     },
     {
       "path": "foundation-models/gpt-realtime-1-5.md",
@@ -83,7 +83,7 @@
     },
     {
       "path": "foundation-models/gpt-realtime-2-high.md",
-      "sha256": "c5426b612e4606b6a3b6aaacab2c226a88fac86b8f14062a483cefe1b161198a"
+      "sha256": "b1a74c275be18701630cee45db745284ff3c6849e25ce01fa5005ce95404c913"
     },
     {
       "path": "foundation-models/gpt-rosalind.md",
@@ -91,19 +91,19 @@
     },
     {
       "path": "foundation-models/grok-voice-think-fast-1-0.md",
-      "sha256": "b491f1271ae32fd09210562f9fdaea55243c13db7d30f1372f7df52659c5fed6"
+      "sha256": "4842001ae50be2ee5581074067348d1337650f2c5d5d9c898e0756ea5d775926"
     },
     {
       "path": "foundation-models/kimi-2-5.md",
-      "sha256": "d7b73fc9f26c41bcd587905a810ae5461591e87168167f934543cbbf82e2ce71"
+      "sha256": "720d94ea3a1921a3549192ce7c4215220c6ae30134a4fac3589c650145e8fcc1"
     },
     {
       "path": "foundation-models/kimi-2-6.md",
-      "sha256": "c1b37f6c6be09d2a338470be780cf3346125b1756c6e8908328c53de5fae0e73"
+      "sha256": "13a76429d58e29a0262fd778ba1b531c7c6becfe1220a571a1891d379d277d37"
     },
     {
       "path": "foundation-models/kimi-k2-5.md",
-      "sha256": "40789dac8ca5358381d608cf57857d81498ad7ab42415825f9732487003e4303"
+      "sha256": "290b568600fa2c5c60f8cfd21d0f9c98f3a98bfb1bbc31aa140909a977fb1d2e"
     },
     {
       "path": "foundation-models/llama-4.md",
@@ -111,15 +111,15 @@
     },
     {
       "path": "foundation-models/mercury-2.md",
-      "sha256": "05960a7b993e2b14304d98a6e243e04724dc4ed151b62b7f1e19409b1ab2c463"
+      "sha256": "c53a9fdc9b385899325726e7ec113afb8453df2b3d9e351465159c0073eda9a8"
     },
     {
       "path": "foundation-models/mercury.md",
-      "sha256": "8acfcf9130a974ea3e874e6a754faed9d3db98b8224f04861415599ceb8b2de3"
+      "sha256": "847f8fef3edf4cd4b40f61c378b6b5d8099c8c8c6c7092bf56a90744b98ab377"
     },
     {
       "path": "foundation-models/opus-4-6.md",
-      "sha256": "f5e3205fb50b5c1cca0309f0ee62f50f3fbb3646d77a91c7a0b26c6dc12e81c9"
+      "sha256": "4ba111d0570ff09250910bd1f79d489b2eb38cc7ef1e4c2278e4d6704515e5c0"
     },
     {
       "path": "foundation-models/privacy-filter.md",
@@ -127,51 +127,51 @@
     },
     {
       "path": "foundation-models/qwen-3-5-9b.md",
-      "sha256": "ed9b21af13f177b2c65bde9912d5477ae4a7bf2e4d24d30f51445d4824b0166d"
+      "sha256": "d3a387d05ba67ef0967353277facf1359b82f6a718196ec4da7238b1416265db"
     },
     {
       "path": "foundation-models/qwen-3-5.md",
-      "sha256": "01ede9770118559d907430a3c0aff6a9aaa85a5714b8b3e7e916d89de4997750"
+      "sha256": "9fe5597497139c06420f28957ade5ed2c004606467d5d42c1c1ff8b21839b8c9"
     },
     {
       "path": "foundation-models/qwen-3-6-35b-a3b.md",
-      "sha256": "ab57eff467f9d71a6a7aaacd5bd06c6c8a64dc175c7b176d450879e4b4a79e4d"
+      "sha256": "62877f007cdebfede0f8e71ce7d583fc7dd4e32d1775216a52d132c86180a3c8"
     },
     {
       "path": "foundation-models/qwen3-30b-a3b.md",
-      "sha256": "aab0d3bd11de479df67ce572f7127f316be5b5d16c82ac11ad2747b33b8680fa"
+      "sha256": "cbbe2fd8e28b2421a462217c60d269335939baaf93ff7558a31d4168611e709d"
     },
     {
       "path": "foundation-models/qwen3-6-27b.md",
-      "sha256": "97cb608e78b11e72858f91a13bc499de4c895d4b4840af8ab5d9471026caa866"
+      "sha256": "8e7a5d9e0f558ad68cdcd2261a82aef17017f2d617966f4b1a45e04b6b8d3332"
     },
     {
       "path": "foundation-models/qwen3-coder-next.md",
-      "sha256": "184b77083519f39a0b4bf0abb0de5969f803bec9664686fd791ba1532f40d74d"
+      "sha256": "5fd73e8227e04bf5362ffbf24bf9920e7d724bc587d188ea38a4e34e3c8ab482"
     },
     {
       "path": "foundation-models/sonnet-4-6.md",
-      "sha256": "f8cd61712c8c52bdae5c03867d79855b1d25c45452f37cfcd376822c19ee8f19"
+      "sha256": "fe5a8cd1b956d75f5afec75719651fcadbba29ac71cf67f65f98094ba403fcdd"
     },
     {
       "path": "foundation-models/tml-interaction-small.md",
-      "sha256": "b1ff674be4b8fd57eb7e913c01c5d42ec0bb66524ba729dedb054ea6a263a575"
+      "sha256": "a6ea3ad73afe0072fab9e3b9eee2af6b73bd19f447fd326b056b5d89f5c13846"
     },
     {
       "path": "foundation-models/voxtral-tts.md",
-      "sha256": "7c73dfbaa9015b8d494c0f8d73c6b46da75e446454c0b407c7b9c229b5bf1c27"
+      "sha256": "fa6fe4e45b9d4e70a443b3b60164ed0e0756b0a58b5056ab9037918573cff9e3"
     },
     {
       "path": "glossary/amdahl-s-law.md",
-      "sha256": "630dd8bfaf05e3960b3da5f66f5831c53b280f94b7f5bbd45d2f8a0151714b1e"
+      "sha256": "09a7c3d7aa5b1f514ef64a16ee405e075b80e6ba24c55bd2cb4b2bf1f6a7e50e"
     },
     {
       "path": "glossary/aria-live-region.md",
-      "sha256": "7f3d246f93d60116e19491b916f678f7ff90c4785b9186c4fa0e6592437c5a2a"
+      "sha256": "6ca474d3fc9d303bf6413f323e87fc0a899c98cb6fba47d5b5155741dac41ec9"
     },
     {
       "path": "glossary/behavior-driven-development.md",
-      "sha256": "ed1a95dd29e3ce9a9658e9eef7772fd6799b8d66c87d0af492961f18d09df63c"
+      "sha256": "4f4165a2d476a9b2f26dc15792a5cc07d6122c583ef3756e33ea98c415d259ee"
     },
     {
       "path": "glossary/benchmark.md",
@@ -195,19 +195,19 @@
     },
     {
       "path": "glossary/datalog.md",
-      "sha256": "a903ac45a888515cc69fb052f485efa0a78e10368a87af913ad6df646c3da45f"
+      "sha256": "1c1a79e37dd46d136826d45e94594d8d2149fd6bf771226f58033aa180cc0b1c"
     },
     {
       "path": "glossary/economic-value-benchmark.md",
-      "sha256": "9f260270c2b41d04bcad666eb4d34cfe720392da151cb23a2068a315cfa80f00"
+      "sha256": "fd1b26a876f3d1075b27bd2d88ee69ff98a08da3ade0772744a5fb5909995521"
     },
     {
       "path": "glossary/feedforward-controls.md",
-      "sha256": "b79777299bdd060af53a332689c94965a0ed091fbed0ed1d889bd1c2889478b5"
+      "sha256": "8352686e8d25c3ca32674bc00a3b73f22e4676903ebdeaa2023956f2d087204d"
     },
     {
       "path": "glossary/fido-compliant-security-key.md",
-      "sha256": "1eb9bf496119615920816298fa448ef1c42a68ea56e9e69c1bdf230ac2456984"
+      "sha256": "1e91a74b6e6ba17969b285619abfd57ff108c972bf222c160af8bff416e4a345"
     },
     {
       "path": "glossary/fine-tuning.md",
@@ -215,19 +215,19 @@
     },
     {
       "path": "glossary/gherkin.md",
-      "sha256": "7d22dd1e0ce017c0547452d64cc7216d9027e621aa96f5cc6b2be92a8b6e5ea9"
+      "sha256": "f387c8d9662544ce7a8d909b74be3ed60fca341d1fa1b39f1b6a83b03a1f7aca"
     },
     {
       "path": "glossary/grouped-query-attention.md",
-      "sha256": "41cf269556600bcf20a0465a278cff6af4da8c373e9e4b51ff96fd95b7e66b9f"
+      "sha256": "80daacd7979a3f30763f03bb2c189e18e5a4d1309ebcc1e409b4aeaf78f1c554"
     },
     {
       "path": "glossary/hallucinations.md",
-      "sha256": "2b4d1de98fe213fcade26e7cdf87d13f78a74313bd10586f752c4ad94cb43ae8"
+      "sha256": "92fe7b37cd83bda9644e4b057210ae04cdafda8fd62b8a48792fa3947f4a784c"
     },
     {
       "path": "glossary/harness.md",
-      "sha256": "ac9062e991e9039b394056d4366cd94247cc2041aaf4a491bb1c9e5ac16ac06a"
+      "sha256": "c2ff3efdef0cdc861cbab98c2b19d7ebd6ba1206c416c503254e04d1151a5d02"
     },
     {
       "path": "glossary/hooks.md",
@@ -239,31 +239,31 @@
     },
     {
       "path": "glossary/knowledge-management.md",
-      "sha256": "d9f6c8ca4e6246bcce0bdceae5e95f4aa4842629f8549ee604b3788e250ce01d"
+      "sha256": "5f6d6a93632bb5eb232de25e71b45bb5a0d058aec12b988ae746003d20da00e4"
     },
     {
       "path": "glossary/kv-cache.md",
-      "sha256": "e7846c82e47ed826f69682fcc298de3ebe38c75a5dbba214874cd9b3be03e5e4"
+      "sha256": "afc1106808d69d0845501b2484dd25c0cea870d487fc2843ff188d21a2bb4f20"
     },
     {
       "path": "glossary/living-specification.md",
-      "sha256": "6f02497c424ca3fc489d5e181c5a2485196aba05640227898c3b8994013aa6f3"
+      "sha256": "a11da04af55fc1898ebcc97270d59ab60f443a111f12dfdff8a857dfebc5182f"
     },
     {
       "path": "glossary/llm-wikis.md",
-      "sha256": "cbaa671bc1319b48527ea31fb3ff0db159eef0b36cfda9728f3cf795a91317dd"
+      "sha256": "33b3f72e6099744bf9797f67ba0f3353a2858c76e499195f0353a7dc585f41fb"
     },
     {
       "path": "glossary/mixture-of-experts.md",
-      "sha256": "cd93e4678aa7081df981c2c07e825a2f0749ce2c0266951bd46a0fc258326717"
+      "sha256": "37ea2cbdb0693201c9c4d4e98e21fc5ba06af47c61942ab14b259dd9842b8a86"
     },
     {
       "path": "glossary/model-context-protocol.md",
-      "sha256": "86799b261e622643795513fe1efef4e13c05459cdc3ee1a63f7ff53942da3a92"
+      "sha256": "bbd9238bb1f427876d061f55c5bf5b46d2b0182e2616f3199b561bfffc42b60a"
     },
     {
       "path": "glossary/ontology.md",
-      "sha256": "bb5d6377bccbdec097cae0e6ddaf5886d3973e3e9b2a0fc827b673aa58f6dc5b"
+      "sha256": "72e0562f89f439da5cdfe2b2d8fb6b2934f7373ae836bbf54532002de66591de"
     },
     {
       "path": "glossary/parallel-agent-reinforcement-learning.md",
@@ -271,31 +271,31 @@
     },
     {
       "path": "glossary/passkey.md",
-      "sha256": "15837c844ce7c88199d55771aeefc03f50d77cb4517459fcd4dd474dd11660c5"
+      "sha256": "a1eea8bdc7197ec398c6a2eb53918ca12c645474d1b3d1d496bf77d67b54cb86"
     },
     {
       "path": "glossary/recursive-self-improvement.md",
-      "sha256": "5b52368ad05f66bfd93ceee996ec2b195387e67e80ef0bb1960c41613191d81f"
+      "sha256": "6644e0e262bcae0c40b996ed957f5b123c87201b88c86a31743f70771aaced3c"
     },
     {
       "path": "glossary/reference-ids.md",
-      "sha256": "8f7674143070c3aaf707b46388fb10959581df6627f08662030505051e5c3fa8"
+      "sha256": "f7afcef148bb1ccc00cf0f93d236985c25135c3109f00b01b3bede919e855784"
     },
     {
       "path": "glossary/retrieval-augmented-generation.md",
-      "sha256": "c3e0c0a5d74b4a1e12cc20cf6851e5e8d6df573653f81935c552bd68b43a7251"
+      "sha256": "a3d790ce5d1b85df3757a8125d45c4fd252e1cf2d7876af9e54c8ea500eb602a"
     },
     {
       "path": "glossary/sim-to-real.md",
-      "sha256": "7a677d4249a6ab924dc9ac643ff4e947147d8f1ac0bd0e94179b3ccba6589a5c"
+      "sha256": "2eb84a05e306e7b5b94b75979ceb18f00f0762d40a737468acb0f89075af6844"
     },
     {
       "path": "glossary/specification-drift.md",
-      "sha256": "78d615cce282322d58e6c1f90e7674335ec540f88e740d5ae7e682f1d650b9d6"
+      "sha256": "7160721d88313db95e44c11b22c53bca229c463ba7be8f2c0714c54f1f867d65"
     },
     {
       "path": "glossary/transport-layer-security-gap.md",
-      "sha256": "05da76aa5cd9b740820ffbe60203289317a226f5828d063f6e21a14c3f0a214c"
+      "sha256": "81ce626d723309bb87c632a577d37638cab57c242f39f9ec5af30e0a2bd96705"
     },
     {
       "path": "glossary/web-content-accessibility-guidelines-wcag.md",
@@ -311,67 +311,67 @@
     },
     {
       "path": "how-to/agent-evaluation-design.md",
-      "sha256": "d15fbb54b41cc50b193f96f7e3ac8f3c7ce2ea57f04bd9b2fb9a7d9eeafa0d32"
+      "sha256": "13da7dbbe9a46471b4299e1ba6302a7805ed811f81ff009bdb9af3c66fce3eb0"
     },
     {
       "path": "how-to/agent-integration-scoping.md",
-      "sha256": "2c2703a9fc2cfe1188cfdd3dce6a644510626126fd9e40d8ad7653727029daf3"
+      "sha256": "e09f5c1fa079f681fde94ea13c15ca2ffd925f4a421fe78696545f4289572673"
     },
     {
       "path": "how-to/agent-maintained-knowledge-bases.md",
-      "sha256": "103909c4ec41bd863ec7b3a1770d84d384b705e516526db7920a2ff85854f34b"
+      "sha256": "b71959944107ec1976f8d9e316226232e40df99e540801903ed75afcf1f4dd39"
     },
     {
       "path": "how-to/agentic-personal-knowledge-management.md",
-      "sha256": "bbca2e8481cbab4c30cf2dd08aa8509d021fedf6bbaebe8ba0173bcf4a3f8541"
+      "sha256": "92ad902161ffc178ce29cc8cce80a3489a42691f827be1c1ad58e9d0adacdf8a"
     },
     {
       "path": "how-to/chatgpt-projects-setup.md",
-      "sha256": "cf1c80978f5d8f221e717621c0f58347c70af88fbeb7c7a895ee12cabefeaf62"
+      "sha256": "00f1b61987e5d3c56f2368230f5c7bceba2cd65841a194484527395c9cd83f8d"
     },
     {
       "path": "how-to/claude-skills-setup.md",
-      "sha256": "787d0e2981cbb92119ead1757cba5fa686ed427c98b8c6cd64d1e23a22d92518"
+      "sha256": "0765d62dd72a640f8b482ff155696badf9917b1d50cf881ed5346c75decd1cd0"
     },
     {
       "path": "how-to/commit-driven-documentation-sync.md",
-      "sha256": "f1bb7608906529a41e464f7a17e28194d1d140f602d049ca950a18a86b314a00"
+      "sha256": "b904bf54b7393fda2f247646d71727c904281e8acf8890424b6b9118730b23a0"
     },
     {
       "path": "how-to/competitor-change-monitoring.md",
-      "sha256": "b3b51cbee6b9d50c7b3957019454ba11c8e58c9e5aff6454e07123ddf9124165"
+      "sha256": "1f56021c51e626256b9b4404f3e8ac1e7ab0d0b231a5334f8c72e936735d4f0d"
     },
     {
       "path": "how-to/content-repurposing-pipeline.md",
-      "sha256": "918bfaea4698b3d5182f9a00a8336ed0da1f01be83701baaa7c42fb0e3507309"
+      "sha256": "b4728957335d88309fcbb51eec961b195746aee7e242ce061dcc8a8d7b6f8c59"
     },
     {
       "path": "how-to/context-compaction.md",
-      "sha256": "445338b4d3a49080cc156b881c00af80405551d7177d3d1cdb54570b6c5aa27b"
+      "sha256": "c233c98696b02d8e5490c12fda93c8a609a5d520a6ccb67204149affca9960f7"
     },
     {
       "path": "how-to/cross-harness-agent-memory.md",
-      "sha256": "9ca6a82fe82c6a1a538fcbeb52f11a35846474d0b7b34314af67490ef8708f4e"
+      "sha256": "2e3344502457b49ba7738be9abb5ceb4e5758e283d167d58f23da44ffb8ea095"
     },
     {
       "path": "how-to/evaluation-of-a-rag-system.md",
-      "sha256": "78ac5ca1f1af97a8de652d840e01b4ffba07a205a2396ac69dfb70dceb684705"
+      "sha256": "71622a443ac369b52145414285bb86604fc56ffac887f9ddbe8e6ef663c3ef9a"
     },
     {
       "path": "how-to/feedback-sentiment-dashboard.md",
-      "sha256": "a39f07830ed21e79d56e3f6359c3245dd71663a5b8ce021845eefa8f1220f736"
+      "sha256": "ede84b5615211fd1aa9d19fd265b5e4be53edeecea7875848b145472bf74f9cc"
     },
     {
       "path": "how-to/file-native-ai-workspace.md",
-      "sha256": "dab9a282b4d817a5411fb84faf8fbac83dea05df1556a1744192979e5b99f424"
+      "sha256": "5b40368efb31bde9d8319533814d4b5134af62fad56af75aeb5a5711a6f45deb"
     },
     {
       "path": "how-to/inbox-triage-automation.md",
-      "sha256": "e78d20b6dd563b99a687978859cf8799eb7fae0f610823aad8a62fcad5210e24"
+      "sha256": "02bb9c35e71917dbdf29f74e40a37d343b7a959560f4210221976d71cf6cf8ee"
     },
     {
       "path": "how-to/internal-knowledge-chatbot.md",
-      "sha256": "0ee4933d5f52eed260dc5b3b42b9767211dda1ec03499279c46d65d43e88e1ee"
+      "sha256": "ebffa65ec8f7a59026d8ee88c9570d158eb729d8f253d9c07544885a59a92797"
     },
     {
       "path": "how-to/keep-macos-updated.md",
@@ -383,19 +383,19 @@
     },
     {
       "path": "how-to/keyboard-first-mac-workflow.md",
-      "sha256": "49ee0177a5fd0d421020408091717921245be4878669425438b3bf1b7d5b0400"
+      "sha256": "84030caa8e3d667ef376cf6d4269866504bf3c5398d751efbb0ddc84593cddb9"
     },
     {
       "path": "how-to/keyboard-window-management.md",
-      "sha256": "b5db9f66bdf2bc3598c4664617bff1bcc31abdb24dec9b3f2fc2b6fe562d63b1"
+      "sha256": "89c70f65ea016ca06890c4d23642a40489ec00ecc57a3d49fdac8b01695da180"
     },
     {
       "path": "how-to/knowledge-base-ingestion-pipeline.md",
-      "sha256": "2a81eb3bbbee7d7d9773f754338a553a9bdd6efca2669a6aae6f5e350563ce08"
+      "sha256": "7951c1ce47b6e990e6eae671d73f90fd58a3d334d82b2e6866223febdcd1c028"
     },
     {
       "path": "how-to/lazy-loading-tools.md",
-      "sha256": "f0ee3775f758e3be52f6915813f9accdb80c980cadac85ba21742d6b79a2fa3b"
+      "sha256": "baa51e9f461635bb0e35f8ac38cdd3e92f86c5a13212d37c6fad15f951e09cac"
     },
     {
       "path": "how-to/learn-mac-trackpad-gestures.md",
@@ -403,11 +403,11 @@
     },
     {
       "path": "how-to/llm-cost-observability.md",
-      "sha256": "3dd920a39a370fa90821cece88df8baa7de969218d41a5cc21d4955c9d25418e"
+      "sha256": "f00b0462df33b1b794125540263ad2e66e375b5df0bbaf4b15c5d3764f47d08f"
     },
     {
       "path": "how-to/local-coding-model-setup.md",
-      "sha256": "e48bb5e82cb9ddb12b721e8aa7798f08a6853a7fd215ac00ae276cc825977549"
+      "sha256": "63528ff8272932741515959d459807ae9f2b59136bbd3e14a897af7b7692777e"
     },
     {
       "path": "how-to/local-model-deployment.md",
@@ -415,23 +415,23 @@
     },
     {
       "path": "how-to/local-model-setup.md",
-      "sha256": "254f74da4f18bc7b8733690f91cf7ba9cfe657999c9d3c211ea49c26337dd312"
+      "sha256": "134c6d6af67892505da0d4f05548544ae6d80e0db0ae8f59266b7096c2d57daf"
     },
     {
       "path": "how-to/manager-drafting-workflows.md",
-      "sha256": "2276c0bef03e60652280d42209aa2cbce4801d6e12770d7a778dcbdc61986e47"
+      "sha256": "97c98da047485bc68dae0166bc612e558dd3566b004ed9e149aac30d6e41df14"
     },
     {
       "path": "how-to/model-distillation.md",
-      "sha256": "c410b2218dc99f0dd43fb0aed357f86b1ac4915bb5ccee76025316cf2897d6c3"
+      "sha256": "ed8296ad823fd602be526f74bfa6419772c04e65bc03c64313fd9f272ed7a058"
     },
     {
       "path": "how-to/model-routing-and-cascades.md",
-      "sha256": "146cebb0a8e0891879a522a374b46e8f0967c7fda8a472ce17c1f89499ef5e87"
+      "sha256": "a7e81060e021bca5810958768bb0229fecad0b648909181a8c46bf7a750c6e46"
     },
     {
       "path": "how-to/multi-agent-system-design.md",
-      "sha256": "1404a8cde0c65369f98d7dc85e25c225717bbd4cbb1705bc0c8795ee6d5b2989"
+      "sha256": "0b818e7ad062cb4882b0e9a382951aed4ba367799f78fae3e76c4bedf99dc2b1"
     },
     {
       "path": "how-to/narrow-support-automation-rollout.md",
@@ -447,43 +447,43 @@
     },
     {
       "path": "how-to/procedural-support-automation.md",
-      "sha256": "8317b94c92e856b1ddcf4442c5bba25393b296310f5ea13fd1c61a8f4b6be28c"
+      "sha256": "040b5001e7091641ad2b408763687a1780e7d1b65704d42949843a19a4059b99"
     },
     {
       "path": "how-to/production-ai-agent-architecture.md",
-      "sha256": "0c7d68a12ae3f0951e3f406b8420c2e7cc1152a0eb466a7f1d13eb6b60ff2170"
+      "sha256": "c8deac680089b6ec84d2484719ef263b15c4aebf3c9ee97ee4d5eae2180e3028"
     },
     {
       "path": "how-to/progressive-discovery-for-agent-tools.md",
-      "sha256": "61e1d197ef624711d816ad4febcd103517b553ed87c8e56e8d98ce7994fa12fd"
+      "sha256": "a1ff1956b8f9950681251aa1b27809d8f60b9e9dfbf55438aa59b2584ee00c55"
     },
     {
       "path": "how-to/prompt-caching.md",
-      "sha256": "11b412b7eaede539e0fe1b17c8c53f8c925e78f16de1e042d0822c1aab9a364e"
+      "sha256": "03c8ca3f864d279eee33d73dc2ec25fff2b5f57f4ceb3dc708040af8ec2ebd78"
     },
     {
       "path": "how-to/prompt-compression.md",
-      "sha256": "c2b91494522ce13836f74ac514f18a3a13918c71c4554c8a368eacb38ba724b5"
+      "sha256": "7791f09f1deea2b8a63392c1a0c3d449007d1a782e005590b9065362c1aa2ffb"
     },
     {
       "path": "how-to/prompt-engineering-fundamentals.md",
-      "sha256": "b094d8b0b1c32f2caee61b7fac0eec5b759ddf202d3da040f50dc631a6de6336"
+      "sha256": "fc6c9e9a264a16e7334062f80e2b6e9cfd9d0c480efad729353a634479745444"
     },
     {
       "path": "how-to/quantization-and-pruning.md",
-      "sha256": "38442c75a698e28d0aad2b055f0b2286c9c6cfee4b5379eceef905dcb049a4d1"
+      "sha256": "13cb8bc2391244d031991f400d7c9987de882bf90e33048631a9629931320862"
     },
     {
       "path": "how-to/quit-apps-properly.md",
-      "sha256": "55b85b224e1ae8f9e4427f9908f4316b9d8d09e9f6218392716e56d7ac009d6f"
+      "sha256": "41c81cecd07f83badc756014e24c08a338fb90eed80033d23d142aa2c3f5296b"
     },
     {
       "path": "how-to/reading-transformer-model-cards.md",
-      "sha256": "84f44bca2bc799c3c45c927c82627e1ed6a9092f2572f07aebd0123b1cdc8b5f"
+      "sha256": "a92a16cd4938a08349d0767ebf509bbe96dd59c4eab2bce9fc702b43eb320b96"
     },
     {
       "path": "how-to/search-then-fetch-browser-agent.md",
-      "sha256": "1995ac95e4e2131504024e39fbcf7b17d8251bb099a720d030d856a8b114751f"
+      "sha256": "3e8c37c8548d750282bb4ca7d9d9062e90ef90c973a80d18b618e158de88da71"
     },
     {
       "path": "how-to/self-verification-for-agent-workflows.md",
@@ -491,31 +491,31 @@
     },
     {
       "path": "how-to/semantic-caching.md",
-      "sha256": "90e56177db1aba1e58b2d79daa193f65280817966110fbdeeb7fbc3d368a5929"
+      "sha256": "31cc956e6341edd62c974e1fa7a60ce5b6426e64f84548287b5aaf97ba2f698d"
     },
     {
       "path": "how-to/sms-support-concierge.md",
-      "sha256": "0b9d42f9c988c799ed103f964eb950df07e93037a27200a34c3a17ed26f1e83a"
+      "sha256": "2dadcac9228a32239346ca595d4a920d2de232418a5d1d440c33dc6a55b5e786"
     },
     {
       "path": "how-to/spec-anchored-development.md",
-      "sha256": "f5ee5c13a7a7181d3e768ba2f27513a7a8bbe30eb0791afea219ba33080b210c"
+      "sha256": "028b17f68249b45f5a092613d04aab055f4334399252415992ce83a94808c435"
     },
     {
       "path": "how-to/spotlight-command-center.md",
-      "sha256": "3fe0e06a1c2e904c73fabafe2e79b57e8fffbe109f3ab2fb1a6f00870cb046e7"
+      "sha256": "87b4c188acd6f23b82375bf30d4d5302e4260ff757195e229d7a8f1809e421da"
     },
     {
       "path": "how-to/stateless-chatbot.md",
-      "sha256": "55324c4b798d0c6c18c97912d72a56c42daee9820a1a4696d6fe8f8511947363"
+      "sha256": "a755c0d7ce2785fcf85a705fbb6d661d750849a988249a32c350f4628380c95f"
     },
     {
       "path": "how-to/structured-specification-for-agentic-development.md",
-      "sha256": "12e6d8e617786c422796de84857c8a9cee91546e3e410bfd32940d000c9ec5bc"
+      "sha256": "0139222bb68fa22e0428923a338842af78433e99cfff3037934e6b161d3131cd"
     },
     {
       "path": "how-to/two-pass-document-ingestion.md",
-      "sha256": "f8c2fef74c7f4610704045892c9d8f36f87a6179e1433ed4cc76e5c16fbcd145"
+      "sha256": "53c9b0bf99c1b0d100d5036a2ef05ea9758a4fb493ccb772167d5dcf5ddcb79e"
     },
     {
       "path": "how-to/two-step-document-ingestion.md",
@@ -535,11 +535,11 @@
     },
     {
       "path": "how-to/use-keyboard-shortcuts-on-mac.md",
-      "sha256": "daea0c0a1ea3a493ff0de980722d0e3dc2ea16e5c80c229bf21ae77549b5cbaf"
+      "sha256": "0f750cb714deffb140c9a048ef1e58849d1ce19139b3e0f78e427dc13e23eca4"
     },
     {
       "path": "how-to/use-mission-control-and-stage-manager.md",
-      "sha256": "a6f5252a32ffcc60a6e02d222be6a39c97fc6290011fb3bc8c9a0389888b1ce1"
+      "sha256": "cdfea7050c591dff988a2ee47ebf7360f472829fe76581ae1a19936d7682f83f"
     },
     {
       "path": "how-to/use-preview-for-common-tasks.md",
@@ -551,11 +551,11 @@
     },
     {
       "path": "how-to/use-spotlight-as-a-launcher.md",
-      "sha256": "5c432028d0f1b1a09586ff70d7312782bb7a4cc7f3121cc23313d700fca175b6"
+      "sha256": "0b1c08020071ab2f67781499b9a6d165164ecd440bca51828ed1f6c12ae34b9c"
     },
     {
       "path": "how-to/voice-note-to-tasks-pipeline.md",
-      "sha256": "6ac3015a79d31fa1cf79cb9e8e05e65156d99a5e17c6500061c453b9783e50d7"
+      "sha256": "0f12cfb7f28d221853602dec9d092c85b25831a4b202d2273243d2ef6c458979"
     },
     {
       "path": "implementation-studies/2025-11/ai-in-customer-service-a-complete-guide-01krscnqrrhpbfzwm6760xwjmd-lippert-s-cognigy-support-automation-rollout.md",
@@ -691,71 +691,71 @@
     },
     {
       "path": "industry-trends/agent-evaluation-shifts-toward-readiness.md",
-      "sha256": "89184628e4af057417ab3180739ba91e6ea77fdd295ddab9e1a87e81f553009d"
+      "sha256": "51a17c4529cb502e928a7efc2e5ac312ea212962a5d99257378595d642cd6d08"
     },
     {
       "path": "industry-trends/agent-evaluation-shifts-toward-reliability-and-tool-discipline.md",
-      "sha256": "273f8dba306b021039dd69e10e63acf079e515862c4d2210e0a0d7d9469b28f5"
+      "sha256": "9440461c0e8b4a46ede49ec1d96ce8510379b777b2305318e5707239cfc5a2f9"
     },
     {
       "path": "industry-trends/agent-evaluation-shifts-toward-workflow-based-tool-use.md",
-      "sha256": "65b3e678c4adfcb469c84673a4c3f6bea774f60626ce26b2b1e66ce04c0ee2e1"
+      "sha256": "2d7f1467086bf21765a5b8f595630658b76e0fc3ca3f0a7519f324e2d3a0cea5"
     },
     {
       "path": "industry-trends/agent-maintained-documentation-pipelines.md",
-      "sha256": "81c0016c939eeec1fd3bc764e9e37451b860b180e77141ec8ca71d7558d0e0b8"
+      "sha256": "534268cff2ec33a6828162ec09a4d16a2c77f4e3c10801be6566243722ad482d"
     },
     {
       "path": "industry-trends/agent-runtime-centralization.md",
-      "sha256": "56cf6c1b29206921a97a58c4ee2065c09105505054811c6800aa4c5977211e31"
+      "sha256": "9e2053e3845b83d0583b01ef14085608dbaa43878bf1b8bb7fa48405fd6cb8ae"
     },
     {
       "path": "industry-trends/agent-search-moves-toward-local-text-indexes.md",
-      "sha256": "360e979379a7b0d161c110c1b783f534768888f9acf43d5b2d3016f98b027f31"
+      "sha256": "97d0b1e881ccfa0d165e7fc7b05e2573e14a9d47b51533fec87697f02000bb79"
     },
     {
       "path": "industry-trends/agent-tooling-shifts-from-prompting-to-workflow-architecture.md",
-      "sha256": "3866c3dbb34eed647dbc1ee6ca629e43e1b1886a2c53eabcd52aa604f7b68e09"
+      "sha256": "111cf6c82ad0870c12e119b934beb654f209fe7ecf70f77ab81c411eded3edcf"
     },
     {
       "path": "industry-trends/agent-workflows-shift-toward-reviewable-contracts.md",
-      "sha256": "839fac265537cdfdbfe8a336027bc99d12258e053b644cf3c4f916ef368be546"
+      "sha256": "a390b8e50743d17f4777610ecdf8a04811afbaf495014ec1b4df82abdf326ea6"
     },
     {
       "path": "industry-trends/agentic-coding-shifts-toward-higher-supervision-costs.md",
-      "sha256": "c5ec29a30002e6dfbbd7221abfe2f62faf0953d3d3e622b65cca01778d976642"
+      "sha256": "d63d098d3217a413aa37ff459b0248560d0b07d26c43db084a55ab1ae8b63266"
     },
     {
       "path": "industry-trends/agentic-commerce-interfaces.md",
-      "sha256": "7cbc5de0d94a21df252881d007707a873e541cc026e864973e50c72b2bf4fb01"
+      "sha256": "e7c87f316d0a643e7f9a0e4830dfb80ebd8eac4c21ad725ddfec1155c32c8c6e"
     },
     {
       "path": "industry-trends/agents-are-shifting-from-stateless-chat-to-memory-backed-persistent-work-loops.md",
-      "sha256": "b55489b901e4f04cd67a5f0019284b342382ebe97997890258c470650f381a39"
+      "sha256": "04caa02bc1ae8892ba35c6c86e574a2dfaa91d9fd738146721f169ed3c6c5395"
     },
     {
       "path": "industry-trends/agents-move-toward-persistent-memory-backed-workflows.md",
-      "sha256": "660ef66a539e372cb5fb805631324f8ef147807da6c3738094cc433661abd88f"
+      "sha256": "542590c4e12d7c555360128466bf25bd0ee8c12171f91fc3ebee8f14fd43e9ce"
     },
     {
       "path": "industry-trends/agents-shift-toward-persistent-memory-backed-workflows.md",
-      "sha256": "21bae7cbc77f68daa3a0cbc48f5154be02bcb9c962590e422929e2ce7fc40467"
+      "sha256": "32d99be6492e58e54ce58ed253edb3a3fe569dd2e42a983e78691f6a288b1047"
     },
     {
       "path": "industry-trends/ai-adoption-moves-toward-government-mediated-access.md",
-      "sha256": "03143acaef7e842aab61685f4583f647803a8277529585717fff28b0562b8419"
+      "sha256": "a26601145c760e6e605261d6681b3eb75bf6e2ccb08bd635cc09e819640f122a"
     },
     {
       "path": "industry-trends/ai-assisted-file-native-workflows.md",
-      "sha256": "45334ba47e903c798a11c5cf59ea43c2cf6e55f23c8225561e5adc86550622c1"
+      "sha256": "8f65711c79906f1010ef3c2b4c6a37b79a250958a24ca1a02640ee31e873614e"
     },
     {
       "path": "industry-trends/ai-coding-moves-from-prompting-to-persistent-specs.md",
-      "sha256": "a7c51f7189d245aadeb06973efd8a776932a3e834c79d339ba3077b31f3518fc"
+      "sha256": "f9597de9e0f554c20b0efb19329f78f52e71b2b79e5a7bf96d5bf9c90d8384dc"
     },
     {
       "path": "industry-trends/ai-development-shifts-toward-model-assisted-automation.md",
-      "sha256": "af6f92dcd4397609d3444cc633d3338f94af74e603e9a1cac3895ff7a8e00684"
+      "sha256": "352ca18ae0cf2478cd0126d051e19a007c145020eb4a8518007ad5e5a37e2039"
     },
     {
       "path": "industry-trends/ai-forecasting-shifts-toward-operational-risk-monitoring.md",
@@ -763,15 +763,15 @@
     },
     {
       "path": "industry-trends/ai-governance-moves-toward-enforceable-media-controls.md",
-      "sha256": "a4656530a4000189f589c6adf86c55f1335993154e0dc5449d37c6040878f82c"
+      "sha256": "485b8750f834a41ae57c24c74ed2ebf0a5789599cbf41baf262da3446459324f"
     },
     {
       "path": "industry-trends/ai-governance-shifts-toward-verification-mechanisms.md",
-      "sha256": "d541a9b2df2c7f01d3d0b6fa44ab4eeda0ca8c25c5cbcf121785909f066e8740"
+      "sha256": "7bf96d9116e56ee1bbefce1a6793699a686877c3c72ae484b4d09931de791225"
     },
     {
       "path": "industry-trends/ai-governments-prepare-safety-nets-before-labor-disruption-is-visible.md",
-      "sha256": "11e0b5b84e9011230647ca14ebdb167de7dec79e0404bb0b70e8bb15cad0207e"
+      "sha256": "c6afc4bb2f7367e0ed59517a25fdd5c0a5b7c1b0d2276289cd908c0d97472cae"
     },
     {
       "path": "industry-trends/ai-infrastructure-scarcity-spreads-beyond-gpus.md",
@@ -779,31 +779,31 @@
     },
     {
       "path": "industry-trends/ai-jobs-risk-looks-more-distributed-than-disappearing.md",
-      "sha256": "57a7e52a4176b5a9e09e74f430bbfd7bd75e2717a92ae64c5334561f45986f6f"
+      "sha256": "6254232189f8155028fe1606c115872d06e7882a1fa10c5c87a7d75b3fc9dcf9"
     },
     {
       "path": "industry-trends/ai-product-feature-gating-moves-toward-generalization-tests.md",
-      "sha256": "4f5f266f2f870932e9eb08939b1706c3e94577547a0220cf6cc213b5285f51f9"
+      "sha256": "92915bf8152fffa4694ad660b7ca0f6c93430478e68b4df53d5e3773fc61f529"
     },
     {
       "path": "industry-trends/ai-product-pricing-shifts-toward-measured-outcomes.md",
-      "sha256": "ce03d629037e4149e2380bdbc3d7254cd56eaa4e28280d6cf26f347db9a1526c"
+      "sha256": "ee46681fbddc2eba555a2e123fbd920c30302ad4283ee34a28e824bb6a8d6037"
     },
     {
       "path": "industry-trends/ai-products-shift-from-demos-to-grounded-workflows.md",
-      "sha256": "d69df2988d0aa4bea5f591f0125f939e73d75b2c3521e2a0a5cd45cca5ca5b81"
+      "sha256": "3d68f0f51a9bd2755728dcf3ff09ee4071a2a66e6298820d3cc3df45b1f40e89"
     },
     {
       "path": "industry-trends/ai-products-shift-from-demos-to-production-controls.md",
-      "sha256": "89cac06e1416bef19a5efee13af105b2078f376ddf9f89dcbf8f4f19ecd901a3"
+      "sha256": "e15a1521c5ca26da771e783f753bb4c9095f0d57b7266714e77cbb2a13144dfc"
     },
     {
       "path": "industry-trends/ai-products-shift-from-models-to-grounded-systems.md",
-      "sha256": "2ba7ab9bcb28dddbcc87789e779597123fc3682240872f60ace425caf3736f73"
+      "sha256": "1c2274ef811d2f4f6836e86ddb5422b2a43e23368f92c99a7ab044934b9be55f"
     },
     {
       "path": "industry-trends/ai-products-shift-from-models-to-systems.md",
-      "sha256": "a964ba5cd460eec2c424574f3fee36dfbe37ddd1189de6be6d0edf82a6dcf15d"
+      "sha256": "d984da02133c6a2747a8030535993fd5d97dfeb9c6bdf6756e6d2976a9243205"
     },
     {
       "path": "industry-trends/ai-products-shift-toward-agentic-commerce-interfaces.md",
@@ -811,335 +811,335 @@
     },
     {
       "path": "industry-trends/ai-products-shift-toward-ambient-computing.md",
-      "sha256": "26cfc96ed6ace9ee3c222628a400d596e03244e6dc3e4ffb37fc2a4f2e4a780e"
+      "sha256": "ef5f5d23c9967e651bbd4ec234b7cce06ae76ffa6e524f4d5b562d1908999c0e"
     },
     {
       "path": "industry-trends/ai-products-shift-toward-customer-specific-deployment.md",
-      "sha256": "fff01b750a32ab9636cf76fcdd327839973b00475e3c7deb39edae616d2ee865"
+      "sha256": "8a534e0d98c2fa1554c265add6873f6c0392185d4a17d212aba661bdac2a1230"
     },
     {
       "path": "industry-trends/ai-simulation-moves-from-demo-scale-to-evaluation-grade-systems.md",
-      "sha256": "7e802d4ea68ad5646f7fd00d86356a8357e98844a71a9c6c49b0a196c0a8fe87"
+      "sha256": "bb695c02cb8d8b16387fe9b8f5a7b4e95481add9438df4d234970840af571999"
     },
     {
       "path": "industry-trends/ai-specification-moves-toward-explicit-constraints.md",
-      "sha256": "380d32da22f3580aa6318d26387e91a35755729fa28b47f39adcf03a31f22be4"
+      "sha256": "4865fdfcfeae3ad88eaa2951ec4c7195778c06d7f0dd8a1371be8d8d88cd4fe9"
     },
     {
       "path": "industry-trends/ai-support-improvement-becomes-continuous.md",
-      "sha256": "84b33fa7b1979a811067be71f3b5b13252451b48da63487f491cb3db4b27b4b5"
+      "sha256": "d259232c7d8790332b7eb1322fc9dd758d92494219d6912f56307311d97148cd"
     },
     {
       "path": "industry-trends/ai-workflows-shift-toward-supervised-friction.md",
-      "sha256": "ec1885b55b86c7e6f28ce5a68ddef10f4bad36cb78dc57db3a3babd0acb07857"
+      "sha256": "0fa285424d5b21ce8a916722c8a0bbe22e86fd20e9c0e77271f149a9d85e34b9"
     },
     {
       "path": "industry-trends/ai-workflows-shift-toward-verification-loops.md",
-      "sha256": "dca9fe986fe57c77a7ceebfd8254f309d3c6a2612cbcb801d938c729d96adeb2"
+      "sha256": "ea9c911b481491690e779dd1afad466e15f550ef6ce102634e23806a028e0e2f"
     },
     {
       "path": "industry-trends/apple-silicon-local-inference-becomes-practical.md",
-      "sha256": "2bfe67465c7ddcbbb9cd0b397fbddbb69e256fa9f84080559dd003c64fdf585d"
+      "sha256": "0228da8963fd39c6b8322437c5f44fce278d8233d54b769c20f40711ece133c5"
     },
     {
       "path": "industry-trends/artifact-first-ai-workflows.md",
-      "sha256": "d54c80def74e1a9233fb1eb02d040a86348cd09cd12eea574a76deec852e9dd5"
+      "sha256": "00ab9aec16a8d1b6d70573c4470d04502eb7cafc55305a8deb458310bbecc92e"
     },
     {
       "path": "industry-trends/automation-pressures-governments-to-tax-capital-instead-of-labor.md",
-      "sha256": "9abe6b68c6c4883b03bbef83977f5288ba52e97090fd907713b6b1739b2f6489"
+      "sha256": "66bf57c3b2f9bb5c6ef6e09600f8c2a7e76c48d957e5cc83b7c2cea9097d2a5d"
     },
     {
       "path": "industry-trends/behavioral-regressions-need-qualitative-audits.md",
-      "sha256": "d8b335b21c22760c0d4f3f0ca9340e16b802f30bed0eff5870f50e31356b39fe"
+      "sha256": "9a785d185021c80974db233f3bddee75d7e71f1dbafd3ad59fd3f7ad40bae1a6"
     },
     {
       "path": "industry-trends/chat-products-move-toward-persistent-workspaces.md",
-      "sha256": "9b279933f52f83769b0e7461a8f52b19e33dd0d21149eb02783f71cf0e6f03c9"
+      "sha256": "8cab11b909b174c74bb90681dfb9eb2538f8d045c80a5386607578373de5b014"
     },
     {
       "path": "industry-trends/coding-agents-diverge-into-workflow-specific-products.md",
-      "sha256": "999cd135a411fe0cd275452199d61ee5ecd0574ea6f046c92585e5d11e1f6f2a"
+      "sha256": "5622d9c2842650bb8e114c41333efc4169db26c1cb8c6c4631416a89d726e3d5"
     },
     {
       "path": "industry-trends/coding-models-shift-toward-agentic-execution.md",
-      "sha256": "2356fa057cfff594d87069a1900ef451e73b8a433c20c7a091cb93ee80953ad2"
+      "sha256": "2c20e4f3a6ac4fdad300d845b93aabe585bbfbe477dbf47144908a194f775a86"
     },
     {
       "path": "industry-trends/coding-shifts-toward-supervised-agent-workflows.md",
-      "sha256": "defae47cdc9b160b4d24748b11d45d0886590edae6c7a3f8dd58d956c2038be1"
+      "sha256": "36cbcbec941a6849afefbb94bef9dc922ed856b18103d5df49cf8cdbe6ee14cc"
     },
     {
       "path": "industry-trends/consumer-ai-adoption-broadens-beyond-early-adopters.md",
-      "sha256": "d49b69014e5072ac08bea47d4bc125b20c7ef36a6c25a78fd5b25c95710bfebf"
+      "sha256": "efb7424e0822ad1af66079c9d7e385526ec62ae2bb3942703a0fef35afad8ca5"
     },
     {
       "path": "industry-trends/consumer-ai-shifts-toward-distribution-led-products.md",
-      "sha256": "d0f9f92ccf0f340a7b2f6006f8de46e488afd6120325f9211605c1348152e35a"
+      "sha256": "9bfb9c2e23b27f94fe1efe4a067c6068e4f72d9479dbbb1c79e788a9ca7b880c"
     },
     {
       "path": "industry-trends/efficiency-gains-become-product-capabilities.md",
-      "sha256": "861b2d764f1c7bf7df94bc0dd0d14be867ba3f0a4444c18d456538fded663866"
+      "sha256": "8ba26b6521711eb0bb64e94a15a9643eda94d1acb2758289364131ff584927a8"
     },
     {
       "path": "industry-trends/enterprise-agent-platforms-centralize-support-workflows.md",
-      "sha256": "736adc2ca6cdd952bc62b806da3cf1f70562de2cbb0e78aa0b4ad737e6a66958"
+      "sha256": "d787535b51df45e1695b4ad039d70fa66c78a586ab0316b0be8aa8c5229eb482"
     },
     {
       "path": "industry-trends/enterprise-agents-move-into-customer-infrastructure.md",
-      "sha256": "4de8fb5baea04089a5de5ed5a0db59878e61fe120ceeb23ac2f8c157f982c52a"
+      "sha256": "7a63120d61c0ea8398e805e8918a0a44fe1d87fd0cfccaa3287b7745d69184d0"
     },
     {
       "path": "industry-trends/enterprise-agents-need-layered-connectivity-stacks.md",
-      "sha256": "9048f360fcb0c8db4bd6aa795671cf0551cb1082c32a04033896d6902b5fa0ad"
+      "sha256": "34c268a55402905ec65e7ae242a463eb7489ca63f31cb777d4994bea18b2c704"
     },
     {
       "path": "industry-trends/enterprise-ai-moves-toward-governed-human-oversight-workflows.md",
-      "sha256": "20e29d125952283eb4f827e71634a619249a040bcaa51f6bd30a579705bd49fe"
+      "sha256": "a3d2d1fd683bdfabccfd5e900ca903d89404c87b9ce488a62942370d25adcdda"
     },
     {
       "path": "industry-trends/enterprise-ai-shifts-toward-governed-human-oversight-workflows.md",
-      "sha256": "da0e5fc8e170f28450e0c8bac6d77b1b8f883aa2c4aea799ccd451e10ec2fa3a"
+      "sha256": "2f14e574b3fab457c7b16270cd1908b6c45109369e8fb36ae214eba8e64b1ae4"
     },
     {
       "path": "industry-trends/entry-level-technical-hiring-softens-under-ai-pressure.md",
-      "sha256": "bc859b26146c1953d124252efbb3db33f5c403fd4003d17816ad8bd2c341dd8d"
+      "sha256": "9cd06ab3038c735d25bd735444db6dc7aecfb717250e0389a24333cada67fd6b"
     },
     {
       "path": "industry-trends/fine-tuning-revives-memorized-copyright-text.md",
-      "sha256": "0a1fb891210ba9d2519a1b47029aaaf04bb68098d69aef2973c6a68fb8c91eb9"
+      "sha256": "999e72dbe15998eb6b4db6e8b530695d03eaa6a8f24496ae96c6657122c5f8f8"
     },
     {
       "path": "industry-trends/frontier-ai-governance-requires-verification-mechanisms.md",
-      "sha256": "ed63709b0cd9ffdd46dfecac22f217774836545d1aaf423fd3277d5a28ad97aa"
+      "sha256": "af216e36a0796af16063f8da3995cf63cdb976be9012bac9e36f75082379341a"
     },
     {
       "path": "industry-trends/frontier-inference-hardware-gains-strategic-value.md",
-      "sha256": "df6546594d75cb4d108f7e5df092d6f2372cd6ceb7833240ac04e6a3ee2a8f41"
+      "sha256": "cdda74fbe5cdfa33a803237deea8f2cf9fd6a3cdd74894aa8b339aaaaac40021"
     },
     {
       "path": "industry-trends/harness-design-becomes-more-important-for-agent-reliability.md",
-      "sha256": "b004a663bf02f9f7bfff3f8165c2e722d846b498cb99e5cf954ee526865e1e11"
+      "sha256": "41661eec2939aa839cf24a4638d1f1cbdd13c819401871f112b708fa3ac74cfb"
     },
     {
       "path": "industry-trends/high-risk-models-move-to-gated-access.md",
-      "sha256": "44a7e50facf912937b3a037bef21c773c15a8e69b2c6ecb35fc1432b2d2461da"
+      "sha256": "430867ab8af8aa23af24e23a799f631916ed2b67fee00872146658212a9ec19d"
     },
     {
       "path": "industry-trends/inference-demand-outgrows-training-as-the-practical-bottleneck.md",
-      "sha256": "be6cd946e7a91b86794e243bc50728962a258418f0023ed9d84ddfb26907b05d"
+      "sha256": "52018a9b6a68a5927d4504c8f30c4b2a8a7ff8753344d6d03b34614fc2730343"
     },
     {
       "path": "industry-trends/inference-efficiency-moves-toward-low-precision-hardware.md",
-      "sha256": "fa7af77ce0954351f84de4daba0a3af6883098beeac2c424625980fd99729eff"
+      "sha256": "ef0810537f876af3fb987251f0ac88f0ee4ea8c2491f7b4acc282932c3bed4a0"
     },
     {
       "path": "industry-trends/inference-hardware-becomes-more-heterogeneous.md",
-      "sha256": "1463f0e4f405e3eb9a9c68f3db51d8e116d4bdf64992f29478484b7c7c6bfe55"
+      "sha256": "c7fde5c125e6a4614d107ff3c27b09cb61288155ceb538dcef3fac0123c84a58"
     },
     {
       "path": "industry-trends/knowledge-architectures-converge-into-hybrid-systems.md",
-      "sha256": "06e7540f9f41ae184228d8197a2555535c915d91697f970a8b573487af544145"
+      "sha256": "1e941b5b0e979cad8cf8551df2f845decb7c9203e91549cd97be3cec67e940b1"
     },
     {
       "path": "industry-trends/knowledge-base-becomes-maintained-workspace.md",
-      "sha256": "e4ed831c53db1bfd1a36ba20862f468c2b9255c76f0c9c0eeb2b510392acc5d5"
+      "sha256": "bdc0b331cb55de8c5a84dfdb99e21f60326fe41b163c809fe9b6f9d4cf293eb1"
     },
     {
       "path": "industry-trends/knowledge-base-becomes-runtime-infrastructure.md",
-      "sha256": "213210b6d2fd8cb2a22581597c87faf35b07944c0c93b8908b960179140a2740"
+      "sha256": "a2d71434deb0c78afac96d30964b9e61b3c2332dda785557d613de07ce2a31f1"
     },
     {
       "path": "industry-trends/knowledge-systems-shift-toward-agent-friendliness.md",
-      "sha256": "c9ef224fa766f8b13f5411653cdc29de2f5f39e18480871c890ea4e22fb0cb96"
+      "sha256": "060a94f50f5ea9bba0d6aa9f7a4dea1d7c2c94510791b4575fb0cf919977c284"
     },
     {
       "path": "industry-trends/knowledge-systems-shift-toward-compilation-over-retrieval.md",
-      "sha256": "72f19c1cfdf2e44201f5c56c35608ddedea6ddc269ba115fc8b9b34363a81485"
+      "sha256": "05bcadcac555cbcece7bceaa4f1fb15dd8e054e0696db42a7cc05aa5469d7ea4"
     },
     {
       "path": "industry-trends/knowledge-systems-shift-toward-passive-capture.md",
-      "sha256": "3057bd432ced65993c9c31410f2195dc5dc7ae4638bb3e0355db3e8eb08ed326"
+      "sha256": "3272f2cb48405cd881548678411c3cd49308edcedae867179f4022a005e8b0c5"
     },
     {
       "path": "industry-trends/knowledge-systems-shift-toward-persistent-workspaces.md",
-      "sha256": "fb749fbaf328f824e0a40d483a7a9ae4aff5131e12fe36d2a8d320c28b6be624"
+      "sha256": "f41464743ba0943bc2325a7fe79f5d645845787f1dc3071f7fb9f6df65dc0acd"
     },
     {
       "path": "industry-trends/knowledge-tools-shift-toward-file-native-control.md",
-      "sha256": "7bbe0ecff326667aa55a33e59d3c439653626b4121b558d99ce9af51a5dae472"
+      "sha256": "9d036335c96ee807909a2340051707f6315c95b72289b50267189072f3328d52"
     },
     {
       "path": "industry-trends/knowledge-work-moves-toward-agentic-workflow-completion.md",
-      "sha256": "001aa395213cef32995945f49b1a8edf2be267b9cbc931a849bc29d3b5ed0916"
+      "sha256": "3d9ae97f71af42bdcda3b92f1317df7cd418e42517255330c8edd5fa863bc979"
     },
     {
       "path": "industry-trends/latent-reasoning-replaces-token-chain-of-thought.md",
-      "sha256": "d3d66d9075b2837ff75e427c90b4b28e0c8e112b899fdcf9ed81e7750c536c0b"
+      "sha256": "7b3471046fe1912f6528db56b915a554f904758bd392ac630d997ba74fc11823"
     },
     {
       "path": "industry-trends/llm-maintained-knowledge-bases.md",
-      "sha256": "4d768c2b07c2e89236f3bbfad34d3455a101ef2abfa8f69478267ff14198593d"
+      "sha256": "328ee397081d2937f65ac735d21bb1af69ab602fb0dbc4631e401d034dabe9b7"
     },
     {
       "path": "industry-trends/local-inference-stacks-shift-toward-direct-engine-access.md",
-      "sha256": "b7a79271f47be66b56e7b06aba3557e3eba11dd9588d715cd2ceca1976515d8b"
+      "sha256": "7f5d45e0577968de5a0fe34337474bf9767dc50ca9b8e98ae6bacf1fb09adf48"
     },
     {
       "path": "industry-trends/local-speaker-and-dictation-substitution.md",
-      "sha256": "1aa37e6f3f7a2711a0f03301470cdcedeacf81d5023a868439d16cea695621d2"
+      "sha256": "82d4c8ebe6f02248d473ca5e341cb7f48d25599f1126f058dec7cf5838fc7abd"
     },
     {
       "path": "industry-trends/local-specialist-models-for-preprocessing.md",
-      "sha256": "f0743e93bd4da76ff13b17141ce84c477c1042a604833fc0ae1f7984ae0ba42d"
+      "sha256": "e3dd33e61740c93d27720eaef9017ed145a1e14299e1319d32b9490f16786620"
     },
     {
       "path": "industry-trends/long-context-efficiency-becomes-an-architecture-priority.md",
-      "sha256": "bb3fab0e007e06547d84bd09ce4832a117fc3ec8be37df9f3fbc2cbcac0d1a99"
+      "sha256": "312ef1239fbcba0491c3c18442e119de7d875a557d45e90fb2aeb206593af034"
     },
     {
       "path": "industry-trends/machine-readable-testing-intent.md",
-      "sha256": "3a9cbf7d24c83288ea9de101f26472f584c02f6a01312e444206c78c3edc367a"
+      "sha256": "bcfdc941b185f45c1e91a6814ea1158a783199e984a4cb9d10442f0637999b65"
     },
     {
       "path": "industry-trends/model-breakthroughs-become-harder-to-sustain.md",
-      "sha256": "3b96a5f1ab1dc3bf1803ee6b6491ce604977c84db51c3f1cee5d5cde4cf1b50c"
+      "sha256": "4641daf97ce7a270baca92bcf225c823e02adc83a79bd99022155e1060228b92"
     },
     {
       "path": "industry-trends/models-as-commodity-components.md",
-      "sha256": "2a067bec73a5071106736262501ea60ee002472453d3777bd4663b4baad4cf47"
+      "sha256": "55b22fab111d9c7e9883becb346209f611cd17edbb874a7885532b4ce1fe8501"
     },
     {
       "path": "industry-trends/models-becoming-execution-layers.md",
-      "sha256": "ef39da11a9b14d7e9111a16096d591c339675cb9017e300232c20346f1cac44f"
+      "sha256": "d874ae61197db358de3cad918e9a90adb0f4759145f45eaed4293c9b951e9a47"
     },
     {
       "path": "industry-trends/open-model-pressure.md",
-      "sha256": "f308bc455578dfa0aa82a44fbd56b2e84eed8b072b99bb7738ea092d76b01237"
+      "sha256": "0ed82f0e65e06d91da3301c67bde40ccec3b6031f8c8e6df617d86900f9a1e19"
     },
     {
       "path": "industry-trends/open-weight-models-become-good-enough-for-local-multimodal-work.md",
-      "sha256": "dd21770b673d8ae2766c75969f53791ff4c0e9b3293d7e0e199ed141798fc3fe"
+      "sha256": "f8f5c871cf165c1fc1ddce254f30ba0efcdf7e1799d6ede38f901cf732a4a251"
     },
     {
       "path": "industry-trends/open-weight-models-become-viable-on-consumer-hardware.md",
-      "sha256": "4a87e8b826ce2a3705835f2442a54337a9e9e66e651ce6a65802ed2d70522b40"
+      "sha256": "8c5583a846bddef5f7cbfe329afc0d7a668f44154a9629107abebf4af9a353bc"
     },
     {
       "path": "industry-trends/persistent-agents.md",
-      "sha256": "574a6c749b30aaaba7b48234a783d4cd527489d2f1fcae6d1eca8cb750b01a56"
+      "sha256": "691e8d52720670baaff53944d1a413de7f68886fc4b8acdd9c17b45cabc723fb"
     },
     {
       "path": "industry-trends/pricing-and-harness-control-become-core-agent-product-levers.md",
-      "sha256": "f77091ceccbbb9f02ad1e30dfb50beab76489d7b4e571299227da2e2e75928be"
+      "sha256": "06de4d6e40001b373eaec46fd3bb62324cc1690d23a37b9596f9e4c11a5e6dc3"
     },
     {
       "path": "industry-trends/production-ai-tooling-moves-toward-governed-gateways.md",
-      "sha256": "9c6edce86f81c71fcc999781fe28b69f1820fc39e46d28cda441a403c32aeb9c"
+      "sha256": "5e985b42417d3a3862fa642edb57241903e9b4e41b18c3c63515d8b01ec3baf4"
     },
     {
       "path": "industry-trends/production-feedback-becomes-a-core-agent-training-loop.md",
-      "sha256": "9e18fa416324709684476a555c553d815dc9011c2006aaeae51734239be1ae55"
+      "sha256": "7bdeeda910528b1450ddd34a7d040c1fc230267a21d71aace450bdecc71c7ea2"
     },
     {
       "path": "industry-trends/programming-language-choice-shifts-toward-agent-friendliness.md",
-      "sha256": "6d6908b44cde8c5b05bce5e9ed2f16f7ba3ec327cce42cfb5ff563b6b83ede00"
+      "sha256": "6ddea9602bfc696b445983340bb962eae3dbdc76d62fc0c70a6a6b0c9864f89b"
     },
     {
       "path": "industry-trends/provenance-becomes-layered-and-verifiable.md",
-      "sha256": "fb469bb3af899a49d6ebafc5afc38818023edf5f6685454a38818623c0c0ea0f"
+      "sha256": "4209d458293151e5808ed9bc4ae1d1f8ef0fd7417e7db477911bf1b64abb635b"
     },
     {
       "path": "industry-trends/rag-moves-from-fixed-pipelines-to-adaptive-agent-loops.md",
-      "sha256": "aea4dd4502f4d54bcf8aaf437217e7044142111ad3fa46a281dd78249ce5cdab"
+      "sha256": "a590bd847fa10d5ae27a8b51dd4b1da3151624dfd88f74b3807619d3b1bf6456"
     },
     {
       "path": "industry-trends/realtime-voice-agents-shift-to-integration-work.md",
-      "sha256": "e8cacad612795a8e2293741f6d571cb54135b7fc4c1c2261ae8deebe732ad55f"
+      "sha256": "185ffac8c4448c3c9ea27f7dea3b07626d1258b5eb02a9e0f874ced175695849"
     },
     {
       "path": "industry-trends/regulated-enterprise-ai-demand-for-audit-ready-evidence.md",
-      "sha256": "158bf5290c37c955c7cdb2d423e186e1ba3d8e3de6d2c45c277ebff1d1ed7b89"
+      "sha256": "c382af556b8b714ef32ff0957c13f3aad4b9a68351e775352d9c1431bde7020a"
     },
     {
       "path": "industry-trends/sales-moves-from-fast-follow-up-to-agent-led-intake.md",
-      "sha256": "761383be5a937538dea66c48cb6a7c50fdb95cc8e9baafc77d05d84f99ce992d"
+      "sha256": "c3e320747e9fe6232f4b5c97f95b806c6cbddbaf53a65fe9bd6fa27231afa52f"
     },
     {
       "path": "industry-trends/skills-move-ai-products-toward-workflow-packaging.md",
-      "sha256": "2c578144e1d74d0bd30851bb1440d98435b9fbf53b2840a0e4478e9f0f829fd5"
+      "sha256": "0018f85fbf1a2786f444dd4d53922dd50b97e755ddcbee74adb2937cbfa61ac3"
     },
     {
       "path": "industry-trends/software-differentiation-shifts-from-engineering-to-distribution.md",
-      "sha256": "fa0cd5fb8cb4091e3b0ae1d30b4715345a5765d53a1016eecc4dfb805b88393d"
+      "sha256": "c581c345d93091d5f7f5a685188657b77b47f3b64bfb0b0347e82dc56d95d85a"
     },
     {
       "path": "industry-trends/software-work-moves-toward-domain-verified-ai-output.md",
-      "sha256": "1aa24bd71e5f5341033597cb462224d600ae2de184304ce5c75f9ff16fffaec5"
+      "sha256": "c5cb7a729a9930ac53df08170a1ca908f3b454b5dc8312ff3f5edecc05a8916f"
     },
     {
       "path": "industry-trends/stable-api-names-no-longer-guarantee-stable-model-behavior.md",
-      "sha256": "0f68949856b334f695b97bbc69ae537587749a3334658e9ee7cd4ba7695910d5"
+      "sha256": "67727077d512a02b060d8fb1215fb4c67899be7774e66479f53c254ec83f075f"
     },
     {
       "path": "industry-trends/support-automation-as-operating-model.md",
-      "sha256": "7211d2b7c5b757004df67d8634b02f303bc547850eba8fab03fa1257ae7fbe32"
+      "sha256": "e901bd89e3e8938707f11c0964e3cf41e1a09df0e32016809e2f11a0ecdcb29c"
     },
     {
       "path": "industry-trends/support-automation-becomes-a-growth-function.md",
-      "sha256": "68d4cc4b81fbbfa5b1813a0395a6f55ef71b0f5eaebb14e137e1206e3dd67ff0"
+      "sha256": "1b14f674cbf1fd5edce3f388cdf79c976076a027299652405ff458ec32997d57"
     },
     {
       "path": "industry-trends/support-automation-moves-toward-agentic-operations-layers.md",
-      "sha256": "46949c0aec9e892f29c484fd3a75aa8827a2d77cccb57897bc5e92b4bc4a707c"
+      "sha256": "1a5e765501786f9d4bc36b616cf2bbed3c55b8d763af83e26d755b09d3754e80"
     },
     {
       "path": "industry-trends/support-automation-shifts-toward-agentic-workflow-completion.md",
-      "sha256": "29edd0462a8af1f346683bbd5f6e76daa6ef61acee08aaabd95fa390aef71807"
+      "sha256": "fa21e1d024fab349aa9fe6c1789587e951618174fe82ba0758d591c743e6fa34"
     },
     {
       "path": "industry-trends/text-generation-moves-beyond-left-to-right-decoding.md",
-      "sha256": "61c88b152e65014d3845a496dfc9c324510cb54efb3e5bf66f7b60ebbdb33c37"
+      "sha256": "8dae3348a3fcfe95065a13d5d762d7da33149ab1bf7076725e1d205e3bde7541"
     },
     {
       "path": "industry-trends/tiered-access-for-sensitive-model-capabilities.md",
-      "sha256": "f65dd0e5c418a85fb1d940ec9ee7289646dca41c5e3c959bee2461970956b817"
+      "sha256": "ed42fe3cf702efe1c9cc7535a9c1fa53918a661607c9946292083f85e3fcb817"
     },
     {
       "path": "industry-trends/token-metering-becomes-the-ai-business-unit.md",
-      "sha256": "6a6de646c41d5e54838fb66bb6cc09c43246e0332ad264d7bb3e91f5a2d2ccbb"
+      "sha256": "66579f8496c0a09126387a8d85dac6a2266ca0c00ac0a894e04a150c5fa06fac"
     },
     {
       "path": "industry-trends/transport-layer-optimization-becomes-critical-for-agent-latency.md",
-      "sha256": "e3b4e99ccd3ac1d67db7078b03ec6de98e58a9e584d835907c42c268f161acf1"
+      "sha256": "7515f71551cc7f0be2cf917e0f928dc0bb05ca0f59f7245831b381ff9b45e72f"
     },
     {
       "path": "industry-trends/verification-loops-become-central-to-ai-workflows.md",
-      "sha256": "33afd0e3a1ec6ffd4aaacb97d59105607c298ae175d95e3c0cb695dae895df21"
+      "sha256": "50ff126d82dcadf9ffa0d0d11caf7d04fa047a6ec743fe9368fc265c97535974"
     },
     {
       "path": "industry-trends/vertical-models.md",
-      "sha256": "371662c838c459ee0de1abbf0295e12d91a73d281644dd26a89b47278aec2ebd"
+      "sha256": "e97364b8096cb15deb8e8612a80adcc6640c4e764fa19ccdf947476e55c6ea25"
     },
     {
       "path": "industry-trends/voice-agents-shift-toward-workflow-completion.md",
-      "sha256": "a857495402daf9666378e4355e1a0be6fda83948ca5435bbeb4b36af6d3a1a2e"
+      "sha256": "1d7b86814b057fe907e5283df5a30368aae01b4df7e690dbba74f92f88a67c8b"
     },
     {
       "path": "industry-trends/voice-assistant-quality-shifts-toward-conversational-flow.md",
-      "sha256": "5b9fd9b9e07425ad0e2ebc87ec9dfe24802a3387e014e37642f9faf402f4431c"
+      "sha256": "0f0462a841848c79d3c88ef1af29198ceb873fca5bdb5545fd6b470d3a7c8f02"
     },
     {
       "path": "industry-trends/workflow-based-evaluation.md",
-      "sha256": "aa63efa925f2284b5f044e94078de6ff8944265c12f30bbfd92bf3b7a331c11e"
+      "sha256": "f8e936f4873d398d4386f601a983441239350f4c70a47f03e50cf3afa385fc51"
     },
     {
       "path": "industry-trends/workflow-restructuring-around-ai-agents.md",
-      "sha256": "096c8f1271c2867c11da02958c8afd4143fcf427d0567146796339c47c7d1a18"
+      "sha256": "89fe27d92c1a474e48880a70760bb3e819089d3dca7bb14ef8fc8d00bb4aa7a6"
     },
     {
       "path": "industry-trends/writing-workflows-shift-toward-ai-assisted-structured-output.md",
-      "sha256": "2ccfff68c92a877e0efc32b176d9d001e8b6d83c43cadf09fa29db7839475047"
+      "sha256": "a2b99f42508fc382816e7bdb2f8e4f164662f4aed111e70fcfad22d08b21263d"
     },
     {
       "path": "interview-insights/2026-04/aie-europe-debrief-agent-labs-thesis-unsupervised-learning-x-latent-space-crosso-inference-speed-can-unlock-new-product-behavior-not-just-lower-cost-cee551c36f.md",
@@ -3611,39 +3611,39 @@
     },
     {
       "path": "tools/1password.md",
-      "sha256": "ab9da81db18f67bb787c2a54be4a9e6fd0f647d6405e9d34b92f8c8509642083"
+      "sha256": "096eb043f05a9fe17aa50862fed07376a843a91e039b52e0bbc88377b6fe2b54"
     },
     {
       "path": "tools/agents-sdk.md",
-      "sha256": "21cc93d68047b687bc45e08bf384fde339b423e3666d13b6fd26f4711adb816c"
+      "sha256": "8c3ba5cc952a64e7c8bd9acce91935ddd9a471917ee7ead8de731b4d468c220c"
     },
     {
       "path": "tools/ai-renamer.md",
-      "sha256": "ebc6712b6057de6d48aad210365e6bcf02c40e4dbd98ebf1b0eac57cb82a915c"
+      "sha256": "46f275b08279f34ffa4db34258e4e6ad42f365be6e022c19958003ad8193e83c"
     },
     {
       "path": "tools/altstore.md",
-      "sha256": "a72b7020042d313af055c18c795d0c4cfec736e1ad13a8640ec46edaad8a1291"
+      "sha256": "3d048688cd5f5c8b213adec1f67403c58f689142639aac3bf3fcfd4994adb85a"
     },
     {
       "path": "tools/alttab.md",
-      "sha256": "25144f653e251362801abd9ac6d1356fb136416ebecfea55d7364e308715ee21"
+      "sha256": "38a09916dc86e21489a3d7359fa53748462652f0418572d81e667f17e380216a"
     },
     {
       "path": "tools/apple-notes.md",
-      "sha256": "311652a26e67fafd9b0f64a42ecba80dcd0b3b498d6c54d1d2d7aa6306735dd3"
+      "sha256": "6701468b5c574275fec838274fffcc02e89eb2b8c31daec5a850052f2fceee0a"
     },
     {
       "path": "tools/arc-browser.md",
-      "sha256": "2ef4d9aaca3b08159ee05b8d7b521d75ae6c52320a96ea5e83944758bd51715d"
+      "sha256": "b9a96a6a93c8a9a27cca706a6d7f1a8ca512377513d5bd4cb316d9f797050bbc"
     },
     {
       "path": "tools/arckit.md",
-      "sha256": "b2f284d701e43d6dbe730d2d005ccd551ad5f78f21acfa28f03600f0464d3c27"
+      "sha256": "bcf4a214f31cdf6cd1c490d6f26a21f9a14d25250adfc7b45758ce59ecce87e9"
     },
     {
       "path": "tools/atlassian-rovo.md",
-      "sha256": "e62a8fec2b99ea783e9af3eda810be045190df039d03446e465d12b80744a422"
+      "sha256": "53d308304e2332efcd95fe8bb228a9f9d27d378cfddfd0ac767b47fbd2c98d4a"
     },
     {
       "path": "tools/blip.md",
@@ -3651,51 +3651,51 @@
     },
     {
       "path": "tools/boring-notch.md",
-      "sha256": "fde1bf3b854c312eb9a1756f048df82ecc61cb88ef9084de4f074d0c4c1a7cc9"
+      "sha256": "69d13f47584c3260aaad862a8d232f919eb80f466845b17b79df3a14245c1847"
     },
     {
       "path": "tools/cal-com.md",
-      "sha256": "0469d1bd253cf8df8b8fb60f5d893eaa05170775cdb745abc154bfe4e3b4dd47"
+      "sha256": "128425e5dcc75d80c7b8377bd9354348ab83cb04c2f706c0b7821b7bf307a07a"
     },
     {
       "path": "tools/calendar.md",
-      "sha256": "90677d197ac2c8cf4af8705740bbe31fb2b0631c3e00b126342c1ad6f5066a1f"
+      "sha256": "7796d69d6a8b5c2de1ffcd0d716592f2f581d299500dc32be8baccb3d0d5edbc"
     },
     {
       "path": "tools/caveman.md",
-      "sha256": "599f85e6e0c3ec18aca80a18bb2825ec6208de102173f1ed2e75ef1ac8d56ee1"
+      "sha256": "44e016852ca17337cdc6360e1eed852f044f26d84aae35656ccd188e63a6e946"
     },
     {
       "path": "tools/claude-code.md",
-      "sha256": "2b6839836ca4a760360c9a8c9b421719649aad0808b10e912711e8e9e3b57011"
+      "sha256": "d7d5f99293481117bbb579e47e129e8597230cda3eade23e313143e3f140ffc8"
     },
     {
       "path": "tools/claude-desktop.md",
-      "sha256": "242882bc12711aad38d2e146e40b823eb55c0db964bdb1c7a8e792d866048650"
+      "sha256": "b5dadfb3880d2222fb11b9e785b900d11a5f2b6d8edc82e869f64cbf34f92805"
     },
     {
       "path": "tools/claude.md",
-      "sha256": "279d5abdd7559b7b06fdc7c7133c269f18893ec700e86c89dccb7923a0c42b6f"
+      "sha256": "070bdd45b315066bf6a83dbd5974fd0177f59adca4384172ae58cfde339ceecc"
     },
     {
       "path": "tools/cleanshot-x.md",
-      "sha256": "c492bb429ce36ddfbe75ad1ef5ed8c85d5145a2724adbac5b2f9109916927f04"
+      "sha256": "4ff1d45aafb0ed55e5ab6eca2e4c3d310385af4073a00a832592a92bca7a10b3"
     },
     {
       "path": "tools/cleanupbuddy.md",
-      "sha256": "bdeb1225ec953276c03866075c135c3e990a141e50ef47a703ca215ba79d4286"
+      "sha256": "728f461653c8f02e809067e028ea7f3ee6c6ff3e997bb20617f6ae3469d6eac5"
     },
     {
       "path": "tools/codex-security.md",
-      "sha256": "ee84473b9ff1437c5debb0f718ba5eac603b57b4828ac1a81f06e7557c2687bf"
+      "sha256": "fd4af18d0c91220df251f911525f6e29ce746bb9dea195a047e51ffdf8bee7e3"
     },
     {
       "path": "tools/codex.md",
-      "sha256": "9012164795a510fb9526f152698f17292d36427b1a57522e54bfa6b982e5f4c7"
+      "sha256": "94405d8c54b1e1a154882e581557b3b1cbfa80f7f12fc0f18c85efca1d4f79e9"
     },
     {
       "path": "tools/cognigy-ai.md",
-      "sha256": "1bfe0f77c3f167044d91ede4612e1851306365c56b0438719a2dc26da65e43a2"
+      "sha256": "76103748b304351ef7ea3941b5568baac5151938f20117517ca3467b8453a014"
     },
     {
       "path": "tools/command-x.md",
@@ -3703,7 +3703,7 @@
     },
     {
       "path": "tools/copilot-tasks.md",
-      "sha256": "183cde92497c53ec333f7b53208a51d07c4b4c6dc5a4ac9e15b92da2caae26e9"
+      "sha256": "de8b56a0adb5de23b5b9928d8d0eb52ca3ed338958f926e3d82a61722cf2b57d"
     },
     {
       "path": "tools/cotypist.md",
@@ -3711,7 +3711,7 @@
     },
     {
       "path": "tools/cursor.md",
-      "sha256": "b6e41aeb670240155a4c6b0114d301a4ec7dcc6ebcbbfeee155da0dacf4648d5"
+      "sha256": "80a92c045641f84260a40e46d72da2d79ee7d09892daf6b256ca1dea503f84bf"
     },
     {
       "path": "tools/deskin.md",
@@ -3719,99 +3719,99 @@
     },
     {
       "path": "tools/dictaflow.md",
-      "sha256": "2dc1ea65f978cb8af3ac4f9470bbdb3807d7eb485b955e53fa9ce7ea701e62a5"
+      "sha256": "2ca11a6e286ae26ef390e1d211d82ce3cf396286cffb79407562513bc0dda769"
     },
     {
       "path": "tools/dockdoor.md",
-      "sha256": "efba299ccf2a1dfdd52832cf3e94c7801552fc329bc42d727f17a2be844e546d"
+      "sha256": "0a0e9e1285602a832747eb9e5594ed46fd50502f2fe93ef9711ba11c1e6e349c"
     },
     {
       "path": "tools/dropover.md",
-      "sha256": "bb1ffa8c1cfcead6f641ce4b4b6c84697e4fd15b5bccd2900f85d71786264539"
+      "sha256": "9be2300706d9e8c1e450ebc9df490e557fa54031f98623e574a672bf535c1e01"
     },
     {
       "path": "tools/e2b-mcp.md",
-      "sha256": "fe024724037e25faf2f231d213df5dbe8584abbb69c1ee8a34907e370c1b6a43"
+      "sha256": "68040e3d837f36ab9004be984a27e28e42ea718a504682648baf0927307a0f3c"
     },
     {
       "path": "tools/fin-api-platform.md",
-      "sha256": "2c7536e6b38c63dedb1d2b74d0ae595746e7229ffaa2df2802948d1163c06b26"
+      "sha256": "0f11b671486a105ae765162d33eb90a9adf824faef376b9c00d514de62d15abf"
     },
     {
       "path": "tools/fin-for-ecommerce.md",
-      "sha256": "939f7eb99c6645715890ebb552ce54997afcf39eda416088bce349a30b3a030b"
+      "sha256": "64dfbf65ace1b8125b849eac6d975304b68447ea637644bb63f59e8383e85199"
     },
     {
       "path": "tools/fin-for-sales.md",
-      "sha256": "30abf60e4fdd93736b0dd87755bbcc5c8eb8076bfca399a76646eade0c852850"
+      "sha256": "929d2322fc6d14002be77d94fcb1d1f5a98d7561821dcc800ae3a5d3e2f3820e"
     },
     {
       "path": "tools/fin-voice-2.md",
-      "sha256": "2420f593d9f8be10d9016badd7e5d04c332a0064a33d10fc33e10ca302e76687"
+      "sha256": "6f2b16ccf8d3286dc9fc7dca34d86e418761f78229d17722de4e9581a2fea304"
     },
     {
       "path": "tools/fin.md",
-      "sha256": "9c71626e50db370f845ac45632d19d651c4cbd9f667487fee7d81743c5ff896b"
+      "sha256": "aca52f9f175a1d4950322133229086ce638bd385d93b12444a7b2d5bb0cb39ad"
     },
     {
       "path": "tools/final-cut-pro.md",
-      "sha256": "ea7e29fddb939a3b923e412ecfd015c7fa219b559b31f3f517e9fd9e8e61e922"
+      "sha256": "4cdf720c7f40a0444f4512d2a3f1ab1079a1c00c3e6d5a45440003b50d423951"
     },
     {
       "path": "tools/firecrawl-mcp.md",
-      "sha256": "feaac240351363b5ee8c40cc6c98d006a47e4f71f3520ffcc1d35dfb1cbc978f"
+      "sha256": "9479147fca3ac843fe2732510d15544367dfa68a9396d7ea40087cf7f30c18d3"
     },
     {
       "path": "tools/flix-fixer.md",
-      "sha256": "ca936fbb59e5d0b7fe8370506dfbbbd6a0f5c846f3759a20c034c69275f06223"
+      "sha256": "b7a82acd07121335084a688154b231ea332021382e6f149d521b8faf799ff607"
     },
     {
       "path": "tools/folder-preview.md",
-      "sha256": "2151bab86f9503a2621b81beb6a11ff221a862a4a9daae904c6f8219b272f834"
+      "sha256": "0e9507047e52d6a821932139b322d7808c9d8eaf68be9373e221cdeb70fdedf6"
     },
     {
       "path": "tools/folder-quick-look.md",
-      "sha256": "ad579e451e69ddafdcb6cc046b6e069e13aa3a41aa7940c68d0a7c7cd69171c2"
+      "sha256": "ea220a65ea9861d02065aba82da5cfa56a5f31c235b7da5d9a7c8c79d1b2d478"
     },
     {
       "path": "tools/forklift-4.md",
-      "sha256": "f9955743174b059906d66155c9715be5a78361379e309b94f7b34b6bbb93c863"
+      "sha256": "e3a448aba1ff4ed3d076e0a9c48ac6cb1f07683e14ca3441d910d4394c734a07"
     },
     {
       "path": "tools/gamma.md",
-      "sha256": "a981dd031e899000aa764069a4c9b50d388d8d1bd976d0bd72167a5eb80cd96c"
+      "sha256": "21a3f5e01e34b6abcd554dd45ed25354075d54eff15e4a2db00a4ed8b586836e"
     },
     {
       "path": "tools/gbrain.md",
-      "sha256": "56fe5af4ff479302caae7d42759c9d70e13ab7b572f129b18ba00ef6ddfe18e2"
+      "sha256": "5b575ff4dc4af483b10612367ede1e2e524d9c86ff6de7c5ccb01774af52d113"
     },
     {
       "path": "tools/gemini-canvas.md",
-      "sha256": "a9ef292b5537fb32f922abb074dc2b1a419ecbea1a71cd7e5f0d71cdcf04e758"
+      "sha256": "6d878f3ac50fb3ff985ebd129da35e443d8fc74fb971d20f11e0c83a8fbd2fa6"
     },
     {
       "path": "tools/ghostty.md",
-      "sha256": "1f47d3a8920db9c401cc59943b522c6c669c749c4019954afa5edf8f11ba08ef"
+      "sha256": "3cf77e0eb313b8f673e059b79092a35bc41674f9f10605fc9e2ba32d65cfdd07"
     },
     {
       "path": "tools/github-mcp.md",
-      "sha256": "fd8946a35b866f4f0bfd29f5efb1f51207dc763bbc6bd94b9753442bf1825c81"
+      "sha256": "a0338b75b79bec069301b24030aa254fb846deb7e51aff09ae669773719504a5"
     },
     {
       "path": "tools/github-spec-kit.md",
-      "sha256": "ec10621aeb5761a68d07434bd69d3fb5498e12879ab594370919ef79ac23f0ac"
+      "sha256": "5878e96ce91db432d78212f9aba67f19247c5e323ecf795e8c1095d7f3f4f342"
     },
     {
       "path": "tools/granola.md",
-      "sha256": "22e80ad2885a5221d2395ad61c5058b88bb94d889527870551758c517fbea2f7"
+      "sha256": "edeec5cc038956a94e428962397caf0f57465c4695933a86464e106841607593"
     },
     {
       "path": "tools/graphify.md",
-      "sha256": "82de9b681a1535806c286b2eafce9a0ed4b7cb57ce44121de217c2534fdcd0fa"
+      "sha256": "5d30c24ed6a208c4ccd31d4bfc4d04732483c1a678023355962d70d146408119"
     },
     {
       "path": "tools/hermes-agent.md",
-      "sha256": "e5d293c58d06ae471c68746e0a631c1263be1acf6e32a76d5d1481e11940024c"
+      "sha256": "5b2c5d91b92e1fd4628940642fef3abab83982c314a32489cc621d38df324f4c"
     },
     {
       "path": "tools/hidden-bar.md",
@@ -3819,19 +3819,19 @@
     },
     {
       "path": "tools/higgsfield.md",
-      "sha256": "39d984e5359e18547873070201b98b68e9b38be24b6ac2a7d99d12242a1f9811"
+      "sha256": "3117211ea782622b695db84457a6425ead5c4e7d2078b31f4d55730879f5e3ba"
     },
     {
       "path": "tools/ia-writer.md",
-      "sha256": "b9b64cb1560f78103f7a54f2b8aa5f62db264343b1a9e4b1173d58bb12eb2a2e"
+      "sha256": "b6f5479e3d432dd200134abc225d84a8f1bb56bdfc563ec4e81753d2659249da"
     },
     {
       "path": "tools/ice.md",
-      "sha256": "b055bca30997208b56812a13b05524b24842d9fd79281d5aa0243f8593489299"
+      "sha256": "56d8d27c26afe23a9bca53407109f9b61eba4e44e227d56e9afc16c88d117450"
     },
     {
       "path": "tools/idlemac.md",
-      "sha256": "e3a104345c9f591eceb518e3b8a839885138a0602ec25c479b95ffc1f862509d"
+      "sha256": "4056cf9a3bcddbd1795e176c82b44ae933dd6b2e2a8991b2a7909d7ba4797933"
     },
     {
       "path": "tools/imageoptim.md",
@@ -3843,147 +3843,147 @@
     },
     {
       "path": "tools/kimi-code-cli.md",
-      "sha256": "a6eddc78b3cea6e8f51697bb08553425512b6c89668577f7dce02d05b5bc2311"
+      "sha256": "03b3519f582f228351bb7df1970e918643486a5865cf20b3ccc6f3897ec8e846"
     },
     {
       "path": "tools/klokki-slim.md",
-      "sha256": "1cebe05baafbdd707a0f156a8a807d887503ba3cbcae95aac8936a19cd964d5b"
+      "sha256": "bd7d59deb1f0a8db9238499e9254bf3c597b15f8d5ab61f38a6935ed61cebd80"
     },
     {
       "path": "tools/langgraph.md",
-      "sha256": "2603030fb8fdd3c6beef81f0d088ad235fe22bcd2977c80097ba797e5615931a"
+      "sha256": "49ec4a74e0e4f71fd5a17ba319e1419d3be76a97340f23f33be057fdf63e9a56"
     },
     {
       "path": "tools/launchy.md",
-      "sha256": "fdccd23a1e44d6c72f68503cbeaa196ec162a45d8e75cfc8e5122cabce03eab4"
+      "sha256": "c8d51cf5a564d342d18c5e0bce263108e592f9624fc849c4827e4f887fc38982"
     },
     {
       "path": "tools/lemonade-server.md",
-      "sha256": "0fd9c9d0fc95a0d2691696149ce0589c5a884b2156886798145d7370e9dde847"
+      "sha256": "60186fb86d77718f5095d96e5dccee4cdd64f64687f1847803ac9b9165fa2f17"
     },
     {
       "path": "tools/linter.md",
-      "sha256": "8c550c4cec1021da5132f7621f44aea2b49547d64a3c4c9084b9a94cc78ac6fe"
+      "sha256": "1347becb7bdb698de76c263041fba0b98b59de1d4cd2dce9750c966dd4088b22"
     },
     {
       "path": "tools/llama-cpp.md",
-      "sha256": "187a4d938d243ba465860c3a7dd5d705042ec607b988477960e46d0003f2f661"
+      "sha256": "3fbbce3a91f1e05ef03a0da775b6405e17db8b4e7b9ac7efc370f25ee1eb1548"
     },
     {
       "path": "tools/loop.md",
-      "sha256": "d877c9b1e94bb595987e0181df1505bcc97b5022cdf615e449294ce068ec861d"
+      "sha256": "3b539bdcb586937f58270081579aed1da96e6f80753a00ed810bb6fb47a51d3a"
     },
     {
       "path": "tools/lovable.md",
-      "sha256": "652b8781bbc60b11696e1424fd37c07f72294f8523d9ae77d5bcf5b13c7079b6"
+      "sha256": "55137976463bf9b441541bee7f9490688998ef667e6e437eb7f31816400601a6"
     },
     {
       "path": "tools/lungo.md",
-      "sha256": "8b4b74a2db85f02cbb9f20dcf889361fa58ee9216b5e9698593bfbe72689a598"
+      "sha256": "b39f7e9ff375ae757c0fa89828cea5bcd78ce96962f6a2ce6c603178c2258e00"
     },
     {
       "path": "tools/macwhisper.md",
-      "sha256": "53fa77077acca77a9881129bb7aef792c4d241248c11e3156b020cc89f99532e"
+      "sha256": "9bbbd0dad8d9eeb4dd8952d75c347cb13f014602653b3ec5549ee20c4d37b696"
     },
     {
       "path": "tools/make-md.md",
-      "sha256": "34cd318b5d4e9ce377a7b308e6ebd8c7a83f39e2e5a6cefefa9f83bf95647873"
+      "sha256": "8b1df7b2af29d6b86db968affd8d54ac24ee524da369b2ff1d61ed6b40abdd14"
     },
     {
       "path": "tools/mimestream.md",
-      "sha256": "4d4085668a80bfe29ce54154a2ae2a546698e5c1d0554277271b852a82944af9"
+      "sha256": "94e317e9dea60a551e9ce2ff3afb3f58e9ea1dc16e262586e9aa381d33a6559f"
     },
     {
       "path": "tools/mlx.md",
-      "sha256": "38fc6cf224e3b15d2b1daf7e7035c75557230a4a8f432c0a35572df3cc7193a9"
+      "sha256": "84f6f754265885a282b2e54971eaf43af8ab461a9be075219c217994e67bef33"
     },
     {
       "path": "tools/monle.md",
-      "sha256": "6c98870569403abd5530f323a72050e18035f391164fe69d6171af940390fa83"
+      "sha256": "709f48f0c8b6cf024e30f0257ab75ead931397bd92d258ffc0622c6eb44a8423"
     },
     {
       "path": "tools/msty.md",
-      "sha256": "62ee61210bdd1419e131e08669d3616e382db37a36822e457b0fb602c7dd9729"
+      "sha256": "4c97fa0cb0113a5a65d22d6e4064349dbc3cf5bf9283e7de5f24f0c36c1560f5"
     },
     {
       "path": "tools/music-decoy.md",
-      "sha256": "7525844d062335d93d9983a615810b2c44deac04ad91d6925c33c54b56f817a3"
+      "sha256": "8c4924d904147a729de223a482094af42d76d297e31bb2671cd7b270c216d8e2"
     },
     {
       "path": "tools/n8n.md",
-      "sha256": "c539635566b20c95d77057b91a2a5179e011275de12545e471bbd84acd2379f9"
+      "sha256": "a8a9ffb2103a2c9c233c854c50b15e6d4a5ee8a66ac7e127810e626dcaa0d59e"
     },
     {
       "path": "tools/nano-banana-2.md",
-      "sha256": "1e4b84707aca92bb7cd57494bdd35151843592f093708b54aeecc9ee133c1ff7"
+      "sha256": "ce715bda78261f3c568d887a101af9967ba145b816d85ef006175e6859ed2ddb"
     },
     {
       "path": "tools/neo4j.md",
-      "sha256": "7bd735d16079457721c7ec84503680a239ffe84f72c51142acc55eeeb261a495"
+      "sha256": "4a0907852170fcddabadb494cda1994d303fa91279bf5f5d4d8265c5c05bc5cb"
     },
     {
       "path": "tools/notchnook.md",
-      "sha256": "b7f2b827bb3a4896ffcf4958e1051fe824b57a05beab02625d3c91fc811896aa"
+      "sha256": "57c05820f8b22ef697d07aa296cc5d9fe955d0aff19084e77ca77e302ecdeff6"
     },
     {
       "path": "tools/notebooklm.md",
-      "sha256": "fd7b5c5b8c6e24e9d2d178181b83d82ac03a80c35f2bcd6bc23d86f02653ffb6"
+      "sha256": "83504ade38e86ffae8e0d860aa5a822824ac6b9006ddccf5806c31f722b4d838"
     },
     {
       "path": "tools/notion-3-0.md",
-      "sha256": "580ff0327b77f1c73a5de553302509e4fd3b310fe433aa3fb47e2b6183d1bf0f"
+      "sha256": "204486faf8b5f2ab238ee114370118078918e351f3582fcf4c9a40c559aa5ecc"
     },
     {
       "path": "tools/notion-calendar.md",
-      "sha256": "a38206cbb40c86535ed8e59f8901f1014126cc5c6be0700c758bb7d703255067"
+      "sha256": "dcbe17084985bc0317370583f775423c9083fcccbb10d18e6143a5c408b64669"
     },
     {
       "path": "tools/notion-custom-agents.md",
-      "sha256": "54bd578677f3742b9581c8bb086bf8cffdc22c3f57a9fd59d225036187afca2a"
+      "sha256": "3d09d07c63d9896b1bdf01699c2355b5e27ec781f5cab1f696a3a3dd3024af7c"
     },
     {
       "path": "tools/oasis.md",
-      "sha256": "0dc952c61455d269e6d2c23266bb47a9692fce247a083e6fce5ae2998bafbf41"
+      "sha256": "fcf8f3eb7c25e37f30dd38b65d9d1b1d98878651541f61c2d1ad5bdfdb15d0f4"
     },
     {
       "path": "tools/obsidian-starter-kit-plugin.md",
-      "sha256": "307c971230fa77430088de3679857fd284bcb3148a00b5792687ec7f5f900fa4"
+      "sha256": "44b10b30c6c2142b58b16e141fd7c7b7765b3a9a57c98c966dd5486597441cb1"
     },
     {
       "path": "tools/obsidian.md",
-      "sha256": "87a7cee419f9e2b2c65a9b44cc5051818b8cce554a97913d94dc04dc08198d61"
+      "sha256": "1b9d4ffb05e52cdc3e868327ebf86db5f520fc5d69880fa7e66d7e3ab2379e89"
     },
     {
       "path": "tools/ollama.md",
-      "sha256": "b2227e73ff49fb0f682f7c07ac46932d99e8139d2a775ba59c06ac1bb91cf15f"
+      "sha256": "da8d2b7e1774e6eec64c6e121e20a333ee094989951fffe334c72013111bec64"
     },
     {
       "path": "tools/omnisearch.md",
-      "sha256": "fb6164429245b08f5eb1772f706c60709406b8549dea76480b553c290aec0b6f"
+      "sha256": "cac838c6327c1cc882835bbaf3f254d414e471ece1248d8632327f0953ab41c2"
     },
     {
       "path": "tools/one-thing.md",
-      "sha256": "d378a84db9851a5bbad14711798bc991684512d2024ca658f4248905e1aef3c5"
+      "sha256": "9047b9312c25650a942ecf9dbf22c5debd55332dd7fe3347281657186ebae96d"
     },
     {
       "path": "tools/openai-realtime-api.md",
-      "sha256": "ab9f2d133d5607f219a0eeee882dc58df4b57b22215f5b3c679ca38ab68e504d"
+      "sha256": "a67a2ff0cae5dc488111e8fc5320a7172490d68b2eb9d49fd3073b0ee8fcb028"
     },
     {
       "path": "tools/openclaw.md",
-      "sha256": "170e3ef23e8c89abbdedd6b9ac8961995e32173f83603764881bb649b2391a6a"
+      "sha256": "e803e337cfb12fdc022591021b5a04ec33cbdffa5ebe21e3e52c6380147d2c52"
     },
     {
       "path": "tools/openprose.md",
-      "sha256": "0105949b81dc8794691ab42c42eb0452542ce82901ec6f38479c5087aad48ca8"
+      "sha256": "5a3b9badd7fe54763bc58c99a39534e3969568692e4df7da76e551072fccc72b"
     },
     {
       "path": "tools/operator.md",
-      "sha256": "4b7f5f4d7f6aa6e787f874cfab7568a1965847a1f16cc60559c2de66b9fbc01f"
+      "sha256": "88bd5489998260b1ea9241a7cb96f57bae7ca3549da86b30e0f2391eaa47d0d3"
     },
     {
       "path": "tools/paste.md",
-      "sha256": "59e4980f4bb49bc107b585b2865080af0c4905020b2ef524bf29d8caef45ff70"
+      "sha256": "587dc2bf5a8d3759fb30ae4f30a94c62d0f28fc95295f65974e0bafb9872c83c"
     },
     {
       "path": "tools/pearcleaner.md",
@@ -3991,15 +3991,15 @@
     },
     {
       "path": "tools/photopea.md",
-      "sha256": "55ef0055049968b3bee748c8296b1413191b1edaabb697c7a104b7c449a99c8f"
+      "sha256": "1bf1cf65dcaf8ef91f63bc2f716e9b58b4f746ff9a958d64affecdb01bbaa872"
     },
     {
       "path": "tools/pomelli.md",
-      "sha256": "9bb920617ac3b62939e65f397d97625f1a9502b26703172c0ece3366f56b0ce5"
+      "sha256": "eec019ec438ff0c7ab7480ee0cb463d9d9e2f4a0cc3c7f30f34f7518c8246662"
     },
     {
       "path": "tools/publora-mcp.md",
-      "sha256": "78ba1580419b3d338fc292c11e08d2b7765f17a236dcd93bed62b85d60351e61"
+      "sha256": "8847e84aed9a8965dda224c7f3958c6661a808990dedf8b41158af5707c68752"
     },
     {
       "path": "tools/purepaste.md",
@@ -4007,31 +4007,31 @@
     },
     {
       "path": "tools/quickadd.md",
-      "sha256": "b536a43c295ea7c05e0660714616ca7b576dd770ce432defd4d59beaf4a806d2"
+      "sha256": "18c83c13917c44e8356975dc0e11aed1edde1ab4de741ccfb2933ab813b92274"
     },
     {
       "path": "tools/quiver-ai.md",
-      "sha256": "7797424b2088ae7d60bba0dcea7541c0874d9db414f7156ba1e3857adcdc3efe"
+      "sha256": "db4b2ab0ba1afbd2024edc7cdaac9392f32eafe507684769716e6df8c495dc63"
     },
     {
       "path": "tools/raycast.md",
-      "sha256": "a4d847c2c073463b93b578d9f889aa157175e72861453ad03bb4ce194eed1312"
+      "sha256": "da4b911ef8b73631883628d82ef9e2f56f148de4cf43d15bbb4aec8481b45eea"
     },
     {
       "path": "tools/recall-2-0.md",
-      "sha256": "793333b09f7a66ac4da1118ae9d07429c369951edd6919625dac94c1c25c0fcd"
+      "sha256": "650c4304745114214dbeb5260a1a5ef4b69308d503dfdd5dcd87226635c6b07e"
     },
     {
       "path": "tools/rectangle.md",
-      "sha256": "1e79376ba70c7cd7cac79c089612d05edefb631101598a2885680d7470e70e7e"
+      "sha256": "1cdddda123244eaf23f020decbe238264bfa60b9dfad757c2ebdc94c44097b90"
     },
     {
       "path": "tools/remind-me-faster.md",
-      "sha256": "dababc7946f0a5fff65575be2f40074eb89b1a1f0edf34012b5fbcf08c2b4ec7"
+      "sha256": "3e66782766f19b62e35c9f20d046449f03eeee7d9faeeb5ad3fb693a8c024179"
     },
     {
       "path": "tools/screenfloat-2.md",
-      "sha256": "c0f42d70451fde1fec6358b797f7a1948cb97b0c0e08b77d1dc11066de4646dd"
+      "sha256": "d940a0e7b4bd00f6f7cdd0fecc7b22c97e910a2be2037be3a7e9509434dd05fb"
     },
     {
       "path": "tools/shottr.md",
@@ -4039,7 +4039,7 @@
     },
     {
       "path": "tools/soda.md",
-      "sha256": "ec6c30b1448d8902fda977da2f2157e10b0b5570415ac848c7ce6337511299cc"
+      "sha256": "ffa80711c98690e0d500fef39cf50eba8b5eedff8b8ad6b9964da2c3905373ab"
     },
     {
       "path": "tools/substage.md",
@@ -4047,83 +4047,83 @@
     },
     {
       "path": "tools/supabase-mcp.md",
-      "sha256": "4dd909084e2009bac60b5afd70ef5f5a87d7cfa09e080ba04c56a87a7cab7ee0"
+      "sha256": "58df1f6531d380dfade71e953b9eaed82c9a6d78e00abf0279af3aebd9ec4309"
     },
     {
       "path": "tools/taskade-mcp.md",
-      "sha256": "0ce1b17b7ebc96a23663207e15fc115213742fd1db9ce6a4d14eb4711d56a301"
+      "sha256": "cc0786c2528efc4ac760f7e8e4a2917362088458e5c136a22b8f8850e4d42d86"
     },
     {
       "path": "tools/termix.md",
-      "sha256": "ed7b0af3be4351745f6594a51ba5798941ba917e7dae6e307635c075c3498691"
+      "sha256": "21045949e9ec1e64d9b095adac9601ba8cc8e88b0d40b74d312d9e499207366f"
     },
     {
       "path": "tools/things-3.md",
-      "sha256": "a039ad510a33f8f37d1b42a7de1fa6b1de3d0b0f4a0827b352958b57439f1385"
+      "sha256": "0d0ef70b121e46293998a281cd1c23ef7f8b96abac22eea15bb7760a6557cf9a"
     },
     {
       "path": "tools/ticktick.md",
-      "sha256": "7828c5a7be2663970e804f6f71bee1fda4f9a16c6071bd4fb902a1fe890fc741"
+      "sha256": "5ccad65844875e97cb22569cef161341d0ed1725abeba64d543eca11ed0a9e29"
     },
     {
       "path": "tools/tolaria.md",
-      "sha256": "1a11f5b6808861031bbc5dc01aaf00b6d719b4e5479228c7fef3ba7a34e9d900"
+      "sha256": "2cca0c46c47e349200afe92f748d2092981d281c690d208e50e975047b38518b"
     },
     {
       "path": "tools/tot.md",
-      "sha256": "342b699c95285dab7745d53a6580edd898f23e4d9ee6a1b0e64f6f2860abaa65"
+      "sha256": "3164dc807763dd60bbcd4f3999c902e749b5e3a395cba5a08e429263588682cc"
     },
     {
       "path": "tools/touchretouch.md",
-      "sha256": "51bbefa91f4764c29e0c9c9393b59df615b70ef0e812400ec08114243ef35278"
+      "sha256": "395d9d0d0725175da3b6e57e2ea3c9defb1a6c41e7d9a4f3db436be46b5a4eb4"
     },
     {
       "path": "tools/ultimate-vocal-remover.md",
-      "sha256": "5333c4cc7181e153b56382966c8e83211210fdb0dae25359309d8e38d54b48bb"
+      "sha256": "38efa0ea15218449793850e9c69af1ee1fec4b4545799851c2fa3fe3bd6d6740"
     },
     {
       "path": "tools/userscripts.md",
-      "sha256": "5b87fbaa99f39105dad628a971c8cf2acd5b873475f811b967c9f85e7235fbf8"
+      "sha256": "fa3830c71d510760007132223e1a67c575b69c23830bffb4fbac11cfb62fe60e"
     },
     {
       "path": "tools/velja.md",
-      "sha256": "7abd508933b9eefeb85d3efd0ca3257f83e134937cc2e1d68b74fd60372f7c9a"
+      "sha256": "cc7e546fc60973834f5de523bd209204a5989a4bcc64c26a6a0476cbb28cc23e"
     },
     {
       "path": "tools/vesta.md",
-      "sha256": "2ccfb51264595fdb95007209429808cc4bfbb931b1a22ba54a528dac1bc620c5"
+      "sha256": "3a0f5a4b466f0809520d0b0f27f7528f1b1b5bc883c62a194cd8b25c53ff02be"
     },
     {
       "path": "tools/wailbrew.md",
-      "sha256": "dc1d9a03c0cf85863795cb8029fab9f234a8a714ff81ec83c34bda631e3004da"
+      "sha256": "decad861df4682ce52dc330d8f8967793fe2cb1a78fce77c2552ba4219487685"
     },
     {
       "path": "tools/wallper.md",
-      "sha256": "9682e556a3c971720490bd7c4cf3ea460f5f0d5775c4e5be700ef29231ade8ec"
+      "sha256": "cf237f6ffeff208f83bbe4089007a17028c6b0d0adeb0422e6ff2703cf45ac85"
     },
     {
       "path": "tools/wipr-2.md",
-      "sha256": "994de9bc19cf4f7af9ad2797d942cb45d2f6b91dc4bb2c6daefd5835e80e0678"
+      "sha256": "77bf71abb80de8ee0cf7f1d1d3928b341d1cd8afabbd62695a405b6b7b5387bd"
     },
     {
       "path": "tools/wispr-flow.md",
-      "sha256": "a5da3b5ff07535a5c697026836c97b562ecab0abff5bdb48be6a982437c52e2c"
+      "sha256": "b02090b4eaf6df5a797861edb1d2fcc3a71ae86b1916101089acdd4db787797c"
     },
     {
       "path": "tools/yubico.md",
-      "sha256": "870c3544b20dce39152c14020086ee70824857863e4bbd279b48c33d57b55796"
+      "sha256": "b537afdd8106d2418c10b4a71d009d76d81819044623a9c4eedf93bd36e939bc"
     },
     {
       "path": "tools/zen-browser.md",
-      "sha256": "b4cfab3a60570cd0b8ea75b9c79511519069bf934bc17a3369cda104b23044b0"
+      "sha256": "9882933544e89bb4055fef7639c97a25f2bbf90264e8694958bcf6cd8f2b0a79"
     },
     {
       "path": "tools/zipic.md",
-      "sha256": "0ab884e0a62207f2d6d79fec8fc9d520e9743cc66fb6043f96d8a35bae7cab96"
+      "sha256": "f58a548d59e4807c7e1b74e56b937e272c7c791e75afecf51d6254c6ed5f9a82"
     },
     {
       "path": "topics/adaptive-rag-orchestration.md",
-      "sha256": "9e44f1c030016fa68e9a8a6eb1c42842a461b8c3f5f55e7388ad24a0d2148ea7"
+      "sha256": "7440e93b59ae8979577a510f50f8bfe64e833f9d846d208eaf7ff87bab63789f"
     },
     {
       "path": "topics/adoption-as-ai-product.md",
@@ -4131,11 +4131,11 @@
     },
     {
       "path": "topics/agent-connectivity-layering.md",
-      "sha256": "45a5250e2978ff4e498a63166be7d70cc176df081fd48c273b9a2edc997c041c"
+      "sha256": "baffc0ed499d92659c3d8628dcf28c1d96e714507aa96686b4c097042a7cbd21"
     },
     {
       "path": "topics/agent-contract-programming.md",
-      "sha256": "bb72e4a9ba33a6c037c0e62a1d89514b10629b03f9515bc76d1d16faf05f83c5"
+      "sha256": "caae75cbd88c3b7c450acd9b96c5bbe87dcde59b07ee36b92e067ecd827a4444"
     },
     {
       "path": "topics/agent-deployment-in-customer-environments.md",
@@ -4143,95 +4143,95 @@
     },
     {
       "path": "topics/agent-first-ide-orchestration.md",
-      "sha256": "b78b7d4f1e710912f1c0d82a38eb897e1f4d613b1bbc270eb6627360c2f932c8"
+      "sha256": "458085d3d27a116c7e785c0f7bb762761633e30d9c14ccbbba7b08730c0d224c"
     },
     {
       "path": "topics/agent-generated-product-pulses.md",
-      "sha256": "55a51a71dbf85adea1935bba4aef59a53b16f4135a906ab9dd9ed8b3c3a82391"
+      "sha256": "0c7ca3066a3866c497e66d52b642772881829ecb4c7757e35f26f6b6820d410c"
     },
     {
       "path": "topics/agent-infrastructure.md",
-      "sha256": "3dc000888464373af4682ac9000144ab2d8cff0881fe0803c6948d44af1a4dd2"
+      "sha256": "f73853bef571476cc641fd338cbb107fc851b08b51b4575ea7f1e450cc9ce789"
     },
     {
       "path": "topics/agent-led-inbound-qualification.md",
-      "sha256": "ca99845f5005ba1436fedc7438f89fcbdea1e91f6075040bda17b83a13bf8a69"
+      "sha256": "0f17848dc81503244085c3656329035591748c585de115a155837de96aa96d85"
     },
     {
       "path": "topics/agent-maintained-knowledge-bases.md",
-      "sha256": "93e9349b9ebb15f1f6168f3aeeccf9eb3b473dbc8eca8cb375f5029d3f531b5f"
+      "sha256": "85a2271722c32a99df48487292549d59c92c6fcf942bfe1476b40541cfbef6ef"
     },
     {
       "path": "topics/agent-memory-architecture.md",
-      "sha256": "819f8602ff4a4d2815a76a517a7d2e9ec22c251f37cb7dfac1b95da5df28625d"
+      "sha256": "42c45df48357eea053805e64ca849b26c5cc4bbdf6eb6bad80ee64a6e4bf6776"
     },
     {
       "path": "topics/agent-memory.md",
-      "sha256": "13b92e1ed9b991cf91c13ed7b400876ef3e3542bedb3bd107d726053fea2831d"
+      "sha256": "649eb3fa666702374865287c81054a97c61f67474e3d062503a7ffe969a9cdb1"
     },
     {
       "path": "topics/agent-native-auditability.md",
-      "sha256": "f1239f442f18f554875ed0a882cdb9fef089e0ae73d5dea67b75400ac4c2b2d2"
+      "sha256": "b54e798b975d2d8384cf936d433dd00cb578053a787fe42930efc660a18c4e4d"
     },
     {
       "path": "topics/agent-native-product-management.md",
-      "sha256": "d757f33ad22ff337bac6c46ae908468ea5471a725a4444e07a84acd8293703ff"
+      "sha256": "8731163b3f450454859f232b4f816519b6999123aed1a0df21a4fda1220ccba9"
     },
     {
       "path": "topics/agent-reliability.md",
-      "sha256": "4960e60e4f3d4faca28e94fdd39cb3c486288bfd1ffd73f68d223867d66f4629"
+      "sha256": "1a818f8e22e51d20e616b5ab22007ce67fbfaa2e2078f6b3bafc3ad1fd530a79"
     },
     {
       "path": "topics/agent-runtime-architecture-for-voice.md",
-      "sha256": "6951911d826b8cee0571812b8d4448e235cd1f4510786b58c2dbf0bc51f5680f"
+      "sha256": "b5304f167dbfd015c34d55db8d73aeefb44a917f4d1010742b5e84aad97a8be4"
     },
     {
       "path": "topics/agent-runtime-architecture.md",
-      "sha256": "506bcdeabbd3e2df4e886c02af96907bed9b422f667781bee128ce8aff302df4"
+      "sha256": "ba3b093339adc2cf506e7ec9ad2e9f2e3dd69405121e7c2a35816cb3bf2aaa69"
     },
     {
       "path": "topics/agent-self-verification.md",
-      "sha256": "f549734d682c9475591a28c62df89429271e2add3126c23834ad483fe588d1d0"
+      "sha256": "924f81982d47f3976258c1d8d484576eafb242ef4be87ce6dff3a2c902b52997"
     },
     {
       "path": "topics/agent-skill-optimization.md",
-      "sha256": "f75042455bbc3abbc3221df1f755137da793a83c5b93b46d4b59afe3c882b63d"
+      "sha256": "67c3d59ade155a1614a465b38a19dc5599cb4c893966d53a20956b34cc187951"
     },
     {
       "path": "topics/agent-specification-bidirectionality.md",
-      "sha256": "ae90a2c17f4d2dea5629a42eb0bf1ae90ab2fa9a9c1843d142e2b8e6fd3c3f93"
+      "sha256": "4c7502b3502dc88cd59a9aa89cbc8cc2a3ce726d541bad3113e6c91d83afcec8"
     },
     {
       "path": "topics/agent-tool-wrapper-overhead.md",
-      "sha256": "772cf2728cb9d17452ae7d915d39c6af570d222c479bca1c6f18417ecb972036"
+      "sha256": "c94cbd52396cf07acf264b0be95329ae4ea9dc8ef56ebd8753a1445d9d562ba4"
     },
     {
       "path": "topics/agent-workflow-vs-workflow-orchestration.md",
-      "sha256": "2ea614a5993df2e97756a99c9b887285650c2576a833a3e3e92ada544b54f814"
+      "sha256": "331da9e69ce4c724010cd9a074f42dc5ec056616568baed2a985e3bc4e2c2f0a"
     },
     {
       "path": "topics/agent-workspace-layering.md",
-      "sha256": "d8f80d92231ad15d829905ac657bf27d5f946744b1b2a154beb33f032cb355d5"
+      "sha256": "c905d907ed2793219659f29e0e5a12e3f6231c5775d331f2e2c18a4fe6fdb641"
     },
     {
       "path": "topics/agentic-coding-workflow-shape.md",
-      "sha256": "114cb930d6667b9c6c99f20efcd721039e1f25b1b37cd4fa5e4a5ffe4e5e112d"
+      "sha256": "5a2d64f2affd4f66e8757b1d60dee8e0e8496be6cef8e93fbf47159397a4017e"
     },
     {
       "path": "topics/agentic-coding-workflows.md",
-      "sha256": "3c43a2c42bf4290b1ed70bb51c7677d8227164cd6d46271f68e38826bf752de0"
+      "sha256": "f808c7457240035397b80fb5f5b2a6ab580bf23da6208bc7ddd5c877ae16aab2"
     },
     {
       "path": "topics/agentic-personal-knowledge-management.md",
-      "sha256": "2ecf06b3148aed0f8a9735845649a0d3ad04feac89a478b8769398ff83f6a04c"
+      "sha256": "f0ccda784e087d9ca8f903e06fd76cf1bccb40a8fa953aeef60582183d121847"
     },
     {
       "path": "topics/agentic-workflow-latency-optimization.md",
-      "sha256": "612a4ed9ad1c40e3717315a8f48c3873c8ae336af41fef97063da48f1139fb93"
+      "sha256": "d93f5ca883d6e3f01a9ddf0a68b7e092b28439ca34c70e30bb217e69a4d017c2"
     },
     {
       "path": "topics/agentic-workflows.md",
-      "sha256": "af6de4ca843d5cbeb733c3fb25afa3be9dbcf123c1a535ed081ba4e098e9a31e"
+      "sha256": "be59a8dbf1c435e2fec17983edeb4aa0422c45fc9eaa8bb70849bf9e68ecac24"
     },
     {
       "path": "topics/ai-adoption-as-behavior-change.md",
@@ -4239,11 +4239,11 @@
     },
     {
       "path": "topics/ai-architect-role.md",
-      "sha256": "b9b3762a1e9b3ef69371dd0982cedf2cca329080581b9639fbec8bb51dcff531"
+      "sha256": "278ffcb33b12e812a31afc68364ed1f36e7f52785f7d8da0e6e9d3ad354a767b"
     },
     {
       "path": "topics/ai-assisted-knowledge-compilation.md",
-      "sha256": "c77b895507f59e09de538169b8c3ba70e783f9355b343160360a7188fa4cc01e"
+      "sha256": "95ae8e4481cc2d20c19b03cdcb823da16182e4c7e688830a123a19b37af3572f"
     },
     {
       "path": "topics/ai-assisted-structured-writing-workflows.md",
@@ -4259,7 +4259,7 @@
     },
     {
       "path": "topics/ai-model-differentiation-shifts-to-distribution.md",
-      "sha256": "c8918f9def60983d3c12adb8ef582de129726997e3b1476704e6dca254221ac4"
+      "sha256": "31a4290568b97f514ee0c2d789e14983fb658f7a183650363462daf88c0ee49a"
     },
     {
       "path": "topics/ai-native-delivery-methodology.md",
@@ -4267,23 +4267,23 @@
     },
     {
       "path": "topics/ai-orchestration-over-model-tuning.md",
-      "sha256": "65f9c0ad1ed20a3a8262e10c5cfe5b6f90e6f9b2954aa2b5f808f03c2a30c8a1"
+      "sha256": "3577ceddf49de1ab3d508d9f1b523fa7f8735be287032ab7da0a298a6ad1f48d"
     },
     {
       "path": "topics/ai-production-readiness-contracts-and-controls.md",
-      "sha256": "8ceca154b7f73b4d205b5057f6bcac960f1bed767856330cee05d576ab0d5561"
+      "sha256": "60d58d6dc9e11935d0c842ff02c7559f7ca20f9a62319ec2e639fa4eac5dc9b2"
     },
     {
       "path": "topics/ai-products-shift-from-models-to-systems.md",
-      "sha256": "9df203c7a1ede5c470bbd3743f84c613b2e06454c7a5315c2e53ae87389fb850"
+      "sha256": "e46cc59fb3aacddffeeb9b6302bdc90719107a52751dba6fbb209667e7d1276a"
     },
     {
       "path": "topics/ai-program-ownership.md",
-      "sha256": "755b52436085cdd2614d15171464c5b3c6711cdef4fc303853d3ff862dbeba2b"
+      "sha256": "4ce53323241dc7580c6e8b37fbc7e5147947710c974be4591fb9f8a6fba25e08"
     },
     {
       "path": "topics/ai-redistribution-and-rent-capture.md",
-      "sha256": "bcfb7305fd82fc5eed94e094ad0d87dc1c5d57d25d586c78c060739a50049bb0"
+      "sha256": "01e207dd6f63cb39762c739c652bc88bec66b0da5058bc39128fddaeb270c9ab"
     },
     {
       "path": "topics/ai-redistribution-through-taxation-and-ownership.md",
@@ -4291,11 +4291,11 @@
     },
     {
       "path": "topics/ai-workflow-bottleneck-shift-to-review.md",
-      "sha256": "b5893e1b8ae68e173fb8de9dec2445c199d526cf5031b9afd789d6b777d4938a"
+      "sha256": "58342f1cd772f24b75c837d6128520209db8c4dab0a125f4d4081ec105cea3d0"
     },
     {
       "path": "topics/ai-workflow-restructuring.md",
-      "sha256": "7e68989c03715442c2c4beef4f51bc1f337a5ba8e3b2dfeef2b31328f9471ac0"
+      "sha256": "ddafcd76a1a022d990c612012536f38430959a61cf8b25716be5eef16691b32c"
     },
     {
       "path": "topics/answer-concision-as-product-quality.md",
@@ -4303,19 +4303,19 @@
     },
     {
       "path": "topics/answer-inference-vs-agentic-inference.md",
-      "sha256": "0859b27f0dec3fde6d30465e723ddd9fa9a05b043ce69e0ec237bdabe66ce7f5"
+      "sha256": "a75a910adc95d9844b8ccad35c4a378f3a267e1116b374184b5f90810b67294c"
     },
     {
       "path": "topics/approval-based-agent-actions.md",
-      "sha256": "3e8e56a5f32f540936c9cdc889cf9a02694a4ec09d9a6fcd27fedc0ee7b34696"
+      "sha256": "bd5257d604c30f256e017c15533ae1e1a6b30604ad7732b903000826f5295664"
     },
     {
       "path": "topics/approval-based-coding-workflows.md",
-      "sha256": "aefb4c80889a32f540b647ac77fe53e5fd6110711c46ee7184f0dd73917ffb4a"
+      "sha256": "1ca5771682c1187d09fde046f096f6e9a0f0e995de711e4bcae320b790c79ba7"
     },
     {
       "path": "topics/artifact-first-ai-workflows.md",
-      "sha256": "434eebeb264726b9a048f5e31f7511cdb1a66d468c7a56ff063a3f14fe9fba18"
+      "sha256": "019b0a734838a486bcd0e841ddfc18f5efcf087713e90d1f3fbbc1263a913c4c"
     },
     {
       "path": "topics/atomic-binary-evaluation-judges.md",
@@ -4323,7 +4323,7 @@
     },
     {
       "path": "topics/attention-hungry-ai-workflows.md",
-      "sha256": "e70cc21ca398bb8ef74afed24c70e5d9fabe8fdd42c06c06a9691ee029534753"
+      "sha256": "656f2cc51606156d9192d052b2c6c799f909047c12ac472e2a1df526ae2bac97"
     },
     {
       "path": "topics/audit-ready-cloud-compliance.md",
@@ -4331,19 +4331,19 @@
     },
     {
       "path": "topics/behavioral-audits-for-model-style-drift.md",
-      "sha256": "e0b73fa17ba1588b947c3d8c2b260c689612798ab2793023598f2138ed88da9c"
+      "sha256": "22a2275a55b701c4228a06af3b03d109595b7832f940c9e18bbad881a40b5a38"
     },
     {
       "path": "topics/behavioral-blast-radius-evaluation.md",
-      "sha256": "d5e72345f0d4aee0667d4d08dfa579858fad0a88f0b5d44189180cde72cb5bed"
+      "sha256": "5aba89b6e2d9f95b6b34baaeaa2a35b83ca4abf3f8763d3d0822b34e4f0ef4ee"
     },
     {
       "path": "topics/behavioral-instruction-layers-for-agents.md",
-      "sha256": "3639a3019f5f805f7c68dc5909519324e2e5113faaaa04dc02762a6756cb099c"
+      "sha256": "58569922838cfce5d99fbb113aaf8f53aaf6c32d30dd674a1e13ff77cf780fad"
     },
     {
       "path": "topics/bounded-corpus-synthesis.md",
-      "sha256": "d8695a5dda39dece049882005a74374c9eaa68c4452a2bec6330538a6a56ce52"
+      "sha256": "9ecdb33a3f8a78da116aa652bc6846eda56ca9d1e1f48beff29e4d3a510eb958"
     },
     {
       "path": "topics/bounded-text-updates-with-validation-gates.md",
@@ -4351,31 +4351,31 @@
     },
     {
       "path": "topics/chain-of-thought-as-externalized-depth.md",
-      "sha256": "6913d650b39221cf9bf964c9a07650aeae00d41b197bee59eafc54987a137f7a"
+      "sha256": "91135470a9bf9251ebcbca901cf00f1357e8c996ab213a3d73e7ba5d1f5c1a11"
     },
     {
       "path": "topics/citation-backed-personal-retrieval.md",
-      "sha256": "36fe58df75207690d654f3007a46a7d0bd58b29c30a41776fcc4ce04f011ab99"
+      "sha256": "b599c1b808da957196d7ab5f88a2787488612949cb4a4be9bcdc0b2c2c929593"
     },
     {
       "path": "topics/citation-locked-ai-documentation.md",
-      "sha256": "3a48def828753f49cd28fc661940947223cc6b4b01f2bf9bdf9434b42e1370f8"
+      "sha256": "a47c2d33103e9c673f86397f932a44b33a35116d0e7bc10cb4799801046d20bb"
     },
     {
       "path": "topics/cognitive-debt-in-ai-workflows.md",
-      "sha256": "c2326814e114cb9a00ba49b81a663e9df94f7e73a244c65388da75f1b7a6e7a0"
+      "sha256": "f1fd4b2e926acf54595c346b6b7e717a73395c569d67752044d62e21aa3af0a2"
     },
     {
       "path": "topics/commit-driven-documentation-generation.md",
-      "sha256": "b957eba2d0b459ab95c72518ffdf42d062eac45acf10a6df903c881f598e84cc"
+      "sha256": "a164fbe77a8eba6c11823d18be00bbf9a3e35416043031e9c8241901d5cdf885"
     },
     {
       "path": "topics/compute-supply-and-capex-in-ai.md",
-      "sha256": "ff8d1b72c3ac7d3556f35a9d39c1cab88ce5ab9d6b9015fea6d4adcdad5aab02"
+      "sha256": "59d5b46f2316275ecdc00530949e47fb1f58bb821d06669506dc6c4633ac533f"
     },
     {
       "path": "topics/compute-supply-becomes-the-ai-bottleneck.md",
-      "sha256": "694d7583d863109c3df45bbf310963701da83cc3270bc7264b5fd2f0a69f7f4e"
+      "sha256": "de3b95e14c1981f1decc71d9e25284b61a0a9e6cb4325cc39f309bb28d76f0a3"
     },
     {
       "path": "topics/conflict-forecasting-models.md",
@@ -4383,35 +4383,35 @@
     },
     {
       "path": "topics/consumer-ai-distribution.md",
-      "sha256": "f446e2787aae72b1e1cd5de21a13640753aa2dc78bfe9344f317b2a006753b19"
+      "sha256": "6ee95b54ca29ee44e59b33b1022a8160e464e5107eda1e294dda7eeedd67da0a"
     },
     {
       "path": "topics/consumer-ai-monetization-under-load.md",
-      "sha256": "3e8d5465a1a60f7bd75838deaca3994ba831a8a0954ced680038260a8fa49e68"
+      "sha256": "5aa8b8a0af323abf8aaa750faf1dc6e276beded3901aee5404f6afba937394e4"
     },
     {
       "path": "topics/context-and-backend-sensitivity-in-local-inference.md",
-      "sha256": "cba09cc2199724935fe6b0770bff70f8db9b5c1e987a21c91b087703f67bcbc7"
+      "sha256": "f7238349d622e4d98d6f1c5812c6e37142c543462caedb2dc48f560ab27c0069"
     },
     {
       "path": "topics/context-engineering.md",
-      "sha256": "8be60e18cfbdb38ddf061601e01c8caa67248428a31deff213ae810777883fe4"
+      "sha256": "2c1c82e7b8be67683c7e09990a7fca5f27b9decf0f3d3483d0a37e6a89f27c0c"
     },
     {
       "path": "topics/contextual-operations-summarization.md",
-      "sha256": "9a17d08851220c8f68e25cabcf9245024d48297863a2ef1a204ef272e4bd607b"
+      "sha256": "0f8c4bb2b4ceea5c055b428b5147b990ff5faf54789cf86045c8657159760e0e"
     },
     {
       "path": "topics/continuous-improvement-for-ai-support-systems.md",
-      "sha256": "920fae423a25b0fe68cd662ee5f5bd31667bfbeeff1dc1506dde991c8e75fbd9"
+      "sha256": "51887e475dcd7a70d6383426a2b4eda4e7cc50e427f0e8084736c330d135f0a9"
     },
     {
       "path": "topics/control-group-based-service-experimentation.md",
-      "sha256": "657a9a2a787eec82bcf9ad3376c234c48d4a6a9051ad7d962798be036baf9fd6"
+      "sha256": "0efbec92e6226cff7faef948ac0e4207d5db63071f20958b1a21512dde2d59be"
     },
     {
       "path": "topics/country-specific-ai-partnerships.md",
-      "sha256": "88eede686e495572a41a0fa1166c21b37663b5aa1481068cad06ba1b6e237f03"
+      "sha256": "0e3e0436b178f473bf748afde6386cce9a48e644dd8949c7318678d94f951f89"
     },
     {
       "path": "topics/customer-isolation-and-tenant-fairness.md",
@@ -4423,23 +4423,23 @@
     },
     {
       "path": "topics/defensive-acceleration-in-biology.md",
-      "sha256": "43b1dbf7978e4c73c089cf0aa2ec6b9138bf60e604d8eb47f630515c3ce7d57b"
+      "sha256": "c7d90968abdb2e2ac073264ae54a7ca073c27a4963a4ace72bf66d80f90ab244"
     },
     {
       "path": "topics/dense-vs-moe-model-consistency.md",
-      "sha256": "89ebff88f5e8bde6f1e4c5609e096eec4069a7c5c02a5e7a281f2654c3c8c4bf"
+      "sha256": "522a0525498f37918e88c0894e1983e2b96c0d7d1d92ac36bbc7429b64c09f90"
     },
     {
       "path": "topics/development-cost-amortization.md",
-      "sha256": "25283120e1afcc7cf7449d6c6390027a729f7b893e7d4b458ecb007c4c9e2622"
+      "sha256": "ff78be0c2c19108c83a130a4b28efcc2f5e0974d29ef69b510eb54fc322921f6"
     },
     {
       "path": "topics/diffusion-as-sequence-generation.md",
-      "sha256": "53725b96da40f2914fca0806c73c94bc4ee7d45ad8b93b25f0af716193a689be"
+      "sha256": "e7e36186688ea2d33757118acb720155ddd0b1212979f0556451f5aa60a7ea32"
     },
     {
       "path": "topics/domain-expertise-as-verification.md",
-      "sha256": "0c2cf3a709f9db717cd8a156becdac0b2521f37e418c1eb9fbca7f2b6566a6ca"
+      "sha256": "172b1d72ab00602f7d0719fafce2e3db6fb0e9337b74512749bcb7d8cfd57e65"
     },
     {
       "path": "topics/early-fusion-multimodal-models.md",
@@ -4451,7 +4451,7 @@
     },
     {
       "path": "topics/enterprise-conversational-ai-integration.md",
-      "sha256": "f75d255305d0ec03ca58bd547eeeac38131fcf4492dea0162251a4663b528952"
+      "sha256": "e79cfdd45bfce7e6d2f3440a116f973145b778d5a03120c5620f221623c27c03"
     },
     {
       "path": "topics/eu-ai-act-three-clock-compliance.md",
@@ -4459,19 +4459,19 @@
     },
     {
       "path": "topics/file-grammar-skills-for-ai.md",
-      "sha256": "9714b44eae68ff4a5c1b8b1cb20985a7771e807a5d54c879e998415eaa325ced"
+      "sha256": "946bc8ff241e12c221c2decbd5d7fd0602ca12e7572079fff5e028cf4f4ea6bb"
     },
     {
       "path": "topics/file-native-agent-workflows.md",
-      "sha256": "e47ee9e5ba7eaf977c4bf5ae02c151cc6cd8efa258d9776c7e68649dab6263ea"
+      "sha256": "cfccdb02fc364372fbd8abf9c038b2f3559edc57527b46335b2e550024c22b32"
     },
     {
       "path": "topics/file-native-ai-workflows.md",
-      "sha256": "17b25351b4304ad476f9a75f970793d820870d4e2b5d11c7f509b0a8ccabfd42"
+      "sha256": "96ef298bcd350b8f7b980eb9cbbf30a0cd399c836dcccf1e6aa84e03904fb444"
     },
     {
       "path": "topics/forecasting-with-noisy-public-signals.md",
-      "sha256": "d1bf76bed8bb5f28e2aa6caa400463ac762cd6a3dc8dd06a3b60af06bb3f0062"
+      "sha256": "f466fb6db74a33724d735e9ca5cb3b8e0a732331c3aa40ef5087a15efc91004c"
     },
     {
       "path": "topics/frontier-model-serving.md",
@@ -4479,63 +4479,63 @@
     },
     {
       "path": "topics/frontier-models-as-national-infrastructure.md",
-      "sha256": "cd005010f20862cce5db5fd23eeb082db03a1ecc76e578d61e39ef4cc1817990"
+      "sha256": "160e69130536d532ed1c0d8967df4b8445302b171f5062b9442219a69cc662e7"
     },
     {
       "path": "topics/geopolitics-of-ai-safety.md",
-      "sha256": "61be62cf4508607fc9c9fc5d6ad303752d3f4e429780a80ed23b939e639c36a8"
+      "sha256": "3c0617c75eac140b0c5d5dc78bc575d3a97e760087aba821a825d044313a8069"
     },
     {
       "path": "topics/governance-as-enabler-for-enterprise-ai.md",
-      "sha256": "a88071fd6fe507d713c8eb2774eb75a5cc47dd9ce6c7f0e1b673d726b0cf403d"
+      "sha256": "e8d6d59f472b9799b681278cd40f5ea7deac3deabdc5ff1d9ea7b12bd6ba3e62"
     },
     {
       "path": "topics/governed-cyber-model-access.md",
-      "sha256": "1229e0d1a541196679cc56fc9b27e2ab5a4d38007db7365e796cd576e911fee9"
+      "sha256": "7a2e96a2cc77635e51ec0b4c265070e0a7e6c71e11e39b711009ad2c19cb3cb1"
     },
     {
       "path": "topics/government-led-ai-adoption-programs.md",
-      "sha256": "aaa40114fd26cc3de3f54c6c5b2bc1667bb0f25ea52eaf513b037b900eb0cb06"
+      "sha256": "241e39d0dbbae46b830edb7426f982f2796c620edbf51ea9f9ddc1afc7c36157"
     },
     {
       "path": "topics/graph-grounding-for-agent-simulation.md",
-      "sha256": "bacc7ed9db197e7b4b3053ab61c694a5381aba922d5d10b889cc2602ac1860ff"
+      "sha256": "f7a9f3d1f79a9f36e3f960384574edb26b557e50ebccd01fc854f4f17f5f1ca9"
     },
     {
       "path": "topics/graph-grounding-for-ai.md",
-      "sha256": "e44b59e4cb8cda79c7dca1e98e43718b59bd10106e675af8c9494319b3c32a4a"
+      "sha256": "be616537c7892f98a5a085de5af17d6b268476c121c0e87a9ed3563b06c78e68"
     },
     {
       "path": "topics/hallucination-propagation-in-multi-agent-systems.md",
-      "sha256": "8563b29443b62b3bbb6a6fa7009c28d1e99b22d7f9b1fa9070d14b01432a8a63"
+      "sha256": "2261c33a925651a469af7c7484615eb873933ced263aca90c01b782875ca4307"
     },
     {
       "path": "topics/harness-decay.md",
-      "sha256": "180d968a8a853a917e6357e8e08c5d68415bd2ce99a9f8aebf54817cfda5ea56"
+      "sha256": "849b3f907a870de37b3f0fb700a16a39e4e21df85211be46aa3c5ebd415fc0ba"
     },
     {
       "path": "topics/harness-engineering.md",
-      "sha256": "a4846af6ada68b17a5226b535472233348764567d49f47f09f84d7d1fc688536"
+      "sha256": "78dd00d21f3267ba2959596b8852d04f63c3c039738fe987a4febcb5b7ea6cf7"
     },
     {
       "path": "topics/human-feedback-loops-in-support-operations.md",
-      "sha256": "365bd0bae109eca221c77221072566353e0e2eb11e66d41ff0452ce51c311f87"
+      "sha256": "94342de6f66e92ac188066adc897ffa91f087019f9751cb84a6e9d1e255ddc1d"
     },
     {
       "path": "topics/human-handoff-design-for-ai-support.md",
-      "sha256": "fcbd06bdffe03e00229139fe6691f4b7e54f2d87942d689a1cbb82dbd2cb1fbb"
+      "sha256": "9dcbbd7b22eff985369968cccdb276f7162cf6b8a2f6599db8845885f0e35fa7"
     },
     {
       "path": "topics/human-in-the-loop-advisor-systems.md",
-      "sha256": "d63bd36af9bea04806b378667a7b18a03c90e4bc096516c550eeb504ad79df25"
+      "sha256": "28f22055e6c8aeee2c4c3ded5d3d2760f16fa5760c61187388b40e25b1480998"
     },
     {
       "path": "topics/hybrid-human-ai-workflows-for-expert-review.md",
-      "sha256": "21e389b740ef1ff186e692345fa2c1c562d712eb9997cb39d42f636094ca56a8"
+      "sha256": "1efb06ee59279268bb699db1e2d1389235e14a55e7b3783d27bdf7ae78c963b1"
     },
     {
       "path": "topics/hybrid-retrieval.md",
-      "sha256": "8acb228d6af6cae5d297db44f11fda27b7174895203d73ea6e4cfb25f99ae159"
+      "sha256": "59ccf03e7c2bd314c89abd1f76e10b0346f87fe948ee1cc9b8f65fb728fedbdf"
     },
     {
       "path": "topics/incremental-and-reversible-infrastructure-changes.md",
@@ -4543,23 +4543,23 @@
     },
     {
       "path": "topics/intent-driven-chaos-engineering.md",
-      "sha256": "d9a693dcdda83e9a53f657e320c07ccc8b5bada28a56dd20961d6f75d87b1869"
+      "sha256": "13ac4a835bff2564f299e60ecaa15b46469690f57789484e38c68d6d1cb74696"
     },
     {
       "path": "topics/intent-driven-commerce-interfaces.md",
-      "sha256": "716137742731ea8a12a788ed38e7630e7b975eab9667a8d3288160e8ab106fd3"
+      "sha256": "ee8809749a25e6d03977408fc440fd83599a7e4b70d53b3ec4399b89f5194268"
     },
     {
       "path": "topics/interactive-ai.md",
-      "sha256": "0c40f6b53b6d4c8b0c05dd4569bf9f1492bc526cf0fc1d43a59a8ac99df4a794"
+      "sha256": "e54d1350333192d9d0383a69f7d1c4022040b37a186460136f526947bfba6d53"
     },
     {
       "path": "topics/internal-proofing-before-productization.md",
-      "sha256": "24d6000ec0fc0946d00f12490298602a123835f0d13e56717c4ef67e22311220"
+      "sha256": "0d6e35b45a5c8d595ac3b45bd8653f0fef1f43b44262bf826dccd0cf172b62f4"
     },
     {
       "path": "topics/knowledge-base-becomes-runtime-infrastructure.md",
-      "sha256": "6658cc47338aa24f50536f93623f2b11fbcf1de0990c82a45d4b23b8bd762620"
+      "sha256": "a5c4111bfad38b2b781b726a90780df842c4ad8b59732f05d6b6a7f072e00cc6"
     },
     {
       "path": "topics/knowledge-base-maintenance.md",
@@ -4567,31 +4567,31 @@
     },
     {
       "path": "topics/knowledge-graph-grounding-for-note-vaults.md",
-      "sha256": "dfe8bf84b1de164166e5b3b187df7a7d997ff9d616e6a123ee917f90b1c3794f"
+      "sha256": "7bc097373d2fcbae454c9caf8c153f3733e7eddec94ae773b38b391c6266504e"
     },
     {
       "path": "topics/knowledge-layer-architecture.md",
-      "sha256": "21e78042fe3226bc459c89eebbcd34877d987f781db3481a54bc39a351ad66bc"
+      "sha256": "5d421c768f9da0f11031562170586f9f36e2fde081b6f08b293b469a500ddfc6"
     },
     {
       "path": "topics/knowledge-management.md",
-      "sha256": "2d12bce53258657ebdd1475fb5f358429c65675cdd2756aed4669d5af361f212"
+      "sha256": "a70a54065230f7976b58b0ca3d8fe87d1b1b6972e755f451a9f485d37bf17fb6"
     },
     {
       "path": "topics/knowledge-systems-shift-toward-compilation-over-retrieval.md",
-      "sha256": "8f2a53a8a7c6e0d36be1d1cacd8a41df8c01225233c5daa41c3dccd020eee74f"
+      "sha256": "b11d6d1b67fb2af33db6f419d5a13218f5e6737f79a606e99787b4801324f088"
     },
     {
       "path": "topics/kv-cache-compression.md",
-      "sha256": "0713e3d56bcf94c730fba02e69df2e568a5d0f79cb6b94f2f6ce2ccecc8e36d7"
+      "sha256": "4e8bb1e9b55600222ac2bd86e1fb06c134a41e4cb237d92a1e1985ab80850fdd"
     },
     {
       "path": "topics/langgraph-message-reducers.md",
-      "sha256": "0105b81f095758ada292936b0a62253d29f5c6d3398ea4ab23dd3473fca6a513"
+      "sha256": "6e11f24310b7bd1479cb0510e4a8de3805d86719a90c8ca8da526c308c7b227d"
     },
     {
       "path": "topics/latency-as-a-conversation-constraint.md",
-      "sha256": "bd8314f45aa6a878bd3fffb709f8346c7e11ed07e32e0942460dda845bdc8272"
+      "sha256": "33bc9c0915884d821cf9f7518328d0a1c7d0f9df4200c33150610fe702de786a"
     },
     {
       "path": "topics/latent-reasoning-architectures.md",
@@ -4603,7 +4603,7 @@
     },
     {
       "path": "topics/layered-agent-architecture.md",
-      "sha256": "7e88006103982daed2fd8d6bbe38d9921978177ca8f93e95866d461a51fef3c8"
+      "sha256": "29fc008ad59f7853caabc8ef5c2f95523e264eaf414928a73488be5fe44b0348"
     },
     {
       "path": "topics/layered-ai-architecture.md",
@@ -4611,47 +4611,47 @@
     },
     {
       "path": "topics/layered-local-and-cloud-inference.md",
-      "sha256": "e86335c38342f65cd4638d9159c0f71d484c459180d7145810c0110864020229"
+      "sha256": "de50830a88bdb4c15c2d96facef8d5cfaa5fc412b5e9f3c1fd30eb4544072443"
     },
     {
       "path": "topics/lightweight-typing-in-note-apps.md",
-      "sha256": "d248678e6835aa0ff5a9ba766134eca9161c935a88e6873c8acc96166c996363"
+      "sha256": "ecdb1d62f63fa3c71c28a975795206f6e4594d086303b1acf713531cf2a884d8"
     },
     {
       "path": "topics/llm-assisted-knowledge-compilation.md",
-      "sha256": "ef4c3254b2a8962693a86552aafa4e8b999291eb1bcc6cb4db81fe58a04cf351"
+      "sha256": "9d0ef65422a95232ebf6709711fe5dee4853445869bbce20ef15bf3b60a1a8b4"
     },
     {
       "path": "topics/llm-maintained-knowledge-bases.md",
-      "sha256": "17f95283ed3165aff8b5abe3ba1c279fc26074c5dfdff992753389d4917f6691"
+      "sha256": "1b7a87df5b734ec976a2ac05e6e0dd9792cdf0b9b3eaabff0ebed11fabc778df"
     },
     {
       "path": "topics/llm-maintained-knowledge-compilation.md",
-      "sha256": "43e1d6c1050cb1c6a20815435aed9e4204a2c1615b2269dab07c2bfee7d4e7c9"
+      "sha256": "4eb29a5e0b492b91a050ea71e5d9ff7a735e5cb705d969992d41abb360f9e5c0"
     },
     {
       "path": "topics/llm-wiki.md",
-      "sha256": "8a8e58e4e7ede47cb9b1d7aa6f76421dc5b40d8418e3218d89cd6c6950166edf"
+      "sha256": "76f5cc6cd995e4a840666c68efc0e26f239c7bd50a66bda523fc4d8fc53ff2f1"
     },
     {
       "path": "topics/local-model-deployment.md",
-      "sha256": "d61085ef551632407568169596abbd5420bd8908c96ca02b7f001d3bc40bd3c5"
+      "sha256": "eb4533ae8e5eeb23f33ef50450805c57e737bca787137482d5638fb9ceb02748"
     },
     {
       "path": "topics/local-pii-redaction.md",
-      "sha256": "23dd0a8b0753ba16ca5bd54f5b22c11dfef652e3298edfae27a05afdc8d42da7"
+      "sha256": "ddf3df19ce86037357e3dcb1fe55c634787bc628e417481fcf5c534d45b392f3"
     },
     {
       "path": "topics/local-voice-api.md",
-      "sha256": "9d413342436a51b103ccdd51ac30f7ca8cff8601cc7ca29936efdd755b7b39a1"
+      "sha256": "0982f52acffb909d4980fe5ab0e1932366f7ea35856a165a736249c562e4956b"
     },
     {
       "path": "topics/maintenance-aware-ai-evaluation.md",
-      "sha256": "3f1904feab73ec5e517f4198a0c1778506c8fa5b278313d07092efc511e884f3"
+      "sha256": "54cfc9a25c8c764e7e6165936649412d5b59e7c27082f325359119143d310910"
     },
     {
       "path": "topics/manager-workflow-augmentation.md",
-      "sha256": "4e4d2bda5b68dc097e7f7c3c117f9fec315064803cbcada46672196e85ba206a"
+      "sha256": "9b19decebfd15e91ebf3558aeeee90c5dac9074631a2bbc53a62e455a013b66b"
     },
     {
       "path": "topics/manual-capture-friction.md",
@@ -4659,35 +4659,35 @@
     },
     {
       "path": "topics/mcp-enabled-agent-voice-output.md",
-      "sha256": "569445055c770398328e789ef59c87d6747a5e2d003b75b1583cd61f09904ba8"
+      "sha256": "55dec4b0e04f078eae4a82bae18639d48cb77816a858baf09472e6d272ad86e4"
     },
     {
       "path": "topics/mcp-production-governance.md",
-      "sha256": "dc80953e691a910249e628979bacd1d0ac70443dfb72d58f0f28182312962975"
+      "sha256": "8da4a52567ee640f3a184d389cc3501e108a1f92dc17b4c87a3314fef5b9d9f4"
     },
     {
       "path": "topics/model-evaluation-with-terminal-benchmarks.md",
-      "sha256": "961ae7b571125551c5b12e84fb419feb86a8c28bd65691a64271c7d908e1b2e7"
+      "sha256": "91bcd7b7016a90c1321ca630fcab7cfa4ffa872ed15e53ecac62d59d22010c17"
     },
     {
       "path": "topics/model-risk-assessment-for-cyber-capability.md",
-      "sha256": "64b2680fd2e352434017dffa0dcd2e7351b3e34d640f471b2a9d32c87fa982bb"
+      "sha256": "5ed3e5fca853d6a812e736ae1e17be0f28b470af4c96649f253c640313bc9636"
     },
     {
       "path": "topics/models-as-commodity-components.md",
-      "sha256": "cd96f6d2f21c3bbcd1e904e455cbb70e1474930c812c26ac2d8bcc7cc1a8e745"
+      "sha256": "1edb20d45cd74e7bab957306dddb4facd8dcc7e4f801da7b9ef2f5f8d47be0d9"
     },
     {
       "path": "topics/models-becoming-execution-layers.md",
-      "sha256": "c97b5cc2a156bd5b45225b966f0206b89f1325d525d95a273cf75f6e525929f1"
+      "sha256": "6f2a104b9e21d094d4f21ea07ce4a83581eccc34c548350745096c822daa079b"
     },
     {
       "path": "topics/multi-channel-agent-orchestration.md",
-      "sha256": "beb12d943aa4ba1a653413aecde376718a238b924e5d70a4566df5f862079095"
+      "sha256": "f36b3cf0d8d8ade441604dafb8e2903ca92ef4dfc2436df88122f89bff669cd8"
     },
     {
       "path": "topics/multimodal-local-inference.md",
-      "sha256": "724b395d7d4a0dd625ae887ac4ea51d9815df090eed6b972d95ee6024e9ff3a5"
+      "sha256": "d6d0e902522b7574b3ebdc091901f941d014fd8f6fe07242ea45bb12f9f6e64f"
     },
     {
       "path": "topics/native-audio-models-for-voice.md",
@@ -4695,27 +4695,27 @@
     },
     {
       "path": "topics/non-nvidia-ai-hardware-thesis.md",
-      "sha256": "782cf3225099275eb4d2bfa4c75a8241548756b42fb73e25751a1009f624f2e6"
+      "sha256": "c4f10e426fea996163259f8ead9b0537569926dfb9c3b6b708aab768eddd2866"
     },
     {
       "path": "topics/ontology-driven-extraction.md",
-      "sha256": "f829174550903dbc8312f839d135cedde05a16624ed63b2235d6629b15b59215"
+      "sha256": "075217fe583a4165c8ef3d7a8f49468791af93b3fc4f280785f40a473d8967b1"
     },
     {
       "path": "topics/open-agent-platform-integration.md",
-      "sha256": "3cd1435bdf9bccd5391f4eefa91fd7f9b79b49eeabb21f696a816232839d9243"
+      "sha256": "ae04e8ea36f0bf7ea8087f77492f56c1a0d4f3755248905e738f67552f66e256"
     },
     {
       "path": "topics/open-formats-as-ai-integration-boundaries.md",
-      "sha256": "cb9b9b7a271b295705a9ddb175da68b704d7a96cc0b8cdadf1516429ac5a7fef"
+      "sha256": "5af00bf687c755c56d647959f3d8a824fffc74e29c714d08cc2b3f57310f3531"
     },
     {
       "path": "topics/open-model-ecosystems.md",
-      "sha256": "6471a5d6def4b29451879b280cc4cae3f81922123a527d84e5d0bc2d7ca16412"
+      "sha256": "26d334cc83be26fd3da0e976667fa272ed7f7a79f593b9dda92c456417c113ca"
     },
     {
       "path": "topics/openai-compatible-local-endpoints.md",
-      "sha256": "502eda0d8e322df1f8f3460f5ae0952f7f5c88dd87d913a912fac4ad4e4a3397"
+      "sha256": "038314eeb0747164cf525f052f81ca3ea5e3ad56a9044087f7633931c1807096"
     },
     {
       "path": "topics/ops-artifact-generation.md",
@@ -4723,15 +4723,15 @@
     },
     {
       "path": "topics/organizational-ai-readiness.md",
-      "sha256": "bd3fd3105d32038688a0fb00d0752303f3b803de7ebbcf9213f2969f6b7a1ace"
+      "sha256": "3b093644a38847a2eae1bfe303a8d38f938b79c2d47b33217ccc9d55486facdc"
     },
     {
       "path": "topics/outcome-based-pricing-for-ai-agents.md",
-      "sha256": "01f831546cbd3f33396e4c090212a825a52c71a1b81ea4ee261a6c69e5dcc473"
+      "sha256": "2bc0c2d584f9178e001140845856d95882dce88fceb8681f656716e68f8abf65"
     },
     {
       "path": "topics/passive-context-capture.md",
-      "sha256": "8374d99e03fd924b4a264546eaa776786942c04044aa9d7743b5b9cdfdee9b97"
+      "sha256": "821f07af233143c5f0e6780b7cf785423119e500115bf24c1b76f5c048015706"
     },
     {
       "path": "topics/permission-aware-retrieval.md",
@@ -4739,51 +4739,51 @@
     },
     {
       "path": "topics/persistent-agent-memory-architecture.md",
-      "sha256": "585393975d4320b6a54e90b211ad8bd189ef2e12d30f657a16832885663d1270"
+      "sha256": "a48b25c3507b4857355c5da72944f8dd738bc6d38b2ab8772e21ce6a273bd00c"
     },
     {
       "path": "topics/persistent-connection-response-state-reuse.md",
-      "sha256": "03ae5072ae79622f1ff15991f25ecbd78ffe28f2f9c7e33def95ceb639234c5a"
+      "sha256": "38774c1c93d16ab4417db93b0ec849ae4b4f1f2e898bced0cd6f07578d1936f8"
     },
     {
       "path": "topics/personalized-conversational-ai.md",
-      "sha256": "bd65ef3150f70815a3ea927d2c309c48a67090f940838c3bf30def8aba877a2c"
+      "sha256": "5b5b7561933b76d74d3be89dd5ced3134ec68bc3d36836a654a81cc80d9d6a1c"
     },
     {
       "path": "topics/practitioner-feedback-loops-for-agents.md",
-      "sha256": "f5c9e9841d9921ea8679f027e12b3be4c933e4cc84c72b7100e9ceaff5a0beae"
+      "sha256": "67d7c62f71ebe4fc0998a19f4be735e865840917cc76e153df4aecba6f747ed7"
     },
     {
       "path": "topics/pricing-model-validation-for-ai-products.md",
-      "sha256": "cce92079ffc05a166079df1c1b6871878aeb8e5e46187f4dd4e1d181be5aac51"
+      "sha256": "564a5b1c89aa9f0171515cec8d7c29851b0907e85f70746708e006cc533041f3"
     },
     {
       "path": "topics/privacy-controls-for-ai-products.md",
-      "sha256": "4a797982b4202b3c853b85bc664f7219b428935c647113c9664120fd051f768c"
+      "sha256": "bf389eb0e79c5b55bff35e4ef1c50c0af197d237dd4abfaab217d614802346cf"
     },
     {
       "path": "topics/procedural-knowledge-for-agents.md",
-      "sha256": "8aacc62cdce653f179536bfc3aed0d87a20f5c57ec800d9be65b0042003903d5"
+      "sha256": "b8f9ccea4631328af45872968948cdaa4d4a488d55ed9e7e390178c377ecbb2a"
     },
     {
       "path": "topics/production-debt-in-ai-systems.md",
-      "sha256": "ce3726b5bd788ac163b0b3467c883eb625ca271ff8fef22c02b72bcba58fad69"
+      "sha256": "8cdf8b41372b316213a4a2af900bb652721d8f13298b04ac03c7610ebd010538"
     },
     {
       "path": "topics/production-traceability-for-agent-improvement.md",
-      "sha256": "d3f13784661efabd893df3ddfde37711fc260e1fdc1a3cf71b22b3863982cbe1"
+      "sha256": "70942e563293c8f36e4116a0e957a38fcaa04c9a65708bfa15f23070a7ac3044"
     },
     {
       "path": "topics/progressive-disclosure-skill-design.md",
-      "sha256": "f11b0137d12b968378428d137603deca5fdd0f539db9038e1ebaccf1a7f4f1d6"
+      "sha256": "385e2a6ce92b94117e995155d44d8c1d74a33fb1d61042bf322897f49bef3317"
     },
     {
       "path": "topics/project-scoped-memory-boundaries.md",
-      "sha256": "1af294600f228bcd7cba9f9fce7248990277d5ecd18ea2a2c09919a5dac6244c"
+      "sha256": "16916ace090daca182c8aa2cff13ec218dbf8b8103ff60c546ac3e7c455b9e6e"
     },
     {
       "path": "topics/prompt-driven-structured-document-generation.md",
-      "sha256": "b05d4e6c1ebab628803ad2e577d4dc7636a8954090e4c996ef41d25a79e7cba7"
+      "sha256": "eb8b6dc98c2eaeed8ca1e3f35e75d89e9e7563946c345451a58482a7ce514ebf"
     },
     {
       "path": "topics/prompt-engineering.md",
@@ -4799,19 +4799,19 @@
     },
     {
       "path": "topics/proprietary-evals.md",
-      "sha256": "a5eea170ca378f7778453e646ecab1aee9d97ba3ade28772a9b0ba72cc15e09b"
+      "sha256": "bbf5f6f73ba4c0c683a3f023c75da48cd20df6a9ec568bfc85aecd5fd62f54fa"
     },
     {
       "path": "topics/provenance-tracking.md",
-      "sha256": "f7c31a19fb5714527e1c9bd56252264f2598ce345ecbb6598da6800172cdd268"
+      "sha256": "5461f03c28d2ecbde78ce61cde6956f87be6625233a03ba226047c4c59f80a92"
     },
     {
       "path": "topics/rag-as-grounded-retrieval.md",
-      "sha256": "8d378fdac92ef5314ba48ceab82ffd964c8101d58107c50d160abef405a111ba"
+      "sha256": "11d13ee1c0aca54d1f1aaf1a145df5c572c8ca9fbdee2ac0e1f5ba042fb64892"
     },
     {
       "path": "topics/rag-evaluation-workflows.md",
-      "sha256": "9e0a81988052fac1fbf3093edca701bb6654f5e0522440daca38e865178895c4"
+      "sha256": "103dc0e2796b59a9543f12ea54783a2421f292204415cd8224405e1c5d61a9c7"
     },
     {
       "path": "topics/rag-orchestration-patterns.md",
@@ -4819,23 +4819,23 @@
     },
     {
       "path": "topics/real-time-rl-for-agent-improvement.md",
-      "sha256": "639c823cb82d23eca30d15fcc5e3a1576d0796d65e7dc8eb4d59cba1b0390289"
+      "sha256": "26de04a06d70fd9df93a57608b50325932054afbc807015f5e4215254933f3ec"
     },
     {
       "path": "topics/realtime-ai-evaluation.md",
-      "sha256": "7fc42c89b6fb8429513f00af77517c48848997dcd620edf0f97adc0e2cb0eabe"
+      "sha256": "c79258d153f0e4730dbf8d9407ee8ce4f9bed79e74bbd4fb32e55f90511439d6"
     },
     {
       "path": "topics/realtime-ai.md",
-      "sha256": "03a6208eb168301890c0db7b0c775c4413f34530555bc5ae7b17f00c099acbc9"
+      "sha256": "980e730e65a22238e7b5fd4953b4ca720d8f7dbbcde21dd0e212fff2d97add26"
     },
     {
       "path": "topics/realtime-multimodal-interaction.md",
-      "sha256": "fcd7724cc790c9fd57c763669354ea445c50c579f2569f95402b6e29afb11b31"
+      "sha256": "1f2ab63b4aa831b5682e8b3d6832ac0b309f277983a60e55a5d44b2112095998"
     },
     {
       "path": "topics/realtime-voice-integration-for-enterprise-workflows.md",
-      "sha256": "b89bfe62a46fb8b04b6a80af093f03125e30c690bc67b1899768e2eb16e66c6c"
+      "sha256": "2167746fa44cc335397df39e3d6e2f3f678f471a309b3d6bf0ce1c0ea35e7b1c"
     },
     {
       "path": "topics/regex-search-indexing.md",
@@ -4847,47 +4847,47 @@
     },
     {
       "path": "topics/reward-generalization-effects.md",
-      "sha256": "916e2d222f605d6133f317a5c0866c7adbb49ebd2e8b15bad27edd5b664ad0cb"
+      "sha256": "3aa0114384ca514576c84cba3a8f5a1db1b4e54931e629d4786cc9a23a87be26"
     },
     {
       "path": "topics/reward-hacking-in-production-agent-loops.md",
-      "sha256": "6f6464c78eb79f71976d5ff3dc0f8a25f5130dcce848935bbe6c2c58a2e474db"
+      "sha256": "3c905fbbd337dbb9998bbf569fd13fa5a6d15f189427a698bc9e4a8f6204121b"
     },
     {
       "path": "topics/runtime-architecture.md",
-      "sha256": "1dc832f9c340cfa7c027f96c23ba94415eb560961a4d87471e806a094d4fc696"
+      "sha256": "c07e3538549889e0509c5dadcdf5c130918ccd6601dbf1882ab6a82ebe7d7a0b"
     },
     {
       "path": "topics/sales-metrics-for-agent-frontlines.md",
-      "sha256": "71420a840fb2098bd62779a246d9f641b588bb88203f6724ffd1184867b913b8"
+      "sha256": "34487eac11bea3be2b43026c5dceb8ebb86105097358f44c615a523a943a3b7b"
     },
     {
       "path": "topics/scheduler-driven-assistant-runtime.md",
-      "sha256": "a18ed64d40e03334cf269b75446b449a5fcd2d448933d91b8a232a1c1b6d7113"
+      "sha256": "2558639d6a277bc91140d5705d8f217b07d359d2053a8733e226429b9cc95dc4"
     },
     {
       "path": "topics/self-hosted-agent-execution.md",
-      "sha256": "e2f5ab535adab5590cafd305b113d9f91ce3157b71a565bd4f992123e3607bf3"
+      "sha256": "352a377a3f5a22c6d16b99737f4e670ef74c00956a5f5009fbc636170453c9de"
     },
     {
       "path": "topics/shared-agent-across-lifecycle.md",
-      "sha256": "f0c61c9cdb8b8e5a78092c00903058981c52d641e12df9ffd1705a9d4619baf0"
+      "sha256": "6a21c08c9a980f6f8126f613ba1def735b3222a4ad16423b71b69ca001b43b57"
     },
     {
       "path": "topics/software-control-strategies.md",
-      "sha256": "76d5d47ebe4885d6c26e4f08661a099e7d345b7353ccbf18f2c482dfd11c2067"
+      "sha256": "27e12ef9aab71270a8d3564ddd39fe00842104067ae75061cfd2584e7db8205b"
     },
     {
       "path": "topics/software-moat-compression.md",
-      "sha256": "31a86c3a81d073a3e420d0abfdda2fbf0c049f43f710ca37bb445d715f2b26c8"
+      "sha256": "e10cc2da6743db6edbacdb9584fb20cb6ca08a4cfd35b2f806b760101d69ce99"
     },
     {
       "path": "topics/sparse-n-grams.md",
-      "sha256": "9dcc902ddf211a2717a237ba62496ccb3808fcffe94e3969102fe2ac907bd8a2"
+      "sha256": "8d42ebe32d79136557bad79754e1824e2690bc0188cbf26b36f771c1ea36c39e"
     },
     {
       "path": "topics/state-control-over-ai-supply-chains.md",
-      "sha256": "77cf880dedeef10dc75c865f916cbb9ee6380ffb40a5f914a0e054e04ca8bb23"
+      "sha256": "656599467425884a93d3d1c1257a2b79586d41f108f796d0146f24c3d7aac1b5"
     },
     {
       "path": "topics/stateless-chatbot-architecture.md",
@@ -4895,47 +4895,47 @@
     },
     {
       "path": "topics/structured-drafting-for-human-review.md",
-      "sha256": "4d207ad1fae88d9b0cc057a6cb56abba5239d306fd5b1c21ac2e741499654050"
+      "sha256": "44ddc4b2c897d73f6ec297a6187ff57ab1ae19ea2ecf6a53797b13cf92b37a97"
     },
     {
       "path": "topics/structured-drafting-for-rereadable-notes.md",
-      "sha256": "5e9e8d2d8582b9b533776aed287d74e8bc63723aaa1b6f2deb3cd098ffb31c6e"
+      "sha256": "6b89031cada162f9fe7400f5235f14faadda9a66bcfc04de5806b42225663d56"
     },
     {
       "path": "topics/structured-page-extraction-with-llms.md",
-      "sha256": "c9ee4db491f075e0441129bd0231fa24916d54f0ee4c0980c9f6b53f4c2605fa"
+      "sha256": "26d1c3e57fd6a97f7b8582a5d660dcb804bcc977c1c509ef146e4740b88e81f3"
     },
     {
       "path": "topics/structured-specification-for-agentic-development.md",
-      "sha256": "df748a3080330a632a18f06485b914f64530fd2e1e377ad1213e3f8e9addedc7"
+      "sha256": "c60d321efffd22518beedb364128f8c815f44705867257f29f707f2af59f9f18"
     },
     {
       "path": "topics/super-app-agent-integration.md",
-      "sha256": "d6cd8217c0fb509713b286de271bbf85ba98beb29c7cefa7dda7334a5e5c62f4"
+      "sha256": "e5dc1cbc4c41f274af89a23799dd3d4a0cad723e220b8bce690e0a3be94f2a29"
     },
     {
       "path": "topics/support-automation-as-operating-model.md",
-      "sha256": "8963d053accd6988e143d551e4f629987b2b283ecad1014eeb2428904e4add70"
+      "sha256": "d7ca357054deb85f4b76d6844c86b6db2907a85f74863aa1b1e361e87084f767"
     },
     {
       "path": "topics/support-automation-operations.md",
-      "sha256": "2511e6bc900ea4a1e2599272a73c7b0e2de340aa76e19148288a717cc039c8f4"
+      "sha256": "22ec176640ac9b0cae106d98a004f37fcd4ca75c08c2ea71d6e452852c230752"
     },
     {
       "path": "topics/support-operations-as-agent-workflow.md",
-      "sha256": "d121cf54c0d83e22fd9849a66e045bd45b7afbc76cde32b018927533767e5d99"
+      "sha256": "bb34560fd0332bea9f6346b2f5e3cc46fe833c2aa72d6d6848a9d60379d960ea"
     },
     {
       "path": "topics/synthetic-content-provenance.md",
-      "sha256": "56935a8c6f6ab92e9a5047c73952767001f9fcbb3c040d26733316fbb9dc992e"
+      "sha256": "67b2812dcd9a750607d06258f18a8346653e90318fedce7cde1570819660c1e5"
     },
     {
       "path": "topics/systems-language-feedback-loops.md",
-      "sha256": "150534aa0a9a9d8f6cea973400c7c68fc8205ca36e5e3aea22cb55e63d145a59"
+      "sha256": "c38a163f3885d3e7134ba728dbb6303cca79369cda9e08d0a64152aa4a54644b"
     },
     {
       "path": "topics/task-model-fit-in-support-automation.md",
-      "sha256": "d8af316018783bd4816328973887e9901192ec65ec75fac6ab3439a8da98f3a4"
+      "sha256": "54a9648db9ef85b466578ad9e6a2090942f079935db14c2784dc71c97163ee30"
     },
     {
       "path": "topics/tax-base-shift-from-labor-to-capital.md",
@@ -4947,35 +4947,35 @@
     },
     {
       "path": "topics/technopoly-and-tech-hegemony.md",
-      "sha256": "b603e5e242230b3baed5e6d743e179b214ff0ae17fbb07688798f2db8fba8fe5"
+      "sha256": "d248f872e8465de5114932eb457d7a44dc316e70bab294287c9942fd606f2812"
     },
     {
       "path": "topics/telephony-integration-for-voice-agents.md",
-      "sha256": "dabe1b504b4cfc46c10263a14657a77136317822280af7b96865ab7aaf234775"
+      "sha256": "1468eb1074ebfd9a9db97be372af609f3979520ea9562c886b2c0790e3d1cd3d"
     },
     {
       "path": "topics/text-diffusion-models.md",
-      "sha256": "364f704d467faebf76ec9b7dcfed5b7dedd8bf23c7a855bad29c57ccf4f0066b"
+      "sha256": "651aad0e4e85b913edf9bf802236e98d6ea03f68bc324ca0ffc39f8097a7b990"
     },
     {
       "path": "topics/tiered-access-for-sensitive-model-capabilities.md",
-      "sha256": "cfe9d65c39c424787c6867c1fd769d79e18329f15b6e8b2e0e7286ae22cb788c"
+      "sha256": "00545d03cb7ce2fd004b9206639b22ceab7ba574204c19482b53d7381bcb75c8"
     },
     {
       "path": "topics/time-boxed-ai-writing-routines.md",
-      "sha256": "9ec78a4fb3959f03e0f526ea79434ee620335c38477a471f2b389c36731410ac"
+      "sha256": "a3c41660179b29b4c7290c81c7cd0826e2fcd2b8f652d22e66856c8606c25216"
     },
     {
       "path": "topics/token-classification-for-redaction.md",
-      "sha256": "fb6d16e1b314b0d59905a164b379e6c999ae6d3de77d44ae885b07c142771403"
+      "sha256": "d283c0d2f57e363bcb47a9e87dedff412945111d55407a8b5a6965a274d03ed8"
     },
     {
       "path": "topics/token-efficient-agent-instructions.md",
-      "sha256": "2b6672db23f07c6e9b64c5d42bc460a36296c6308398e5ca44a9acd9f683158f"
+      "sha256": "0a335c32f2e880ba02813c5d118b9647e42e5d6b6985248784fe0e4009361bb1"
     },
     {
       "path": "topics/tool-discipline-in-agent-loops.md",
-      "sha256": "0d0a3a3ae88588c89722f47554cd2324c6b06c2d84254457a53220e4674164a4"
+      "sha256": "e919feea7da94e3845f17ae15a61e626c1194fe4e66d446dc478c8418aae0aa0"
     },
     {
       "path": "topics/transcription-as-evaluation-bottleneck.md",
@@ -4987,11 +4987,11 @@
     },
     {
       "path": "topics/translation-layer-ai-architecture.md",
-      "sha256": "a9a0fa06c7833a8139942596cdb9b66e5d0aaa572c65a497158117ccef460523"
+      "sha256": "4177edc741146928272b82370e6d7dec40d5c8546f90f4e74dbfdb76dc97c587"
     },
     {
       "path": "topics/two-step-document-ingest.md",
-      "sha256": "176af1621a424c613cc6506fd275eb9ecc3239e3648cf3176c04b57b4404deb5"
+      "sha256": "821d451441cccf6563af62ee231b5db149ec97fe24b3c8f352077dbb1aa9e93c"
     },
     {
       "path": "topics/type-i-vs-type-ii-audit-assurance.md",
@@ -4999,35 +4999,35 @@
     },
     {
       "path": "topics/use-case-specific-local-model-selection.md",
-      "sha256": "9568ca396820248c1c2a4664383b8a31d8c2a8fee15dcf74ae1623851974b075"
+      "sha256": "95401fb622eb47168e86ab54f578ca296fbc06cf4bd016b6356a9d99e8ed77b7"
     },
     {
       "path": "topics/verifiable-ai-governance.md",
-      "sha256": "60aa809ba33c40224c78804b2cfb7102b11a3326fa75e72d2424d05bbbc94891"
+      "sha256": "38760c1487ef4a3d1ea57c3fa0dd6bb30766f352bd5faa43087028ebd037a177"
     },
     {
       "path": "topics/verification-loops-in-agentic-coding.md",
-      "sha256": "6c6680a46172a72404f7ace601d9f61042eabf1b1f15007ee8d121353343e063"
+      "sha256": "dba663429861b2584538e25e8e94ff88fe80b5194b82af9be7b7498373ef2525"
     },
     {
       "path": "topics/verification-loops-in-ai-workflows.md",
-      "sha256": "2dd00b435449d70f4ee207e83a4e393cfd619a7e1a0d4f501ca464b11f123adc"
+      "sha256": "003325dccf2b7ba20acf0167a0a95c32f10d60c5678167f2d0dd74f6e25432c9"
     },
     {
       "path": "topics/vertical-models.md",
-      "sha256": "f39980e4e9594fa2f9598b0a1c055cfc4ef6f1e4034181f5b14cf9fd3ddcf751"
+      "sha256": "60441abdced128f891cfde4159436136cae5da168b0d5156e403b20ead8ed142"
     },
     {
       "path": "topics/visual-specifications-for-ai-systems.md",
-      "sha256": "c79480846121c03804bbf662c4442dfd4a5fbf4a5b184500361701d897a074b8"
+      "sha256": "e16159f1e4c1c77100bef0f69807dcad72227019c85dea6810baba006f735b7f"
     },
     {
       "path": "topics/voice-agents-shift-toward-workflow-completion.md",
-      "sha256": "4b05eafb2a03b518e9c2e5ad2784b1516af74221590ca77bb516571a0e8d0770"
+      "sha256": "32027875e15e188d5ce3a33e18d131bed0f2ae928ae79acb435da59e6ffa9afd"
     },
     {
       "path": "topics/voice-and-text-agent-workflows.md",
-      "sha256": "6d6aa0d0824ad289e4d3c00f658f8828f3769456105a7f34cee4b88360e34f6b"
+      "sha256": "549c71f1c50f1be4893e866c0c4564c98be14a20f832ae32d3431069deebb5c7"
     },
     {
       "path": "topics/voice-prompting-for-conversational-systems.md",
@@ -5035,15 +5035,15 @@
     },
     {
       "path": "topics/whatsapp-service-automation.md",
-      "sha256": "fe6f276dfb6155e9644bcada4dc8d5bf3100d6df3108628f6d65b9134630d751"
+      "sha256": "e5d0d91c88d14dab940709581fa75f54471cf49abe3fe250f71a4c229671ad42"
     },
     {
       "path": "topics/wiki-schema-governance.md",
-      "sha256": "55582ce34e8a7abbf4d91987741f35ebcc7affe884327140b4fff98dddce03e9"
+      "sha256": "084fccbd680002e5b09007371c283125f2941ea0302f8fad7f14f626d6c956e1"
     },
     {
       "path": "topics/workflow-based-agent-evaluation.md",
-      "sha256": "da96e753ea563073affee517b047280b24123d2316828fdd384b683b36d7e33d"
+      "sha256": "55910d0a237d5a0097e926482644846bb57dc822aadc1c33a766c48792d1d16b"
     },
     {
       "path": "topics/workflow-based-automation-selection.md",
@@ -5051,7 +5051,7 @@
     },
     {
       "path": "topics/workflow-based-support-resolution.md",
-      "sha256": "78bd3816482ea5a01805a4bc11144f5d6c99dfcc890e3ff1d0c8df7726e12d2c"
+      "sha256": "be9a5fd9f77721358e2ef7b8c8ce5c787568c88f5154cb3f035e27784ab115ed"
     },
     {
       "path": "topics/workflow-restructuring-around-ai-agents.md",

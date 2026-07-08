@@ -44,11 +44,6 @@ The article frames this as early-stage and notes that it adds an extra search st
 - A search or lookup mechanism for tool discovery.
 - A prompt architecture that can defer tool definitions.
 
-## Related Howtos
-
-- context-engineering
-- workflow-design
-
 ## Evidence / supporting sources
 
 ### Agentic AI: How to Save on Tokens (2026-05-08)
@@ -72,8 +67,7 @@ The article frames this as early-stage and notes that it adds an extra search st
 
 ## Related pages
 
-- context-engineering
-- workflow-design
+No related pages captured.
 
 ## Sources
 

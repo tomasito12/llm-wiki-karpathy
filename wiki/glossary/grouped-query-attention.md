@@ -81,7 +81,7 @@ Remember GQA as a serving-friendly attention design: it keeps multiple query hea
 
 ## Related pages
 
-- KV cache
+- [[glossary/kv-cache|KV cache]]
 
 ## Sources
 

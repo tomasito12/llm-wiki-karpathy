@@ -24,11 +24,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Local model deployment tools become less valuable when the underlying engine is accessible directly with comparable or better usability. As this happens, the wrapper layer has to justify itself on clear product advantages rather than on being the easiest default. The practical effect is a shift from abstraction-first packaging toward direct use of the runtime that actually performs inference.
 
-## Related Trends
-
-- ai-products-shift-from-models-to-systems
-- open-model-pressure
-
 ## Supporting Data Points
 
 - Claimed 30–70% token/second gap versus llama.cpp in some benchmarks.
@@ -63,8 +58,8 @@ This is based on one opinionated source with benchmarks and user reports, not a 
 
 ## Related pages
 
-- ai-products-shift-from-models-to-systems
-- open-model-pressure
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
+- [[industry-trends/open-model-pressure|Open Model Ecosystems Become More Strategically Important]]
 
 ## Sources
 

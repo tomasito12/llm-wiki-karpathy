@@ -45,11 +45,6 @@ A production agent is best understood as a set of distinct layers rather than a 
 
 Treat each layer as a controlled interface with its own failure modes and policies. That prevents the model from becoming an unbounded executor and makes it easier to swap components without rewriting the whole system.
 
-## Related Topics
-
-- agent-runtime-architecture
-- agent-memory-architecture
-
 ## Evidence / supporting sources
 
 ### Operator: A look under the hood (2026-05-15)
@@ -87,8 +82,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-memory-architecture
-- agent-runtime-architecture
+- [[topics/agent-runtime-architecture|Agent Runtime Architecture]]
+- [[topics/agent-memory-architecture|Agent Memory Architecture]]
 
 ## Sources
 

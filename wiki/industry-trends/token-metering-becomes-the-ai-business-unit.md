@@ -27,12 +27,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 AI products are increasingly monetized and managed as metered runtime systems, where token volume and delegated work become the accounting unit rather than benchmark scores or model announcements alone. This trend matters because it shifts attention to inference routing, agent execution, and infrastructure spend as the core business levers.
 
-## Related Trends
-
-- pricing-and-harness-control-become-core-agent-product-levers
-- models-becoming-execution-layers
-- orchestration-layer-growth
-
 ## Supporting Data Points
 
 - Anthropic projected Q2 revenue of roughly $10.9B and disclosed a $65B round.
@@ -69,9 +63,8 @@ The source assembles several company-reported numbers into one thesis, but it do
 
 ## Related pages
 
-- models-becoming-execution-layers
-- orchestration-layer-growth
-- pricing-and-harness-control-become-core-agent-product-levers
+- [[industry-trends/pricing-and-harness-control-become-core-agent-product-levers|Provider pricing and harness control are becoming core agent product levers]]
+- [[industry-trends/models-becoming-execution-layers|Models Become Execution Layers]]
 
 ## Sources
 

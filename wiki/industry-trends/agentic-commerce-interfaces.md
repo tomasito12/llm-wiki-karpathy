@@ -29,11 +29,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Commerce interfaces are increasingly designed around AI agents that can discover, compare, and act on product information using structured data and conversational intent. The durable pattern is not a chatbot bolted onto a storefront, but a shopping surface that agents can query and users can steer in one flow. This requires machine-readable catalog data and an interface that can adapt in real time to both human and agent input.
 
-## Related Trends
-
-- realtime-multimodal-interaction
-- support-automation-as-operating-model
-
 ## Supporting Data Points
 
 - Two shopping modes are named: indirect inside AI ecosystems and direct through a brand-owned agent.
@@ -84,8 +79,7 @@ The evidence is vendor-authored and directional, so the extent of real-world ado
 
 ## Related pages
 
-- realtime-multimodal-interaction
-- support-automation-as-operating-model
+- [[industry-trends/support-automation-as-operating-model|Support Automation as an Operating Model]]
 
 ## Sources
 

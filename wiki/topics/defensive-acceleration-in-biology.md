@@ -40,10 +40,6 @@ The source explicitly names “epidemiological modeling, early detection, screen
 
 When AI is used in high-stakes scientific defense work, the useful unit is a workflow slice with a clear public-benefit objective and explicit controls. The design task is to translate model capability into specific operational artifacts teams can review and act on.
 
-## Related Topics
-
-- tiered-access-for-sensitive-model-capabilities
-
 ## Evidence / supporting sources
 
 ### Strengthening societal resilience with Rosalind Biodefense | OpenAI (2026-05-29)
@@ -64,7 +60,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- tiered-access-for-sensitive-model-capabilities
+- [[topics/tiered-access-for-sensitive-model-capabilities|Tiered Access for Sensitive Model Capabilities]]
 
 ## Sources
 

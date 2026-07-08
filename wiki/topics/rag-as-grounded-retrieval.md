@@ -36,10 +36,6 @@ Retrieval-grounded generation uses external context to constrain model answers s
 
 For conversational systems, retrieval should be treated as a core quality control mechanism whenever factual accuracy matters. The practical question is not whether to use retrieval, but what corpus, chunking, and access boundaries are sufficient for the task.
 
-## Related Topics
-
-- agent-workflow-vs-workflow-orchestration
-
 ## Evidence / supporting sources
 
 ### Behind the scene of conversational ai agent (2025-11-15)
@@ -59,7 +55,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-workflow-vs-workflow-orchestration
+- [[topics/agent-workflow-vs-workflow-orchestration|Agent Workflow vs Workflow Orchestration]]
 
 ## Sources
 

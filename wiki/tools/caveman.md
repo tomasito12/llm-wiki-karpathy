@@ -45,10 +45,6 @@ Caveman is a Claude Code session command that compresses assistant responses int
 
 The article frames Caveman as widely used enough to compare against a standard verbose assistant style, and it cites multiple modes plus subskills rather than a one-off prompt. That suggests a small but productized tool rather than an experiment. As of 2026-05-02, it appears mature enough to adopt casually inside a Claude Code workflow, though the evidence in the source is still lightweight.
 
-## Related Tools
-
-- Claude Code
-
 ## Strengths
 
 - Compresses answers without changing the technical point, which matters when the main problem is verbosity rather than reasoning.
@@ -85,7 +81,7 @@ The source does not show a formal benchmark methodology, so the token-savings cl
 
 ## Related pages
 
-- Claude Code
+- [[tools/claude-code|Claude Code]]
 
 ## Sources
 

@@ -45,12 +45,6 @@ The article describes compiling raw sources into markdown pages, with one source
 
 Use the model to produce a maintained artifact, not just answers. That means investing in page structure, link conventions, and review loops so the output can be reused across future questions.
 
-## Related Topics
-
-- two-step-document-ingest
-- provenance-tracking
-- wiki-schema-governance
-
 ## Evidence / supporting sources
 
 ### I Used Karpathy’s LLM Wiki to Build a Research Brain That Updates Itself. Here’s What Two Weeks Taught Me. (2026-04-19)
@@ -82,9 +76,9 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- provenance-tracking
-- two-step-document-ingest
-- wiki-schema-governance
+- [[topics/two-step-document-ingest|Two-Step Document Ingest]]
+- [[topics/provenance-tracking|Provenance Tracking]]
+- [[topics/wiki-schema-governance|Wiki Schema Governance]]
 
 ## Sources
 

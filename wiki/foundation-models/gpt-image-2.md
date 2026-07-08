@@ -56,10 +56,6 @@ No price data is provided. The article gives no basis for inference-cost estimat
 
 OpenAI
 
-## Related Models
-
-- Nano Banana 2
-
 ## Service automation implications
 
 Direct service automation value is limited in the source, but the model could help generate structured visuals for support flows, diagrams, and templates that teams use in operational workflows. The piece does not show customer-facing automation use cases or handoff effects.
@@ -99,7 +95,7 @@ The source does not provide production latency, price, throughput, or failure-mo
 
 ## Related pages
 
-- Nano Banana 2
+No related pages captured.
 
 ## Sources
 

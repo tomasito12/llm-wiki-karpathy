@@ -27,10 +27,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 AI governance is moving from abstract principles toward mechanisms that make outputs traceable, reviewable, and approvable inside real workflows. The practical center of gravity is shifting to templates, identifiers, provenance chains, and approval paths that let humans verify AI-produced artifacts before they are used. This matters because governance becomes operational only when it is embedded in the generation process, not bolted on afterward.
 
-## Related Trends
-
-- verification-loops-become-central-to-ai-workflows
-
 ## Supporting Data Points
 
 - ArcKit had 878 stars and reached number three on GitHub’s daily trending list.
@@ -65,7 +61,7 @@ The source is a first-person practitioner report with anecdotal adoption signals
 
 ## Related pages
 
-- verification-loops-become-central-to-ai-workflows
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
 
 ## Sources
 

@@ -63,13 +63,6 @@ The 4-bit memory requirement of about 45 GB implies that the cost is shifted fro
 
 Alibaba
 
-## Related Models
-
-- Qwen 3.6–27B
-- Gemma 4
-- Devstral 2
-- Mistral Medium 3.5
-
 ## Service automation implications
 
 Useful for local agentic automation where the model has to inspect files, call tools, and synthesize multi-step results without cloud dependency. It could support private code-assistance workflows, but only on hardware that can handle the memory footprint and latency demands.
@@ -108,10 +101,7 @@ The model is not a fit for modest hardware, and the source explicitly ties it to
 
 ## Related pages
 
-- Devstral 2
-- Gemma 4
-- Mistral Medium 3.5
-- Qwen 3.6–27B
+- [[foundation-models/gemma-4|Gemma 4]]
 
 ## Sources
 

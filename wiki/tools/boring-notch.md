@@ -46,12 +46,6 @@ A macOS utility that turns the notebook notch area into an interactive UI surfac
 
 The article frames Boring Notch as a polished third-party enhancement with significant customization, not a throwaway hack. However, the evidence is still personal and anecdotal, so claims about durability are limited. As of 2026-01-08, it appears to be a niche macOS UI utility with meaningful enthusiast appeal.
 
-## Related Tools
-
-- NotchNook
-- Ice
-- Hidden Bar
-
 ## Strengths
 
 - It surfaces media playback, calendar events, battery state, and system controls in one place, which reduces the need to open separate menus.
@@ -99,9 +93,9 @@ A shelf to drag and drop files to quickly share them. (`d18df3d2451c` · support
 
 ## Related pages
 
-- Hidden Bar
-- Ice
-- NotchNook
+- [[tools/notchnook|NotchNook]]
+- [[tools/ice|Ice]]
+- [[tools/hidden-bar|Hidden Bar]]
 
 ## Sources
 

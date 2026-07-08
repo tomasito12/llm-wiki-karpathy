@@ -37,11 +37,6 @@ An agent-generated product pulse is a concise, recurring operating report that s
 
 Use a short pulse format with headlines, usage, system performance, and follow-ups so the agent can convert fragmented telemetry into a single review artifact.
 
-## Related Topics
-
-- agent-native-product-management
-- operational-artifact-generation
-
 ## Evidence / supporting sources
 
 ### A Guide to Agent-native Product Management - Every (2026-04-27)
@@ -60,8 +55,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-native-product-management
-- operational-artifact-generation
+- [[topics/agent-native-product-management|Agent-Native Product Management]]
+- [[topics/ops-artifact-generation|Operational Artifact Generation]]
 
 ## Sources
 

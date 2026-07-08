@@ -25,10 +25,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 AI systems are being integrated as helpers inside file-native workflows rather than replacing the host application. In this pattern, the model reads and writes structured local artifacts such as markdown, canvas files, or database-like documents while the primary app continues to own the user experience. The operational goal is portability, inspectability, and reduced lock-in.
 
-## Related Trends
-
-- knowledge-base-becomes-runtime-infrastructure
-
 ## Supporting Data Points
 
 - Obsidian Skills targets .md, .base, and .canvas files.
@@ -63,7 +59,7 @@ The source is a single product-focused article, so it does not prove broad adopt
 
 ## Related pages
 
-- knowledge-base-becomes-runtime-infrastructure
+- [[industry-trends/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]]
 
 ## Sources
 

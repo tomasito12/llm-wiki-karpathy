@@ -55,11 +55,6 @@ The source implies API usage is the default fast path, while self-hosting is a t
 
 Anthropic
 
-## Related Models
-
-- GPT-5.5
-- Llama 4
-
 ## Service automation implications
 
 The source implies Claude can support support automation and other action-taking workflows if wrapped in permission checks, validation, rate limits, and logging. It is suitable for agentic service flows where the model must decide when to call tools instead of only generating text.
@@ -103,8 +98,8 @@ self.context_window = 200000  # tokens (`51ed183e3e68` · supporting · supporti
 
 ## Related pages
 
-- GPT-5.5
-- Llama 4
+- [[foundation-models/gpt-5-5|GPT-5.5]]
+- [[foundation-models/llama-4|Llama 4]]
 
 ## Sources
 

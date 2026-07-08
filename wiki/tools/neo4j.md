@@ -43,10 +43,6 @@ A graph database used here as the persistent store for session events and markdo
 
 The source treats Neo4j as a production-capable store for agent memory, but that is an implementation choice rather than evidence of broad adoption in this pattern. The article explicitly notes the author works at Neo4j, so the discussion is partly vendor-adjacent and should be read as an applied example, not independent validation.
 
-## Related Tools
-
-- Claude Code
-
 ## Strengths
 
 - Supports a session graph that can retain every event, which makes memory replay and auditing practical across multiple clients.
@@ -82,7 +78,7 @@ The article does not compare Neo4j against other storage options, so the tradeof
 
 ## Related pages
 
-- Claude Code
+- [[tools/claude-code|Claude Code]]
 
 ## Sources
 

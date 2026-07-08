@@ -35,13 +35,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Providers increasingly separate frontier capabilities from broad public release when the model is judged too risky for open access. Instead of a simple launch, the model is routed through restricted cohorts, partner programs, or controlled deployments. This makes access policy part of the product surface area for safety-sensitive systems.
 
-## Related Trends
-
-- tiered-access-for-sensitive-model-capabilities
-- frontier-ai-governance-requires-verification-mechanisms
-- machine-readable-testing-intent
-- verification-loops-become-central-to-ai-workflows
-
 ## Supporting Data Points
 
 - Restricted access to 40 partners
@@ -126,10 +119,10 @@ The source is a roundup with vendor-confirmed claims plus commentary, so it is u
 
 ## Related pages
 
-- frontier-ai-governance-requires-verification-mechanisms
-- machine-readable-testing-intent
-- tiered-access-for-sensitive-model-capabilities
-- verification-loops-become-central-to-ai-workflows
+- [[industry-trends/tiered-access-for-sensitive-model-capabilities|Tiered Access for Sensitive Model Capabilities]]
+- [[industry-trends/frontier-ai-governance-requires-verification-mechanisms|Frontier AI Governance Requires Verification Mechanisms]]
+- [[industry-trends/machine-readable-testing-intent|Machine-Readable Testing Intent]]
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
 
 ## Sources
 

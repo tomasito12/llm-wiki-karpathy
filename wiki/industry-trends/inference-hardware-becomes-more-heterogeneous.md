@@ -27,10 +27,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 AI inference is moving away from a single best hardware stack toward specialized stacks for different workloads. Interactive answer generation still rewards very fast accelerators and high-bandwidth memory, but autonomous task execution increasingly depends on cheaper memory, CPUs, storage, and orchestration around state. The implication is that infrastructure choices become more workload-specific as inference modes diverge.
 
-## Related Trends
-
-- agentic-workflows
-
 ## Supporting Data Points
 
 - Cerebras WSE-3 is described as having 44GB of on-chip SRAM at 21 PB/s bandwidth.
@@ -67,7 +63,7 @@ The direction is plausible but unproven at market scale. The article provides a 
 
 ## Related pages
 
-- agentic-workflows
+No related pages captured.
 
 ## Sources
 

@@ -59,11 +59,6 @@ A user can ask an AI app to choose a coffee, press “confirm,” and have the b
 
 For commerce systems, the design target is no longer just page rendering; it is intent resolution over structured product data. Teams need to think about how the UI, catalog schema, and AI layer cooperate to produce comparable options and actions on demand.
 
-## Related Topics
-
-- realtime-multimodal-interaction
-- support-automation-as-operating-model
-
 ## Evidence / supporting sources
 
 ### AI super-apps are remaking China’s internet (2026-05-17)
@@ -116,8 +111,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- realtime-multimodal-interaction
-- support-automation-as-operating-model
+- [[topics/realtime-multimodal-interaction|Realtime Multimodal Interaction]]
+- [[topics/support-automation-as-operating-model|Support Automation as Operating Model]]
 
 ## Sources
 

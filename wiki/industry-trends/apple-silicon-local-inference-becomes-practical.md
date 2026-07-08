@@ -28,14 +28,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 On-device LLM inference on Apple Silicon is moving from novelty toward a practical deployment option for some workloads. The practical boundary is not whether local inference works, but which model sizes, quantization formats, and runtime choices fit the hardware and deployment constraints. Smaller models can benefit from Apple-optimized kernels, while larger dense models are increasingly limited by memory bandwidth rather than pure compute. As a result, runtime choice matters less than the workload regime and hardware class in some cases.
 
-## Related Trends
-
-- runtime-centralization
-- inference-efficiency
-- edge-deployment
-- layered-local-and-cloud-inference
-- open-weight-models-become-viable-on-consumer-hardware
-
 ## Supporting Data Points
 
 - MLX leads by 20 to 87 percent for models under 14B parameters.
@@ -88,11 +80,7 @@ This is hardware- and model-dependent rather than universal. The source itself w
 
 ## Related pages
 
-- edge-deployment
-- inference-efficiency
-- layered-local-and-cloud-inference
-- open-weight-models-become-viable-on-consumer-hardware
-- runtime-centralization
+- [[industry-trends/open-weight-models-become-viable-on-consumer-hardware|Open-weight multimodal models are becoming viable on consumer hardware]]
 
 ## Sources
 

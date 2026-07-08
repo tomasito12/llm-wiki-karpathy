@@ -42,11 +42,6 @@ A local AI application for running large language models on a Mac, with a user-f
 
 The source presents Msty as a practical local-AI app already useful in daily work, but the evidence is still anecdotal and product-led. As of 2026-02-09, it appears to be a mature enough local experimentation tool for individual users, not a benchmarked production platform.
 
-## Related Tools
-
-- Ollama
-- llama.cpp
-
 ## Strengths
 
 - Runs local large language models on the Mac, which can support privacy-sensitive experimentation without sending prompts to a cloud service.
@@ -82,8 +77,8 @@ The article does not specify memory requirements, model-size limits, or performa
 
 ## Related pages
 
-- Ollama
-- llama.cpp
+- [[tools/ollama|Ollama]]
+- [[tools/llama-cpp|llama.cpp]]
 
 ## Sources
 

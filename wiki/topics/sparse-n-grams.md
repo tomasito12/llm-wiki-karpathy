@@ -36,10 +36,6 @@ Sparse n-grams are a text indexing strategy that selects a deterministic subset 
 
 Sparse n-grams are a useful refinement when dense trigram indexes produce too much redundancy or too many posting-list lookups. The durable lesson is that index quality is not only about smaller tokens; it is about choosing the right deterministic sampling rule so query-time work drops without losing correctness.
 
-## Related Topics
-
-- regex-search-indexing
-
 ## Evidence / supporting sources
 
 ### Fast regex search: indexing text for agent tools (2026-03-23)
@@ -59,7 +55,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- regex-search-indexing
+- [[topics/regex-search-indexing|Regex Search Indexing]]
 
 ## Sources
 

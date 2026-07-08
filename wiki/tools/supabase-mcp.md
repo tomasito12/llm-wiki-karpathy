@@ -39,12 +39,6 @@ An MCP server that lets an AI query databases with plain English and run SQL aga
 
 The product is described as compatible with Supabase, Neon, and self-hosted PostgreSQL, which suggests practical deployment flexibility. The schema auto-discovery feature implies a product aimed at reducing setup friction. The source does not provide adoption numbers or third-party validation.
 
-## Related Tools
-
-- Firecrawl MCP
-- GitHub MCP
-- E2B MCP
-
 ## Strengths
 
 - Lets an AI generate and run SQL from plain English, which can lower the barrier for analysts and operators who do not want to write every query by hand.
@@ -79,9 +73,9 @@ The article warns to keep production read-only, which highlights the risk of giv
 
 ## Related pages
 
-- E2B MCP
-- Firecrawl MCP
-- GitHub MCP
+- [[tools/firecrawl-mcp|Firecrawl MCP]]
+- [[tools/github-mcp|GitHub MCP]]
+- [[tools/e2b-mcp|E2B MCP]]
 
 ## Sources
 

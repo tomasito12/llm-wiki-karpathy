@@ -25,11 +25,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Support automation is shifting from isolated bots toward agents that operate across content, configuration, analytics, and human workflows. The important change is that the system is no longer just answering customers; it is also maintaining the operational machinery that keeps the support function working. This includes drafting knowledge-base updates, diagnosing misconfigured behavior, and preparing incident responses for approval. The trend matters because it makes support automation more like an operations layer than a front-end chatbot.
 
-## Related Trends
-
-- verification-loops-become-central-to-ai-workflows
-- enterprise-agents-move-into-customer-infrastructure
-
 ## Supporting Data Points
 
 - Operator works across both Fin and the Intercom helpdesk.
@@ -66,8 +61,8 @@ Evidence is limited to a vendor launch narrative, with no external benchmarks or
 
 ## Related pages
 
-- enterprise-agents-move-into-customer-infrastructure
-- verification-loops-become-central-to-ai-workflows
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
+- [[industry-trends/enterprise-agents-move-into-customer-infrastructure|Enterprise Agents Move Into Customer Infrastructure]]
 
 ## Sources
 

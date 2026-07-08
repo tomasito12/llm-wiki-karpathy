@@ -45,11 +45,6 @@ The hard part is deciding what to keep, and the article treats this as a real en
 - A way to store raw archives outside the active prompt.
 - Rules for which facts must remain visible to the model.
 
-## Related Howtos
-
-- agent-memory
-- workflow-design
-
 ## Evidence / supporting sources
 
 ### Agentic AI: How to Save on Tokens (2026-05-08)
@@ -74,8 +69,7 @@ The hard part is deciding what to keep, and the article treats this as a real en
 
 ## Related pages
 
-- agent-memory
-- workflow-design
+No related pages captured.
 
 ## Sources
 

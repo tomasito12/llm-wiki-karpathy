@@ -43,11 +43,6 @@ This approach still requires humans to maintain the specification, so it does no
 - A team willing to edit the spec as part of normal development.
 - AI coding tools that can read repository context.
 
-## Related Howtos
-
-- Commit-Driven Documentation Sync
-- Agent-Maintained Knowledge Bases
-
 ## Evidence / supporting sources
 
 ### Spec Driven Development — Three Maturity Levels Every AI Team Should Know (2026-04-30)
@@ -71,8 +66,8 @@ This approach still requires humans to maintain the specification, so it does no
 
 ## Related pages
 
-- Agent-Maintained Knowledge Bases
-- Commit-Driven Documentation Sync
+- [[how-to/commit-driven-documentation-sync|Commit-Driven Documentation Sync]]
+- [[how-to/agent-maintained-knowledge-bases|Agent-Maintained Knowledge Bases]]
 
 ## Sources
 

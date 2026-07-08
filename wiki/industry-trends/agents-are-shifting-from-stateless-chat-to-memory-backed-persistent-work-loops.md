@@ -29,14 +29,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Agent systems are moving away from one-off chat sessions toward persistent loops that retain memory, reuse prior work, and improve over time. The operational payoff is less re-explaining and more accumulation of task-specific knowledge across sessions. This shift matters because it turns the agent into a continuing worker rather than a disposable prompt wrapper.
 
-## Related Trends
-
-- verification-loops-become-central-to-ai-workflows
-- knowledge-base-becomes-runtime-infrastructure
-- agent-maintained-documentation-pipelines
-- harness-design-becomes-more-important-for-agent-reliability
-- persistent-agents
-
 ## Supporting Data Points
 
 - The article says Hermes has a closed learning loop: execute, evaluate, extract, refine, retrieve.
@@ -103,11 +95,11 @@ The evidence comes from a single product narrative with vendor-reported benchmar
 
 ## Related pages
 
-- agent-maintained-documentation-pipelines
-- harness-design-becomes-more-important-for-agent-reliability
-- knowledge-base-becomes-runtime-infrastructure
-- persistent-agents
-- verification-loops-become-central-to-ai-workflows
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
+- [[industry-trends/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]]
+- [[industry-trends/agent-maintained-documentation-pipelines|AI Documentation Moves Toward Agent-Maintained Pipelines]]
+- [[industry-trends/harness-design-becomes-more-important-for-agent-reliability|Agent reliability is shifting toward harness design]]
+- [[industry-trends/persistent-agents|Agents are shifting from stateless chat to memory-backed persistent work loops]]
 
 ## Sources
 

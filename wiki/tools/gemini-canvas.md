@@ -43,12 +43,6 @@ A structured document-generation workspace inside Gemini. It is presented here a
 
 The description implies a mature consumer-facing feature set rather than a prototype, especially because the workflow includes direct export into Google productivity formats. Still, the source is only a personal workflow report, so there is no independent signal about enterprise adoption or long-term robustness.
 
-## Related Tools
-
-- Notion
-- Obsidian
-- NotebookLM
-
 ## Strengths
 
 - Generates structured artifacts from a plain description, which removes the need to hand-design a database schema for many solo or lightweight workflows.
@@ -83,9 +77,8 @@ The source does not provide evidence about reliability, formatting edge cases, o
 
 ## Related pages
 
-- NotebookLM
-- Notion
-- Obsidian
+- [[tools/obsidian|Obsidian]]
+- [[tools/notebooklm|NotebookLM]]
 
 ## Sources
 

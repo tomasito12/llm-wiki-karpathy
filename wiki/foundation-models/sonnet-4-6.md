@@ -58,13 +58,6 @@ The article ties Claude Code’s paid subscription to Anthropic model access, bu
 
 Anthropic
 
-## Related Models
-
-- Opus 4.6
-- Gemini 3 Pro
-- GPT-OSS 120B
-- Haiku
-
 ## Service automation implications
 
 No direct service automation implications are discussed for Sonnet 4.6 in this source.
@@ -116,10 +109,8 @@ The article does not isolate Sonnet 4.6 from Claude Code as a distinct model eva
 
 ## Related pages
 
-- GPT-OSS 120B
-- Gemini 3 Pro
-- Haiku
-- Opus 4.6
+- [[foundation-models/opus-4-6|Opus 4.6]]
+- [[foundation-models/gemini-3-pro|Gemini 3 Pro]]
 
 ## Sources
 

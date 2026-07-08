@@ -44,11 +44,6 @@ The article names concrete governance frameworks and standards: the GDS Service 
 
 For enterprise AI, governance features can be a product advantage when they reduce friction between generation and approval. Teams are more likely to adopt AI when outputs already fit the rules they must follow.
 
-## Related Topics
-
-- structured-drafting-for-human-review
-- support-automation-as-operating-model
-
 ## Evidence / supporting sources
 
 ### How enterprises are scaling AI (2026-05-11)
@@ -77,8 +72,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- structured-drafting-for-human-review
-- support-automation-as-operating-model
+- [[topics/structured-drafting-for-human-review|Structured Drafting for Human Review]]
+- [[topics/support-automation-as-operating-model|Support Automation as Operating Model]]
 
 ## Sources
 

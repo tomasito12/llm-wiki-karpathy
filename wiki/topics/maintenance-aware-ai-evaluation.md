@@ -41,12 +41,6 @@ Maintenance-aware AI evaluation measures AI tools by their impact on future oper
 
 Add maintainability to the scorecard for coding agents and AI-assisted workflows. If a tool makes teams ship faster but creates code or workflows that are harder to inspect and change, its apparent gain may not survive the next few maintenance cycles.
 
-## Related Topics
-
-- production-debt-in-ai-systems
-- proprietary-evals
-- verification-loops-in-ai-workflows
-
 ## Evidence / supporting sources
 
 ### The Sequence Opinion #860: Every Company’s Last eXam: Some Reflection About Practical AI Evals (2026-05-14)
@@ -76,9 +70,9 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- production-debt-in-ai-systems
-- proprietary-evals
-- verification-loops-in-ai-workflows
+- [[topics/production-debt-in-ai-systems|Production Debt in AI Systems]]
+- [[topics/proprietary-evals|Proprietary Evals]]
+- [[topics/verification-loops-in-ai-workflows|Verification Loops in AI Workflows]]
 
 ## Sources
 

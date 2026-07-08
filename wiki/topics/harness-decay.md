@@ -41,12 +41,6 @@ Harness decay is the pattern where AI-agent control scaffolding that was necessa
 
 Treat harness components as provisional. Periodically disable or remove each control, measure whether output quality changes, and delete anything that no longer helps. This prevents extra tokens, latency, and maintenance burden from accumulating after model capability has advanced.
 
-## Related Topics
-
-- agentic-workflows
-- context-engineering
-- harness-engineering
-
 ## Evidence / supporting sources
 
 ### Harness Engineering: What Every AI Engineer Needs to Know in 2026 (2026-04-27)
@@ -77,9 +71,9 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agentic-workflows
-- context-engineering
-- harness-engineering
+- [[topics/agentic-workflows|Agentic Workflows]]
+- [[topics/context-engineering|Context Engineering]]
+- [[topics/harness-engineering|Harness Engineering]]
 
 ## Sources
 

@@ -59,14 +59,6 @@ Fin for Sales is an Intercom customer-agent role for inbound sales conversations
 
 Intercom presents it as available as of 2026-04-22 and already in use by early customers, but the evidence is still launch-stage and vendor-selected. The product appears to extend an existing platform rather than introduce a brand-new stack, which suggests incremental maturity inside Intercom’s own ecosystem rather than broad market validation. The reported customer examples are useful signals, but they should be treated as early case material rather than independent proof of general performance.
 
-## Related Tools
-
-- Intercom Fin
-- Chili Piper
-- Calendly
-- Granola
-- Claude Code
-
 ## Strengths
 
 - Engages prospects in real time, which matters when buyer intent is highest and delayed follow-up risks losing the lead.
@@ -127,11 +119,8 @@ The source is a vendor announcement, so the strongest claims are promotional and
 
 ## Related pages
 
-- Calendly
-- Chili Piper
-- Claude Code
-- Granola
-- Intercom Fin
+- [[tools/granola|Granola]]
+- [[tools/claude-code|Claude Code]]
 
 ## Sources
 

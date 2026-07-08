@@ -38,12 +38,6 @@ A terminal-based coding agent that connects to Moonshot’s Kimi API. It provide
 
 The article presents it as usable through a simple install and init flow, which suggests a developer-facing product rather than a research demo. At the same time, it is framed against more mature tools like Claude Code and Cursor, and the source explicitly says those products still lead on UX and hardening. That makes Kimi Code CLI look promising but still earlier in maturity than the leading interactive coding tools.
 
-## Related Tools
-
-- Claude Code
-- Cursor
-- Copilot
-
 ## Strengths
 
 - Integrates with a terminal workflow, which makes it easier to slot into existing automation and developer tooling.
@@ -80,9 +74,8 @@ Kimi Code CLI
 
 ## Related pages
 
-- Claude Code
-- Copilot
-- Cursor
+- [[tools/claude-code|Claude Code]]
+- [[tools/cursor|Cursor]]
 
 ## Sources
 

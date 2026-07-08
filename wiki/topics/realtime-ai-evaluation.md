@@ -42,12 +42,6 @@ Realtime AI evaluation focuses on measuring whether a model responds at the corr
 
 When a model is meant to operate live, teams need benchmarks that capture timing, not only accuracy; otherwise a system can score well and still feel unusable.
 
-## Related Topics
-
-- realtime-multimodal-interaction
-- agent-runtime-architecture-for-voice
-- support-automation-as-operating-model
-
 ## Evidence / supporting sources
 
 ### [AINews] Thinking Machines' Native Interaction Models - TML-Interaction-Small 276B-A12B - advances SOTA Realtime Voice and kills standard VAD (2026-05-12)
@@ -77,9 +71,9 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-runtime-architecture-for-voice
-- realtime-multimodal-interaction
-- support-automation-as-operating-model
+- [[topics/realtime-multimodal-interaction|Realtime Multimodal Interaction]]
+- [[topics/agent-runtime-architecture-for-voice|Agent Runtime Architecture for Voice]]
+- [[topics/support-automation-as-operating-model|Support Automation as Operating Model]]
 
 ## Sources
 

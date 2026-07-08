@@ -37,10 +37,6 @@ The article says Voicebox “ships with a built-in MCP server” and that “One
 
 Use MCP when you want agent output to become audible inside existing tools without building a separate voice integration for each client.
 
-## Related Topics
-
-- local-voice-api
-
 ## Evidence / supporting sources
 
 ### Voicebox: The Open-Source Voice Studio That Just Made Two Paid SaaS Tools Optional (2026-05-09)
@@ -60,7 +56,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- local-voice-api
+- [[topics/local-voice-api|Local Voice API]]
 
 ## Sources
 

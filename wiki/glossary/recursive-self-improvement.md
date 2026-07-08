@@ -23,10 +23,6 @@ synthesis_state: stage1-placeholder
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Recursive self-improvement is a process in which an AI system contributes to the development of future systems that are more capable than itself. In the strongest form, the system can design, train, and improve its own successor with minimal human direction.
 
-## Related Terms
-
-- Benchmark
-
 ## Relevance Note
 
 Relevant anywhere AI systems are used to build AI systems, especially frontier labs, automated research pipelines, and agentic coding workflows. It matters because progress can compound once models start handling more of the engineering and research loop, while human oversight shifts toward review, validation, and governance.
@@ -46,7 +42,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- Benchmark
+- [[glossary/benchmark|Benchmark]]
 
 ## Sources
 

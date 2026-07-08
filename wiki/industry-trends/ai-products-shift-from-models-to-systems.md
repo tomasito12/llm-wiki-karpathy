@@ -65,32 +65,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 AI value is moving from standalone model access toward integrated systems that combine storage, workflows, memory, routing, and review. In this pattern, the model is just one component inside a larger operational layer that decides what to capture, how to route it, and how to verify output. The differentiator becomes system design rather than model novelty alone.
 
-## Related Trends
-
-- workflow-restructuring-around-ai-agents
-- agent-memory
-- runtime-centralization
-- open-model-pressure
-- models-becoming-execution-layers
-- pricing-and-harness-control-become-core-agent-product-levers
-- ai-governance-shifts-toward-layered-verification
-- verification-loops-become-central-to-ai-workflows
-- harness-design-becomes-more-important-for-agent-reliability
-- ai-products-shift-toward-workflow-packaging
-- agent-maintained-documentation-pipelines
-- enterprise-ai-moves-toward-governed-human-oversight-workflows
-- agent-tooling-shifts-from-prompting-to-workflow-architecture
-- enterprise-agents-move-into-customer-infrastructure
-- voice-agents-shift-toward-workflow-completion
-- models-become-components-with-retrieval-and-tools
-- support-automation-as-an-operating-model
-- persistent-agents
-- support-automation-as-operating-model
-- models-as-commodity-components
-- inference-efficiency-moves-toward-low-precision-hardware
-- orchestration-layer-growth
-- enterprise-ai
-
 ## Supporting Data Points
 
 - 152 database tables
@@ -480,29 +454,23 @@ Logging, metrics, tracing (`c52f21b34bc3` · supporting · supporting_snippet; [
 
 ## Related pages
 
-- agent-maintained-documentation-pipelines
-- agent-memory
-- agent-tooling-shifts-from-prompting-to-workflow-architecture
-- ai-governance-shifts-toward-layered-verification
-- ai-products-shift-toward-workflow-packaging
-- enterprise-agents-move-into-customer-infrastructure
-- enterprise-ai
-- enterprise-ai-moves-toward-governed-human-oversight-workflows
-- harness-design-becomes-more-important-for-agent-reliability
-- inference-efficiency-moves-toward-low-precision-hardware
-- models-as-commodity-components
-- models-become-components-with-retrieval-and-tools
-- models-becoming-execution-layers
-- open-model-pressure
-- orchestration-layer-growth
-- persistent-agents
-- pricing-and-harness-control-become-core-agent-product-levers
-- runtime-centralization
-- support-automation-as-an-operating-model
-- support-automation-as-operating-model
-- verification-loops-become-central-to-ai-workflows
-- voice-agents-shift-toward-workflow-completion
-- workflow-restructuring-around-ai-agents
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]]
+- [[industry-trends/open-model-pressure|Open Model Ecosystems Become More Strategically Important]]
+- [[industry-trends/models-becoming-execution-layers|Models Become Execution Layers]]
+- [[industry-trends/pricing-and-harness-control-become-core-agent-product-levers|Provider pricing and harness control are becoming core agent product levers]]
+- [[industry-trends/provenance-becomes-layered-and-verifiable|AI Governance Shifts Toward Layered Verification]]
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
+- [[industry-trends/harness-design-becomes-more-important-for-agent-reliability|Agent reliability is shifting toward harness design]]
+- [[industry-trends/skills-move-ai-products-toward-workflow-packaging|AI Products Shift Toward Workflow Packaging]]
+- [[industry-trends/agent-maintained-documentation-pipelines|AI Documentation Moves Toward Agent-Maintained Pipelines]]
+- [[industry-trends/enterprise-ai-moves-toward-governed-human-oversight-workflows|Enterprise AI Moves Toward Governed Human Oversight Workflows]]
+- [[industry-trends/agent-tooling-shifts-from-prompting-to-workflow-architecture|Agent Performance Shifts From Prompting to Workflow Architecture]]
+- [[industry-trends/enterprise-agents-move-into-customer-infrastructure|Enterprise Agents Move Into Customer Infrastructure]]
+- [[industry-trends/voice-agents-shift-toward-workflow-completion|Voice agents shift from speech interfaces to workflow completion]]
+- [[industry-trends/support-automation-as-operating-model|Support Automation as an Operating Model]]
+- [[industry-trends/persistent-agents|Agents are shifting from stateless chat to memory-backed persistent work loops]]
+- [[industry-trends/models-as-commodity-components|Models Become Commodity Components]]
+- [[industry-trends/inference-efficiency-moves-toward-low-precision-hardware|Inference Efficiency Moves Toward Low-Precision Hardware]]
 
 ## Sources
 

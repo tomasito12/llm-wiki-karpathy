@@ -43,10 +43,6 @@ A graphical Homebrew package manager for macOS. It adds a UI on top of the termi
 
 The app is described as a minimalistic GUI built with Go, Wails, and React, which suggests a lean developer tool rather than a heavyweight commercial product. The article treats it as a helpful utility for individual users and does not mention a large ecosystem. As of 2025-11-22, it appears to be a niche but practical wrapper around a mature underlying package manager.
 
-## Related Tools
-
-- Homebrew
-
 ## Strengths
 
 - It wraps Homebrew in a user-friendly interface, which lowers the friction for users who prefer GUIs over command-line package management.
@@ -84,7 +80,7 @@ The source does not show enterprise-scale features, policy controls, or team man
 
 ## Related pages
 
-- Homebrew
+No related pages captured.
 
 ## Sources
 

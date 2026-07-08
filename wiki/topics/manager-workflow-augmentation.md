@@ -35,10 +35,6 @@ AI can augment managerial work by handling repetitive preparation and follow-thr
 
 Use AI to standardize the recurring parts of management work, especially where the output format is stable and the input is messy. Avoid positioning the system as a decision engine; it is better treated as a drafting layer on top of human management practice.
 
-## Related Topics
-
-- structured-drafting-for-human-review
-
 ## Evidence / supporting sources
 
 ### ChatGPT for managers (2026-04-10)
@@ -57,7 +53,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- structured-drafting-for-human-review
+- [[topics/structured-drafting-for-human-review|Structured Drafting for Human Review]]
 
 ## Sources
 

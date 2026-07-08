@@ -36,11 +36,6 @@ Support operations can be reorganized as a sequence of agent-readable tasks: dat
 
 Model support work as a set of structured operational artifacts that an agent can read, transform, and propose changes against, rather than as free-form conversation alone.
 
-## Related Topics
-
-- approval-based-agent-actions
-- agent-maintained-knowledge-bases
-
 ## Evidence / supporting sources
 
 ### Meet Operator: An Agent for your customer operations (2026-05-15)
@@ -60,8 +55,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-maintained-knowledge-bases
-- approval-based-agent-actions
+- [[topics/approval-based-agent-actions|Approval-Based Agent Actions]]
+- [[topics/agent-maintained-knowledge-bases|Agent-Maintained Knowledge Bases]]
 
 ## Sources
 

@@ -24,10 +24,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Agent evaluation is moving from capability-only testing toward assessing whether an organization can safely permit the agent to act. The relevant question is not only whether the model can perform a task, but whether the company has clear boundaries, stable data access, documented procedures, and accountable recovery paths. This changes evaluation from a product benchmark mindset to a production-readiness mindset.
 
-## Related Trends
-
-- workflow-restructuring-around-ai-agents
-
 ## Supporting Data Points
 
 - The article says the observed teams were constrained by what the organization was structured to allow.
@@ -64,7 +60,7 @@ These are reasonable things to evaluate for, but they produce a capability score
 
 ## Related pages
 
-- workflow-restructuring-around-ai-agents
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]]
 
 ## Sources
 

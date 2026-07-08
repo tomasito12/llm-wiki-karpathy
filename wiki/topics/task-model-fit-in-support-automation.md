@@ -37,10 +37,6 @@ Different AI systems fit different support tasks. Structured conversational syst
 
 Use structured automation for predictable service paths and reserve agentic behavior for multi-step work that benefits from autonomous decision-making. That reduces unnecessary complexity and makes governance easier.
 
-## Related Topics
-
-- support-automation-as-operating-model
-
 ## Evidence / supporting sources
 
 ### AI in Customer Service: A Complete Guide (2025-11-11)
@@ -60,7 +56,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- support-automation-as-operating-model
+- [[topics/support-automation-as-operating-model|Support Automation as Operating Model]]
 
 ## Sources
 

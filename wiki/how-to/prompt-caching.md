@@ -55,12 +55,6 @@ Savings depend on having repeated prefixes. If you mix dynamic content into the 
 - A serving stack or API that supports prompt or prefix caching.
 - A prompt design that cleanly separates stable and variable sections.
 
-## Related Howtos
-
-- semantic-caching
-- prompt-engineering-fundamentals
-- context-engineering
-
 ## Evidence / supporting sources
 
 ### 8 LLM Cost Optimization Techniques: How to Cut API Spend by Up to 70% (Visually Explained) (2026-04-17)
@@ -101,9 +95,8 @@ Savings depend on having repeated prefixes. If you mix dynamic content into the 
 
 ## Related pages
 
-- context-engineering
-- prompt-engineering-fundamentals
-- semantic-caching
+- [[how-to/semantic-caching|Semantic Caching]]
+- [[how-to/prompt-engineering-fundamentals|Prompt Engineering Fundamentals]]
 
 ## Sources
 

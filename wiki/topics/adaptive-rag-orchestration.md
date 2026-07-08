@@ -37,10 +37,6 @@ Adaptive RAG orchestration treats retrieval as a decision-making loop rather tha
 
 Design the agent to inspect retrieval quality before generating an answer, then retry or switch sources when grounding is weak. Adding a post-generation hallucination check closes the loop and catches fabricated outputs that a single retrieval pass would miss.
 
-## Related Topics
-
-- verification-loops-in-ai-workflows
-
 ## Evidence / supporting sources
 
 ### The Best RAG Architectures for AI Agents Every Developer Must Know (2026-02-22)
@@ -61,7 +57,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- verification-loops-in-ai-workflows
+- [[topics/verification-loops-in-ai-workflows|Verification Loops in AI Workflows]]
 
 ## Sources
 

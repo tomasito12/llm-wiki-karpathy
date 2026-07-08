@@ -52,10 +52,6 @@ The source gives concrete examples of output shapes: requirements, business case
 
 Design prompts around the review artifact, not around open-ended conversation. The highest leverage comes from forcing the model to produce a draft with explicit sections, constraints, and next actions so the human reviewer can focus on judgment rather than formatting.
 
-## Related Topics
-
-- verifiable-ai-governance
-
 ## Evidence / supporting sources
 
 ### AdventHealth advances whole-person care with OpenAI (2026-05-21)
@@ -97,7 +93,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- verifiable-ai-governance
+- [[topics/verifiable-ai-governance|Verifiable AI Governance]]
 
 ## Sources
 

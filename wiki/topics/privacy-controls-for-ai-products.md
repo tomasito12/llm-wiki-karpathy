@@ -34,12 +34,6 @@ Privacy controls in AI products let users choose how their conversations or data
 
 When an AI system holds sensitive context, privacy controls should be built into account settings and defaults rather than left as an afterthought in policy pages. The key operational test is whether users can clearly predict how their data will be handled.
 
-## Related Topics
-
-- realtime-multimodal-interaction
-- realtime-ai-evaluation
-- account-security-hardening
-
 ## Evidence / supporting sources
 
 ### Introducing Advanced Account Security (2026-04-30)
@@ -58,9 +52,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- account-security-hardening
-- realtime-ai-evaluation
-- realtime-multimodal-interaction
+- [[topics/realtime-multimodal-interaction|Realtime Multimodal Interaction]]
+- [[topics/realtime-ai-evaluation|Realtime AI Evaluation]]
 
 ## Sources
 

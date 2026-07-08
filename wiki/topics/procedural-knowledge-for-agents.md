@@ -45,10 +45,6 @@ Procedural knowledge is know-how: the stepwise order, judgment, and execution ru
 
 Use procedural modules when the goal is reliable execution of repeatable workflows, especially where the model must preserve order and judgment across steps. Keep the process explicit so the agent does not have to infer the workflow from raw examples or ad hoc prompting.
 
-## Related Topics
-
-- progressive-disclosure-skill-design
-
 ## Evidence / supporting sources
 
 ### AI Agent Skills Explained Simply (2026-04-24)
@@ -82,7 +78,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- progressive-disclosure-skill-design
+- [[topics/progressive-disclosure-skill-design|Progressive Disclosure in Skill Design]]
 
 ## Sources
 

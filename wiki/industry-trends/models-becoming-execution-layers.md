@@ -41,17 +41,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 AI systems increasingly act as execution layers that understand requests and carry out actions against other systems rather than only producing text. This shifts value from pure language generation toward workflow completion, backend access, and orchestration. In practice, the model or conversational layer becomes one component inside a larger operational stack. That changes how teams evaluate success: action quality, handoff quality, and system integration matter as much as linguistic fluency.
 
-## Related Trends
-
-- enterprise-agents-move-into-customer-infrastructure
-- support-automation-shifts-toward-agentic-workflow-completion
-- harness-design-becomes-more-important-for-agent-reliability
-- workflow-restructuring-around-ai-agents
-- artifact-first-ai-workflows
-- agentic-coding-shifts-toward-higher-supervision-costs
-- agent-products-shift-from-models-to-systems
-- runtime-centralization
-
 ## Supporting Data Points
 
 - Conversational AI is described as combining with generative AI or agentic AI to create AI agents.
@@ -212,14 +201,12 @@ Epistemic certainty. No improvisation allowed. (`2232e501a2b9` · supporting · 
 
 ## Related pages
 
-- agent-products-shift-from-models-to-systems
-- agentic-coding-shifts-toward-higher-supervision-costs
-- artifact-first-ai-workflows
-- enterprise-agents-move-into-customer-infrastructure
-- harness-design-becomes-more-important-for-agent-reliability
-- runtime-centralization
-- support-automation-shifts-toward-agentic-workflow-completion
-- workflow-restructuring-around-ai-agents
+- [[industry-trends/enterprise-agents-move-into-customer-infrastructure|Enterprise Agents Move Into Customer Infrastructure]]
+- [[industry-trends/support-automation-shifts-toward-agentic-workflow-completion|Support Automation Shifts Toward Workflow Completion]]
+- [[industry-trends/harness-design-becomes-more-important-for-agent-reliability|Agent reliability is shifting toward harness design]]
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]]
+- [[industry-trends/artifact-first-ai-workflows|Artifact-First AI Workflows]]
+- [[industry-trends/agentic-coding-shifts-toward-higher-supervision-costs|Agentic Coding Shifts Toward Higher Supervision Costs]]
 
 ## Sources
 

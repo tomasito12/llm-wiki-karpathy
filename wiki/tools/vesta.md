@@ -44,11 +44,6 @@ An open-source Mac chat app that exposes Apple Intelligence on Apple Silicon Mac
 
 Vesta is described as an open-source project and an official macOS distribution, which signals developer-accessible packaging rather than a fully mature consumer platform. The article positions it as a way to test Apple Intelligence on Apple Silicon Macs, not as a broad enterprise assistant. As of 2025-11-22, it looks like a niche but useful bridge to Apple-native AI features.
 
-## Related Tools
-
-- Apple Intelligence
-- Siri
-
 ## Strengths
 
 - It provides a chat interface to Apple Intelligence, which turns a limited built-in capability into a more interactive workflow.
@@ -85,8 +80,7 @@ The source explicitly says vocal interaction is not as interactive as Siri, so v
 
 ## Related pages
 
-- Apple Intelligence
-- Siri
+No related pages captured.
 
 ## Sources
 

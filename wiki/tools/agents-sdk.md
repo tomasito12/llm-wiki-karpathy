@@ -47,12 +47,6 @@ OpenAI’s developer SDK for building agents that inspect files, run commands, e
 
 OpenAI says these capabilities are generally available to all customers via the API, which is a meaningful availability signal. The article also lists multiple sandbox providers and storage backends, suggesting the product is being positioned for real deployment rather than a single narrow demo flow. Still, the evidence is primarily vendor-provided, so maturity should be treated as claimed rather than independently confirmed.
 
-## Related Tools
-
-- Claude Code
-- LangGraph
-- E2B MCP
-
 ## Strengths
 
 - It standardizes the agent harness so developers can work with files, tools, memory, and orchestration in a more model-native way, which can reduce glue code in agent stacks.
@@ -91,9 +85,9 @@ The article is a vendor announcement, so reliability and security claims are not
 
 ## Related pages
 
-- Claude Code
-- E2B MCP
-- LangGraph
+- [[tools/claude-code|Claude Code]]
+- [[tools/langgraph|LangGraph]]
+- [[tools/e2b-mcp|E2B MCP]]
 
 ## Sources
 

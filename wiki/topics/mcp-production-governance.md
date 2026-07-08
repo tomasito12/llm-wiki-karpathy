@@ -36,11 +36,6 @@ Production use of a shared tool protocol requires explicit controls for authenti
 
 Treat shared agent-tool protocols as governed infrastructure, not as a plug-and-play shortcut. Add identity checks, schema filtering, audit trails, and rate limits before relying on community components at scale.
 
-## Related Topics
-
-- agent-connectivity-layering
-- agent-native-auditability
-
 ## Evidence / supporting sources
 
 ### MCP Is Dead: Why This Protocol Breaks in Production(And How to Fix It) (2026-06-07)
@@ -68,8 +63,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-connectivity-layering
-- agent-native-auditability
+- [[topics/agent-connectivity-layering|Agent Connectivity Layering]]
+- [[topics/agent-native-auditability|Agent-Native Auditability]]
 
 ## Sources
 

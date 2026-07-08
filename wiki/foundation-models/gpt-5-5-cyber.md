@@ -57,11 +57,6 @@ No pricing is provided. The implied cost structure is governance-heavy: the oper
 
 OpenAI
 
-## Related Models
-
-- GPT-5.5
-- GPT-5.4-Cyber
-
 ## Service automation implications
 
 Its service-automation relevance is limited to high-trust security operations, not customer-facing automation. The main implication is that some analyst workflows that require exploit validation or red-team-style testing can be supported under a controlled governance model, but only with strict authorization.
@@ -95,8 +90,8 @@ OpenAI explicitly says this first preview is not intended to significantly incre
 
 ## Related pages
 
-- GPT-5.4-Cyber
-- GPT-5.5
+- [[foundation-models/gpt-5-5|GPT-5.5]]
+- [[foundation-models/gpt-5-4-cyber|GPT-5.4-Cyber]]
 
 ## Sources
 

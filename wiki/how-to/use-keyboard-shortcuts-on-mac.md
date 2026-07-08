@@ -39,10 +39,6 @@ The article does not list specific shortcuts beyond Command + Q and Command + Sp
 - A Mac keyboard or remappable Windows keyboard
 - Willingness to retrain muscle memory
 
-## Related Howtos
-
-- keyboard-first-mac-workflow
-
 ## Evidence / supporting sources
 
 ### 14 Mac Mistakes Newbies Always Make (2025-12-19)
@@ -64,7 +60,7 @@ The article does not list specific shortcuts beyond Command + Q and Command + Sp
 
 ## Related pages
 
-- keyboard-first-mac-workflow
+- [[how-to/keyboard-first-mac-workflow|Keyboard-First Mac Workflow]]
 
 ## Sources
 

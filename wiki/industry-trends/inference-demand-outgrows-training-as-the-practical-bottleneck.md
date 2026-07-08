@@ -27,11 +27,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 AI system planning shifts from one-time model training toward ongoing inference capacity, because deployed usage, tool calls, and long-running agent loops consume more compute over time. The operational consequence is that inference cost, utilization, and capacity allocation become central product constraints.
 
-## Related Trends
-
-- inference-efficiency-moves-toward-low-precision-hardware
-- agent-tooling-shifts-from-prompting-to-workflow-architecture
-
 ## Supporting Data Points
 
 - "inference compute is a strategic resource, currently undervalued"
@@ -68,8 +63,8 @@ The article is a roundup with vendor quotes and commentary rather than a single 
 
 ## Related pages
 
-- agent-tooling-shifts-from-prompting-to-workflow-architecture
-- inference-efficiency-moves-toward-low-precision-hardware
+- [[industry-trends/inference-efficiency-moves-toward-low-precision-hardware|Inference Efficiency Moves Toward Low-Precision Hardware]]
+- [[industry-trends/agent-tooling-shifts-from-prompting-to-workflow-architecture|Agent Performance Shifts From Prompting to Workflow Architecture]]
 
 ## Sources
 

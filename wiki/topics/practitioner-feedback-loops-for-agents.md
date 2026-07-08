@@ -38,11 +38,6 @@ In expert workflows, human corrections are most valuable when practitioners help
 
 Use expert reviewers to classify corrections before they enter the improvement loop; otherwise you risk optimizing on noise, not true product gaps.
 
-## Related Topics
-
-- production-traceability-for-agent-improvement
-- verification-loops-in-ai-workflows
-
 ## Evidence / supporting sources
 
 ### Building self-improving tax agents with Codex (2026-05-27)
@@ -62,8 +57,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- production-traceability-for-agent-improvement
-- verification-loops-in-ai-workflows
+- [[topics/production-traceability-for-agent-improvement|Production Traceability for Agent Improvement]]
+- [[topics/verification-loops-in-ai-workflows|Verification Loops in AI Workflows]]
 
 ## Sources
 

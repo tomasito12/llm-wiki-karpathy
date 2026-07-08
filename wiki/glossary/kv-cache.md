@@ -26,11 +26,6 @@ synthesis_state: stage1-placeholder
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 The KV cache stores key and value tensors from previous tokens so a transformer model can reuse them during autoregressive generation instead of recomputing attention over the whole context each step. It is a core mechanism for reducing decode-time overhead in long text generation.
 
-## Related Terms
-
-- Mixture-of-Experts
-- Grouped Query Attention
-
 ## Relevance Note
 
 KV cache behavior is central to long-context serving, streaming assistants, and multi-turn chat systems. It often determines whether latency and memory use stay predictable as prompts get longer.
@@ -64,8 +59,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- Grouped Query Attention
-- Mixture-of-Experts
+- [[glossary/mixture-of-experts|Mixture-of-Experts]]
+- [[glossary/grouped-query-attention|Grouped Query Attention]]
 
 ## Sources
 

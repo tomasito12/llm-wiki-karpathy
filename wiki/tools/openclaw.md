@@ -38,11 +38,6 @@ A local autonomous agent that runs on the user’s own machine. The article says
 
 The product is described with enough concrete capabilities to suggest a serious local-agent implementation rather than a toy demo. The ease-of-use rating of 3.8/5 and the note about more involved setup imply that it is useful but not frictionless. That places it in an early but operationally interesting stage as of 2026-04-25.
 
-## Related Tools
-
-- Wispr Flow
-- Gumloop
-
 ## Strengths
 
 - Runs entirely locally, which is valuable when the workflow involves sensitive data or private projects.
@@ -77,8 +72,7 @@ The article says setup is more involved than consumer tools, so adoption may req
 
 ## Related pages
 
-- Gumloop
-- Wispr Flow
+- [[tools/wispr-flow|Wispr Flow]]
 
 ## Sources
 

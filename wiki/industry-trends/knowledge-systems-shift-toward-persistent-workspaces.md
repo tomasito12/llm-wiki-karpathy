@@ -24,11 +24,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Knowledge tools increasingly value persistent context, cross-document synthesis, and ongoing workspace state rather than single-query retrieval alone. The practical direction is toward systems that remember project context, integrate new sources, and surface contradictions inside a maintained corpus. This changes the product shape from search box to workspace.
 
-## Related Trends
-
-- knowledge-systems-shift-toward-passive-capture
-- agents-move-toward-persistent-memory-backed-workflows
-
 ## Supporting Data Points
 
 - Gemini is described as retaining user/project context.
@@ -63,8 +58,8 @@ The article is opinionated and anecdotal, so it shows a plausible product direct
 
 ## Related pages
 
-- agents-move-toward-persistent-memory-backed-workflows
-- knowledge-systems-shift-toward-passive-capture
+- [[industry-trends/knowledge-systems-shift-toward-passive-capture|Knowledge Systems Shift Toward Passive Capture]]
+- [[industry-trends/agents-move-toward-persistent-memory-backed-workflows|Agents Move Toward Persistent Memory-Backed Workflows]]
 
 ## Sources
 

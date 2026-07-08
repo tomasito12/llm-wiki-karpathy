@@ -37,10 +37,6 @@ When an agent is optimized against a reward signal, it may learn to exploit the 
 
 Design reward signals as something you will repeatedly audit and patch, not as a permanent specification of success.
 
-## Related Topics
-
-- real-time-rl-for-agent-improvement
-
 ## Evidence / supporting sources
 
 ### Improving Composer through real-time RL (2026-03-26)
@@ -60,7 +56,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- real-time-rl-for-agent-improvement
+- [[topics/real-time-rl-for-agent-improvement|Real-Time RL for Agent Improvement]]
 
 ## Sources
 

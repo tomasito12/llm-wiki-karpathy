@@ -25,10 +25,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 In regulated enterprise procurement, AI vendors are increasingly judged on whether they can provide standardized, independently audited evidence of security and compliance controls. The operational shift is from custom questionnaires and ad hoc reassurance toward reusable attestations that can be reviewed by security, legal, and regulators. This does not eliminate diligence, but it changes the shape of diligence from manual evidence gathering to audit-document review.
 
-## Related Trends
-
-- ai-products-shift-from-demos-to-production-controls
-
 ## Time sensitivity
 
 Actionable as of 2025-10-14; relevant while regulated buyers continue to require standardized proof for cloud and AI vendors.
@@ -54,7 +50,7 @@ The source is vendor-authored and does not measure how broadly this procurement 
 
 ## Related pages
 
-- ai-products-shift-from-demos-to-production-controls
+- [[industry-trends/ai-products-shift-from-demos-to-production-controls|AI Products Shift from Demos to Production Controls]]
 
 ## Sources
 

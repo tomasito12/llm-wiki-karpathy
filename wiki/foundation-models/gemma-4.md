@@ -87,17 +87,6 @@ The article claims zero inference cost after local setup, which is operationally
 
 Google
 
-## Related Models
-
-- Gemma 4 E2B
-- Gemma 4 E4B
-- Gemma 4 26B
-- Gemma 4 31B
-- Llama 4
-- Qwen 3.5
-- GPT-5.4
-- Qwen 3 Embedding:0.6B
-
 ## Service automation implications
 
 Gemma 4 could support local prototypes for customer-facing assistants that need image understanding, multilingual replies, or structured extraction. The source does not show a production support deployment, so any service-automation use should be treated as experimental as of 2026-04-03.
@@ -209,14 +198,9 @@ In practice, that means Gemma 4’s 26B A3B variant runs comfortably on an RTX 3
 
 ## Related pages
 
-- GPT-5.4
-- Gemma 4 26B
-- Gemma 4 31B
-- Gemma 4 E2B
-- Gemma 4 E4B
-- Llama 4
-- Qwen 3 Embedding:0.6B
-- Qwen 3.5
+- [[foundation-models/llama-4|Llama 4]]
+- [[foundation-models/qwen-3-5|Qwen 3.5]]
+- [[foundation-models/gpt-5-4|gpt-5.4]]
 
 ## Sources
 

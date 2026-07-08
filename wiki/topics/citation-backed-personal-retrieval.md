@@ -37,10 +37,6 @@ Retrieval systems are more trustworthy when answers are traceable to the exact s
 
 Build retrieval surfaces that preserve provenance at the card, paragraph, or timestamp level so users can verify any synthesis quickly. This is more useful than opaque summaries when the corpus is personal, high-value, or used for downstream writing and decision support.
 
-## Related Topics
-
-- provenance-tracking
-
 ## Evidence / supporting sources
 
 ### Recall 2.0: An AI Second Brain for People Who Need One But Don’t Want to Build One (2026-04-24)
@@ -60,7 +56,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- provenance-tracking
+- [[topics/provenance-tracking|Provenance Tracking]]
 
 ## Sources
 

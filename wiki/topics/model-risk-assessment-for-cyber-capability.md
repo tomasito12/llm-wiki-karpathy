@@ -34,10 +34,6 @@ Models that can discover vulnerabilities, assist with exploitation, or otherwise
 
 If a model is unusually good at vulnerability discovery, treat it as a security-sensitive system and evaluate it with misuse scenarios, constrained access, and clear red-team controls.
 
-## Related Topics
-
-- tiered-model-access-for-high-risk-capabilities
-
 ## Evidence / supporting sources
 
 ### [AINews] Anthropic @ $30B ARR, Project GlassWing and Claude Mythos Preview — first model too dangerous to release since GPT-2 (2026-04-08)
@@ -56,7 +52,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- tiered-model-access-for-high-risk-capabilities
+No related pages captured.
 
 ## Sources
 

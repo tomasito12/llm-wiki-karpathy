@@ -36,10 +36,6 @@ Persistent agent memory is an architecture in which each specialist agent keeps 
 
 If an agent is supposed to coach, route, or critique over time, its memory needs to store prior themes, decisions, and teaching history in a way that can survive tool restarts and project moves.
 
-## Related Topics
-
-- agentic-personal-knowledge-management
-
 ## Evidence / supporting sources
 
 ### I Built an AI System That Knows My Entire Life. Here Is How It Works. (2026-04-01)
@@ -59,7 +55,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agentic-personal-knowledge-management
+- [[topics/agentic-personal-knowledge-management|Agentic Personal Knowledge Management]]
 
 ## Sources
 

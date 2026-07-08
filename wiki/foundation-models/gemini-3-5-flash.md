@@ -55,12 +55,6 @@ The article does not give model pricing, but the surrounding economics imply tha
 
 Google
 
-## Related Models
-
-- Gemini 3 Pro
-- GPT-5.5
-- Claude Opus 4.8
-
 ## Service automation implications
 
 Potentially useful for consumer-facing automation embedded in search and assistant surfaces, but the source does not show service-automation performance details. As of 2026-05-20, the main implication is that faster models may help reduce latency for lightweight agent tasks, while monetization and usage caps still shape how far such automation can be pushed.
@@ -94,9 +88,9 @@ The speed claim is unverified in the source and should be treated as a vendor as
 
 ## Related pages
 
-- Claude Opus 4.8
-- GPT-5.5
-- Gemini 3 Pro
+- [[foundation-models/gemini-3-pro|Gemini 3 Pro]]
+- [[foundation-models/gpt-5-5|GPT-5.5]]
+- [[foundation-models/claude-opus-4-8|Claude Opus 4.8]]
 
 ## Sources
 

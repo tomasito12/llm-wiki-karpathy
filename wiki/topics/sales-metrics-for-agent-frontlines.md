@@ -36,10 +36,6 @@ When an automated agent handles the first buyer interaction, response-time SLAs 
 
 A practical evaluation stack for agent-led front doors should measure completion, qualification, capture, conversion into meetings, downstream pipeline, and user satisfaction together. That keeps teams from mistaking fast response for effective conversion.
 
-## Related Topics
-
-- agent-led-inbound-qualification
-
 ## Evidence / supporting sources
 
 ### Speed-to-lead is a solved problem (2026-05-25)
@@ -59,7 +55,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-led-inbound-qualification
+- [[topics/agent-led-inbound-qualification|Agent-Led Inbound Qualification]]
 
 ## Sources
 

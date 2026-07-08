@@ -52,13 +52,6 @@ Source-grounded AI tools can act as structured knowledge interfaces for organiza
 
 Use grounded AI as an index and synthesis layer over internal documentation, but keep ownership of document freshness and source hygiene explicit.
 
-## Related Topics
-
-- context-engineering
-- retrieval-augmented-generation
-- ontology-driven-extraction
-- provenance-tracking
-
 ## Evidence / supporting sources
 
 ### 💠🌐 Everyone Is Wrong About NotebookLM (2025-11-17)
@@ -122,10 +115,9 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- context-engineering
-- ontology-driven-extraction
-- provenance-tracking
-- retrieval-augmented-generation
+- [[topics/context-engineering|Context Engineering]]
+- [[topics/ontology-driven-extraction|Ontology-Driven Extraction]]
+- [[topics/provenance-tracking|Provenance Tracking]]
 
 ## Sources
 

@@ -26,10 +26,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 When teams promote AI-derived capabilities into production products, the gating question is increasingly whether a pattern generalizes across diverse customers rather than whether it is locally useful for one account. Internal workflows and proving grounds can absorb bespoke analyses first, then expose only the patterns that remain robust under broader use. This reduces the risk of shipping features that depend on configuration, manual interpretation, or narrow customer conditions. The trend is about moving from local signal to broadly valid feature behavior.
 
-## Related Trends
-
-- ai-products-shift-from-models-to-systems
-
 ## Supporting Data Points
 
 - Cockpit is used to test ideas across a much broader set of customers before productizing them.
@@ -64,7 +60,7 @@ The source is one company’s internal process description, so it supports the p
 
 ## Related pages
 
-- ai-products-shift-from-models-to-systems
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 
 ## Sources
 

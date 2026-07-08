@@ -38,11 +38,6 @@ Blast radius is the amount and scope of damage an injected fault is expected to 
 
 Evaluate blast radius in terms of the active behavior and its acceptance criteria, then stop or reroute experiments when that behavior degrades beyond the defined threshold rather than waiting for generic infrastructure metrics to fail.
 
-## Related Topics
-
-- intent-driven-chaos-engineering
-- realtime-ai-evaluation
-
 ## Evidence / supporting sources
 
 ### The Next Frontier of AI in Production Is Chaos Engineering (2026-04-28)
@@ -65,8 +60,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- intent-driven-chaos-engineering
-- realtime-ai-evaluation
+- [[topics/intent-driven-chaos-engineering|Intent-Driven Chaos Engineering]]
+- [[topics/realtime-ai-evaluation|Realtime AI Evaluation]]
 
 ## Sources
 

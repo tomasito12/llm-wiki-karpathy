@@ -39,12 +39,6 @@ Chaos engineering is the practice of deliberately injecting failures into a syst
 
 Treat chaos runs as hypothesis tests, not just fault injections: encode target behavior, success criteria, and exclusions up front, then feed observed blast-radius and outcome data back into the model so future experiments become more informative.
 
-## Related Topics
-
-- harness-decay
-- provenance-tracking
-- behavioral-blast-radius-evaluation
-
 ## Evidence / supporting sources
 
 ### The Next Frontier of AI in Production Is Chaos Engineering (2026-04-28)
@@ -66,9 +60,9 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- behavioral-blast-radius-evaluation
-- harness-decay
-- provenance-tracking
+- [[topics/harness-decay|Harness Decay]]
+- [[topics/provenance-tracking|Provenance Tracking]]
+- [[topics/behavioral-blast-radius-evaluation|Behavioral Blast Radius Evaluation]]
 
 ## Sources
 

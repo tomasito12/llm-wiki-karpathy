@@ -43,13 +43,6 @@ File-native agent workflows use local files and folders as the primary interface
 
 Treat the filesystem as the control plane: the agent should work in the same artifacts, under the same review process, that humans already use. That keeps automation inspectable and reduces lock-in.
 
-## Related Topics
-
-- agent-maintained-knowledge-bases
-- agent-runtime-architecture
-- knowledge-base-becomes-runtime-infrastructure
-- agent-workspace-layering
-
 ## Evidence / supporting sources
 
 ### Why Obsidian Won as the Base for the Personal LLM Harness (and When You Shouldn’t Pick It) (2026-05-02)
@@ -79,10 +72,10 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-maintained-knowledge-bases
-- agent-runtime-architecture
-- agent-workspace-layering
-- knowledge-base-becomes-runtime-infrastructure
+- [[topics/agent-maintained-knowledge-bases|Agent-Maintained Knowledge Bases]]
+- [[topics/agent-runtime-architecture|Agent Runtime Architecture]]
+- [[topics/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]]
+- [[topics/agent-workspace-layering|Agent Workspace Layering]]
 
 ## Sources
 

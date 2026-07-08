@@ -53,13 +53,6 @@ A subscription password manager with cross-platform apps and browser support. It
 
 The article presents 1Password as an established product with a long feature history, noting that its feature set has been building since 2005. It is described as broadly available across major operating systems and browsers, which suggests a mature cross-platform footprint rather than a narrow niche app. The source does not provide adoption metrics.
 
-## Related Tools
-
-- Apple Passwords
-- Bitwarden
-- Dashlane
-- iCloud Keychain
-
 ## Strengths
 
 - Works across macOS, iOS, Windows, Android, Linux, and major browsers, which matters when even one device falls outside a single-vendor ecosystem.
@@ -118,10 +111,7 @@ The source frames 1Password as expensive relative to a free alternative, and it 
 
 ## Related pages
 
-- Apple Passwords
-- Bitwarden
-- Dashlane
-- iCloud Keychain
+No related pages captured.
 
 ## Sources
 

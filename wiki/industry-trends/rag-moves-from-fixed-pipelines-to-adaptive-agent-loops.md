@@ -26,11 +26,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Retrieval-augmented generation is shifting away from a rigid retrieve-then-generate pipeline toward agent-led workflows that decide when to search, whether retrieval is good enough, and when to retry with a different strategy. The operational consequence is that retrieval, grading, query rewriting, fallback search, and answer verification become part of one control loop rather than separate steps. This favors orchestrated systems over linear chains when grounding quality matters.
 
-## Related Trends
-
-- verification-loops-become-central-to-ai-workflows
-- workflow-restructuring-around-ai-agents
-
 ## Supporting Data Points
 
 - The source frames autonomous strategy, iterative execution, and interleaved tool use as the key principles.
@@ -65,8 +60,8 @@ The article is opinionated and does not provide controlled comparisons showing t
 
 ## Related pages
 
-- verification-loops-become-central-to-ai-workflows
-- workflow-restructuring-around-ai-agents
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]]
 
 ## Sources
 

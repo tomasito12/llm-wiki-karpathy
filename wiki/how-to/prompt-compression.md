@@ -44,11 +44,6 @@ Compression can hurt quality if you remove information the model actually needs.
 - A way to measure output quality
 - Optional: a context-compression tool for retrieval workflows
 
-## Related Howtos
-
-- context-compaction
-- prompt-caching
-
 ## Evidence / supporting sources
 
 ### 8 LLM Cost Optimization Techniques: How to Cut API Spend by Up to 70% (Visually Explained) (2026-04-17)
@@ -72,8 +67,8 @@ Compression can hurt quality if you remove information the model actually needs.
 
 ## Related pages
 
-- context-compaction
-- prompt-caching
+- [[how-to/context-compaction|Context Compaction]]
+- [[how-to/prompt-caching|Prompt Caching]]
 
 ## Sources
 

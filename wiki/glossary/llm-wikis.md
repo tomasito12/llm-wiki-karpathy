@@ -25,10 +25,6 @@ synthesis_state: stage1-placeholder
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 LLM Wikis are AI-maintained knowledge bases that ingest sources, synthesize claims, cross-reference information, and preserve traceability back to evidence. They are designed to let an AI help maintain a living reference system instead of producing one-off answers.
 
-## Related Terms
-
-- Model Context Protocol
-
 ## Relevance Note
 
 This is relevant to AI workflows that need durable, reviewable knowledge instead of ephemeral chat answers. It connects directly to knowledge maintenance, retrieval, and auditability in personal and enterprise systems, including support automation and internal knowledge bases.
@@ -48,7 +44,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- Model Context Protocol
+- [[glossary/model-context-protocol|Model Context Protocol]]
 
 ## Sources
 

@@ -41,14 +41,6 @@ Production debt in AI systems is the long-run cost created when fast output toda
 
 Evaluate AI-assisted development by comparing the speedup it delivers against the future maintenance burden it creates. If maintainability does not improve at least as fast as output, apparent productivity gains can decay into net negative throughput over time.
 
-## Related Topics
-
-- agentic-coding-workflows
-- approval-based-coding-workflows
-- harness-engineering
-- agent-evaluation-shifts-toward-reliability-and-tool-discipline
-- verifiable-ai-governance
-
 ## Evidence / supporting sources
 
 ### Why Your AI Demo Will Die in Production (2026-05-18)
@@ -78,11 +70,10 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-evaluation-shifts-toward-reliability-and-tool-discipline
-- agentic-coding-workflows
-- approval-based-coding-workflows
-- harness-engineering
-- verifiable-ai-governance
+- [[topics/agentic-coding-workflows|Agentic Coding Workflows]]
+- [[topics/approval-based-coding-workflows|Approval-Based Coding Workflows]]
+- [[topics/harness-engineering|Harness Engineering]]
+- [[topics/verifiable-ai-governance|Verifiable AI Governance]]
 
 ## Sources
 

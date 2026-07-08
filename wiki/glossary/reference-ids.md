@@ -23,10 +23,6 @@ synthesis_state: stage1-placeholder
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Reference IDs are unique identifiers attached to generated outputs so each item can be traced back to a specific source record, document, or chunk. They support auditability, debugging, and selective verification in automated workflows.
 
-## Related Terms
-
-- Harness
-
 ## Relevance Note
 
 Traceability is central in production AI systems that generate or transform regulated, high-stakes, or user-facing content. Reference IDs make audits, partial retries, and human review much cheaper because reviewers can inspect the exact source behind each output item.
@@ -46,7 +42,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- Harness
+- [[glossary/harness|Harness]]
 
 ## Sources
 

@@ -83,7 +83,7 @@ Treat knowledge as a maintained system, not a static folder: structure it so AI 
 
 ## Related pages
 
-- Retrieval-Augmented Generation
+- [[glossary/retrieval-augmented-generation|Retrieval-Augmented Generation]]
 
 ## Sources
 

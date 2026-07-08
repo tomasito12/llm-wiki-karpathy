@@ -30,14 +30,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Agent products are moving from one-shot chat interactions toward systems that retain context, memory, and execution state across sessions. This changes the product boundary from prompt response to durable workflow continuation, where background context, editable memory, and recovery logic matter operationally.
 
-## Related Trends
-
-- harness-design-becomes-more-important-for-agent-reliability
-- workflow-restructuring-around-ai-agents
-- agent-tooling-shifts-from-prompting-to-workflow-architecture
-- knowledge-base-becomes-runtime-infrastructure
-- agent-maintained-documentation-pipelines
-
 ## Supporting Data Points
 
 - Codex Chronicle builds memories from recent screen context.
@@ -92,11 +84,11 @@ The source combines vendor announcements, builder reactions, and community threa
 
 ## Related pages
 
-- agent-maintained-documentation-pipelines
-- agent-tooling-shifts-from-prompting-to-workflow-architecture
-- harness-design-becomes-more-important-for-agent-reliability
-- knowledge-base-becomes-runtime-infrastructure
-- workflow-restructuring-around-ai-agents
+- [[industry-trends/harness-design-becomes-more-important-for-agent-reliability|Agent reliability is shifting toward harness design]]
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]]
+- [[industry-trends/agent-tooling-shifts-from-prompting-to-workflow-architecture|Agent Performance Shifts From Prompting to Workflow Architecture]]
+- [[industry-trends/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]]
+- [[industry-trends/agent-maintained-documentation-pipelines|AI Documentation Moves Toward Agent-Maintained Pipelines]]
 
 ## Sources
 

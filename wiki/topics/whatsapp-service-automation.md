@@ -34,10 +34,6 @@ WhatsApp service automation is the use of a messaging channel as a high-volume c
 
 Treat WhatsApp as a service surface that must be connected to account data and workflow systems. Without those integrations, the channel will not support reliable self-service or emergency information delivery.
 
-## Related Topics
-
-- support-automation-as-operating-model
-
 ## Evidence / supporting sources
 
 ### AI Agent on WhatsAppPeaking at 1.1 Million Conversations per Month (undated)
@@ -56,7 +52,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- support-automation-as-operating-model
+- [[topics/support-automation-as-operating-model|Support Automation as Operating Model]]
 
 ## Sources
 

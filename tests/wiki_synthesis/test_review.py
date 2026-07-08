@@ -35,6 +35,7 @@ def test_build_review_preview_writes_synthesized_markdown(tmp_path: Path) -> Non
     assert report.wrote_preview
     assert preview_path.exists()
     assert "synthesis_state: synthesized" in rendered.text
+    assert "[[topics/edge-inference|Edge Inference]]" in rendered.text
     assert "Local models make inference controllable." in preview_path.read_text(encoding="utf-8")
 
 
@@ -113,6 +114,7 @@ def _graph() -> dict[str, Any]:
                 "aliases": [],
                 "tags": ["ai-engineering"],
                 "types": [],
+                "values": {"related_topics": ["edge-inference"]},
                 "first_seen": "2026-01-01",
                 "last_seen": "2026-06-17",
                 "source_ids": ["source-a", "source-b"],
@@ -145,6 +147,31 @@ def _graph() -> dict[str, Any]:
                         "field": "knowledge_summary",
                     }
                 ],
-            }
+            },
+            {
+                "entity_id": "topic:edge-inference",
+                "category": "topic",
+                "slug": "edge-inference",
+                "title": "Edge Inference",
+                "path": "topics/edge-inference.md",
+                "aliases": [],
+                "tags": ["inference-systems"],
+                "types": [],
+                "values": {},
+                "first_seen": "2026-01-01",
+                "last_seen": "2026-06-17",
+                "source_ids": ["source-a"],
+                "source_count": 1,
+                "evidence_count": 0,
+                "value_level": "medium",
+                "confidence": 0.8,
+                "supporting_count": 0,
+                "counter_count": 0,
+                "uncertainty_count": 0,
+                "neutral_count": 0,
+                "evidence_set_hash": "edge-hash",
+                "evidence": [],
+                "duplicate_candidates": [],
+            },
         ],
     }

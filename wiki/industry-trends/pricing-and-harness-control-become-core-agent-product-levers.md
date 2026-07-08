@@ -35,15 +35,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Agent products are increasingly differentiated by rate limits, burst capacity, memory, grading, orchestration, and verification controls rather than by model name alone. Providers can change user experience materially by adjusting access policy and harness behavior. This trend matters because the effective product boundary is shifting upward from the model API to the surrounding operating envelope.
 
-## Related Trends
-
-- harness-design-becomes-more-important-for-agent-reliability
-- workflow-restructuring-around-ai-agents
-- verification-loops-become-central-to-ai-workflows
-- agent-tooling-shifts-from-prompting-to-workflow-architecture
-- stable-api-names-no-longer-guarantee-stable-model-behavior
-- agentic-coding-shifts-toward-higher-supervision-costs
-
 ## Supporting Data Points
 
 - Claude Code 5-hour limits doubled
@@ -130,12 +121,12 @@ The source supports the pattern, but it does not prove that harness control will
 
 ## Related pages
 
-- agent-tooling-shifts-from-prompting-to-workflow-architecture
-- agentic-coding-shifts-toward-higher-supervision-costs
-- harness-design-becomes-more-important-for-agent-reliability
-- stable-api-names-no-longer-guarantee-stable-model-behavior
-- verification-loops-become-central-to-ai-workflows
-- workflow-restructuring-around-ai-agents
+- [[industry-trends/harness-design-becomes-more-important-for-agent-reliability|Agent reliability is shifting toward harness design]]
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]]
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
+- [[industry-trends/agent-tooling-shifts-from-prompting-to-workflow-architecture|Agent Performance Shifts From Prompting to Workflow Architecture]]
+- [[industry-trends/stable-api-names-no-longer-guarantee-stable-model-behavior|Stable API names no longer guarantee stable model behavior]]
+- [[industry-trends/agentic-coding-shifts-toward-higher-supervision-costs|Agentic Coding Shifts Toward Higher Supervision Costs]]
 
 ## Sources
 

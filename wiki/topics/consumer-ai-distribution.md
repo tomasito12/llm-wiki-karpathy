@@ -41,10 +41,6 @@ Consumer AI adoption can be understood as a distribution problem, not just a tot
 
 For consumer AI products, monitor segment mix alongside total volume: age share, geographic spread, and demographic proxies can reveal whether usage is broadening into mainstream patterns or staying concentrated in early-adopter cohorts.
 
-## Related Topics
-
-- ai-products-shift-from-models-to-systems
-
 ## Evidence / supporting sources
 
 ### Google is dethroning OpenAI as the king of consumer AI (2026-05-20)
@@ -74,7 +70,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- ai-products-shift-from-models-to-systems
+- [[topics/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 
 ## Sources
 

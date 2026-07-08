@@ -36,10 +36,6 @@ Voice agents become more useful when they do more than answer questions: they ve
 
 For production voice automation, judge the system by task completion and safe escalation, not by demo smoothness. A voice agent that can execute actions and preserve context on transfer is much closer to a service workflow than a chat toy.
 
-## Related Topics
-
-- agent-runtime-architecture-for-voice
-
 ## Evidence / supporting sources
 
 ### Playing a different game (2026-06-04)
@@ -59,7 +55,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-runtime-architecture-for-voice
+- [[topics/agent-runtime-architecture-for-voice|Agent Runtime Architecture for Voice]]
 
 ## Sources
 

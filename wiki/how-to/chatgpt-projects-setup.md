@@ -44,10 +44,6 @@ Sharing depends on plan availability. The article does not specify limits on fil
 - A task that has ongoing context or multiple related files/chats.
 - A supported plan if you want to share the project with other people.
 
-## Related Howtos
-
-- context-compaction
-
 ## Evidence / supporting sources
 
 ### Using projects in ChatGPT (2026-04-10)
@@ -72,7 +68,7 @@ Sharing depends on plan availability. The article does not specify limits on fil
 
 ## Related pages
 
-- context-compaction
+- [[how-to/context-compaction|Context Compaction]]
 
 ## Sources
 

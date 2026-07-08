@@ -55,17 +55,6 @@ Agent memory works best when different kinds of information are stored at differ
 
 Use small injected memory for immediate context, searchable session history for durable recall, and external retrieval only when the local store is no longer enough. The more layers you add, the more important it becomes to define what gets promoted and what gets dropped.
 
-## Related Topics
-
-- agent-maintained-knowledge-bases
-- knowledge-layer-architecture
-- context-compaction
-- agent-runtime-architecture-for-voice
-- retrieval-augmented-generation
-- llm-wiki
-- agentic-workflows
-- answer-inference-vs-agentic-inference
-
 ## Evidence / supporting sources
 
 ### Hermes Agent: The Open-Source AI Agent That Actually Remembers What It Learned Yesterday (2026-04-14)
@@ -124,14 +113,12 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-maintained-knowledge-bases
-- agent-runtime-architecture-for-voice
-- agentic-workflows
-- answer-inference-vs-agentic-inference
-- context-compaction
-- knowledge-layer-architecture
-- llm-wiki
-- retrieval-augmented-generation
+- [[topics/agent-maintained-knowledge-bases|Agent-Maintained Knowledge Bases]]
+- [[topics/knowledge-layer-architecture|Knowledge Layer Architecture]]
+- [[topics/agent-runtime-architecture-for-voice|Agent Runtime Architecture for Voice]]
+- [[topics/llm-wiki|LLM Wiki]]
+- [[topics/agentic-workflows|Agentic Workflows]]
+- [[topics/answer-inference-vs-agentic-inference|Answer Inference vs Agentic Inference]]
 
 ## Sources
 

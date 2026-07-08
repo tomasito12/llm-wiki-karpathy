@@ -61,14 +61,6 @@ The hospital used AI for "invoice intake, routing and responses," "surgical sche
 
 A useful agent may need to guide rather than execute when the organization cannot yet support safe action. The pragmatic design move is to match the agent’s role to the readiness level of the surrounding process.
 
-## Related Topics
-
-- organizational-ai-readiness
-- provenance-tracking
-- verification-loops-in-ai-workflows
-- agent-native-auditability
-- enterprise-ai-layer
-
 ## Evidence / supporting sources
 
 ### Agents can do the work (2026-05-18)
@@ -132,11 +124,11 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-native-auditability
-- enterprise-ai-layer
-- organizational-ai-readiness
-- provenance-tracking
-- verification-loops-in-ai-workflows
+- [[topics/organizational-ai-readiness|Organizational AI Readiness]]
+- [[topics/provenance-tracking|Provenance Tracking]]
+- [[topics/verification-loops-in-ai-workflows|Verification Loops in AI Workflows]]
+- [[topics/agent-native-auditability|Agent-Native Auditability]]
+- [[topics/enterprise-ai-layer|Enterprise AI Layer]]
 
 ## Sources
 

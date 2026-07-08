@@ -77,13 +77,6 @@ The post claims the model is cheaper than other available models, but gives no n
 
 Intercom
 
-## Related Models
-
-- GPT-5.4
-- Opus 4.5
-- Sonnet 4.0
-- Claude
-
 ## Service automation implications
 
 The model is explicitly framed for customer service, so the relevance to chatbots and support automation is direct. If the vendor’s claims hold, a specialized model can improve containment and reduce unresolved conversations while also lowering per-ticket inference cost.
@@ -167,10 +160,8 @@ The source provides no independent benchmark, no latency numbers, and no cost fi
 
 ## Related pages
 
-- Claude
-- GPT-5.4
-- Opus 4.5
-- Sonnet 4.0
+- [[foundation-models/gpt-5-4|gpt-5.4]]
+- [[foundation-models/claude|Claude]]
 
 ## Sources
 

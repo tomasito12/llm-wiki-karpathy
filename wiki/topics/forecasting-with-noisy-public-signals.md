@@ -35,10 +35,6 @@ Forecasting with noisy public signals is the practice of combining many weak, he
 
 Use heterogeneous signals as a supplement, not a substitute, for strong labels or direct observation. When disinformation or strategic concealment is plausible, treat public-signal forecasts as fragile and calibrate them conservatively.
 
-## Related Topics
-
-- conflict-forecasting-models
-
 ## Evidence / supporting sources
 
 ### AI models are being used to predict conflict (2026-05-13)
@@ -59,7 +55,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- conflict-forecasting-models
+- [[topics/conflict-forecasting-models|Conflict Forecasting Models]]
 
 ## Sources
 

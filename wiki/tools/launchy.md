@@ -37,10 +37,6 @@ A lightweight app switcher for macOS that shows a small circular launcher near t
 
 The source frames it as a simpler alternative rather than a flagship platform. As of 2025-12-31, it appears to be a niche utility with no maturity evidence beyond the author's preference.
 
-## Related Tools
-
-- AltTab
-
 ## Strengths
 
 - Keeps the launcher small and cursor-adjacent, which reduces movement and makes the switch action feel immediate.
@@ -72,7 +68,7 @@ The limitation is also the tradeoff: six apps may be too few for users with broa
 
 ## Related pages
 
-- AltTab
+- [[tools/alttab|AltTab]]
 
 ## Sources
 

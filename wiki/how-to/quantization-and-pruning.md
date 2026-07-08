@@ -44,11 +44,6 @@ These methods are only relevant if you self-host or otherwise control inference 
 - A benchmark set for quality checks
 - Serving hardware with memory pressure
 
-## Related Howtos
-
-- local-model-deployment
-- local-model-setup
-
 ## Evidence / supporting sources
 
 ### 8 LLM Cost Optimization Techniques: How to Cut API Spend by Up to 70% (Visually Explained) (2026-04-17)
@@ -72,8 +67,8 @@ These methods are only relevant if you self-host or otherwise control inference 
 
 ## Related pages
 
-- local-model-deployment
-- local-model-setup
+- [[how-to/local-model-deployment|Local Model Deployment]]
+- [[how-to/local-model-setup|Local Model Setup]]
 
 ## Sources
 

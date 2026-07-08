@@ -69,13 +69,6 @@ No pricing details are given. The practical inference is that if GPT-5.5 is bein
 
 OpenAI
 
-## Related Models
-
-- DeepSeek v4
-- Kimi 2.6
-- GPT-5.5-Cyber
-- GPT-5.4-Cyber
-
 ## Service automation implications
 
 The source does not directly analyze customer support or contact center use cases, but a model framed as a runtime with memory, tools, and permissions could support agent-assisted service workflows if integrated carefully. As of 2026-04-26, that implication is indirect rather than demonstrated here.
@@ -129,10 +122,10 @@ The source gives no hard benchmarks, failure cases, or cost details, so operatio
 
 ## Related pages
 
-- DeepSeek v4
-- GPT-5.4-Cyber
-- GPT-5.5-Cyber
-- Kimi 2.6
+- [[foundation-models/deepseek-v4|DeepSeek V4]]
+- [[foundation-models/kimi-2-6|Kimi 2.6]]
+- [[foundation-models/gpt-5-5-cyber|GPT-5.5-Cyber]]
+- [[foundation-models/gpt-5-4-cyber|GPT-5.4-Cyber]]
 
 ## Sources
 

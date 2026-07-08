@@ -24,10 +24,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Domain-specific models trained for a narrow business function can outperform general-purpose models when the workflow has stable success criteria, enough proprietary data, and operationally important tradeoffs such as cost, speed, and policy compliance.
 
-## Related Trends
-
-- models-becoming-execution-layers
-
 ## Supporting Data Points
 
 - Apex is said to be the highest performing, fastest, and cheapest model for customer service.
@@ -62,7 +58,7 @@ The claim rests on a single vendor launch and one customer example, so it is not
 
 ## Related pages
 
-- models-becoming-execution-layers
+- [[industry-trends/models-becoming-execution-layers|Models Become Execution Layers]]
 
 ## Sources
 

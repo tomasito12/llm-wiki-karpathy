@@ -42,11 +42,6 @@ An open-source CLI for spec-first AI development. It uses slash commands and a c
 
 The article presents it as one of three Level 1 tools in 2026, which suggests early but visible adoption among AI-assisted developers. The source does not provide usage numbers or enterprise evidence, so maturity should be treated as emerging rather than established.
 
-## Related Tools
-
-- Amazon Kiro
-- spec-workflow-mcp
-
 ## Strengths
 
 - Provides a simple spec-first workflow with dedicated commands for specification, planning, and task breakdown, which makes the process repeatable across projects.
@@ -80,8 +75,7 @@ The article frames it as first-rung tooling, so it does not solve the harder pro
 
 ## Related pages
 
-- Amazon Kiro
-- spec-workflow-mcp
+No related pages captured.
 
 ## Sources
 

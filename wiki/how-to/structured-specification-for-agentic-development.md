@@ -44,11 +44,6 @@ The one-hour framing is a rapid-prototyping goal, not a guarantee of production-
 - Access to the people who know the domain constraints.
 - Enough time to answer the questions honestly rather than glossing over hard decisions.
 
-## Related Howtos
-
-- spec-anchored-development
-- prompt-engineering-fundamentals
-
 ## Evidence / supporting sources
 
 ### ZeeSpec: How to Write a Complete System Specification for AI in 1 Hour (2026-04-13)
@@ -72,8 +67,8 @@ The one-hour framing is a rapid-prototyping goal, not a guarantee of production-
 
 ## Related pages
 
-- prompt-engineering-fundamentals
-- spec-anchored-development
+- [[how-to/spec-anchored-development|Spec Anchored Development]]
+- [[how-to/prompt-engineering-fundamentals|Prompt Engineering Fundamentals]]
 
 ## Sources
 

@@ -44,11 +44,6 @@ The article notes this is only worth it when the task is high-volume and stable 
 - A large set of representative examples
 - Engineering capacity for training and evaluation
 
-## Related Howtos
-
-- model-routing-and-cascades
-- agent-evaluation-design
-
 ## Evidence / supporting sources
 
 ### 8 LLM Cost Optimization Techniques: How to Cut API Spend by Up to 70% (Visually Explained) (2026-04-17)
@@ -72,8 +67,8 @@ The article notes this is only worth it when the task is high-volume and stable 
 
 ## Related pages
 
-- agent-evaluation-design
-- model-routing-and-cascades
+- [[how-to/model-routing-and-cascades|Model Routing And Cascades]]
+- [[how-to/agent-evaluation-design|Agent Evaluation Design]]
 
 ## Sources
 

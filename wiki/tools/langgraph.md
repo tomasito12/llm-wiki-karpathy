@@ -53,14 +53,6 @@ LangGraph is a graph-based orchestration library for building LLM workflows as n
 
 The tutorial treats LangGraph as a practical framework for basic chatbot orchestration rather than an experimental concept. The walkthrough is simple enough that a developer can understand the node/state model quickly, but the source does not provide evidence about enterprise adoption or scale.
 
-## Related Tools
-
-- DSPy
-- RAGAS
-- RedisVL Semantic Cache
-- LangChain
-- n8n
-
 ## Strengths
 
 - Its graph structure makes state flow explicit, which helps engineers understand exactly what each node reads and writes.
@@ -130,11 +122,7 @@ https://github.com/langchain-ai/langgraph (`cb5813446f25` · supporting · suppo
 
 ## Related pages
 
-- DSPy
-- LangChain
-- RAGAS
-- RedisVL Semantic Cache
-- n8n
+- [[tools/n8n|n8n]]
 
 ## Sources
 

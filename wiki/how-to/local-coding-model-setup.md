@@ -67,11 +67,6 @@ This is a narrow setup guide for one model, one agent, and two hardware classes.
 - An editor integration such as Continue or a script that can point to localhost.
 - A willingness to test latency on the target machine instead of relying on benchmark screenshots.
 
-## Related Howtos
-
-- local-model-setup
-- agentic-coding-workflows
-
 ## Evidence / supporting sources
 
 ### I ran Gemma 4 as a local model in Codex CLI (2026-04-13)
@@ -131,8 +126,7 @@ This is a narrow setup guide for one model, one agent, and two hardware classes.
 
 ## Related pages
 
-- agentic-coding-workflows
-- local-model-setup
+- [[how-to/local-model-setup|Local Model Setup]]
 
 ## Sources
 

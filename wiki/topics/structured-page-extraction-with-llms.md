@@ -40,10 +40,6 @@ The source shows an `extract` tool that fetches a page, then prompts Ollama with
 
 Use model-based extraction when the structure is too irregular for a simple parser, but treat the output as schema-guided reading rather than guaranteed parsing. Keep the snapshot large enough to preserve the region where the target data lives.
 
-## Related Topics
-
-- agent-connectivity-layering
-
 ## Evidence / supporting sources
 
 ### Build Your Own Local Web Browsing LLM Agent in 250 Lines of Python (2026-05-23)
@@ -63,7 +59,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-connectivity-layering
+- [[topics/agent-connectivity-layering|Agent Connectivity Layering]]
 
 ## Sources
 

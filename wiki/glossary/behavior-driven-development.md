@@ -24,10 +24,6 @@ synthesis_state: stage1-placeholder
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 A software development approach that describes system behavior in natural language examples and uses those examples as a shared basis for implementation and testing. It typically expresses behavior in Given/When/Then form so business stakeholders and technical systems can read the same intent.
 
-## Related Terms
-
-- Gherkin
-
 ## Relevance Note
 
 BDD matters in AI engineering because it gives teams a compact, machine-readable way to specify behavior for agents, chatbots, and automated workflows. It is especially relevant when ambiguity in the request would otherwise lead to inconsistent outputs, brittle tests, or repeated human clarification.
@@ -47,7 +43,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- Gherkin
+- [[glossary/gherkin|Gherkin]]
 
 ## Sources
 

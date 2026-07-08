@@ -30,12 +30,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Open model ecosystems gain strategic importance when shared technical knowledge reduces repeated research and infrastructure spending. The practical shift is from treating openness as a philosophical preference to treating it as a cost-management mechanism for frontier model development. This trend matters when many teams are exploring similar model ideas and can compound advantage by learning from each other faster than closed competitors.
 
-## Related Trends
-
-- software-commoditization
-- frontier-compression
-- open-model-pressure
-
 ## Supporting Data Points
 
 - The article cites research suggesting about 80% of frontier compute may go to R&D rather than the final training run.
@@ -88,9 +82,7 @@ The source is inferential and does not quantify the actual savings from openness
 
 ## Related pages
 
-- frontier-compression
-- open-model-pressure
-- software-commoditization
+No related pages captured.
 
 ## Sources
 

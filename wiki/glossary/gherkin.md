@@ -24,10 +24,6 @@ synthesis_state: stage1-placeholder
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 A domain-specific language used to write executable behavior scenarios in the Given/When/Then style. It is commonly used with BDD frameworks to connect plain-language requirements to automated tests.
 
-## Related Terms
-
-- Behavior-Driven Development
-
 ## Relevance Note
 
 Gherkin is operationally important wherever teams want executable specifications, especially for AI-assisted development and workflow automation. It gives a stable format for behavior that can be reviewed by humans and executed by tooling in CI/CD.
@@ -47,7 +43,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- Behavior-Driven Development
+- [[glossary/behavior-driven-development|Behavior-Driven Development]]
 
 ## Sources
 

@@ -35,10 +35,6 @@ A scheduler-driven assistant runtime is an AI system that performs useful work o
 
 Background scheduling turns an assistant from reactive to proactive without requiring autonomy in the risky sense. The system can do valuable prep work on a cadence while still leaving final decisions to the human.
 
-## Related Topics
-
-- agentic-personal-knowledge-management
-
 ## Evidence / supporting sources
 
 ### I Built a Personal AI Operating System. It Now Knows More About My Week Than I Do. (2026-04-12)
@@ -57,7 +53,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agentic-personal-knowledge-management
+- [[topics/agentic-personal-knowledge-management|Agentic Personal Knowledge Management]]
 
 ## Sources
 

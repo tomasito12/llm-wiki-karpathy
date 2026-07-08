@@ -18,3 +18,4 @@ Generated content belongs in the managed folders documented in [../AGENTS.md](..
 ## Architecture notes
 
 - [Stage 2 Synthesis Architecture](stage-2-synthesis-architecture.md)
+- [Second Brain Vision](../../docs/second-brain-vision.md)

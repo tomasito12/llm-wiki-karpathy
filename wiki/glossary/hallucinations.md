@@ -84,7 +84,7 @@ Treat hallucination control as a core design and eval requirement, not a polish 
 
 ## Related pages
 
-- Retrieval-Augmented Generation
+- [[glossary/retrieval-augmented-generation|Retrieval-Augmented Generation]]
 
 ## Sources
 

@@ -41,10 +41,6 @@ The source highlights “a fix for silently skipped tool calls” and “better 
 
 Evaluate agent models on failure modes that break real workflows: missed tool calls, unacknowledged mistakes, and degraded behavior after compaction. A model can look similar on a leaderboard and still be much safer to run in long agent loops if it is less likely to silently drift.
 
-## Related Topics
-
-- context-compaction
-
 ## Evidence / supporting sources
 
 ### The Sequence AI of the Week #871: Inside the Loop with Claude Opus 4.8 (2026-06-03)
@@ -64,7 +60,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- context-compaction
+No related pages captured.
 
 ## Sources
 

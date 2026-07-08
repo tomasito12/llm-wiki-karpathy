@@ -74,13 +74,6 @@ A conversational AI platform used to build and run customer-service agents acros
 
 The source frames Cognigy.AI as already deployed in a large operational environment rather than as a lab demo. It is presented as part of a real customer-service stack with multiple enterprise integrations, which suggests enterprise-oriented maturity. The write-up is still vendor-authored, so maturity should be treated as plausible rather than independently proven.
 
-## Related Tools
-
-- Claude
-- Claude Code
-- OpenAI Realtime API
-- LangGraph
-
 ## Strengths
 
 - Supports smart routing so customer messages can be directed to the right human or automated flow, which reduces time lost in manual triage.
@@ -189,10 +182,10 @@ The source does not describe failure modes, pricing, governance, or accuracy lim
 
 ## Related pages
 
-- Claude
-- Claude Code
-- LangGraph
-- OpenAI Realtime API
+- [[tools/claude|Claude]]
+- [[tools/claude-code|Claude Code]]
+- [[tools/openai-realtime-api|OpenAI Realtime API]]
+- [[tools/langgraph|LangGraph]]
 
 ## Sources
 

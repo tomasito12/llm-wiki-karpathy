@@ -41,11 +41,6 @@ A macOS utility that creates a temporary floating shelf for collecting files fro
 
 The source treats it as a dependable utility for a recurring workflow, but it is not framed as a platform or ecosystem product. As of 2026-02-09, it looks like a mature niche app with a clear use case.
 
-## Related Tools
-
-- Blip
-- NotchNook
-
 ## Strengths
 
 - Creates a temporary floating shelf, which gives users a place to stage items without permanent file organization overhead.
@@ -79,8 +74,8 @@ The article does not explain persistence, collaboration, or sync behavior, so it
 
 ## Related pages
 
-- Blip
-- NotchNook
+- [[tools/blip|Blip]]
+- [[tools/notchnook|NotchNook]]
 
 ## Sources
 

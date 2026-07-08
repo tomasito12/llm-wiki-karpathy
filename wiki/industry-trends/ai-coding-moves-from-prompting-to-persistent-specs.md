@@ -25,10 +25,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 AI-assisted development is shifting away from one-shot prompt guidance toward repository-local specifications that persist across sessions and changes. The operational consequence is that teams need durable contracts and feedback loops, not just bigger instruction blocks. This is especially relevant when the same codebase is touched repeatedly by agents over time.
 
-## Related Trends
-
-- verification-loops-become-central-to-ai-workflows
-
 ## Supporting Data Points
 
 - CLAUDE.md, .cursorrules, and AGENTS.md are framed as Level 1 spec-first tools.
@@ -63,7 +59,7 @@ The source is persuasive but not definitive; it combines benchmarks, examples, a
 
 ## Related pages
 
-- verification-loops-become-central-to-ai-workflows
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
 
 ## Sources
 

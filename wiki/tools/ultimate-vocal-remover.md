@@ -43,10 +43,6 @@ An open-source app that uses source-separation models to remove vocals or instru
 
 The app is presented as open source and cross-platform, which is a sign of ongoing community availability rather than a closed vendor product. The article treats it as technically impressive but rough around the edges, especially on interface quality. As of 2025-11-22, it looks like a capable niche tool with functional performance and limited polish.
 
-## Related Tools
-
-- source separation models
-
 ## Strengths
 
 - It separates vocals and instruments using source-separation models, which is the core capability behind stem extraction workflows.
@@ -83,7 +79,7 @@ The source explicitly says the app is not designed well, so usability is a real 
 
 ## Related pages
 
-- source separation models
+No related pages captured.
 
 ## Sources
 

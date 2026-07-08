@@ -47,11 +47,6 @@ The source does not discuss misclassification, privacy, or rules for sensitive e
 - A label or routing scheme
 - A review step for approvals
 
-## Related Howtos
-
-- procedural-support-automation
-- manager-drafting-workflows
-
 ## Evidence / supporting sources
 
 ### 7 Simple AI Projects You Can Build This Week (2026-05-18)
@@ -78,8 +73,8 @@ The source does not discuss misclassification, privacy, or rules for sensitive e
 
 ## Related pages
 
-- manager-drafting-workflows
-- procedural-support-automation
+- [[how-to/procedural-support-automation|Procedural Support Automation]]
+- [[how-to/manager-drafting-workflows|Manager Drafting Workflows]]
 
 ## Sources
 

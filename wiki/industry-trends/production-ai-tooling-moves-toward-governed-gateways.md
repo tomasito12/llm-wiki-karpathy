@@ -25,11 +25,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 AI tool ecosystems are moving toward centralized control points that verify identity, filter tools, log usage, and limit runaway behavior. The practical shift is from direct, loosely governed tool exposure toward a layered architecture that treats tool access as a controlled subsystem. This is especially relevant where many tools, multiple AI hosts, or external registries are involved.
 
-## Related Trends
-
-- verification-loops-become-central-to-ai-workflows
-- enterprise-agents-need-layered-connectivity-stacks
-
 ## Supporting Data Points
 
 - Gateway functions named in the source: authentication, tool filtering, audit logging, and rate limiting.
@@ -68,8 +63,8 @@ Your agent  →  MCP Gateway  →  MCP Server 1  →  Tool
 
 ## Related pages
 
-- enterprise-agents-need-layered-connectivity-stacks
-- verification-loops-become-central-to-ai-workflows
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
+- [[industry-trends/enterprise-agents-need-layered-connectivity-stacks|Enterprise Agents Depend More on Layered Connectivity]]
 
 ## Sources
 

@@ -23,10 +23,6 @@ synthesis_state: stage1-placeholder
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 An ARIA live region is a web accessibility pattern that tells assistive technology to announce updates in a page region as they happen. It lets dynamic content be conveyed to screen reader users without forcing focus changes.
 
-## Related Terms
-
-- WCAG
-
 ## Relevance Note
 
 ARIA live regions are a core building block for accessible conversational interfaces and any dynamic UI that changes without page reloads. They are especially important for chatbots, streaming responses, and status-driven support flows.
@@ -46,7 +42,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- WCAG
+- [[glossary/web-content-accessibility-guidelines-wcag|Web Content Accessibility Guidelines (WCAG)]]
 
 ## Sources
 

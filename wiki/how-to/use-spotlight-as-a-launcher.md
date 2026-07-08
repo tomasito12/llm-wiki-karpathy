@@ -39,10 +39,6 @@ The article mentions multiple modes in macOS Tahoe, but does not explain them in
 - Keyboard access
 - Spotlight enabled in macOS
 
-## Related Howtos
-
-- keyboard-first-mac-workflow
-
 ## Evidence / supporting sources
 
 ### 14 Mac Mistakes Newbies Always Make (2025-12-19)
@@ -64,7 +60,7 @@ The article mentions multiple modes in macOS Tahoe, but does not explain them in
 
 ## Related pages
 
-- keyboard-first-mac-workflow
+- [[how-to/keyboard-first-mac-workflow|Keyboard-First Mac Workflow]]
 
 ## Sources
 

@@ -42,12 +42,6 @@ A distraction-free markdown writing app for macOS with no collaboration layer or
 
 The author’s repeated use across multiple writing contexts suggests a stable, durable fit rather than an experimental choice. The public commitment to remain AI-free at the editing layer is a clear product stance that the source treats as dependable. No ecosystem breadth is claimed beyond Mac and separately sold platform versions.
 
-## Related Tools
-
-- TextEdit
-- Obsidian
-- Apple Notes
-
 ## Strengths
 
 - Plain markdown keeps the file format portable and simple.
@@ -84,9 +78,8 @@ The source is explicit about what it does not do: collaboration, rich text, and 
 
 ## Related pages
 
-- Apple Notes
-- Obsidian
-- TextEdit
+- [[tools/obsidian|Obsidian]]
+- [[tools/apple-notes|Apple Notes]]
 
 ## Sources
 

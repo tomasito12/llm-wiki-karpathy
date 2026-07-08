@@ -36,10 +36,6 @@ Pricing model validation is the process of testing whether a monetization struct
 
 Use willingness-to-pay methods only after the model and metric are settled. Otherwise the survey may answer the wrong question with convincing precision.
 
-## Related Topics
-
-- outcome-based-pricing-for-ai-agents
-
 ## Evidence / supporting sources
 
 ### How we develop pricing and packaging at Fin (2026-05-20)
@@ -59,7 +55,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- outcome-based-pricing-for-ai-agents
+- [[topics/outcome-based-pricing-for-ai-agents|Outcome-Based Pricing for AI Agents]]
 
 ## Sources
 

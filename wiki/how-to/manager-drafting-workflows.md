@@ -41,10 +41,6 @@ The source does not show that the model can safely make people decisions on its 
 - A clear target artifact and audience.
 - Human review for sensitive or policy-bound content.
 
-## Related Howtos
-
-- structured-drafting-for-human-review
-
 ## Evidence / supporting sources
 
 ### ChatGPT for managers (2026-04-10)
@@ -67,7 +63,7 @@ The source does not show that the model can safely make people decisions on its 
 
 ## Related pages
 
-- structured-drafting-for-human-review
+No related pages captured.
 
 ## Sources
 

@@ -29,13 +29,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Support automation is moving away from answering questions in isolation and toward completing routine service workflows end to end. The pattern centers on using AI to verify identity, route requests, assist agents, translate conversations, and summarize outcomes so fewer cases require manual glue work. The practical shift is from chatbot containment to operational completion across fragmented systems. Human agents remain part of the loop, but they are increasingly reserved for exceptions and complex cases.
 
-## Related Trends
-
-- enterprise-ai-moves-toward-governed-human-oversight-workflows
-- workflow-restructuring-around-ai-agents
-- ai-products-shift-from-models-to-systems
-- agent-connectivity-layering
-
 ## Supporting Data Points
 
 - Agentic AI is described as suitable for order tracking, rebooking/re-ordering, and refunds/cancellations.
@@ -96,10 +89,9 @@ The source is promotional and does not prove that these workflow-completion bene
 
 ## Related pages
 
-- agent-connectivity-layering
-- ai-products-shift-from-models-to-systems
-- enterprise-ai-moves-toward-governed-human-oversight-workflows
-- workflow-restructuring-around-ai-agents
+- [[industry-trends/enterprise-ai-moves-toward-governed-human-oversight-workflows|Enterprise AI Moves Toward Governed Human Oversight Workflows]]
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]]
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 
 ## Sources
 

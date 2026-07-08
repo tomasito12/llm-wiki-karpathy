@@ -25,10 +25,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Smaller local models can handle narrow preprocessing tasks such as redaction, detection, or classification before text is sent to larger hosted systems. The pattern favors low-latency, on-device, or on-premise execution for specific pipeline stages rather than using a general model for every step.
 
-## Related Trends
-
-- knowledge-base-becomes-runtime-infrastructure
-
 ## Supporting Data Points
 
 - 1.5B total parameters with only 50M active parameters
@@ -67,7 +63,7 @@ The source is one product announcement and commentary piece, so it does not prov
 
 ## Related pages
 
-- knowledge-base-becomes-runtime-infrastructure
+- [[industry-trends/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]]
 
 ## Sources
 

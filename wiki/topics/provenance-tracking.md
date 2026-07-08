@@ -42,12 +42,6 @@ Provenance tracking records where each fact came from, how it was extracted, whi
 
 Treat provenance as a first-class part of the graph, not as external logging. If a fact cannot be traced back to source and method, it should be considered operationally weak in high-stakes workflows.
 
-## Related Topics
-
-- privacy-controls-for-ai-products
-- ai-assisted-knowledge-compilation
-- verification-loops-in-ai-workflows
-
 ## Evidence / supporting sources
 
 ### Advancing content provenance for a safer, more transparent AI ecosystem | OpenAI (2026-05-19)
@@ -77,9 +71,9 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- ai-assisted-knowledge-compilation
-- privacy-controls-for-ai-products
-- verification-loops-in-ai-workflows
+- [[topics/privacy-controls-for-ai-products|Privacy Controls for AI Products]]
+- [[topics/ai-assisted-knowledge-compilation|AI-Assisted Knowledge Compilation]]
+- [[topics/verification-loops-in-ai-workflows|Verification Loops in AI Workflows]]
 
 ## Sources
 

@@ -91,15 +91,6 @@ When an AI system is constrained to a source set, the main performance lever bec
 
 Treat corpus design as an engineering task: curate source boundaries, reduce noise, and preserve separations that matter for retrieval and citations.
 
-## Related Topics
-
-- prompt-engineering
-- knowledge-management
-- agentic-workflows
-- retrieval-augmented-generation
-- progressive-disclosure-skill-design
-- layered-ai-architecture
-
 ## Evidence / supporting sources
 
 ### 15 AI Engineering Terms — Beginners Get Wrong (And What It Costs You) (2026-04-21)
@@ -255,12 +246,11 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agentic-workflows
-- knowledge-management
-- layered-ai-architecture
-- progressive-disclosure-skill-design
-- prompt-engineering
-- retrieval-augmented-generation
+- [[topics/prompt-engineering|Prompt Engineering]]
+- [[topics/knowledge-management|Knowledge Management]]
+- [[topics/agentic-workflows|Agentic Workflows]]
+- [[topics/progressive-disclosure-skill-design|Progressive Disclosure in Skill Design]]
+- [[topics/layered-ai-architecture|Layered AI Architecture]]
 
 ## Sources
 

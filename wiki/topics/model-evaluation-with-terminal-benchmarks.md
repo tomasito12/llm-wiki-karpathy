@@ -36,10 +36,6 @@ Terminal-centric evaluation measures how well a model performs in interactive co
 
 For agentic coding systems, use terminal-oriented benchmarks alongside repo-level and task-level evals, because they better approximate iterative execution. Treat harness choice, number of iterations, and normalization assumptions as part of the model report, not as footnotes.
 
-## Related Topics
-
-- agentic-coding-workflows
-
 ## Evidence / supporting sources
 
 ### Introducing Composer 2 (2026-03-19)
@@ -58,7 +54,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agentic-coding-workflows
+- [[topics/agentic-coding-workflows|Agentic Coding Workflows]]
 
 ## Sources
 

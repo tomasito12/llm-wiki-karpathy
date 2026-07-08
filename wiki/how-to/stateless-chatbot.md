@@ -42,10 +42,6 @@ This design does not preserve conversation context across turns, so it is not en
 - LangGraph installed.
 - A chat model client already initialized.
 
-## Related Howtos
-
-- context-compaction
-
 ## Evidence / supporting sources
 
 ### Creating a Stateless Chatbot in LangGraph (2025-12-31)
@@ -69,7 +65,7 @@ This design does not preserve conversation context across turns, so it is not en
 
 ## Related pages
 
-- context-compaction
+- [[how-to/context-compaction|Context Compaction]]
 
 ## Sources
 

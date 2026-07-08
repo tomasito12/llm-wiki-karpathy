@@ -24,10 +24,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Consumer AI is moving toward products that can reach users through existing high-traffic surfaces rather than only through standalone chat applications. The important shift is from model novelty to default placement inside services people already use every day. That changes competition because reach, habit, and integration can outweigh a single chatbot interface. The trend matters most where assistant-like features can be embedded into search, inbox, and mobile workflows.
 
-## Related Trends
-
-- ai-products-shift-from-models-to-systems
-
 ## Supporting Data Points
 
 - Gemini app: 900 million monthly users.
@@ -62,7 +58,7 @@ The source is persuasive but not conclusive: it argues from product placement an
 
 ## Related pages
 
-- ai-products-shift-from-models-to-systems
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 
 ## Sources
 

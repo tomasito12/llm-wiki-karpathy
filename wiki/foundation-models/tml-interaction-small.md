@@ -60,13 +60,6 @@ The source does not provide pricing, serving cost, or throughput data. Because t
 
 Thinking Machines
 
-## Related Models
-
-- GPT-Realtime-2
-- Gemini 3.1-Flash
-- GPT-4o
-- Chameleon
-
 ## Service automation implications
 
 Potentially useful for voice assistants and live conversational systems that need better interruption handling and timing, but the source does not provide evidence from support or contact-center deployments. As of 2026-05-12, the implication is promising but still early-stage.
@@ -114,10 +107,7 @@ Potentially useful for voice assistants and live conversational systems that nee
 
 ## Related pages
 
-- Chameleon
-- GPT-4o
-- GPT-Realtime-2
-- Gemini 3.1-Flash
+No related pages captured.
 
 ## Sources
 

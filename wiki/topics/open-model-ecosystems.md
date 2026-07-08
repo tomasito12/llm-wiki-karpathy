@@ -36,11 +36,6 @@ Open model ecosystems create shared learning benefits when multiple labs can reu
 
 Treat openness as a development-efficiency strategy, not as a guarantee of lower product cost. The practical question is whether shared reports, recipes, and infrastructure knowledge are enough to prevent repeated spend across similar experiments.
 
-## Related Topics
-
-- models-as-commodity-components
-- compute-supply-and-capex-in-ai
-
 ## Evidence / supporting sources
 
 ### How open model ecosystems compound (2026-05-12)
@@ -60,8 +55,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- compute-supply-and-capex-in-ai
-- models-as-commodity-components
+- [[topics/models-as-commodity-components|Models as Commodity Components]]
+- [[topics/compute-supply-and-capex-in-ai|Compute Supply and Capex in AI]]
 
 ## Sources
 

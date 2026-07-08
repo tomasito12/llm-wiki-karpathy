@@ -29,13 +29,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 AI systems are increasingly being framed as generators of intermediate artifacts such as mockups, diagrams, slides, and reference documents that downstream tools or humans can act on. The model output is valuable not only as a final answer but as a structured object in a larger workflow. This pattern becomes more important when the artifact can be consumed by another model or a code system.
 
-## Related Trends
-
-- models-becoming-execution-layers
-- realtime-ai
-- workflow-restructuring-around-ai-agents
-- skills-move-ai-products-toward-workflow-packaging
-
 ## Supporting Data Points
 
 - GPT-Image-2 is described as generating slides, infographics, diagrams, UI mockups, and QR codes.
@@ -86,10 +79,9 @@ The source is a launch roundup, so it shows promise and ecosystem interest but d
 
 ## Related pages
 
-- models-becoming-execution-layers
-- realtime-ai
-- skills-move-ai-products-toward-workflow-packaging
-- workflow-restructuring-around-ai-agents
+- [[industry-trends/models-becoming-execution-layers|Models Become Execution Layers]]
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]]
+- [[industry-trends/skills-move-ai-products-toward-workflow-packaging|AI Products Shift Toward Workflow Packaging]]
 
 ## Sources
 

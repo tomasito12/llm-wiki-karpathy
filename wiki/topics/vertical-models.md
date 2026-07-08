@@ -40,12 +40,6 @@ Vertical models are domain-specialized models trained or adapted for a specific 
 
 If a workflow has stable metrics and enough proprietary interactions, a specialized model can be a better optimization target than a general-purpose frontier model. The engineering work then shifts toward collecting task data, building domain evals, and training for the exact failure modes that matter.
 
-## Related Topics
-
-- knowledge-base-becomes-runtime-infrastructure
-- context-engineering
-- models-as-commodity-components
-
 ## Evidence / supporting sources
 
 ### Announcing Fin Apex: The age of vertical models is here (2026-03-26)
@@ -74,9 +68,9 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- context-engineering
-- knowledge-base-becomes-runtime-infrastructure
-- models-as-commodity-components
+- [[topics/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]]
+- [[topics/context-engineering|Context Engineering]]
+- [[topics/models-as-commodity-components|Models as Commodity Components]]
 
 ## Sources
 

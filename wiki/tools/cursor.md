@@ -72,14 +72,6 @@ Cursor is an IDE-centered coding product that can use Composer 2 as its built-in
 
 Cursor is presented as an actively evolving developer product with model updates, benchmark reporting, and plan-level usage packaging. The source does not provide independent adoption data, so maturity should be treated as product-side signaling rather than market proof. As of 2026-03-19, it reads as a well-developed developer tool, but the article alone does not establish enterprise breadth.
 
-## Related Tools
-
-- Claude Code
-- GitHub MCP
-- Agents SDK
-- Copilot Tasks
-- Obsidian
-
 ## Strengths
 
 - Exposes benchmarked model options inside the development workflow, which reduces the friction of testing a model on real coding tasks.
@@ -171,11 +163,11 @@ The source is a vendor announcement, so the evidence is self-reported and not in
 
 ## Related pages
 
-- Agents SDK
-- Claude Code
-- Copilot Tasks
-- GitHub MCP
-- Obsidian
+- [[tools/claude-code|Claude Code]]
+- [[tools/github-mcp|GitHub MCP]]
+- [[tools/agents-sdk|Agents SDK]]
+- [[tools/copilot-tasks|Copilot Tasks]]
+- [[tools/obsidian|Obsidian]]
 
 ## Sources
 

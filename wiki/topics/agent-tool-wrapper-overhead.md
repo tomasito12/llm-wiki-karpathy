@@ -47,12 +47,6 @@ The article contrasts Ollama with llama.cpp and says the same model can run "30â
 
 Treat wrappers as infrastructure components with real overhead, not as free convenience. If the underlying runtime is already easy to use, the wrapper needs a clear benefit to justify slower execution or lock-in risk.
 
-## Related Topics
-
-- local-model-deployment
-- use-case-specific-local-model-selection
-- mcp-production-governance
-
 ## Evidence / supporting sources
 
 ### MCP Is Dead: Why This Protocol Breaks in Production(And How to Fix It) (2026-06-07)
@@ -87,9 +81,9 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- local-model-deployment
-- mcp-production-governance
-- use-case-specific-local-model-selection
+- [[topics/local-model-deployment|Local Model Deployment]]
+- [[topics/use-case-specific-local-model-selection|Use-Case-Specific Local Model Selection]]
+- [[topics/mcp-production-governance|MCP Production Governance]]
 
 ## Sources
 

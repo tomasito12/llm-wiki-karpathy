@@ -33,10 +33,6 @@ Chain-of-thought can function as a workaround that gives a model extra effective
 
 Treat chain-of-thought as a control surface, not as evidence that the model has solved the underlying computation problem. In production, the usefulness of the trace depends on whether you need transparency, better planning behavior, or simply better answers.
 
-## Related Topics
-
-- latent-reasoning-architectures
-
 ## Evidence / supporting sources
 
 ### The Sequence AI of the Week #867: Thinking in Latents: Why Sapient's HRM-Text Is a Quiet Rebuke to Chain-of-Thought (2026-05-27)
@@ -55,7 +51,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- latent-reasoning-architectures
+- [[topics/latent-reasoning-architectures|Latent Reasoning Architectures]]
 
 ## Sources
 

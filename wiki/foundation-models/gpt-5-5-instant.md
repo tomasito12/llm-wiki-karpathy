@@ -56,10 +56,6 @@ No pricing details are given. The most practical inference is that teams using c
 
 OpenAI
 
-## Related Models
-
-- GPT-5.3 Instant
-
 ## Service automation implications
 
 Potentially useful for chat-based service automation because the model is described as more concise, more accurate, and better at using prior context. If those claims hold, it could improve first-turn resolution and reduce unnecessary clarification loops. The article does not provide customer-support metrics, so service-automation impact remains plausible but unproven as of 2026-05-05.
@@ -97,7 +93,7 @@ The source does not provide model architecture, cost, latency, or public benchma
 
 ## Related pages
 
-- GPT-5.3 Instant
+No related pages captured.
 
 ## Sources
 

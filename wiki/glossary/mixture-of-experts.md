@@ -31,10 +31,6 @@ synthesis_state: stage1-placeholder
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 A mixture-of-experts model is a machine learning model that routes each input through only a subset of its internal parameters, rather than activating the full network every time. This lets the model scale up capacity without making every inference proportionally expensive.
 
-## Related Terms
-
-- Benchmark
-
 ## Relevance Note
 
 Mixture-of-experts matters in production because it changes the compute-to-capability tradeoff for serving models. It is especially relevant for local deployment, latency-sensitive inference, and cost-constrained automation where full dense-model activation would be too expensive.
@@ -92,7 +88,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- Benchmark
+- [[glossary/benchmark|Benchmark]]
 
 ## Sources
 

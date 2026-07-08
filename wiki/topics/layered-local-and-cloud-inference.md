@@ -47,14 +47,6 @@ The source describes a three-tier design: "Tier 1: Always-on, low-latency" using
 
 Separate the local path from the cloud path when reliability matters more than conceptual elegance. Two clean endpoints are often easier to debug and more stable than one unified proxy that tries to do everything.
 
-## Related Topics
-
-- openai-compatible-local-endpoints
-- knowledge-base-becomes-runtime-infrastructure
-- local-model-deployment
-- model-routing-and-cascades
-- agent-runtime-architecture
-
 ## Evidence / supporting sources
 
 ### I Finally Have My Dream Local AI Stack (and it runs on AMD) (2026-04-25)
@@ -85,11 +77,10 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-runtime-architecture
-- knowledge-base-becomes-runtime-infrastructure
-- local-model-deployment
-- model-routing-and-cascades
-- openai-compatible-local-endpoints
+- [[topics/openai-compatible-local-endpoints|OpenAI-Compatible Local Endpoints]]
+- [[topics/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]]
+- [[topics/local-model-deployment|Local Model Deployment]]
+- [[topics/agent-runtime-architecture|Agent Runtime Architecture]]
 
 ## Sources
 

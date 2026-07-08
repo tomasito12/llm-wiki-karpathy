@@ -38,12 +38,6 @@ An MCP server that turns web pages into structured data that AI clients can use.
 
 The article cites more than 85,000 GitHub stars, which suggests visible developer interest. It is also presented as part of the broader MCP ecosystem rather than as an isolated niche utility. That said, the source provides no independent reliability evidence beyond popularity signals.
 
-## Related Tools
-
-- GitHub MCP
-- Supabase MCP
-- E2B MCP
-
 ## Strengths
 
 - Converts URLs into structured data, which matters because AI systems usually work better with cleaned inputs than with raw page HTML.
@@ -78,9 +72,9 @@ The article gives no details on extraction quality, failure modes, rate limits, 
 
 ## Related pages
 
-- E2B MCP
-- GitHub MCP
-- Supabase MCP
+- [[tools/github-mcp|GitHub MCP]]
+- [[tools/supabase-mcp|Supabase MCP]]
+- [[tools/e2b-mcp|E2B MCP]]
 
 ## Sources
 

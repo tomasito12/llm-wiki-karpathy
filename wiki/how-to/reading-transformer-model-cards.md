@@ -43,10 +43,6 @@ This is a reading strategy, not a full implementation guide. It helps interpreta
 - A model card or paper that lists architecture details.
 - Enough context to recognize common terms such as RoPE, RMSNorm, and MoE.
 
-## Related Howtos
-
-- prompt-engineering-fundamentals
-
 ## Evidence / supporting sources
 
 ### How LLMs Actually Work (2026-06-01)
@@ -70,7 +66,7 @@ This is a reading strategy, not a full implementation guide. It helps interpreta
 
 ## Related pages
 
-- prompt-engineering-fundamentals
+- [[how-to/prompt-engineering-fundamentals|Prompt Engineering Fundamentals]]
 
 ## Sources
 

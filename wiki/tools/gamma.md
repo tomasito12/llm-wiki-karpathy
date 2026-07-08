@@ -37,11 +37,6 @@ A visual content creation tool that the article says goes beyond presentations t
 
 The source treats Gamma as an established product that has expanded beyond its original positioning. The breadth of output formats suggests product maturity, but the article gives no adoption data or enterprise details. As of 2026-04-10, it looks useful for rapid drafts and visual content experiments, not as a proven publishing system.
 
-## Related Tools
-
-- Canva
-- Quiver AI
-
 ## Strengths
 
 - Can generate webpages, documents, social content, and graphics, which reduces the need to switch tools for each format.
@@ -74,8 +69,7 @@ The article does not show how editable the outputs remain after generation or wh
 
 ## Related pages
 
-- Canva
-- Quiver AI
+- [[tools/quiver-ai|Quiver AI]]
 
 ## Sources
 

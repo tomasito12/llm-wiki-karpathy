@@ -39,12 +39,6 @@ Systems that interact with changing environments often need to predict the next 
 
 When an AI system must act repeatedly in a dynamic environment, add a simulation or state-prediction layer instead of relying on text generation alone.
 
-## Related Topics
-
-- agentic-workflows
-- realtime-multimodal-interaction
-- realtime-ai-evaluation
-
 ## Evidence / supporting sources
 
 ### The Sequence Knowledge #842: Everything You Need to Know About World Models (2026-04-14)
@@ -73,9 +67,9 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agentic-workflows
-- realtime-ai-evaluation
-- realtime-multimodal-interaction
+- [[topics/agentic-workflows|Agentic Workflows]]
+- [[topics/realtime-multimodal-interaction|Realtime Multimodal Interaction]]
+- [[topics/realtime-ai-evaluation|Realtime AI Evaluation]]
 
 ## Sources
 

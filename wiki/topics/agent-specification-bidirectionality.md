@@ -36,10 +36,6 @@ Bidirectional specification means implementation updates the spec as well as the
 
 If the spec never gets revised from implementation feedback, it is only a prompt with better formatting.
 
-## Related Topics
-
-- structured-specification-for-agentic-development
-
 ## Evidence / supporting sources
 
 ### Spec Driven Development — Three Maturity Levels Every AI Team Should Know (2026-04-30)
@@ -59,7 +55,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- structured-specification-for-agentic-development
+- [[topics/structured-specification-for-agentic-development|Structured Specification for Agentic Development]]
 
 ## Sources
 

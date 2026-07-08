@@ -36,10 +36,6 @@ Realtime voice systems are operationally interesting when the model must perform
 
 When a voice workflow has to function in real time, treat latency, state, and backend calls as first-class design constraints. The model is only one component of the stack; orchestration and integration determine whether the system can operate safely at scale.
 
-## Related Topics
-
-- voice-agents-shift-toward-workflow-completion
-
 ## Evidence / supporting sources
 
 ### Travelers deploys AI-powered claims countrywide with OpenAI (2026-06-02)
@@ -58,7 +54,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- voice-agents-shift-toward-workflow-completion
+- [[topics/voice-agents-shift-toward-workflow-completion|Voice Agents Shift Toward Workflow Completion]]
 
 ## Sources
 

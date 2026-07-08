@@ -39,10 +39,6 @@ An MCP server that connects an AI to multiple social platforms through one endpo
 
 The article presents it as easy to set up and useful for indie builders and content creators. It appears to be positioned as a simple operational tool rather than a deeply technical platform. The source provides no independent evidence of scale, retention, or enterprise adoption.
 
-## Related Tools
-
-- Taskade MCP
-
 ## Strengths
 
 - Connects to 11+ social platforms through a single endpoint, which reduces the number of separate publishing integrations a team needs.
@@ -77,7 +73,7 @@ The article offers no detail on approval flows, content review, account safety, 
 
 ## Related pages
 
-- Taskade MCP
+- [[tools/taskade-mcp|Taskade MCP]]
 
 ## Sources
 

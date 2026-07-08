@@ -37,11 +37,6 @@ When multiple agents can read and reuse each other’s outputs, an invented fact
 
 Multi-agent systems that share memory or social channels need provenance on every memory write, not just generic moderation or post-processing. Without that, the system can reward self-reinforcing error cascades and misread them as convergence.
 
-## Related Topics
-
-- provenance-tracking
-- agent-memory-architecture
-
 ## Evidence / supporting sources
 
 ### MiroFish: Swarm-Intelligence with 1M Agents That Can Predict Everything (2026-03-16)
@@ -61,8 +56,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-memory-architecture
-- provenance-tracking
+- [[topics/provenance-tracking|Provenance Tracking]]
+- [[topics/agent-memory-architecture|Agent Memory Architecture]]
 
 ## Sources
 

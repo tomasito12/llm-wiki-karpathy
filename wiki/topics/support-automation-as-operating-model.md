@@ -72,16 +72,6 @@ The source explicitly frames AI contact centers as "not fully automated" and say
 
 Design the automation layer around service outcomes such as first-contact resolution, document retrieval, and escalation quality. A bot that can only chat without backend access will not carry much operational weight in support.
 
-## Related Topics
-
-- agent-runtime-architecture-for-voice
-- enterprise-conversational-ai-integration
-- voice-agents-shift-toward-workflow-completion
-- human-handoff-design-for-ai-support
-- intent-driven-commerce-interfaces
-- open-agent-platform-integration
-- enterprise-ai-layer
-
 ## Evidence / supporting sources
 
 ### AI Agent on WhatsAppPeaking at 1.1 Million Conversations per Month (undated)
@@ -167,13 +157,13 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-runtime-architecture-for-voice
-- enterprise-ai-layer
-- enterprise-conversational-ai-integration
-- human-handoff-design-for-ai-support
-- intent-driven-commerce-interfaces
-- open-agent-platform-integration
-- voice-agents-shift-toward-workflow-completion
+- [[topics/agent-runtime-architecture-for-voice|Agent Runtime Architecture for Voice]]
+- [[topics/enterprise-conversational-ai-integration|Enterprise Conversational AI Integration]]
+- [[topics/voice-agents-shift-toward-workflow-completion|Voice Agents Shift Toward Workflow Completion]]
+- [[topics/human-handoff-design-for-ai-support|Human Handoff Design for AI Support]]
+- [[topics/intent-driven-commerce-interfaces|Intent-Driven Commerce Interfaces]]
+- [[topics/open-agent-platform-integration|Open Agent Platform Integration]]
+- [[topics/enterprise-ai-layer|Enterprise AI Layer]]
 
 ## Sources
 

@@ -37,10 +37,6 @@ A free macOS window manager that uses a radial menu for moving windows. The user
 
 The app is portrayed as a polished workflow helper with a simple interaction model, but the source gives no evidence of enterprise readiness or a large ecosystem. As of 2026-02-09, it reads as a niche but durable desktop utility.
 
-## Related Tools
-
-- Ice
-
 ## Strengths
 
 - Replaces keyboard-chord-heavy window management with a radial menu, which reduces shortcut memorization burden.
@@ -73,7 +69,7 @@ The article does not mention snapping precision limits, multi-monitor behavior, 
 
 ## Related pages
 
-- Ice
+- [[tools/ice|Ice]]
 
 ## Sources
 

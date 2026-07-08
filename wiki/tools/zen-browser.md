@@ -42,14 +42,6 @@ A free browser built on Firefox’s Gecko engine with vertical tabs, workspaces,
 
 The article presents Zen as an active replacement choice for a former Arc user after testing Vivaldi, Orion, and Brave. That suggests a niche but credible adoption path among browser power users, not broad mainstream dominance. The author has used it as a daily driver for about eight months as of 2026-05-17, which is a modest stability signal but still personal evidence.
 
-## Related Tools
-
-- Arc Browser
-- Vivaldi
-- Orion
-- Brave
-- Safari
-
 ## Strengths
 
 - Vertical tabs, workspaces, and split view replace the Arc features the author missed, which matters if you live in a browser all day.
@@ -86,11 +78,7 @@ The source flags a real compatibility gap: Zen does not support Widevine DRM out
 
 ## Related pages
 
-- Arc Browser
-- Brave
-- Orion
-- Safari
-- Vivaldi
+- [[tools/arc-browser|Arc Browser]]
 
 ## Sources
 

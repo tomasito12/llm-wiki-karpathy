@@ -41,11 +41,6 @@ A browser-based image editor that can open and edit PSD files with Photoshop-lik
 
 The source treats Photopea as a practical, already-usable substitute rather than a novelty. Its ability to open PSD files and mimic common Photoshop interactions suggests a mature feature set for lightweight editing. The article does not provide adoption metrics or enterprise signals.
 
-## Related Tools
-
-- Adobe Photoshop
-- Canva
-
 ## Strengths
 
 - Opens and edits PSD files in the browser, which matters because it removes the need for a desktop Photoshop license for many routine tasks.
@@ -79,8 +74,7 @@ The article itself narrows the claim to about 90% of use cases, which implies th
 
 ## Related pages
 
-- Adobe Photoshop
-- Canva
+No related pages captured.
 
 ## Sources
 

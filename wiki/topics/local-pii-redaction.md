@@ -41,11 +41,6 @@ Local PII redaction is the practice of detecting and masking sensitive personal 
 
 If privacy is a hard requirement, move redaction as far left as possible in the pipeline so raw text is filtered before storage, transmission, or indexing. Local execution reduces exposure, but it does not remove the need to measure misses and over-redaction on your own data.
 
-## Related Topics
-
-- token-classification-for-redaction
-- agentic-workflows
-
 ## Evidence / supporting sources
 
 ### Introducing OpenAI Privacy Filter (2026-04-22)
@@ -75,8 +70,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agentic-workflows
-- token-classification-for-redaction
+- [[topics/token-classification-for-redaction|Token Classification for Redaction]]
+- [[topics/agentic-workflows|Agentic Workflows]]
 
 ## Sources
 

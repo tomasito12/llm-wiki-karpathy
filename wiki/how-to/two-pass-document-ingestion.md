@@ -43,11 +43,6 @@ This pattern costs more tokens than a single-pass workflow, and the article warn
 - A schema or output format the model must follow
 - A review loop for ambiguous updates
 
-## Related Howtos
-
-- Local Model Deployment
-- Procedural Support Automation
-
 ## Evidence / supporting sources
 
 ### This Open-Source App Turns Your Documents Into a Self-Building Wiki (2026-05-08)
@@ -73,8 +68,8 @@ This pattern costs more tokens than a single-pass workflow, and the article warn
 
 ## Related pages
 
-- Local Model Deployment
-- Procedural Support Automation
+- [[how-to/local-model-deployment|Local Model Deployment]]
+- [[how-to/procedural-support-automation|Procedural Support Automation]]
 
 ## Sources
 

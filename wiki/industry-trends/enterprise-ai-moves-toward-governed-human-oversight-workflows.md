@@ -34,14 +34,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Enterprise deployments of AI systems increasingly rely on layered controls rather than open-ended autonomy. The pattern combines bounded execution, explicit approval gates, identity controls, network restrictions, and audit logs so that agents can act without losing organizational control. The practical consequence is that production AI becomes an operational governance problem as much as a model capability problem.
 
-## Related Trends
-
-- verification-loops-become-central-to-ai-workflows
-- enterprise-ai-moves-toward-governed-human-oversight-workflows
-- support-automation-as-operating-model
-- workflow-based-evaluation
-- workflow-restructuring-around-ai-agents
-
 ## Supporting Data Points
 
 - Sandboxing controls where Codex can write, whether it can reach the network, and which paths remain protected.
@@ -134,11 +126,10 @@ This is supported by one vendor-authored implementation example, not by cross-co
 
 ## Related pages
 
-- enterprise-ai-moves-toward-governed-human-oversight-workflows
-- support-automation-as-operating-model
-- verification-loops-become-central-to-ai-workflows
-- workflow-based-evaluation
-- workflow-restructuring-around-ai-agents
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
+- [[industry-trends/support-automation-as-operating-model|Support Automation as an Operating Model]]
+- [[industry-trends/workflow-based-evaluation|AI Evaluation Moves Toward Workflow-Based Testing]]
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]]
 
 ## Sources
 

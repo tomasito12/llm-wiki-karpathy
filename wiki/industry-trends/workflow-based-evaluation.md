@@ -28,12 +28,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 AI evaluation is shifting from broad model benchmarks toward tests built around the actual workflows a system must complete. The relevant question is less whether a model looks strong in general and more whether it can survive the company’s documents, rules, exceptions, and task boundaries. This makes evaluation more context-specific and operationally tied to production behavior. The shift is especially important for agentic systems that must execute multi-step work rather than answer isolated prompts.
 
-## Related Trends
-
-- verification-loops-become-central-to-ai-workflows
-- artifact-first-ai-workflows
-- workflow-restructuring
-
 ## Supporting Data Points
 
 - Every meaningful task inside a company is described as needing its own evaluation layer.
@@ -80,9 +74,8 @@ The direction is plausible and well-motivated, but the source is an opinion essa
 
 ## Related pages
 
-- artifact-first-ai-workflows
-- verification-loops-become-central-to-ai-workflows
-- workflow-restructuring
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
+- [[industry-trends/artifact-first-ai-workflows|Artifact-First AI Workflows]]
 
 ## Sources
 

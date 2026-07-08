@@ -26,11 +26,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 AI products increasingly move from visible, novelty-driven experiences toward background capabilities woven into everyday software. The value shifts from demonstrating intelligence to reducing friction, making systems feel natural, and letting users treat AI as part of the environment rather than a special feature. This trend matters because it changes the competitive bar from model spectacle to invisible usefulness.
 
-## Related Trends
-
-- ai-products-shift-from-models-to-systems
-- ai-products-shift-from-demos-to-production-controls
-
 ## Supporting Data Points
 
 - Google I/O 2026 is described as emphasizing practical value in everyday products.
@@ -65,8 +60,8 @@ This is a speculative interpretation built from a keynote and a few product anno
 
 ## Related pages
 
-- ai-products-shift-from-demos-to-production-controls
-- ai-products-shift-from-models-to-systems
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
+- [[industry-trends/ai-products-shift-from-demos-to-production-controls|AI Products Shift from Demos to Production Controls]]
 
 ## Sources
 

@@ -41,11 +41,6 @@ AI systems are more durable when the conversation resolves into a persistent art
 
 Design chat-based tools so the final state is a stored artifact, not just the last assistant message. The transcript can support exploration, but the deliverable should live in a surface built for retrieval and reuse.
 
-## Related Topics
-
-- knowledge-systems-shift-toward-persistent-workspaces
-- ai-workflow-restructuring
-
 ## Evidence / supporting sources
 
 ### The Next Era Of Knowledge Work (2026-06-02)
@@ -74,8 +69,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- ai-workflow-restructuring
-- knowledge-systems-shift-toward-persistent-workspaces
+- [[topics/ai-workflow-restructuring|AI Workflow Restructuring]]
 
 ## Sources
 

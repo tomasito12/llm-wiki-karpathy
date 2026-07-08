@@ -24,11 +24,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 AI may reduce hiring in some core technology firms while increasing demand for the same skills in other industries. The more durable pattern is redistribution of technical labor across sectors, not a simple disappearance of tech work. This means AI can change where workers are employed before it meaningfully shrinks total demand for those skills.
 
-## Related Trends
-
-- entry-level-technical-hiring-softens-under-ai-pressure
-- workflow-restructuring-around-ai-agents
-
 ## Time sensitivity
 
 Actionable as of 2026-04-18; the observation is tied to the hiring and adoption conditions described in the source and may evolve as AI adoption broadens.
@@ -54,8 +49,8 @@ The source is explicit that the causal story is not settled. Aggregate employmen
 
 ## Related pages
 
-- entry-level-technical-hiring-softens-under-ai-pressure
-- workflow-restructuring-around-ai-agents
+- [[industry-trends/entry-level-technical-hiring-softens-under-ai-pressure|Entry-Level Technical Hiring Softens Under AI Pressure]]
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]]
 
 ## Sources
 

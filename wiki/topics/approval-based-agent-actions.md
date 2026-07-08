@@ -43,11 +43,6 @@ Some agent systems are most useful when they prepare work for review rather than
 
 Use agents to compress the expensive reasoning and drafting work, but keep the final commit behind an explicit approval step when the action affects customers, configuration, or external communications.
 
-## Related Topics
-
-- structured-drafting-for-human-review
-- agent-native-auditability
-
 ## Evidence / supporting sources
 
 ### Meet Operator: An Agent for your customer operations (2026-05-15)
@@ -78,8 +73,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-native-auditability
-- structured-drafting-for-human-review
+- [[topics/structured-drafting-for-human-review|Structured Drafting for Human Review]]
+- [[topics/agent-native-auditability|Agent-Native Auditability]]
 
 ## Sources
 

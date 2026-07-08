@@ -39,13 +39,6 @@ An Obsidian plugin that turns note creation into shortcut-driven, template-based
 
 The author calls it a personal favorite and describes it as a workflow engine, which suggests it is central rather than decorative. The example use cases are concrete enough to show practical value, but the article provides no adoption or reliability evidence beyond one user’s setup. As of 2026-04-18, it looks like a useful power-user plugin with clear workflow impact, but evidence remains anecdotal.
 
-## Related Tools
-
-- Obsidian
-- Make.md
-- Linter
-- Calendar
-
 ## Strengths
 
 - Shortcut-driven capture removes the need to manually start each new note from scratch.
@@ -80,10 +73,10 @@ The article does not explain how complex these shortcuts become to maintain or w
 
 ## Related pages
 
-- Calendar
-- Linter
-- Make.md
-- Obsidian
+- [[tools/obsidian|Obsidian]]
+- [[tools/make-md|Make.md]]
+- [[tools/linter|Linter]]
+- [[tools/calendar|Calendar]]
 
 ## Sources
 

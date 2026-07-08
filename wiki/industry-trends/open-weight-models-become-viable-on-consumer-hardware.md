@@ -39,18 +39,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Open-weight model families are increasingly designed to run on consumer devices rather than only on centralized inference clusters. The pattern becomes more durable when the models include multimodal input, structured output, and ecosystem support for local serving. This matters because hardware viability, not only benchmark rank, determines whether teams can adopt open models in real products.
 
-## Related Trends
-
-- long-context-adoption
-- edge-deployment
-- ai-products-shift-from-models-to-systems
-- frontier-inference-hardware-gains-strategic-value
-- inference-efficiency-moves-toward-low-precision-hardware
-- local-specialist-models-for-preprocessing
-- open-model-pressure
-- local-model-deployment
-- inference-efficiency
-
 ## Supporting Data Points
 
 - Apache 2.0 licensing
@@ -219,15 +207,11 @@ PokeClaw
 
 ## Related pages
 
-- ai-products-shift-from-models-to-systems
-- edge-deployment
-- frontier-inference-hardware-gains-strategic-value
-- inference-efficiency
-- inference-efficiency-moves-toward-low-precision-hardware
-- local-model-deployment
-- local-specialist-models-for-preprocessing
-- long-context-adoption
-- open-model-pressure
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
+- [[industry-trends/frontier-inference-hardware-gains-strategic-value|Frontier Inference Hardware Gains Strategic Value]]
+- [[industry-trends/inference-efficiency-moves-toward-low-precision-hardware|Inference Efficiency Moves Toward Low-Precision Hardware]]
+- [[industry-trends/local-specialist-models-for-preprocessing|Local Specialist Models for Preprocessing]]
+- [[industry-trends/open-model-pressure|Open Model Ecosystems Become More Strategically Important]]
 
 ## Sources
 

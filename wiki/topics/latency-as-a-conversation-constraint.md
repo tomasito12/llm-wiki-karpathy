@@ -39,10 +39,6 @@ In conversational systems, response time is part of the user experience, not a b
 
 Design for conversational turn-taking, not just output quality. If a system cannot answer quickly enough, simplify the path or shorten the response rather than letting a technically better answer damage the interaction.
 
-## Related Topics
-
-- voice-prompting-for-conversational-systems
-
 ## Evidence / supporting sources
 
 ### Voice AI vs Data AI (2026-04-21)
@@ -62,7 +58,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- voice-prompting-for-conversational-systems
+- [[topics/voice-prompting-for-conversational-systems|Voice Prompting for Conversational Systems]]
 
 ## Sources
 

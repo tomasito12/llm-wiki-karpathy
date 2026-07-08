@@ -34,10 +34,6 @@ Local model behavior depends heavily on the interaction between context settings
 
 Do not benchmark a local model in the default configuration and assume the result reflects the model’s true ceiling. Validate the backend version, cache settings, and sampling choices together, because they can materially change outputs.
 
-## Related Topics
-
-- local-model-deployment
-
 ## Evidence / supporting sources
 
 ### I Ran Gemma 4 Locally. Here’s What Nobody’s Telling You. (2026-04-09)
@@ -58,7 +54,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- local-model-deployment
+- [[topics/local-model-deployment|Local Model Deployment]]
 
 ## Sources
 

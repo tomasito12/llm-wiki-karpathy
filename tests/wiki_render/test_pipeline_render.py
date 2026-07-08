@@ -19,7 +19,7 @@ def test_graph_merge_render_and_export_include_stage2_metadata(tmp_path: Path) -
     rendered = render_graph(graph, wiki_dir=tmp_path / "wiki")
     payload = graph_export_payload(graph)
 
-    topic = next(page for page in graph.knowledge_pages if page.category == "topic")
+    topic = next(page for page in graph.knowledge_pages if page.entity_id == "topic:local-models")
     source_page = next(file for file in rendered if file.relative_path == "sources/source-a.md")
     topic_page = next(file for file in rendered if file.relative_path == "topics/local-models.md")
 
@@ -27,12 +27,17 @@ def test_graph_merge_render_and_export_include_stage2_metadata(tmp_path: Path) -
     assert topic.evidence_count >= 2
     assert topic.stance_counts["supporting"] >= 1
     assert "synthesis_state: stage1-placeholder" in topic_page.text
+    assert layout.wikilink("topics/edge-inference.md", "Edge Inference") in topic_page.text
+    assert "## Related Topics" not in topic_page.text
     assert "derived_topics:" in source_page.text
     assert "local-models" in source_page.text
     assert payload["taxonomy_version"] == "tax123"
-    exported_topic = payload["knowledge_pages"][0]
+    exported_topic = next(
+        page for page in payload["knowledge_pages"] if page["entity_id"] == "topic:local-models"
+    )
     assert exported_topic["evidence_count"] == topic.evidence_count
     assert "evidence_set_hash" in exported_topic
+    assert exported_topic["values"]["related_topics"] == ["edge-inference"]
 
 
 def test_implementation_studies_render_as_individual_monthly_pages(tmp_path: Path) -> None:
@@ -196,13 +201,30 @@ def _artifact(source_id: str, title: str, published_date: str) -> dict:
                         "knowledge_summary": "Local models run near users.",
                         "operational_insight": "Treat local inference as infrastructure.",
                         "key_points": ["Hardware constraints shape reliability."],
+                        "related_topics": ["edge-inference"],
+                        "related_terms": ["should-not-cross-category"],
                         "proposed_tags": ["infrastructure"],
                         "confidence": 0.9,
                         "value_level": "high",
                     },
                     "sections": {},
                     "tags": {"final_tags": ["infrastructure"]},
-                }
+                },
+                {
+                    "proposal_status": "approved",
+                    "llm_item": {
+                        "topic_slug": "edge-inference",
+                        "topic_title": "Edge Inference",
+                        "knowledge_summary": "Edge inference runs close to users.",
+                        "operational_insight": "Place models near latency-sensitive work.",
+                        "key_points": ["Latency constraints shape placement."],
+                        "proposed_tags": ["infrastructure"],
+                        "confidence": 0.8,
+                        "value_level": "medium",
+                    },
+                    "sections": {},
+                    "tags": {"final_tags": ["infrastructure"]},
+                },
             ],
             "industry_trends": [
                 {

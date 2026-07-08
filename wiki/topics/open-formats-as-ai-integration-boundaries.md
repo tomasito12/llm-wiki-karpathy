@@ -44,12 +44,6 @@ The source explicitly points to local Markdown, Bases, and JSON Canvas as the fo
 
 Design AI features around durable file boundaries rather than proprietary app state when portability matters. This makes it easier to swap clients, audit outputs, and keep a human-editable source of truth.
 
-## Related Topics
-
-- file-grammar-skills-for-ai
-- local-model-deployment
-- knowledge-base-becomes-runtime-infrastructure
-
 ## Evidence / supporting sources
 
 ### Obsidian’s Official Skills Are Here! It’s time to let AI plug into your local Vault. (2026-01-16)
@@ -81,9 +75,9 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- file-grammar-skills-for-ai
-- knowledge-base-becomes-runtime-infrastructure
-- local-model-deployment
+- [[topics/file-grammar-skills-for-ai|File Grammar Skills for AI]]
+- [[topics/local-model-deployment|Local Model Deployment]]
+- [[topics/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]]
 
 ## Sources
 

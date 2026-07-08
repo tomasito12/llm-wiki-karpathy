@@ -23,11 +23,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Frontier AI development is moving toward workflows where models do more of the implementation, debugging, and experiment-running work that human engineers and researchers used to do manually. The practical consequence is that humans increasingly supply goals, review output, and choose directions while models handle more of the labor. Over time, this can raise per-person output inside AI labs and reduce the amount of manual work required to advance the model stack. The trend does not imply full autonomy; it describes a steady expansion of machine participation in the development loop.
 
-## Related Trends
-
-- verification-loops-become-central-to-ai-workflows
-- workflow-restructuring-around-ai-agents
-
 ## Supporting Data Points
 
 - More than 80% of code merged into Anthropic's codebase was authored by Claude as of May 2026.
@@ -62,8 +57,8 @@ The evidence is strong for Anthropic-specific acceleration, but it is still one 
 
 ## Related pages
 
-- verification-loops-become-central-to-ai-workflows
-- workflow-restructuring-around-ai-agents
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]]
 
 ## Sources
 

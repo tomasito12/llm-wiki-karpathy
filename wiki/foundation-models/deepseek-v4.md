@@ -83,15 +83,6 @@ The source implies a lower-cost ownership model if teams self-host, because it s
 
 DeepSeek
 
-## Related Models
-
-- DeepSeek V3
-- Kimi 2.5
-- Gemma 4
-- GPT-5.5
-- DeepSeek V3.2
-- Kimi 2.6
-
 ## Service automation implications
 
 For service automation, the model is most relevant where long-context reasoning, image/video understanding, and self-hosted deployment matter together. That combination could support automated review pipelines, content analysis systems, or assistant-style services where keeping requests on private infrastructure is important. The article’s claim of lower computational cost also suggests potential value for higher-throughput automation, though the operational savings would depend on actual deployment efficiency.
@@ -178,12 +169,10 @@ with 1M context length and impressive agentic capabilities. (`c9c7d4ba66e5` · s
 
 ## Related pages
 
-- DeepSeek V3
-- DeepSeek V3.2
-- GPT-5.5
-- Gemma 4
-- Kimi 2.5
-- Kimi 2.6
+- [[foundation-models/kimi-2-5|Kimi 2.5]]
+- [[foundation-models/gemma-4|Gemma 4]]
+- [[foundation-models/gpt-5-5|GPT-5.5]]
+- [[foundation-models/kimi-2-6|Kimi 2.6]]
 
 ## Sources
 

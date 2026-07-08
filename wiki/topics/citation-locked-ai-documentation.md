@@ -37,11 +37,6 @@ The source says the prompt rules include: "Cite or do not claim" and "Every non-
 
 A strict citation policy is a practical guardrail for code-aware generation. It does not make the model correct by itself, but it changes failure modes from quiet hallucination to visible uncertainty.
 
-## Related Topics
-
-- commit-driven-documentation-generation
-- provenance-tracking
-
 ## Evidence / supporting sources
 
 ### How I turned Andrej Karpathy’s LLM Wiki into a tool that writes wiki’s from code (2026-04-17)
@@ -61,8 +56,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- commit-driven-documentation-generation
-- provenance-tracking
+- [[topics/commit-driven-documentation-generation|Commit-Driven Documentation Generation]]
+- [[topics/provenance-tracking|Provenance Tracking]]
 
 ## Sources
 

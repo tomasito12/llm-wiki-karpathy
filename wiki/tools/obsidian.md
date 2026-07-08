@@ -121,25 +121,6 @@ Obsidian is a local note-taking application built around Markdown files and othe
 
 The article presents Obsidian as already established enough to have official skills for its file formats, but it does not provide adoption numbers or enterprise evidence. The strongest maturity signal in the source is ecosystem openness rather than scale. It reads as a mature notes platform with a technically engaged user base, not as a mass-market AI platform.
 
-## Related Tools
-
-- Claude Code
-- OpenCode
-- Goose
-- Make.md
-- Omnisearch
-- Linter
-- QuickAdd
-- Calendar
-- Evernote
-- Notion
-- Cursor
-- Notion 3.0
-- kepano/obsidian-skills
-- Local REST API plugin
-- Granola
-- n8n
-
 ## Strengths
 
 - Uses local Markdown and other open formats, which keeps the note system portable and easier to integrate with external tools.
@@ -371,22 +352,16 @@ I use Obsidian as the IDE "frontend" where I can view the raw data, the the comp
 
 ## Related pages
 
-- Calendar
-- Claude Code
-- Cursor
-- Evernote
-- Goose
-- Granola
-- Linter
-- Local REST API plugin
-- Make.md
-- Notion
-- Notion 3.0
-- Omnisearch
-- OpenCode
-- QuickAdd
-- kepano/obsidian-skills
-- n8n
+- [[tools/claude-code|Claude Code]]
+- [[tools/make-md|Make.md]]
+- [[tools/omnisearch|Omnisearch]]
+- [[tools/linter|Linter]]
+- [[tools/quickadd|QuickAdd]]
+- [[tools/calendar|Calendar]]
+- [[tools/cursor|Cursor]]
+- [[tools/notion-3-0|Notion 3.0]]
+- [[tools/granola|Granola]]
+- [[tools/n8n|n8n]]
 
 ## Sources
 

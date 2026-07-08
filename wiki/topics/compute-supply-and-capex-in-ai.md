@@ -35,10 +35,6 @@ AI systems at frontier scale are constrained not only by model quality but by th
 
 For large AI deployments, treat compute procurement and construction capacity as first-class planning inputs, not downstream implementation details. The practical question is whether demand can be converted into usable capacity faster than the surrounding infrastructure can absorb capital.
 
-## Related Topics
-
-- ai-products-shift-from-models-to-systems
-
 ## Evidence / supporting sources
 
 ### AI Eats The World (2026-05-21)
@@ -57,7 +53,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- ai-products-shift-from-models-to-systems
+- [[topics/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 
 ## Sources
 

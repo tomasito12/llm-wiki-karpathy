@@ -57,12 +57,6 @@ Agentic systems benefit from explicit, structured specifications that enumerate 
 
 Use the specification process to surface hidden decisions early, especially around access control, data flow, retries, and irreversible actions. The value is not in longer documentation; it is in forcing the team to close every meaningful gap before the agent gets one.
 
-## Related Topics
-
-- spec-anchored-development
-- verification-loops-in-ai-workflows
-- agentic-coding-workflows
-
 ## Evidence / supporting sources
 
 ### From Vibe Coding to Spec-Driven Development (2026-05-12)
@@ -117,9 +111,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agentic-coding-workflows
-- spec-anchored-development
-- verification-loops-in-ai-workflows
+- [[topics/verification-loops-in-ai-workflows|Verification Loops in AI Workflows]]
+- [[topics/agentic-coding-workflows|Agentic Coding Workflows]]
 
 ## Sources
 

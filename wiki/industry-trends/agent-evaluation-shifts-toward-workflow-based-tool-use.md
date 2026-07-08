@@ -24,11 +24,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Model evaluation is shifting from single-turn answer quality toward workflow-based tests that include tool calls, state tracking, and recovery from errors. The relevant benchmark is no longer just whether a model answers correctly, but whether it can complete a real task inside an execution loop. This favors evaluation suites that resemble agent work rather than chat completion.
 
-## Related Trends
-
-- verification-loops-become-central-to-ai-workflows
-- agentic-coding-shifts-toward-higher-supervision-costs
-
 ## Supporting Data Points
 
 - MCPMark: Qwen 37.0 vs Gemma 18.1
@@ -67,8 +62,8 @@ The source is persuasive but not definitive: some cited metrics are vendor-publi
 
 ## Related pages
 
-- agentic-coding-shifts-toward-higher-supervision-costs
-- verification-loops-become-central-to-ai-workflows
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
+- [[industry-trends/agentic-coding-shifts-toward-higher-supervision-costs|Agentic Coding Shifts Toward Higher Supervision Costs]]
 
 ## Sources
 

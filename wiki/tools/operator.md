@@ -59,10 +59,6 @@ Operator is an agent that works across Intercom’s Fin and helpdesk to manage c
 
 Intercom says more than 200 early users are already trying Operator, and it is available in early access as of 2026-05-15. That indicates real productization, but the evidence is still launch-stage and entirely vendor-supplied. The maturity signal is therefore early-stage rather than validated at scale.
 
-## Related Tools
-
-- Fin CLI
-
 ## Strengths
 
 - It combines analysis, content maintenance, and automation-building in one workflow, which matters because support teams usually do these tasks in separate tools and with separate handoffs.
@@ -123,7 +119,7 @@ The article provides no benchmarks for accuracy, latency, review time, cost, or 
 
 ## Related pages
 
-- Fin CLI
+No related pages captured.
 
 ## Sources
 

@@ -51,19 +51,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 AI workflows are moving away from single-turn prompting and toward orchestrated loops with persistent state, isolated execution, browser grounding, and artifact handling. The structural change is that the agent runtime becomes the workflow boundary, not the chat UI. This trend is especially relevant when the system must execute, recover, and resume multi-step work over time.
 
-## Related Trends
-
-- harness-design-becomes-more-important-for-agent-reliability
-- persistent-agents
-- verification-loops-become-central-to-ai-workflows
-- ai-products-shift-from-models-to-systems
-- enterprise-ai-moves-toward-governed-human-oversight-workflows
-- artifact-first-ai-workflows
-- agent-tooling-shifts-from-prompting-to-workflow-architecture
-- execution-oriented-agents
-- models-becoming-execution-layers
-- workflow-based-evaluation
-
 ## Supporting Data Points
 
 - OpenAI Agents SDK emphasized file/computer use, skills, memory, and compaction.
@@ -306,16 +293,15 @@ The source is a roundup of launches and commentary, so it shows convergence in p
 
 ## Related pages
 
-- agent-tooling-shifts-from-prompting-to-workflow-architecture
-- ai-products-shift-from-models-to-systems
-- artifact-first-ai-workflows
-- enterprise-ai-moves-toward-governed-human-oversight-workflows
-- execution-oriented-agents
-- harness-design-becomes-more-important-for-agent-reliability
-- models-becoming-execution-layers
-- persistent-agents
-- verification-loops-become-central-to-ai-workflows
-- workflow-based-evaluation
+- [[industry-trends/harness-design-becomes-more-important-for-agent-reliability|Agent reliability is shifting toward harness design]]
+- [[industry-trends/persistent-agents|Agents are shifting from stateless chat to memory-backed persistent work loops]]
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
+- [[industry-trends/enterprise-ai-moves-toward-governed-human-oversight-workflows|Enterprise AI Moves Toward Governed Human Oversight Workflows]]
+- [[industry-trends/artifact-first-ai-workflows|Artifact-First AI Workflows]]
+- [[industry-trends/agent-tooling-shifts-from-prompting-to-workflow-architecture|Agent Performance Shifts From Prompting to Workflow Architecture]]
+- [[industry-trends/models-becoming-execution-layers|Models Become Execution Layers]]
+- [[industry-trends/workflow-based-evaluation|AI Evaluation Moves Toward Workflow-Based Testing]]
 
 ## Sources
 

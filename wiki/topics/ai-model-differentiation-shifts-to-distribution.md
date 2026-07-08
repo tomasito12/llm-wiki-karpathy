@@ -34,11 +34,6 @@ When model quality becomes good enough across several providers, the competitive
 
 Treat benchmark parity as the start of product competition, not the finish. If a model is no longer obviously ahead on cost or capability, the next moat is usually integration, workflow attachment, and customer-facing utility.
 
-## Related Topics
-
-- software-moat-compression
-- agentic-workflows
-
 ## Evidence / supporting sources
 
 ### Why DeepSeek’s sequel failed to impress (2026-04-28)
@@ -57,8 +52,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agentic-workflows
-- software-moat-compression
+- [[topics/software-moat-compression|Software Moat Compression]]
+- [[topics/agentic-workflows|Agentic Workflows]]
 
 ## Sources
 

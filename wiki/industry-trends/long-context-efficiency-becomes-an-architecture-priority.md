@@ -27,11 +27,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Open-weight LLM design is shifting toward architecture changes that reduce the cost of long-context inference, rather than only shrinking total parameter counts. The observable pattern is more work on KV-cache reduction, attention compression, layer-wise compute budgeting, and residual-path redesign. This is especially relevant for workloads that keep large amounts of history alive during reasoning or agent execution.
 
-## Related Trends
-
-- inference-efficiency-moves-toward-low-precision-hardware
-- runtime-systems
-
 ## Supporting Data Points
 
 - Gemma 4 uses cross-layer KV sharing and per-layer embeddings.
@@ -68,8 +63,7 @@ The source is a single expert survey, so it shows a strong pattern but not marke
 
 ## Related pages
 
-- inference-efficiency-moves-toward-low-precision-hardware
-- runtime-systems
+- [[industry-trends/inference-efficiency-moves-toward-low-precision-hardware|Inference Efficiency Moves Toward Low-Precision Hardware]]
 
 ## Sources
 

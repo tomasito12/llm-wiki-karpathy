@@ -40,10 +40,6 @@ The tutorial uses add_messages and explains that without a reducer, a new AI mes
 
 When building chat flows with explicit state, treat reducers as part of the conversation contract. The wrong reducer can silently erase context or make the graph behave in ways that look stateless even when you intended accumulation.
 
-## Related Topics
-
-- stateless-chatbot-architecture
-
 ## Evidence / supporting sources
 
 ### Creating a Stateless Chatbot in LangGraph (2025-12-31)
@@ -64,7 +60,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- stateless-chatbot-architecture
+- [[topics/stateless-chatbot-architecture|Stateless Chatbot Architecture]]
 
 ## Sources
 

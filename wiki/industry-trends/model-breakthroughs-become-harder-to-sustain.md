@@ -26,10 +26,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 A one-time efficiency or capability breakthrough can be difficult to repeat once competitors improve and expectations rise. The same technical performance may still be impressive, but it may no longer generate outsized market reaction if the surrounding field has caught up. Repeatable disruption requires either a new step-change or a new source of evidence that makes the gain legible.
 
-## Related Trends
-
-- software-differentiation-shifts-from-engineering-to-distribution
-
 ## Supporting Data Points
 
 - DeepSeek's earlier models reportedly performed nearly as well as leading Western ones at a fraction of the cost.
@@ -64,7 +60,7 @@ The article is one case from one market, so it cannot prove a universal pattern;
 
 ## Related pages
 
-- software-differentiation-shifts-from-engineering-to-distribution
+- [[industry-trends/software-differentiation-shifts-from-engineering-to-distribution|Software Differentiation Shifts from Engineering to Distribution]]
 
 ## Sources
 

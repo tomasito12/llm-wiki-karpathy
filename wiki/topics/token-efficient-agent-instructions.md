@@ -41,12 +41,6 @@ Token-efficient agent instructions keep the always-loaded instruction set small 
 
 Use short discovery metadata and load the detailed procedure only after a request matches. That preserves context for the conversation itself and makes larger skill libraries more workable.
 
-## Related Topics
-
-- file-grammar-skills-for-ai
-- agent-workspace-layering
-- harness-engineering
-
 ## Evidence / supporting sources
 
 ### How to build Claude Skills 2.0 Better than 99% of People (2026-03-25)
@@ -76,9 +70,9 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-workspace-layering
-- file-grammar-skills-for-ai
-- harness-engineering
+- [[topics/file-grammar-skills-for-ai|File Grammar Skills for AI]]
+- [[topics/agent-workspace-layering|Agent Workspace Layering]]
+- [[topics/harness-engineering|Harness Engineering]]
 
 ## Sources
 

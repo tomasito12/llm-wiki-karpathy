@@ -47,11 +47,6 @@ The source does not show testing, quality controls, or how well this holds up fo
 - Access to a language model API or chat model
 - A clear brand voice prompt
 
-## Related Howtos
-
-- workflow-automation
-- distribution
-
 ## Evidence / supporting sources
 
 ### 7 Simple AI Projects You Can Build This Week (2026-05-18)
@@ -78,8 +73,7 @@ The source does not show testing, quality controls, or how well this holds up fo
 
 ## Related pages
 
-- distribution
-- workflow-automation
+No related pages captured.
 
 ## Sources
 

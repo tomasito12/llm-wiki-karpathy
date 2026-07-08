@@ -47,10 +47,6 @@ The source gives a loan-officer scenario: an AI assistant denying a $25,000 cred
 
 Do not assume tool access is enough. If the workflow has ordering constraints, validation gates, or domain-specific best practices, encode them in a separate knowledge layer so the agent can execute more reliably.
 
-## Related Topics
-
-- progressive-disclosure-skill-design
-
 ## Evidence / supporting sources
 
 ### From Data to Intelligence: Why Every Enterprise Needs an AI Knowledge Layer (2026-04-09)
@@ -82,7 +78,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- progressive-disclosure-skill-design
+- [[topics/progressive-disclosure-skill-design|Progressive Disclosure in Skill Design]]
 
 ## Sources
 

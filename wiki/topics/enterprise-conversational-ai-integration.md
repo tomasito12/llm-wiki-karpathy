@@ -51,13 +51,6 @@ The source describes AI as a "structured meta-layer that sits above them but can
 
 A conversational AI program should be judged by how well it plugs into enterprise systems and workflows, not by demo quality alone. Modularity and custom integrations are often the difference between a pilot and a production deployment.
 
-## Related Topics
-
-- multi-channel-agent-orchestration
-- support-automation-as-operating-model
-- agent-runtime-architecture
-- layered-ai-architecture
-
 ## Evidence / supporting sources
 
 ### E.ON's AI Agents Provide Best-in-Class Service (undated)
@@ -98,10 +91,10 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-runtime-architecture
-- layered-ai-architecture
-- multi-channel-agent-orchestration
-- support-automation-as-operating-model
+- [[topics/multi-channel-agent-orchestration|Multi-Channel Agent Orchestration]]
+- [[topics/support-automation-as-operating-model|Support Automation as Operating Model]]
+- [[topics/agent-runtime-architecture|Agent Runtime Architecture]]
+- [[topics/layered-ai-architecture|Layered AI Architecture]]
 
 ## Sources
 

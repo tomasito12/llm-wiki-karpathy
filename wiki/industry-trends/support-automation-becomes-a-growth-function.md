@@ -27,11 +27,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Support teams are shifting from purely reactive ticket handling toward proactive work that can drive adoption, retention, and expansion. The operational change is that automation does not just remove load; it can create capacity for human touchpoints that influence business outcomes. This trend matters when AI systems reduce routine support work enough to let humans take on consultative or revenue-adjacent tasks.
 
-## Related Trends
-
-- verification-loops-become-central-to-ai-workflows
-- support-automation-as-operating-model
-
 ## Supporting Data Points
 
 - Intercom says resolution rates were strong and efficiency was improving.
@@ -82,8 +77,8 @@ This is based on a single-company internal case study, so it shows a plausible o
 
 ## Related pages
 
-- support-automation-as-operating-model
-- verification-loops-become-central-to-ai-workflows
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
+- [[industry-trends/support-automation-as-operating-model|Support Automation as an Operating Model]]
 
 ## Sources
 

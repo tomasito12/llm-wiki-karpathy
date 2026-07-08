@@ -34,11 +34,6 @@ When models are embedded directly into operational workflows, they stop being on
 
 Design model deployment around the job to be done, not just around raw model quality. When the model is allowed to act inside a workflow, the control plane matters as much as the model itself.
 
-## Related Topics
-
-- agentic-workflows
-- context-engineering
-
 ## Evidence / supporting sources
 
 ### Trusted access for the next era of cyber defense (2026-04-14)
@@ -57,8 +52,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agentic-workflows
-- context-engineering
+- [[topics/agentic-workflows|Agentic Workflows]]
+- [[topics/context-engineering|Context Engineering]]
 
 ## Sources
 

@@ -61,12 +61,6 @@ The source says the fast mode is about 2.5x faster and roughly 3x cheaper than 4
 
 Anthropic
 
-## Related Models
-
-- Opus 4.6
-- Opus 4.7
-- Mythos Preview
-
 ## Service automation implications
 
 If the reliability claims hold, the model is better suited to support automation and other service workflows that depend on tool use and long task chains. The skipped-tool-call fix is especially relevant for workflows where an omitted action could silently break a case. The source does not discuss contact-center metrics or deployment results in service settings.
@@ -105,9 +99,7 @@ The source does not provide formal methodology, error bars, or task-specific bre
 
 ## Related pages
 
-- Mythos Preview
-- Opus 4.6
-- Opus 4.7
+- [[foundation-models/opus-4-6|Opus 4.6]]
 
 ## Sources
 

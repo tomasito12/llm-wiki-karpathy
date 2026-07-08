@@ -32,12 +32,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 AI-assisted engineering is moving away from trust in raw generation and toward workflows that continuously verify outputs before they are accepted. The shift is driven by the need to catch model errors, regression risk, and agent misbehavior with deterministic or structured checks. This trend matters because the bottleneck is increasingly review and validation, not generation speed.
 
-## Related Trends
-
-- agentic-coding-shifts-toward-higher-supervision-costs
-- verification-loops-become-central-to-ai-workflows
-- workflow-restructuring-around-ai-agents
-
 ## Supporting Data Points
 
 - The Radar promotes feedback sensors for coding agents as a Trial item.
@@ -114,9 +108,9 @@ The evidence is strong inside the source, but it is still opinionated and based 
 
 ## Related pages
 
-- agentic-coding-shifts-toward-higher-supervision-costs
-- verification-loops-become-central-to-ai-workflows
-- workflow-restructuring-around-ai-agents
+- [[industry-trends/agentic-coding-shifts-toward-higher-supervision-costs|Agentic Coding Shifts Toward Higher Supervision Costs]]
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]]
 
 ## Sources
 

@@ -42,10 +42,6 @@ A macOS utility that extends Quick Look to folders and archives. It lets users p
 
 The app is framed as an early version but already useful enough for repeated installation across the author’s Macs. The recurring updates suggest active maintenance, though the source does not describe community scale. As of 2025-11-22, it appears to be a focused utility with clear but narrow utility.
 
-## Related Tools
-
-- Quick Look
-
 ## Strengths
 
 - It extends Quick Look to folders, which preserves the familiar Space-bar preview workflow for an unsupported object type.
@@ -82,7 +78,7 @@ The source says performance is not great in the initial version, so the preview 
 
 ## Related pages
 
-- Quick Look
+No related pages captured.
 
 ## Sources
 

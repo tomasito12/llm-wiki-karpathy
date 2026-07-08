@@ -37,10 +37,6 @@ A macOS window manager that snaps windows into predefined layouts with keyboard 
 
 The source presents it as a known replacement for a missing macOS feature rather than an experimental app. As of 2025-12-31, there is no evidence in the text about vendor support or enterprise deployment.
 
-## Related Tools
-
-- Loop
-
 ## Strengths
 
 - Snaps windows into halves, thirds, and quarters, which makes layout management repeatable instead of ad hoc.
@@ -72,7 +68,7 @@ The article does not discuss edge cases, multi-monitor behavior, or whether shor
 
 ## Related pages
 
-- Loop
+- [[tools/loop|Loop]]
 
 ## Sources
 

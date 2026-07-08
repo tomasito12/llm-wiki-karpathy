@@ -47,11 +47,6 @@ The source explicitly warns that escalation logic matters, but it does not expla
 - Escalation rules and human fallback
 - A list of supported question types
 
-## Related Howtos
-
-- procedural-support-automation
-- support-automation
-
 ## Evidence / supporting sources
 
 ### 7 Simple AI Projects You Can Build This Week (2026-05-18)
@@ -78,8 +73,7 @@ The source explicitly warns that escalation logic matters, but it does not expla
 
 ## Related pages
 
-- procedural-support-automation
-- support-automation
+- [[how-to/procedural-support-automation|Procedural Support Automation]]
 
 ## Sources
 

@@ -39,12 +39,6 @@ A voice agent product for customer service calls, positioned as a major upgrade 
 
 This reads as a vendor launch rather than a mature third-party review. The article claims a live demo and operational controls, which suggests the product is being positioned for real deployment rather than a narrow prototype. Still, as of 2026-06-04, maturity is only evidenced by the vendor's own description, not external adoption data.
 
-## Related Tools
-
-- Fin for Ecommerce
-- Fin for Sales
-- OpenAI Realtime API
-
 ## Strengths
 
 - Separates real-time speech handling from answer generation, which is the central architectural move for reducing delay in voice interactions.
@@ -80,9 +74,9 @@ The article provides no independent benchmarks, failure analysis, or pricing, so
 
 ## Related pages
 
-- Fin for Ecommerce
-- Fin for Sales
-- OpenAI Realtime API
+- [[tools/fin-for-ecommerce|Fin for Ecommerce]]
+- [[tools/fin-for-sales|Fin for Sales]]
+- [[tools/openai-realtime-api|OpenAI Realtime API]]
 
 ## Sources
 

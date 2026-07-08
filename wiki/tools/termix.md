@@ -43,11 +43,6 @@ An SSH client and terminal app for managing servers and related network tasks. T
 
 The writeup treats Termix as a capable utility with real admin relevance rather than a toy terminal. The mention of good performance on an older iPad suggests decent device efficiency, but the evidence is still anecdotal. As of 2026-01-08, it appears to be a niche but substantive infrastructure client.
 
-## Related Tools
-
-- Blink Shell
-- Termius
-
 ## Strengths
 
 - It centralizes SSH client management, which is useful when an operator works across several servers or lab machines.
@@ -88,8 +83,7 @@ Termix comes with a powerful port manager to expose a locally run service to you
 
 ## Related pages
 
-- Blink Shell
-- Termius
+No related pages captured.
 
 ## Sources
 

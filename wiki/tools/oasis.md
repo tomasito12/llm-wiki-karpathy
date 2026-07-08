@@ -46,11 +46,6 @@ An open-source framework for running large-scale agent social simulations. It ha
 
 The source describes it as powering a project that can scale to one million agents, which suggests a technically ambitious and modular system. It also appears flexible enough to run with different knowledge-graph backends and local or remote inference setups. At the same time, the article emphasizes missing benchmarks and unresolved reliability issues, so maturity is best read as strong prototype maturity rather than proven production reliability as of 2026-03-16.
 
-## Related Tools
-
-- Neo4j
-- Zep Cloud
-
 ## Strengths
 
 - Scales to very large agent counts, which matters when you need emergent behavior rather than a few scripted turns.
@@ -93,8 +88,7 @@ The source describes it as powering a project that can scale to one million agen
 
 ## Related pages
 
-- Neo4j
-- Zep Cloud
+- [[tools/neo4j|Neo4j]]
 
 ## Sources
 

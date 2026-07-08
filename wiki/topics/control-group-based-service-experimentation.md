@@ -35,10 +35,6 @@ When service teams test new customer motions, a control group helps separate rea
 
 If proactive support or customer success is being treated as an experiment, build a comparison group early and use business outcomes, not activity counts, as the success metric.
 
-## Related Topics
-
-- support-automation-as-operating-model
-
 ## Evidence / supporting sources
 
 ### How we turned support into a revenue engine at Intercom (2026-05-08)
@@ -57,7 +53,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- support-automation-as-operating-model
+- [[topics/support-automation-as-operating-model|Support Automation as Operating Model]]
 
 ## Sources
 

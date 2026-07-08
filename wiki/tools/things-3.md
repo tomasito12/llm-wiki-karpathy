@@ -42,13 +42,6 @@ A one-time-purchase task manager for Apple devices with Quick Entry and a simple
 
 The app appears mature and stable enough that the author has cycled through multiple competitors and kept returning to it. The one-time purchase model and broad Apple-platform availability indicate a long-lived product with a conventional Mac software posture. The article does not claim broad enterprise adoption, but it does imply strong loyalty among solo Mac users.
 
-## Related Tools
-
-- Todoist
-- TickTick
-- OmniFocus
-- Apple Reminders
-
 ## Strengths
 
 - Quick Entry with Cmd+Option+Space is described as the fastest capture flow the author has found.
@@ -85,10 +78,7 @@ The source is clear about missing collaboration, time blocking, reliable locatio
 
 ## Related pages
 
-- Apple Reminders
-- OmniFocus
-- TickTick
-- Todoist
+- [[tools/ticktick|TickTick]]
 
 ## Sources
 

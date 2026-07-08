@@ -45,10 +45,6 @@ A Shopify-focused customer agent role for Intercom’s Fin product. It combines 
 
 The article describes a packaged, merchant-facing feature rather than an experimental prototype, and it is tied to Shopify integration and existing Fin deployments. Intercom says Fin is already resolving over a million queries a week for 8,000+ businesses, which suggests meaningful adoption of the broader product family. Even so, the ecommerce role itself is introduced through vendor messaging, so maturity for this specific role remains vendor-asserted as of 2026-05-07.
 
-## Related Tools
-
-- Fin for Sales
-
 ## Strengths
 
 - Connects shopping guidance and support so one conversation can cover discovery, checkout, and post-purchase issues.
@@ -88,7 +84,7 @@ The source provides no independent benchmark data, conversion lift, or containme
 
 ## Related pages
 
-- Fin for Sales
+- [[tools/fin-for-sales|Fin for Sales]]
 
 ## Sources
 

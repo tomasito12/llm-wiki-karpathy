@@ -68,14 +68,6 @@ The guide treats the suggested success thresholds as rough benchmarks, not hard 
 - Claude Code installed and runnable from the terminal.
 - A willingness to maintain a root CLAUDE.md file over time.
 
-## Related Howtos
-
-- context-compaction
-- self-verification-for-agent-workflows
-- local-model-setup
-- agent-maintained-knowledge-bases
-- file-native-agent-workflows
-
 ## Evidence / supporting sources
 
 ### How to build Claude Skills 2.0 Better than 99% of People (2026-03-25)
@@ -136,11 +128,10 @@ The guide treats the suggested success thresholds as rough benchmarks, not hard 
 
 ## Related pages
 
-- agent-maintained-knowledge-bases
-- context-compaction
-- file-native-agent-workflows
-- local-model-setup
-- self-verification-for-agent-workflows
+- [[how-to/context-compaction|Context Compaction]]
+- [[how-to/self-verification-for-agent-workflows|Self-Verification for Agent Workflows]]
+- [[how-to/local-model-setup|Local Model Setup]]
+- [[how-to/agent-maintained-knowledge-bases|Agent-Maintained Knowledge Bases]]
 
 ## Sources
 

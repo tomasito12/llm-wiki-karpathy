@@ -37,10 +37,6 @@ The source describes Antigravity’s "Manager View" as "a control center for spa
 
 Use parallel agents when the work can be safely split into independent streams; use explicit coordination artifacts so the final merge does not become the hidden bottleneck.
 
-## Related Topics
-
-- models-becoming-execution-layers
-
 ## Evidence / supporting sources
 
 ### Antigravity vs Claude Code: Which AI Coding Assistant Should You Actually Use? (2026-04-16)
@@ -60,7 +56,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- models-becoming-execution-layers
+- [[topics/models-becoming-execution-layers|Models Becoming Execution Layers]]
 
 ## Sources
 

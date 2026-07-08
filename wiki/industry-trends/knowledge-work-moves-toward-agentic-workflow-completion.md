@@ -29,12 +29,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Knowledge-work tools are shifting from isolated drafting assistants toward systems that can help complete an entire workflow. The relevant unit is increasingly the chain from finding inputs to coordinating tasks, producing artifacts, checking quality, and securing approval. This matters because the real bottleneck in many organizations is handoff friction, not raw generation speed.
 
-## Related Trends
-
-- artifact-first-ai-workflows
-- ai-products-shift-from-models-to-systems
-- knowledge-systems-shift-toward-compilation-over-retrieval
-
 ## Supporting Data Points
 
 - "more than 5 million weekly active users"
@@ -87,9 +81,9 @@ The evidence is vendor-authored and selective, so it does not prove that all kno
 
 ## Related pages
 
-- ai-products-shift-from-models-to-systems
-- artifact-first-ai-workflows
-- knowledge-systems-shift-toward-compilation-over-retrieval
+- [[industry-trends/artifact-first-ai-workflows|Artifact-First AI Workflows]]
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
+- [[industry-trends/knowledge-systems-shift-toward-compilation-over-retrieval|Knowledge Systems Shift Toward Compilation Over Retrieval]]
 
 ## Sources
 

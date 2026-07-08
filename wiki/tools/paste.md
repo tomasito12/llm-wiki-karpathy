@@ -43,12 +43,6 @@ A clipboard manager that stores copied text, images, links, and code snippets so
 
 Clipboard managers are a mature app category, and the article treats Paste as a polished example of that pattern. The author's language suggests long-term daily use rather than novelty. As of 2026-04-17, it reads as a well-established utility with clear recurring demand.
 
-## Related Tools
-
-- PurePaste
-- Alfred
-- Raycast
-
 ## Strengths
 
 - Stores clipboard history instead of only the most recent copy, which prevents accidental data loss from overwritten snippets.
@@ -85,9 +79,8 @@ The article does not address privacy, retention controls, sync behavior, or whet
 
 ## Related pages
 
-- Alfred
-- PurePaste
-- Raycast
+- [[tools/purepaste|PurePaste]]
+- [[tools/raycast|Raycast]]
 
 ## Sources
 

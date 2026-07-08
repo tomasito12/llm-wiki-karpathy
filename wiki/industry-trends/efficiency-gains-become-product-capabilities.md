@@ -25,12 +25,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Efficiency improvements in inference, memory, latency, and architecture can become a product capability when they unlock deployments that were previously constrained by serving costs. In this source, that shows up in two narrow cases: TurboQuant’s KV-cache compression makes long-context serving cheaper and faster, and the new voice releases reduce latency and pipeline complexity enough to change what can be shipped in real time and under data-sovereignty constraints. The broader pattern is that when compute or memory is the bottleneck, efficiency gains are not just margin improvements; they expand the feasible product surface area.
 
-## Related Trends
-
-- transport-layer-optimization-becomes-critical-for-agent-latency
-- models-becoming-execution-layers
-- stable-api-names-no-longer-guarantee-stable-model-behavior
-
 ## Supporting Data Points
 
 - TurboQuant claims 3-bit KV cache compression with zero measurable accuracy loss.
@@ -67,9 +61,9 @@ This is a source-grounded generalization, not a universal law: efficiency only b
 
 ## Related pages
 
-- models-becoming-execution-layers
-- stable-api-names-no-longer-guarantee-stable-model-behavior
-- transport-layer-optimization-becomes-critical-for-agent-latency
+- [[industry-trends/transport-layer-optimization-becomes-critical-for-agent-latency|Transport-Layer Optimization Becomes Critical for Agent Latency]]
+- [[industry-trends/models-becoming-execution-layers|Models Become Execution Layers]]
+- [[industry-trends/stable-api-names-no-longer-guarantee-stable-model-behavior|Stable API names no longer guarantee stable model behavior]]
 
 ## Sources
 

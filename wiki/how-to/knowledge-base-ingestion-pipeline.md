@@ -48,12 +48,6 @@ The article is prescriptive but does not quantify the tradeoffs between differen
 - A set of representative user queries for validation.
 - A process for tracking freshness or source changes.
 
-## Related Howtos
-
-- two-pass-document-ingestion
-- semantic-caching
-- context-compaction
-
 ## Evidence / supporting sources
 
 ### How to Build an Efficient Knowledge Base for AI Models (2026-05-04)
@@ -82,9 +76,9 @@ The article is prescriptive but does not quantify the tradeoffs between differen
 
 ## Related pages
 
-- context-compaction
-- semantic-caching
-- two-pass-document-ingestion
+- [[how-to/two-pass-document-ingestion|Two-Pass Document Ingestion]]
+- [[how-to/semantic-caching|Semantic Caching]]
+- [[how-to/context-compaction|Context Compaction]]
 
 ## Sources
 

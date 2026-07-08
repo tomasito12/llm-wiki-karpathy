@@ -47,10 +47,6 @@ Graphify is an open-source tool that turns a project folder into a connected kno
 
 The piece frames Graphify as a popular open-source project, and it claims tens of thousands of GitHub stars, which is a useful adoption signal but not proof of durable product quality. The presence of a CLI install flow, cached reruns, and multiple output formats suggests a tool that has moved beyond a toy demo. As of 2026-05-02, it looks like a practical developer tool with enough packaging to try in real workflows, but the article does not provide enterprise evidence.
 
-## Related Tools
-
-- Claude Code
-
 ## Strengths
 
 - Builds a connected knowledge graph from a folder, which matters because code navigation improves when relationships are explicit rather than implicit.
@@ -88,7 +84,7 @@ The article’s evidence is mostly product-style description plus one quantified
 
 ## Related pages
 
-- Claude Code
+- [[tools/claude-code|Claude Code]]
 
 ## Sources
 

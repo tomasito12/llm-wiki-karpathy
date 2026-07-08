@@ -41,10 +41,6 @@ The source describes Alibaba integrating Qwen with Taobao, ByteDance preparing a
 
 The most reusable lesson is that super-apps are strong agent hosts because they already concentrate identity, payments, and third-party workflows. That makes them a natural environment for execution-oriented agents, but also a hard environment for rivals to displace.
 
-## Related Topics
-
-- intent-driven-commerce-interfaces
-
 ## Evidence / supporting sources
 
 ### AI super-apps are remaking China’s internet (2026-05-17)
@@ -65,7 +61,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- intent-driven-commerce-interfaces
+- [[topics/intent-driven-commerce-interfaces|Intent-Driven Commerce Interfaces]]
 
 ## Sources
 

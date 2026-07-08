@@ -36,11 +36,6 @@ An open agent platform is designed to connect into existing customer systems rat
 
 Treat openness as a deployment primitive: the question is not only whether the agent works, but whether it can be inserted, configured, and later swapped without rebuilding the support stack.
 
-## Related Topics
-
-- support-automation-as-operating-model
-- enterprise-ai-layer
-
 ## Evidence / supporting sources
 
 ### Extending Fin as the most open Agent platform (2026-06-09)
@@ -60,8 +55,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- enterprise-ai-layer
-- support-automation-as-operating-model
+- [[topics/support-automation-as-operating-model|Support Automation as Operating Model]]
+- [[topics/enterprise-ai-layer|Enterprise AI Layer]]
 
 ## Sources
 

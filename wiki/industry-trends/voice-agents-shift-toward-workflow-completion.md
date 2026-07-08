@@ -37,14 +37,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Voice systems are moving toward completing tasks inside the conversation, rather than acting as a thin speech front end. The important change is the combination of reasoning, tool use, interruption handling, and conversational continuity in one loop. That makes the product boundary the whole live workflow, not just transcription or synthesis quality.
 
-## Related Trends
-
-- harness-design-becomes-more-important-for-agent-reliability
-- realtime-voice-agents-shift-to-integration-work
-- verification-loops-become-central-to-ai-workflows
-- support-automation-shifts-toward-agentic-workflow-completion
-- ai-products-shift-from-models-to-systems
-
 ## Supporting Data Points
 
 - GPT-Realtime-2 is described as supporting tool use, interruption recovery, longer context, and controllable preambles.
@@ -127,11 +119,11 @@ Evidence is still a mix of vendor claims, benchmark reports, and early product i
 
 ## Related pages
 
-- ai-products-shift-from-models-to-systems
-- harness-design-becomes-more-important-for-agent-reliability
-- realtime-voice-agents-shift-to-integration-work
-- support-automation-shifts-toward-agentic-workflow-completion
-- verification-loops-become-central-to-ai-workflows
+- [[industry-trends/harness-design-becomes-more-important-for-agent-reliability|Agent reliability is shifting toward harness design]]
+- [[industry-trends/realtime-voice-agents-shift-to-integration-work|Realtime Voice Agents Shift Toward Integration Work]]
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
+- [[industry-trends/support-automation-shifts-toward-agentic-workflow-completion|Support Automation Shifts Toward Workflow Completion]]
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 
 ## Sources
 

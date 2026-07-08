@@ -42,11 +42,6 @@ An OpenAI-compatible local endpoint lets downstream tools, agents, and UIs talk 
 
 Treat API compatibility as a first-class design constraint. If local models can present the same contract as cloud models, you can swap inference backends without rebuilding the rest of the workflow.
 
-## Related Topics
-
-- layered-ai-architecture
-- local-model-deployment
-
 ## Evidence / supporting sources
 
 ### I Finally Have My Dream Local AI Stack (and it runs on AMD) (2026-04-25)
@@ -75,8 +70,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- layered-ai-architecture
-- local-model-deployment
+- [[topics/layered-ai-architecture|Layered AI Architecture]]
+- [[topics/local-model-deployment|Local Model Deployment]]
 
 ## Sources
 

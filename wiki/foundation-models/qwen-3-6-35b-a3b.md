@@ -44,11 +44,6 @@ The article implies better inference efficiency than a dense 31B model because o
 
 Qwen
 
-## Related Models
-
-- Gemma 4
-- Claude
-
 ## Service automation implications
 
 The source does not discuss customer support or voice automation directly. The closest implication is for private, on-device task automation where tool use and local data handling matter more than conversational polish.
@@ -79,8 +74,8 @@ The source is cautious that some benchmark numbers are Qwen-published rather tha
 
 ## Related pages
 
-- Claude
-- Gemma 4
+- [[foundation-models/gemma-4|Gemma 4]]
+- [[foundation-models/claude|Claude]]
 
 ## Sources
 

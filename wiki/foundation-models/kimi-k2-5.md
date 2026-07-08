@@ -58,12 +58,6 @@ No explicit price is given. The article’s emphasis on only 32 billion active p
 
 Moonshot AI
 
-## Related Models
-
-- DeepSeek V4
-- Mercury 2
-- GPT-5.5
-
 ## Service automation implications
 
 The combination of native multimodality, structured code generation from screenshots, and multi-agent orchestration points toward automation systems that can ingest diverse inputs and break them into parallelizable work. That makes it relevant for internal analyst assistants, content or product operations, and semi-autonomous research agents. Because the article frames it as open and frontier-capable, it may also be attractive for teams that want more control over model integration than a proprietary API usually offers.
@@ -103,9 +97,9 @@ The strongest operational claim in the source is that Kimi K2.5 pairs broad capa
 
 ## Related pages
 
-- DeepSeek V4
-- GPT-5.5
-- Mercury 2
+- [[foundation-models/deepseek-v4|DeepSeek V4]]
+- [[foundation-models/mercury-2|Mercury 2]]
+- [[foundation-models/gpt-5-5|GPT-5.5]]
 
 ## Sources
 

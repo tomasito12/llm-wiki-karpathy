@@ -66,13 +66,6 @@ The source implies that higher-end model usage sits behind Claude Code’s paid 
 
 Anthropic
 
-## Related Models
-
-- Sonnet 4.6
-- Gemini 3 Pro
-- GPT-OSS 120B
-- Haiku
-
 ## Service automation implications
 
 No direct service automation implications are discussed for Opus 4.6 in this source.
@@ -136,10 +129,8 @@ The article does not provide a separate performance evaluation for Opus 4.6. Its
 
 ## Related pages
 
-- GPT-OSS 120B
-- Gemini 3 Pro
-- Haiku
-- Sonnet 4.6
+- [[foundation-models/sonnet-4-6|Sonnet 4.6]]
+- [[foundation-models/gemini-3-pro|Gemini 3 Pro]]
 
 ## Sources
 

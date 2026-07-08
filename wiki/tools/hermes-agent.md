@@ -57,11 +57,6 @@ Hermes Agent is an open-source, self-hosted AI agent that runs on your own serve
 
 As of 2026-04-14, the project is described as newly launched in February 2026 and already widely discussed, with over 64,000 GitHub stars cited in the source. The article also says version 0.8.0 shipped on April 8, 2026, which signals active development rather than long-term maturity. That makes it promising but still early-stage for production-critical adoption.
 
-## Related Tools
-
-- OpenClaw
-- Ollama
-
 ## Strengths
 
 - The closed learning loop lets the agent extract successful procedures into reusable Skills, which matters when the same workflow repeats across days or weeks.
@@ -119,8 +114,8 @@ The system is still young, so the article itself warns that version 0.8.0 is ear
 
 ## Related pages
 
-- Ollama
-- OpenClaw
+- [[tools/openclaw|OpenClaw]]
+- [[tools/ollama|Ollama]]
 
 ## Sources
 

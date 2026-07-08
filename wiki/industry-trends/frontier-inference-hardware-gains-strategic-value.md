@@ -25,11 +25,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 AI infrastructure vendors gain strategic value when they can credibly serve frontier-scale inference workloads in production. The practical shift is from judging chips by abstract architectural elegance to judging them by whether they can support large-model serving with acceptable economics, latency, and operational fit. This can elevate nonstandard hardware stacks when inference demand becomes a bottleneck.
 
-## Related Trends
-
-- ai-infrastructure-scarcity-spreads-beyond-gpus
-- inference-efficiency-moves-toward-low-precision-hardware
-
 ## Supporting Data Points
 
 - Cerebras ended at a $60 billion market cap in the article’s discussion.
@@ -64,8 +59,8 @@ The source offers strong commentary but thin independent validation. There are n
 
 ## Related pages
 
-- ai-infrastructure-scarcity-spreads-beyond-gpus
-- inference-efficiency-moves-toward-low-precision-hardware
+- [[industry-trends/ai-infrastructure-scarcity-spreads-beyond-gpus|AI Infrastructure Scarcity Spreads Beyond GPUs]]
+- [[industry-trends/inference-efficiency-moves-toward-low-precision-hardware|Inference Efficiency Moves Toward Low-Precision Hardware]]
 
 ## Sources
 

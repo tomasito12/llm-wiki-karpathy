@@ -37,10 +37,6 @@ A menu bar reminder app that displays a single important item at a time. It is i
 
 The article treats it as a simple, established utility rather than a high-growth product. As of 2025-12-31, there is no evidence in the source about ecosystem depth or enterprise adoption.
 
-## Related Tools
-
-- Hidden Bar
-
 ## Strengths
 
 - Keeps one priority visible in the menu bar, which is useful when the user needs a persistent nudge without extra workflow overhead.
@@ -72,7 +68,7 @@ The source does not describe syncing, notification behavior, or multi-item suppo
 
 ## Related pages
 
-- Hidden Bar
+- [[tools/hidden-bar|Hidden Bar]]
 
 ## Sources
 

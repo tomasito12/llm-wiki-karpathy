@@ -25,10 +25,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Local desktop tools can substitute for paid cloud speech products when the use case is personal, developer-facing, or otherwise narrow enough that local execution is acceptable. The pattern typically combines offline operation, local storage, and API access to lower ongoing cost and reduce dependency on external vendors. It is less compelling for multi-tenant shared services where scale, uptime, and managed infrastructure matter more than subscription savings.
 
-## Related Trends
-
-- models-becoming-execution-layers
-
 ## Supporting Data Points
 
 - Voicebox costs nothing per call.
@@ -63,7 +59,7 @@ The evidence comes from one hands-on review of a single product, so it does not 
 
 ## Related pages
 
-- models-becoming-execution-layers
+- [[industry-trends/models-becoming-execution-layers|Models Become Execution Layers]]
 
 ## Sources
 

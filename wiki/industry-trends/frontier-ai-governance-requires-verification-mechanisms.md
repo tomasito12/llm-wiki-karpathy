@@ -25,12 +25,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Frontier AI governance is moving from broad principles toward verification mechanisms that can be tested, audited, and independently checked. The source emphasizes that when advanced AI is strategically sensitive, trust alone is not enough: policymakers may need common safety tests, evidence sharing, inspections, and monitoring of data-center activity to make agreements credible. The narrower point is that cross-border frontier-AI oversight increasingly depends on verifiable compliance rather than aspirational statements.
 
-## Related Trends
-
-- machine-readable-testing-intent
-- behavioral-regressions-need-qualitative-audits
-- tiered-access-for-sensitive-model-capabilities
-
 ## Supporting Data Points
 
 - Three cooperation modes are outlined: dialogue, shared testing, and formal verification.
@@ -67,9 +61,9 @@ This is a policy analysis rather than evidence of implemented governance, so it 
 
 ## Related pages
 
-- behavioral-regressions-need-qualitative-audits
-- machine-readable-testing-intent
-- tiered-access-for-sensitive-model-capabilities
+- [[industry-trends/machine-readable-testing-intent|Machine-Readable Testing Intent]]
+- [[industry-trends/behavioral-regressions-need-qualitative-audits|Behavioral Regressions Need Qualitative Audits]]
+- [[industry-trends/tiered-access-for-sensitive-model-capabilities|Tiered Access for Sensitive Model Capabilities]]
 
 ## Sources
 

@@ -35,10 +35,6 @@ Passive context capture is a workflow pattern where software observes ongoing wo
 
 Use passive capture when the value of retained context is high and the cost of manual entry is too disruptive. The design challenge is not only collecting more signals, but deciding what to keep, what to surface, and what users must be able to verify later.
 
-## Related Topics
-
-- manual-capture-friction
-
 ## Evidence / supporting sources
 
 ### I Tried Every “Second Brain” App. The Concept Is the Problem, Not the Tools. (2026-04-01)
@@ -57,7 +53,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- manual-capture-friction
+- [[topics/manual-capture-friction|Manual Capture Friction]]
 
 ## Sources
 

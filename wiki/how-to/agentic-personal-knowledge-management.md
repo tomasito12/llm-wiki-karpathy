@@ -70,13 +70,6 @@ This only works well if the vault is organized enough for the agent to navigate.
 - A model or agent that can read local context and generate structured summaries.
 - A willingness to maintain the instruction file and folder discipline.
 
-## Related Howtos
-
-- file-native-ai-workflows
-- agent-orchestration
-- knowledge-base-ingestion-pipeline
-- agent-maintained-knowledge-bases
-
 ## Evidence / supporting sources
 
 ### How I Built an AI Second Brain Using Claude Code and Obsidian (2026-05-03)
@@ -139,10 +132,8 @@ This only works well if the vault is organized enough for the agent to navigate.
 
 ## Related pages
 
-- agent-maintained-knowledge-bases
-- agent-orchestration
-- file-native-ai-workflows
-- knowledge-base-ingestion-pipeline
+- [[how-to/knowledge-base-ingestion-pipeline|Knowledge Base Ingestion Pipeline]]
+- [[how-to/agent-maintained-knowledge-bases|Agent-Maintained Knowledge Bases]]
 
 ## Sources
 

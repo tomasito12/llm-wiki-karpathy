@@ -37,11 +37,6 @@ Support automation becomes more valuable when it resolves customer requests end 
 
 Measure agents by completed workflows, not just response quality. The most useful automation is the one that removes an entire handoff or manual lookup from the support path.
 
-## Related Topics
-
-- agent-connectivity-layering
-- support-automation-as-operating-model
-
 ## Evidence / supporting sources
 
 ### How to make the case for giving your AI Agent system access (2026-06-11)
@@ -61,8 +56,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-connectivity-layering
-- support-automation-as-operating-model
+- [[topics/agent-connectivity-layering|Agent Connectivity Layering]]
+- [[topics/support-automation-as-operating-model|Support Automation as Operating Model]]
 
 ## Sources
 

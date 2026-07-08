@@ -24,10 +24,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 A knowledge system can be designed so that an LLM does not merely answer questions over documents but actively maintains the corpus by writing summaries, cross-links, and updates. The pattern depends on a generated middle layer between immutable raw sources and human reading surfaces. It is most relevant where repeated synthesis matters more than one-off retrieval.
 
-## Related Trends
-
-- knowledge-base-becomes-runtime-infrastructure
-
 ## Supporting Data Points
 
 - 34 sources ingested in two weeks
@@ -62,7 +58,7 @@ The evidence is anecdotal and small-scale, so it is unclear how well the pattern
 
 ## Related pages
 
-- knowledge-base-becomes-runtime-infrastructure
+- [[industry-trends/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]]
 
 ## Sources
 

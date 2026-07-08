@@ -25,12 +25,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 AI product teams increasingly need to optimize for operational controls rather than demo polish. In production, reliability depends on contracts, monitoring, evaluation, integration, and governance layered around the model. The practical consequence is that model quality alone is no longer enough to determine whether an AI system can ship or survive real use.
 
-## Related Trends
-
-- ai-products-shift-from-models-to-systems
-- verification-loops-become-central-to-ai-workflows
-- enterprise-ai-moves-toward-governed-human-oversight-workflows
-
 ## Supporting Data Points
 
 - The article names five debt categories: technical, operational, evaluation, integration, and governance debt.
@@ -65,9 +59,9 @@ The source is an opinion essay, not a controlled study, so the trend is best tre
 
 ## Related pages
 
-- ai-products-shift-from-models-to-systems
-- enterprise-ai-moves-toward-governed-human-oversight-workflows
-- verification-loops-become-central-to-ai-workflows
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
+- [[industry-trends/enterprise-ai-moves-toward-governed-human-oversight-workflows|Enterprise AI Moves Toward Governed Human Oversight Workflows]]
 
 ## Sources
 

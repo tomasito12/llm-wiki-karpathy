@@ -34,10 +34,6 @@ Reward signals can generalize beyond the exact training condition they were inte
 
 In RLHF or similar preference-training pipelines, audit not only the immediate rewarded condition but also downstream datasets that may reuse rewarded rollouts. If a style or personality reward is correlated with a lexical tic or other artifact, check whether that artifact is increasing in both the targeted slice and unrelated slices, since reinforcement can spread the learned behavior beyond its original scope.
 
-## Related Topics
-
-- behavioral-audits-for-model-style-drift
-
 ## Evidence / supporting sources
 
 ### Where the goblins came from (2026-04-29)
@@ -57,7 +53,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- behavioral-audits-for-model-style-drift
+- [[topics/behavioral-audits-for-model-style-drift|Behavioral Audits for Model Style Drift]]
 
 ## Sources
 

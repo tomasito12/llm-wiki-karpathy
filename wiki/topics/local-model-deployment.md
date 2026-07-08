@@ -52,12 +52,6 @@ Local model deployment is the practice of running AI models on a user-controlled
 
 Treat local deployment as a hardware-constrained operating model, not just a packaging choice. The practical questions are whether the model can fit, whether it can be called locally from code, and whether the developer experience is simple enough to encourage repeated use.
 
-## Related Topics
-
-- self-hosted-ai-economics
-- privacy-controls-for-ai-products
-- context-engineering
-
 ## Evidence / supporting sources
 
 ### How To Run an Open-Source LLM on Your Personal Computer (2025-11-11)
@@ -109,9 +103,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- context-engineering
-- privacy-controls-for-ai-products
-- self-hosted-ai-economics
+- [[topics/privacy-controls-for-ai-products|Privacy Controls for AI Products]]
+- [[topics/context-engineering|Context Engineering]]
 
 ## Sources
 

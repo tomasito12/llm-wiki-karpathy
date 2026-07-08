@@ -47,13 +47,6 @@ A plugin for Obsidian that turns vault structure into typed, machine-readable da
 
 As of 2026-05-15, this reads as a productized workflow layer rather than a narrow experiment. The presence of a plugin, CLI, MCP server, templates, and structured note types suggests a fairly complete local ecosystem, but the evidence is still self-reported by the creator. The source does not show third-party adoption data, so enterprise maturity is unclear.
 
-## Related Tools
-
-- Obsidian
-- Model Context Protocol
-- Claude Code
-- Codex
-
 ## Strengths
 
 - It formalizes note structure into typed data, which helps agents reason over the vault with fewer ad hoc conventions.
@@ -93,10 +86,9 @@ The article does not provide evidence about security, permissioning, or failure 
 
 ## Related pages
 
-- Claude Code
-- Codex
-- Model Context Protocol
-- Obsidian
+- [[tools/obsidian|Obsidian]]
+- [[tools/claude-code|Claude Code]]
+- [[tools/codex|Codex]]
 
 ## Sources
 

@@ -24,11 +24,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Agent systems are moving from implicit chat-based behavior toward explicit, reviewable contracts that define required inputs, expected outputs, and proof of completion. This reduces dependence on session memory and makes workflows easier to version and rerun. The practical effect is that repeatability becomes a property of the workflow artifact rather than of a lucky interaction.
 
-## Related Trends
-
-- verification-loops-become-central-to-ai-workflows
-- workflow-restructuring-around-ai-agents
-
 ## Supporting Data Points
 
 - `*.prose.md` files are treated as reviewable program artifacts.
@@ -63,8 +58,8 @@ The evidence is a single practitioner report, so it shows a plausible workflow s
 
 ## Related pages
 
-- verification-loops-become-central-to-ai-workflows
-- workflow-restructuring-around-ai-agents
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]]
 
 ## Sources
 

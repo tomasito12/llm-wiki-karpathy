@@ -39,11 +39,6 @@ A video creation tool that the article describes as combining multiple generatio
 
 The source presents it as a complete toolkit rather than a novelty feature, which suggests a product aimed at repeated use. The mention of setup time in seconds and first output in minutes implies a streamlined user experience. Evidence remains mostly experiential, so the maturity signal is useful but not conclusive.
 
-## Related Tools
-
-- Lovable
-- Gumloop
-
 ## Strengths
 
 - The tool bundles generation and finishing steps together, which matters because video work often breaks across multiple applications.
@@ -78,8 +73,7 @@ The writeup gives little detail about consistency, control limits, or how output
 
 ## Related pages
 
-- Gumloop
-- Lovable
+- [[tools/lovable|Lovable]]
 
 ## Sources
 

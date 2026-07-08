@@ -45,12 +45,6 @@ GBrain is a knowledge backend for AI agents that indexes markdown repositories i
 
 The repo presents GBrain as a production-oriented system rather than a prototype, with CLI commands, MCP tools, schema details, and installation paths. The source also describes a real deployment with thousands of pages and long-running maintenance, which is a meaningful operational signal, but it remains a single-vendor self-description rather than third-party validation. As of the source publication date, it looks like a niche but serious developer tool for agent memory workflows.
 
-## Related Tools
-
-- OpenClaw
-- Obsidian
-- Claude Code
-
 ## Strengths
 
 - Uses a git-backed markdown repository as the source of truth, which keeps human editability while giving agents a structured memory layer.
@@ -90,9 +84,9 @@ The source does not provide independent benchmarks, failure rates, or retrieval-
 
 ## Related pages
 
-- Claude Code
-- Obsidian
-- OpenClaw
+- [[tools/openclaw|OpenClaw]]
+- [[tools/obsidian|Obsidian]]
+- [[tools/claude-code|Claude Code]]
 
 ## Sources
 

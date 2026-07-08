@@ -24,11 +24,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Policy attention can move ahead of measurable unemployment when stakeholders expect a technology to reallocate income and status quickly. The emerging pattern is to design redistribution, wage insurance, and transition support before labor-market damage becomes undeniable, because waiting for conclusive evidence may make the response politically too late. This is a governance trend about timing: institutions try to pre-build mitigation for AI-driven labor shock rather than react after a crisis is fully recorded.
 
-## Related Trends
-
-- ai-redistribution-through-taxation-and-ownership
-- automation-pressures-governments-to-tax-capital-instead-of-labor
-
 ## Supporting Data Points
 
 - No clear labor-market evidence of large AI job destruction as of 2026-05-14.
@@ -63,8 +58,7 @@ The underlying jobs shock is not established in the source text; the trend is pr
 
 ## Related pages
 
-- ai-redistribution-through-taxation-and-ownership
-- automation-pressures-governments-to-tax-capital-instead-of-labor
+- [[industry-trends/automation-pressures-governments-to-tax-capital-instead-of-labor|Automation Pressures Governments to Tax Capital Instead of Labor]]
 
 ## Sources
 

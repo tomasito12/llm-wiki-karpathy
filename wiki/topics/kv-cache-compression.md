@@ -47,10 +47,6 @@ Compressing the key-value cache is a direct lever on long-context inference effi
 
 Treat KV cache compression as an infrastructure optimization that can change serving economics without retraining the model, but validate it across the exact workloads and hardware that matter.
 
-## Related Topics
-
-- quantization-axes-for-neural-networks
-
 ## Evidence / supporting sources
 
 ### Quantized Neural Networks: The Only Guide You Need (2026-04-17)
@@ -90,7 +86,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- quantization-axes-for-neural-networks
+No related pages captured.
 
 ## Sources
 

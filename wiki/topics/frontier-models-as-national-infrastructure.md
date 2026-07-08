@@ -37,12 +37,6 @@ Frontier AI can function as strategic infrastructure when states treat compute, 
 
 When frontier AI is treated as strategic infrastructure, decisions about release, openness, safety testing, and access control stop being purely commercial and become policy and security choices.
 
-## Related Topics
-
-- state-control-over-ai-supply-chains
-- verifiable-ai-governance
-- ai-safety-talks-as-geopolitical-bargaining
-
 ## Evidence / supporting sources
 
 ### AI creates a fearsome cold-war-style dilemma (2026-05-09)
@@ -63,9 +57,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- ai-safety-talks-as-geopolitical-bargaining
-- state-control-over-ai-supply-chains
-- verifiable-ai-governance
+- [[topics/state-control-over-ai-supply-chains|State Control Over AI Supply Chains]]
+- [[topics/verifiable-ai-governance|Verifiable AI Governance]]
 
 ## Sources
 

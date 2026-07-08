@@ -31,13 +31,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Documentation systems are shifting from manually maintained notes or purely query-time retrieval toward pipelines where an agent continuously compiles, updates, and checks the knowledge base. The important change is not just automation, but making the documentation artifact itself part of the runtime loop. That can improve consistency and reduce the bookkeeping burden of keeping links, summaries, and claims current. The pattern is most relevant where source material changes often and the knowledge base is expected to compound over time.
 
-## Related Trends
-
-- artifact-first-ai-workflows
-- knowledge-base-becomes-runtime-infrastructure
-- verification-loops-become-central-to-ai-workflows
-- harness-design-becomes-more-important-for-agent-reliability
-
 ## Supporting Data Points
 
 - The workflow includes ingest, query, and lint operations.
@@ -104,10 +97,10 @@ The evidence comes from one article and one implementation example, so it does n
 
 ## Related pages
 
-- artifact-first-ai-workflows
-- harness-design-becomes-more-important-for-agent-reliability
-- knowledge-base-becomes-runtime-infrastructure
-- verification-loops-become-central-to-ai-workflows
+- [[industry-trends/artifact-first-ai-workflows|Artifact-First AI Workflows]]
+- [[industry-trends/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]]
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
+- [[industry-trends/harness-design-becomes-more-important-for-agent-reliability|Agent reliability is shifting toward harness design]]
 
 ## Sources
 

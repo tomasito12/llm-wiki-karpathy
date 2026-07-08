@@ -29,13 +29,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Inbound sales workflows are shifting from human-led first response toward AI agents that can start the conversation, ask qualifying questions, and route the lead before a rep intervenes. The structural change is that speed-to-lead becomes a machine responsibility, while humans focus on the leads that clear the routing threshold. This pattern is especially relevant for web-based inbound motions where intent can decay quickly. It also pushes sales systems toward structured intake instead of free-form chat.
 
-## Related Trends
-
-- enterprise-agents-move-into-customer-infrastructure
-- workflow-restructuring-around-ai-agents
-- support-automation-becomes-a-growth-function
-- workflow-based-evaluation
-
 ## Supporting Data Points
 
 - Intercom says early customers saw close/win rates of nearly 50% in the first month.
@@ -104,10 +97,10 @@ The evidence comes from a single vendor announcement with customer-selected exam
 
 ## Related pages
 
-- enterprise-agents-move-into-customer-infrastructure
-- support-automation-becomes-a-growth-function
-- workflow-based-evaluation
-- workflow-restructuring-around-ai-agents
+- [[industry-trends/enterprise-agents-move-into-customer-infrastructure|Enterprise Agents Move Into Customer Infrastructure]]
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]]
+- [[industry-trends/support-automation-becomes-a-growth-function|Support Automation Becomes a Growth Function]]
+- [[industry-trends/workflow-based-evaluation|AI Evaluation Moves Toward Workflow-Based Testing]]
 
 ## Sources
 

@@ -83,8 +83,7 @@ If a failure is costly, add a gate before the model acts: validate permissions, 
 
 ## Related pages
 
-- Context Engineering
-- Harness
+- [[glossary/harness|Harness]]
 
 ## Sources
 

@@ -47,11 +47,6 @@ The source does not describe transcription errors, speaker diarization, or how t
 - A task board or note system
 - A review habit for extracted tasks
 
-## Related Howtos
-
-- workflow-design
-- knowledge-systems
-
 ## Evidence / supporting sources
 
 ### 7 Simple AI Projects You Can Build This Week (2026-05-18)
@@ -78,8 +73,7 @@ The source does not describe transcription errors, speaker diarization, or how t
 
 ## Related pages
 
-- knowledge-systems
-- workflow-design
+No related pages captured.
 
 ## Sources
 

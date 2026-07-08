@@ -49,14 +49,6 @@ No pricing or inference-cost information is given. The article only supports the
 
 Qwen
 
-## Related Models
-
-- Gemma 4
-- GLM-5 / GLM-4.7
-- MiniMax M2.5 / M2.7
-- DeepSeek V3.2
-- GPT-oss 20B
-
 ## Service automation implications
 
 As of 2026-04-14, the article suggests Qwen 3.5 is a sensible local baseline to evaluate for service automation, but it gives no direct evidence on containment, handoff reduction, or support quality.
@@ -89,11 +81,7 @@ The source provides no benchmark data, deployment constraints, or task-specific 
 
 ## Related pages
 
-- DeepSeek V3.2
-- GLM-5 / GLM-4.7
-- GPT-oss 20B
-- Gemma 4
-- MiniMax M2.5 / M2.7
+- [[foundation-models/gemma-4|Gemma 4]]
 
 ## Sources
 

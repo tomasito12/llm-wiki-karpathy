@@ -36,10 +36,6 @@ In AI-assisted work, implementation is only half the job; the other half is chec
 
 Treat AI output as a draft that still needs a domain oracle. For production workflows, the reviewer should be the person who can detect invalid answers, not only the person who can judge code quality.
 
-## Related Topics
-
-- verification-loops-in-ai-workflows
-
 ## Evidence / supporting sources
 
 ### Domain Expertise Has Always Been the Real Moat (2026-05-30)
@@ -63,7 +59,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- verification-loops-in-ai-workflows
+- [[topics/verification-loops-in-ai-workflows|Verification Loops in AI Workflows]]
 
 ## Sources
 

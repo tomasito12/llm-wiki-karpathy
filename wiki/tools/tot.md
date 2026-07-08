@@ -42,12 +42,6 @@ A tiny menu bar notepad with seven colored dots, each acting as a separate text 
 
 The app appears to be a focused, stable utility for a very specific note-taking style. The article's description suggests it has enough staying power to be used daily, but it provides no ecosystem or enterprise signals. As of 2026-04-17, maturity evidence is limited to repeat personal use.
 
-## Related Tools
-
-- Obsidian
-- Apple Notes
-- Drafts
-
 ## Strengths
 
 - Its tiny interface lowers friction for short-lived notes and reference text.
@@ -82,9 +76,8 @@ The source implies that Tot is intentionally minimal, so it is not suited to lon
 
 ## Related pages
 
-- Apple Notes
-- Drafts
-- Obsidian
+- [[tools/obsidian|Obsidian]]
+- [[tools/apple-notes|Apple Notes]]
 
 ## Sources
 

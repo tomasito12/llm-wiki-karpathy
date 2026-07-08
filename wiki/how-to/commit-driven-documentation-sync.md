@@ -42,10 +42,6 @@ This works best when the code itself contains enough information to describe beh
 - A repo-local configuration file that selects doc types and file globs
 - A review process for human verification
 
-## Related Howtos
-
-- Local Model Deployment
-
 ## Evidence / supporting sources
 
 ### How I turned Andrej Karpathy’s LLM Wiki into a tool that writes wiki’s from code (2026-04-17)
@@ -70,7 +66,7 @@ This works best when the code itself contains enough information to describe beh
 
 ## Related pages
 
-- Local Model Deployment
+- [[how-to/local-model-deployment|Local Model Deployment]]
 
 ## Sources
 

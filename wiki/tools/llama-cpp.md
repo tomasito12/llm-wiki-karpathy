@@ -51,13 +51,6 @@ An open-source model serving and inference stack that can run local models throu
 
 The piece treats llama.cpp as a practical option rather than an experimental toy, because it became the working path after other servers failed. It also appears mature enough to be pinned, tuned, and integrated into Codex CLI profiles. At the same time, the article makes clear that it still demands hands-on debugging rather than one-click setup.
 
-## Related Tools
-
-- Ollama
-- Codex CLI
-- MLX
-- LM Studio
-
 ## Strengths
 
 - It can serve local models with enough control over context length, quantization, and GPU offload to make a 24 GB machine usable for an agentic coding workload.
@@ -121,10 +114,8 @@ The piece treats llama.cpp as a practical option rather than an experimental toy
 
 ## Related pages
 
-- Codex CLI
-- LM Studio
-- MLX
-- Ollama
+- [[tools/ollama|Ollama]]
+- [[tools/mlx|MLX]]
 
 ## Sources
 

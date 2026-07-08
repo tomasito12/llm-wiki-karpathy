@@ -41,10 +41,6 @@ AI products increasingly combine models, orchestration, interfaces, and workflow
 
 Teams building AI products should think in layers: managed app, embeddable service, and raw capability access. That makes it easier to satisfy both buyers who want simplicity and buyers who want control.
 
-## Related Topics
-
-- vertical-models
-
 ## Evidence / supporting sources
 
 ### Never stop disrupting yourself; introducing the Fin API platform (2026-04-02)
@@ -73,7 +69,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- vertical-models
+- [[topics/vertical-models|Vertical Models]]
 
 ## Sources
 

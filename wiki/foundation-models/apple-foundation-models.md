@@ -53,12 +53,6 @@ The runtime cost is described as zero per call, which makes it attractive for hi
 
 Apple
 
-## Related Models
-
-- qwen3:30b-a3b
-- Claude Opus 4.7
-- GPT-5.5
-
 ## Service automation implications
 
 Useful for low-latency routing, classification, structured field extraction, and simple summaries inside native service automation flows. That makes it a good fit for pre-processing support requests, deciding escalation paths, or filling structured slots before a heavier model is called. It is less suitable as the sole engine for complex support resolution.
@@ -92,9 +86,9 @@ The source frames it as a 3B model, so it is not the right choice when stronger 
 
 ## Related pages
 
-- Claude Opus 4.7
-- GPT-5.5
-- qwen3:30b-a3b
+- [[foundation-models/qwen3-30b-a3b|qwen3:30b-a3b]]
+- [[foundation-models/claude-opus-4-7|Claude Opus 4.7]]
+- [[foundation-models/gpt-5-5|GPT-5.5]]
 
 ## Sources
 

@@ -36,10 +36,6 @@ Operations summarization works best when the model has enough context to disting
 
 Use AI to preserve operational semantics, not just compress text. A good operational summary should preserve ownership, uncertainty, and decision state so it can be acted on without a second round of interpretation.
 
-## Related Topics
-
-- ops-artifact-generation
-
 ## Evidence / supporting sources
 
 ### ChatGPT for operations teams (2026-04-10)
@@ -59,7 +55,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- ops-artifact-generation
+- [[topics/ops-artifact-generation|Operational Artifact Generation]]
 
 ## Sources
 

@@ -45,11 +45,6 @@ This pattern depends on a model that can reliably follow tool instructions. The 
 - A search backend such as SearXNG
 - A browser-fetch backend such as camofox-browser
 
-## Related Howtos
-
-- Progressive Discovery for Agent Tools
-- Lazy-Loading Tools
-
 ## Evidence / supporting sources
 
 ### Build Your Own Local Web Browsing LLM Agent in 250 Lines of Python (2026-05-23)
@@ -75,8 +70,8 @@ user question -> search -> pick best URL -> fetch -> answer." (`60623d42e5c7` ·
 
 ## Related pages
 
-- Lazy-Loading Tools
-- Progressive Discovery for Agent Tools
+- [[how-to/progressive-discovery-for-agent-tools|Progressive Discovery for Agent Tools]]
+- [[how-to/lazy-loading-tools|Lazy-Loading Tools]]
 
 ## Sources
 

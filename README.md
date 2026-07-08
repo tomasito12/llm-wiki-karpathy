@@ -4,6 +4,8 @@ A self-maintaining personal knowledge base powered by LLMs, based on [Andrej Kar
 
 Instead of re-searching raw documents on every question (like RAG), the LLM **reads your sources once and builds a persistent, interlinked wiki** that compounds over time. The more sources you feed it, the richer and more connected it gets.
 
+The long-term goal is broader than browsing generated notes in Obsidian: the wiki should become a grounded second brain for local agents, project work, personal notes, meeting transcripts, and eventually team or API access. See [Second Brain Vision](docs/second-brain-vision.md).
+
 ---
 
 ## Prerequisites

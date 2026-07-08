@@ -38,10 +38,6 @@ The source describes endpoints on “localhost:17493” where “Every TTS engin
 
 Treat voice generation like a local infrastructure primitive when the use case is personal, developer-facing, or script-driven; do not assume cloud-grade fleet management or support.
 
-## Related Topics
-
-- agent-first-ide-orchestration
-
 ## Evidence / supporting sources
 
 ### Voicebox: The Open-Source Voice Studio That Just Made Two Paid SaaS Tools Optional (2026-05-09)
@@ -61,7 +57,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-first-ide-orchestration
+- [[topics/agent-first-ide-orchestration|Agent-First IDE Orchestration]]
 
 ## Sources
 

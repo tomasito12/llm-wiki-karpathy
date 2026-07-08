@@ -32,14 +32,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Agent quality is becoming increasingly dependent on the surrounding workflow architecture: tools, memory, sandboxing, recovery, and orchestration. As tasks get longer and more stateful, the execution layer matters more than a single prompt or model call. This shifts engineering attention toward harness design, workspace boundaries, and durable execution patterns.
 
-## Related Trends
-
-- harness-design-becomes-more-important-for-agent-reliability
-- models-becoming-execution-layers
-- artifact-first-ai-workflows
-- workflow-restructuring-around-ai-agents
-- persistent-agents
-
 ## Supporting Data Points
 
 - The SDK adds configurable memory, sandbox-aware orchestration, Codex-like filesystem tools, MCP tool use, skills, AGENTS.md instructions, shell execution, and apply patch edits.
@@ -110,11 +102,11 @@ This is a vendor-framed trend supported by one product announcement, not by inde
 
 ## Related pages
 
-- artifact-first-ai-workflows
-- harness-design-becomes-more-important-for-agent-reliability
-- models-becoming-execution-layers
-- persistent-agents
-- workflow-restructuring-around-ai-agents
+- [[industry-trends/harness-design-becomes-more-important-for-agent-reliability|Agent reliability is shifting toward harness design]]
+- [[industry-trends/models-becoming-execution-layers|Models Become Execution Layers]]
+- [[industry-trends/artifact-first-ai-workflows|Artifact-First AI Workflows]]
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]]
+- [[industry-trends/persistent-agents|Agents are shifting from stateless chat to memory-backed persistent work loops]]
 
 ## Sources
 

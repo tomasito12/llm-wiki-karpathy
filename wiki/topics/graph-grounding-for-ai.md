@@ -49,10 +49,6 @@ The source says a knowledge graph can model "accounts, transactions, past decisi
 
 Use a graph when the application needs explicit relationships, traceable sources, and deterministic updates rather than just semantically similar passages. Treat the LLM as an interface and extraction layer, not the source of truth.
 
-## Related Topics
-
-- knowledge-layer-architecture
-
 ## Evidence / supporting sources
 
 ### From Data to Intelligence: Why Every Enterprise Needs an AI Knowledge Layer (2026-04-09)
@@ -85,7 +81,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- knowledge-layer-architecture
+- [[topics/knowledge-layer-architecture|Knowledge Layer Architecture]]
 
 ## Sources
 

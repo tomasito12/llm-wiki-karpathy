@@ -70,11 +70,6 @@ types:
 
 Alibaba
 
-## Related Models
-
-- Claude 4.5 Opus
-- Qwen3.6–35B-A3B
-
 ## Service automation implications
 
 - The strongest service-automation fit is local multimodal and reasoning-heavy workflows where data cannot leave the machine, such as document review or image-based triage.
@@ -133,8 +128,7 @@ Alibaba
 
 ## Related pages
 
-- Claude 4.5 Opus
-- Qwen3.6–35B-A3B
+No related pages captured.
 
 ## Sources
 

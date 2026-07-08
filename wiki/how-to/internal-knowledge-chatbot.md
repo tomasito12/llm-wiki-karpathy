@@ -46,11 +46,6 @@ The source does not explain retrieval quality, source freshness, access control,
 - Permission to expose the documents to employees
 - A process for keeping source material current
 
-## Related Howtos
-
-- retrieval-systems
-- knowledge-systems
-
 ## Evidence / supporting sources
 
 ### 7 Simple AI Projects You Can Build This Week (2026-05-18)
@@ -76,8 +71,7 @@ The source does not explain retrieval quality, source freshness, access control,
 
 ## Related pages
 
-- knowledge-systems
-- retrieval-systems
+No related pages captured.
 
 ## Sources
 

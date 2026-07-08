@@ -29,12 +29,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Coding models are increasingly expected to do more than answer prompts or complete lines of code. They are being used in workflows where they inspect files, call tools, iterate on outputs, and participate in multi-step debugging or editing loops. That shifts the benchmark for usefulness from static completion quality toward integration with runtimes, editor harnesses, and local execution environments.
 
-## Related Trends
-
-- agent-tooling-shifts-from-prompting-to-workflow-architecture
-- models-becoming-execution-layers
-- models-become-execution-layers
-
 ## Supporting Data Points
 
 - The article shows a model calling local functions to list files and read a file.
@@ -89,9 +83,8 @@ The source is a practitioner guide, not a controlled longitudinal study, so the 
 
 ## Related pages
 
-- agent-tooling-shifts-from-prompting-to-workflow-architecture
-- models-become-execution-layers
-- models-becoming-execution-layers
+- [[industry-trends/agent-tooling-shifts-from-prompting-to-workflow-architecture|Agent Performance Shifts From Prompting to Workflow Architecture]]
+- [[industry-trends/models-becoming-execution-layers|Models Become Execution Layers]]
 
 ## Sources
 

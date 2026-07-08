@@ -41,11 +41,6 @@ The source describes reps asking, "Why did this reach me? Why couldn’t Fin res
 
 If the people closest to customers are not given a cheap way to record recurring problems, the organization loses its best signal for reducing repeat work. The durable design pattern is to make case review a source of product and knowledge updates.
 
-## Related Topics
-
-- support-automation-as-operating-model
-- knowledge-base-becomes-runtime-infrastructure
-
 ## Evidence / supporting sources
 
 ### Kaizen for the AI era: How small improvements build smarter support (2026-03-19)
@@ -66,8 +61,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- knowledge-base-becomes-runtime-infrastructure
-- support-automation-as-operating-model
+- [[topics/support-automation-as-operating-model|Support Automation as Operating Model]]
+- [[topics/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]]
 
 ## Sources
 

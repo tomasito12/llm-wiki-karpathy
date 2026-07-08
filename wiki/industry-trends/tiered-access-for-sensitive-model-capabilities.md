@@ -33,14 +33,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Providers expose high-risk or dual-use model capabilities through graduated access controls rather than uniform access. Verification, trust signals, and deployment constraints determine who can use more permissive or more powerful functions.
 
-## Related Trends
-
-- knowledge-base-becomes-runtime-infrastructure
-- frontier-ai-governance-requires-verification-mechanisms
-- high-risk-models-move-to-gated-access
-- stable-api-names-no-longer-guarantee-stable-model-behavior
-- ai-governance-shifts-toward-layered-verification
-
 ## Supporting Data Points
 
 - Trusted Access for Cyber is being scaled to thousands of verified individual defenders and hundreds of teams.
@@ -109,11 +101,11 @@ The source is a vendor blog, so the concrete access model and effectiveness of t
 
 ## Related pages
 
-- ai-governance-shifts-toward-layered-verification
-- frontier-ai-governance-requires-verification-mechanisms
-- high-risk-models-move-to-gated-access
-- knowledge-base-becomes-runtime-infrastructure
-- stable-api-names-no-longer-guarantee-stable-model-behavior
+- [[industry-trends/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]]
+- [[industry-trends/frontier-ai-governance-requires-verification-mechanisms|Frontier AI Governance Requires Verification Mechanisms]]
+- [[industry-trends/high-risk-models-move-to-gated-access|High-Risk Models Move to Gated Access]]
+- [[industry-trends/stable-api-names-no-longer-guarantee-stable-model-behavior|Stable API names no longer guarantee stable model behavior]]
+- [[industry-trends/provenance-becomes-layered-and-verifiable|AI Governance Shifts Toward Layered Verification]]
 
 ## Sources
 

@@ -36,10 +36,6 @@ Customer-facing AI systems increasingly need to operate across both voice and te
 
 Channel choice changes the system design, but the underlying workflow should stay stable. Build one service flow with channel-specific interaction handling rather than separate logic islands for voice and chat.
 
-## Related Topics
-
-- enterprise-conversational-ai-integration
-
 ## Evidence / supporting sources
 
 ### What Is Conversational AI? (2026-03-25)
@@ -58,7 +54,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- enterprise-conversational-ai-integration
+- [[topics/enterprise-conversational-ai-integration|Enterprise Conversational AI Integration]]
 
 ## Sources
 

@@ -25,10 +25,6 @@ synthesis_state: stage1-placeholder
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 A transport layer security gap is a protocol or connection path that lacks built-in authentication, identity verification, or safe command handling by default. In AI tool systems, this creates room for impersonation, malicious servers, and unsafe execution if the caller assumes trust that the transport does not enforce.
 
-## Related Terms
-
-- Model Context Protocol
-
 ## Relevance Note
 
 This concept shows up in any AI system that connects to tools, registries, or plugin ecosystems without strong identity and input controls. For service automation, it is a reminder that agent tooling needs explicit trust boundaries, not just functional connectivity.
@@ -49,7 +45,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- Model Context Protocol
+- [[glossary/model-context-protocol|Model Context Protocol]]
 
 ## Sources
 

@@ -26,10 +26,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Consumer AI products can move from a concentrated early-adopter base toward wider participation across age, geography, and demographic proxies. The underlying shift is not only more usage, but more distributed usage across segments that historically adopt at different speeds. This matters because broader distribution is a stronger signal of mainstreaming than aggregate growth alone. It also tends to change product requirements toward localization, accessibility, and repeatable workflows.
 
-## Related Trends
-
-- workflow-restructuring-around-ai-agents
-
 ## Supporting Data Points
 
 - Users with typically feminine names accounted for over half of users for whom gender could be inferred.
@@ -64,7 +60,7 @@ The evidence is vendor-authored consumer-plan telemetry and excludes Codex, ente
 
 ## Related pages
 
-- workflow-restructuring-around-ai-agents
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]]
 
 ## Sources
 

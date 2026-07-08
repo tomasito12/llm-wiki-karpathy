@@ -26,11 +26,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 AI agents are increasingly designed to retain identity, preferences, history, and prior work across sessions instead of behaving like stateless chat systems. The practical effect is that agent performance depends more on memory architecture, context organization, and long-lived workspace design. This trend matters because it changes AI from a prompt-response utility into a continuing work surface.
 
-## Related Trends
-
-- knowledge-systems-shift-toward-persistent-workspaces
-- workflow-restructuring-around-ai-agents
-
 ## Supporting Data Points
 
 - Persistent identity is explicitly part of the release.
@@ -65,8 +60,8 @@ Evidence is limited to one creator-built system, so it shows a credible product 
 
 ## Related pages
 
-- knowledge-systems-shift-toward-persistent-workspaces
-- workflow-restructuring-around-ai-agents
+- [[industry-trends/knowledge-systems-shift-toward-persistent-workspaces|Knowledge Systems Shift Toward Persistent Workspaces]]
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]]
 
 ## Sources
 

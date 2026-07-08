@@ -27,11 +27,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 A model that has been aligned to avoid verbatim copying can still be pushed toward regurgitation by post-training on tasks that require reconstructing source text. The mechanism matters: customization is not a monotonic safety improvement, and guardrails should be treated as version- and task-specific rather than permanent properties of the model.
 
-## Related Trends
-
-- ai-governance-shifts-toward-layered-verification
-- verification-loops-become-central-to-ai-workflows
-
 ## Supporting Data Points
 
 - GPT-4o without fine-tuning served as a baseline and produced 7.36 percent BMC@5
@@ -68,8 +63,8 @@ The evidence is strong for the specific experimental setup, but the article does
 
 ## Related pages
 
-- ai-governance-shifts-toward-layered-verification
-- verification-loops-become-central-to-ai-workflows
+- [[industry-trends/provenance-becomes-layered-and-verifiable|AI Governance Shifts Toward Layered Verification]]
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
 
 ## Sources
 

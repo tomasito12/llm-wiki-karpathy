@@ -39,12 +39,6 @@ An Obsidian search plugin that improves retrieval with ranked results, fuzzy mat
 
 The author treats it as a replacement for a painful default search experience, which suggests it addresses a real workflow gap. The article provides a concrete example of finding a note, a paragraph, and an exact mention, but no broader adoption evidence. As of 2026-04-18, it appears practically useful for individual knowledge work, with maturity evidence limited to user experience.
 
-## Related Tools
-
-- Obsidian
-- Make.md
-- QuickAdd
-
 ## Strengths
 
 - Ranked results help surface the most relevant note instead of returning a flat list of keyword matches.
@@ -79,9 +73,9 @@ The article does not discuss indexing limits, search accuracy edge cases, or how
 
 ## Related pages
 
-- Make.md
-- Obsidian
-- QuickAdd
+- [[tools/obsidian|Obsidian]]
+- [[tools/make-md|Make.md]]
+- [[tools/quickadd|QuickAdd]]
 
 ## Sources
 

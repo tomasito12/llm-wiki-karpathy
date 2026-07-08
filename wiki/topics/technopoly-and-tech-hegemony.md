@@ -36,10 +36,6 @@ Technopoly is a governance and culture pattern in which technology is treated as
 
 For AI systems, the practical takeaway is to check whether a product or policy is being justified because it is technically convenient rather than because it produces better outcomes for users, operators, or the public. When technology becomes the only legitimate frame, constraint-setting gets harder and incumbent platforms gain structural advantage.
 
-## Related Topics
-
-- frontier-models-as-national-infrastructure
-
 ## Evidence / supporting sources
 
 ### The old world of tech is dying and the new cannot be born (2026-05-14)
@@ -59,7 +55,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- frontier-models-as-national-infrastructure
+- [[topics/frontier-models-as-national-infrastructure|Frontier Models as National Infrastructure]]
 
 ## Sources
 

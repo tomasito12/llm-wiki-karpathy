@@ -37,10 +37,6 @@ Agent-assisted software work becomes more reliable when implementation is follow
 
 Design coding-agent workflows around plan, implement, validate, and replan steps so the agent is constrained by an auditable review loop instead of open-ended chat.
 
-## Related Topics
-
-- structured-specification-for-agentic-development
-
 ## Evidence / supporting sources
 
 ### From Vibe Coding to Spec-Driven Development (2026-05-12)
@@ -60,7 +56,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- structured-specification-for-agentic-development
+- [[topics/structured-specification-for-agentic-development|Structured Specification for Agentic Development]]
 
 ## Sources
 

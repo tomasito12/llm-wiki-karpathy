@@ -26,13 +26,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Knowledge systems can move from answering questions by re-reading raw sources each time to compiling a maintained synthesis layer that accumulates over time. The workflow shifts work from repeated retrieval and reassembly toward incremental curation, contradiction tracking, and page maintenance. This can reduce repeated synthesis cost when the corpus is growing and questions require cross-source integration. The pattern is strongest where the real bottleneck is not reading once, but keeping the synthesized view current.
 
-## Related Trends
-
-- knowledge-base-becomes-runtime-infrastructure
-- agent-maintained-documentation-pipelines
-- workflow-restructuring-around-ai-agents
-- knowledge-systems-shift-toward-passive-capture
-
 ## Supporting Data Points
 
 - The wiki is described as a 'persistent, compounding artifact.'
@@ -85,10 +78,10 @@ The source gives a coherent argument, but no measured comparison against retriev
 
 ## Related pages
 
-- agent-maintained-documentation-pipelines
-- knowledge-base-becomes-runtime-infrastructure
-- knowledge-systems-shift-toward-passive-capture
-- workflow-restructuring-around-ai-agents
+- [[industry-trends/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]]
+- [[industry-trends/agent-maintained-documentation-pipelines|AI Documentation Moves Toward Agent-Maintained Pipelines]]
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]]
+- [[industry-trends/knowledge-systems-shift-toward-passive-capture|Knowledge Systems Shift Toward Passive Capture]]
 
 ## Sources
 

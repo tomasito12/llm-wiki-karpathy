@@ -37,11 +37,6 @@ Inference workloads can be divided into two operational classes: answer generati
 
 Design infrastructure around the actual interaction mode. If the system is producing responses for a human in the loop, token speed matters a lot; if it is carrying out tasks autonomously, capacity, memory persistence, and system simplicity can matter more than raw latency.
 
-## Related Topics
-
-- agent-memory-architecture
-- agent-runtime-architecture
-
 ## Evidence / supporting sources
 
 ### The Inference Shift (2026-05-11)
@@ -61,8 +56,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-memory-architecture
-- agent-runtime-architecture
+- [[topics/agent-memory-architecture|Agent Memory Architecture]]
+- [[topics/agent-runtime-architecture|Agent Runtime Architecture]]
 
 ## Sources
 

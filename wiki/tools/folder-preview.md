@@ -37,10 +37,6 @@ A Mac utility that lets you preview folder contents and ZIP files with Quick Loo
 
 The source treats it as a quiet utility rather than a novel platform, which suggests a mature small-app pattern rather than an experimental product. As of 2025-12-31, the evidence is only personal usage and not broader adoption or enterprise readiness.
 
-## Related Tools
-
-- Quick Look
-
 ## Strengths
 
 - Adds Quick Look-like folder inspection to macOS, which matters when browsing many directories during a work session.
@@ -72,7 +68,7 @@ The article does not provide pricing, compatibility details, or any information 
 
 ## Related pages
 
-- Quick Look
+No related pages captured.
 
 ## Sources
 

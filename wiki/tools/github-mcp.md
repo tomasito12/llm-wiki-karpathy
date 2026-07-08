@@ -39,12 +39,6 @@ An MCP server that lets an AI interact with GitHub repositories, issues, pull re
 
 The article notes that Microsoft backs it, which is a stronger durability signal than a standalone hobby project. It is also described as working with Claude Desktop, Cursor, Windsurf, and VS Code, which suggests broad client compatibility. The source does not provide usage metrics or independent validation of production stability.
 
-## Related Tools
-
-- Firecrawl MCP
-- Supabase MCP
-- Taskade MCP
-
 ## Strengths
 
 - Lets the AI work with issues, pull requests, commits, and code references in one interface, which reduces context switching.
@@ -79,9 +73,9 @@ The article does not describe permission scoping, write safeguards, or how it ha
 
 ## Related pages
 
-- Firecrawl MCP
-- Supabase MCP
-- Taskade MCP
+- [[tools/firecrawl-mcp|Firecrawl MCP]]
+- [[tools/supabase-mcp|Supabase MCP]]
+- [[tools/taskade-mcp|Taskade MCP]]
 
 ## Sources
 

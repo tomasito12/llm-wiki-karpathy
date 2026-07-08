@@ -41,10 +41,6 @@ An offline photo-editing app focused on object removal. The source presents it a
 
 The source explicitly says it is not a new app and is popular among professional editors, which is a meaningful maturity signal. However, the article still offers anecdotal evidence rather than benchmarked evaluation. As of 2026-01-08, it looks like an established specialist tool.
 
-## Related Tools
-
-- ImageOptim
-
 ## Strengths
 
 - It performs offline object removal, which is useful when users want local editing without relying on a cloud workflow.
@@ -80,7 +76,7 @@ TouchRetouch is an offline object remover, and it does the best job of removing 
 
 ## Related pages
 
-- ImageOptim
+- [[tools/imageoptim|ImageOptim]]
 
 ## Sources
 

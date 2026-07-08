@@ -44,12 +44,6 @@ A Mac menu bar app that detects idle time and plays a voice alert to pull attent
 
 The article frames it as a small, single-purpose utility with a one-time purchase model rather than a broad platform. Evidence of maturity is limited to the author's daily use and the product being available on macOS. As of 2026-04-17, it reads like a niche consumer utility, not an enterprise tool.
 
-## Related Tools
-
-- KeepingYouAwake
-- Lungo
-- One Thing
-
 ## Strengths
 
 - Intervenes at the moment of distraction, which is more operationally useful than only logging lost time after the fact.
@@ -85,9 +79,9 @@ The source gives no evidence of accuracy, false-positive rate, or whether the al
 
 ## Related pages
 
-- KeepingYouAwake
-- Lungo
-- One Thing
+- [[tools/keepingyouawake|KeepingYouAwake]]
+- [[tools/lungo|Lungo]]
+- [[tools/one-thing|One Thing]]
 
 ## Sources
 

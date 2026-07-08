@@ -27,10 +27,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Voice assistant quality is increasingly judged by how naturally the system speaks and turns-taking behavior, not only by textual correctness. That means tone, pacing, brevity, and local conversational norms become part of the product surface. Systems that ignore these factors may sound robotic or feel awkward even when the content is right.
 
-## Related Trends
-
-- realtime-voice-agents-shift-to-integration-work
-
 ## Supporting Data Points
 
 - Punctuation is described as affecting breath, hesitation, and pitch in voice output.
@@ -65,7 +61,7 @@ The evidence is anecdotal and based on one practitioner’s project experience, 
 
 ## Related pages
 
-- realtime-voice-agents-shift-to-integration-work
+- [[industry-trends/realtime-voice-agents-shift-to-integration-work|Realtime Voice Agents Shift Toward Integration Work]]
 
 ## Sources
 

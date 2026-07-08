@@ -37,11 +37,6 @@ The project described in the source runs a post-commit hook that diffs `HEAD~1..
 
 Anchor documentation generation to the same unit of change the team already uses for code review: the commit. That keeps the process aligned with developer behavior and reduces the chance that docs lag for weeks or months.
 
-## Related Topics
-
-- harness-engineering
-- ai-assisted-knowledge-compilation
-
 ## Evidence / supporting sources
 
 ### How I turned Andrej Karpathy’s LLM Wiki into a tool that writes wiki’s from code (2026-04-17)
@@ -61,8 +56,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- ai-assisted-knowledge-compilation
-- harness-engineering
+- [[topics/harness-engineering|Harness Engineering]]
+- [[topics/ai-assisted-knowledge-compilation|AI-Assisted Knowledge Compilation]]
 
 ## Sources
 

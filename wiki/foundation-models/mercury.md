@@ -34,11 +34,6 @@ The article treats Mercury as evidence of industrial deployment rather than a pu
 
 The source implies a speed advantage, which could matter for inference economics, but it gives no actual cost figures or throughput data. Any pricing inference remains speculative based on the excerpt alone.
 
-## Related Models
-
-- LLaDA
-- Gemini Diffusion
-
 ## Service automation implications
 
 Potentially relevant to service automation if the promised speed advantage holds, because faster iterative refinement could support lower-latency text generation loops. The source does not show any customer-support, voice, or workflow-automation deployment details, so no direct service automation conclusion is supported.
@@ -65,8 +60,7 @@ The excerpt gives no benchmark numbers, task coverage, context-length data, or f
 
 ## Related pages
 
-- Gemini Diffusion
-- LLaDA
+No related pages captured.
 
 ## Sources
 

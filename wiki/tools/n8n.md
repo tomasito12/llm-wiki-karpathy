@@ -41,13 +41,6 @@ A workflow automation tool used here to watch capture sources, format raw text i
 
 n8n is presented as a practical automation layer rather than an experimental component. The article uses it in a production-like personal workflow, but provides no adoption metrics or reliability data.
 
-## Related Tools
-
-- Obsidian
-- Claude Code
-- Readwise
-- Telegram
-
 ## Strengths
 
 - Connects multiple capture sources into one routing pipeline, which keeps intake from becoming fragmented across tools.
@@ -81,10 +74,8 @@ The source does not discuss error handling, retries, or maintenance burden, so t
 
 ## Related pages
 
-- Claude Code
-- Obsidian
-- Readwise
-- Telegram
+- [[tools/obsidian|Obsidian]]
+- [[tools/claude-code|Claude Code]]
 
 ## Sources
 

@@ -28,12 +28,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Knowledge systems are becoming more useful when they are structured so agents can operate on them directly. The important shift is from passive storage to machine-traversable systems with conventions, metadata, and safe write paths. This favors local files, explicit instructions, and structured retrieval over opaque note apps. The trend matters because better structure makes maintenance and synthesis automation more reliable.
 
-## Related Trends
-
-- ai-products-shift-from-models-to-systems
-- workflow-restructuring-around-ai-agents
-- knowledge-base-becomes-runtime-infrastructure
-
 ## Supporting Data Points
 
 - The vault contains over 5,000 notes.
@@ -86,9 +80,9 @@ The evidence is a single practitioner account, so the strength of the trend is d
 
 ## Related pages
 
-- ai-products-shift-from-models-to-systems
-- knowledge-base-becomes-runtime-infrastructure
-- workflow-restructuring-around-ai-agents
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]]
+- [[industry-trends/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]]
 
 ## Sources
 

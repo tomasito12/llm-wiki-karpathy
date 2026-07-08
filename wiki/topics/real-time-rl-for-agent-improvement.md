@@ -37,10 +37,6 @@ Real-world agent systems can be improved by converting live user interactions in
 
 For agentic products, treat production interactions as a first-class training corpus only if you can measure, gate, and redeploy quickly enough to keep the data mostly on-policy.
 
-## Related Topics
-
-- verification-loops-in-ai-workflows
-
 ## Evidence / supporting sources
 
 ### Improving Composer through real-time RL (2026-03-26)
@@ -60,7 +56,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- verification-loops-in-ai-workflows
+- [[topics/verification-loops-in-ai-workflows|Verification Loops in AI Workflows]]
 
 ## Sources
 

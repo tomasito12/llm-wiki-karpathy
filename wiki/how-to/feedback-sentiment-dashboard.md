@@ -30,11 +30,6 @@ This is a way to turn open-ended customer feedback into a live dashboard. It hel
 
 The source does not show how to validate sentiment labels or handle ambiguous feedback. It also does not discuss privacy or response storage rules. A dashboard is only useful if someone reviews it and acts on the results.
 
-## Related Howtos
-
-- test-and-verification
-- workflow-automation
-
 ## Evidence / supporting sources
 
 ### 7 Simple AI Projects You Can Build This Week (2026-05-18)
@@ -50,8 +45,7 @@ The source does not show how to validate sentiment labels or handle ambiguous fe
 
 ## Related pages
 
-- test-and-verification
-- workflow-automation
+No related pages captured.
 
 ## Sources
 

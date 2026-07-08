@@ -56,13 +56,6 @@ The article explicitly says to start conservative because wrong routing can prod
 - Traffic that contains both easy and hard tasks.
 - A way to evaluate answer quality after routing or escalation.
 
-## Related Howtos
-
-- semantic-caching
-- prompt-caching
-- agent-evals
-- workflow-design
-
 ## Evidence / supporting sources
 
 ### 8 LLM Cost Optimization Techniques: How to Cut API Spend by Up to 70% (Visually Explained) (2026-04-17)
@@ -103,10 +96,8 @@ The article explicitly says to start conservative because wrong routing can prod
 
 ## Related pages
 
-- agent-evals
-- prompt-caching
-- semantic-caching
-- workflow-design
+- [[how-to/semantic-caching|Semantic Caching]]
+- [[how-to/prompt-caching|Prompt Caching]]
 
 ## Sources
 

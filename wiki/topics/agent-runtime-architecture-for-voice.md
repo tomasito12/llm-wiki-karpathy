@@ -57,14 +57,6 @@ The source describes the stack as "a phone number, a SIP stack accepting the cal
 
 When a voice agent needs to handle real calls, keep the model on the conversational side and move deterministic work into the surrounding runtime. That boundary reduces brittle behavior and makes the system easier to debug, scale, and hand off.
 
-## Related Topics
-
-- verification-loops-in-ai-workflows
-- layered-agent-architecture
-- realtime-ai-evaluation
-- support-automation-as-operating-model
-- voice-agents-shift-toward-workflow-completion
-
 ## Evidence / supporting sources
 
 ### Announcing agentic performance benchmarking for Speech to Speech models on... (2026-05-12)
@@ -115,11 +107,11 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- layered-agent-architecture
-- realtime-ai-evaluation
-- support-automation-as-operating-model
-- verification-loops-in-ai-workflows
-- voice-agents-shift-toward-workflow-completion
+- [[topics/verification-loops-in-ai-workflows|Verification Loops in AI Workflows]]
+- [[topics/layered-agent-architecture|Layered Agent Architecture]]
+- [[topics/realtime-ai-evaluation|Realtime AI Evaluation]]
+- [[topics/support-automation-as-operating-model|Support Automation as Operating Model]]
+- [[topics/voice-agents-shift-toward-workflow-completion|Voice Agents Shift Toward Workflow Completion]]
 
 ## Sources
 

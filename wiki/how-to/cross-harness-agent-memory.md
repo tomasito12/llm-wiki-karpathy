@@ -44,10 +44,6 @@ The article does not prove that rewritten notes remain correct over time, and it
 - A persistent store for event history and memory notes.
 - A batch process that can read accumulated events and write back rewritten memories.
 
-## Related Howtos
-
-- agentic-personal-knowledge-management
-
 ## Evidence / supporting sources
 
 ### Unified Agentic Memory Across Harnesses Using Hooks (2026-05-08)
@@ -72,7 +68,7 @@ The article does not prove that rewritten notes remain correct over time, and it
 
 ## Related pages
 
-- agentic-personal-knowledge-management
+- [[how-to/agentic-personal-knowledge-management|Agentic Personal Knowledge Management]]
 
 ## Sources
 

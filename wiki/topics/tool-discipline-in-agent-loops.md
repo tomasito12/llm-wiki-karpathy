@@ -47,11 +47,6 @@ The source calls out “a fix for silently skipped tool calls, the bug class tha
 
 Design tool use as a managed pipeline with policy gates before and after execution. That reduces accidental damage, cost overruns, and prompt-injection blast radius when agents can mutate state or call external systems.
 
-## Related Topics
-
-- layered-agent-architecture
-- agent-reliability
-
 ## Evidence / supporting sources
 
 ### The Sequence AI of the Week #871: Inside the Loop with Claude Opus 4.8 (2026-06-03)
@@ -93,8 +88,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-reliability
-- layered-agent-architecture
+- [[topics/layered-agent-architecture|Layered Agent Architecture]]
+- [[topics/agent-reliability|Agent Reliability]]
 
 ## Sources
 

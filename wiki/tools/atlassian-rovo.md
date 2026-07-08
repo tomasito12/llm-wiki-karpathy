@@ -46,12 +46,6 @@ An Atlassian AI layer for Jira, Confluence, and Jira Service Management that add
 
 The source frames Rovo as production-ready enough to be bundled into paid Atlassian cloud plans as of April 2025. That suggests meaningful enterprise adoption, but also strong platform control and quota-based usage rather than open-ended local autonomy.
 
-## Related Tools
-
-- Confluence
-- Claude Code
-- Obsidian
-
 ## Strengths
 
 - Searches across Atlassian products and connected SaaS apps, which helps teams centralize retrieval over fragmented work artifacts.
@@ -96,9 +90,8 @@ The source frames Rovo as production-ready enough to be bundled into paid Atlass
 
 ## Related pages
 
-- Claude Code
-- Confluence
-- Obsidian
+- [[tools/claude-code|Claude Code]]
+- [[tools/obsidian|Obsidian]]
 
 ## Sources
 

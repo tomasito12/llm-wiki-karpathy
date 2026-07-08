@@ -42,12 +42,6 @@ A Mac utility that keeps the computer awake when the user needs the screen to st
 
 The author's framing suggests a mature utility for a common macOS annoyance, but the article gives little beyond anecdotal adoption. It appears to be a simple, single-purpose app rather than a platform. As of 2026-04-17, maturity evidence is thin and mostly based on obvious fit.
 
-## Related Tools
-
-- KeepingYouAwake
-- One Thing
-- Amphetamine
-
 ## Strengths
 
 - Solves a common system-level annoyance with a single click, which is exactly the kind of friction reduction menu bar tools are good at.
@@ -82,9 +76,8 @@ The app does one thing, so its value is narrow and mostly contextual. The source
 
 ## Related pages
 
-- Amphetamine
-- KeepingYouAwake
-- One Thing
+- [[tools/keepingyouawake|KeepingYouAwake]]
+- [[tools/one-thing|One Thing]]
 
 ## Sources
 

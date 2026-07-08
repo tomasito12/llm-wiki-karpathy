@@ -35,10 +35,6 @@ In some AI stacks, the base model becomes one interchangeable component inside a
 
 If model performance is close enough across vendors for the target use case, product strategy should shift toward system design, workflow integration, and distribution. Model choice may become an implementation detail unless the use case depends on a specific capability edge.
 
-## Related Topics
-
-- ai-products-shift-from-models-to-systems
-
 ## Evidence / supporting sources
 
 ### AI Eats The World (2026-05-21)
@@ -57,7 +53,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- ai-products-shift-from-models-to-systems
+- [[topics/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 
 ## Sources
 

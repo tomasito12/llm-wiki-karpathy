@@ -34,10 +34,6 @@ A bounded corpus is a deliberately scoped set of documents that shares a clear c
 
 Choose a narrow, coherent corpus before introducing AI-assisted compilation. The quality of the maintained knowledge artifact depends more on topical coherence than on the model's summarization ability.
 
-## Related Topics
-
-- agent-maintained-knowledge-bases
-
 ## Evidence / supporting sources
 
 ### LLM Wiki Is Not a Magic Knowledge Machine (2026-05-04)
@@ -57,7 +53,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-maintained-knowledge-bases
+- [[topics/agent-maintained-knowledge-bases|Agent-Maintained Knowledge Bases]]
 
 ## Sources
 

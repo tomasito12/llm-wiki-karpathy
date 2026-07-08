@@ -48,15 +48,6 @@ The source describes a pipeline that "identifies entities and concepts from the 
 
 Use the ontology as part of the prompt and extraction plan, not as a post-processing artifact. The more specific the schema, aliases, and property requirements, the less cleanup work you leave to later stages.
 
-## Related Topics
-
-- privacy-controls-for-ai-products
-- ai-assisted-knowledge-compilation
-- provenance-tracking
-- llm-maintained-knowledge-compilation
-- realtime-ai-evaluation
-- local-model-deployment
-
 ## Evidence / supporting sources
 
 ### Ontology-Driven GraphRAG: A Framework for Zero-Noise Knowledge Extraction (2025-12-03)
@@ -99,12 +90,12 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- ai-assisted-knowledge-compilation
-- llm-maintained-knowledge-compilation
-- local-model-deployment
-- privacy-controls-for-ai-products
-- provenance-tracking
-- realtime-ai-evaluation
+- [[topics/privacy-controls-for-ai-products|Privacy Controls for AI Products]]
+- [[topics/ai-assisted-knowledge-compilation|AI-Assisted Knowledge Compilation]]
+- [[topics/provenance-tracking|Provenance Tracking]]
+- [[topics/llm-maintained-knowledge-compilation|LLM-Maintained Knowledge Compilation]]
+- [[topics/realtime-ai-evaluation|Realtime AI Evaluation]]
+- [[topics/local-model-deployment|Local Model Deployment]]
 
 ## Sources
 

@@ -24,10 +24,6 @@ synthesis_state: stage1-placeholder
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 An economic utility benchmark is an evaluation designed to measure how well an AI system performs tasks with direct real-world labor or business value, rather than only abstract or toy problems.
 
-## Related Terms
-
-- Benchmark
-
 ## Relevance Note
 
 Use this concept when AI evaluation is tied to job automation, labor-market impact, or product decisions based on paid work. It helps distinguish general benchmark performance from measurements meant to reflect economic usefulness.
@@ -47,7 +43,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- Benchmark
+- [[glossary/benchmark|Benchmark]]
 
 ## Sources
 

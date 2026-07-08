@@ -42,10 +42,6 @@ A Safari ad blocker for Mac and Apple devices. The article presents it as a ligh
 
 The app is described as regularly updated and available on the App Store, which signals an active product with maintenance discipline. The author says they install it on all their Apple products, suggesting a stable enough utility for repeated use. As of 2025-11-22, it appears to be a mature consumer blocker rather than an experimental app.
 
-## Related Tools
-
-- Safari
-
 ## Strengths
 
 - It blocks ads, banners, crypto-mining scripts, and cookie warnings, which makes browsing cleaner and less distracting.
@@ -82,7 +78,7 @@ The article strongly favors the app and does not provide comparative test data a
 
 ## Related pages
 
-- Safari
+No related pages captured.
 
 ## Sources
 

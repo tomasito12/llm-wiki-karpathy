@@ -34,16 +34,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 When a provider keeps the same default model name or API alias, teams can still see meaningful behavior shifts in factuality, tone, personalization, tool-use decisions, and formatting. The broader pattern is that stable names like a default chat model or a shortcut alias no longer imply stable outputs, so migrations, regressions tests, and fallback plans are needed even when the interface does not change.
 
-## Related Trends
-
-- models-becoming-execution-layers
-- default-model-rollouts-need-migration-plans
-- verification-loops-become-central-to-ai-workflows
-- continuous-evaluation
-- enterprise-ai-moves-toward-governed-human-oversight-workflows
-- high-risk-models-move-to-gated-access
-- ai-products-shift-from-models-to-systems
-
 ## Supporting Data Points
 
 - GPT-5.5 Instant replaces GPT-5.3 Instant as the default model.
@@ -114,13 +104,11 @@ This is a vendor announcement, so the degree of behavioral drift for any specifi
 
 ## Related pages
 
-- ai-products-shift-from-models-to-systems
-- continuous-evaluation
-- default-model-rollouts-need-migration-plans
-- enterprise-ai-moves-toward-governed-human-oversight-workflows
-- high-risk-models-move-to-gated-access
-- models-becoming-execution-layers
-- verification-loops-become-central-to-ai-workflows
+- [[industry-trends/models-becoming-execution-layers|Models Become Execution Layers]]
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
+- [[industry-trends/enterprise-ai-moves-toward-governed-human-oversight-workflows|Enterprise AI Moves Toward Governed Human Oversight Workflows]]
+- [[industry-trends/high-risk-models-move-to-gated-access|High-Risk Models Move to Gated Access]]
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 
 ## Sources
 

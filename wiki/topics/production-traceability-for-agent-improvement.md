@@ -37,11 +37,6 @@ Agent improvement becomes much more reliable when the system preserves the path 
 
 Instrument the workflow so every correction can be traced back to a specific stage, then use those traces to localize failure modes before you spend engineering time on fixes.
 
-## Related Topics
-
-- verification-loops-in-ai-workflows
-- provenance-tracking
-
 ## Evidence / supporting sources
 
 ### Building self-improving tax agents with Codex (2026-05-27)
@@ -60,8 +55,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- provenance-tracking
-- verification-loops-in-ai-workflows
+- [[topics/verification-loops-in-ai-workflows|Verification Loops in AI Workflows]]
+- [[topics/provenance-tracking|Provenance Tracking]]
 
 ## Sources
 

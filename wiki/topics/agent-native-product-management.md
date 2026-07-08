@@ -36,11 +36,6 @@ Agent-native product management is a workflow pattern where an AI agent handles 
 
 Treat the agent as the coordinator for repetitive PM chores, but keep humans responsible for the target problem, persona choice, metrics, and prioritization decisions.
 
-## Related Topics
-
-- operational-artifact-generation
-- workflow-restructuring-around-ai-agents
-
 ## Evidence / supporting sources
 
 ### A Guide to Agent-native Product Management - Every (2026-04-27)
@@ -59,8 +54,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- operational-artifact-generation
-- workflow-restructuring-around-ai-agents
+- [[topics/ops-artifact-generation|Operational Artifact Generation]]
+- [[topics/workflow-restructuring-around-ai-agents|Workflow Restructuring Around AI Agents]]
 
 ## Sources
 

@@ -39,10 +39,6 @@ The author says, "I time-box the practice to 15 minutes," and contrasts that wit
 
 When the bottleneck is adherence rather than raw output, shorten the session until the routine is easy to repeat. AI adds value here when it helps keep the session bounded and predictable instead of sprawling.
 
-## Related Topics
-
-- ai-workflow-restructuring
-
 ## Evidence / supporting sources
 
 ### AI made morning pages worth doing again. (2026-04-29)
@@ -62,7 +58,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- ai-workflow-restructuring
+- [[topics/ai-workflow-restructuring|AI Workflow Restructuring]]
 
 ## Sources
 

@@ -42,11 +42,6 @@ A sideloading app for iPhone and iPad that installs apps outside the App Store. 
 
 The source treats AltStore as an established workaround rather than an experimental hack. At the same time, there is no evidence here of enterprise support, managed deployment, or formal vendor guarantees. As of 2026-01-08, it reads like a mature niche utility with policy-sensitive usage.
 
-## Related Tools
-
-- Apple App Store
-- jailbreaking
-
 ## Strengths
 
 - It provides a non-jailbreak path for sideloading, which lowers the security and operational cost relative to modifying the device at the system level.
@@ -82,8 +77,7 @@ I’ve been using AltStore for over three months on my iPhone and iPad, and I wi
 
 ## Related pages
 
-- Apple App Store
-- jailbreaking
+No related pages captured.
 
 ## Sources
 

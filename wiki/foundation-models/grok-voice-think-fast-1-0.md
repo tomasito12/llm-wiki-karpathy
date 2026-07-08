@@ -60,13 +60,6 @@ A 5.6 minute mean conversation length implies non-trivial inference and orchestr
 
 xAI
 
-## Related Models
-
-- GPT-Realtime-2 (High)
-- GPT-Realtime-1.5
-- Gemini 3.1 Flash Live Preview - High
-- Gemini 2.5 Flash Native Audio Preview
-
 ## Service automation implications
 
 Promising for voice support automation, but as of 2026-05-12 it still looks like a partial containment tool rather than a full replacement for human handling. The benchmark suggests it may handle some full interactions, yet the failure rate leaves substantial handoff risk.
@@ -104,10 +97,8 @@ The source still says the strongest Speech to Speech models resolve only about h
 
 ## Related pages
 
-- GPT-Realtime-1.5
-- GPT-Realtime-2 (High)
-- Gemini 2.5 Flash Native Audio Preview
-- Gemini 3.1 Flash Live Preview - High
+- [[foundation-models/gpt-realtime-2-high|GPT-Realtime-2 (High)]]
+- [[foundation-models/gpt-realtime-1-5|gpt-realtime-1.5]]
 
 ## Sources
 

@@ -44,11 +44,6 @@ Intercom’s API access layer for the models and capabilities behind Fin. It let
 
 Intercom presents Fin as already running at meaningful scale, with over 2M issues resolved per week and about 8k companies on the platform. That suggests the product is beyond experiment stage and is being productized for enterprise buyers. The article does not, however, provide independent adoption evidence or technical documentation depth.
 
-## Related Tools
-
-- Intercom Fin
-- Apex 1.0
-
 ## Strengths
 
 - Exposes the same underlying Fin capabilities through API, which makes custom agent experiences possible without abandoning the vendor’s core system.
@@ -85,8 +80,7 @@ The source does not provide enough detail to judge API ergonomics, latency, rate
 
 ## Related pages
 
-- Apex 1.0
-- Intercom Fin
+No related pages captured.
 
 ## Sources
 

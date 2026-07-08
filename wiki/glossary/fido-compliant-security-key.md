@@ -23,10 +23,6 @@ synthesis_state: stage1-placeholder
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 A FIDO-compliant security key is a hardware or software authentication factor that follows the Fast Identity Online standard for strong, phishing-resistant sign-in. It is used as a second factor or primary factor to verify identity without relying on passwords alone.
 
-## Related Terms
-
-- Passkey
-
 ## Relevance Note
 
 FIDO support is a durable building block for secure AI systems because it can protect the accounts that sit behind prompts, agents, data connectors, and admin tools. It is especially relevant where account compromise would lead to prompt leakage, workflow abuse, or unauthorized access to connected business systems.
@@ -46,7 +42,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- Passkey
+- [[glossary/passkey|Passkey]]
 
 ## Sources
 

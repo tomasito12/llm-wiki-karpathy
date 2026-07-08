@@ -72,17 +72,6 @@ This only works if provenance is maintained and linting is taken seriously. The 
 - A model that can read files and follow structured operating instructions.
 - A discipline for keeping Raw immutable and reviewing logs or lint reports.
 
-## Related Howtos
-
-- two-step-document-ingestion
-- agent-maintained-knowledge-bases
-- claude-skills-setup
-- knowledge-base-ingestion-pipeline
-- commit-driven-documentation-sync
-- Two-Step Document Ingestion
-- Knowledge Base Ingestion Pipeline
-- Wiki Schema Governance
-
 ## Evidence / supporting sources
 
 ### Building a Complete Personal Harness: LLM Wiki + Developer’s Second Brain in Obsidian (2026-05-03)
@@ -148,14 +137,10 @@ Wiki is what the AI builds and maintains. (`8b893d55f7d3` · supporting · suppo
 
 ## Related pages
 
-- Knowledge Base Ingestion Pipeline
-- Two-Step Document Ingestion
-- Wiki Schema Governance
-- agent-maintained-knowledge-bases
-- claude-skills-setup
-- commit-driven-documentation-sync
-- knowledge-base-ingestion-pipeline
-- two-step-document-ingestion
+- [[how-to/two-step-document-ingestion|Two-Step Document Ingestion]]
+- [[how-to/claude-skills-setup|Claude Skills Setup]]
+- [[how-to/knowledge-base-ingestion-pipeline|Knowledge Base Ingestion Pipeline]]
+- [[how-to/commit-driven-documentation-sync|Commit-Driven Documentation Sync]]
 
 ## Sources
 

@@ -25,10 +25,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 AI products increasingly need retrieval, tool use, and approval steps so outputs are grounded in data and actions are constrained by workflow. The practical pattern is moving away from isolated prompt demos toward systems that combine context, external actions, and human review. This matters because the real product boundary is often not model capability alone, but how safely the model is wired into operational systems.
 
-## Related Trends
-
-- workflow-restructuring-around-ai-agents
-
 ## Time sensitivity
 
 Actionable as of 2025-11-15; the observation reflects product design choices described in the source rather than a verified market-wide shift.
@@ -54,7 +50,7 @@ The source is a single explanatory article with no comparative data, so it suppo
 
 ## Related pages
 
-- workflow-restructuring-around-ai-agents
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]]
 
 ## Sources
 

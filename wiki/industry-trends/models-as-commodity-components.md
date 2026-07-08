@@ -30,11 +30,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 As AI product stacks mature, the model layer can become one component inside a larger commercial system rather than the whole product. Vendors may package the same underlying capability as a managed application, an API, or a licensable model tier. That shifts differentiation toward packaging, distribution, and domain specialization rather than model access alone.
 
-## Related Trends
-
-- ai-products-shift-from-models-to-systems
-- ai-assisted-file-native-workflows
-
 ## Supporting Data Points
 
 - Fin resolves over 2M customer issues a week.
@@ -85,8 +80,8 @@ This is supported by a single vendor announcement, so it should not be treated a
 
 ## Related pages
 
-- ai-assisted-file-native-workflows
-- ai-products-shift-from-models-to-systems
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
+- [[industry-trends/ai-assisted-file-native-workflows|AI-Assisted File-Native Workflows]]
 
 ## Sources
 

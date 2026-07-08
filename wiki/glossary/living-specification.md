@@ -24,11 +24,6 @@ synthesis_state: stage1-placeholder
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 A living specification is a machine-readable project artifact that stays aligned with the codebase as the system evolves. It is updated bidirectionally from implementation and operational feedback rather than frozen before delivery.
 
-## Related Terms
-
-- Specification Drift
-- Behavior-Driven Development
-
 ## Relevance Note
 
 This is operationally important wherever AI agents generate or modify code repeatedly, because the spec becomes the durable memory for design intent. It also supports auditability and coordinated multi-agent work when multiple systems need the same source of truth.
@@ -48,8 +43,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- Behavior-Driven Development
-- Specification Drift
+- [[glossary/specification-drift|Specification Drift]]
+- [[glossary/behavior-driven-development|Behavior-Driven Development]]
 
 ## Sources
 

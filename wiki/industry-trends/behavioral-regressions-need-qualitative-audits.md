@@ -25,10 +25,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Model regressions can emerge as subtle shifts in style, tone, or lexical habit rather than as sharp benchmark drops. Detecting them often requires pattern searches, version comparisons, and human review of generated outputs. This trend matters because product quality can degrade in ways standard evals do not capture.
 
-## Related Trends
-
-- stable-api-names-no-longer-guarantee-stable-model-behavior
-
 ## Supporting Data Points
 
 - "goblin" in ChatGPT had risen by 175% after the launch of GPT-5.1
@@ -65,7 +61,7 @@ This is supported by one vendor case study, so the exact prevalence outside this
 
 ## Related pages
 
-- stable-api-names-no-longer-guarantee-stable-model-behavior
+- [[industry-trends/stable-api-names-no-longer-guarantee-stable-model-behavior|Stable API names no longer guarantee stable model behavior]]
 
 ## Sources
 

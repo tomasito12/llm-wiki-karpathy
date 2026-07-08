@@ -9,6 +9,7 @@ from typing import Any
 from src.pipeline.atomic import atomic_write_text
 from src.wiki_render.evidence import EvidenceItem
 from src.wiki_render.models import KnowledgePage, RenderedFile
+from src.wiki_render.render import _related_page_index
 from src.wiki_render.render.knowledge import render_knowledge_page
 from src.wiki_synthesis.cache import (
     CacheValidation,
@@ -60,7 +61,17 @@ def build_review_preview(
     cache_entry = load_cache_entry(cache_dir, category=category, slug=slug)
     validation = validate_cache_entry(cache_entry, current_input_hash=current_hash)
     knowledge_page = knowledge_page_from_graph_payload(graph, page_payload)
-    rendered = render_knowledge_page(knowledge_page, synthesis_cache_dir=cache_dir)
+    related_page_index = _related_page_index(
+        [
+            knowledge_page_from_graph_payload(graph, item)
+            for item in _dict_list(graph.get("knowledge_pages"))
+        ]
+    )
+    rendered = render_knowledge_page(
+        knowledge_page,
+        synthesis_cache_dir=cache_dir,
+        related_page_index=related_page_index,
+    )
     preview_path = preview_dir / category / f"{slug}.md"
     if not dry_run:
         atomic_write_text(preview_path, rendered.text)
@@ -97,7 +108,7 @@ def knowledge_page_from_graph_payload(
         aliases=_string_list(page.get("aliases")),
         tags=_string_list(page.get("tags")),
         types=_string_list(page.get("types")),
-        values={},
+        values=_dict_value(page.get("values")),
         evidence=[_evidence_item(item) for item in _dict_list(page.get("evidence"))],
         source_ids=source_ids,
         source_titles=_source_titles(graph, source_ids),
@@ -175,6 +186,11 @@ def _dict_list(value: Any) -> list[dict[str, Any]]:
     if not isinstance(value, list):
         return []
     return [item for item in value if isinstance(item, dict)]
+
+
+def _dict_value(value: Any) -> dict[str, Any]:
+    """Return a dictionary value."""
+    return value if isinstance(value, dict) else {}
 
 
 def _int_value(value: Any) -> int:

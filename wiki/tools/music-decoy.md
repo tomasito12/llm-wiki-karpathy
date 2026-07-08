@@ -42,11 +42,6 @@ A macOS utility that stops the Music app from launching when the Play key is pre
 
 The writeup presents it as a lightweight utility rather than a large platform product. There is no evidence in the source of enterprise adoption, broad ecosystem support, or extensive customization beyond the media-app path setting. As of 2026-01-08, it looks like a niche helper for individual Mac users.
 
-## Related Tools
-
-- Spotify
-- Apple Music
-
 ## Strengths
 
 - It intercepts the Play key behavior so users can avoid launching Apple Music when they only want playback control.
@@ -84,8 +79,7 @@ defaults write com.lowtechguys.MusicDecoy mediaAppPath /Applications/Spotify.app
 
 ## Related pages
 
-- Apple Music
-- Spotify
+No related pages captured.
 
 ## Sources
 

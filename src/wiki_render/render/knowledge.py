@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Any, cast
 
 from src.wiki_contract.categories import FRONTMATTER_CATEGORY_BY_GRAPH
+from src.wiki_render import layout
 from src.wiki_render.frontmatter import markdown_document
 from src.wiki_render.models import IndividualPage, KnowledgePage, RenderedFile
 from src.wiki_render.render.common import (
@@ -27,6 +28,15 @@ from src.wiki_synthesis.cache import (
 from src.wiki_synthesis.render_input import synthesis_input_hash_for_knowledge_page
 
 CATEGORY_LABELS: dict[str, str] = FRONTMATTER_CATEGORY_BY_GRAPH
+RelatedPageIndex = dict[tuple[str, str], KnowledgePage]
+RELATED_TARGET_CATEGORIES: dict[str, str] = {
+    "related_topics": "topic",
+    "related_terms": "glossary",
+    "related_trends": "trend",
+    "related_tools": "tool",
+    "related_models": "model",
+    "related_howtos": "how_to",
+}
 
 LEAD_KEYS: dict[str, tuple[str, ...]] = {
     "topic": ("knowledge_summary", "relevance_note"),
@@ -106,11 +116,17 @@ def render_knowledge_page(
     page: KnowledgePage,
     *,
     synthesis_cache_dir: Path | None = None,
+    related_page_index: RelatedPageIndex | None = None,
 ) -> RenderedFile:
     """Render one merged knowledge page."""
     cache_entry, validation = _load_renderable_synthesis(page, synthesis_cache_dir)
     if cache_entry and validation and validation.is_usable:
-        return _render_synthesized_knowledge_page(page, cache_entry, validation)
+        return _render_synthesized_knowledge_page(
+            page,
+            cache_entry,
+            validation,
+            related_page_index=related_page_index,
+        )
 
     frontmatter = {
         "title": page.title,
@@ -135,7 +151,7 @@ def render_knowledge_page(
     body += _value_sections(page)
     body += evidence_section(page.evidence)
     body += contradictions_section(page.evidence)
-    body += _related_section(page)
+    body += _related_section(page, related_page_index)
     body += sources_section(page.source_ids, page.source_titles)
     return RenderedFile(relative_path=page.path, text=markdown_document(frontmatter, body))
 
@@ -163,6 +179,8 @@ def _render_synthesized_knowledge_page(
     page: KnowledgePage,
     cache_entry: dict[str, Any],
     validation: CacheValidation,
+    *,
+    related_page_index: RelatedPageIndex | None = None,
 ) -> RenderedFile:
     """Render one merged knowledge page from an existing synthesis cache entry."""
     is_stale = validation.state == VALIDATION_STALE
@@ -213,7 +231,7 @@ def _render_synthesized_knowledge_page(
     body += heading(2, "Practical takeaway")
     body += paragraph(str(cache_entry.get("practical_takeaway", "")))
     body += _evidence_index_section(page, validation, cache_entry)
-    body += _related_section(page)
+    body += _related_section(page, related_page_index)
     body += sources_section(page.source_ids, page.source_titles)
     return RenderedFile(relative_path=page.path, text=markdown_document(frontmatter, body))
 
@@ -385,6 +403,8 @@ def _value_sections(page: KnowledgePage) -> str:
     for key, value in page.values.items():
         if key in SKIP_BODY_KEYS or key in LEAD_KEYS.get(page.category, ()):
             continue
+        if key in RELATED_TARGET_CATEGORIES:
+            continue
         if isinstance(value, str):
             if value.strip():
                 body += heading(2, DISPLAY_NAMES.get(key, _titleize(key)))
@@ -395,15 +415,48 @@ def _value_sections(page: KnowledgePage) -> str:
     return body
 
 
-def _related_section(page: KnowledgePage) -> str:
-    """Render related concept values from merged fields."""
-    related: list[str] = []
+def _related_section(
+    page: KnowledgePage,
+    related_page_index: RelatedPageIndex | None = None,
+) -> str:
+    """Render resolvable related concept values as Obsidian wikilinks."""
+    related_links: list[str] = []
+    seen: set[str] = set()
     for key, value in page.values.items():
-        if key.startswith("related") and isinstance(value, list):
-            related.extend(str(item) for item in value)
-    if not related:
+        target_category = RELATED_TARGET_CATEGORIES.get(key)
+        if not target_category or not isinstance(value, list):
+            continue
+        for item in value:
+            related_page = _resolve_related_page(
+                target_category,
+                str(item),
+                related_page_index,
+            )
+            if related_page is None or related_page.entity_id == page.entity_id:
+                continue
+            link = layout.wikilink(related_page.path, related_page.title)
+            if link not in seen:
+                seen.add(link)
+                related_links.append(link)
+    if not related_links:
         return heading(2, "Related pages") + "No related pages captured.\n\n"
-    return heading(2, "Related pages") + bullet_list(sorted(set(related)))
+    return heading(2, "Related pages") + bullet_list(related_links)
+
+
+def _resolve_related_page(
+    target_category: str,
+    raw_value: str,
+    related_page_index: RelatedPageIndex | None,
+) -> KnowledgePage | None:
+    """Resolve a reviewed related-page label to an existing knowledge page."""
+    if related_page_index is None:
+        return None
+    clean = raw_value.strip()
+    if not clean:
+        return None
+    return related_page_index.get((target_category, clean)) or related_page_index.get(
+        (target_category, layout.safe_slug(clean))
+    )
 
 
 def _scalar_frontmatter(values: dict[str, Any]) -> dict[str, Any]:

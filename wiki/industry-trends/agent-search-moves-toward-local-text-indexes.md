@@ -24,11 +24,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Agent workflows that depend on exact text lookup are moving toward local, precomputed indexes instead of repeated full-corpus scans. The operational shift is toward low-latency candidate filtering near the developer's working copy, with exact matching reserved for a much smaller subset of files. This reduces stalls in interactive loops where search is frequent and latency-sensitive.
 
-## Related Trends
-
-- workflow-restructuring-around-ai-agents
-- agentic-coding-shifts-toward-higher-supervision-costs
-
 ## Supporting Data Points
 
 - Cursor reports rg invocations taking more than 15 seconds in large monorepos.
@@ -63,8 +58,8 @@ The source is a product blog post, so the trend is directionally useful but not 
 
 ## Related pages
 
-- agentic-coding-shifts-toward-higher-supervision-costs
-- workflow-restructuring-around-ai-agents
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]]
+- [[industry-trends/agentic-coding-shifts-toward-higher-supervision-costs|Agentic Coding Shifts Toward Higher Supervision Costs]]
 
 ## Sources
 

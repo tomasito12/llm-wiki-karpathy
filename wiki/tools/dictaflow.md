@@ -48,11 +48,6 @@ An on-device speech-to-text app for macOS that emphasizes fast, private dictatio
 
 The wording suggests a standout consumer utility with a strong user experience pitch, but the source does not show scale, ecosystem, or adoption depth. It appears more mature than an experimental prototype because it is presented as the replacement for standard macOS dictation. As of 2026-04-24, the claim is useful but still anecdotal.
 
-## Related Tools
-
-- Wispr Flow
-- Nuance Dragon
-
 ## Strengths
 
 - Runs transcription entirely on-device, which is operationally attractive for privacy-sensitive work.
@@ -102,8 +97,7 @@ The article does not provide accuracy numbers, accent coverage, language support
 
 ## Related pages
 
-- Nuance Dragon
-- Wispr Flow
+- [[tools/wispr-flow|Wispr Flow]]
 
 ## Sources
 

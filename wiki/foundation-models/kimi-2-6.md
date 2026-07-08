@@ -62,14 +62,6 @@ The article does not give separate K2.6 pricing, but it implies the same low-cos
 
 Moonshot AI
 
-## Related Models
-
-- Kimi 2.5
-- Claude Sonnet 4.6
-- Claude Opus 4.5
-- GPT-5.5
-- DeepSeek v4
-
 ## Service automation implications
 
 No direct service automation implications are substantiated in the source; any transfer to support automation would be indirect through better autonomous task routing.
@@ -127,11 +119,9 @@ with marquee capabilities in agentic coding. (`afe5da7b72a7` · supporting · su
 
 ## Related pages
 
-- Claude Opus 4.5
-- Claude Sonnet 4.6
-- DeepSeek v4
-- GPT-5.5
-- Kimi 2.5
+- [[foundation-models/kimi-2-5|Kimi 2.5]]
+- [[foundation-models/gpt-5-5|GPT-5.5]]
+- [[foundation-models/deepseek-v4|DeepSeek V4]]
 
 ## Sources
 

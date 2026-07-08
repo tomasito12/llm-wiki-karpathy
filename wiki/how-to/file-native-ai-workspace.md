@@ -45,11 +45,6 @@ This setup depends on disciplined folder structure and maintenance. If the vault
 - An AI tool that can read a selected folder.
 - A willingness to maintain map files and session prompts.
 
-## Related Howtos
-
-- agentic-personal-knowledge-management
-- claude-skills-setup
-
 ## Evidence / supporting sources
 
 ### How I Use Obsidian + Claude Cowork to Run My Life (2026-06-05)
@@ -75,8 +70,8 @@ This setup depends on disciplined folder structure and maintenance. If the vault
 
 ## Related pages
 
-- agentic-personal-knowledge-management
-- claude-skills-setup
+- [[how-to/agentic-personal-knowledge-management|Agentic Personal Knowledge Management]]
+- [[how-to/claude-skills-setup|Claude Skills Setup]]
 
 ## Sources
 

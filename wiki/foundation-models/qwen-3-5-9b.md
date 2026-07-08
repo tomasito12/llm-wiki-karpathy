@@ -63,11 +63,6 @@ As a local model, it avoids per-call API pricing, but the source does not quanti
 
 Qwen
 
-## Related Models
-
-- Qwen 3.5 4B
-- Llama 3.1 8B
-
 ## Service automation implications
 
 The article’s example is an operations check, so the model could support simple triage-style service workflows, but the source does not demonstrate support-grade reliability or handoff behavior.
@@ -125,8 +120,7 @@ The article’s example is an operations check, so the model could support simpl
 
 ## Related pages
 
-- Llama 3.1 8B
-- Qwen 3.5 4B
+No related pages captured.
 
 ## Sources
 

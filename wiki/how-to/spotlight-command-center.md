@@ -40,11 +40,6 @@ This is a Mac-specific workflow and depends on Spotlight being a good fit for ke
 - Basic knowledge of macOS keyboard shortcuts
 - Optional: one or more Shortcuts for repeated actions
 
-## Related Howtos
-
-- keyboard-first-mac-workflow
-- keyboard-window-management
-
 ## Evidence / supporting sources
 
 ### 18 Years on a MacBook: 3 Principles I Use Every Single Day (2026-04-04)
@@ -67,8 +62,8 @@ This is a Mac-specific workflow and depends on Spotlight being a good fit for ke
 
 ## Related pages
 
-- keyboard-first-mac-workflow
-- keyboard-window-management
+- [[how-to/keyboard-first-mac-workflow|Keyboard-First Mac Workflow]]
+- [[how-to/keyboard-window-management|Keyboard Window Management]]
 
 ## Sources
 

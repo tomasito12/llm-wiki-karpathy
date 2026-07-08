@@ -50,13 +50,6 @@ Agent runtime architecture is the structure that determines how an agent wakes u
 
 Separate the runtime pattern from the model quality question. If the job is broad connectivity and periodic monitoring, an event loop may be appropriate; if the job is repeated personal work, a stateful learning loop can be more efficient.
 
-## Related Topics
-
-- agent-memory-architecture
-- verification-loops-in-ai-workflows
-- agent-runtime-architecture-for-voice
-- agent-workspace-layering
-
 ## Evidence / supporting sources
 
 ### Single Agent vs Multi-Agent: When to Build a Multi-Agent System (2026-05-04)
@@ -98,10 +91,10 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-memory-architecture
-- agent-runtime-architecture-for-voice
-- agent-workspace-layering
-- verification-loops-in-ai-workflows
+- [[topics/agent-memory-architecture|Agent Memory Architecture]]
+- [[topics/verification-loops-in-ai-workflows|Verification Loops in AI Workflows]]
+- [[topics/agent-runtime-architecture-for-voice|Agent Runtime Architecture for Voice]]
+- [[topics/agent-workspace-layering|Agent Workspace Layering]]
 
 ## Sources
 

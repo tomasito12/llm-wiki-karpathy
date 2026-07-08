@@ -36,11 +36,6 @@ RAG evaluation is most useful when it treats the system as a pipeline with multi
 
 Measure evidence access and refusal behavior before judging answer quality. That prevents teams from over-attributing failures to the model when the real issue is retrieval, chunking, filtering, or context packing.
 
-## Related Topics
-
-- verification-loops-in-ai-workflows
-- provenance-tracking
-
 ## Evidence / supporting sources
 
 ### How to Evaluate a RAG System Without Lying to Yourself (2026-05-07)
@@ -61,8 +56,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- provenance-tracking
-- verification-loops-in-ai-workflows
+- [[topics/verification-loops-in-ai-workflows|Verification Loops in AI Workflows]]
+- [[topics/provenance-tracking|Provenance Tracking]]
 
 ## Sources
 

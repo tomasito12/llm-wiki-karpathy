@@ -52,11 +52,6 @@ Progressive disclosure is a three-layer instruction pattern for keeping agent be
 
 Treat the load trigger as part of the design, not just metadata. The skill should encode enough at the top level for routing, but defer everything else until the model has decided the task is relevant.
 
-## Related Topics
-
-- file-native-ai-workflows
-- agent-workspace-layering
-
 ## Evidence / supporting sources
 
 ### AI Agent Skills Explained Simply (2026-04-24)
@@ -103,8 +98,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-workspace-layering
-- file-native-ai-workflows
+- [[topics/file-native-ai-workflows|File-Native AI Workflows]]
+- [[topics/agent-workspace-layering|Agent Workspace Layering]]
 
 ## Sources
 

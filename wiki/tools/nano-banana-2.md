@@ -37,11 +37,6 @@ An AI image generator/editor that the article describes as producing more realis
 
 The author presents the tool as already useful in personal workflows and references prior coverage, which suggests ongoing experimentation. The article does not provide adoption metrics or enterprise-readiness signals. As of 2026-04-10, it appears to be a capable image tool with unclear operational reliability beyond the author's examples.
 
-## Related Tools
-
-- GPT-Image-2
-- Gamma
-
 ## Strengths
 
 - The article says it can create more realistic images faster, which matters when iteration speed is important.
@@ -74,8 +69,7 @@ The source does not include objective quality comparisons, prompt sensitivity de
 
 ## Related pages
 
-- GPT-Image-2
-- Gamma
+- [[tools/gamma|Gamma]]
 
 ## Sources
 

@@ -25,10 +25,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 When model inference gets faster, the latency of API transport, validation, state reconstruction, and tool orchestration can become a primary bottleneck in agent systems. Teams then need to optimize the full request path, not only the model backend, to realize user-visible speedups.
 
-## Related Trends
-
-- models-becoming-execution-layers
-
 ## Supporting Data Points
 
 - OpenAI says agent loops were sped up 40% end-to-end.
@@ -63,7 +59,7 @@ This is a source-backed pattern, but the article is vendor-authored and does not
 
 ## Related pages
 
-- models-becoming-execution-layers
+- [[industry-trends/models-becoming-execution-layers|Models Become Execution Layers]]
 
 ## Sources
 

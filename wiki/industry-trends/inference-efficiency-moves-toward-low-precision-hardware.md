@@ -31,12 +31,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Inference systems increasingly rely on lower-precision arithmetic, block-wise scaling, and hardware-native low-bit support to cut memory traffic and arithmetic cost. This shift matters most where inference is memory-bound or where long-context serving makes activation memory expensive. The trend is not uniform across all deployments because quality, calibration effort, and hardware support still vary widely.
 
-## Related Trends
-
-- kv-cache-compression-as-a-serving-bottleneck
-- models-as-commodity-components
-- runtime-systems
-
 ## Supporting Data Points
 
 - INT8 multiply cost cited as 0.2 pJ versus 3.7 pJ for FP32 in Horowitz (2014).
@@ -93,9 +87,7 @@ The source argues that the trajectory is clear, but it does not provide cross-ve
 
 ## Related pages
 
-- kv-cache-compression-as-a-serving-bottleneck
-- models-as-commodity-components
-- runtime-systems
+- [[industry-trends/models-as-commodity-components|Models Become Commodity Components]]
 
 ## Sources
 

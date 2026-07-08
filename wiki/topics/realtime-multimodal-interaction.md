@@ -38,10 +38,6 @@ Multimodal interaction combines language, visuals, and other input modes into on
 
 Treat the multimodal layer as an interaction engine, not a garnish. The durable design move is to let text, voice, and visual states share the same intent context so the interface can adapt without losing state.
 
-## Related Topics
-
-- context-engineering
-
 ## Evidence / supporting sources
 
 ### [AINews] Thinking Machines' Native Interaction Models - TML-Interaction-Small 276B-A12B - advances SOTA Realtime Voice and kills standard VAD (2026-05-12)
@@ -70,7 +66,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- context-engineering
+- [[topics/context-engineering|Context Engineering]]
 
 ## Sources
 

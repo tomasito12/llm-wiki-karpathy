@@ -62,12 +62,6 @@ The source sets pricing at $0.50/M input and $2.50/M output tokens for Composer 
 
 Cursor
 
-## Related Models
-
-- Composer 1.5
-- Composer 1
-- Claude Code
-
 ## Service automation implications
 
 The main service-automation implication is indirect: stronger long-horizon coding models can improve internal automation for building and maintaining support tooling, but the source does not connect Composer 2 to customer-facing support automation directly. Any use in chatbots or voicebots would still need separate evidence.
@@ -115,9 +109,7 @@ The evidence is vendor-controlled and benchmark-centric, so real-world reliabili
 
 ## Related pages
 
-- Claude Code
-- Composer 1
-- Composer 1.5
+No related pages captured.
 
 ## Sources
 

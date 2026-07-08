@@ -48,12 +48,6 @@ Custom agents inside Notion that the article describes as handling recurring wor
 
 The article describes the feature as newly introduced and useful for saving time, which points to an emerging product capability rather than a long-established automation platform. The integration breadth is promising, but the source gives no evidence of enterprise adoption or large-scale deployment patterns. As of 2026-04-10, this should be treated as a workflow concept worth testing, not a proven automation standard.
 
-## Related Tools
-
-- Copilot Tasks
-- OpenClaw
-- Claude
-
 ## Strengths
 
 - Can coordinate recurring work across several business tools, which reduces context switching and manual copy-paste between systems.
@@ -93,9 +87,9 @@ The source provides no detail on permissions, auditing, conflict resolution, or 
 
 ## Related pages
 
-- Claude
-- Copilot Tasks
-- OpenClaw
+- [[tools/copilot-tasks|Copilot Tasks]]
+- [[tools/openclaw|OpenClaw]]
+- [[tools/claude|Claude]]
 
 ## Sources
 

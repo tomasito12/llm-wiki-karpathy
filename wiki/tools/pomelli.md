@@ -39,11 +39,6 @@ A brand-aware social content generator from Google Labs. The article says it rea
 
 Being in beta and free suggests an early but accessible product stage. The source frames it as solving a common business problem rather than a niche experiment, which indicates a practical go-to-market shape. Evidence remains partial, so maturity is promising but not settled.
 
-## Related Tools
-
-- Gumloop
-- Lovable
-
 ## Strengths
 
 - It extracts brand colors, fonts, tone, and messaging from a website, which reduces manual brand setup.
@@ -78,8 +73,7 @@ The article does not discuss brand-safety edge cases, template rigidity, or whet
 
 ## Related pages
 
-- Gumloop
-- Lovable
+- [[tools/lovable|Lovable]]
 
 ## Sources
 

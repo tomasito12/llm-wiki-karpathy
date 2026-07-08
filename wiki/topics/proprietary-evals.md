@@ -40,12 +40,6 @@ Proprietary evals are task-specific evaluation suites built from a company’s o
 
 If your model is differentiated by private data and private success criteria, you need private evals to match. Without them, you may optimize for the wrong metric and miss the exact failures your users feel.
 
-## Related Topics
-
-- realtime-ai-evaluation
-- harness-decay
-- verification-loops-in-ai-workflows
-
 ## Evidence / supporting sources
 
 ### Announcing Fin Apex: The age of vertical models is here (2026-03-26)
@@ -75,9 +69,9 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- harness-decay
-- realtime-ai-evaluation
-- verification-loops-in-ai-workflows
+- [[topics/realtime-ai-evaluation|Realtime AI Evaluation]]
+- [[topics/harness-decay|Harness Decay]]
+- [[topics/verification-loops-in-ai-workflows|Verification Loops in AI Workflows]]
 
 ## Sources
 

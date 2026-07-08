@@ -25,11 +25,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Support automation is most effective when organizations redesign roles, knowledge processes, routing, and measurement around the automation layer rather than treating it as a standalone feature. The pattern includes dedicated ownership for knowledge, conversation design, and continuous improvement.
 
-## Related Trends
-
-- knowledge-base-becomes-runtime-infrastructure
-- harness-design-becomes-more-important-for-agent-reliability
-
 ## Supporting Data Points
 
 - Fin reportedly resolves over 81% of support volume.
@@ -64,8 +59,8 @@ This is based on one vendor-authored case study, so the evidence supports the op
 
 ## Related pages
 
-- harness-design-becomes-more-important-for-agent-reliability
-- knowledge-base-becomes-runtime-infrastructure
+- [[industry-trends/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]]
+- [[industry-trends/harness-design-becomes-more-important-for-agent-reliability|Agent reliability is shifting toward harness design]]
 
 ## Sources
 

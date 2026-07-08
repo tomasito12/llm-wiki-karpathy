@@ -34,11 +34,6 @@ A safer document-ingest workflow separates analysis from writing. First the syst
 
 Use a staging analysis pass to decide what is factual, what is provisional, and what needs human review before any wiki pages are updated. This creates a check against false certainty and makes ingestion easier to trust.
 
-## Related Topics
-
-- agentic-personal-knowledge-management
-- provenance-tracking
-
 ## Evidence / supporting sources
 
 ### I Found a Full LLM Wiki App. So I Built the Smaller Thing I Actually Needed. (2026-04-29)
@@ -58,8 +53,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agentic-personal-knowledge-management
-- provenance-tracking
+- [[topics/agentic-personal-knowledge-management|Agentic Personal Knowledge Management]]
+- [[topics/provenance-tracking|Provenance Tracking]]
 
 ## Sources
 

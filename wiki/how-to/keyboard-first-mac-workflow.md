@@ -40,11 +40,6 @@ This is basic macOS advice and not a novel technique. The article is anecdotal a
 - Basic familiarity with keyboard input
 - A willingness to replace mouse-driven habits
 
-## Related Howtos
-
-- spotlight-command-center
-- window-management-with-keyboard
-
 ## Evidence / supporting sources
 
 ### 18 Years on a MacBook: 3 Principles I Use Every Single Day (2026-04-04)
@@ -67,8 +62,7 @@ This is basic macOS advice and not a novel technique. The article is anecdotal a
 
 ## Related pages
 
-- spotlight-command-center
-- window-management-with-keyboard
+- [[how-to/spotlight-command-center|Spotlight Command Center]]
 
 ## Sources
 

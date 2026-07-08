@@ -55,13 +55,6 @@ The source says Claude Code "shows you the plan, then executes step by step" and
 
 Use approvals where correctness and reversibility matter more than speed; the workflow is valuable because it turns AI output into an inspectable sequence rather than a black box.
 
-## Related Topics
-
-- agent-first-ide-orchestration
-- verification-loops-in-ai-workflows
-- agent-native-auditability
-- agent-runtime-architecture-for-voice
-
 ## Evidence / supporting sources
 
 ### AI is approving our pull requests: Here’s how we made it safe (2026-04-21)
@@ -103,10 +96,10 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-first-ide-orchestration
-- agent-native-auditability
-- agent-runtime-architecture-for-voice
-- verification-loops-in-ai-workflows
+- [[topics/agent-first-ide-orchestration|Agent-First IDE Orchestration]]
+- [[topics/verification-loops-in-ai-workflows|Verification Loops in AI Workflows]]
+- [[topics/agent-native-auditability|Agent-Native Auditability]]
+- [[topics/agent-runtime-architecture-for-voice|Agent Runtime Architecture for Voice]]
 
 ## Sources
 

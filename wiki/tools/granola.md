@@ -39,11 +39,6 @@ A meeting-notes app that combines automatic transcription with manual notes take
 
 The availability of a free basic plan suggests low-friction adoption. The product is described as distinct from other transcription tools by virtue of its workflow design rather than raw transcription alone. The source is mostly descriptive, so maturity signals should be treated as practical but not deeply validated.
 
-## Related Tools
-
-- Wispr Flow
-- Gumloop
-
 ## Strengths
 
 - It merges transcript text with the user’s own notes, which helps preserve both spoken content and what the participant considered important.
@@ -78,8 +73,7 @@ The source does not explain note accuracy, speaker attribution quality, or how i
 
 ## Related pages
 
-- Gumloop
-- Wispr Flow
+- [[tools/wispr-flow|Wispr Flow]]
 
 ## Sources
 

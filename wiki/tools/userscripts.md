@@ -44,11 +44,6 @@ A Safari extension-style app for loading and running custom JavaScript and style
 
 The source presents it as a well-coded utility with a clear niche in Safari customization. The fact that the author wishes it existed on Chrome or Firefox suggests it fills a real gap, but the article does not provide broader adoption evidence. As of 2026-01-08, it looks like a mature niche browser utility.
 
-## Related Tools
-
-- Tampermonkey
-- Violentmonkey
-
 ## Strengths
 
 - It lets users run custom scripts on websites such as Instagram, YouTube, and Reddit, which can repair or extend site behavior without waiting for the site owner.
@@ -87,8 +82,7 @@ The app is incredibly memory-efficient, and it doesn’t make Safari use a ton o
 
 ## Related pages
 
-- Tampermonkey
-- Violentmonkey
+No related pages captured.
 
 ## Sources
 

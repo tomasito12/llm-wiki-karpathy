@@ -31,13 +31,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Agent systems are increasingly being designed as persistent work loops that read from and write to a durable knowledge store, rather than answering from isolated session context. The change matters because repeated work can compound inside the system: past lookups, entity relationships, and meeting notes become reusable operational memory. This pushes agent design toward synchronized knowledge bases, backlinks, and incremental maintenance.
 
-## Related Trends
-
-- ai-products-shift-from-models-to-systems
-- workflow-restructuring-around-ai-agents
-- agent-memory-architecture
-- agent-workspace-layering
-
 ## Supporting Data Points
 
 - The page describes a repeated read-write-sync loop as the core operating model.
@@ -109,10 +102,8 @@ The evidence is a single-product implementation narrative, so it shows a credibl
 
 ## Related pages
 
-- agent-memory-architecture
-- agent-workspace-layering
-- ai-products-shift-from-models-to-systems
-- workflow-restructuring-around-ai-agents
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]]
 
 ## Sources
 

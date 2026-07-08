@@ -42,10 +42,6 @@ A Mac app for live wallpapers with a library of about 1,500 high-resolution wall
 
 The app is presented as a lesser-known but functional Mac utility, with enough polish to earn a favorable comparison in the article. The one-time pricing and large wallpaper library suggest a consumer product that is already usable, but the source does not provide adoption data or enterprise signals. As of 2025-11-22, it reads as a niche desktop customization app rather than a mature platform tool.
 
-## Related Tools
-
-- Wallpaper Engine
-
 ## Strengths
 
 - It provides live wallpapers on Mac, which fills a niche the author says they had wanted for a long time.
@@ -82,7 +78,7 @@ The source says performance is only moderate and that quality videos can consume
 
 ## Related pages
 
-- Wallpaper Engine
+No related pages captured.
 
 ## Sources
 

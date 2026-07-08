@@ -26,10 +26,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 AI product monetization is moving toward payment structures tied to measurable results rather than raw usage or generic access. This shift matters because buyer willingness to pay is often anchored to delivered value, especially for automation products that can define a successful task completion. The practical challenge is that the outcome has to be both meaningful to buyers and detectable in operations; otherwise the model becomes hard to administer and hard to trust.
 
-## Related Trends
-
-- workflow-restructuring-around-ai-agents
-
 ## Supporting Data Points
 
 - Fin uses an outcome metric defined as successfully handling a customer service query.
@@ -64,7 +60,7 @@ The evidence is company-specific and self-reported, so it supports the pattern b
 
 ## Related pages
 
-- workflow-restructuring-around-ai-agents
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]]
 
 ## Sources
 

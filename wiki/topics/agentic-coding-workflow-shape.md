@@ -38,12 +38,6 @@ Coding agents differ most in the workflow shape they optimize for: terminal-nati
 
 Choose the interface and autonomy level before choosing the model. When the work lives in a terminal, IDE, remote desktop, or GitHub PR, the best agent is the one that matches that control surface and review path.
 
-## Related Topics
-
-- workflow-based-agent-evaluation
-- approval-based-coding-workflows
-- agent-first-ide-orchestration
-
 ## Evidence / supporting sources
 
 ### Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong (2026-05-04)
@@ -63,9 +57,9 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-first-ide-orchestration
-- approval-based-coding-workflows
-- workflow-based-agent-evaluation
+- [[topics/workflow-based-agent-evaluation|Workflow-Based Agent Evaluation]]
+- [[topics/approval-based-coding-workflows|Approval-Based Coding Workflows]]
+- [[topics/agent-first-ide-orchestration|Agent-First IDE Orchestration]]
 
 ## Sources
 

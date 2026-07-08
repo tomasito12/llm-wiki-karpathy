@@ -29,13 +29,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 AI products increasingly compete on whether they can package repeatable workflows, not just expose model access. The durable advantage comes from turning common tasks into reusable instruction sets, validation steps, and sharing surfaces that reduce manual setup. This matters because it changes the product unit from a chat interface to an operational workflow artifact.
 
-## Related Trends
-
-- knowledge-base-becomes-runtime-infrastructure
-- agents-shift-toward-persistent-memory-backed-workflows
-- verification-loops-become-central-to-ai-workflows
-- ai-products-shift-from-models-to-systems
-
 ## Supporting Data Points
 
 - Skills are packaged as folders with SKILL.md, optional scripts, references, and assets.
@@ -108,10 +101,10 @@ What they give you: Procedural knowledge" (`43b53939b7f8` · supporting · suppo
 
 ## Related pages
 
-- agents-shift-toward-persistent-memory-backed-workflows
-- ai-products-shift-from-models-to-systems
-- knowledge-base-becomes-runtime-infrastructure
-- verification-loops-become-central-to-ai-workflows
+- [[industry-trends/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]]
+- [[industry-trends/agents-shift-toward-persistent-memory-backed-workflows|Agents Shift Toward Persistent Memory-Backed Workflows]]
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 
 ## Sources
 

@@ -37,11 +37,6 @@ When an AI system is embedded in a business motion, it should be treated as its 
 
 Assign one accountable owner for the AI motion, with responsibility for performance, rollout, and iterative optimization; do not assume a general manager or existing team will manage it incidentally.
 
-## Related Topics
-
-- agent-led-inbound-qualification
-- support-automation-as-operating-model
-
 ## Evidence / supporting sources
 
 ### AI is the answer to the sales growth-without-headcount problem (2026-04-28)
@@ -61,8 +56,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-led-inbound-qualification
-- support-automation-as-operating-model
+- [[topics/agent-led-inbound-qualification|Agent-Led Inbound Qualification]]
+- [[topics/support-automation-as-operating-model|Support Automation as Operating Model]]
 
 ## Sources
 

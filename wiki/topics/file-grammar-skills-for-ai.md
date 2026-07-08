@@ -45,10 +45,6 @@ The source gives three concrete file grammars: Obsidian-flavored Markdown, Bases
 
 Treat file grammar as first-class operational knowledge, not as an afterthought. A skill file can act like a lightweight validator and style guide for generation workflows, which is often cheaper than post-processing bad output.
 
-## Related Topics
-
-- local-model-deployment
-
 ## Evidence / supporting sources
 
 ### How to build Claude Skills 2.0 Better than 99% of People (2026-03-25)
@@ -79,7 +75,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- local-model-deployment
+- [[topics/local-model-deployment|Local Model Deployment]]
 
 ## Sources
 

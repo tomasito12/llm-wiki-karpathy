@@ -39,13 +39,6 @@ An Obsidian plugin that organizes notes into spaces and cards, replacing a pure 
 
 The author describes it as the biggest change in the rebuild, which suggests it is central to the workflow rather than a minor cosmetic add-on. The article does not provide adoption numbers or ecosystem evidence, so maturity is inferred only from its practical use in the setup. As of 2026-04-18, it reads as a mature enough plugin for individual power-user workflows, but not a broadly validated standard.
 
-## Related Tools
-
-- Obsidian
-- Omnisearch
-- QuickAdd
-- Calendar
-
 ## Strengths
 
 - Spaces create topic-based environments, which gives a user a clearer mental model than a flat folder tree.
@@ -80,10 +73,10 @@ The article presents Make.md as a helpful reorganization layer, but it does not 
 
 ## Related pages
 
-- Calendar
-- Obsidian
-- Omnisearch
-- QuickAdd
+- [[tools/obsidian|Obsidian]]
+- [[tools/omnisearch|Omnisearch]]
+- [[tools/quickadd|QuickAdd]]
+- [[tools/calendar|Calendar]]
 
 ## Sources
 

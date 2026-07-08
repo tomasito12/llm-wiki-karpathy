@@ -40,11 +40,6 @@ A realtime speech API for building voice agents that can listen and speak with l
 
 The source treats it as a shippable component by 2026, alongside other major realtime voice stacks. That is a sign of practical maturity for basic voice-conversation use cases, but the article does not provide independent evidence of robustness across noisy calls, accents, or complex escalation flows.
 
-## Related Tools
-
-- Twilio Voice
-- LangChain
-
 ## Strengths
 
 - Handles the talking side of the call through a streaming audio connection, which makes it suitable for inbound voice experiences.
@@ -78,8 +73,7 @@ The source does not show production metrics, latency, reliability, or failure ha
 
 ## Related pages
 
-- LangChain
-- Twilio Voice
+No related pages captured.
 
 ## Sources
 

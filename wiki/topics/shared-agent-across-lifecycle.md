@@ -37,11 +37,6 @@ A shared customer agent across the lifecycle uses the same agent infrastructure,
 
 A single agent can be easier to govern than separate point solutions if the platform cleanly separates role, memory, and policy. The hard part is not chat generation; it is keeping boundaries clear while sharing enough context to make the experience continuous.
 
-## Related Topics
-
-- agent-memory-architecture
-- support-automation-as-operating-model
-
 ## Evidence / supporting sources
 
 ### Announcing Fin for Sales: A new role for Fin Customer Agent (2026-04-22)
@@ -61,8 +56,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-memory-architecture
-- support-automation-as-operating-model
+- [[topics/agent-memory-architecture|Agent Memory Architecture]]
+- [[topics/support-automation-as-operating-model|Support Automation as Operating Model]]
 
 ## Sources
 

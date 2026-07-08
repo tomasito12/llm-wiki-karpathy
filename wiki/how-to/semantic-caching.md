@@ -57,13 +57,6 @@ The article warns that the similarity threshold is the main failure mode: too lo
 - An embedding or vector search system.
 - Clear scoping and expiration rules for cached answers.
 
-## Related Howtos
-
-- prompt-caching
-- feedback-sentiment-dashboard
-- retrieval-systems
-- agent-memory
-
 ## Evidence / supporting sources
 
 ### 8 LLM Cost Optimization Techniques: How to Cut API Spend by Up to 70% (Visually Explained) (2026-04-17)
@@ -105,10 +98,8 @@ The article warns that the similarity threshold is the main failure mode: too lo
 
 ## Related pages
 
-- agent-memory
-- feedback-sentiment-dashboard
-- prompt-caching
-- retrieval-systems
+- [[how-to/prompt-caching|Prompt Caching]]
+- [[how-to/feedback-sentiment-dashboard|Feedback Sentiment Dashboard]]
 
 ## Sources
 

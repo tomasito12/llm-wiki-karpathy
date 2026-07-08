@@ -35,10 +35,6 @@ Some knowledge systems are designed to store and retrieve source material; other
 
 When a corpus is meant to grow, the main challenge is not only finding information but continuously integrating it into a living structure that can revise itself as new evidence arrives.
 
-## Related Topics
-
-- agentic-personal-knowledge-management
-
 ## Evidence / supporting sources
 
 ### Gemini Notebook Meets NotebookLM (2026-04-20)
@@ -57,7 +53,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agentic-personal-knowledge-management
+- [[topics/agentic-personal-knowledge-management|Agentic Personal Knowledge Management]]
 
 ## Sources
 

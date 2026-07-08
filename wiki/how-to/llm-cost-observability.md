@@ -44,11 +44,6 @@ The article treats hard caps as non-optional, but it does not discuss alert tuni
 - A cost calculator or provider pricing data
 - Access to provider usage limits or budget caps
 
-## Related Howtos
-
-- agent-evaluation-design
-- prompt-caching
-
 ## Evidence / supporting sources
 
 ### 8 LLM Cost Optimization Techniques: How to Cut API Spend by Up to 70% (Visually Explained) (2026-04-17)
@@ -72,8 +67,8 @@ The article treats hard caps as non-optional, but it does not discuss alert tuni
 
 ## Related pages
 
-- agent-evaluation-design
-- prompt-caching
+- [[how-to/agent-evaluation-design|Agent Evaluation Design]]
+- [[how-to/prompt-caching|Prompt Caching]]
 
 ## Sources
 

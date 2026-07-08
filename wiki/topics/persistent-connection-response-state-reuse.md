@@ -35,10 +35,6 @@ A persistent connection can hold reusable conversation and execution state in me
 
 Use connection-scoped state when the same conversation will generate many follow-up actions and when rebuilding context is a measurable bottleneck. Design the cache boundaries carefully so that the system stays predictable under retries, disconnects, and long sessions.
 
-## Related Topics
-
-- agentic-workflow-latency-optimization
-
 ## Evidence / supporting sources
 
 ### Speeding up agentic workflows with WebSockets in the Responses API (2026-04-22)
@@ -57,7 +53,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agentic-workflow-latency-optimization
+- [[topics/agentic-workflow-latency-optimization|Agentic Workflow Latency Optimization]]
 
 ## Sources
 

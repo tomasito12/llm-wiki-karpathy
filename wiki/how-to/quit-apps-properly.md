@@ -27,10 +27,6 @@ On a Mac, closing a window is not the same as stopping the app. This matters bec
 
 This is a beginner habit fix, not a universal performance rule. Some apps may keep helper processes or background services active even after quitting, so closing correctly is necessary but not always sufficient to free every resource.
 
-## Related Howtos
-
-- keyboard-first-mac-workflow
-
 ## Evidence / supporting sources
 
 ### 14 Mac Mistakes Newbies Always Make (2025-12-19)
@@ -46,7 +42,7 @@ This is a beginner habit fix, not a universal performance rule. Some apps may ke
 
 ## Related pages
 
-- keyboard-first-mac-workflow
+- [[how-to/keyboard-first-mac-workflow|Keyboard-First Mac Workflow]]
 
 ## Sources
 

@@ -36,10 +36,6 @@ A product should not be exposed to all customers as soon as it appears useful in
 
 Use internal rollout surfaces as a filtering layer: if a pattern cannot survive reuse by multiple internal teams across different accounts, it probably is not ready for product.
 
-## Related Topics
-
-- customer-signal-productization-pipeline
-
 ## Evidence / supporting sources
 
 ### From swarms to product: Turning customer signals into scalable features (2026-04-13)
@@ -58,7 +54,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- customer-signal-productization-pipeline
+- [[topics/customer-signal-productization-pipeline|Customer Signal Productization Pipeline]]
 
 ## Sources
 

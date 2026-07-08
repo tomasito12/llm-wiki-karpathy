@@ -26,12 +26,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 AI systems are increasingly packaged as hosted runtimes that handle code execution, file access, sandboxing, and lifecycle controls, rather than as prompt-only model calls. This shifts engineering effort from prompt design to orchestration, isolation, and persistent state management.
 
-## Related Trends
-
-- harness-design-becomes-more-important-for-agent-reliability
-- persistent-agents
-- workflow-restructuring-around-ai-agents
-
 ## Supporting Data Points
 
 - Perplexity reports WANDR benchmark improvement from 0.152 to 0.386 with Search as Code.
@@ -66,9 +60,9 @@ The source is a roundup with vendor announcements and community commentary, so t
 
 ## Related pages
 
-- harness-design-becomes-more-important-for-agent-reliability
-- persistent-agents
-- workflow-restructuring-around-ai-agents
+- [[industry-trends/harness-design-becomes-more-important-for-agent-reliability|Agent reliability is shifting toward harness design]]
+- [[industry-trends/persistent-agents|Agents are shifting from stateless chat to memory-backed persistent work loops]]
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]]
 
 ## Sources
 

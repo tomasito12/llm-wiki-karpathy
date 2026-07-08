@@ -39,12 +39,6 @@ An Obsidian plugin that automatically cleans note formatting, metadata, and stru
 
 The plugin is presented as a practical fix for everyday note hygiene rather than an experimental feature. The author’s emphasis on readability after months of reuse suggests it addresses a durable maintenance problem. As of 2026-04-18, the evidence is user-level and practical, not benchmarked or independently validated.
 
-## Related Tools
-
-- Obsidian
-- QuickAdd
-- Calendar
-
 ## Strengths
 
 - Automatic cleanup on save keeps notes consistent without requiring manual formatting passes.
@@ -79,9 +73,9 @@ The article does not describe configuration effort, false positives, or whether 
 
 ## Related pages
 
-- Calendar
-- Obsidian
-- QuickAdd
+- [[tools/obsidian|Obsidian]]
+- [[tools/quickadd|QuickAdd]]
+- [[tools/calendar|Calendar]]
 
 ## Sources
 

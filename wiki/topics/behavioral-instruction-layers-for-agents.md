@@ -56,10 +56,6 @@ The source distills the behavioral layer into four lines: “Don’t assume. Don
 
 For agent workflows, keep instruction files small and behavior-focused. Add context only when it materially changes the agent’s chances of making a mistake, not as a dumping ground for preferences.
 
-## Related Topics
-
-- personalized-conversational-ai
-
 ## Evidence / supporting sources
 
 ### How I Built an AI Second Brain Using Claude Code and Obsidian (2026-05-03)
@@ -101,7 +97,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- personalized-conversational-ai
+- [[topics/personalized-conversational-ai|Personalized Conversational AI]]
 
 ## Sources
 

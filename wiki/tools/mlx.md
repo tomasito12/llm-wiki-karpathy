@@ -46,12 +46,6 @@ MLX is Apple’s array framework for Apple Silicon, paired with the mlx-lm packa
 
 The source treats MLX as Apple’s dedicated LLM stack, not a side project. It is strong enough to be benchmarked directly against llama.cpp, Ollama, MLC-LLM, and vLLM-mlx. The mention of native fine-tuning and multiple language bindings suggests a platform with real developer adoption and not just raw inference capability.
 
-## Related Tools
-
-- Ollama
-- llama.cpp
-- LM Studio
-
 ## Strengths
 
 - Apple-native kernels give it a performance edge in compute-bound workloads on Apple Silicon.
@@ -97,9 +91,8 @@ The source treats MLX as Apple’s dedicated LLM stack, not a side project. It i
 
 ## Related pages
 
-- LM Studio
-- Ollama
-- llama.cpp
+- [[tools/ollama|Ollama]]
+- [[tools/llama-cpp|llama.cpp]]
 
 ## Sources
 

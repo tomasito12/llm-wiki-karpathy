@@ -35,12 +35,6 @@ AI production readiness depends on adding explicit controls around outputs, fail
 
 Production readiness comes from systems controls, not from prompt tuning alone. Useful controls include strict schema validation, automated test suites, API contract alignment, monitoring for token usage and context limits, and audit logs for high-risk actions.
 
-## Related Topics
-
-- production-debt-in-ai-systems
-- verifiable-ai-governance
-- agent-evaluation-shifts-toward-reliability-and-tool-discipline
-
 ## Evidence / supporting sources
 
 ### Why Your AI Demo Will Die in Production (2026-05-18)
@@ -59,9 +53,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-evaluation-shifts-toward-reliability-and-tool-discipline
-- production-debt-in-ai-systems
-- verifiable-ai-governance
+- [[topics/production-debt-in-ai-systems|Production Debt in AI Systems]]
+- [[topics/verifiable-ai-governance|Verifiable AI Governance]]
 
 ## Sources
 

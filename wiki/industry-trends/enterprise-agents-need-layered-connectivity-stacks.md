@@ -25,11 +25,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Production agent systems increasingly separate connectivity into complementary layers rather than relying on one universal interface. Reusable procedure, local command execution, and governed external integration each solve different parts of the workflow. This changes agent architecture from single-abstraction design toward stack selection based on task shape, control needs, and token cost.
 
-## Related Trends
-
-- ai-products-shift-from-models-to-systems
-- runtime-centralization
-
 ## Supporting Data Points
 
 - Skills are described as reusable procedural instructions.
@@ -64,8 +59,7 @@ The source presents this as an architectural recommendation, not a comparative s
 
 ## Related pages
 
-- ai-products-shift-from-models-to-systems
-- runtime-centralization
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 
 ## Sources
 

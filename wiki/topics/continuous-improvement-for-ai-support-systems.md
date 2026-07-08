@@ -41,11 +41,6 @@ A concrete illustration is the four-step loop described for Agent Fin: "Train: T
 
 Treat support quality as an operating system with recurring feedback, not as a static model quality problem. The practical leverage comes from making training, simulation, deployment, and analysis part of one loop.
 
-## Related Topics
-
-- support-automation-as-operating-model
-- verification-loops-in-ai-workflows
-
 ## Evidence / supporting sources
 
 ### Kaizen for the AI era: How small improvements build smarter support (2026-03-19)
@@ -66,8 +61,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- support-automation-as-operating-model
-- verification-loops-in-ai-workflows
+- [[topics/support-automation-as-operating-model|Support Automation as Operating Model]]
+- [[topics/verification-loops-in-ai-workflows|Verification Loops in AI Workflows]]
 
 ## Sources
 

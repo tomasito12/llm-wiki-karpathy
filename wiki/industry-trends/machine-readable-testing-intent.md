@@ -24,10 +24,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Chaos engineering may evolve beyond blast-radius control toward machine-readable testing intent: a structured hypothesis layer that specifies what behavior is being validated, what counts as success, what budget and exclusion constraints apply, and what outcome data should be captured. The broader pattern is not the fault-injection script itself, but encoding experiment intent so tooling can validate, execute, and learn from tests in a computable way.
 
-## Related Trends
-
-- harness-design-becomes-more-important-for-agent-reliability
-
 ## Supporting Data Points
 
 - Proposed schema fields include target_behavior, hypothesis, acceptance_criteria, budget_fraction, and exclusion_zones.
@@ -62,7 +58,7 @@ The source is a persuasive architecture argument, not adoption evidence. It is u
 
 ## Related pages
 
-- harness-design-becomes-more-important-for-agent-reliability
+- [[industry-trends/harness-design-becomes-more-important-for-agent-reliability|Agent reliability is shifting toward harness design]]
 
 ## Sources
 

@@ -30,10 +30,6 @@ synthesis_state: stage1-placeholder
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 A method that improves language model answers by retrieving relevant external documents or chunks and feeding them into the model at query time.
 
-## Related Terms
-
-- Knowledge Management
-
 ## Relevance Note
 
 This is a core pattern in document-grounded AI systems, especially for chatbots, enterprise search, and service workflows that need answers from private material. Understanding its strengths and limits helps practitioners decide when retrieval is enough and when they need higher-level structure or curation.
@@ -81,7 +77,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- Knowledge Management
+- [[glossary/knowledge-management|Knowledge Management]]
 
 ## Sources
 

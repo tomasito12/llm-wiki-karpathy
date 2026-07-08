@@ -26,11 +26,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Support automation systems increasingly depend on continuous feedback loops rather than one-time deployment and occasional tuning. The operational pattern is to train, test, deploy, and analyze in repeated cycles so failures discovered in production or simulation can be fed back into the system. This shifts support quality work from episodic releases toward ongoing maintenance and refinement.
 
-## Related Trends
-
-- verification-loops-become-central-to-ai-workflows
-- support-automation-becomes-a-growth-function
-
 ## Supporting Data Points
 
 - Fin Flywheel has four repeatable steps: train, test, deploy, analyze.
@@ -65,8 +60,8 @@ The evidence is a vendor self-description, so it shows an operating model but no
 
 ## Related pages
 
-- support-automation-becomes-a-growth-function
-- verification-loops-become-central-to-ai-workflows
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
+- [[industry-trends/support-automation-becomes-a-growth-function|Support Automation Becomes a Growth Function]]
 
 ## Sources
 

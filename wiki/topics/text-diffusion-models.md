@@ -35,10 +35,6 @@ Text diffusion models generate language by repeatedly refining a noisy or masked
 
 When evaluating or designing around text diffusion, think in terms of whole-sequence refinement, not single-token commitment. That changes how you reason about decoding speed, controllability, and whether a model can revise bad early choices instead of locking them in.
 
-## Related Topics
-
-- ai-products-shift-from-models-to-systems
-
 ## Evidence / supporting sources
 
 ### The Sequence Knowledge #866: Three Text Diffusion Models You Need To Know About (2026-05-26)
@@ -57,7 +53,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- ai-products-shift-from-models-to-systems
+- [[topics/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 
 ## Sources
 

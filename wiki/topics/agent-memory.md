@@ -40,10 +40,6 @@ The source describes memories as small markdown files such as "profile/role.md" 
 
 Use memory as a living document, not a transcript. Deterministic capture plus periodic rewriting is a cleaner pattern than asking the agent to self-manage every fact it should remember.
 
-## Related Topics
-
-- harness-engineering
-
 ## Evidence / supporting sources
 
 ### Unified Agentic Memory Across Harnesses Using Hooks (2026-05-08)
@@ -64,7 +60,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- harness-engineering
+- [[topics/harness-engineering|Harness Engineering]]
 
 ## Sources
 

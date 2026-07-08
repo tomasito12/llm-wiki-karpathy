@@ -40,18 +40,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Models are being positioned less as chat endpoints and more as delegated workers that need explicit verification steps. The operational pattern is to give goals, constraints, and acceptance criteria up front, then require the model to check its own work before returning output. This favors harnessed, testable workflows over loose prompting.
 
-## Related Trends
-
-- workflow-restructuring-around-ai-agents
-- verification-loops-become-central-to-ai-workflows
-- behavioral-evaluation
-- continuous-evaluation
-- agent-tooling-shifts-from-prompting-to-workflow-architecture
-- harness-design-becomes-more-important-for-agent-reliability
-- artifact-first-ai-workflows
-- agentic-coding-shifts-toward-higher-supervision-costs
-- agent-evaluation-shifts-toward-reliability-and-tool-discipline
-
 ## Supporting Data Points
 
 - Claude Code defaulted to xhigh for Opus 4.7.
@@ -174,15 +162,12 @@ or skills
 
 ## Related pages
 
-- agent-evaluation-shifts-toward-reliability-and-tool-discipline
-- agent-tooling-shifts-from-prompting-to-workflow-architecture
-- agentic-coding-shifts-toward-higher-supervision-costs
-- artifact-first-ai-workflows
-- behavioral-evaluation
-- continuous-evaluation
-- harness-design-becomes-more-important-for-agent-reliability
-- verification-loops-become-central-to-ai-workflows
-- workflow-restructuring-around-ai-agents
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]]
+- [[industry-trends/agent-tooling-shifts-from-prompting-to-workflow-architecture|Agent Performance Shifts From Prompting to Workflow Architecture]]
+- [[industry-trends/harness-design-becomes-more-important-for-agent-reliability|Agent reliability is shifting toward harness design]]
+- [[industry-trends/artifact-first-ai-workflows|Artifact-First AI Workflows]]
+- [[industry-trends/agentic-coding-shifts-toward-higher-supervision-costs|Agentic Coding Shifts Toward Higher Supervision Costs]]
+- [[industry-trends/agent-evaluation-shifts-toward-reliability-and-tool-discipline|Agent Evaluation Shifts Toward Reliability and Tool Discipline]]
 
 ## Sources
 

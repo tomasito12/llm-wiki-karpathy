@@ -38,11 +38,6 @@ Agent skills can be treated as trainable external text state rather than static 
 
 Use the skill document as the optimization target when the goal is to improve agent behavior without changing model weights. The durable value is not the specific edit format, but the training loop: collect rollout evidence, propose constrained changes, validate on held-out data, and export only the best accepted skill.
 
-## Related Topics
-
-- verification-loops-in-ai-workflows
-- procedural-knowledge-for-agents
-
 ## Evidence / supporting sources
 
 ### Skillopt: Executive Strategy For Self-Evolving Agent Skills (undated)
@@ -63,8 +58,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- procedural-knowledge-for-agents
-- verification-loops-in-ai-workflows
+- [[topics/verification-loops-in-ai-workflows|Verification Loops in AI Workflows]]
+- [[topics/procedural-knowledge-for-agents|Procedural Knowledge for Agents]]
 
 ## Sources
 

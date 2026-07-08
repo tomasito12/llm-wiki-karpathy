@@ -43,11 +43,6 @@ An open-source scheduling tool with a free hosted plan. The article positions it
 
 The source presents Cal.com as a fully functional open-source alternative rather than an early prototype. The specific feature list on the free hosted plan suggests a product with enough maturity for real client scheduling. The article offers no evidence of enterprise adoption, but the described feature completeness is strong for individual and small-team use.
 
-## Related Tools
-
-- Calendly
-- Google Meet
-
 ## Strengths
 
 - Provides unlimited event types on the free hosted plan, which matters because it can cover multiple meeting lengths without extra cost.
@@ -82,8 +77,7 @@ The main limitation noted in the source is branding on the free booking page. Th
 
 ## Related pages
 
-- Calendly
-- Google Meet
+No related pages captured.
 
 ## Sources
 

@@ -25,11 +25,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 If AI materially reduces labor income, governments may shift redistribution and revenue collection away from taxes on work and toward taxes on capital, rents, and consumption, or toward broader public ownership of AI-generated returns. The narrower policy question is not just whether a new tax appears, but whether the tax base moves toward the place where AI-driven value accrues, so states can fund public services and share gains even if wages weaken.
 
-## Related Trends
-
-- software-differentiation-shifts-from-engineering-to-distribution
-- ai-products-shift-from-models-to-systems
-
 ## Supporting Data Points
 
 - The average OECD member raises about half of tax revenue from labour.
@@ -66,8 +61,8 @@ This is a policy scenario, not a measured outcome. The article does not show tha
 
 ## Related pages
 
-- ai-products-shift-from-models-to-systems
-- software-differentiation-shifts-from-engineering-to-distribution
+- [[industry-trends/software-differentiation-shifts-from-engineering-to-distribution|Software Differentiation Shifts from Engineering to Distribution]]
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 
 ## Sources
 

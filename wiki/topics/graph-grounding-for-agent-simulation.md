@@ -37,10 +37,6 @@ A knowledge graph can do more than support retrieval: it can serve as the struct
 
 If a team already maintains an entity-and-relationship graph for retrieval, it may be able to reuse that same structure to seed simulations, role-playing agents, or synthetic user populations. The durable design move is to treat schema quality as a downstream behavior lever, not only as an indexing concern.
 
-## Related Topics
-
-- agent-memory-architecture
-
 ## Evidence / supporting sources
 
 ### MiroFish: Swarm-Intelligence with 1M Agents That Can Predict Everything (2026-03-16)
@@ -60,7 +56,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-memory-architecture
+- [[topics/agent-memory-architecture|Agent Memory Architecture]]
 
 ## Sources
 

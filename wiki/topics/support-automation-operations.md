@@ -37,12 +37,6 @@ Support automation works best when the support function is redesigned around the
 
 Treat support automation as an operating-model change: define explicit ownership for AI optimization, knowledge quality, conversation flow, and support analytics, and budget protected time for continuous improvement as the automated system expands.
 
-## Related Topics
-
-- knowledge-base-becomes-runtime-infrastructure
-- human-handoff-design-for-ai-support
-- knowledge-management
-
 ## Evidence / supporting sources
 
 ### Transformation in action: What it takes to automate 81% of your customer service while improving CX (2026-03-13)
@@ -64,9 +58,9 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- human-handoff-design-for-ai-support
-- knowledge-base-becomes-runtime-infrastructure
-- knowledge-management
+- [[topics/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]]
+- [[topics/human-handoff-design-for-ai-support|Human Handoff Design for AI Support]]
+- [[topics/knowledge-management|Knowledge Management]]
 
 ## Sources
 

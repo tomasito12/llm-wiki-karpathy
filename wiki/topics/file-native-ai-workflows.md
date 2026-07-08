@@ -73,13 +73,6 @@ File-native AI workflows use ordinary files and folders as the primary interface
 
 If an AI workflow needs long-lived state, make the filesystem the integration boundary. That keeps the system understandable, debuggable, and compatible with both humans and agents.
 
-## Related Topics
-
-- agent-maintained-knowledge-bases
-- knowledge-base-becomes-runtime-infrastructure
-- agent-workspace-layering
-- agentic-personal-knowledge-management
-
 ## Evidence / supporting sources
 
 ### Building a Complete Personal Harness: LLM Wiki + Developer’s Second Brain in Obsidian (2026-05-03)
@@ -171,10 +164,10 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-maintained-knowledge-bases
-- agent-workspace-layering
-- agentic-personal-knowledge-management
-- knowledge-base-becomes-runtime-infrastructure
+- [[topics/agent-maintained-knowledge-bases|Agent-Maintained Knowledge Bases]]
+- [[topics/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]]
+- [[topics/agent-workspace-layering|Agent Workspace Layering]]
+- [[topics/agentic-personal-knowledge-management|Agentic Personal Knowledge Management]]
 
 ## Sources
 

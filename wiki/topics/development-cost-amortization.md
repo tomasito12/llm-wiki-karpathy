@@ -36,10 +36,6 @@ Development cost amortization in AI refers to spreading research, experimentatio
 
 Look for reuse of research and infra knowledge as a real cost lever. If the same experimental steps are being repeated inside multiple teams, the ecosystem is leaving money on the table.
 
-## Related Topics
-
-- open-model-ecosystems
-
 ## Evidence / supporting sources
 
 ### How open model ecosystems compound (2026-05-12)
@@ -59,7 +55,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- open-model-ecosystems
+- [[topics/open-model-ecosystems|Open Model Ecosystems]]
 
 ## Sources
 

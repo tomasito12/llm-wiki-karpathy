@@ -24,11 +24,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 As AI systems generate more of the implementation layer, the limiting factor shifts toward verifying whether outputs satisfy real domain rules. The productive unit of work becomes a draft-plus-check loop, not just code generation. This tends to increase the value of domain experts, reviewers, and test writers who can judge correctness against operational truth.
 
-## Related Trends
-
-- verification-loops-become-central-to-ai-workflows
-- agentic-coding-shifts-toward-higher-supervision-costs
-
 ## Supporting Data Points
 
 - The source contrasts domain experts who can verify outputs with generalist engineers who may not detect plausible but wrong results.
@@ -63,8 +58,8 @@ This is a source-level argument, not measured evidence. It may not hold equally 
 
 ## Related pages
 
-- agentic-coding-shifts-toward-higher-supervision-costs
-- verification-loops-become-central-to-ai-workflows
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
+- [[industry-trends/agentic-coding-shifts-toward-higher-supervision-costs|Agentic Coding Shifts Toward Higher Supervision Costs]]
 
 ## Sources
 

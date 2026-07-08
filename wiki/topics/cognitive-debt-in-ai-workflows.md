@@ -48,13 +48,6 @@ Cognitive debt is the accumulation of lost understanding that can happen when AI
 
 Measure whether automation is saving time at the expense of retained expertise; if comprehension drops, the workflow may become harder to operate than it first appears.
 
-## Related Topics
-
-- agentic-coding-workflows
-- approval-based-coding-workflows
-- artifact-first-ai-workflows
-- ai-workflow-bottleneck-shift-to-review
-
 ## Evidence / supporting sources
 
 ### Agentic Coding is a Trap (undated)
@@ -95,10 +88,10 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agentic-coding-workflows
-- ai-workflow-bottleneck-shift-to-review
-- approval-based-coding-workflows
-- artifact-first-ai-workflows
+- [[topics/agentic-coding-workflows|Agentic Coding Workflows]]
+- [[topics/approval-based-coding-workflows|Approval-Based Coding Workflows]]
+- [[topics/artifact-first-ai-workflows|Artifact-First AI Workflows]]
+- [[topics/ai-workflow-bottleneck-shift-to-review|AI Workflow Bottleneck Shift to Review]]
 
 ## Sources
 

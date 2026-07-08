@@ -43,12 +43,6 @@ A Mac browser picker that routes links to the right browser manually or by rule.
 
 The app is presented as a practical utility with a narrow but recurring use case. The author uses it across Safari, Chrome, and Firefox, which suggests a real workflow fit, but the article does not indicate broader adoption. As of 2026-04-17, it reads as a polished niche tool rather than a platform.
 
-## Related Tools
-
-- OpenIn
-- Choosy
-- Bumpr
-
 ## Strengths
 
 - Lets users choose a browser at click time, which is handy when different tasks live in different browser profiles.
@@ -83,9 +77,7 @@ The source does not describe rule syntax, exception handling, or whether it supp
 
 ## Related pages
 
-- Bumpr
-- Choosy
-- OpenIn
+No related pages captured.
 
 ## Sources
 

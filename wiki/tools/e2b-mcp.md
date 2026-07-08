@@ -39,12 +39,6 @@ An MCP server that lets an AI run code inside a secure cloud sandbox. It is fram
 
 The article treats E2B as a practical upgrade rather than an experimental demo. Its framing around secure sandboxing suggests a product meant for real developer workflows. The source does not provide adoption figures or enterprise references.
 
-## Related Tools
-
-- Supabase MCP
-- GitHub MCP
-- Taskade MCP
-
 ## Strengths
 
 - Runs code in a secure cloud sandbox, which reduces risk compared with executing untrusted code on a local machine.
@@ -79,9 +73,9 @@ The article does not describe sandbox escape protections, resource limits, start
 
 ## Related pages
 
-- GitHub MCP
-- Supabase MCP
-- Taskade MCP
+- [[tools/supabase-mcp|Supabase MCP]]
+- [[tools/github-mcp|GitHub MCP]]
+- [[tools/taskade-mcp|Taskade MCP]]
 
 ## Sources
 

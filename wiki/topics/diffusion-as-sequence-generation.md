@@ -35,10 +35,6 @@ Diffusion as sequence generation treats text creation as an iterative reconstruc
 
 The practical question is not whether diffusion can write text, but whether iterative revision gives you better control, parallelism, or robustness than token-by-token generation. That tradeoff should be assessed on real latency, coherence, and controllability requirements rather than on novelty alone.
 
-## Related Topics
-
-- text-diffusion-models
-
 ## Evidence / supporting sources
 
 ### The Sequence Knowledge #866: Three Text Diffusion Models You Need To Know About (2026-05-26)
@@ -57,7 +53,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- text-diffusion-models
+- [[topics/text-diffusion-models|Text Diffusion Models]]
 
 ## Sources
 

@@ -43,13 +43,6 @@ An AI-assisted file renaming app for movies, TV shows, and videos. It uses Apple
 
 The app is presented as a niche utility rather than a broad media management platform. The article implies it is useful enough to support a home media-server workflow, but it does not provide adoption or ecosystem data. As of 2025-11-22, it looks like an early but practical use of Apple Intelligence for desktop automation.
 
-## Related Tools
-
-- AI Renamer
-- Plex
-- Jellyfin
-- Kodi
-
 ## Strengths
 
 - It recognizes movies and TV series using Apple Intelligence, which automates a task that is otherwise tedious and error-prone.
@@ -86,10 +79,7 @@ The source does not explain failure handling, confidence scoring, or misidentifi
 
 ## Related pages
 
-- AI Renamer
-- Jellyfin
-- Kodi
-- Plex
+- [[tools/ai-renamer|AI Renamer]]
 
 ## Sources
 

@@ -39,11 +39,6 @@ A system-level voice dictation tool that lets users speak into any text field an
 
 The tool is presented as something the author uses daily, and the source cites multiple early-2026 reviewers calling it highly accurate. Support across major operating systems and common text fields suggests a mature distribution model. The evidence is still anecdotal, but the breadth of usage surfaces a product that appears beyond an experiment.
 
-## Related Tools
-
-- Granola
-- OpenClaw
-
 ## Strengths
 
 - System-level operation means it works across many applications rather than being locked into one editor.
@@ -80,8 +75,8 @@ The source does not describe error rates, punctuation failures, or how it handle
 
 ## Related pages
 
-- Granola
-- OpenClaw
+- [[tools/granola|Granola]]
+- [[tools/openclaw|OpenClaw]]
 
 ## Sources
 

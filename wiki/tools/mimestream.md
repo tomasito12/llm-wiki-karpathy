@@ -41,12 +41,6 @@ A native macOS Gmail client built by a former Apple Mail engineer. The author us
 
 The source describes it as a polished native Mac app with behavior the author trusts enough to keep paying for after testing alternatives. The fact that the author talked themselves out of it twice and back into it three times suggests strong product fit for a specific user segment, but not broad must-have status. No ecosystem or enterprise traction is claimed in the source beyond being a dedicated Gmail client.
 
-## Related Tools
-
-- Apple Mail
-- Outlook
-- Gmail
-
 ## Strengths
 
 - Labels behave like labels instead of folders, which preserves Gmail’s information model.
@@ -83,9 +77,7 @@ The author is explicit that $49.99/year is steep for an email client and that Ap
 
 ## Related pages
 
-- Apple Mail
-- Gmail
-- Outlook
+No related pages captured.
 
 ## Sources
 

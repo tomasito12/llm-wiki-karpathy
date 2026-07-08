@@ -36,10 +36,6 @@ Government-led AI adoption programs combine public-sector coordination with acce
 
 For durable adoption, the interesting design choice is not the free access itself but the sequencing: train first, then grant access, then route distribution through an accountable public institution.
 
-## Related Topics
-
-- organizational-ai-readiness
-
 ## Evidence / supporting sources
 
 ### OpenAI and Malta partner to bring ChatGPT Plus to all citizens (2026-05-16)
@@ -59,7 +55,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- organizational-ai-readiness
+- [[topics/organizational-ai-readiness|Organizational AI Readiness]]
 
 ## Sources
 

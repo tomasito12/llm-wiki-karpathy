@@ -47,11 +47,6 @@ The source does not describe false positives, page-rendering issues, or how to f
 - A summarization prompt that emphasizes material changes
 - A delivery channel such as Slack
 
-## Related Howtos
-
-- competitive-dynamics
-- workflow-automation
-
 ## Evidence / supporting sources
 
 ### 7 Simple AI Projects You Can Build This Week (2026-05-18)
@@ -78,8 +73,7 @@ The source does not describe false positives, page-rendering issues, or how to f
 
 ## Related pages
 
-- competitive-dynamics
-- workflow-automation
+No related pages captured.
 
 ## Sources
 

@@ -56,15 +56,6 @@ Agent-native auditability means the system logs the decision trail, inputs, outp
 
 If an agent is allowed to approve or execute changes, make audit artifacts a first-class requirement from day one. The useful design test is whether an auditor or internal reviewer can reconstruct what happened without trusting memory.
 
-## Related Topics
-
-- approval-based-coding-workflows
-- verifiable-ai-governance
-- provenance-tracking
-- verification-loops-in-ai-workflows
-- ai-workflow-restructuring
-- agent-contract-programming
-
 ## Evidence / supporting sources
 
 ### AI is approving our pull requests: Here’s how we made it safe (2026-04-21)
@@ -117,12 +108,12 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-contract-programming
-- ai-workflow-restructuring
-- approval-based-coding-workflows
-- provenance-tracking
-- verifiable-ai-governance
-- verification-loops-in-ai-workflows
+- [[topics/approval-based-coding-workflows|Approval-Based Coding Workflows]]
+- [[topics/verifiable-ai-governance|Verifiable AI Governance]]
+- [[topics/provenance-tracking|Provenance Tracking]]
+- [[topics/verification-loops-in-ai-workflows|Verification Loops in AI Workflows]]
+- [[topics/ai-workflow-restructuring|AI Workflow Restructuring]]
+- [[topics/agent-contract-programming|Agent Contract Programming]]
 
 ## Sources
 

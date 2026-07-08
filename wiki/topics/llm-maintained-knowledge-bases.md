@@ -36,11 +36,6 @@ An LLM-maintained knowledge base is a structured corpus that the model updates o
 
 Treat the wiki as a maintained artifact with schema, logs, and linting, not as a passive dump of notes. The durable value comes from making updates cheap enough that synthesis stays current as sources accumulate.
 
-## Related Topics
-
-- knowledge-base-becomes-runtime-infrastructure
-- knowledge-systems-shift-toward-compilation-over-retrieval
-
 ## Evidence / supporting sources
 
 ### llm-wiki · GitHub (2026-04-04)
@@ -60,8 +55,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- knowledge-base-becomes-runtime-infrastructure
-- knowledge-systems-shift-toward-compilation-over-retrieval
+- [[topics/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]]
+- [[topics/knowledge-systems-shift-toward-compilation-over-retrieval|Knowledge Compilation Over Retrieval]]
 
 ## Sources
 

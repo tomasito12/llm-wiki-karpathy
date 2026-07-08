@@ -27,12 +27,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Chat products increasingly package chats, files, instructions, and history into durable workspaces instead of treating each conversation as isolated. The shift matters because recurring work needs state, not just a sequence of prompts. Persistent workspaces reduce repetition and make multi-session work easier to resume. They also create a cleaner unit for collaboration and access control.
 
-## Related Trends
-
-- agents-shift-toward-persistent-memory-backed-workflows
-- artifact-first-ai-workflows
-- knowledge-systems-shift-toward-persistent-workspaces
-
 ## Supporting Data Points
 
 - Projects hold chats, files, instructions, and related context in one place.
@@ -79,9 +73,9 @@ The source is vendor guidance, so it shows product direction but not adoption sc
 
 ## Related pages
 
-- agents-shift-toward-persistent-memory-backed-workflows
-- artifact-first-ai-workflows
-- knowledge-systems-shift-toward-persistent-workspaces
+- [[industry-trends/agents-shift-toward-persistent-memory-backed-workflows|Agents Shift Toward Persistent Memory-Backed Workflows]]
+- [[industry-trends/artifact-first-ai-workflows|Artifact-First AI Workflows]]
+- [[industry-trends/knowledge-systems-shift-toward-persistent-workspaces|Knowledge Systems Shift Toward Persistent Workspaces]]
 
 ## Sources
 

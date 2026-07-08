@@ -54,12 +54,6 @@ The source describes “trusted access” to GPT-Rosalind for “select U.S. gov
 
 When a model crosses a capability-risk threshold, the deployment question shifts from 'can it ship?' to 'who is allowed to use it, under what controls, and for what tasks?' That changes how you design onboarding, approvals, logging, and revocation.
 
-## Related Topics
-
-- models-becoming-execution-layers
-- privacy-controls-for-ai-products
-- model-risk-assessment-for-cyber-capability
-
 ## Evidence / supporting sources
 
 ### [AINews] Anthropic @ $30B ARR, Project GlassWing and Claude Mythos Preview — first model too dangerous to release since GPT-2 (2026-04-08)
@@ -110,9 +104,9 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- model-risk-assessment-for-cyber-capability
-- models-becoming-execution-layers
-- privacy-controls-for-ai-products
+- [[topics/models-becoming-execution-layers|Models Becoming Execution Layers]]
+- [[topics/privacy-controls-for-ai-products|Privacy Controls for AI Products]]
+- [[topics/model-risk-assessment-for-cyber-capability|Model Risk Assessment for Cyber Capability]]
 
 ## Sources
 

@@ -35,10 +35,6 @@ Government policy can shape AI development through compute access, chip procurem
 
 Plan model and infrastructure strategy around the possibility that chip supply, vendor access, or corporate actions can be constrained by policy. If a region depends on state-favored hardware or approvals, timing and cost assumptions can change outside the engineering team’s control.
 
-## Related Topics
-
-- agent-infrastructure
-
 ## Evidence / supporting sources
 
 ### Why DeepSeek’s sequel failed to impress (2026-04-28)
@@ -57,7 +53,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-infrastructure
+- [[topics/agent-infrastructure|Agent Infrastructure]]
 
 ## Sources
 

@@ -33,10 +33,6 @@ The AI architect role centers on designing the full system around AI models rath
 
 For production AI teams, treat model selection as one input to system design instead of the main job. The durable skill is deciding how requests, context, memory, tools, and feedback loops fit together under latency and reliability constraints.
 
-## Related Topics
-
-- agentic-workflows
-
 ## Evidence / supporting sources
 
 ### From Data Scientist to AI Architect (2026-05-08)
@@ -55,7 +51,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agentic-workflows
+- [[topics/agentic-workflows|Agentic Workflows]]
 
 ## Sources
 

@@ -24,11 +24,6 @@ synthesis_state: stage1-placeholder
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Specification drift is the gradual divergence between intended behavior and the system actually produced over time. It happens when the requirements or constraints guiding implementation are not kept current, so later changes follow local correctness while losing the original design intent.
 
-## Related Terms
-
-- Behavior-Driven Development
-- Harness
-
 ## Relevance Note
 
 This matters for AI-assisted development, agent workflows, and service automation because persistent systems need stable constraints across many edits and sessions. When the spec is not kept current, later changes tend to erode architecture, tests, and policy boundaries.
@@ -48,8 +43,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- Behavior-Driven Development
-- Harness
+- [[glossary/behavior-driven-development|Behavior-Driven Development]]
+- [[glossary/harness|Harness]]
 
 ## Sources
 

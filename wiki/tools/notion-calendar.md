@@ -41,12 +41,6 @@ A free Mac calendar client for Google Calendar, formerly Cron. The author uses i
 
 The source frames it as the best Google Calendar client on Mac for the author’s needs, but the reasoning is personal rather than benchmarked. Its identity change from Cron to Notion-owned branding is acknowledged, which signals an established product lineage rather than a brand-new release. The free pricing makes adoption friction low, but the article does not claim enterprise rollout or broad market dominance.
 
-## Related Tools
-
-- Fantastical
-- Google Calendar
-- Apple Calendar
-
 ## Strengths
 
 - The menu bar widget shows the next meeting, which reduces the need to open the full app repeatedly.
@@ -83,9 +77,7 @@ The source calls out limited iCloud support, so it is not a universal calendar s
 
 ## Related pages
 
-- Apple Calendar
-- Fantastical
-- Google Calendar
+No related pages captured.
 
 ## Sources
 

@@ -37,11 +37,6 @@ A prompt-driven tool for generating SVG graphics such as icons, logos, and illus
 
 The source treats Quiver AI as a practical utility rather than a platform with deep ecosystem signals. The limited free plan suggests early monetization or usage gating, but the article does not provide adoption data. As of 2026-04-10, the evidence supports trying it for draft assets, not assuming it is a mature design standard.
 
-## Related Tools
-
-- Canva
-- Figma
-
 ## Strengths
 
 - Generates SVG output from a prompt, which is useful when a team needs scalable vector assets quickly.
@@ -74,8 +69,7 @@ The article does not show whether the SVGs are production-ready, editable, or vi
 
 ## Related pages
 
-- Canva
-- Figma
+No related pages captured.
 
 ## Sources
 

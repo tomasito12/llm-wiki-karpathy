@@ -36,10 +36,6 @@ Software control strategies are business and product approaches that move beyond
 
 When a product’s value proposition shifts from helping users do work to controlling the terms on which work can happen, the architecture, pricing, and policy layer become part of the core product, not just support functions.
 
-## Related Topics
-
-- technopoly-and-tech-hegemony
-
 ## Evidence / supporting sources
 
 ### The old world of tech is dying and the new cannot be born (2026-05-14)
@@ -59,7 +55,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- technopoly-and-tech-hegemony
+- [[topics/technopoly-and-tech-hegemony|Technopoly and Tech Hegemony]]
 
 ## Sources
 

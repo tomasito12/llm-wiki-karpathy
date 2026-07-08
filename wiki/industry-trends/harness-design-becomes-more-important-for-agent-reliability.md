@@ -45,19 +45,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Agent systems are becoming more reliable when teams invest in the loop around the model: tool execution, routing, memory, tracing, and escalation logic. The model is increasingly treated as one component inside a harness rather than the whole product boundary.
 
-## Related Trends
-
-- workflow-restructuring-around-ai-agents
-- verification-loops-become-central-to-ai-workflows
-- models-becoming-execution-layers
-- persistent-agents
-- runtime-systems
-- execution-oriented-agents
-- pricing-and-harness-control-become-core-agent-product-levers
-- workflow-based-evaluation
-- agent-evaluation-shifts-toward-readiness
-- agentic-coding-shifts-toward-higher-supervision-costs
-
 ## Supporting Data Points
 
 - Harrison Chase frames agent harnesses as the more durable abstraction.
@@ -208,16 +195,14 @@ This is a roundup-level synthesis built from practitioner commentary and product
 
 ## Related pages
 
-- agent-evaluation-shifts-toward-readiness
-- agentic-coding-shifts-toward-higher-supervision-costs
-- execution-oriented-agents
-- models-becoming-execution-layers
-- persistent-agents
-- pricing-and-harness-control-become-core-agent-product-levers
-- runtime-systems
-- verification-loops-become-central-to-ai-workflows
-- workflow-based-evaluation
-- workflow-restructuring-around-ai-agents
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]]
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
+- [[industry-trends/models-becoming-execution-layers|Models Become Execution Layers]]
+- [[industry-trends/persistent-agents|Agents are shifting from stateless chat to memory-backed persistent work loops]]
+- [[industry-trends/pricing-and-harness-control-become-core-agent-product-levers|Provider pricing and harness control are becoming core agent product levers]]
+- [[industry-trends/workflow-based-evaluation|AI Evaluation Moves Toward Workflow-Based Testing]]
+- [[industry-trends/agent-evaluation-shifts-toward-readiness|Agent Evaluation Shifts Toward Organizational Readiness]]
+- [[industry-trends/agentic-coding-shifts-toward-higher-supervision-costs|Agentic Coding Shifts Toward Higher Supervision Costs]]
 
 ## Sources
 

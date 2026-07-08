@@ -46,10 +46,6 @@ The source contrasts Qwen3.6–27B as "The Dense Model" with Qwen3.6–35B-A3B a
 
 Use dense-versus-MoE comparisons to reason about efficiency and task fit, but verify behavior on the exact workflow you care about. The article's point is that a smaller active model can outperform a larger dense one when the routing and evaluation target the right kind of work.
 
-## Related Topics
-
-- agentic-coding-workflows
-
 ## Evidence / supporting sources
 
 ### One RTX 3090 and you don’t need any AI subscription anymore. Thanks to Alibaba Qwen. (2026-04-23)
@@ -79,7 +75,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agentic-coding-workflows
+- [[topics/agentic-coding-workflows|Agentic Coding Workflows]]
 
 ## Sources
 

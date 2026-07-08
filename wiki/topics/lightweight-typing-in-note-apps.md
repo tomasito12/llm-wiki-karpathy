@@ -35,10 +35,6 @@ Lightweight typing uses labels, types, or visual cues to organize notes without 
 
 A useful note system can support classification without turning every capture step into database design. That reduces setup friction and makes it easier to scale from quick notes to structured views later.
 
-## Related Topics
-
-- file-native-ai-workflows
-
 ## Evidence / supporting sources
 
 ### Tolaria: The Local‑First, Open‑Source Note App That Blends the Best of Obsidian and Notion (2026-04-28)
@@ -57,7 +53,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- file-native-ai-workflows
+- [[topics/file-native-ai-workflows|File-Native AI Workflows]]
 
 ## Sources
 

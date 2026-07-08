@@ -34,10 +34,6 @@ Some model regressions appear as small, qualitative habits rather than obvious b
 
 Build lightweight detectors and review loops for recurring phrases, tones, or lexical tics so subtle regressions can be caught before they become user-visible. Use model-version comparisons and targeted pattern searches, not only global scorecards.
 
-## Related Topics
-
-- reward-signal-generalization
-
 ## Evidence / supporting sources
 
 ### Where the goblins came from (2026-04-29)
@@ -56,7 +52,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- reward-signal-generalization
+No related pages captured.
 
 ## Sources
 

@@ -49,10 +49,6 @@ The source gives a concrete workflow: raw documents go into a raw/ directory, th
 
 Design the agent to produce durable artifacts, not just answers. If every interaction can update the knowledge base, the system compounds instead of resetting.
 
-## Related Topics
-
-- agent-memory-architecture
-
 ## Evidence / supporting sources
 
 ### RAG, LLM Wiki, or Gbrain? How Your Agent Remembers Changes Everything (2026-04-27)
@@ -85,7 +81,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-memory-architecture
+- [[topics/agent-memory-architecture|Agent Memory Architecture]]
 
 ## Sources
 

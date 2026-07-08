@@ -24,10 +24,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 AI system design is increasingly framed as an explicit constraint problem rather than loose documentation. The emphasis shifts from describing intent informally to defining boundaries, permissions, timing, and failure behavior so the system has fewer implicit decisions to make. This is useful in agentic workflows where unspecified behavior can become model-chosen behavior.
 
-## Related Trends
-
-- verification-loops-become-central-to-ai-workflows
-
 ## Supporting Data Points
 
 - 60 questions total
@@ -64,7 +60,7 @@ The source offers a conceptual method, not empirical evidence that this style of
 
 ## Related pages
 
-- verification-loops-become-central-to-ai-workflows
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
 
 ## Sources
 

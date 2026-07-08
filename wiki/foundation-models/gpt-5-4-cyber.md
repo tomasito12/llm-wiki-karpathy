@@ -51,12 +51,6 @@ The post does not discuss pricing. The tighter access and limited rollout sugges
 
 OpenAI
 
-## Related Models
-
-- GPT-5.4
-- GPT-5.3-Codex
-- GPT-5.2
-
 ## Service automation implications
 
 No direct service automation implications are identified beyond the need for stricter controls on sensitive security-related requests.
@@ -92,9 +86,7 @@ The model is described as more permissive, which raises obvious dual-use risk an
 
 ## Related pages
 
-- GPT-5.2
-- GPT-5.3-Codex
-- GPT-5.4
+- [[foundation-models/gpt-5-4|gpt-5.4]]
 
 ## Sources
 

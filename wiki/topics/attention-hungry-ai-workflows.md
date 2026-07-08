@@ -35,10 +35,6 @@ Some AI workflows are designed to maximize interaction volume rather than minimi
 
 When evaluating AI tools, look for interface patterns that nudge people toward more prompts, more outputs, and more sessions. If a workflow repeatedly expands the task instead of closing it, add explicit stopping rules, outcome checks, or usage limits.
 
-## Related Topics
-
-- manual-capture-friction
-
 ## Evidence / supporting sources
 
 ### the solution might be cancelling my AI subscription (2026-05-31)
@@ -57,7 +53,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- manual-capture-friction
+- [[topics/manual-capture-friction|Manual Capture Friction]]
 
 ## Sources
 

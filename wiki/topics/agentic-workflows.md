@@ -61,16 +61,6 @@ Agentic workflows depend on a model's ability to call tools, read state, and com
 
 When evaluating an agentic system, measure task completion quality and repair cost, not just tokens per second. A slower model can outperform a faster one if it avoids retries and broken tool calls.
 
-## Related Topics
-
-- harness-decay
-- context-engineering
-- realtime-ai-evaluation
-- prompt-engineering
-- ai-assisted-knowledge-compilation
-- privacy-controls-for-ai-products
-- software-moat-compression
-
 ## Evidence / supporting sources
 
 ### Harness Engineering: What Every AI Engineer Needs to Know in 2026 (2026-04-27)
@@ -155,13 +145,13 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- ai-assisted-knowledge-compilation
-- context-engineering
-- harness-decay
-- privacy-controls-for-ai-products
-- prompt-engineering
-- realtime-ai-evaluation
-- software-moat-compression
+- [[topics/harness-decay|Harness Decay]]
+- [[topics/context-engineering|Context Engineering]]
+- [[topics/realtime-ai-evaluation|Realtime AI Evaluation]]
+- [[topics/prompt-engineering|Prompt Engineering]]
+- [[topics/ai-assisted-knowledge-compilation|AI-Assisted Knowledge Compilation]]
+- [[topics/privacy-controls-for-ai-products|Privacy Controls for AI Products]]
+- [[topics/software-moat-compression|Software Moat Compression]]
 
 ## Sources
 

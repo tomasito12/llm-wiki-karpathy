@@ -48,11 +48,6 @@ Cursor says "your codebase, tool execution, and build artifacts never leave your
 
 When enterprise constraints block hosted agents, the winning architecture is often vendor orchestration plus customer-side execution workers.
 
-## Related Topics
-
-- agent-infrastructure
-- agent-runtime-architecture
-
 ## Evidence / supporting sources
 
 ### Run cloud agents in your own infrastructure (2026-03-25)
@@ -84,8 +79,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-infrastructure
-- agent-runtime-architecture
+- [[topics/agent-infrastructure|Agent Infrastructure]]
+- [[topics/agent-runtime-architecture|Agent Runtime Architecture]]
 
 ## Sources
 

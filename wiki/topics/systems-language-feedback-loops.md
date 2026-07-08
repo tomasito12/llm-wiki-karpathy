@@ -36,10 +36,6 @@ Languages with tight compiler or checker feedback loops can be easier for agenti
 
 When agents are doing the coding, pick languages and toolchains that surface errors immediately and clearly. That improves correction speed, reduces wasted generations, and makes complex rewrites less fragile.
 
-## Related Topics
-
-- agentic-coding-workflows
-
 ## Evidence / supporting sources
 
 ### If AI Writes Your Code, Why Use Python? (2026-04-28)
@@ -59,7 +55,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agentic-coding-workflows
+- [[topics/agentic-coding-workflows|Agentic Coding Workflows]]
 
 ## Sources
 

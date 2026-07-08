@@ -43,10 +43,6 @@ The source does not explain how much setup work is needed per workflow, how ofte
 - Data connectors or APIs for the systems involved.
 - A human review path for sensitive or high-risk steps.
 
-## Related Howtos
-
-- Local Coding Model Setup
-
 ## Evidence / supporting sources
 
 ### The hardest percentages (2026-04-14)
@@ -72,7 +68,7 @@ The source does not explain how much setup work is needed per workflow, how ofte
 
 ## Related pages
 
-- Local Coding Model Setup
+- [[how-to/local-coding-model-setup|Local Coding Model Setup]]
 
 ## Sources
 

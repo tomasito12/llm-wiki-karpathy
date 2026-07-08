@@ -26,12 +26,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 AI governance is shifting from broad principles and policy statements toward concrete controls for generated media. The focus is on whether providers can prevent, mark, and verify specific outputs rather than simply promising responsible use. This includes technical controls, documented procedures, and externally testable enforcement hooks. The shift matters most in image, audio, and video systems where generated content can affect real people outside the product boundary.
 
-## Related Trends
-
-- policy-operationalization
-- verification-over-principles
-- ai-governance-shifts-toward-verification-mechanisms
-
 ## Supporting Data Points
 
 - Article 5 prohibition on AI-generated sexually explicit images, video, and audio involving identifiable persons enters into force on December 2, 2026.
@@ -68,9 +62,7 @@ The source is an interpretive article, not the final consolidated legal text. It
 
 ## Related pages
 
-- ai-governance-shifts-toward-verification-mechanisms
-- policy-operationalization
-- verification-over-principles
+- [[industry-trends/ai-governance-shifts-toward-verification-mechanisms|AI Governance Shifts Toward Verification Mechanisms]]
 
 ## Sources
 

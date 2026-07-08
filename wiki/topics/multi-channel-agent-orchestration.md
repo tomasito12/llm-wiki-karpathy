@@ -34,10 +34,6 @@ Multi-channel agent orchestration is the practice of coordinating one conversati
 
 When support spans multiple channels, design for centralized orchestration first and channel adapters second. That makes it easier to reuse workflows, measure outcomes consistently, and avoid each channel becoming its own bot silo.
 
-## Related Topics
-
-- support-automation-as-operating-model
-
 ## Evidence / supporting sources
 
 ### E.ON's AI Agents Provide Best-in-Class Service (undated)
@@ -56,7 +52,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- support-automation-as-operating-model
+- [[topics/support-automation-as-operating-model|Support Automation as Operating Model]]
 
 ## Sources
 

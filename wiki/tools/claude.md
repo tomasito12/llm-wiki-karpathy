@@ -44,11 +44,6 @@ A general-purpose AI assistant that can read files and execute file-based workfl
 
 The piece frames Claude as one workable implementation rather than a unique dependency, which suggests the system is tool-agnostic at the model layer. That makes Claude look like a practical orchestration endpoint rather than a narrowly specialized product in this context.
 
-## Related Tools
-
-- Codex
-- Obsidian
-
 ## Strengths
 
 - Reads from a structured vault and updates generated files, which supports a durable file-native workflow instead of ephemeral chat history.
@@ -84,8 +79,8 @@ The article does not show benchmarked reliability, model-specific advantages, or
 
 ## Related pages
 
-- Codex
-- Obsidian
+- [[tools/codex|Codex]]
+- [[tools/obsidian|Obsidian]]
 
 ## Sources
 

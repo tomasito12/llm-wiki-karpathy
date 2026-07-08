@@ -26,10 +26,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 AI-assisted workflows increasingly need explicit friction, review gates, and stopping rules to prevent easy generation from overwhelming attention and maintenance capacity. The core design problem is shifting from making output easier to making sure output is worth keeping.
 
-## Related Trends
-
-- workflow-restructuring-around-ai-agents
-
 ## Supporting Data Points
 
 - The author describes many AI-built projects that were deleted, abandoned, or never completed.
@@ -64,7 +60,7 @@ The evidence is anecdotal and self-reported, so it supports a plausible workflow
 
 ## Related pages
 
-- workflow-restructuring-around-ai-agents
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]]
 
 ## Sources
 

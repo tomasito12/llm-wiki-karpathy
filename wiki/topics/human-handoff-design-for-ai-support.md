@@ -34,10 +34,6 @@ When an AI system handles a large share of service conversations, the handoff to
 
 Do not treat escalation as an afterthought; build routing and conversation design as part of the automation stack so users move cleanly from AI to the right human.
 
-## Related Topics
-
-- support-automation-organization-design
-
 ## Evidence / supporting sources
 
 ### Transformation in action: What it takes to automate 81% of your customer service while improving CX (2026-03-13)
@@ -56,7 +52,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- support-automation-organization-design
+No related pages captured.
 
 ## Sources
 

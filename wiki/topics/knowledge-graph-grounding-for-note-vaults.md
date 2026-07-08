@@ -37,11 +37,6 @@ A note vault can be treated as an implicit graph where notes are nodes and links
 
 If a vault is already richly linked, use graph operations to expose structural holes and high-value connectors instead of relying on manual browsing. The graph view is useful for display, but agents need queryable structure to do work.
 
-## Related Topics
-
-- file-native-agent-workflows
-- agent-maintained-knowledge-bases
-
 ## Evidence / supporting sources
 
 ### Your Obsidian Vault Is a Knowledge Graph. Here’s How to Make It Think (quickly). (2026-04-14)
@@ -61,8 +56,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-maintained-knowledge-bases
-- file-native-agent-workflows
+- [[topics/file-native-agent-workflows|File-Native Agent Workflows]]
+- [[topics/agent-maintained-knowledge-bases|Agent-Maintained Knowledge Bases]]
 
 ## Sources
 

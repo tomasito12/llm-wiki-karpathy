@@ -43,11 +43,6 @@ This pattern adds a search step, so poorly designed discovery can make tool sele
 - A runtime that can load tool schemas on demand.
 - Consistent naming and parameter descriptions across tools.
 
-## Related Howtos
-
-- lazy-loading-tools
-- context-compaction
-
 ## Evidence / supporting sources
 
 ### How to Build Production-Ready AI Agents: MCP, CLI, and Skills — the Right Tool for the Right Job (2026-05-02)
@@ -71,8 +66,8 @@ This pattern adds a search step, so poorly designed discovery can make tool sele
 
 ## Related pages
 
-- context-compaction
-- lazy-loading-tools
+- [[how-to/lazy-loading-tools|Lazy-Loading Tools]]
+- [[how-to/context-compaction|Context Compaction]]
 
 ## Sources
 

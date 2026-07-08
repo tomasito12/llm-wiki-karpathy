@@ -43,12 +43,6 @@ An open-source local inference server with an OpenAI-compatible API, aimed at ge
 
 The article describes day-zero support for Gemma 4 and treats Lemonade as the key component that made the local stack workable on AMD, which suggests a product that has reached practical usefulness for at least one demanding user. It is presented as open source and OpenAI-compatible, both of which are useful maturity signals for ecosystem fit. That said, the evidence here is a single implementation case rather than broad adoption data.
 
-## Related Tools
-
-- Ollama
-- LiteLLM
-- Open WebUI
-
 ## Strengths
 
 - Provides OpenAI-compatible APIs, which reduces downstream integration work and makes local models easier to plug into existing tools.
@@ -86,9 +80,7 @@ The source also makes clear that AMD support still involves more friction than N
 
 ## Related pages
 
-- LiteLLM
-- Ollama
-- Open WebUI
+- [[tools/ollama|Ollama]]
 
 ## Sources
 

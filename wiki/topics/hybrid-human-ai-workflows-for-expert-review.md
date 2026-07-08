@@ -35,10 +35,6 @@ The article states that "The most durable gains came from hybrid workflows—usi
 - Hybrid workflows are more durable when the task has meaningful edge cases or quality risk.
 - The design target is augmented expert review, not throughput alone.
 
-## Related Topics
-
-- support-automation-as-operating-model
-
 ## Evidence / supporting sources
 
 ### How enterprises are scaling AI (2026-05-11)
@@ -56,7 +52,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- support-automation-as-operating-model
+- [[topics/support-automation-as-operating-model|Support Automation as Operating Model]]
 
 ## Sources
 

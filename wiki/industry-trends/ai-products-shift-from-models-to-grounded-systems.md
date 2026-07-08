@@ -25,10 +25,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 AI products in high-stakes domains increasingly depend on surrounding system architecture, not just model quality. The useful unit becomes a grounded workflow that combines language understanding, verified data, provenance, and human review. This shift matters because model fluency alone does not solve source verification, updateability, or accountability.
 
-## Related Trends
-
-- verification-loops-become-central-to-ai-workflows
-
 ## Supporting Data Points
 
 - The article cites a legal hallucination case where fabricated citations passed through an LLM.
@@ -63,7 +59,7 @@ This is a strong architectural claim, but the source does not provide comparativ
 
 ## Related pages
 
-- verification-loops-become-central-to-ai-workflows
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
 
 ## Sources
 

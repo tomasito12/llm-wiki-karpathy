@@ -27,10 +27,6 @@ synthesis_state: stage1-placeholder
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 A formal representation of concepts, types, properties, and relationships in a domain. It defines the rules a system uses to interpret and structure data consistently.
 
-## Related Terms
-
-- Knowledge Management
-
 ## Relevance Note
 
 Ontology is a core primitive for production knowledge systems because it keeps extraction, storage, and reasoning aligned as domains grow. It matters for AI workflows that need stable schema control, traceable facts, and consistent downstream automation.
@@ -64,7 +60,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- Knowledge Management
+- [[glossary/knowledge-management|Knowledge Management]]
 
 ## Sources
 

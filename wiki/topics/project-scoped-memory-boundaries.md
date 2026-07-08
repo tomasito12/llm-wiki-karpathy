@@ -35,11 +35,6 @@ Project-scoped memory is a boundary-setting pattern where a workspace can refere
 
 Use scoped memory when you want repeatability and isolation more than global recall. The design tradeoff is less convenience across the whole account in exchange for better separation inside a workstream.
 
-## Related Topics
-
-- agent-memory-architecture
-- defensive-context-handling
-
 ## Evidence / supporting sources
 
 ### Using projects in ChatGPT (2026-04-10)
@@ -59,8 +54,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-memory-architecture
-- defensive-context-handling
+- [[topics/agent-memory-architecture|Agent Memory Architecture]]
+- [[topics/prompt-injection-defensive-context-handling|Defensive Context Handling]]
 
 ## Sources
 

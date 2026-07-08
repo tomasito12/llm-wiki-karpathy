@@ -41,12 +41,6 @@ Verifiable AI governance uses common tests, audits, inspections, and other evide
 
 Design governance so claims can be checked with the minimum necessary exposure: define the test, control who sees the results, and reserve invasive verification only for agreements that truly require it.
 
-## Related Topics
-
-- provenance-tracking
-- realtime-ai-evaluation
-- proprietary-evals
-
 ## Evidence / supporting sources
 
 ### AI creates a fearsome cold-war-style dilemma (2026-05-09)
@@ -76,9 +70,9 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- proprietary-evals
-- provenance-tracking
-- realtime-ai-evaluation
+- [[topics/provenance-tracking|Provenance Tracking]]
+- [[topics/realtime-ai-evaluation|Realtime AI Evaluation]]
+- [[topics/proprietary-evals|Proprietary Evals]]
 
 ## Sources
 

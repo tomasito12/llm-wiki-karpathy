@@ -47,12 +47,6 @@ The source says Antigravity is free during public preview and that Google has no
 
 Google
 
-## Related Models
-
-- Sonnet 4.6
-- Opus 4.6
-- GPT-OSS 120B
-
 ## Service automation implications
 
 No direct service automation implications are discussed for Gemini 3 Pro in this source.
@@ -85,9 +79,8 @@ The article does not provide independent performance evidence for Gemini 3 Pro i
 
 ## Related pages
 
-- GPT-OSS 120B
-- Opus 4.6
-- Sonnet 4.6
+- [[foundation-models/sonnet-4-6|Sonnet 4.6]]
+- [[foundation-models/opus-4-6|Opus 4.6]]
 
 ## Sources
 

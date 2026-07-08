@@ -25,10 +25,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 A subset of writing workflows is moving from pure drafting toward a two-stage process: freeform human expression followed by AI-assisted extraction, summarization, or task creation. The practical shift is that writing is evaluated less as an end in itself and more as a source of structured operational artifacts. This is relevant where people need both reflection and downstream action from the same text.
 
-## Related Trends
-
-- verification-loops-become-central-to-ai-workflows
-
 ## Supporting Data Points
 
 - 15-minute time-boxed writing session
@@ -63,7 +59,7 @@ The evidence is a single first-person workflow and does not show whether the pat
 
 ## Related pages
 
-- verification-loops-become-central-to-ai-workflows
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
 
 ## Sources
 

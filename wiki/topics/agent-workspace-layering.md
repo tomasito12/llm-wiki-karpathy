@@ -78,20 +78,6 @@ Workspace layering is the practice of separating ongoing work into bounded space
 
 When a task needs persistent state, the workspace itself becomes part of the system design. Keep the working set close to the chat surface so users do not have to reconstruct context manually in every session.
 
-## Related Topics
-
-- agent-memory-architecture
-- agent-infrastructure
-- file-native-ai-workflows
-- harness-engineering
-- agent-first-ide-orchestration
-- progressive-disclosure-skill-design
-- file-native-agent-workflows
-- open-formats-as-ai-integration-boundaries
-- knowledge-base-becomes-runtime-infrastructure
-- agentic-coding-workflows
-- verification-loops-in-ai-workflows
-
 ## Evidence / supporting sources
 
 ### Building a Complete Personal Harness: LLM Wiki + Developer’s Second Brain in Obsidian (2026-05-03)
@@ -175,17 +161,17 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-first-ide-orchestration
-- agent-infrastructure
-- agent-memory-architecture
-- agentic-coding-workflows
-- file-native-agent-workflows
-- file-native-ai-workflows
-- harness-engineering
-- knowledge-base-becomes-runtime-infrastructure
-- open-formats-as-ai-integration-boundaries
-- progressive-disclosure-skill-design
-- verification-loops-in-ai-workflows
+- [[topics/agent-memory-architecture|Agent Memory Architecture]]
+- [[topics/agent-infrastructure|Agent Infrastructure]]
+- [[topics/file-native-ai-workflows|File-Native AI Workflows]]
+- [[topics/harness-engineering|Harness Engineering]]
+- [[topics/agent-first-ide-orchestration|Agent-First IDE Orchestration]]
+- [[topics/progressive-disclosure-skill-design|Progressive Disclosure in Skill Design]]
+- [[topics/file-native-agent-workflows|File-Native Agent Workflows]]
+- [[topics/open-formats-as-ai-integration-boundaries|Open Formats as AI Integration Boundaries]]
+- [[topics/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]]
+- [[topics/agentic-coding-workflows|Agentic Coding Workflows]]
+- [[topics/verification-loops-in-ai-workflows|Verification Loops in AI Workflows]]
 
 ## Sources
 

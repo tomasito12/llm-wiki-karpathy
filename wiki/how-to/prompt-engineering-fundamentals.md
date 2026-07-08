@@ -29,10 +29,6 @@ Prompt engineering is the practice of shaping what you ask an AI system so it ca
 
 The guidance is practical but not backed by systematic evaluation in the source. It does not cover prompt injection, conflicting instructions, context limits, or cases where workflow design matters more than prompt wording.
 
-## Related Howtos
-
-- prompt-engineering
-
 ## Evidence / supporting sources
 
 ### Prompting fundamentals (2026-04-10)
@@ -48,7 +44,7 @@ The guidance is practical but not backed by systematic evaluation in the source.
 
 ## Related pages
 
-- prompt-engineering
+No related pages captured.
 
 ## Sources
 

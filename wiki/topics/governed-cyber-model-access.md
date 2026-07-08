@@ -36,10 +36,6 @@ Governed cyber model access is the practice of allowing AI systems to support de
 
 The durable lesson is that useful cyber assistance depends on task scoping and control surfaces, not just model intelligence. A strong implementation defines what counts as authorized work, which accounts may perform it, and what kinds of harmful requests must still be refused.
 
-## Related Topics
-
-- tiered-access-for-sensitive-model-capabilities
-
 ## Evidence / supporting sources
 
 ### Scaling Trusted Access for Cyber with GPT-5.5 and GPT-5.5-Cyber (2026-05-07)
@@ -58,7 +54,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- tiered-access-for-sensitive-model-capabilities
+- [[topics/tiered-access-for-sensitive-model-capabilities|Tiered Access for Sensitive Model Capabilities]]
 
 ## Sources
 

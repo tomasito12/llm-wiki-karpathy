@@ -50,11 +50,6 @@ The source is architectural guidance, not a validated benchmark study, so it doe
 - Logging, metrics, and tracing infrastructure.
 - Security policy logic for permissions and approvals.
 
-## Related Howtos
-
-- agent-runtime-architecture
-- agent-evaluation-design
-
 ## Evidence / supporting sources
 
 ### Understanding AI Agent Architecture: A Complete Technical Breakdown (2026-05-09)
@@ -90,8 +85,7 @@ The source is architectural guidance, not a validated benchmark study, so it doe
 
 ## Related pages
 
-- agent-evaluation-design
-- agent-runtime-architecture
+- [[how-to/agent-evaluation-design|Agent Evaluation Design]]
 
 ## Sources
 

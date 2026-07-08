@@ -36,10 +36,6 @@ Local multimodal inference is the use of a model on personal or on-premises hard
 
 Treat multimodal local runs as end-to-end pipeline tests. A model that can answer text questions and read images is useful, but the practical quality depends on how well the runtime preserves image geometry, orientation, and other preprocessing details.
 
-## Related Topics
-
-- local-model-deployment
-
 ## Evidence / supporting sources
 
 ### Run Gemma 4:E2B Locally with Ollama: No Cloud, No Limits (2026-04-03)
@@ -58,7 +54,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- local-model-deployment
+- [[topics/local-model-deployment|Local Model Deployment]]
 
 ## Sources
 

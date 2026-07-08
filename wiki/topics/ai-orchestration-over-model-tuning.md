@@ -42,11 +42,6 @@ AI orchestration is the discipline of assembling retrieval, prompting, state man
 
 Use orchestration as the first lever when a system underperforms. Add retrieval, structured outputs, guardrails, and evals before reaching for fine-tuning or complex agents.
 
-## Related Topics
-
-- ai-architect-role
-- agentic-workflows
-
 ## Evidence / supporting sources
 
 ### 15 AI Engineering Terms — Beginners Get Wrong (And What It Costs You) (2026-04-21)
@@ -77,8 +72,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agentic-workflows
-- ai-architect-role
+- [[topics/ai-architect-role|AI Architect Role]]
+- [[topics/agentic-workflows|Agentic Workflows]]
 
 ## Sources
 

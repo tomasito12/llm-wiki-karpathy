@@ -28,11 +28,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Personal and work knowledge tools are moving toward designs that record context automatically instead of relying on users to stop and type notes. The underlying change is a response to capture friction: valuable information often appears during active work, not after it. Products that can observe context and surface or route it later reduce interruption and are better aligned with real working conditions. The main tradeoff is that automatic capture raises privacy, trust, and correctness questions.
 
-## Related Trends
-
-- workflow-restructuring-around-ai-agents
-- ai-products-shift-from-models-to-systems
-
 ## Supporting Data Points
 
 - Six popular second-brain apps were tested: Notion, Obsidian, Capacities, Mem, Tana, and Roam Research.
@@ -99,8 +94,8 @@ The article is a single-user report, so it does not prove that passive capture i
 
 ## Related pages
 
-- ai-products-shift-from-models-to-systems
-- workflow-restructuring-around-ai-agents
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]]
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 
 ## Sources
 

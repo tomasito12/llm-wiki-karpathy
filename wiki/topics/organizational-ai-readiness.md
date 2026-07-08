@@ -43,10 +43,6 @@ Organizational AI readiness is the degree to which a company’s content, bounda
 
 Evaluate agent projects by the weakest readiness layer, not by raw model capability alone. A system can be strong on conversation quality and still be blocked by undocumented procedures, unreliable data, or unclear ownership for mistakes.
 
-## Related Topics
-
-- workflow-restructuring-around-ai-agents
-
 ## Evidence / supporting sources
 
 ### Agents can do the work (2026-05-18)
@@ -79,7 +75,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- workflow-restructuring-around-ai-agents
+- [[topics/workflow-restructuring-around-ai-agents|Workflow Restructuring Around AI Agents]]
 
 ## Sources
 

@@ -24,11 +24,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 AI knowledge systems are moving toward layered stacks that combine retrieval, compilation, and action instead of forcing one mechanism to do everything. Retrieval handles large corpora, compiled knowledge preserves synthesis, and skills or workflows turn knowledge into action. The practical direction is toward systems that can answer, remember, and execute within one workflow architecture.
 
-## Related Trends
-
-- models-becoming-execution-layers
-- ai-products-shift-from-models-to-systems
-
 ## Supporting Data Points
 
 - "Karpathy’s LLM Wiki v2 community extensions are adding retrieval layers on top of compiled wikis"
@@ -63,8 +58,8 @@ The article offers architectural examples and intuition, but no benchmark eviden
 
 ## Related pages
 
-- ai-products-shift-from-models-to-systems
-- models-becoming-execution-layers
+- [[industry-trends/models-becoming-execution-layers|Models Become Execution Layers]]
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 
 ## Sources
 

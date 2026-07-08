@@ -43,15 +43,6 @@ A Mac app that captures context from calls, apps, and conversations so the user 
 
 The source treats Soda as an established paid tool, not a toy, but the evidence is still personal workflow fit. Its inclusion ahead of the task manager signals that the author sees it as infrastructural for knowledge work. The article also notes that it competes with a category of meeting note-takers, but it does not establish category leadership.
 
-## Related Tools
-
-- Otter
-- Fireflies
-- Granola
-- Read.ai
-- tldv
-- Fathom
-
 ## Strengths
 
 - It captures context from calls, the apps being used, and conversations, which is broader than a transcript-only recorder.
@@ -88,12 +79,7 @@ The article does not provide measured capture quality, privacy review, retention
 
 ## Related pages
 
-- Fathom
-- Fireflies
-- Granola
-- Otter
-- Read.ai
-- tldv
+- [[tools/granola|Granola]]
 
 ## Sources
 

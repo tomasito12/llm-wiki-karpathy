@@ -24,10 +24,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Hiring pressure can first appear in junior technical roles when AI systems reduce the need for routine coding and other standardized tasks. The pattern is usually visible through lower postings, weaker employment outcomes, and shifts in student behavior rather than through immediate mass layoffs. Evidence is strongest when the decline is concentrated in highly exposed fields while less-exposed fields fall less sharply. The main uncertainty is whether AI is the primary cause or an amplifier of an existing hiring slowdown.
 
-## Related Trends
-
-- software-commoditization
-
 ## Supporting Data Points
 
 - “Between 2022 and 2024” the least-exposed quintile saw average full-time employment fall by 1.5 percentage points.
@@ -66,7 +62,7 @@ Causality is not settled. The piece also cites studies arguing that declines pre
 
 ## Related pages
 
-- software-commoditization
+No related pages captured.
 
 ## Sources
 

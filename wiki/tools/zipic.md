@@ -43,10 +43,6 @@ An offline image compression app for Mac. It batch-compresses images with a focu
 
 The app is described as something the author has used for many months, which suggests it is stable enough for repeated use. The discussion treats it as a polished utility that fills a recurring desktop need. As of 2025-11-22, it appears to be a mature single-purpose app with clear practical value.
 
-## Related Tools
-
-- Raycast
-
 ## Strengths
 
 - It is offline, which makes it useful when image compression should not depend on a network service.
@@ -83,7 +79,7 @@ The article does not provide quantitative compression benchmarks or failure case
 
 ## Related pages
 
-- Raycast
+- [[tools/raycast|Raycast]]
 
 ## Sources
 

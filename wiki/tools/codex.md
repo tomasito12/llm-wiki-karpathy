@@ -58,11 +58,6 @@ Codex is OpenAI's coding agent for repository work, command execution, and devel
 
 The source describes an enterprise-oriented deployment posture rather than an experimental prototype. It mentions workspace-pinned authentication, secure keyring storage, compliance logs, and support across multiple local surfaces, which are all signs of a product designed for controlled organizational use. As of 2026-05-08, the maturity signal is strongest on governance and integration, not on external validation of outcomes.
 
-## Related Tools
-
-- OpenAI Realtime API
-- Agents SDK
-
 ## Strengths
 
 - Combines execution with explicit control surfaces, so routine work can stay fast while risky actions still pause for review.
@@ -119,8 +114,8 @@ The article does not provide performance benchmarks, incident rates, or evidence
 
 ## Related pages
 
-- Agents SDK
-- OpenAI Realtime API
+- [[tools/openai-realtime-api|OpenAI Realtime API]]
+- [[tools/agents-sdk|Agents SDK]]
 
 ## Sources
 

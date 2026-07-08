@@ -41,10 +41,6 @@ A macOS utility that disables key registration while you clean a MacBook keyboar
 
 The source describes it as a small utility with an obvious single purpose. There is no evidence of a broad ecosystem or enterprise deployment story. As of 2026-01-08, it looks like a niche but practical macOS helper.
 
-## Related Tools
-
-- KeepingYouAwake
-
 ## Strengths
 
 - It prevents keypresses from registering during cleaning, which avoids accidental actions while the keyboard is exposed.
@@ -80,7 +76,7 @@ To stop this app and return your Mac to its normal state, press and hold both CM
 
 ## Related pages
 
-- KeepingYouAwake
+- [[tools/keepingyouawake|KeepingYouAwake]]
 
 ## Sources
 

@@ -75,17 +75,6 @@ Agentic coding workflows move implementation work from direct authoring toward d
 
 Keep enough manual implementation in the loop to preserve debugging skill and architectural understanding; treat delegation as a bounded aid, not the default production path.
 
-## Related Topics
-
-- approval-based-coding-workflows
-- harness-decay
-- agent-runtime-architecture
-- agent-runtime-architecture-for-voice
-- verification-loops-in-ai-workflows
-- tool-discipline-in-agent-loops
-- workflow-restructuring-around-ai-agents
-- domain-expertise-as-verification
-
 ## Evidence / supporting sources
 
 ### Agentic Coding is a Trap (undated)
@@ -179,14 +168,14 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-runtime-architecture
-- agent-runtime-architecture-for-voice
-- approval-based-coding-workflows
-- domain-expertise-as-verification
-- harness-decay
-- tool-discipline-in-agent-loops
-- verification-loops-in-ai-workflows
-- workflow-restructuring-around-ai-agents
+- [[topics/approval-based-coding-workflows|Approval-Based Coding Workflows]]
+- [[topics/harness-decay|Harness Decay]]
+- [[topics/agent-runtime-architecture|Agent Runtime Architecture]]
+- [[topics/agent-runtime-architecture-for-voice|Agent Runtime Architecture for Voice]]
+- [[topics/verification-loops-in-ai-workflows|Verification Loops in AI Workflows]]
+- [[topics/tool-discipline-in-agent-loops|Tool Discipline in Agent Loops]]
+- [[topics/workflow-restructuring-around-ai-agents|Workflow Restructuring Around AI Agents]]
+- [[topics/domain-expertise-as-verification|Domain Expertise as Verification]]
 
 ## Sources
 

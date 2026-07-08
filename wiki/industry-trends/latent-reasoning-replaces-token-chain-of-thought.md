@@ -26,11 +26,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 AI model design is moving toward reasoning that stays inside latent state instead of being externalized as step-by-step text. The article argues that chain-of-thought is a workaround for fixed-depth transformers, while Sapient’s HRM-Text extends this idea by adding variable internal depth so the model can do sequential computation without emitting every intermediate step. The broader pattern is a shift away from treating written reasoning traces as the primary way to extend model depth, and toward architectures that support hidden internal computation directly.
 
-## Related Trends
-
-- models-becoming-execution-layers
-- ai-products-shift-from-models-to-systems
-
 ## Supporting Data Points
 
 - Chain-of-thought is described as a workaround for fixed-depth transformers.
@@ -65,8 +60,8 @@ The article is persuasive but not empirical: it provides no benchmark results, c
 
 ## Related pages
 
-- ai-products-shift-from-models-to-systems
-- models-becoming-execution-layers
+- [[industry-trends/models-becoming-execution-layers|Models Become Execution Layers]]
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 
 ## Sources
 

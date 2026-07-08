@@ -19,79 +19,79 @@ source_ids:
 - run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy
 value_level: high
 confidence: 0.97
-synthesis_state: stage1-placeholder
+synthesis_state: synthesized
+synthesis_stale: false
+synthesis_input_hash: 7d132d90d1c9448d
+current_input_hash: 7d132d90d1c9448d
+synthesis_schema_version: 1
+synthesis_prompt_version: 1
+last_synthesized_at: '2026-06-17T20:16:38Z'
 ---
 
 # Agent Infrastructure
 
-## Current understanding
+## Executive synthesis
 
-<!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
-Agent infrastructure is the runtime and control layer that lets autonomous agents execute tools, manage sessions, and scale across machines or environments. It usually includes workers, orchestration, permissions, execution isolation, and network access patterns. The important design question is not just what the model can do, but where and how the tool execution happens. In enterprise settings, the infrastructure layer often determines whether an agent can be adopted at all. As a result, agent systems are frequently constrained by deployment and security architecture before they are constrained by model capability.
+Agent infrastructure is the part of an agent system that makes model output executable in the real world: the runtime, orchestration, permissions, isolation, connectivity, tracing, and deployment layer. The reviewed sources agree that this layer often determines whether an agent is useful or even deployable, especially in enterprise settings where security boundaries and network placement matter. They also point to a shift away from a simple single-loop chatbot model toward multi-process systems with worker-per-session isolation and hierarchical subagents for task decomposition. The main takeaway is that model quality alone is not enough; production usefulness depends heavily on the harness around it. Evidence is strong on the importance of the pattern, but thin on comparative evaluation of specific architectures.
 
-## Examples
+## Context card
 
-The source describes "isolated virtual machines, each with a terminal, browser, and full desktop" and a worker that "connects outbound via HTTPS to Cursor's cloud."
+- **Use this page when:** Use this page when deciding how to design, evaluate, or deploy agent runtimes, especially for enterprise or tool-using agents.
+- **Best for questions about:** What agent infrastructure includes, Why runtime design matters for agents, How orchestration, permissions, and isolation affect production readiness, Why enterprise deployment constraints shape agent architecture, What hierarchical subagents and multi-process orchestration are doing in agent systems
+- **Not enough for:** Detailed vendor comparisons, Benchmarks of specific agent platforms, Security guarantees or formal threat models, How to implement a full production agent stack end to end
+- **Strongest sources:** Run cloud agents in your own infrastructure (2026-03-25), [AINews] OpenAI launches GPT-Image-2 (2026-04-22)
+- **Related tags:** agent-systems, ai-engineering, infrastructure, orchestration, prompt-engineering, runtime-systems
 
-## Key Points
+## What to remember
 
-- Dedicated worker-per-session architecture supports parallel execution and cleaner isolation.
-- Outbound-only worker connectivity reduces deployment friction in locked-down environments.
-- Kubernetes-native scaling and fleet APIs indicate that agent infrastructure is becoming a managed operational concern rather than a local scripting problem.
-- Runtime placement can be the adoption gate for enterprise AI, especially when code, secrets, or internal endpoints cannot leave the network.
-- The runtime/harness can matter more than the base model alone.
-- Agent systems rely on permissions, memory, tool orchestration, tracing, and deployment wrappers.
-- Hierarchical subagents can support deeper task decomposition.
-- Multi-process orchestration is replacing simple single-loop agent designs.
+- The runtime/harness can matter more than the base model for agent usefulness.
+- Agent infrastructure includes orchestration, permissions, memory, tracing, tool execution, and deployment wrappers.
+- Isolation and outbound-only connectivity are important for enterprise adoption.
+- Worker-per-session and Kubernetes-native patterns suggest agent systems are becoming managed infrastructure, not local scripts.
+- Hierarchical subagents and multi-process orchestration are part of the emerging design space.
+- This page is about production/runtime concerns, not model capability alone.
 
-## Operational Insight
+## Consensus
 
-Treat agent runtime design as a first-class product surface: isolation, connectivity, and fleet management are as important as the model loop itself.
+- Agent infrastructure is the runtime and control layer around model calls: workers, orchestration, permissions, memory, tracing, tool execution, and deployment wrappers.
+- The surrounding runtime/harness can matter more than the base model for whether an agent is reliable, autonomous, and usable in production.
+- A common architecture is isolated worker sessions with dedicated execution environments, which helps with parallelism, safety, and cleaner isolation.
+- For enterprise use, placement and network boundaries are often adoption gates: outbound-only connectivity, internal security boundaries, and access to secrets or internal endpoints can determine whether an agent can be deployed at all.
+- Multi-process orchestration and hierarchical subagents are emerging patterns for deeper task decomposition and long-running workflows.
 
-## Related Topics
+## Tensions / open questions
 
-- agent-runtime-architecture
-- agentic-workflows
-- agent-first-ide-orchestration
-- models-becoming-execution-layers
-- context-engineering
+- The sources strongly emphasize runtime importance, but they do not prove which architecture is best; they describe patterns rather than compare alternatives.
+- Hierarchical subagents and multi-process orchestration are presented as useful, but the evidence here does not show their limits, failure modes, or whether they outperform simpler designs in all cases.
+- Enterprise deployment constraints are highlighted as adoption gates, but the sources do not provide quantitative data on how often or in which sectors these constraints dominate.
 
-## Evidence / supporting sources
+## Evidence quality
 
-### [AINews] OpenAI launches GPT-Image-2 (2026-04-22)
+- Evidence is fairly strong for the high-level pattern: both sources converge on runtime/harness importance and production constraints.
+- Evidence is narrower for specific implementation choices because it comes from only two sources and is mostly descriptive rather than experimental.
+- The enterprise deployment claims are plausible and practical, but they are framed as operational insights rather than quantified measurements.
+- The hierarchical subagent/multi-process direction is supported, but the evidence here is not enough to say how general or durable each design choice will be across domains.
 
-- Agent systems are increasingly shaped by the runtime layer around the model: orchestration, memory, permissions, tracing, tool execution, and deployment wrappers determine whether a system can be trusted for long tasks. The source frames this as a shift from a single chat loop toward multi-process orchestrated systems with reusable skills and subagents. It also highlights hierarchical decomposition as a concrete capability, noting Hermes subagents with greater spawn width and recursive spawn depth. (`32a3029e0ff9` · neutral · knowledge_summary; [[sources/ainews-openai-launches-gpt-image-2-01kps9gb2r0nk49023ns9pmqb7|[AINews] OpenAI launches GPT-Image-2]])
-- Design the agent runtime as a first-class product surface. Reliability and autonomy come less from the base model alone than from the controls, observability, and coordination logic wrapped around it. (`98503d1c5f0d` · neutral · operational_insight; [[sources/ainews-openai-launches-gpt-image-2-01kps9gb2r0nk49023ns9pmqb7|[AINews] OpenAI launches GPT-Image-2]])
-- This is a durable engineering pattern for AI systems because production usefulness often depends on the surrounding execution environment, not just model quality. It applies across agentic products, automation stacks, and any workflow where safety, state, and task decomposition matter. (`4aefa618b0b3` · neutral · relevance_note; [[sources/ainews-openai-launches-gpt-image-2-01kps9gb2r0nk49023ns9pmqb7|[AINews] OpenAI launches GPT-Image-2]])
-- The runtime/harness can matter more than the base model alone. (`63d1e2aa1787` · supporting · key_points[0]; [[sources/ainews-openai-launches-gpt-image-2-01kps9gb2r0nk49023ns9pmqb7|[AINews] OpenAI launches GPT-Image-2]])
-- Agent systems rely on permissions, memory, tool orchestration, tracing, and deployment wrappers. (`9029b67d083b` · supporting · key_points[1]; [[sources/ainews-openai-launches-gpt-image-2-01kps9gb2r0nk49023ns9pmqb7|[AINews] OpenAI launches GPT-Image-2]])
-- Hierarchical subagents can support deeper task decomposition. (`1ee86c00957b` · supporting · key_points[2]; [[sources/ainews-openai-launches-gpt-image-2-01kps9gb2r0nk49023ns9pmqb7|[AINews] OpenAI launches GPT-Image-2]])
-- Multi-process orchestration is replacing simple single-loop agent designs. (`d81c30eec558` · supporting · key_points[3]; [[sources/ainews-openai-launches-gpt-image-2-01kps9gb2r0nk49023ns9pmqb7|[AINews] OpenAI launches GPT-Image-2]])
-- “A recurring theme across tweets is that the useful part of agent systems is increasingly the runtime/harness, not the base model alone.” (`873bdce57093` · supporting · supporting_snippet; [[sources/ainews-openai-launches-gpt-image-2-01kps9gb2r0nk49023ns9pmqb7|[AINews] OpenAI launches GPT-Image-2]])
+## Practical takeaway
 
-### Run cloud agents in your own infrastructure (2026-03-25)
+Treat agent infrastructure as a first-class product surface. If you are building or evaluating agents, check isolation, outbound connectivity, permissions, orchestration, and observability before focusing on model choice alone—because those constraints often decide whether the system can be trusted and deployed.
 
-- The source describes "isolated virtual machines, each with a terminal, browser, and full desktop" and a worker that "connects outbound via HTTPS to Cursor's cloud." (`d806bcac7b2c` · neutral · examples; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
-- Agent infrastructure is the runtime and control layer that lets autonomous agents execute tools, manage sessions, and scale across machines or environments. It usually includes workers, orchestration, permissions, execution isolation, and network access patterns. The important design question is not just what the model can do, but where and how the tool execution happens. In enterprise settings, the infrastructure layer often determines whether an agent can be adopted at all. As a result, agent systems are frequently constrained by deployment and security architecture before they are constrained by model capability. (`d6cf2eb23975` · neutral · knowledge_summary; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
-- Treat agent runtime design as a first-class product surface: isolation, connectivity, and fleet management are as important as the model loop itself. (`53960efde641` · neutral · operational_insight; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
-- This matters long term because enterprise agent adoption often depends on whether the runtime can be placed inside existing security and infrastructure boundaries. Teams building coding agents, support agents, or workflow automation often need the same primitives: isolated workers, outbound-only connectivity, and scalable orchestration. (`0b5a073d9001` · neutral · relevance_note; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
-- Dedicated worker-per-session architecture supports parallel execution and cleaner isolation. (`b9b6a3e1ea36` · supporting · key_points[0]; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
-- Outbound-only worker connectivity reduces deployment friction in locked-down environments. (`5478dfa585a1` · supporting · key_points[1]; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
-- Kubernetes-native scaling and fleet APIs indicate that agent infrastructure is becoming a managed operational concern rather than a local scripting problem. (`c7e8271281ff` · supporting · key_points[2]; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
-- Runtime placement can be the adoption gate for enterprise AI, especially when code, secrets, or internal endpoints cannot leave the network. (`cd7ddc34fb38` · supporting · key_points[3]; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
-- "Cursor cloud agents run in isolated virtual machines, each with a terminal, browser, and full desktop." (`521221e0e882` · supporting · supporting_snippet; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
+## Evidence index
 
-## Contradictions / tensions
-
-No contradictions captured in current sources.
+- Sources: 2
+- Evidence items: 17
+- Current input hash: `7d132d90d1c9448d`
+- Cached input hash: `7d132d90d1c9448d`
+- Last synthesized: 2026-06-17T20:16:38Z
+- Synthesis status: `fresh`
 
 ## Related pages
 
-- agent-first-ide-orchestration
-- agent-runtime-architecture
-- agentic-workflows
-- context-engineering
-- models-becoming-execution-layers
+- [[topics/agent-runtime-architecture|Agent Runtime Architecture]]
+- [[topics/agentic-workflows|Agentic Workflows]]
+- [[topics/agent-first-ide-orchestration|Agent-First IDE Orchestration]]
+- [[topics/models-becoming-execution-layers|Models Becoming Execution Layers]]
+- [[topics/context-engineering|Context Engineering]]
 
 ## Sources
 

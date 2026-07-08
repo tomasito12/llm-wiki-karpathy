@@ -25,11 +25,6 @@ synthesis_state: stage1-placeholder
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 A passkey is a phishing-resistant authentication credential based on public-key cryptography that can replace passwords. The private key stays on the user's device or in a credential manager, while the public key is registered with the service.
 
-## Related Terms
-
-- Closed-Resource Information Trust
-- FIDO-compliant security key
-
 ## Relevance Note
 
 Passkeys matter because authentication is one of the highest-value control points in AI-powered products and admin tooling. Phishing-resistant login reduces account takeover risk for support agents, operators, and end users who interact with conversational systems and internal automation.
@@ -63,8 +58,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- Closed-Resource Information Trust
-- FIDO-compliant security key
+- [[glossary/closed-resource-information-trust|Closed-Resource Information Trust]]
+- [[glossary/fido-compliant-security-key|FIDO-compliant security key]]
 
 ## Sources
 

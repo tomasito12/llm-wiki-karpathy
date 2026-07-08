@@ -56,11 +56,6 @@ The article says Opus 4.7 runs the full 1M-token context at standard API pricing
 
 Anthropic
 
-## Related Models
-
-- Gemini 3.1 Pro
-- Opus 4.6
-
 ## Service automation implications
 
 The source does not connect this model to customer-facing support automation directly. Its implication is mainly on the back-office side: better long-context compilation can help maintain durable internal knowledge that later powers support or agent workflows.
@@ -94,8 +89,7 @@ The source still treats ingestion as expensive, even with improved pricing and c
 
 ## Related pages
 
-- Gemini 3.1 Pro
-- Opus 4.6
+- [[foundation-models/opus-4-6|Opus 4.6]]
 
 ## Sources
 

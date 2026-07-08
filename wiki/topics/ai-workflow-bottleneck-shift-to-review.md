@@ -33,10 +33,6 @@ As AI systems take over more implementation and execution work, the limiting fac
 
 If a model can produce more work than humans can safely inspect, the organization should redesign review, sampling, and escalation paths rather than keep scaling generation. The source explicitly frames human review as a bottleneck once code quality reaches parity.
 
-## Related Topics
-
-- verification-loops-in-ai-workflows
-
 ## Evidence / supporting sources
 
 ### When AI builds itself (undated)
@@ -55,7 +51,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- verification-loops-in-ai-workflows
+- [[topics/verification-loops-in-ai-workflows|Verification Loops in AI Workflows]]
 
 ## Sources
 

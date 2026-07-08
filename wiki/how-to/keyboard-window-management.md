@@ -40,11 +40,6 @@ The built-in window controls and third-party tools may behave differently across
 - Either the built-in window shortcuts or a window manager such as Rectangle
 - A Finder window already open to the desired folder for the drag trick
 
-## Related Howtos
-
-- keyboard-first-mac-workflow
-- spotlight-command-center
-
 ## Evidence / supporting sources
 
 ### 18 Years on a MacBook: 3 Principles I Use Every Single Day (2026-04-04)
@@ -67,8 +62,8 @@ The built-in window controls and third-party tools may behave differently across
 
 ## Related pages
 
-- keyboard-first-mac-workflow
-- spotlight-command-center
+- [[how-to/keyboard-first-mac-workflow|Keyboard-First Mac Workflow]]
+- [[how-to/spotlight-command-center|Spotlight Command Center]]
 
 ## Sources
 

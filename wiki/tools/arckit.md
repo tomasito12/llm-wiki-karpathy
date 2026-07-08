@@ -46,13 +46,6 @@ ArcKit is a governance-oriented toolkit for AI coding assistants. It uses slash 
 
 As of 2026-04-19, the repository had reached GitHub’s daily trending list and was described as having 878 stars. The article also says early adopters include UK public-sector technologists, which suggests a real niche use case rather than a pure demo project. That said, the writeup is still anecdotal and does not establish long-term adoption or retention.
 
-## Related Tools
-
-- Claude Code
-- Codex
-- Gemini 3 Pro
-- GitHub Copilot
-
 ## Strengths
 
 - It converts open-ended architecture tasks into repeatable, template-driven outputs, which reduces the variability that usually makes LLM-generated planning docs hard to trust.
@@ -87,10 +80,8 @@ The article provides no benchmark evidence that ArcKit improves quality, speed, 
 
 ## Related pages
 
-- Claude Code
-- Codex
-- Gemini 3 Pro
-- GitHub Copilot
+- [[tools/claude-code|Claude Code]]
+- [[tools/codex|Codex]]
 
 ## Sources
 

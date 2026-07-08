@@ -54,12 +54,6 @@ Local model choice becomes more useful when models are grouped by the work they 
 
 Choose local models by workload class first, then compare candidates inside that class. This reduces evaluation noise and makes it easier to match model behavior to the actual product or automation task.
 
-## Related Topics
-
-- local-model-deployment
-- layered-local-and-cloud-inference
-- agentic-workflows
-
 ## Evidence / supporting sources
 
 ### [AINews] Top Local Models List - April 2026 (2026-04-14)
@@ -119,9 +113,9 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agentic-workflows
-- layered-local-and-cloud-inference
-- local-model-deployment
+- [[topics/local-model-deployment|Local Model Deployment]]
+- [[topics/layered-local-and-cloud-inference|Layered Local and Cloud Inference]]
+- [[topics/agentic-workflows|Agentic Workflows]]
 
 ## Sources
 

@@ -44,11 +44,6 @@ A dual-pane macOS file manager positioned as a Finder replacement. The source em
 
 The source presents ForkLift 4 as a stable, polished alternative with ongoing updates. That is a stronger maturity signal than most items in the roundup, though still based on the author’s experience rather than third-party review. As of 2026-01-08, it appears to be a mature productivity utility for power users.
 
-## Related Tools
-
-- Finder
-- Path Finder
-
 ## Strengths
 
 - The dual-pane layout makes side-by-side file movement and comparison easier than a single-pane browser.
@@ -89,8 +84,7 @@ The app receives regular updates that don’t break the experience. (`02ba80069f
 
 ## Related pages
 
-- Finder
-- Path Finder
+No related pages captured.
 
 ## Sources
 

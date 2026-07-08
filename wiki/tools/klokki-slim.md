@@ -42,12 +42,6 @@ A menu bar time-tracking app for starting and stopping work sessions and seeing 
 
 This appears to be a niche utility with a narrow job rather than a general time-management platform. The evidence is a first-person workflow endorsement, not third-party validation. As of 2026-04-17, maturity evidence is moderate at best and mostly personal.
 
-## Related Tools
-
-- Toggl Track
-- Harvest
-- Timing
-
 ## Strengths
 
 - Keeps the interaction simple with start/stop control from the menu bar, which lowers the chance that time tracking becomes a separate chore.
@@ -82,9 +76,7 @@ The article does not mention reporting depth, export formats, team features, or 
 
 ## Related pages
 
-- Harvest
-- Timing
-- Toggl Track
+No related pages captured.
 
 ## Sources
 

@@ -51,13 +51,6 @@ This workflow depends on having labeled relevance data, which can be expensive t
 - A way to measure retrieval latency and generation cost.
 - A review process for judging grounded answers and refusals.
 
-## Related Howtos
-
-- agent-evaluation-design
-- context-compaction
-- hybrid-retrieval
-- two-step-document-ingestion
-
 ## Evidence / supporting sources
 
 ### How to Evaluate a RAG System Without Lying to Yourself (2026-05-07)
@@ -97,10 +90,9 @@ Latency, cost, and production drift (`e4cd12ced059` · supporting · supporting_
 
 ## Related pages
 
-- agent-evaluation-design
-- context-compaction
-- hybrid-retrieval
-- two-step-document-ingestion
+- [[how-to/agent-evaluation-design|Agent Evaluation Design]]
+- [[how-to/context-compaction|Context Compaction]]
+- [[how-to/two-step-document-ingestion|Two-Step Document Ingestion]]
 
 ## Sources
 

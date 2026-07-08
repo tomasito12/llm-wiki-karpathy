@@ -39,12 +39,6 @@ An Obsidian plugin that organizes daily notes around a visible calendar view and
 
 The author describes daily notes as optional before and central after adopting Calendar, which suggests a meaningful workflow shift for this use case. The evidence is experiential rather than measured, and no ecosystem details are given. As of 2026-04-18, the plugin appears practically useful for personal time-based note systems, but the claim is limited to one user’s experience.
 
-## Related Tools
-
-- Obsidian
-- QuickAdd
-- Linter
-
 ## Strengths
 
 - Calendar view makes daily notes harder to ignore because time is visible in the interface.
@@ -79,9 +73,9 @@ The article does not explain whether the calendar view adds clutter or whether d
 
 ## Related pages
 
-- Linter
-- Obsidian
-- QuickAdd
+- [[tools/obsidian|Obsidian]]
+- [[tools/quickadd|QuickAdd]]
+- [[tools/linter|Linter]]
 
 ## Sources
 

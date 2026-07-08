@@ -24,11 +24,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Evaluation of agentic AI systems is moving beyond aggregate capability scores toward workflow properties that determine whether an agent can be trusted in long runs. Key dimensions include silent-failure rate, tool-call discipline, recovery after context compression, and the ability to continue executing unattended. This shift matters because production value depends on whether the system completes tasks correctly, not just whether it can produce a strong answer in isolation.
 
-## Related Trends
-
-- verification-loops-become-central-to-ai-workflows
-- harness-design-becomes-more-important-for-agent-reliability
-
 ## Supporting Data Points
 
 - The article says the benchmark table moved only a little.
@@ -63,8 +58,8 @@ This is based on one opinionated release analysis, so it is a directional signal
 
 ## Related pages
 
-- harness-design-becomes-more-important-for-agent-reliability
-- verification-loops-become-central-to-ai-workflows
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
+- [[industry-trends/harness-design-becomes-more-important-for-agent-reliability|Agent reliability is shifting toward harness design]]
 
 ## Sources
 

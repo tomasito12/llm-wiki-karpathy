@@ -30,13 +30,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Enterprise AI systems are moving toward designs where agents can act only inside explicit governance, identity, permission, and audit boundaries. The operational center of gravity is not raw model capability, but the layer that converts intent into approved action with traceable context. This pattern matters most where workflows touch company systems, compliance, or customer data.
 
-## Related Trends
-
-- verification-loops-become-central-to-ai-workflows
-- workflow-restructuring-around-ai-agents
-- persistent-agents
-- ai-products-shift-from-models-to-systems
-
 ## Supporting Data Points
 
 - Snowflake, Microsoft, Databricks, Salesforce, and ServiceNow are described as competing inside this interval.
@@ -105,10 +98,10 @@ This is a strategic interpretation from a roundup and conference-reporting piece
 
 ## Related pages
 
-- ai-products-shift-from-models-to-systems
-- persistent-agents
-- verification-loops-become-central-to-ai-workflows
-- workflow-restructuring-around-ai-agents
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]]
+- [[industry-trends/persistent-agents|Agents are shifting from stateless chat to memory-backed persistent work loops]]
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 
 ## Sources
 

@@ -38,10 +38,6 @@ Agent self-verification is a workflow pattern where an AI system checks its own 
 
 Use self-verification when a task has an objective acceptance signal. The stronger the target signal, the more useful the loop becomes, because the agent can keep refining until the output matches the reference closely enough.
 
-## Related Topics
-
-- visual-specifications-for-ai-systems
-
 ## Evidence / supporting sources
 
 ### How to Make Claude Code Validate its own Work (2026-05-05)
@@ -61,7 +57,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- visual-specifications-for-ai-systems
+- [[topics/visual-specifications-for-ai-systems|Visual Specifications for AI Systems]]
 
 ## Sources
 

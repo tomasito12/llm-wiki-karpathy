@@ -83,19 +83,6 @@ The source describes a system where the user says "Brief me" and a workflow pull
 
 Treat personal knowledge management as an operational system: define structured capture, automated routing, and durable memory before worrying about interface polish.
 
-## Related Topics
-
-- agent-memory-architecture
-- file-native-ai-workspace
-- file-native-ai-workflows
-- knowledge-base-becomes-runtime-infrastructure
-- approval-based-agent-actions
-- agent-runtime-architecture
-- context-engineering
-- knowledge-systems-shift-toward-compilation-over-retrieval
-- knowledge-systems-shift-toward-persistent-workspaces
-- llm-wiki
-
 ## Evidence / supporting sources
 
 ### Gemini Notebook Meets NotebookLM (2026-04-20)
@@ -202,16 +189,14 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-memory-architecture
-- agent-runtime-architecture
-- approval-based-agent-actions
-- context-engineering
-- file-native-ai-workflows
-- file-native-ai-workspace
-- knowledge-base-becomes-runtime-infrastructure
-- knowledge-systems-shift-toward-compilation-over-retrieval
-- knowledge-systems-shift-toward-persistent-workspaces
-- llm-wiki
+- [[topics/agent-memory-architecture|Agent Memory Architecture]]
+- [[topics/file-native-ai-workflows|File-Native AI Workflows]]
+- [[topics/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]]
+- [[topics/approval-based-agent-actions|Approval-Based Agent Actions]]
+- [[topics/agent-runtime-architecture|Agent Runtime Architecture]]
+- [[topics/context-engineering|Context Engineering]]
+- [[topics/knowledge-systems-shift-toward-compilation-over-retrieval|Knowledge Compilation Over Retrieval]]
+- [[topics/llm-wiki|LLM Wiki]]
 
 ## Sources
 

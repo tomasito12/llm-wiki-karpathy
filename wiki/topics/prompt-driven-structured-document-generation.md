@@ -34,11 +34,6 @@ Some AI tools reduce workflow friction by generating structured working document
 
 Use prompt-to-structure generation when the main bottleneck is setup time, and preserve the ability to edit specific sections without redoing the whole document.
 
-## Related Topics
-
-- visual-specifications-for-ai-systems
-- artifact-first-ai-workflows
-
 ## Evidence / supporting sources
 
 ### I Deleted Notion and Obsidian. Here’s What Replaced Them — and Why I’m Never Going Back. (2026-05-12)
@@ -57,8 +52,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- artifact-first-ai-workflows
-- visual-specifications-for-ai-systems
+- [[topics/visual-specifications-for-ai-systems|Visual Specifications for AI Systems]]
+- [[topics/artifact-first-ai-workflows|Artifact-First AI Workflows]]
 
 ## Sources
 

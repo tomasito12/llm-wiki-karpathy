@@ -42,13 +42,6 @@ A desktop app for Claude that adds a global keyboard shortcut and quick access f
 
 The article treats Claude as a mature and heavily used product, with the author allocating roughly 60% of their AI work to it. The desktop app is described as quick to install and stable enough to use as a daily summon surface. The source does not provide enterprise adoption evidence, but it does signal a strong consumer/prosumer workflow fit.
 
-## Related Tools
-
-- Claude
-- ChatGPT
-- NotebookLM
-- Cursor
-
 ## Strengths
 
 - Option+Space summonability makes Claude available from any app without a browser round-trip.
@@ -85,10 +78,9 @@ The source says the free version hits limits constantly, so serious users are pu
 
 ## Related pages
 
-- ChatGPT
-- Claude
-- Cursor
-- NotebookLM
+- [[tools/claude|Claude]]
+- [[tools/notebooklm|NotebookLM]]
+- [[tools/cursor|Cursor]]
 
 ## Sources
 

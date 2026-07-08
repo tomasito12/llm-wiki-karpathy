@@ -35,12 +35,6 @@ Interactive AI refers to AI systems that users actively converse with or control
 
 Treat interactive AI as an interface discipline, not just a model-output problem. Validate the conversation loop end to end: focus should move predictably, messages should be announced to assistive technology, every control should work by keyboard, and the experience should be tested with real screen readers and speech devices before launch.
 
-## Related Topics
-
-- realtime-ai
-- prompt-engineering
-- realtime-multimodal-interaction
-
 ## Evidence / supporting sources
 
 ### WCAG compliance for AI chatbots (2026-04-26)
@@ -60,9 +54,9 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- prompt-engineering
-- realtime-ai
-- realtime-multimodal-interaction
+- [[topics/realtime-ai|Realtime AI]]
+- [[topics/prompt-engineering|Prompt Engineering]]
+- [[topics/realtime-multimodal-interaction|Realtime Multimodal Interaction]]
 
 ## Sources
 

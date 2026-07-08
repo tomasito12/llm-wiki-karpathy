@@ -26,11 +26,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Knowledge systems are shifting from passive storage toward maintained workspaces that support ongoing compilation, review, and revision. The durable value is not simple retrieval, but a persistent layer that preserves synthesis while remaining connected to raw sources and provenance. This raises the importance of maintenance workflows such as linting, indexing, logging, and contradiction checking. The pattern is especially relevant when knowledge must remain reusable over time rather than being re-derived from scratch on every query.
 
-## Related Trends
-
-- agents-are-shifting-from-stateless-chat-to-memory-backed-persistent-work-loops
-- artifact-first-ai-workflows
-
 ## Supporting Data Points
 
 - The article names ingest, query, lint, index, and log as the wiki life cycle.
@@ -65,8 +60,8 @@ The article is practitioner testimony, not a controlled evaluation, so the claim
 
 ## Related pages
 
-- agents-are-shifting-from-stateless-chat-to-memory-backed-persistent-work-loops
-- artifact-first-ai-workflows
+- [[industry-trends/persistent-agents|Agents are shifting from stateless chat to memory-backed persistent work loops]]
+- [[industry-trends/artifact-first-ai-workflows|Artifact-First AI Workflows]]
 
 ## Sources
 

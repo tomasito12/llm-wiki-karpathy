@@ -45,12 +45,6 @@ OpenProse is an open-source agent skill and programming language for describing 
 
 The source presents OpenProse as open source and easy to start with via an `npx` install flow, which suggests a developer-facing tool rather than an enterprise-mature platform. The article describes it as usable with several coding agents, but the evidence is still practitioner testimony rather than broad adoption data. As of 2026-06-04, the maturity signal is promising but still early and anecdotal.
 
-## Related Tools
-
-- Claude Code
-- Codex
-- OpenClaw
-
 ## Strengths
 
 - Separates workflow intent from execution by using logical English contracts, which makes the resulting program easier for humans to review before an agent runs it.
@@ -90,9 +84,9 @@ The source is clear that OpenProse does not make the underlying model determinis
 
 ## Related pages
 
-- Claude Code
-- Codex
-- OpenClaw
+- [[tools/claude-code|Claude Code]]
+- [[tools/codex|Codex]]
+- [[tools/openclaw|OpenClaw]]
 
 ## Sources
 

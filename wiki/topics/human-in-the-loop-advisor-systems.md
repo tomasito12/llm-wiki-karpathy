@@ -36,10 +36,6 @@ Human-in-the-loop advisor systems are AI systems designed to support human judgm
 
 Use an advisor-system architecture when errors are costly, sources must be checked, or policy requires human approval. The system should surface recommendations, evidence, and uncertainty rather than bypass review.
 
-## Related Topics
-
-- graph-grounding-for-ai
-
 ## Evidence / supporting sources
 
 ### Grounding LLMs: The Knowledge Graph foundation every AI project needs (2025-11-07)
@@ -59,7 +55,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- graph-grounding-for-ai
+- [[topics/graph-grounding-for-ai|Graph Grounding for AI]]
 
 ## Sources
 

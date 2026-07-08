@@ -57,13 +57,6 @@ The source says, “A single file called CLAUDE.md. This is the instruction manu
 
 Define the schema as a living control plane for ingestion, query answering, and linting. That makes the workflow repeatable and gives humans a place to steer behavior without rewriting prompts from scratch every session.
 
-## Related Topics
-
-- agent-maintained-knowledge-bases
-- procedural-knowledge-for-agents
-- llm-assisted-knowledge-compilation
-- file-native-ai-workflows
-
 ## Evidence / supporting sources
 
 ### Give Your AI Unlimited Updated Context (2026-05-07)
@@ -116,10 +109,10 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-maintained-knowledge-bases
-- file-native-ai-workflows
-- llm-assisted-knowledge-compilation
-- procedural-knowledge-for-agents
+- [[topics/agent-maintained-knowledge-bases|Agent-Maintained Knowledge Bases]]
+- [[topics/procedural-knowledge-for-agents|Procedural Knowledge for Agents]]
+- [[topics/llm-assisted-knowledge-compilation|LLM-Assisted Knowledge Compilation]]
+- [[topics/file-native-ai-workflows|File-Native AI Workflows]]
 
 ## Sources
 

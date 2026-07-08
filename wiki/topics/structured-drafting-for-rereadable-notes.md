@@ -39,10 +39,6 @@ The source contrasts "bullet point lists" and "AI-generated summaries" with "pro
 
 When notes are intended for future judgment and recall, favor human-shaped prose over mechanically compressed summaries. The selection and wording process are part of the value, not just the output format.
 
-## Related Topics
-
-- manual-capture-friction
-
 ## Evidence / supporting sources
 
 ### Tech Habits: What a $70 Pocket eReader Revealed About Notes, AI, and What Actually Matters (2026-04-20)
@@ -62,7 +58,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- manual-capture-friction
+- [[topics/manual-capture-friction|Manual Capture Friction]]
 
 ## Sources
 

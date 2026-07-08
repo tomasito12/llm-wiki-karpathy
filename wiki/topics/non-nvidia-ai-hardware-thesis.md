@@ -35,10 +35,6 @@ A non-NVIDIA AI hardware thesis is the bet that specialized accelerator designs 
 
 Treat custom hardware claims as a systems question: can the vendor justify adoption friction with a measurable serving or cost advantage on a real workload? Without that proof, a differentiated chip remains a narrative rather than a deployment choice.
 
-## Related Topics
-
-- compute-supply-and-capex-in-ai
-
 ## Evidence / supporting sources
 
 ### [AINews] Cerebras' $60B IPO: Slowly, then All at Once (2026-05-16)
@@ -57,7 +53,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- compute-supply-and-capex-in-ai
+- [[topics/compute-supply-and-capex-in-ai|Compute Supply and Capex in AI]]
 
 ## Sources
 

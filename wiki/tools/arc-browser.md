@@ -37,12 +37,6 @@ A browser that reorganizes tab management around a vertical sidebar, Spaces, Pro
 
 The article treats Arc as established enough to be the browser of choice for The Studio, which is a useful adoption signal but still anecdotal. There is no data on enterprise deployment or long-term support in the source. As of 2026-05-28, the maturity signal is strong product identity, not independently validated maturity.
 
-## Related Tools
-
-- Chrome
-- Safari
-- Sidekick
-
 ## Strengths
 
 - Vertical tabs and sidebar organization make browser state easier to scan, which matters when many tabs represent active workstreams.
@@ -77,9 +71,7 @@ The source does not provide performance measurements, extension compatibility de
 
 ## Related pages
 
-- Chrome
-- Safari
-- Sidekick
+No related pages captured.
 
 ## Sources
 

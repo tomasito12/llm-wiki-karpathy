@@ -35,12 +35,6 @@ synthesis_state: stage1-placeholder
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Model Context Protocol (MCP) is a protocol for connecting AI applications and agents to external tools and data sources through a standardized interface. It is used to define structured tool access, authentication boundaries, and interoperable integrations between models and systems.
 
-## Related Terms
-
-- Passkey
-- Agentic Workflows
-- Harness
-
 ## Relevance Note
 
 MCP is important for agentic systems because it creates a standard integration boundary for tools, retrieval, and governed access. That makes it a recurring building block for conversational AI, support automation, and internal agents that need controlled action surfaces.
@@ -103,9 +97,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- Agentic Workflows
-- Harness
-- Passkey
+- [[glossary/passkey|Passkey]]
+- [[glossary/harness|Harness]]
 
 ## Sources
 

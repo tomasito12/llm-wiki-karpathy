@@ -36,10 +36,6 @@ Country-specific AI partnerships are arrangements in which an AI provider works 
 
 When AI is deployed through country-specific partnerships, the key engineering problem is less about model capability and more about localization of access, governance, and institutional ownership.
 
-## Related Topics
-
-- government-led-ai-adoption-programs
-
 ## Evidence / supporting sources
 
 ### OpenAI and Malta partner to bring ChatGPT Plus to all citizens (2026-05-16)
@@ -59,7 +55,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- government-led-ai-adoption-programs
+- [[topics/government-led-ai-adoption-programs|Government-Led AI Adoption Programs]]
 
 ## Sources
 

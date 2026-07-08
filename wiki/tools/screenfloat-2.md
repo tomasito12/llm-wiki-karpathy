@@ -41,10 +41,6 @@ A screenshot utility that keeps captured images floating above other windows and
 
 The app is described as a paid but durable productivity utility with enough functionality to justify a one-time purchase. As of 2026-02-09, it appears mature and practical, though the evidence is still user-report based.
 
-## Related Tools
-
-- Shottr
-
 ## Strengths
 
 - Keeps screenshots floating above other windows, which makes references available without switching away from the task at hand.
@@ -78,7 +74,7 @@ The article does not compare it against built-in macOS screenshot features or ot
 
 ## Related pages
 
-- Shottr
+- [[tools/shottr|Shottr]]
 
 ## Sources
 

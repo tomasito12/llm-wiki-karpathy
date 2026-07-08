@@ -59,11 +59,6 @@ No pricing is stated in the source, so there is no direct evidence for cost. The
 
 Inception
 
-## Related Models
-
-- GPT-5.5
-- Kimi 2.5
-
 ## Service automation implications
 
 The article’s emphasis on real-time AI tools suggests Mercury 2 could be useful as a backend model for automation products that need quick turnarounds and reliable schema-shaped outputs. If the performance claim holds, it may reduce wait time in chat-based operations, tool execution loops, and user-facing automation flows. Its value is likely highest where speed affects user experience or throughput.
@@ -104,8 +99,8 @@ The article gives a strong promotional claim but very little methodological deta
 
 ## Related pages
 
-- GPT-5.5
-- Kimi 2.5
+- [[foundation-models/gpt-5-5|GPT-5.5]]
+- [[foundation-models/kimi-2-5|Kimi 2.5]]
 
 ## Sources
 

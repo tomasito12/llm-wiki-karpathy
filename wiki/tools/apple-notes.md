@@ -36,16 +36,6 @@ A lightweight note-taking app that minimizes setup and capture friction. In this
 
 This is a mature, widely available consumer app rather than an experimental product. The source treats it as stable enough to serve as a durable fallback across repeated attempts with more complex tools.
 
-## Related Tools
-
-- Notion
-- Obsidian
-- Capacities
-- Mem
-- Tana
-- Roam Research
-- Soda
-
 ## Strengths
 
 - Very low capture friction, which matters when the user only has a few seconds to write something before moving on.
@@ -78,13 +68,8 @@ It does not provide graph-based linking, database structure, or AI-assisted retr
 
 ## Related pages
 
-- Capacities
-- Mem
-- Notion
-- Obsidian
-- Roam Research
-- Soda
-- Tana
+- [[tools/obsidian|Obsidian]]
+- [[tools/soda|Soda]]
 
 ## Sources
 

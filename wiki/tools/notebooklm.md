@@ -51,10 +51,6 @@ A Google notebook product for uploading source material and asking grounded ques
 
 As of 2026-04-20, the article treats it as a product available for routine notebook workflows rather than an experiment. That suggests enough product maturity for casual adoption, but the source does not provide enterprise-readiness evidence or usage numbers. The integration with Gemini is presented as a practical path, not a deeply evaluated platform standard.
 
-## Related Tools
-
-- Gemini
-
 ## Strengths
 
 - Handles source ingestion invisibly, which reduces the operational burden of moving files into local directories and maintaining a custom stack.
@@ -105,7 +101,7 @@ The article gives no benchmark, citation-quality, latency, or cost evidence. It 
 
 ## Related pages
 
-- Gemini
+No related pages captured.
 
 ## Sources
 

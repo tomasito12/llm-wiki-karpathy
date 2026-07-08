@@ -47,11 +47,6 @@ A file-renaming utility that uses AI services to generate filenames from file co
 
 The app is described as a useful utility with enough functionality to handle batch jobs and local-model routing. Support for Ollama and LM Studio suggests a technically credible product aimed at AI-capable desktop users rather than a toy feature. As of 2025-11-22, it appears early but operationally promising, with the main value coming from workflow fit rather than ecosystem maturity.
 
-## Related Tools
-
-- Ollama
-- LM Studio
-
 ## Strengths
 
 - It can rename files based on content rather than manual naming, which reduces repetitive cleanup in document and media workflows.
@@ -91,8 +86,7 @@ The app uploads file content to AI services unless a local model is used, so pri
 
 ## Related pages
 
-- LM Studio
-- Ollama
+- [[tools/ollama|Ollama]]
 
 ## Sources
 

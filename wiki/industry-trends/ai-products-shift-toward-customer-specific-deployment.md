@@ -25,11 +25,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 AI delivery is moving toward systems that are installed around a customer's own workflows, data layers, and operational constraints rather than delivered as generic standalone products. The practical implication is that deployment skill, customer immersion, and integration design matter more than a model demo. This trend is strongest where workflows are complex, legacy-heavy, or sensitive to business context.
 
-## Related Trends
-
-- workflow-restructuring-around-ai-agents
-- enterprise-agents-move-into-customer-infrastructure
-
 ## Supporting Data Points
 
 - "being on-site with a customer"
@@ -64,8 +59,8 @@ The evidence is opinionated and based on one practitioner account, so it does no
 
 ## Related pages
 
-- enterprise-agents-move-into-customer-infrastructure
-- workflow-restructuring-around-ai-agents
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]]
+- [[industry-trends/enterprise-agents-move-into-customer-infrastructure|Enterprise Agents Move Into Customer Infrastructure]]
 
 ## Sources
 

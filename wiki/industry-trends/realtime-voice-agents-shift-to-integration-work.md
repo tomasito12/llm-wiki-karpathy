@@ -26,10 +26,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 As speech models become easier to use, the main engineering burden moves into transport, orchestration, state, and hand-off logic around the model. The conversation layer can be relatively strong while the surrounding system remains the source of production risk.
 
-## Related Trends
-
-- models-becoming-execution-layers
-
 ## Supporting Data Points
 
 - The article says the model is one box in a larger distributed system.
@@ -64,7 +60,7 @@ The source is a single implementation note, not a benchmark study, so the shift 
 
 ## Related pages
 
-- models-becoming-execution-layers
+- [[industry-trends/models-becoming-execution-layers|Models Become Execution Layers]]
 
 ## Sources
 

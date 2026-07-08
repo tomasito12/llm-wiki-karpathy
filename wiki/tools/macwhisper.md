@@ -45,12 +45,6 @@ A local Mac transcription app that turns audio into text, including voice memos,
 
 The app is presented as a daily-use utility that the author adopted after hand-typing interview notes. That suggests practical maturity for solo workflows, but the article gives no enterprise signals. As of 2026-04-17, it appears established enough for routine personal transcription, with limited evidence about team deployment.
 
-## Related Tools
-
-- Otter
-- Descript
-- Whisper
-
 ## Strengths
 
 - Transcribes audio locally on the Mac, which is useful when users want speed and a simpler privacy posture than cloud transcription.
@@ -89,9 +83,7 @@ The source does not provide accuracy metrics, latency across long files, or erro
 
 ## Related pages
 
-- Descript
-- Otter
-- Whisper
+No related pages captured.
 
 ## Sources
 

@@ -54,12 +54,6 @@ The article gives no direct pricing data. The practical implication is that runn
 
 Qwen
 
-## Related Models
-
-- ministral-3:3b instruct
-- gemma4
-- nomic-embed-text
-
 ## Service automation implications
 
 The source suggests this kind of model is better suited to back-office synthesis than front-line real-time voice if latency matters. It can support drafting, summarization, and briefing generation in service workflows, but the article does not show direct customer-facing automation.
@@ -94,9 +88,7 @@ The source does not report benchmarks, context limits, or failure modes for this
 
 ## Related pages
 
-- gemma4
-- ministral-3:3b instruct
-- nomic-embed-text
+No related pages captured.
 
 ## Sources
 

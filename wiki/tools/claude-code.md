@@ -165,35 +165,6 @@ Claude Code is the environment the article uses to load and run Claude Skills fr
 
 The article presents Claude Code as the working environment for official skills, local skills, and plugin-based installation. That suggests a fairly mature product surface for skill discovery and execution, but the source is still a practitioner guide rather than independent evaluation. The piece does not provide adoption metrics or stability evidence.
 
-## Related Tools
-
-- Claude Skills
-- Skill-creator
-- Obsidian
-- Cursor
-- OpenAI Codex
-- OpenCode
-- Codex
-- MCPVault
-- TurboVault
-- obsidian-claude-code-mcp
-- obsidian-mcp-tools
-- Claudian
-- Cortex
-- QMD
-- GitHub MCP
-- E2B MCP
-- Ollama
-- kepano/obsidian-skills
-- AgriciDaniel/claude-obsidian
-- Granola
-- Devin
-- GitHub Copilot
-- n8n
-- Antigravity
-- Windsurf
-- Copilot Workspace
-
 ## Strengths
 
 - It can automatically discover installed skills by scanning their metadata at session start, which reduces the need for manual triggering and makes reusable workflows easier to apply consistently.
@@ -541,32 +512,14 @@ claude
 
 ## Related pages
 
-- AgriciDaniel/claude-obsidian
-- Antigravity
-- Claude Skills
-- Claudian
-- Codex
-- Copilot Workspace
-- Cortex
-- Cursor
-- Devin
-- E2B MCP
-- GitHub Copilot
-- GitHub MCP
-- Granola
-- MCPVault
-- Obsidian
-- Ollama
-- OpenAI Codex
-- OpenCode
-- QMD
-- Skill-creator
-- TurboVault
-- Windsurf
-- kepano/obsidian-skills
-- n8n
-- obsidian-claude-code-mcp
-- obsidian-mcp-tools
+- [[tools/obsidian|Obsidian]]
+- [[tools/cursor|Cursor]]
+- [[tools/codex|Codex]]
+- [[tools/github-mcp|GitHub MCP]]
+- [[tools/e2b-mcp|E2B MCP]]
+- [[tools/ollama|Ollama]]
+- [[tools/granola|Granola]]
+- [[tools/n8n|n8n]]
 
 ## Sources
 

@@ -40,11 +40,6 @@ A security-focused product that monitors codebases, validates issues, and propos
 
 The post says Codex Security launched in private beta six months earlier and later as a research preview, which suggests an early-stage but actively developed product. OpenAI also says it has already contributed to over 3,000 critical and high fixed vulnerabilities, but that figure is self-reported. The product is therefore best treated as emerging infrastructure with vendor-promoted adoption signals rather than mature third-party validation.
 
-## Related Tools
-
-- Claude Code
-- Codex
-
 ## Strengths
 
 - Automates monitoring and issue validation, which can reduce manual review load for security teams.
@@ -79,8 +74,8 @@ The source does not provide independent evidence of accuracy, false-positive rat
 
 ## Related pages
 
-- Claude Code
-- Codex
+- [[tools/claude-code|Claude Code]]
+- [[tools/codex|Codex]]
 
 ## Sources
 

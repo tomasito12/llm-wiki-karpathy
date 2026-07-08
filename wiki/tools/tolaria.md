@@ -34,12 +34,6 @@ Tolaria is a local-first, open-source note-taking app that stores notes as Markd
 
 The source describes Tolaria as polished for a latecomer, but that judgment is based on hands-on impression rather than adoption data. It is open source, free forever, and available without an account, which lowers trial friction. At the same time, the article warns that the product is early and updates are frequent, so maturity should be treated as provisional as of 2026-04-28.
 
-## Related Tools
-
-- Obsidian
-- Notion
-- Claude Code
-
 ## Strengths
 
 - Stores notes as plain Markdown files with YAML frontmatter, which makes the data easy to inspect, edit, version, and migrate outside the app.
@@ -71,9 +65,8 @@ The article is explicit that Tolaria is very new, has rough edges and small bugs
 
 ## Related pages
 
-- Claude Code
-- Notion
-- Obsidian
+- [[tools/obsidian|Obsidian]]
+- [[tools/claude-code|Claude Code]]
 
 ## Sources
 

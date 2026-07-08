@@ -47,10 +47,6 @@ The source recommends starting narrow, but it does not address situations where 
 - A rough idea of the API or integration path, even if it is not fully built.
 - Baseline analytics that show where the agent explains instead of resolves.
 
-## Related Howtos
-
-- narrow-support-automation-rollout
-
 ## Evidence / supporting sources
 
 ### How to make the case for giving your AI Agent system access (2026-06-11)
@@ -77,7 +73,7 @@ The source recommends starting narrow, but it does not address situations where 
 
 ## Related pages
 
-- narrow-support-automation-rollout
+- [[how-to/narrow-support-automation-rollout|Narrow Support Automation Rollout]]
 
 ## Sources
 

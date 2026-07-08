@@ -50,13 +50,6 @@ A paid Mac screenshot utility with annotation, scrolling capture, OCR, recording
 
 The article describes it as a well-established paid utility used about 30 times a day by the author. The existence of a Setapp bundle option suggests it is a recognized product in the Mac utility ecosystem. No enterprise adoption is claimed, but the feature set is mature and operationally specific.
 
-## Related Tools
-
-- macOS Screenshot Tool
-- Shottr
-- Setapp
-- macOS Screenshot
-
 ## Strengths
 
 - Annotated screenshots help turn visual evidence into ticket-ready communication.
@@ -113,10 +106,7 @@ The source makes clear that the built-in macOS screenshot tool is already adequa
 
 ## Related pages
 
-- Setapp
-- Shottr
-- macOS Screenshot
-- macOS Screenshot Tool
+- [[tools/shottr|Shottr]]
 
 ## Sources
 

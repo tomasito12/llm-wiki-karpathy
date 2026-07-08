@@ -68,10 +68,6 @@ The guide does not give benchmark numbers, so model selection is still a trial-a
 - Access to the specific model variant you want to test.
 - A test workload that reflects your intended use case.
 
-## Related Howtos
-
-- local-model-deployment
-
 ## Evidence / supporting sources
 
 ### How To Run an Open-Source LLM on Your Personal Computer (2025-11-11)
@@ -137,7 +133,7 @@ ollama run gemma4:26b-a3b-q3_K_M (`c9d74fd2f34e` · supporting · supporting_sni
 
 ## Related pages
 
-- local-model-deployment
+- [[how-to/local-model-deployment|Local Model Deployment]]
 
 ## Sources
 

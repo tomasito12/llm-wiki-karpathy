@@ -52,14 +52,6 @@ A free, open-source terminal for macOS built by Mitchell Hashimoto, written in Z
 
 The article treats Ghostty as a serious, polished terminal choice, not a novelty. Mentioning the HashiCorp founder and native implementation signals a credible maintainer pedigree. The source does not provide broad adoption numbers, so maturity evidence is qualitative rather than market-based.
 
-## Related Tools
-
-- Terminal.app
-- iTerm2
-- Cursor
-- Claude Code
-- Zed
-
 ## Strengths
 
 - It is faster than both Terminal.app and iTerm2, according to the author’s experience.
@@ -117,11 +109,8 @@ The source explicitly says most readers will not need it and should skip it if t
 
 ## Related pages
 
-- Claude Code
-- Cursor
-- Terminal.app
-- Zed
-- iTerm2
+- [[tools/cursor|Cursor]]
+- [[tools/claude-code|Claude Code]]
 
 ## Sources
 

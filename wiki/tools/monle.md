@@ -38,11 +38,6 @@ A menu bar focus utility for macOS that blurs everything except the active windo
 
 The description implies a polished small utility rather than a complex platform. As of 2025-12-31, the source provides no signal about community size, enterprise adoption, or long-term maintenance.
 
-## Related Tools
-
-- Rectangle
-- AltTab
-
 ## Strengths
 
 - Blurs inactive windows instead of blocking them, which lowers distraction without making the system feel punitive.
@@ -75,8 +70,8 @@ The article does not mention performance cost, compatibility issues, or whether 
 
 ## Related pages
 
-- AltTab
-- Rectangle
+- [[tools/rectangle|Rectangle]]
+- [[tools/alttab|AltTab]]
 
 ## Sources
 

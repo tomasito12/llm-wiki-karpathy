@@ -37,11 +37,6 @@ A free, open-source macOS menu bar manager that hides and reveals menu bar icons
 
 The app is presented as a simple, dependable utility rather than a new platform, and the open-source model suggests community-driven maintenance. As of 2026-02-09, it appears mature enough for everyday use but niche in scope.
 
-## Related Tools
-
-- NotchNook
-- Loop
-
 ## Strengths
 
 - Hides menu bar clutter while keeping icons accessible on hover, which preserves utility without constant visual noise.
@@ -74,8 +69,8 @@ The article does not mention sync, enterprise management, or configuration shari
 
 ## Related pages
 
-- Loop
-- NotchNook
+- [[tools/notchnook|NotchNook]]
+- [[tools/loop|Loop]]
 
 ## Sources
 

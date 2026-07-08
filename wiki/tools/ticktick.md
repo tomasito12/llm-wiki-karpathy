@@ -41,12 +41,6 @@ A task manager that bridges to-do lists and calendar-style scheduling with natur
 
 The article presents TickTick as a well-established utility rather than a new entrant. The lack of technical detail suggests a mature product whose differentiator is usability, not novelty. As of 2026-05-28, the main signal is stable everyday utility.
 
-## Related Tools
-
-- Todoist
-- Apple Reminders
-- Calendar
-
 ## Strengths
 
 - Natural-language task entry lowers the cost of capturing recurring tasks, which matters because manual date parsing is where many users drop tasks.
@@ -83,9 +77,7 @@ The source does not provide evidence beyond the author’s praise, so claims lik
 
 ## Related pages
 
-- Apple Reminders
-- Calendar
-- Todoist
+- [[tools/calendar|Calendar]]
 
 ## Sources
 

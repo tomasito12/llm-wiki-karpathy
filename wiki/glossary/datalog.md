@@ -24,11 +24,6 @@ synthesis_state: stage1-placeholder
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 A declarative logic programming language and query paradigm used for expressing facts and rules with guaranteed, efficient inference in many practical settings.
 
-## Related Terms
-
-- Ontology
-- Knowledge Management
-
 ## Relevance Note
 
 Datalog matters because it can expose business rules and structured knowledge to AI systems without requiring a full graph database stack. That makes it relevant for agent orchestration, policy checks, and grounded retrieval where predictable inference is more important than flexible graph traversal.
@@ -48,8 +43,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- Knowledge Management
-- Ontology
+- [[glossary/ontology|Ontology]]
+- [[glossary/knowledge-management|Knowledge Management]]
 
 ## Sources
 

@@ -25,11 +25,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Open-weight models can reach a quality level where some vision, reasoning, and agent tasks are practical on local hardware instead of only through proprietary APIs. The change matters because teams can choose local execution for privacy, cost control, and data residency without giving up all frontier capability. The trend is strongest in workloads where multimodal understanding and general reasoning matter more than elite coding performance.
 
-## Related Trends
-
-- models-becoming-execution-layers
-- local-model-deployment
-
 ## Supporting Data Points
 
 - Approximately 16GB VRAM at Q4_K_M quantization.
@@ -68,8 +63,7 @@ The evidence comes from one promotional benchmark-focused article, so the scope 
 
 ## Related pages
 
-- local-model-deployment
-- models-becoming-execution-layers
+- [[industry-trends/models-becoming-execution-layers|Models Become Execution Layers]]
 
 ## Sources
 

@@ -26,10 +26,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Programming language choice for new projects is increasingly influenced by how well AI coding agents can write, debug, and port code in that language. The article’s narrower point is that languages with strong compiler feedback, fast compile-and-check loops, and good systems ergonomics can become more attractive even if they are harder for humans, because agents absorb much of the implementation burden. It frames this as a reordering of defaults: Python and TypeScript no longer win purely on human convenience, while Rust and Go gain ground when the main constraint is agent supervision rather than manual coding speed.
 
-## Related Trends
-
-- agentic-coding-shifts-toward-higher-supervision-costs
-
 ## Time sensitivity
 
 Highly time-sensitive as of 2026-04-28; the pattern depends on current model capability, compiler feedback quality, and the relative cost of supervising agents versus writing code by hand.
@@ -55,7 +51,7 @@ This is a directionally supported but not yet controlled claim. The article reli
 
 ## Related pages
 
-- agentic-coding-shifts-toward-higher-supervision-costs
+- [[industry-trends/agentic-coding-shifts-toward-higher-supervision-costs|Agentic Coding Shifts Toward Higher Supervision Costs]]
 
 ## Sources
 

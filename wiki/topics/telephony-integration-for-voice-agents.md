@@ -39,10 +39,6 @@ The source notes that "Twilio Voice gives you a SIP trunk wrapped in an HTTP and
 
 For production voice systems, choose the telephony abstraction based on how much control the call path needs. Managed trunks are usually enough for generic workflows, while specialized or high-scale setups may justify lower-level control.
 
-## Related Topics
-
-- agent-runtime-architecture-for-voice
-
 ## Evidence / supporting sources
 
 ### Building Realtime Voice Agents in 2026 (2026-05-07)
@@ -61,7 +57,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-runtime-architecture-for-voice
+- [[topics/agent-runtime-architecture-for-voice|Agent Runtime Architecture for Voice]]
 
 ## Sources
 

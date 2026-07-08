@@ -38,11 +38,6 @@ A macOS window switcher that shows previews of individual windows, not just apps
 
 The source implies a mature utility category because it is presented as a replacement for a familiar operating-system gap. As of 2025-12-31, the text gives no evidence about enterprise readiness or maintenance cadence.
 
-## Related Tools
-
-- Launchy
-- Rectangle
-
 ## Strengths
 
 - Shows actual window previews, which helps users switch to the exact surface they want instead of cycling through whole apps.
@@ -75,8 +70,8 @@ The article does not compare it against native macOS switching behavior in detai
 
 ## Related pages
 
-- Launchy
-- Rectangle
+- [[tools/launchy|Launchy]]
+- [[tools/rectangle|Rectangle]]
 
 ## Sources
 

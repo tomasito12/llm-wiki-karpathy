@@ -50,11 +50,6 @@ Hybrid retrieval combines keyword search and semantic vector search so a system 
 
 Use hybrid retrieval when the corpus contains both precise identifiers and semantically rich content. Keyword lookup should handle names and explicit phrases; vector search should cover paraphrases and conceptual questions.
 
-## Related Topics
-
-- agent-maintained-knowledge-bases
-- rag-orchestration-patterns
-
 ## Evidence / supporting sources
 
 ### GitHub - garrytan/gbrain: Garry's Opinionated OpenClaw Brain · GitHub (undated)
@@ -97,8 +92,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-maintained-knowledge-bases
-- rag-orchestration-patterns
+- [[topics/agent-maintained-knowledge-bases|Agent-Maintained Knowledge Bases]]
+- [[topics/rag-orchestration-patterns|RAG Orchestration Patterns]]
 
 ## Sources
 

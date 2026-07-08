@@ -41,10 +41,6 @@ Token classification for redaction is a sequence-labeling approach where each to
 
 Use token classification when you need precise, inspectable masking boundaries rather than free-form rewriting. That makes the output easier to audit and easier to plug into logging, search, and human-review pipelines.
 
-## Related Topics
-
-- local-pii-redaction
-
 ## Evidence / supporting sources
 
 ### Introducing OpenAI Privacy Filter (2026-04-22)
@@ -74,7 +70,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- local-pii-redaction
+- [[topics/local-pii-redaction|Local PII Redaction]]
 
 ## Sources
 

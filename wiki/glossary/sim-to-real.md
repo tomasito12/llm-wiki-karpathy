@@ -24,10 +24,6 @@ synthesis_state: stage1-placeholder
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Sim-to-Real is the process of training, testing, or refining an AI system in simulation before deploying it in the physical world. The goal is to reduce risk and improve performance by letting the system practice in a controlled environment first.
 
-## Related Terms
-
-- World model
-
 ## Relevance Note
 
 Sim-to-Real is important anywhere AI systems need safe rehearsal before real-world action, including robotics, vehicle control, industrial automation, and digital twins. It is especially relevant for reducing the cost of failure and accelerating iteration on embodied policies.
@@ -47,7 +43,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- World model
+- [[glossary/world-model|World model]]
 
 ## Sources
 

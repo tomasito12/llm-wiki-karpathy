@@ -39,10 +39,6 @@ The article is promotional in tone and does not compare these tools against alte
 - A Mac that supports Mission Control and Stage Manager
 - Multiple open windows or apps
 
-## Related Howtos
-
-- keyboard-window-management
-
 ## Evidence / supporting sources
 
 ### 14 Mac Mistakes Newbies Always Make (2025-12-19)
@@ -64,7 +60,7 @@ The article is promotional in tone and does not compare these tools against alte
 
 ## Related pages
 
-- keyboard-window-management
+- [[how-to/keyboard-window-management|Keyboard Window Management]]
 
 ## Sources
 

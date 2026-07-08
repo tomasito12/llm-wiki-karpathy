@@ -37,10 +37,6 @@ An AI workflow is a predefined control path that routes inputs through fixed log
 
 Designers should separate deterministic routing from autonomous decision-making so they can decide where predictability is required and where runtime flexibility is acceptable. The useful boundary is often: workflow for constrained classification and routing, agent for multi-step action under feedback.
 
-## Related Topics
-
-- agent-runtime-architecture
-
 ## Evidence / supporting sources
 
 ### Behind the scene of conversational ai agent (2025-11-15)
@@ -60,7 +56,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-runtime-architecture
+- [[topics/agent-runtime-architecture|Agent Runtime Architecture]]
 
 ## Sources
 

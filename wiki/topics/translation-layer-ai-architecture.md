@@ -36,11 +36,6 @@ A translation layer in an AI system sits between durable human knowledge and a m
 
 When the corpus is large, direct context access is not enough; the system needs an intermediate layer that tells the model where to look and how to behave. This is a strong pattern for agent reliability and maintainability.
 
-## Related Topics
-
-- file-native-ai-workflows
-- knowledge-base-becomes-runtime-infrastructure
-
 ## Evidence / supporting sources
 
 ### How I Use Obsidian + Claude Cowork to Run My Life (2026-06-05)
@@ -60,8 +55,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- file-native-ai-workflows
-- knowledge-base-becomes-runtime-infrastructure
+- [[topics/file-native-ai-workflows|File-Native AI Workflows]]
+- [[topics/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]]
 
 ## Sources
 

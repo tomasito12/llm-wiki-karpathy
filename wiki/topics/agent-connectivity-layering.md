@@ -19,89 +19,77 @@ source_ids:
 - how-to-make-the-case-for-giving-your-ai-agent-system-access-01ktv9jzh8ynayfwz0kx9wat67
 value_level: high
 confidence: 0.94
-synthesis_state: stage1-placeholder
+synthesis_state: synthesized
+synthesis_stale: false
+synthesis_input_hash: 47ce89375a59c2b6
+current_input_hash: 47ce89375a59c2b6
+synthesis_schema_version: 1
+synthesis_prompt_version: 1
+last_synthesized_at: '2026-06-17T20:16:32Z'
 ---
 
 # Agent Connectivity Layering
 
-## Current understanding
+## Executive synthesis
 
-<!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
-Production agent systems often need more than one way to connect to tools and data. Different layers serve different jobs: procedural skills for reusable guidance, CLI for composable local execution, and MCP for structured external integration. The durable lesson is to choose the layer that matches the task shape instead of forcing every task through the same interface. This reduces wasted context, avoids unnecessary complexity, and makes governance easier to apply where it matters.
+Agent Connectivity Layering is the idea that agent systems should not route every task through one generic interface. Instead, they work better when connectivity is split into layers that match the job: local composable actions for simple execution, governed integration for external systems, and reusable procedures or skills for task knowledge. The sources also converge on a rollout ladder for permissions: start with no integration when possible, move to read-only access for live data, and only add write access when the workflow value and trust level justify it. The main benefit is clearer boundaries, lower coupling, easier debugging, and better governance without blocking useful deployment. The evidence is strong in agreement but thin in formal evaluation; it is a design pattern supported by practical examples rather than benchmark data.
 
-## Examples
+## Context card
 
-“Top-tier agents don’t choose between tools — they use the entire connectivity stack simultaneously and effortlessly.”
+- **Use this page when:** Use this page when deciding how to organize agent access, whether to split capabilities across layers, or how to phase permissions from safe to powerful.
+- **Best for questions about:** How to structure agent access to tools and systems, When to use separate layers such as CLI, MCP, and skills, How to phase from no access to read-only to write access, Why clear tool boundaries help agent reliability and governance, How layered connectivity affects support automation and enterprise rollout
+- **Not enough for:** A complete architecture standard for every agent system, Detailed implementation guidance for each connectivity layer, Security policy or compliance requirements beyond the source-level claims, Performance benchmarks or comparative evaluations
+- **Strongest sources:** How to Build Production-Ready AI Agents: MCP, CLI, and Skills — the Right Tool for the Right Job, How to make the case for giving your AI Agent system access, Build Your Own Local Web Browsing LLM Agent in 250 Lines of Python
+- **Related tags:** agent-orchestration, agent-systems, runtime-architecture, support-automation, workflow-design
 
-## Key Points
+## What to remember
 
-- Skills encode reusable procedure.
-- CLI is token-efficient for local command composition.
-- MCP is best when semantics, authorization, and audit trails matter.
-- No single connectivity mechanism covers every use case well.
-- Separate tools can represent distinct knowledge-access steps instead of one overloaded agent action.
-- Clear tool boundaries help the model decide whether it is searching, reading, or extracting.
-- A browser server can be reused for both free-form page reading and structured JSON extraction.
-- No integration can still be useful for guided troubleshooting, triage, policy checks, and routing.
-- Read-only access is a low-risk first step when the agent only needs live data.
-- Write access should come later, after the team has confidence in earlier phases.
-- The access ladder helps align engineering, support, and security stakeholders.
+- Do not force search, read, extract, and write into one overloaded tool if the workflow benefits from different prompts or failure modes.
+- Use separate layers for separate jobs: skills for reusable procedure, CLI for local composable execution, and MCP for governed external integration.
+- Staged access is the default pattern: no integration, then read-only, then write actions.
+- Clear boundaries help the agent reason about what it is doing and help teams reason about security, auditability, and change control.
+- This is most useful when the agent must balance capability with trust, latency, and operational control.
+- Evidence is consistent, but mostly conceptual and implementation-based rather than empirical.
 
-## Operational Insight
+## Consensus
 
-Use separate connectivity layers for separate kinds of work. Keep local, composable actions in the CLI layer, reserve MCP for governed enterprise integrations, and use skills for reusable task knowledge.
+- Agent connectivity works better as layered capabilities than as one monolithic interface.
+- Different tasks justify different connection mechanisms: local composable execution, governed external integration, and reusable procedure/instructions.
+- Clear boundaries between search, read, extract, and write actions improve orchestration, testing, debugging, and model tool selection.
+- Staged access is a practical rollout pattern: no integration, then read-only, then write actions when value and trust justify it.
+- This pattern is especially relevant for support automation, enterprise workflows, local browser-based agents, and other systems that mix trust levels and failure modes.
 
-## Related Topics
+## Tensions / open questions
 
-- procedural-knowledge-for-agents
-- support-automation-as-operating-model
-- approval-based-agent-actions
+- One source frames the 2026 connectivity stack as Skills, MCP, and CLI, but the evidence does not establish that this naming or ordering is universal.
+- The sources strongly favor separation and layering, but they do not provide comparative failure rates or prove that layered designs always outperform a simpler interface.
+- The access-ladder argument supports delaying write access, but it does not settle when a team should skip intermediate phases if the risk profile is already well understood.
 
-## Evidence / supporting sources
+## Evidence quality
 
-### Build Your Own Local Web Browsing LLM Agent in 250 Lines of Python (2026-05-23)
+- High confidence across three sources, with repeated support for layered connectivity and staged access.
+- Evidence is practical and design-oriented rather than empirical; it explains why the pattern is useful more than proving measured gains.
+- The sources are aligned on the core pattern, but they cover different contexts: local browsing, enterprise tooling, and support/operations rollout.
+- As of 2026-06-11, the access-ladder framing is described as durable, but this is still a source claim rather than a broad industry measurement.
 
-- The source separates a local SearXNG search server from a camofox browser server and then connects both to the agent through MCP. It also adds a third browser-side extraction path that calls the model internally when the user wants structured JSON. (`c21fd67aa7ed` · neutral · examples; [[sources/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-01kts19400x91hkkaam8ed7tvt|Build Your Own Local Web Browsing LLM Agent in 250 Lines of Python]])
-- Agent systems often work better when each external capability is exposed as a separate service boundary instead of being merged into one monolith. Search, page fetch, and structured extraction can then be mixed and matched by the orchestrator without changing the underlying services. This reduces coupling and makes each capability easier to test, replace, and debug. It also gives the model a clearer tool list, which matters when tool names and behaviors need to stay distinct. The pattern is especially valuable for local agents that need browser access, retrieval, and structured extraction in one workflow. (`1cdc04c5efc1` · neutral · knowledge_summary; [[sources/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-01kts19400x91hkkaam8ed7tvt|Build Your Own Local Web Browsing LLM Agent in 250 Lines of Python]])
-- Design agent integrations as layered capabilities: retrieve, read, and extract should not be forced into one generic tool if the workflow benefits from different failure modes and prompts. Clear boundaries make the orchestration more robust and easier to reason about. (`24a8bae26b55` · neutral · operational_insight; [[sources/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-01kts19400x91hkkaam8ed7tvt|Build Your Own Local Web Browsing LLM Agent in 250 Lines of Python]])
-- This pattern matters for AI systems that need to combine search, browsing, and structured extraction without turning the whole stack into a single brittle API. It is useful in conversational assistants, support automation, and internal research tools where each capability has a different latency, context, or trust profile. (`080f8abb07ad` · neutral · relevance_note; [[sources/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-01kts19400x91hkkaam8ed7tvt|Build Your Own Local Web Browsing LLM Agent in 250 Lines of Python]])
-- Separate tools can represent distinct knowledge-access steps instead of one overloaded agent action. (`b5480db91c6e` · supporting · key_points[0]; [[sources/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-01kts19400x91hkkaam8ed7tvt|Build Your Own Local Web Browsing LLM Agent in 250 Lines of Python]])
-- Clear tool boundaries help the model decide whether it is searching, reading, or extracting. (`624f40cb3556` · supporting · key_points[1]; [[sources/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-01kts19400x91hkkaam8ed7tvt|Build Your Own Local Web Browsing LLM Agent in 250 Lines of Python]])
-- A browser server can be reused for both free-form page reading and structured JSON extraction. (`225b0e212858` · supporting · key_points[2]; [[sources/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-01kts19400x91hkkaam8ed7tvt|Build Your Own Local Web Browsing LLM Agent in 250 Lines of Python]])
-- "You bring up two services in Docker, you wrap the browser in an MCP server, and you connect both the search server from Part 3 and the new browser server to the agent. The agent then composes them on its own." (`d82389c7d0f4` · supporting · supporting_snippet; [[sources/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-01kts19400x91hkkaam8ed7tvt|Build Your Own Local Web Browsing LLM Agent in 250 Lines of Python]])
+## Practical takeaway
 
-### How to Build Production-Ready AI Agents: MCP, CLI, and Skills — the Right Tool for the Right Job (2026-05-02)
+Design agent connectivity as a ladder and a stack: separate read, write, and local execution concerns; give the model distinct tools for distinct jobs; and expand permissions only after earlier phases prove value and reduce risk.
 
-- “Top-tier agents don’t choose between tools — they use the entire connectivity stack simultaneously and effortlessly.” (`8a596ca4f721` · neutral · examples; [[sources/how-to-build-production-ready-ai-agents-mcp-cli-and-skills-the-right-tool-for-the-right-job-01kr4347xhzg1papsh9y4v36a2|How to Build Production-Ready AI Agents: MCP, CLI, and Skills — the Right Tool for the Right Job]])
-- Production agent systems often need more than one way to connect to tools and data. Different layers serve different jobs: procedural skills for reusable guidance, CLI for composable local execution, and MCP for structured external integration. The durable lesson is to choose the layer that matches the task shape instead of forcing every task through the same interface. This reduces wasted context, avoids unnecessary complexity, and makes governance easier to apply where it matters. (`baf66e49f458` · neutral · knowledge_summary; [[sources/how-to-build-production-ready-ai-agents-mcp-cli-and-skills-the-right-tool-for-the-right-job-01kr4347xhzg1papsh9y4v36a2|How to Build Production-Ready AI Agents: MCP, CLI, and Skills — the Right Tool for the Right Job]])
-- Use separate connectivity layers for separate kinds of work. Keep local, composable actions in the CLI layer, reserve MCP for governed enterprise integrations, and use skills for reusable task knowledge. (`6bf51a55e9a2` · neutral · operational_insight; [[sources/how-to-build-production-ready-ai-agents-mcp-cli-and-skills-the-right-tool-for-the-right-job-01kr4347xhzg1papsh9y4v36a2|How to Build Production-Ready AI Agents: MCP, CLI, and Skills — the Right Tool for the Right Job]])
-- This is a durable design pattern for enterprise agents because real workflows mix local execution, governed integrations, and reusable instructions. In support automation and chatbot systems, layered connectivity makes it easier to balance speed, control, and auditability without overfitting one tool to every job. (`fd89e4661b9d` · neutral · relevance_note; [[sources/how-to-build-production-ready-ai-agents-mcp-cli-and-skills-the-right-tool-for-the-right-job-01kr4347xhzg1papsh9y4v36a2|How to Build Production-Ready AI Agents: MCP, CLI, and Skills — the Right Tool for the Right Job]])
-- Skills encode reusable procedure. (`fdd5d5eaa5f7` · supporting · key_points[0]; [[sources/how-to-build-production-ready-ai-agents-mcp-cli-and-skills-the-right-tool-for-the-right-job-01kr4347xhzg1papsh9y4v36a2|How to Build Production-Ready AI Agents: MCP, CLI, and Skills — the Right Tool for the Right Job]])
-- CLI is token-efficient for local command composition. (`74be7d2af434` · supporting · key_points[1]; [[sources/how-to-build-production-ready-ai-agents-mcp-cli-and-skills-the-right-tool-for-the-right-job-01kr4347xhzg1papsh9y4v36a2|How to Build Production-Ready AI Agents: MCP, CLI, and Skills — the Right Tool for the Right Job]])
-- MCP is best when semantics, authorization, and audit trails matter. (`7a7e37c024cd` · supporting · key_points[2]; [[sources/how-to-build-production-ready-ai-agents-mcp-cli-and-skills-the-right-tool-for-the-right-job-01kr4347xhzg1papsh9y4v36a2|How to Build Production-Ready AI Agents: MCP, CLI, and Skills — the Right Tool for the Right Job]])
-- No single connectivity mechanism covers every use case well. (`4f455cdca46f` · supporting · key_points[3]; [[sources/how-to-build-production-ready-ai-agents-mcp-cli-and-skills-the-right-tool-for-the-right-job-01kr4347xhzg1papsh9y4v36a2|How to Build Production-Ready AI Agents: MCP, CLI, and Skills — the Right Tool for the Right Job]])
-- “Here is the step-by-step guide to mastering the 2026 Connectivity Stack: Skills, MCP, and CLI.” (`474133ce88c2` · supporting · supporting_snippet; [[sources/how-to-build-production-ready-ai-agents-mcp-cli-and-skills-the-right-tool-for-the-right-job-01kr4347xhzg1papsh9y4v36a2|How to Build Production-Ready AI Agents: MCP, CLI, and Skills — the Right Tool for the Right Job]])
+## Evidence index
 
-### How to make the case for giving your AI Agent system access (2026-06-11)
-
-- Agent systems often benefit from staged connectivity rather than immediate full access. A common progression is to begin with no integration, move to read-only lookups, and only later allow write actions. This reduces risk because each phase tests a different level of trust and operational value. It also gives teams evidence before they ask for deeper system permissions. The pattern is most useful when the agent needs backend data or actions but the organization is still learning where integration pays off. (`240793bc5475` · neutral · knowledge_summary; [[sources/how-to-make-the-case-for-giving-your-ai-agent-system-access-01ktv9jzh8ynayfwz0kx9wat67|How to make the case for giving your AI Agent system access]])
-- Treat connectivity as a ladder, not a binary on/off choice. Read-only access can prove value with lower risk, and write access should be reserved for workflows where the payoff justifies the added permission surface. (`59b253b72ce5` · neutral · operational_insight; [[sources/how-to-make-the-case-for-giving-your-ai-agent-system-access-01ktv9jzh8ynayfwz0kx9wat67|How to make the case for giving your AI Agent system access]])
-- This pattern matters for AI agents in support, operations, and enterprise workflows because backend access is often the difference between a helpful assistant and a real executor. Layering access lets teams manage security, change control, and engineering effort without blocking useful deployment. As of 2026-06-11, it is a durable rollout pattern for any organization introducing agentic action-taking. (`139c5dc4aa41` · neutral · relevance_note; [[sources/how-to-make-the-case-for-giving-your-ai-agent-system-access-01ktv9jzh8ynayfwz0kx9wat67|How to make the case for giving your AI Agent system access]])
-- No integration can still be useful for guided troubleshooting, triage, policy checks, and routing. (`ffd4e3cb5eb9` · supporting · key_points[0]; [[sources/how-to-make-the-case-for-giving-your-ai-agent-system-access-01ktv9jzh8ynayfwz0kx9wat67|How to make the case for giving your AI Agent system access]])
-- Read-only access is a low-risk first step when the agent only needs live data. (`a8e276c64aaf` · supporting · key_points[1]; [[sources/how-to-make-the-case-for-giving-your-ai-agent-system-access-01ktv9jzh8ynayfwz0kx9wat67|How to make the case for giving your AI Agent system access]])
-- Write access should come later, after the team has confidence in earlier phases. (`84a6cc479980` · supporting · key_points[2]; [[sources/how-to-make-the-case-for-giving-your-ai-agent-system-access-01ktv9jzh8ynayfwz0kx9wat67|How to make the case for giving your AI Agent system access]])
-- The access ladder helps align engineering, support, and security stakeholders. (`ae0388300c97` · supporting · key_points[3]; [[sources/how-to-make-the-case-for-giving-your-ai-agent-system-access-01ktv9jzh8ynayfwz0kx9wat67|How to make the case for giving your AI Agent system access]])
-- “Phase 1: No integration needed ... Phase 2: Read-only access ... Phase 3: Write actions” (`38d964b23aaf` · supporting · supporting_snippet; [[sources/how-to-make-the-case-for-giving-your-ai-agent-system-access-01ktv9jzh8ynayfwz0kx9wat67|How to make the case for giving your AI Agent system access]])
-
-## Contradictions / tensions
-
-No contradictions captured in current sources.
+- Sources: 3
+- Evidence items: 25
+- Current input hash: `47ce89375a59c2b6`
+- Cached input hash: `47ce89375a59c2b6`
+- Last synthesized: 2026-06-17T20:16:32Z
+- Synthesis status: `fresh`
 
 ## Related pages
 
-- approval-based-agent-actions
-- procedural-knowledge-for-agents
-- support-automation-as-operating-model
+- [[topics/procedural-knowledge-for-agents|Procedural Knowledge for Agents]]
+- [[topics/support-automation-as-operating-model|Support Automation as Operating Model]]
+- [[topics/approval-based-agent-actions|Approval-Based Agent Actions]]
 
 ## Sources
 

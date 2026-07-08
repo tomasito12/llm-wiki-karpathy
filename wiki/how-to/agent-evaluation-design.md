@@ -42,10 +42,6 @@ The source does not define how to quantify eval quality, keep labels consistent 
 - Access to human examples of good performance
 - A way to log agent outputs and intermediate steps
 
-## Related Howtos
-
-- self-verification-for-agent-workflows
-
 ## Evidence / supporting sources
 
 ### Forward Deployed Engineering 101 (2026-05-20)
@@ -70,7 +66,7 @@ Start small with great examples of the intended outcome, then measure everything
 
 ## Related pages
 
-- self-verification-for-agent-workflows
+- [[how-to/self-verification-for-agent-workflows|Self-Verification for Agent Workflows]]
 
 ## Sources
 

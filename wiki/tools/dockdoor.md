@@ -43,12 +43,6 @@ A macOS utility that adds window previews, richer app-switching behavior, and do
 
 The source presents DockDoor as a mature-feeling desktop utility with many toggles and polished UI behavior. There is no evidence here of enterprise rollout, but the customization depth implies an active development focus on power-user workflows. As of 2026-01-08, it looks like a robust niche utility rather than a one-off gadget.
 
-## Related Tools
-
-- AltTab
-- NotchNook
-- Rectangle
-
 ## Strengths
 
 - It adds large app previews during CMD+Tab switching, which helps users choose the correct window faster.
@@ -89,9 +83,9 @@ There is almost a toggle for every feature in DockDoor to help you adjust settin
 
 ## Related pages
 
-- AltTab
-- NotchNook
-- Rectangle
+- [[tools/alttab|AltTab]]
+- [[tools/notchnook|NotchNook]]
+- [[tools/rectangle|Rectangle]]
 
 ## Sources
 

@@ -24,11 +24,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 AI simulation tools are increasingly expected to do more than produce impressive demos; they are being judged on whether they can support grounded evaluation, reliability checks, and meaningful comparison against real outcomes. As systems grow more agentic and socially interactive, the bar shifts from visual scale to trustworthiness of the simulated behavior. That makes provenance, benchmarking, and adversarial testing part of the system design rather than optional follow-up work.
 
-## Related Trends
-
-- verification-loops-become-central-to-ai-workflows
-- workflow-based-evaluation
-
 ## Supporting Data Points
 
 - The source states there are "no published benchmarks against real-world outcomes".
@@ -65,8 +60,8 @@ This is based on one source and one project; it may describe an early stage of a
 
 ## Related pages
 
-- verification-loops-become-central-to-ai-workflows
-- workflow-based-evaluation
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
+- [[industry-trends/workflow-based-evaluation|AI Evaluation Moves Toward Workflow-Based Testing]]
 
 ## Sources
 

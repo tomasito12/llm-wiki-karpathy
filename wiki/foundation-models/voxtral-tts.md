@@ -55,10 +55,6 @@ No explicit pricing is given. The smartphone and open-weight positioning imply a
 
 MistralAI
 
-## Related Models
-
-- Gemini 3.1 Flash Live
-
 ## Service automation implications
 
 Potentially useful for voicebots and support systems where data residency and control matter more than generic cloud convenience. Its on-prem or on-device framing may suit regulated deployments that cannot send audio to third-party services. The source does not show real contact-center metrics or handoff behavior.
@@ -95,7 +91,7 @@ The source does not show broad production adoption or failure analysis, so the o
 
 ## Related pages
 
-- Gemini 3.1 Flash Live
+- [[foundation-models/gemini-3-1-flash-live|Gemini 3.1 Flash Live]]
 
 ## Sources
 

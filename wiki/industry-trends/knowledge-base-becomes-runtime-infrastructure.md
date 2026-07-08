@@ -29,12 +29,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Knowledge bases are increasingly treated as operational systems that enforce structure, validation, provenance, and query behavior at runtime rather than as passive document stores. This pattern matters when extracted facts must stay auditable, deduplicated, and adaptable to schema drift.
 
-## Related Trends
-
-- ai-products-shift-from-models-to-systems
-- verification-loops-become-central-to-ai-workflows
-- harness-design-becomes-more-important-for-agent-reliability
-
 ## Supporting Data Points
 
 - YAML-based ontology definition
@@ -123,9 +117,9 @@ The source is a single implementation narrative, so it supports the pattern dire
 
 ## Related pages
 
-- ai-products-shift-from-models-to-systems
-- harness-design-becomes-more-important-for-agent-reliability
-- verification-loops-become-central-to-ai-workflows
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
+- [[industry-trends/harness-design-becomes-more-important-for-agent-reliability|Agent reliability is shifting toward harness design]]
 
 ## Sources
 

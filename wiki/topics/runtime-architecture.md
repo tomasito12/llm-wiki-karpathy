@@ -35,12 +35,6 @@ Runtime architecture is the set of design choices that determine how a model is 
 
 Use a thin inference interface when the backend ecosystem is changing or when multiple engines are likely to remain relevant. This keeps runtime swaps localized and prevents fine-tuning, serialization, and integration code from hard-coding one backend’s assumptions.
 
-## Related Topics
-
-- use-case-specific-local-model-selection
-- local-model-deployment
-- layered-local-and-cloud-inference
-
 ## Evidence / supporting sources
 
 ### Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks (2026-04-20)
@@ -59,9 +53,9 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- layered-local-and-cloud-inference
-- local-model-deployment
-- use-case-specific-local-model-selection
+- [[topics/use-case-specific-local-model-selection|Use-Case-Specific Local Model Selection]]
+- [[topics/local-model-deployment|Local Model Deployment]]
+- [[topics/layered-local-and-cloud-inference|Layered Local and Cloud Inference]]
 
 ## Sources
 

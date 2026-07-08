@@ -65,16 +65,6 @@ The article cites $0.50 per million input tokens and $2.80 per million output to
 
 Moonshot AI
 
-## Related Models
-
-- Claude Opus 4.5
-- Claude Sonnet 4.6
-- GPT-5.2
-- GPT-5.4 Standard
-- Claude Opus 4.7
-- GLM-4.7-Flash
-- GLM-5 Reasoning
-
 ## Service automation implications
 
 No direct service automation implications are substantiated in the source; the relevance would be indirect for back-office automation that benefits from parallel task routing.
@@ -137,13 +127,7 @@ The article itself notes that its advantages are most pronounced on agentic benc
 
 ## Related pages
 
-- Claude Opus 4.5
-- Claude Opus 4.7
-- Claude Sonnet 4.6
-- GLM-4.7-Flash
-- GLM-5 Reasoning
-- GPT-5.2
-- GPT-5.4 Standard
+- [[foundation-models/claude-opus-4-7|Claude Opus 4.7]]
 
 ## Sources
 

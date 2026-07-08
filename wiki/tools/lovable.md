@@ -38,11 +38,6 @@ A prompt-to-app builder that turns plain English into production-grade web code.
 
 The product is presented as usable enough for rapid prototype creation and exportable code, which suggests a tool that is beyond a toy demo. The mention of GitHub-ready exports and native integrations points to a developer-facing orientation rather than a closed consumer experience. Evidence in the source is still mostly anecdotal, so maturity should be treated as promising but not fully established.
 
-## Related Tools
-
-- Gumloop
-- OpenClaw
-
 ## Strengths
 
 - Converts a plain-English request into a functional app, which reduces the time spent on scaffolding and repetitive setup.
@@ -77,8 +72,7 @@ The article does not describe failure modes, code quality edge cases, or how wel
 
 ## Related pages
 
-- Gumloop
-- OpenClaw
+- [[tools/openclaw|OpenClaw]]
 
 ## Sources
 

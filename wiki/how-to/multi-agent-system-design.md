@@ -47,11 +47,6 @@ The boundary between single-agent and multi-agent systems is a heuristic, not a 
 - A way to store or pass intermediate evidence between stages
 - Basic observability for tool calls and agent outputs
 
-## Related Howtos
-
-- workflow-restructuring-around-ai-agents
-- verification-loops-in-ai-workflows
-
 ## Evidence / supporting sources
 
 ### Single Agent vs Multi-Agent: When to Build a Multi-Agent System (2026-05-04)
@@ -78,8 +73,7 @@ The boundary between single-agent and multi-agent systems is a heuristic, not a 
 
 ## Related pages
 
-- verification-loops-in-ai-workflows
-- workflow-restructuring-around-ai-agents
+No related pages captured.
 
 ## Sources
 

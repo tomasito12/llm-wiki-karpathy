@@ -26,10 +26,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Content authenticity systems are moving toward layered verification rather than single-point signals. The durable design pattern is to combine standards-based metadata, resilient watermarking, and public verification so that origin evidence can survive common file transformations and be checked by downstream tools. The practical consequence is that trust systems increasingly need explicit uncertainty handling instead of binary answers. This trend is strongest where media is widely copied, edited, and redistributed.
 
-## Related Trends
-
-- verification-loops-become-central-to-ai-workflows
-
 ## Supporting Data Points
 
 - C2PA metadata can be stripped, lost through uploads and downloads, or broken by resizing and screenshots.
@@ -64,7 +60,7 @@ The source is a vendor announcement, so the architectural direction is credible 
 
 ## Related pages
 
-- verification-loops-become-central-to-ai-workflows
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
 
 ## Sources
 

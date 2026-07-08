@@ -22,10 +22,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Enterprise conversational AI deployments increasingly concentrate support logic, routing, and channel handling in a single platform rather than scattering them across separate bots. The operational value is consistency: one orchestration layer can cover chat, voice, phone, and web while sharing integrations and reporting. This pattern matters because it reduces duplication and makes multi-channel service automation easier to govern.
 
-## Related Trends
-
-- support-automation-as-an-operating-model
-
 ## Supporting Data Points
 
 - More than 30 conversational AI solutions are reported in the portfolio.
@@ -60,7 +56,7 @@ The article is promotional and does not show whether this centralization is broa
 
 ## Related pages
 
-- support-automation-as-an-operating-model
+- [[industry-trends/support-automation-as-operating-model|Support Automation as an Operating Model]]
 
 ## Sources
 

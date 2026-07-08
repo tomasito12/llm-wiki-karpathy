@@ -38,12 +38,6 @@ A Microsoft Copilot feature for scheduling and running background tasks from pla
 
 The product is presented as part of a shift from assistive chat toward delegated work, but the source does not establish broad adoption. Availability constraints suggest an early or gated rollout rather than a fully open platform. The claims are promotional and based on the author's own workflow experience.
 
-## Related Tools
-
-- OpenClaw
-- Claude
-- ChatGPT
-
 ## Strengths
 
 - Lets users describe work in simple English, which lowers the setup burden for routine automation.
@@ -76,9 +70,8 @@ The source says it is only available to a group of users and requires a waitlist
 
 ## Related pages
 
-- ChatGPT
-- Claude
-- OpenClaw
+- [[tools/openclaw|OpenClaw]]
+- [[tools/claude|Claude]]
 
 ## Sources
 

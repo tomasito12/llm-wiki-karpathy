@@ -76,6 +76,7 @@ def _page_payload(page: KnowledgePage) -> dict[str, Any]:
         "value_level": page.value_level,
         "confidence": page.confidence,
         "synthesis_state": page.synthesis_state,
+        "values": page.values,
         "evidence_set_hash": page.evidence_set_hash,
         "evidence": [item.to_dict() for item in page.evidence],
         "duplicate_candidates": page.duplicate_candidates,

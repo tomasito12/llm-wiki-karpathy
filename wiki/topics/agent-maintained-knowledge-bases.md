@@ -81,15 +81,6 @@ The source describes a setup with a `raw/` folder for original documents and a `
 
 Treat knowledge storage as a living workspace, not a write-once archive. The key design choice is to separate current conclusions from evidence history so agents can revise beliefs without erasing provenance.
 
-## Related Topics
-
-- agent-memory-architecture
-- knowledge-base-becomes-runtime-infrastructure
-- wiki-schema-governance
-- knowledge-layer-architecture
-- file-native-ai-workflows
-- knowledge-systems-shift-toward-compilation-over-retrieval
-
 ## Evidence / supporting sources
 
 ### GitHub - garrytan/gbrain: Garry's Opinionated OpenClaw Brain · GitHub (undated)
@@ -190,12 +181,12 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-memory-architecture
-- file-native-ai-workflows
-- knowledge-base-becomes-runtime-infrastructure
-- knowledge-layer-architecture
-- knowledge-systems-shift-toward-compilation-over-retrieval
-- wiki-schema-governance
+- [[topics/agent-memory-architecture|Agent Memory Architecture]]
+- [[topics/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]]
+- [[topics/wiki-schema-governance|Wiki Schema Governance]]
+- [[topics/knowledge-layer-architecture|Knowledge Layer Architecture]]
+- [[topics/file-native-ai-workflows|File-Native AI Workflows]]
+- [[topics/knowledge-systems-shift-toward-compilation-over-retrieval|Knowledge Compilation Over Retrieval]]
 
 ## Sources
 

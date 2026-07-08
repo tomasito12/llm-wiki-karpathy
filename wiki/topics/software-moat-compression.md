@@ -39,10 +39,6 @@ Software moat compression describes a situation where the cost and time required
 
 If a competitor can re-create most of your core workflow quickly, your real moat has to sit outside the codebase.
 
-## Related Topics
-
-- agentic-workflows
-
 ## Evidence / supporting sources
 
 ### Naval Ravikant: Apple is dead, SaaS is next, you have 18 months (2026-04-29)
@@ -72,7 +68,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agentic-workflows
+- [[topics/agentic-workflows|Agentic Workflows]]
 
 ## Sources
 

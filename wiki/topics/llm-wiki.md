@@ -36,12 +36,6 @@ An LLM wiki can be treated as a persistent Markdown knowledge base that an AI as
 
 Design the wiki as a maintained system: separate sources from synthesized pages, define purpose and operating rules, and make ingest a two-step process with review points for uncertain items. For smaller setups, a project-level skill or similar instruction layer can provide the maintenance behavior without requiring a full app.
 
-## Related Topics
-
-- knowledge-base-becomes-runtime-infrastructure
-- provenance-tracking
-- two-step-document-ingest
-
 ## Evidence / supporting sources
 
 ### I Found a Full LLM Wiki App. So I Built the Smaller Thing I Actually Needed. (2026-04-29)
@@ -62,9 +56,9 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- knowledge-base-becomes-runtime-infrastructure
-- provenance-tracking
-- two-step-document-ingest
+- [[topics/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]]
+- [[topics/provenance-tracking|Provenance Tracking]]
+- [[topics/two-step-document-ingest|Two-Step Document Ingest]]
 
 ## Sources
 

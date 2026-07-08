@@ -55,14 +55,6 @@ Fin is Intercom’s customer support agent platform. It can be layered on top of
 
 Intercom presents Fin as a mature enough product to be deployed on top of major helpdesks, with self-serve onboarding and public documentation. The article also says Fin has APIs, MCPs, CLI access, and access to Apex, which signals a broad platform surface rather than a single feature add-on. As of 2026-06-09, the evidence here is still primarily vendor positioning, not third-party validation.
 
-## Related Tools
-
-- HubSpot
-- Freshworks
-- Freshdesk
-- Fin API platform
-- Operator
-
 ## Strengths
 
 - It can sit on top of an existing helpdesk, which reduces migration work and makes adoption easier for teams already committed to HubSpot or Freshworks.
@@ -119,11 +111,8 @@ The article is vendor-authored, so the strongest claims are not independently ve
 
 ## Related pages
 
-- Fin API platform
-- Freshdesk
-- Freshworks
-- HubSpot
-- Operator
+- [[tools/fin-api-platform|Fin API platform]]
+- [[tools/operator|Operator]]
 
 ## Sources
 

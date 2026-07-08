@@ -38,11 +38,6 @@ A macOS utility that turns the notch area on MacBook displays into a temporary s
 
 The source presents it as a polished, ready-to-use utility rather than an experiment, but gives no evidence of ecosystem scale or enterprise adoption. As of 2026-02-09, it reads like a niche productivity app with a clear but limited use case.
 
-## Related Tools
-
-- Dropover
-- Ice
-
 ## Strengths
 
 - Reuses otherwise dead screen space as a temporary staging area, which can reduce app switching during file movement.
@@ -75,8 +70,8 @@ The article does not describe privacy, reliability, or compatibility limits beyo
 
 ## Related pages
 
-- Dropover
-- Ice
+- [[tools/dropover|Dropover]]
+- [[tools/ice|Ice]]
 
 ## Sources
 

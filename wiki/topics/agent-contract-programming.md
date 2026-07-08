@@ -37,11 +37,6 @@ Agent workflows become more repeatable when the intended behavior is written as 
 
 Write down the required inputs, required outputs, and proof of completion as durable artifacts, then let the agent execute inside that boundary.
 
-## Related Topics
-
-- production-traceability-for-agent-improvement
-- structured-specification-for-agentic-development
-
 ## Evidence / supporting sources
 
 ### How OpenProse Makes AI Agent Behavior Repeatable (2026-06-04)
@@ -61,8 +56,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- production-traceability-for-agent-improvement
-- structured-specification-for-agentic-development
+- [[topics/production-traceability-for-agent-improvement|Production Traceability for Agent Improvement]]
+- [[topics/structured-specification-for-agentic-development|Structured Specification for Agentic Development]]
 
 ## Sources
 

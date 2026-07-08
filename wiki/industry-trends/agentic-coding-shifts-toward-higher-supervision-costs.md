@@ -36,13 +36,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 As coding agents are used more heavily, the bottleneck moves from typing code to reviewing, steering, and correcting generated output. That changes the economics of software work: the apparent speedup from generation can be offset by more supervision, more revision loops, and more attention spent validating ambiguous output. The pattern is especially important when the human reviewer must still possess deep coding skill to catch defects before they spread.
 
-## Related Trends
-
-- verification-loops-become-central-to-ai-workflows
-- workflow-restructuring
-- workflow-restructuring-around-ai-agents
-- enterprise-ai-moves-toward-governed-human-oversight-workflows
-
 ## Supporting Data Points
 
 - The article describes repeated prompting and multiple agent instances as part of the workflow.
@@ -123,10 +116,9 @@ The evidence in the source is largely observational and anecdotal, so the size o
 
 ## Related pages
 
-- enterprise-ai-moves-toward-governed-human-oversight-workflows
-- verification-loops-become-central-to-ai-workflows
-- workflow-restructuring
-- workflow-restructuring-around-ai-agents
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]]
+- [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]]
+- [[industry-trends/enterprise-ai-moves-toward-governed-human-oversight-workflows|Enterprise AI Moves Toward Governed Human Oversight Workflows]]
 
 ## Sources
 

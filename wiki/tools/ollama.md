@@ -130,27 +130,6 @@ Ollama is a local model runner that installs on a personal computer and provides
 
 The article describes Ollama as widely supported and easy to install, which suggests a mature developer-friendly workflow rather than an experimental one. It is presented as a practical default for local model use, with a desktop interface plus CLI and API access. The source does not provide adoption metrics, so maturity should be treated as qualitative rather than quantified.
 
-## Related Tools
-
-- LM Studio
-- GPT4All
-- llama.cpp
-- Msty
-- Claude
-- Codex
-- MLX
-- Claude Code
-- Cursor
-- MLX direct
-- macMLX
-- Continue
-- Model Context Protocol
-- SearXNG
-- camofox-browser
-- vLLM
-- SGLang
-- Codex CLI
-
 ## Strengths
 
 - Provides a one-click installer and background local service, which lowers the barrier to getting a model running on a personal computer.
@@ -413,24 +392,13 @@ ollama run gemma4:26b-a3b-q3_K_M (`9036414eb806` · supporting · supporting_sni
 
 ## Related pages
 
-- Claude
-- Claude Code
-- Codex
-- Codex CLI
-- Continue
-- Cursor
-- GPT4All
-- LM Studio
-- MLX
-- MLX direct
-- Model Context Protocol
-- Msty
-- SGLang
-- SearXNG
-- camofox-browser
-- llama.cpp
-- macMLX
-- vLLM
+- [[tools/llama-cpp|llama.cpp]]
+- [[tools/msty|Msty]]
+- [[tools/claude|Claude]]
+- [[tools/codex|Codex]]
+- [[tools/mlx|MLX]]
+- [[tools/claude-code|Claude Code]]
+- [[tools/cursor|Cursor]]
 
 ## Sources
 

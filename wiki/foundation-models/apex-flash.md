@@ -46,10 +46,6 @@ The article does not discuss pricing or token economics. Because the model is po
 
 Intercom
 
-## Related Models
-
-- Fin Voice 2
-
 ## Service automation implications
 
 If the claims hold, the model is aimed at support calls where the agent must understand policy, execute actions, and keep latency low enough for natural turn-taking. That makes it relevant for reducing handoff rates in phone support, but only if the reliability is strong enough under real call variability.
@@ -80,7 +76,7 @@ The article gives no architecture details, benchmark methodology, or third-party
 
 ## Related pages
 
-- Fin Voice 2
+No related pages captured.
 
 ## Sources
 

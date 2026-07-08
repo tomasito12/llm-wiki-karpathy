@@ -43,11 +43,6 @@ A keyboard-first Mac launcher that replaces Spotlight and centralizes command ex
 
 The article treats Raycast as a mature default for power users rather than an experimental app. Its described extension ecosystem suggests a broad developer surface, but the source does not provide adoption metrics or enterprise-readiness evidence. As of 2026-05-28, the main signal is strong workflow fit, not validated market dominance.
 
-## Related Tools
-
-- Spotlight
-- Alfred
-
 ## Strengths
 
 - The article frames it as a full Spotlight replacement, which matters because a launcher only becomes workflow-critical when it covers many small repeated actions.
@@ -82,8 +77,7 @@ The source gives no benchmark, no reliability data, and no concrete comparison a
 
 ## Related pages
 
-- Alfred
-- Spotlight
+No related pages captured.
 
 ## Sources
 

@@ -39,12 +39,6 @@ An MCP server that bundles projects, tasks, agents, automations, and integration
 
 The article states that plans start at $6 per month and that there is a free tier, which indicates low-friction entry. It is presented as a product with a broad workspace surface rather than a single-purpose utility. The source does not provide external adoption evidence or technical benchmarks.
 
-## Related Tools
-
-- Publora MCP
-- Supabase MCP
-- E2B MCP
-
 ## Strengths
 
 - Combines projects, tasks, agents, automations, and integrations, which can reduce the need to stitch together multiple work-management systems.
@@ -79,9 +73,9 @@ The source gives no implementation details for the memory model, agent behavior,
 
 ## Related pages
 
-- E2B MCP
-- Publora MCP
-- Supabase MCP
+- [[tools/publora-mcp|Publora MCP]]
+- [[tools/supabase-mcp|Supabase MCP]]
+- [[tools/e2b-mcp|E2B MCP]]
 
 ## Sources
 

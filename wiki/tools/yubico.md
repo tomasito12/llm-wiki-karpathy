@@ -38,11 +38,6 @@ Yubico makes hardware security keys, including YubiKey devices, used for phishin
 
 The source describes Yubico as a leader in hardware-based authentication and account protection, which suggests an established vendor rather than an experimental product. The bundle is offered through account security settings, implying enough product maturity to be embedded in a mainstream login workflow. The post does not provide broader market evidence or adoption metrics.
 
-## Related Tools
-
-- Passkey ecosystems
-- FIDO security keys
-
 ## Strengths
 
 - Hardware keys provide a phishing-resistant factor that is harder to intercept than passwords or SMS codes, which matters for accounts that protect sensitive AI workflows.
@@ -82,8 +77,7 @@ The source describes Yubico as a leader in hardware-based authentication and acc
 
 ## Related pages
 
-- FIDO security keys
-- Passkey ecosystems
+No related pages captured.
 
 ## Sources
 

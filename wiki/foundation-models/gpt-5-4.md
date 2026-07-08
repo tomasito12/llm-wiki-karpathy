@@ -63,11 +63,6 @@ No direct pricing data is given. The source does suggest that latency and real-t
 
 OpenAI
 
-## Related Models
-
-- GPT-4.1
-- GPT-5-mini
-
 ## Service automation implications
 
 As of 2026-05-07, the model is positioned as a building block for support automation where real-time voice, tool use, and consistent task completion matter. The source suggests it can support both routing and more complex multi-step customer requests, but only inside a tightly evaluated production system.
@@ -118,8 +113,7 @@ The article does not provide independent benchmarks, pricing, or failure rates, 
 
 ## Related pages
 
-- GPT-4.1
-- GPT-5-mini
+No related pages captured.
 
 ## Sources
 

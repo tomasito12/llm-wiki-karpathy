@@ -35,11 +35,6 @@ AI-assisted knowledge compilation treats raw documents as immutable source mater
 
 Use the LLM as a compiler, librarian, and maintenance worker for a markdown knowledge base: ingest raw sources, generate structured pages, keep links and indexes updated, and run periodic lint passes to catch contradictions or stale claims. The practical advantage is a persistent, auditable knowledge system that improves with each new source and each new query.
 
-## Related Topics
-
-- knowledge-management
-- local-file-based-ai-workflows
-
 ## Evidence / supporting sources
 
 ### Andrej Karpathy Stopped Using AI to Write Code. He’s Using It to Build a Second Brain Instead (2026-04-05)
@@ -60,8 +55,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- knowledge-management
-- local-file-based-ai-workflows
+- [[topics/knowledge-management|Knowledge Management]]
 
 ## Sources
 

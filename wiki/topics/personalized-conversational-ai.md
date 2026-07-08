@@ -42,11 +42,6 @@ Personalized conversational systems improve usefulness by adapting responses to 
 
 Treat personalization as layered state management: set durable defaults once, store only recurring context, and keep the current task in the live message. That reduces prompt bloat and makes behavior easier to predict and revise.
 
-## Related Topics
-
-- provenance-tracking
-- knowledge-base-becomes-runtime-infrastructure
-
 ## Evidence / supporting sources
 
 ### GPT-5.5 Instant: smarter, clearer, and more personalized (2026-05-05)
@@ -76,8 +71,8 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- knowledge-base-becomes-runtime-infrastructure
-- provenance-tracking
+- [[topics/provenance-tracking|Provenance Tracking]]
+- [[topics/knowledge-base-becomes-runtime-infrastructure|Knowledge Base Becomes Runtime Infrastructure]]
 
 ## Sources
 

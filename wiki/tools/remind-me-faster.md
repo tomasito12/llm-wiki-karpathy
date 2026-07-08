@@ -43,10 +43,6 @@ A quick-entry reminders app for iPhone and other Apple devices. The source empha
 
 The source presents it as a polished consumer app with a focused workflow, not a broad suite. The comparison to Apple Reminders suggests it is differentiated by speed and feel rather than unique category invention. As of 2026-01-08, it appears to be a niche productivity app with a clear use case.
 
-## Related Tools
-
-- Apple Reminders
-
 ## Strengths
 
 - It supports fast reminder creation, which lowers the cost of capturing tasks before they are forgotten.
@@ -85,7 +81,7 @@ Remind Me Faster allows adding location, date, notes, and more. (`e43089723d16` 
 
 ## Related pages
 
-- Apple Reminders
+No related pages captured.
 
 ## Sources
 

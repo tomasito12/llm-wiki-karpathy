@@ -43,10 +43,6 @@ Outcome-based pricing ties payment to a measurable result the system is expected
 
 Pick the closest measurable output the system truly controls, then make the billing boundary explicit. That reduces attribution disputes and avoids pricing on signals that reward vendor volume instead of customer value.
 
-## Related Topics
-
-- support-automation-as-operating-model
-
 ## Evidence / supporting sources
 
 ### Building outcome-based pricing for Fin for Sales (2026-05-08)
@@ -77,7 +73,7 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- support-automation-as-operating-model
+- [[topics/support-automation-as-operating-model|Support Automation as Operating Model]]
 
 ## Sources
 

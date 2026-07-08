@@ -25,10 +25,6 @@ maturity: unknown
 <!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
 Text generation systems are beginning to explore architectures that do not rely exclusively on autoregressive next-token prediction. Diffusion-style generation reframes the problem as iterative reconstruction of an entire sequence, which changes how models can use context and revise outputs. The trend matters because it introduces an alternative path for quality, latency, and controllability tradeoffs in language systems.
 
-## Related Trends
-
-- ai-products-shift-from-models-to-systems
-
 ## Supporting Data Points
 
 - Text diffusion models start from noise or masks and iteratively refine the sequence.
@@ -63,7 +59,7 @@ The excerpt is an interpretive overview, not a benchmark study, so it does not p
 
 ## Related pages
 
-- ai-products-shift-from-models-to-systems
+- [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]]
 
 ## Sources
 

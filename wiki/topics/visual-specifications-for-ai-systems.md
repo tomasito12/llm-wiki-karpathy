@@ -43,12 +43,6 @@ Image generation can serve as a visual specification layer for downstream AI sys
 
 A practical workflow is to generate a visual artifact first, then hand that artifact to a code agent or other implementation system as the reference target. This can help teams align on layout-heavy work, make specs easier to inspect and refine, and shift ambiguity out of prose-only prompting into a visual form.
 
-## Related Topics
-
-- agentic-workflows
-- interactive-ai
-- agent-self-verification
-
 ## Evidence / supporting sources
 
 ### [AINews] OpenAI launches GPT-Image-2 (2026-04-22)
@@ -78,9 +72,9 @@ No contradictions captured in current sources.
 
 ## Related pages
 
-- agent-self-verification
-- agentic-workflows
-- interactive-ai
+- [[topics/agentic-workflows|Agentic Workflows]]
+- [[topics/interactive-ai|Interactive AI]]
+- [[topics/agent-self-verification|Agent Self-Verification]]
 
 ## Sources
 
