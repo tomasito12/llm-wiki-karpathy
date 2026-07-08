@@ -253,14 +253,16 @@ Agents must **preserve provenance**. Do not remove source references, evidence s
 
 ## Stage 1 vs Stage 2
 
-| | Stage 1 (current) | Stage 2 (future) |
+| | Stage 1 fallback | Stage 2 synthesis |
 |---|-------------------|------------------|
 | Lead prose | Single-source placeholder | True multi-source synthesis from accumulated evidence |
-| `synthesis_state` | `stage1-placeholder` | TBD (for example `synthesized`) |
+| `synthesis_state` | `stage1-placeholder` | `synthesized` when a fresh cache entry exists |
 | Merge | Structural merge + evidence accumulation | May add narrative synthesis, contradiction resolution |
-| Input | `state/reviews/*` | Likely `state/wiki_render_graph.json` + reviews |
+| Input | `state/reviews/*` | `state/wiki_render_graph.json` + `state/synthesis/<category>/<slug>.json` |
 
-Stage 2 is **not implemented**. Agents must not pretend Stage 1 pages contain synthesized multi-source narrative.
+Stage 2 is **partially implemented**. The synthesis workflow writes validated cache entries under `state/synthesis/<category>/<slug>.json`; `wiki-render` then uses fresh cache entries to render synthesized pages. Missing cache entries fall back to Stage 1. Stale cache entries are detected by evidence hash and should be regenerated through the synthesis workflow, not hand-edited.
+
+Signals, interview insights, and implementation studies remain evidence objects. They are not Stage 2 synthesis targets by default.
 
 ---
 

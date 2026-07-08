@@ -6,6 +6,8 @@ Instead of re-searching raw documents on every question (like RAG), the LLM **re
 
 The long-term goal is broader than browsing generated notes in Obsidian: the wiki should become a grounded second brain for local agents, project work, personal notes, meeting transcripts, and eventually team or API access. See [Second Brain Vision](docs/second-brain-vision.md).
 
+For the current implementation status and next stabilization steps, see [Current System Status](docs/current-system-status.md).
+
 ---
 
 ## Prerequisites
