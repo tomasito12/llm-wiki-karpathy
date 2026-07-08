@@ -8,6 +8,14 @@ The long-term goal is broader than browsing generated notes in Obsidian: the wik
 
 For the current implementation status and next stabilization steps, see [Current System Status](docs/current-system-status.md).
 
+## Domain Focus
+
+This wiki is optimized for the user's work as an AI expert at EnBW. The strongest relevance signal is knowledge that helps design, evaluate, operate, or improve AI-supported customer service: chatbots, voicebots, Cognigy AI, contact-center automation, service workflows, human handoff, quality evaluation, governance, and surrounding orchestration.
+
+Cognigy is important because it is part of the current work context, but the wiki should not become vendor-locked. Competitors, replacement platforms, adjacent tools, and workflow architecture around bot platforms are also high-value when they help decide what to build, buy, replace, or integrate.
+
+A second relevance signal is broader AI expertise: models, agents, tooling, evaluation, workflow automation, and practices that help teams work more efficiently with AI.
+
 ---
 
 ## Prerequisites

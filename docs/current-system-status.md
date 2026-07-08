@@ -47,6 +47,7 @@ The current pipeline has these layers:
 - Related-page links are now generated from Stage 1 graph relationships instead of being empty placeholders.
 - The README has been realigned with the current Readwise -> review -> render -> synthesis workflow and no longer describes the old manual ingest/page taxonomy as the active path.
 - The long-term second-brain vision is documented in `docs/second-brain-vision.md`.
+- The user's EnBW AI expert role and service-automation relevance profile are documented in the README, second-brain vision, ingestion philosophy, and code-agent command reference.
 
 ## Current Check Results
 

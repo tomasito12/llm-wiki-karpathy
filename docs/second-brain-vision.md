@@ -20,6 +20,32 @@ In short:
 > The wiki should become a grounded second brain for work, not just a collection
 > of summaries.
 
+## Role Context
+
+The primary user works at EnBW as an AI expert in a team that builds Cognigy AI
+chatbots and voicebots for customer service. The practical goal is to move
+suitable service volume into reliable AI-supported chat and voice channels while
+preserving quality, escalation paths, governance, and maintainability.
+
+This makes some knowledge especially valuable:
+
+- chatbot and voicebot design
+- contact-center automation
+- Cognigy AI implementation patterns
+- competitors and alternative bot platforms
+- human handoff, routing, monitoring, and evaluation
+- workflow orchestration around bot platforms
+- AI-supported efficiency improvements for internal teams
+
+Cognigy is a current work context, not a permanent boundary. The system should
+also preserve knowledge about adjacent platforms, replacement options, and
+workflows outside the bot platform when they help the user make better technical,
+product, or strategic decisions.
+
+The user also wants to remain a broad AI expert. General AI knowledge is
+therefore relevant when it improves practical judgment about models, agents,
+tooling, evaluation, governance, automation, or team productivity.
+
 ## Knowledge Domains
 
 The long-term knowledge base is expected to contain several connected domains.

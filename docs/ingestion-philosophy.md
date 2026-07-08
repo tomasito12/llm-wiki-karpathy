@@ -25,6 +25,31 @@ The system should not optimize for extraction completeness.
 
 ---
 
+# User Role And Relevance Filter
+
+The primary user works at EnBW as an AI expert in a team that builds Cognigy AI
+chatbots and voicebots for customer service. The operating goal is to shift
+suitable service volume into reliable AI-supported chat and voice channels while
+preserving quality, escalation, governance, and maintainability.
+
+During ingestion, treat these as strong relevance signals:
+
+* service automation and contact-center transformation
+* chatbot and voicebot architecture, evaluation, reliability, and monitoring
+* Cognigy AI implementation knowledge
+* Cognigy competitors, replacement platforms, and adjacent tools
+* orchestration and workflow design around bot platforms
+* human handoff, routing, fallbacks, and operational governance
+* AI workflow improvement for internal teams
+* general AI expertise with practical engineering, product, strategy, or governance value
+
+Cognigy is context, not a vendor lock-in boundary. Do not reject useful ideas
+only because they are not Cognigy-specific. Knowledge about alternatives,
+surrounding workflows, and broader AI practice is valuable when it helps the
+user make better decisions as an AI expert.
+
+---
+
 # Core Principle
 
 The central question during ingestion is:
