@@ -8,15 +8,11 @@ tags:
 - agent-orchestration
 - agent-systems
 - ai-evaluation
-- autonomous
-- cli-tool
-- coding
 - coding-agents
 - coding-model
 - developer-focused
 - developer-tools
 - proprietary-model
-- software-development
 - software-engineering
 - tool-use-capable
 - workflow-design
@@ -26,13 +22,11 @@ author: Anubhav
 publication: Medium
 published_date: '2026-05-04'
 assessed_as_of: '2026-05-04'
-ingested_at: '2026-06-15T22:06:59+00:00'
+ingested_at: '2026-07-08T19:07:58.032016+00:00'
 canonical_url: https://medium.com/data-science-collective/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-5afd6ceff3e7
 content_sha256: db5fe457df8d6a9074665ede9bf5ce010fdea8bf92b32f725082762dab8e2668
 derived_models:
 - foundation-models/opus-4-6.md
-derived_tools:
-- tools/claude-code.md
 derived_topics:
 - topics/agentic-coding-workflow-shape.md
 - topics/workflow-based-agent-evaluation.md
@@ -41,7 +35,6 @@ derived_trends:
 derived_pages:
 - foundation-models/opus-4-6.md
 - industry-trends/coding-agents-diverge-into-workflow-specific-products.md
-- tools/claude-code.md
 - topics/agentic-coding-workflow-shape.md
 - topics/workflow-based-agent-evaluation.md
 ---
@@ -62,7 +55,6 @@ This piece compares four coding agents by how they fit real work, not by who top
 
 - [[foundation-models/opus-4-6]]
 - [[industry-trends/coding-agents-diverge-into-workflow-specific-products]]
-- [[tools/claude-code]]
 - [[topics/agentic-coding-workflow-shape]]
 - [[topics/workflow-based-agent-evaluation]]
 

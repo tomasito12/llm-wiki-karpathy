@@ -1,0 +1,67 @@
+{
+  "category": "glossary",
+  "consensus": [
+    "Mixture-of-Experts (MoE) is an architecture that routes each input, token, or task through only a subset of specialized submodels or expert blocks instead of activating the full network every time.",
+    "The main practical effect is conditional compute: models can keep a very large total parameter count while using far fewer active parameters per inference step.",
+    "Sources agree MoE is useful when teams want better capability or capacity without paying the full inference cost of a dense model of similar nominal size.",
+    "Routing behavior is central to MoE performance; the router decides which experts handle each token or input.",
+    "MoE matters most in deployment decisions where inference cost, latency, throughput, hardware fit, and benchmark interpretation all matter."
+  ],
+  "context_card": {
+    "best_for_questions_about": [
+      "What Mixture-of-Experts means in practice",
+      "Why an MoE model can be large but still relatively cheap to run",
+      "How active parameters differ from total parameters",
+      "Why routing quality affects MoE behavior",
+      "When MoE is relevant for serving, local deployment, or high-throughput systems"
+    ],
+    "not_enough_for": [
+      "A full technical explanation of MoE training algorithms",
+      "Comparative benchmark rankings between specific MoE and dense models beyond the cited examples",
+      "Detailed runtime or quantization guidance for a specific hardware setup",
+      "Claims about universal superiority of MoE over dense models"
+    ],
+    "related_tags": [
+      "ai-engineering",
+      "inference",
+      "orchestration",
+      "runtime-architecture",
+      "tool-use"
+    ],
+    "strongest_sources": [
+      "Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks",
+      "I Ran Gemma 4 Locally. Here\u2019s What Nobody\u2019s Telling You.",
+      "Kimi K2.6 Just Dropped \u2014 The Open-Source Coding Agent That Already Beats Claude Opus 4.5 at 76% Lower Cost Just Got Better",
+      "[AINews] Thinking Machines' Native Interaction Models - TML-Interaction-Small 276B-A12B - advances SOTA Realtime Voice and kills standard VAD"
+    ],
+    "use_this_page_when": "Use this page when deciding whether an MoE model is a good fit for deployment, when interpreting benchmark claims that may hide active-parameter costs, or when you need a quick definition of conditional compute in model architecture."
+  },
+  "entity_id": "glossary:mixture-of-experts",
+  "evidence_quality": [
+    "Evidence is fairly strong and consistent across five sources, with repeated definitions and deployment-focused explanations.",
+    "Most claims are second-order synthesis from commentary, not primary technical documentation; useful for understanding practical meaning but not for formal specification.",
+    "A few numeric examples are included in the sources, but this page should treat them as illustrative rather than normative.",
+    "The evidence emphasizes production and inference concerns more than training or research details."
+  ],
+  "executive_synthesis": "Mixture-of-Experts (MoE) is a model architecture that keeps a large total parameter count but activates only a subset of expert sub-networks for each token or input. In practice, that means MoE can offer more capability per unit of compute than a dense model, which is why it comes up in serving, local deployment, and high-throughput systems. The key thing to remember is that benchmark or size comparisons can be misleading unless you look at active parameters and routing behavior, since those determine real inference cost and can also affect consistency. The main caveat is that MoE shifts complexity into the router and serving stack: if routing is weak or the runtime support is poor, the efficiency gains can be offset by uneven behavior or deployment friction.",
+  "last_synthesized_at": "2026-07-08T19:30:31Z",
+  "practical_takeaway": "Treat MoE as a compute-saving way to scale capacity, not as a free performance upgrade. When evaluating one, compare active parameters, routing quality, latency, and runtime compatibility\u2014not just total parameter count.",
+  "slug": "mixture-of-experts",
+  "synthesis_input_hash": "7aa97804fcc3ee23",
+  "synthesis_prompt_version": 1,
+  "synthesis_schema_version": 1,
+  "tensions": [
+    "MoE can look much stronger than a dense model if you compare only total parameters or headline benchmarks, but the real operating cost depends on active parameters and routing.",
+    "MoE is attractive for efficiency and throughput, yet it adds routing complexity and can produce uneven or brittle behavior if the router or serving stack is weak.",
+    "Sources frame MoE as broadly useful in production, but the evidence is mostly practical commentary rather than formal technical evaluation, so the page is best used as a working glossary entry rather than a definitive research summary."
+  ],
+  "title": "Mixture-of-Experts",
+  "what_to_remember": [
+    "MoE = conditional compute: only part of the model is active per token or input.",
+    "Total parameters can be very large even when active parameters are small.",
+    "Routing quality matters as much as raw model size for real-world behavior.",
+    "MoE is mainly a deployment/inference tradeoff: capability vs. compute, latency, and cost.",
+    "Benchmark comparisons can be misleading if they ignore active parameters.",
+    "MoE is most relevant for serving, local deployment, and high-throughput automation."
+  ]
+}

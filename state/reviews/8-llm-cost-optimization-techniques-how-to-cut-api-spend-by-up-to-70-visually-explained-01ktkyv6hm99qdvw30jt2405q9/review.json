@@ -454,12 +454,12 @@
           "answer_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "caveats": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "implementation_steps": {
             "final_list": null,
@@ -471,7 +471,7 @@
               "Measure cache-hit rate and cost per request over time."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "prerequisites": {
             "final_list": null,
@@ -481,12 +481,12 @@
               "Basic logging for token counts and cost"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "question_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_howtos": {
             "final_list": null,
@@ -505,7 +505,7 @@
           "what_and_problem": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -564,12 +564,12 @@
           "answer_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "caveats": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "implementation_steps": {
             "final_list": null,
@@ -581,7 +581,7 @@
               "Tune the threshold using production error cases and hit-rate data."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "prerequisites": {
             "final_list": null,
@@ -591,12 +591,12 @@
               "A workload with repeated questions or intents"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "question_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_howtos": {
             "final_list": null,
@@ -615,7 +615,7 @@
           "what_and_problem": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -674,12 +674,12 @@
           "answer_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "caveats": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "implementation_steps": {
             "final_list": null,
@@ -691,7 +691,7 @@
               "Check that answer quality stays within your target bar."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "prerequisites": {
             "final_list": null,
@@ -701,12 +701,12 @@
               "Optional: a context-compression tool for retrieval workflows"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "question_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_howtos": {
             "final_list": null,
@@ -725,7 +725,7 @@
           "what_and_problem": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -784,12 +784,12 @@
           "answer_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "caveats": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "implementation_steps": {
             "final_list": null,
@@ -801,7 +801,7 @@
               "Review misroutes and adjust the classifier over time."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "prerequisites": {
             "final_list": null,
@@ -811,12 +811,12 @@
               "A quality evaluation loop"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "question_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_howtos": {
             "final_list": null,
@@ -835,7 +835,7 @@
           "what_and_problem": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -892,17 +892,17 @@
         "proposal_status": "approved",
         "sections": {
           "answer_summary": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "caveats": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "implementation_steps": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "Collect representative inputs from the target task.",
               "Generate target outputs with a stronger model.",
@@ -911,22 +911,22 @@
               "Deploy only if quality and cost both meet the target."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "prerequisites": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "A narrow, high-volume task",
               "A large set of representative examples",
               "Engineering capacity for training and evaluation"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "question_title": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "related_howtos": {
             "final_list": null,
@@ -943,9 +943,9 @@
             "status": "pending"
           },
           "what_and_problem": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           }
         },
         "tags": {
@@ -1004,12 +1004,12 @@
           "answer_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "caveats": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "implementation_steps": {
             "final_list": null,
@@ -1021,7 +1021,7 @@
               "Re-measure throughput, latency, and cost after each change."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "prerequisites": {
             "final_list": null,
@@ -1031,12 +1031,12 @@
               "Serving hardware with memory pressure"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "question_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_howtos": {
             "final_list": null,
@@ -1055,7 +1055,7 @@
           "what_and_problem": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -1114,12 +1114,12 @@
           "answer_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "caveats": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "implementation_steps": {
             "final_list": null,
@@ -1131,7 +1131,7 @@
               "Set provider-side hard spending limits and alerts."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "prerequisites": {
             "final_list": null,
@@ -1141,12 +1141,12 @@
               "Access to provider usage limits or budget caps"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "question_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_howtos": {
             "final_list": null,
@@ -1165,7 +1165,7 @@
           "what_and_problem": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -1269,19 +1269,21 @@
   },
   "review_analytics": {
     "batch_actions_used": [],
-    "evidence_type_counts": {},
+    "evidence_type_counts": {
+      "expert_opinion": 7
+    },
     "fields_modified": 0,
-    "proposals_approved": 0,
+    "proposals_approved": 7,
     "proposals_deferred": 0,
     "proposals_modified": 0,
     "proposals_rejected": 0,
-    "proposals_total": 0,
-    "review_duration_seconds": null,
-    "review_finished_at": null,
-    "review_started_at": null
+    "proposals_total": 7,
+    "review_duration_seconds": 194.3,
+    "review_finished_at": "2026-07-08T19:03:24.348553+00:00",
+    "review_started_at": "2026-07-08T19:00:10+00:00"
   },
   "review_session": {
-    "last_saved_at": null,
+    "last_saved_at": "2026-07-08T19:03:24+00:00",
     "saved_by": null
   },
   "source": {

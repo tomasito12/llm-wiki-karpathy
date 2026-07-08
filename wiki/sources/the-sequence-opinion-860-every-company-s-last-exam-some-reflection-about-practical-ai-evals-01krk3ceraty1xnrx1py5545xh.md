@@ -14,7 +14,7 @@ author: Jesus Rodriguez
 publication: substack.com
 published_date: '2026-05-14'
 assessed_as_of: '2026-05-14'
-ingested_at: '2026-06-09T18:53:41+00:00'
+ingested_at: '2026-07-08T19:09:52.006632+00:00'
 canonical_url: https://thesequence.substack.com/p/the-sequence-opinion-860-every-companys
 content_sha256: 980acfaf5c98e12a12e74406a33a6b9d372b941bd2cfe1069065f9ec4f64c800
 derived_topics:

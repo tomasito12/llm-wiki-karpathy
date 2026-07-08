@@ -22,7 +22,7 @@ author: Sebastian Raschka, PhD from Ahead of AI
 publication: Substack
 published_date: '2026-05-16'
 assessed_as_of: '2026-05-16'
-ingested_at: '2026-06-09T16:52:13+00:00'
+ingested_at: '2026-07-08T19:19:35.391508+00:00'
 canonical_url: mailto:reader-forwarded-email/a09d7102abdeca1fa212460c4d634316
 content_sha256: b57264e580959de00b9013873628b37d85abac870916779158b804dc0ccb9c85
 derived_glossary:

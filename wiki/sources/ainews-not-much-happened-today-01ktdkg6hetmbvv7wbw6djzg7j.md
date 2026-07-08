@@ -15,7 +15,7 @@ author: AINews
 publication: Substack
 published_date: '2026-06-06'
 assessed_as_of: '2026-06-06'
-ingested_at: '2026-06-10T14:48:26+00:00'
+ingested_at: '2026-07-08T19:22:21.690993+00:00'
 canonical_url: mailto:reader-forwarded-email/a82a9be41a1810c695a0320e4638e027
 content_sha256: 061ec8a74745aa9784f89424c7074bcac886dee3f33ee8a6bbd8e610beb36781
 derived_signals:

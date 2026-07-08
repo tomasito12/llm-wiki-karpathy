@@ -378,7 +378,6 @@
             "It is used in evaluation workflows that combine deterministic checks and LLM-as-a-judge scoring."
           ],
           "deployment_implications": "Adopting GPT-5.4 in this kind of system pushes teams toward evaluation-first release gates: simulate customer calls, score instruction adherence and tool use, and only deploy models that hold up in production-like scenarios. The source also implies that model choice is constrained by latency in voice pipelines, so deployment work includes stress-testing for real-time use rather than treating capability as the only selection criterion.",
-          "evidence_type": null,
           "match_candidates": [],
           "maturity_signals": "The model is described as part of an enterprise production stack rather than a lab demo. The source says Parloa updates to the latest generation when it shows clear gains in real-world performance, which implies active production use and ongoing validation. Evidence quality is implementation-case and vendor-reported, not independent verification.",
           "model_name": "gpt-5.4",
@@ -419,7 +418,7 @@
               "The source emphasizes real use cases over abstract benchmarks, which suggests operational validation matters more than leaderboard placement."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "comparative_observations": {
             "final_list": null,
@@ -428,7 +427,7 @@
               "It is treated as one of the models that may be rolled forward when it shows clear gains in real-world performance."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "core_capabilities": {
             "final_list": null,
@@ -438,37 +437,37 @@
               "It is used in evaluation workflows that combine deterministic checks and LLM-as-a-judge scoring."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "deployment_implications": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "maturity_signals": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "model_name": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_profile": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "pricing_inference_implications": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "provider": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_models": {
             "final_list": null,
@@ -482,7 +481,7 @@
           "service_automation_implications": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -492,7 +491,7 @@
           "weaknesses_limitations": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -504,6 +503,14 @@
             "low-latency",
             "tool-use-capable"
           ]
+        },
+        "types": {
+          "approved_new_types": [],
+          "approved_types": [
+            "frontier-model",
+            "proprietary-model"
+          ],
+          "reviewer_types_added": []
         }
       }
     ],
@@ -582,37 +589,37 @@
         "proposal_status": "approved",
         "sections": {
           "ai_model_observations": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "business_objective": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "company": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "deployment_context": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "implications_for_service_automation": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "industry": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "key_lessons": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "Treat simulation as a pre-release gate, not a nice-to-have.",
               "Split complex agent behavior into smaller sub-agents when prompts become brittle.",
@@ -621,10 +628,10 @@
               "Use production-like scenarios to decide whether a model is ready."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "open_questions": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "How often do deterministic checks and LLM-as-a-judge disagree?",
               "How were the reported 80% reduction metrics measured?",
@@ -633,22 +640,22 @@
               "How are privacy and compliance handled in enterprise voice traffic?"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "operational_constraints": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "outcome_status": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "overview": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "related_sources": {
             "final_list": null,
@@ -659,29 +666,29 @@
             "status": "pending"
           },
           "strategic_signals": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "success_or_failure_factors": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "technical_approach": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "title": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "what_was_implemented": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           }
         },
         "tags": {
@@ -743,7 +750,7 @@
           "evidence_from_source": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_trends": {
             "final_list": null,
@@ -764,7 +771,7 @@
               "Deterministic API chains and event logic remain in the stack."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -774,27 +781,27 @@
           "time_sensitivity": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_description": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "uncertainty_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -934,7 +941,7 @@
           "examples": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "key_points": {
             "final_list": null,
@@ -944,17 +951,17 @@
               "Post-call summarization and intent classification are part of the runtime, not just analytics."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "knowledge_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_insight": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_topics": {
             "final_list": null,
@@ -963,12 +970,12 @@
               "layered-agent-architecture"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "relevance_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -978,12 +985,12 @@
           "topic_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "topic_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -1039,7 +1046,7 @@
           "examples": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "key_points": {
             "final_list": null,
@@ -1049,17 +1056,17 @@
               "Post-conversation evaluation helps close the loop on agent quality."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "knowledge_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_insight": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_topics": {
             "final_list": null,
@@ -1068,12 +1075,12 @@
               "agent-native-auditability"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "relevance_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -1083,12 +1090,12 @@
           "topic_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "topic_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -1106,19 +1113,21 @@
   },
   "review_analytics": {
     "batch_actions_used": [],
-    "evidence_type_counts": {},
+    "evidence_type_counts": {
+      "implementation_case": 5
+    },
     "fields_modified": 0,
-    "proposals_approved": 0,
+    "proposals_approved": 5,
     "proposals_deferred": 0,
     "proposals_modified": 0,
     "proposals_rejected": 0,
-    "proposals_total": 0,
-    "review_duration_seconds": null,
-    "review_finished_at": null,
-    "review_started_at": null
+    "proposals_total": 5,
+    "review_duration_seconds": 135.6,
+    "review_finished_at": "2026-07-08T19:24:41.648721+00:00",
+    "review_started_at": "2026-07-08T19:22:26+00:00"
   },
   "review_session": {
-    "last_saved_at": null,
+    "last_saved_at": "2026-07-08T19:24:41+00:00",
     "saved_by": null
   },
   "source": {

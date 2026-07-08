@@ -36,3 +36,6 @@ state/review_feedback.sqlite
 
 # Obsidian local vault state
 .obsidian/**
+
+# Local agent/app runtime state
+.agents/**

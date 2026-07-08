@@ -1,15 +1,15 @@
 ---
 title: System Status
 category: diagnostics
-graph_snapshot_at: '2026-06-17T15:57:30.003269+00:00'
-taxonomy_version: 27539b556704
+graph_snapshot_at: '2026-07-08T19:24:41.648721+00:00'
+taxonomy_version: f6428a8b0f56
 ---
 
 # System Status
 
-- Graph snapshot: `2026-06-17T15:57:30.003269+00:00`
+- Graph snapshot: `2026-07-08T19:24:41.648721+00:00`
 - Tool version: `1`
-- Taxonomy version: `27539b556704`
+- Taxonomy version: `f6428a8b0f56`
 - Sources: 360
 - Topics: 234
 - Industry trends: 113
@@ -21,4 +21,4 @@ taxonomy_version: 27539b556704
 - Interview insights: 97
 - Implementation studies: 18
 - Knowledge pages (merged total): 614
-- Evidence items (total): 11217
+- Evidence items (total): 11152

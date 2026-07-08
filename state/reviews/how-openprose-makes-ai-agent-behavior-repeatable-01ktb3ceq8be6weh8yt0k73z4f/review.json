@@ -330,7 +330,7 @@
           "evidence_from_source": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_trends": {
             "final_list": null,
@@ -349,7 +349,7 @@
               "The workflow is intended to be checked into git and reviewed like software."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -359,27 +359,27 @@
           "time_sensitivity": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_description": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "uncertainty_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -482,7 +482,6 @@
             "OpenProse supports isolated sub-agent sessions so intermediate work stays contained until declared outputs are carried forward.",
             "OpenProse can declare real tools or skills as dependencies, which matters when a workflow needs a specific capability to finish correctly."
           ],
-          "evidence_type": null,
           "integration_ecosystem": [
             "The article says OpenProse can run in Claude Code, Codex, Hermes, or Pi, which makes it compatible with several coding-agent environments.",
             "The source mentions `npx skills add openprose/prose`, indicating a lightweight installation path through the Node package ecosystem.",
@@ -521,39 +520,39 @@
         "proposal_status": "approved",
         "sections": {
           "core_capabilities": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "OpenProse turns a successful agent session into a reusable `.prose.md` program that can be reviewed and edited before execution.",
               "OpenProse supports isolated sub-agent sessions so intermediate work stays contained until declared outputs are carried forward.",
               "OpenProse can declare real tools or skills as dependencies, which matters when a workflow needs a specific capability to finish correctly."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "integration_ecosystem": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "The article says OpenProse can run in Claude Code, Codex, Hermes, or Pi, which makes it compatible with several coding-agent environments.",
               "The source mentions `npx skills add openprose/prose`, indicating a lightweight installation path through the Node package ecosystem.",
               "The workflow can also depend on ordinary executables on `PATH` or an MCP server, which broadens its operational surface beyond a single vendor product."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "maturity_signals": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "name": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "operational_relevance": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "related_tools": {
             "final_list": null,
@@ -566,14 +565,14 @@
             "status": "pending"
           },
           "short_description": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "strengths": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -581,9 +580,9 @@
             "status": "pending"
           },
           "weaknesses_limitations": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           }
         },
         "tags": {
@@ -593,6 +592,17 @@
             "coding",
             "open-source",
             "workflow-automation"
+          ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "workflow-automation",
+            "skill"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": [
+            "skill"
           ]
         }
       }
@@ -640,7 +650,7 @@
           "examples": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "key_points": {
             "final_list": null,
@@ -651,17 +661,17 @@
               "A good contract can be reused across different coding-agent harnesses."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "knowledge_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_insight": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_topics": {
             "final_list": null,
@@ -670,12 +680,12 @@
               "structured-specification-for-agentic-development"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "relevance_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -685,12 +695,12 @@
           "topic_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "topic_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -810,19 +820,21 @@
   },
   "review_analytics": {
     "batch_actions_used": [],
-    "evidence_type_counts": {},
+    "evidence_type_counts": {
+      "user_report": 4
+    },
     "fields_modified": 0,
-    "proposals_approved": 0,
+    "proposals_approved": 4,
     "proposals_deferred": 0,
     "proposals_modified": 0,
     "proposals_rejected": 0,
-    "proposals_total": 0,
-    "review_duration_seconds": null,
-    "review_finished_at": null,
-    "review_started_at": null
+    "proposals_total": 4,
+    "review_duration_seconds": 189.9,
+    "review_finished_at": "2026-07-08T19:13:05.946511+00:00",
+    "review_started_at": "2026-07-08T19:09:56+00:00"
   },
   "review_session": {
-    "last_saved_at": null,
+    "last_saved_at": "2026-07-08T19:13:06+00:00",
     "saved_by": null
   },
   "source": {

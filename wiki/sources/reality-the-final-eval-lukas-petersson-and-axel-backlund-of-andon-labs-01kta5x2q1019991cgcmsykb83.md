@@ -20,7 +20,7 @@ author: Latent.Space
 publication: Substack
 published_date: '2026-06-04'
 assessed_as_of: '2026-06-04'
-ingested_at: '2026-06-06T22:05:36+00:00'
+ingested_at: '2026-07-08T19:17:03.181542+00:00'
 canonical_url: mailto:reader-forwarded-email/bd8174d29a1995fca022eb7cd4726c84
 content_sha256: 4c6814a1f4d3bb9663de49b248e9c31a4de9ad5dfdcb07e191fa131a5a2b58a3
 derived_interview_insights:

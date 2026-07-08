@@ -37,7 +37,6 @@ category: index
 
 ## autonomous
 
-- [[tools/claude-code|Claude Code]]
 - [[tools/n8n|n8n]]
 
 ## browser-use

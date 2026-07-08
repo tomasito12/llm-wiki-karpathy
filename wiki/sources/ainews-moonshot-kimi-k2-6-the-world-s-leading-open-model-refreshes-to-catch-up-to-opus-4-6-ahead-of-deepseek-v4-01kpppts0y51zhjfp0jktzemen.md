@@ -14,7 +14,7 @@ author: Latent.Space
 publication: Latent
 published_date: '2026-04-21'
 assessed_as_of: '2026-04-21'
-ingested_at: '2026-06-06T21:38:17+00:00'
+ingested_at: '2026-07-08T19:14:37.321412+00:00'
 canonical_url: https://www.latent.space/p/ainews-moonshot-kimi-k26-the-worlds
 content_sha256: 47c63eb786b16c11bbf238663dbf6295e4ab9fd19ac756b269e2b97a704b37c3
 derived_signals:

@@ -6,7 +6,7 @@ category: diagnostics
 # Knowledge Graph Diagnostics
 
 - Tool version: `1`
-- Taxonomy version: `27539b556704`
+- Taxonomy version: `f6428a8b0f56`
 - Sources: 360
 - Knowledge pages: 614
 - Signals: 160
@@ -256,7 +256,7 @@ category: diagnostics
 - [[industry-trends/ai-coding-moves-from-prompting-to-persistent-specs|AI Coding Moves from Prompts to Persistent Specs]] — sources: 1, evidence: 8
 - [[industry-trends/ai-development-shifts-toward-model-assisted-automation|AI Development Shifts Toward Model-Assisted Automation]] — sources: 1, evidence: 8
 - [[industry-trends/agent-maintained-documentation-pipelines|AI Documentation Moves Toward Agent-Maintained Pipelines]] — sources: 3, evidence: 24
-- [[industry-trends/workflow-based-evaluation|AI Evaluation Moves Toward Workflow-Based Testing]] — sources: 2, evidence: 14
+- [[industry-trends/workflow-based-evaluation|AI Evaluation Moves Toward Workflow-Based Testing]] — sources: 2, evidence: 11
 - [[industry-trends/agent-evaluation-shifts-toward-workflow-based-tool-use|AI Evaluation Shifts Toward Workflow-Based Tool Use]] — sources: 1, evidence: 10
 - [[industry-trends/ai-forecasting-shifts-toward-operational-risk-monitoring|AI Forecasting Shifts Toward Operational Risk Monitoring]] — sources: 1, evidence: 9
 - [[industry-trends/ai-governance-moves-toward-enforceable-media-controls|AI Governance Moves Toward Enforceable Media Controls]] — sources: 1, evidence: 9
@@ -383,7 +383,7 @@ category: diagnostics
 - [[tools/calendar|Calendar]] — sources: 1, evidence: 11
 - [[tools/caveman|Caveman]] — sources: 1, evidence: 11
 - [[tools/claude|Claude]] — sources: 1, evidence: 12
-- [[tools/claude-code|Claude Code]] — sources: 18, evidence: 208
+- [[tools/claude-code|Claude Code]] — sources: 17, evidence: 196
 - [[tools/claude-desktop|Claude Desktop]] — sources: 1, evidence: 11
 - [[tools/cleanshot-x|CleanShot X]] — sources: 2, evidence: 22
 - [[tools/cleanupbuddy|CleanUpBuddy]] — sources: 1, evidence: 10
@@ -393,7 +393,7 @@ category: diagnostics
 - [[tools/command-x|Command X]] — sources: 1, evidence: 8
 - [[tools/copilot-tasks|Copilot Tasks]] — sources: 1, evidence: 9
 - [[tools/cotypist|Cotypist]] — sources: 1, evidence: 8
-- [[tools/cursor|Cursor]] — sources: 4, evidence: 48
+- [[tools/cursor|Cursor]] — sources: 4, evidence: 42
 - [[tools/deskin|DeskIn]] — sources: 1, evidence: 10
 - [[tools/dictaflow|DictaFlow]] — sources: 2, evidence: 19
 - [[tools/dockdoor|DockDoor]] — sources: 1, evidence: 11
@@ -456,7 +456,7 @@ category: diagnostics
 - [[tools/one-thing|One Thing]] — sources: 1, evidence: 8
 - [[tools/openai-realtime-api|OpenAI Realtime API]] — sources: 1, evidence: 10
 - [[tools/openclaw|OpenClaw]] — sources: 1, evidence: 11
-- [[tools/openprose|OpenProse]] — sources: 1, evidence: 12
+- [[tools/openprose|OpenProse]] — sources: 1, evidence: 6
 - [[tools/operator|Operator]] — sources: 2, evidence: 28
 - [[tools/paste|Paste]] — sources: 1, evidence: 11
 - [[tools/pearcleaner|Pearcleaner]] — sources: 1, evidence: 9
@@ -507,7 +507,7 @@ category: diagnostics
 - [[foundation-models/claude-opus-4-7|Claude Opus 4.7]] — sources: 1, evidence: 14
 - [[foundation-models/claude-opus-4-8|Claude Opus 4.8]] — sources: 1, evidence: 19
 - [[foundation-models/composer-2|Composer 2]] — sources: 2, evidence: 24
-- [[foundation-models/deepseek-v4|DeepSeek V4]] — sources: 3, evidence: 43
+- [[foundation-models/deepseek-v4|DeepSeek V4]] — sources: 3, evidence: 36
 - [[foundation-models/gpt-5-4-cyber|GPT-5.4-Cyber]] — sources: 1, evidence: 12
 - [[foundation-models/gpt-5-5|GPT-5.5]] — sources: 2, evidence: 26
 - [[foundation-models/gpt-5-5-instant|GPT-5.5 Instant]] — sources: 1, evidence: 15
@@ -526,7 +526,7 @@ category: diagnostics
 - [[foundation-models/llama-4|Llama 4]] — sources: 1, evidence: 8
 - [[foundation-models/mercury|Mercury]] — sources: 1, evidence: 7
 - [[foundation-models/mercury-2|Mercury 2]] — sources: 1, evidence: 16
-- [[foundation-models/opus-4-6|Opus 4.6]] — sources: 3, evidence: 31
+- [[foundation-models/opus-4-6|Opus 4.6]] — sources: 3, evidence: 25
 - [[foundation-models/privacy-filter|Privacy Filter]] — sources: 2, evidence: 33
 - [[foundation-models/qwen-3-5|Qwen 3.5]] — sources: 1, evidence: 10
 - [[foundation-models/qwen-3-5-9b|Qwen 3.5 9B]] — sources: 2, evidence: 24
@@ -974,7 +974,7 @@ No duplicate candidates captured.
 ## Highest source-count pages
 
 - [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]] — 22
-- [[tools/claude-code|Claude Code]] — 18
+- [[tools/claude-code|Claude Code]] — 17
 - [[topics/context-engineering|Context Engineering]] — 14
 - [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]] — 13
 - [[tools/obsidian|Obsidian]] — 12
@@ -1001,7 +1001,7 @@ No duplicate candidates captured.
 
 ## Highest evidence-count pages
 
-- [[tools/claude-code|Claude Code]] — 208
+- [[tools/claude-code|Claude Code]] — 196
 - [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]] — 182
 - [[tools/ollama|Ollama]] — 143
 - [[tools/obsidian|Obsidian]] — 136
@@ -1021,11 +1021,11 @@ No duplicate candidates captured.
 - [[topics/agent-workspace-layering|Agent Workspace Layering]] — 54
 - [[topics/agentic-workflows|Agentic Workflows]] — 52
 - [[foundation-models/apex-1-0|Apex 1.0]] — 48
-- [[tools/cursor|Cursor]] — 48
 - [[how-to/agent-maintained-knowledge-bases|Agent-Maintained Knowledge Bases]] — 43
 - [[how-to/agentic-personal-knowledge-management|Agentic Personal Knowledge Management]] — 43
 - [[how-to/local-model-setup|Local Model Setup]] — 43
-- [[foundation-models/deepseek-v4|DeepSeek V4]] — 43
+- [[industry-trends/verification-loops-become-central-to-ai-workflows|AI workflows are shifting toward verification loops instead of prompt-only operation]] — 43
+- [[tools/cursor|Cursor]] — 42
 
 ## Thinly-supported pages
 

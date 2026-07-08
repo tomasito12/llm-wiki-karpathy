@@ -382,62 +382,62 @@
         "proposal_status": "approved",
         "sections": {
           "benchmark_observations": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "At a 1M-token context length, DeepSeek V4-Pro uses 27% of the single-token inference FLOPs and 10% of the KV cache size versus DeepSeek V3.2, according to the source.",
               "DeepSeek V4-Flash is reported at 10% of the FLOPs and 7% of the KV cache size relative to DeepSeek V3.2."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "comparative_observations": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "The source presents CSA/HCA as more aggressive than MLA-style compression, but not as a general-purpose replacement.",
               "The source frames V4 as more efficient for very long contexts than the earlier DeepSeek V3.2 stack, though the comparison includes more than just architecture changes."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "core_capabilities": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "It compresses long-context attention by summarizing groups of tokens into fewer compressed KV entries.",
               "It alternates between milder CSA and heavier HCA layers to balance detail retention against cache reduction.",
               "It keeps a local sliding-window branch so recent tokens remain available without compression."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "deployment_implications": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "maturity_signals": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "model_name": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "operational_profile": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "pricing_inference_implications": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "provider": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "related_models": {
             "final_list": null,
@@ -449,9 +449,9 @@
             "status": "pending"
           },
           "service_automation_implications": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -459,9 +459,9 @@
             "status": "pending"
           },
           "weaknesses_limitations": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           }
         },
         "tags": {
@@ -472,6 +472,14 @@
             "long-context-model",
             "inference-efficient"
           ]
+        },
+        "types": {
+          "approved_new_types": [],
+          "approved_types": [
+            "open-weight-model",
+            "reasoning-model"
+          ],
+          "reviewer_types_added": []
         }
       }
     ],
@@ -508,12 +516,12 @@
           "extended_explanation": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "proposed_definition": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_terms": {
             "final_list": null,
@@ -527,7 +535,7 @@
           "relevance_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -537,7 +545,7 @@
           "term": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -579,12 +587,12 @@
           "extended_explanation": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "proposed_definition": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_terms": {
             "final_list": null,
@@ -597,7 +605,7 @@
           "relevance_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -607,7 +615,7 @@
           "term": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -665,7 +673,7 @@
           "evidence_from_source": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_trends": {
             "final_list": null,
@@ -685,7 +693,7 @@
               "DeepSeek V4 combines mHC with CSA/HCA compressed attention."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -695,27 +703,27 @@
           "time_sensitivity": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_description": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "uncertainty_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -853,7 +861,7 @@
           "examples": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "key_points": {
             "final_list": null,
@@ -864,28 +872,28 @@
               "Different compression schemes trade off quality, memory, and implementation complexity in different ways."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "knowledge_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_insight": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_topics": {
             "final_list": null,
             "llm_list": [],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "relevance_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -895,12 +903,12 @@
           "topic_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "topic_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -951,7 +959,7 @@
           "examples": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "key_points": {
             "final_list": null,
@@ -961,28 +969,28 @@
               "The same mixed local-plus-global pattern appears in other architectures, so the reusable idea is the per-layer budget, not the specific model."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "knowledge_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_insight": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_topics": {
             "final_list": null,
             "llm_list": [],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "relevance_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -992,12 +1000,12 @@
           "topic_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "topic_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -1014,19 +1022,22 @@
   },
   "review_analytics": {
     "batch_actions_used": [],
-    "evidence_type_counts": {},
+    "evidence_type_counts": {
+      "expert_opinion": 5,
+      "mixed": 1
+    },
     "fields_modified": 0,
-    "proposals_approved": 0,
+    "proposals_approved": 6,
     "proposals_deferred": 0,
     "proposals_modified": 0,
     "proposals_rejected": 0,
-    "proposals_total": 0,
-    "review_duration_seconds": null,
-    "review_finished_at": null,
-    "review_started_at": null
+    "proposals_total": 6,
+    "review_duration_seconds": 146.4,
+    "review_finished_at": "2026-07-08T19:19:35.391508+00:00",
+    "review_started_at": "2026-07-08T19:17:09+00:00"
   },
   "review_session": {
-    "last_saved_at": null,
+    "last_saved_at": "2026-07-08T19:19:35+00:00",
     "saved_by": null
   },
   "source": {

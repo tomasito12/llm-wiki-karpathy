@@ -1,0 +1,64 @@
+{
+  "category": "how_to",
+  "consensus": [
+    "Local model setup starts with a compatible local runtime such as Ollama, with some sources also mentioning LM Studio or GPT4All as alternatives.",
+    "You need a model that fits your machine\u2019s memory/storage budget; model choice and quantization are constrained by available hardware.",
+    "The basic workflow is: install or update the runtime, download/pull a model, run it locally, then test with a simple text prompt before trying more complex inputs.",
+    "If you plan to use multimodal, tool-calling, or agentic workflows, you should validate those features separately rather than assuming a successful text-only run means the whole stack is correct.",
+    "The local API can be used from scripts once the model is running, and local setup is useful for private/offline use and avoiding cloud API dependence."
+  ],
+  "context_card": {
+    "best_for_questions_about": [
+      "How to get an open-source LLM running on a personal computer",
+      "What prerequisites are needed for a local model setup",
+      "How to verify a local runtime and model are working",
+      "How to debug local inference when outputs look wrong",
+      "When to test text-only, multimodal, or tool-use behavior separately"
+    ],
+    "not_enough_for": [
+      "Exact hardware sizing or benchmark-based model recommendations",
+      "Production hardening, security hardening, or deployment guidance",
+      "Cross-platform instructions beyond Windows-focused Ollama setup",
+      "A guaranteed recipe for any specific model, quantization, or workload"
+    ],
+    "related_tags": [
+      "ai-engineering",
+      "inference-systems",
+      "runtime-systems"
+    ],
+    "strongest_sources": [
+      "How To Run an Open-Source LLM on Your Personal Computer",
+      "Run Gemma 4:E2B Locally with Ollama: No Cloud, No Limits",
+      "I Ran Gemma 4 Locally. Here\u2019s What Nobody\u2019s Telling You."
+    ],
+    "use_this_page_when": "Use this page when you need the shortest reliable summary of how to set up a local LLM runtime, what to check first, and where local inference setup commonly fails."
+  },
+  "entity_id": "how_to:local-model-setup",
+  "evidence_quality": [
+    "Evidence is fairly strong for the basic setup sequence because all three sources converge on install/update runtime, pull a model, and test locally.",
+    "Evidence is weaker for exact tuning advice: quantization, sampling, flash attention, and kv-cache settings are presented as source-specific recommendations, not controlled comparisons.",
+    "The sources are candid about missing operational detail: there are no benchmark numbers, hardware thresholds, or production-readiness claims.",
+    "Some guidance is time-sensitive because it depends on runtime versions and backend compatibility, especially for Ollama and llama.cpp-based workflows."
+  ],
+  "executive_synthesis": "This page is about getting a model to run well on your own machine, not just launching it. The shared pattern across the sources is: choose a local runtime that supports the model you want, make sure the runtime version is current, pull a model sized for your hardware, and verify the setup with a simple text prompt before testing multimodal, retrieval, or tool-use behavior. The sources also stress that local inference failures are often configuration problems, not model problems: quantization, sampling, backend version, and image preprocessing can all change the result. The practical limit is that the evidence is mostly tutorial- and anecdote-based, so it is good for first setup and debugging habits, but not for precise hardware planning or production claims.",
+  "last_synthesized_at": "2026-07-08T19:51:21Z",
+  "practical_takeaway": "Install or update a compatible local runner, pull a small-enough model, confirm a simple local prompt works, then add multimodal or tool-use features one at a time while checking runtime version, quantization, and preprocessing separately if results look off.",
+  "slug": "local-model-setup",
+  "synthesis_input_hash": "4ebf44fdbf71661d",
+  "synthesis_prompt_version": 1,
+  "synthesis_schema_version": 1,
+  "tensions": [
+    "One source frames the setup around general local model runners like Ollama, LM Studio, or GPT4All, while the Gemma-focused sources are more specific to Ollama and llama.cpp-based tuning.",
+    "Recommended tuning values differ by source and appear anecdotal: one source emphasizes Unsloth Q3_K_M plus temperature 1 and top-k 40, while another highlights kv_cache_quant q8_0 and flash attention.",
+    "The sources agree that version mismatches matter, but they do not provide a single stable version combination that can be treated as universal.",
+    "The Windows-focused guide is simpler and more beginner-oriented, while the Gemma-focused writeups add more nuanced troubleshooting that may not transfer cleanly to other hardware or workloads."
+  ],
+  "title": "Local Model Setup",
+  "what_to_remember": [
+    "Local setup is mainly about matching the runtime, model size, and configuration to your machine.",
+    "A successful text prompt only proves the basics; multimodal, retrieval, and tool-use paths still need their own tests.",
+    "If output looks wrong, check runtime version, quantization, sampling settings, and preprocessing before blaming the model.",
+    "This evidence supports first-pass setup and debugging, not benchmark-driven model selection or production deployment.",
+    "Local inference is most useful when you want privacy, offline use, lower recurring cost, or direct terminal-level debugging."
+  ]
+}

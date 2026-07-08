@@ -22,7 +22,7 @@ author: Cursor Blog
 publication: Cursor
 published_date: '2026-03-26'
 assessed_as_of: '2026-03-26'
-ingested_at: '2026-06-06T21:57:15+00:00'
+ingested_at: '2026-07-08T19:05:58.318454+00:00'
 canonical_url: https://cursor.com/blog/real-time-rl-for-composer
 content_sha256: bd09262c6b9c1aab3e6b9bab64c7c1dc17455769d0d4ccba1f36075383366f94
 derived_tools:

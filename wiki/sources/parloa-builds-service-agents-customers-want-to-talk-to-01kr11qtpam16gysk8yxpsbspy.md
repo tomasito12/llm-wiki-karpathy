@@ -29,7 +29,7 @@ author: OpenAI Blog
 publication: OpenAI
 published_date: '2026-05-07'
 assessed_as_of: '2026-05-07'
-ingested_at: '2026-06-06T22:02:18+00:00'
+ingested_at: '2026-07-08T19:24:41.648721+00:00'
 canonical_url: https://openai.com/index/parloa
 content_sha256: 47798c1c4fcee5e24e977003b5adc364e0287387f9071a4a912713714f8f9068
 derived_implementation_studies:

@@ -21,7 +21,7 @@ author: Divy Yadav
 publication: Medium
 published_date: '2026-04-17'
 assessed_as_of: '2026-04-17'
-ingested_at: '2026-06-15T20:43:23+00:00'
+ingested_at: '2026-07-08T19:03:24.348553+00:00'
 canonical_url: https://pub.towardsai.net/8-llm-cost-optimization-techniques-how-to-cut-api-spend-by-up-to-70-visually-explained-edf7339d0c9a
 content_sha256: 7e589cffab7fa8acc9cb2f3d1a2ffe0eb7e21ca1ce8e7f809504d6a56ebb0a56
 derived_how_to:

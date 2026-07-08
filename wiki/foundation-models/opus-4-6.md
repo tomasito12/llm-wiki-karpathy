@@ -12,7 +12,7 @@ tags:
 first_seen: '2026-04-16'
 last_seen: '2026-06-05'
 source_count: 3
-evidence_count: 31
+evidence_count: 25
 source_ids:
 - antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-01kqkzbbr47x5jcmdm2wy72k03
 - claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y
@@ -35,24 +35,15 @@ types:
 - The article implies it is the more capable but less default choice inside the same paid coding assistant.
 - Its significance is in giving users a reason to stay within Anthropic’s stack when tasks require more deliberation.
 
-## Benchmark Observations
-
-- The source says tools using the same underlying model, including Opus 4.6, can still show significant performance gaps on standard problem sets.
-- It uses this observation to argue that benchmark outcomes depend heavily on the agent framework rather than only the model.
-
 ## Comparative Observations
 
 - The article uses Opus 4.6 as the contrast case against Sonnet 4.6.
 - It is implicitly contrasted with Antigravity’s multi-model flexibility, where model choice can vary by agent and task.
-- Compared with the surrounding agent frameworks, the model is presented as only the engine rather than the whole product.
-- The source implies that differences between tools can be larger than differences attributable to the model alone.
 
 ## Core Capabilities
 
 - It is positioned for deeper reasoning on complex coding work.
 - It is the higher-capability Anthropic option inside Claude Code’s model lineup.
-- It serves as a high-capability coding model baseline in agent evaluations.
-- It is used as an example showing that wrapper design can materially affect practical performance.
 
 ## Maturity signals
 
@@ -94,17 +85,11 @@ The article does not provide a separate performance evaluation for Opus 4.6. Its
 
 ### Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong (2026-05-04)
 
-- Compared with the surrounding agent frameworks, the model is presented as only the engine rather than the whole product. (`075e753b01f1` · neutral · comparative_observations[0]; [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]])
-- The source implies that differences between tools can be larger than differences attributable to the model alone. (`9e1ae6e098b7` · neutral · comparative_observations[1]; [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]])
 - When the same underlying model runs inside different products, the surrounding harness can change practical output quality enough that model choice alone is insufficient for procurement. For production agent systems, that means evaluation must include the wrapper, worktree handling, review loop, and execution environment, not just the model endpoint. The article uses Opus 4.6 to support the idea that orchestration can dominate apparent capability. (`93939706c53e` · neutral · deployment_implications; [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]])
 - The model is referenced as a concrete baseline inside a live comparison of coding agents, which implies broad enough recognition to serve as a shared reference point. The article does not present release notes or benchmark methodology for the model itself, so maturity should be read only from its use as a comparison anchor. (`c453d4cb2d10` · neutral · maturity_signals; [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]])
 - The source treats Opus 4.6 as a strong base model whose performance can vary materially depending on the agent wrapper around it. It is used as the example for why the surrounding tool framework matters as much as the raw model. That makes it useful as a reference point for comparing agent systems, not just model quality. (`d9a732cee95b` · neutral · operational_profile; [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]])
 - No model-specific pricing detail is given. The only operational inference is that model cost cannot be judged in isolation from the wrapper because different tools built around the same model still perform differently. (`26cd0227d2cf` · neutral · pricing_inference_implications; [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]])
 - No direct service-automation implication is stated beyond the general lesson that workflow wrapper quality affects outcomes more than raw model scores. (`e0a648cb04c3` · neutral · service_automation_implications; [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]])
-- The source says tools using the same underlying model, including Opus 4.6, can still show significant performance gaps on standard problem sets. (`439dcb6580a3` · supporting · benchmark_observations[0]; [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]])
-- It uses this observation to argue that benchmark outcomes depend heavily on the agent framework rather than only the model. (`813c0f543f8c` · supporting · benchmark_observations[1]; [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]])
-- It serves as a high-capability coding model baseline in agent evaluations. (`1080034818bc` · supporting · core_capabilities[0]; [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]])
-- It is used as an example showing that wrapper design can materially affect practical performance. (`e83692e2102a` · supporting · core_capabilities[1]; [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]])
 - "When different tools run the exact same underlying model like Opus 4.6, we still see significant performance gaps across standard problem sets. The model is just the engine. The agent framework is the actual car." (`541ea3bda971` · supporting · supporting_snippet; [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]])
 - The source does not provide a detailed model-level failure analysis. Its main limitation, as presented here, is that raw model strength is not enough to predict shipped-code performance when the agent framework changes. (`32508f5a788b` · uncertainty · weaknesses_limitations; [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]])
 

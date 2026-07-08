@@ -352,7 +352,6 @@
             "It is used as an example showing that wrapper design can materially affect practical performance."
           ],
           "deployment_implications": "When the same underlying model runs inside different products, the surrounding harness can change practical output quality enough that model choice alone is insufficient for procurement. For production agent systems, that means evaluation must include the wrapper, worktree handling, review loop, and execution environment, not just the model endpoint. The article uses Opus 4.6 to support the idea that orchestration can dominate apparent capability.",
-          "evidence_type": null,
           "match_candidates": [],
           "maturity_signals": "The model is referenced as a concrete baseline inside a live comparison of coding agents, which implies broad enough recognition to serve as a shared reference point. The article does not present release notes or benchmark methodology for the model itself, so maturity should be read only from its use as a comparison anchor.",
           "model_name": "Opus 4.6",
@@ -385,61 +384,61 @@
         "proposal_status": "approved",
         "sections": {
           "benchmark_observations": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "The source says tools using the same underlying model, including Opus 4.6, can still show significant performance gaps on standard problem sets.",
               "It uses this observation to argue that benchmark outcomes depend heavily on the agent framework rather than only the model."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "comparative_observations": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "Compared with the surrounding agent frameworks, the model is presented as only the engine rather than the whole product.",
               "The source implies that differences between tools can be larger than differences attributable to the model alone."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "core_capabilities": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "It serves as a high-capability coding model baseline in agent evaluations.",
               "It is used as an example showing that wrapper design can materially affect practical performance."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "deployment_implications": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "maturity_signals": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "model_name": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "operational_profile": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "pricing_inference_implications": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "provider": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "related_models": {
             "final_list": null,
@@ -450,9 +449,9 @@
             "status": "pending"
           },
           "service_automation_implications": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -460,9 +459,9 @@
             "status": "pending"
           },
           "weaknesses_limitations": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           }
         },
         "tags": {
@@ -473,6 +472,14 @@
             "developer-focused",
             "tool-use-capable"
           ]
+        },
+        "types": {
+          "approved_new_types": [],
+          "approved_types": [
+            "proprietary-model",
+            "coding-model"
+          ],
+          "reviewer_types_added": []
         }
       }
     ],
@@ -524,7 +531,7 @@
           "evidence_from_source": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_trends": {
             "final_list": null,
@@ -544,7 +551,7 @@
               "Copilot is described as GitHub-native, with local, background, and cloud agent surfaces."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -554,27 +561,27 @@
           "time_sensitivity": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_description": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "uncertainty_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -677,7 +684,6 @@
             "It can run in a terminal loop that reads errors and retries until the build passes.",
             "It has direct access to local files, grep, and the local test suite, which makes it useful for repo-native debugging and refactoring."
           ],
-          "evidence_type": null,
           "integration_ecosystem": [
             "It works through the terminal and therefore integrates naturally with local shell commands, grep, and test runners.",
             "Its workflow is described around Plan mode, subagents, Skills, and a larger context window, which indicates a terminal-native execution environment rather than an IDE plugin.",
@@ -715,7 +721,7 @@
         },
         "notes": null,
         "proposal_id": "1915a69f-dab5-4b2b-a058-e95b32a2cea0",
-        "proposal_status": "approved",
+        "proposal_status": "rejected",
         "sections": {
           "core_capabilities": {
             "final_list": null,
@@ -725,7 +731,7 @@
               "It has direct access to local files, grep, and the local test suite, which makes it useful for repo-native debugging and refactoring."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "integration_ecosystem": {
             "final_list": null,
@@ -735,22 +741,22 @@
               "The source contrasts it with GUI-first workflows rather than naming explicit third-party integrations."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "maturity_signals": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "name": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_relevance": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_tools": {
             "final_list": null,
@@ -765,12 +771,12 @@
           "short_description": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "strengths": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -780,7 +786,7 @@
           "weaknesses_limitations": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -791,6 +797,15 @@
             "autonomous",
             "software-development"
           ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "coding-agent",
+            "terminal"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
         }
       }
     ],
@@ -838,7 +853,7 @@
           "examples": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "key_points": {
             "final_list": null,
@@ -849,17 +864,17 @@
               "Human babysitting time is a first-class cost and should be measured explicitly."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "knowledge_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_insight": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_topics": {
             "final_list": null,
@@ -868,12 +883,12 @@
               "harness-engineering"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "relevance_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -883,12 +898,12 @@
           "topic_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "topic_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -1015,19 +1030,21 @@
   },
   "review_analytics": {
     "batch_actions_used": [],
-    "evidence_type_counts": {},
+    "evidence_type_counts": {
+      "expert_opinion": 5
+    },
     "fields_modified": 0,
-    "proposals_approved": 0,
+    "proposals_approved": 4,
     "proposals_deferred": 0,
     "proposals_modified": 0,
-    "proposals_rejected": 0,
-    "proposals_total": 0,
-    "review_duration_seconds": null,
-    "review_finished_at": null,
-    "review_started_at": null
+    "proposals_rejected": 1,
+    "proposals_total": 5,
+    "review_duration_seconds": 113.0,
+    "review_finished_at": "2026-07-08T19:07:58.032016+00:00",
+    "review_started_at": "2026-07-08T19:06:05+00:00"
   },
   "review_session": {
-    "last_saved_at": null,
+    "last_saved_at": "2026-07-08T19:07:58+00:00",
     "saved_by": null
   },
   "source": {

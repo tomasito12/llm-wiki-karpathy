@@ -13,7 +13,7 @@ author: RJ Honicky
 publication: latent.space
 published_date: '2026-06-03'
 assessed_as_of: '2026-06-03'
-ingested_at: '2026-06-09T17:02:40+00:00'
+ingested_at: '2026-07-08T19:21:01.648422+00:00'
 canonical_url: https://www.latent.space/p/axiom
 content_sha256: 23f41c24d741279f27cc4a8c0362ddda1f94f592ae9c602cab5b827639e2ac18
 derived_interview_insights:

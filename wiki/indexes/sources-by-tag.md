@@ -753,7 +753,6 @@ category: index
 
 ## autonomous
 
-- [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]]
 - [[sources/the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3|The Automated Obsidian Intelligence Vault That Gets Smarter Every Day]]
 
 ## autonomous-workflows
@@ -811,7 +810,6 @@ category: index
 - [[sources/12-mac-apps-i-m-keeping-in-2026-01kr443b2begtqxeweqdscbvq9|12 Mac Apps I’m Keeping in 2026]]
 - [[sources/a-guide-to-agent-native-product-management-every-01krc5a85g6t1qh1y38nt7yzmn|A Guide to Agent-native Product Management - Every]]
 - [[sources/building-a-complete-personal-harness-llm-wiki-developer-s-second-brain-in-obsidian-01krbnant10607tp88nmdzn55s|Building a Complete Personal Harness: LLM Wiki + Developer’s Second Brain in Obsidian]]
-- [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]]
 - [[sources/graphify-vs-caveman-two-clever-tools-that-make-your-ai-coding-assistant-way-smarter-01kqn87bkxvnntqtgjzhgemy5s|Graphify vs. Caveman: Two Clever Tools That Make Your AI Coding Assistant Way Smarter]]
 - [[sources/how-i-built-an-ai-second-brain-using-claude-code-and-obsidian-01kr434kyy8fyj0wpm1gyx443z|How I Built an AI Second Brain Using Claude Code and Obsidian]]
 - [[sources/how-to-build-claude-skills-2-0-better-than-99-of-people-01kqfzngwjk9z6mbkcj9yx6tfn|How to build Claude Skills 2.0 Better than 99% of People]]
@@ -854,7 +852,6 @@ category: index
 - [[sources/a-guide-to-agent-native-product-management-every-01krc5a85g6t1qh1y38nt7yzmn|A Guide to Agent-native Product Management - Every]]
 - [[sources/building-a-complete-personal-harness-llm-wiki-developer-s-second-brain-in-obsidian-01krbnant10607tp88nmdzn55s|Building a Complete Personal Harness: LLM Wiki + Developer’s Second Brain in Obsidian]]
 - [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]]
-- [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]]
 - [[sources/graphify-vs-caveman-two-clever-tools-that-make-your-ai-coding-assistant-way-smarter-01kqn87bkxvnntqtgjzhgemy5s|Graphify vs. Caveman: Two Clever Tools That Make Your AI Coding Assistant Way Smarter]]
 - [[sources/how-openprose-makes-ai-agent-behavior-repeatable-01ktb3ceq8be6weh8yt0k73z4f|How OpenProse Makes AI Agent Behavior Repeatable]]
 - [[sources/how-to-make-claude-code-validate-its-own-work-01krkb42j4y9839773m7rz83xe|How to Make Claude Code Validate its own Work]]
@@ -2509,7 +2506,6 @@ category: index
 ## software-development
 
 - [[sources/building-a-complete-personal-harness-llm-wiki-developer-s-second-brain-in-obsidian-01krbnant10607tp88nmdzn55s|Building a Complete Personal Harness: LLM Wiki + Developer’s Second Brain in Obsidian]]
-- [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]]
 - [[sources/i-used-karpathy-s-llm-wiki-to-build-a-knowledge-base-that-maintains-itself-with-ai-01kr439at95y3c5a5s41jwz1ee|I used Karpathy’s LLM Wiki to build a knowledge base that maintains itself with AI]]
 - [[sources/introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1|Introducing Composer 2]]
 - [[sources/running-codex-safely-at-openai-01kr4j0wpfyavt95avxpff49qc|Running Codex safely at OpenAI]]

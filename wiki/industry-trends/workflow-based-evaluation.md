@@ -11,7 +11,7 @@ aliases:
 first_seen: '2026-04-10'
 last_seen: '2026-05-14'
 source_count: 2
-evidence_count: 14
+evidence_count: 11
 source_ids:
 - chatgpt-for-operations-teams-01knw8fhapv0s142tzby3ay37b
 - the-sequence-opinion-860-every-company-s-last-exam-some-reflection-about-practical-ai-evals-01krk3ceraty1xnrx1py5545xh
@@ -30,9 +30,6 @@ AI evaluation is shifting from broad model benchmarks toward tests built around 
 
 ## Supporting Data Points
 
-- Every meaningful task inside a company is described as needing its own evaluation layer.
-- Public benchmarks are described as insufficient for production truth.
-- The source points to private documents, internal policies, and exceptions as the missing test surface.
 - Measures mentioned include time spent producing recurring outputs, turnaround on cross-functional coordination, consistency of documentation, bottlenecks, cycle times, smoother handoffs, faster decision-making, and follow-through on action items.
 
 ## Time sensitivity
@@ -58,9 +55,6 @@ The direction is plausible and well-motivated, but the source is an opinion essa
 
 - AI evaluation is shifting from broad model benchmarks toward tests built around the actual workflows a system must complete. The relevant question is less whether a model looks strong in general and more whether it can survive the company’s documents, rules, exceptions, and task boundaries. This makes evaluation more context-specific and operationally tied to production behavior. The shift is especially important for agentic systems that must execute multi-step work rather than answer isolated prompts. (`fe04b049649e` · neutral · trend_description; [[sources/the-sequence-opinion-860-every-company-s-last-exam-some-reflection-about-practical-ai-evals-01krk3ceraty1xnrx1py5545xh|The Sequence Opinion #860: Every Company’s Last eXam: Some Reflection About Practical AI Evals]])
 - The essay argues that "every meaningful task performed by every agent inside every company will need its own evaluation layer" and rejects "generic benchmarks" in favor of "company-specific exams" tied to real work. (`cd69c31eae54` · supporting · evidence_from_source; [[sources/the-sequence-opinion-860-every-company-s-last-exam-some-reflection-about-practical-ai-evals-01krk3ceraty1xnrx1py5545xh|The Sequence Opinion #860: Every Company’s Last eXam: Some Reflection About Practical AI Evals]])
-- Every meaningful task inside a company is described as needing its own evaluation layer. (`f6d27a5da3b1` · supporting · supporting_data_points[0]; [[sources/the-sequence-opinion-860-every-company-s-last-exam-some-reflection-about-practical-ai-evals-01krk3ceraty1xnrx1py5545xh|The Sequence Opinion #860: Every Company’s Last eXam: Some Reflection About Practical AI Evals]])
-- Public benchmarks are described as insufficient for production truth. (`333885c52e7a` · supporting · supporting_data_points[1]; [[sources/the-sequence-opinion-860-every-company-s-last-exam-some-reflection-about-practical-ai-evals-01krk3ceraty1xnrx1py5545xh|The Sequence Opinion #860: Every Company’s Last eXam: Some Reflection About Practical AI Evals]])
-- The source points to private documents, internal policies, and exceptions as the missing test surface. (`396e295f0cf1` · supporting · supporting_data_points[2]; [[sources/the-sequence-opinion-860-every-company-s-last-exam-some-reflection-about-practical-ai-evals-01krk3ceraty1xnrx1py5545xh|The Sequence Opinion #860: Every Company’s Last eXam: Some Reflection About Practical AI Evals]])
 - "Practical, dynamic, company-specific exams that measure whether an AI system can actually survive contact with real work. Not generic benchmarks. Not leaderboard theater." (`773ecc284a2c` · supporting · supporting_snippet; [[sources/the-sequence-opinion-860-every-company-s-last-exam-some-reflection-about-practical-ai-evals-01krk3ceraty1xnrx1py5545xh|The Sequence Opinion #860: Every Company’s Last eXam: Some Reflection About Practical AI Evals]])
 - Actionable as of 2026-05-14; relevant as long as AI systems are evaluated for production workflows rather than only public benchmark performance. (`d86a425b1983` · uncertainty · time_sensitivity; [[sources/the-sequence-opinion-860-every-company-s-last-exam-some-reflection-about-practical-ai-evals-01krk3ceraty1xnrx1py5545xh|The Sequence Opinion #860: Every Company’s Last eXam: Some Reflection About Practical AI Evals]])
 - The direction is plausible and well-motivated, but the source is an opinion essay rather than a controlled study, so the scale and cost of workflow-specific evaluation remain uncertain. (`119db0375940` · uncertainty · uncertainty_note; [[sources/the-sequence-opinion-860-every-company-s-last-exam-some-reflection-about-practical-ai-evals-01krk3ceraty1xnrx1py5545xh|The Sequence Opinion #860: Every Company’s Last eXam: Some Reflection About Practical AI Evals]])

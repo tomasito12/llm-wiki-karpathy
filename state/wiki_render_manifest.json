@@ -35,7 +35,7 @@
     },
     {
       "path": "foundation-models/deepseek-v4.md",
-      "sha256": "ca5154c5e643b524e0cbfb7135208df27a071edfb17c347764f551c2caa48817"
+      "sha256": "e9956041e0c23818d419268011f802d0abc94671a5ec871193bd198285d516d0"
     },
     {
       "path": "foundation-models/gemini-3-1-flash-live.md",
@@ -119,7 +119,7 @@
     },
     {
       "path": "foundation-models/opus-4-6.md",
-      "sha256": "816edb720659c660045aa69edb0ca18313709a3097e5df586071f1d51688f56c"
+      "sha256": "1bd008481e22681d73a5f3f093e48ffea24f9e95c4cf12521ad28f43402238b2"
     },
     {
       "path": "foundation-models/privacy-filter.md",
@@ -243,7 +243,7 @@
     },
     {
       "path": "glossary/kv-cache.md",
-      "sha256": "4f18ed9c1c15b27fe9c0e43b0cf5fa5bf53348e2a837987981c8fe467520c1b9"
+      "sha256": "12379a0f86436850f67ed8a311c02bf0826a4d1cf46d3ca5794ec89981e1258f"
     },
     {
       "path": "glossary/living-specification.md",
@@ -255,15 +255,15 @@
     },
     {
       "path": "glossary/mixture-of-experts.md",
-      "sha256": "0ee75d2e90fd9b7da67325ba434f220448ceb6ea295cc1c0ac73ac593de74496"
+      "sha256": "a05c7821380410e8377d462b9f38e04091874a630791d02954835a161d4b16ad"
     },
     {
       "path": "glossary/model-context-protocol.md",
-      "sha256": "8396531f154e0776bc86f246bcd60c2c6552aae1a1bf7c734ad12fbaa212e1db"
+      "sha256": "738fc02fe6f7e5a26343b24f24c57097138becd7d1fcd8713e7efc7ea00bc01e"
     },
     {
       "path": "glossary/ontology.md",
-      "sha256": "0674206f9996e5101a1e34b764d59344fbc5e66c7e8b45c6bf92301022622710"
+      "sha256": "1ac6b1e2a8c927e3b5554002a482d2ab411b03175ecb3c72422c48c2d6365d5a"
     },
     {
       "path": "glossary/parallel-agent-reinforcement-learning.md",
@@ -271,7 +271,7 @@
     },
     {
       "path": "glossary/passkey.md",
-      "sha256": "f13de20908f40528a7e521dc19a31a01698c46569f2c5b98666cbae175d1e417"
+      "sha256": "0bfb07e83ccd96297a35a3a7b3971101ed21536dd608c6e097492a219f99b115"
     },
     {
       "path": "glossary/recursive-self-improvement.md",
@@ -319,11 +319,11 @@
     },
     {
       "path": "how-to/agent-maintained-knowledge-bases.md",
-      "sha256": "a3455958e9cc92e7956b25bde6e4b9c8ea3fbcc6a849ae0c926459e44deb345d"
+      "sha256": "efd113b3d8dca7988a73eb3bf475b725b2129dacfaa5e9b7446acfe39f7f4c36"
     },
     {
       "path": "how-to/agentic-personal-knowledge-management.md",
-      "sha256": "a0d51764422eaeb55111bd3cef03c15102619694967276001dba1e396bdc968a"
+      "sha256": "fa28729260e407629a0e34c8f5aedc47446b2aeb1a85887ad6d7af28d9732521"
     },
     {
       "path": "how-to/chatgpt-projects-setup.md",
@@ -331,7 +331,7 @@
     },
     {
       "path": "how-to/claude-skills-setup.md",
-      "sha256": "0fdcce4cfe779bcaefe50755372f56938627b0e8902953e616559359af4481dc"
+      "sha256": "bab89e7f966a3a9ffa1fa05f936f35dee484b59fdafcee49307f514885fc9704"
     },
     {
       "path": "how-to/commit-driven-documentation-sync.md",
@@ -407,7 +407,7 @@
     },
     {
       "path": "how-to/local-coding-model-setup.md",
-      "sha256": "63528ff8272932741515959d459807ae9f2b59136bbd3e14a897af7b7692777e"
+      "sha256": "d79335a455fa518f17dbb085add511feb0497d734ee93a488e75dad3bd08ac8f"
     },
     {
       "path": "how-to/local-model-deployment.md",
@@ -415,7 +415,7 @@
     },
     {
       "path": "how-to/local-model-setup.md",
-      "sha256": "ba475b39951ee22407bb73ee0845731061d3be9032821b0c72fab1dc734aa3ea"
+      "sha256": "dfd2ef08d260b25e551950a87a0a4b19bf8e74612a0385c437193a19553005fd"
     },
     {
       "path": "how-to/manager-drafting-workflows.md",
@@ -423,7 +423,7 @@
     },
     {
       "path": "how-to/model-distillation.md",
-      "sha256": "ed8296ad823fd602be526f74bfa6419772c04e65bc03c64313fd9f272ed7a058"
+      "sha256": "9c06e395185adc11ccef0428f6de8380513ab27e63fa3eb8897f52a566745af1"
     },
     {
       "path": "how-to/model-routing-and-cascades.md",
@@ -599,7 +599,7 @@
     },
     {
       "path": "implementation-studies/2026-05/parloa-builds-service-agents-customers-want-to-talk-to-01kr11qtpam16gysk8yxpsbspy-parloa-s-enterprise-voice-agent-platform.md",
-      "sha256": "a47c192864897028668b8c322880f0cb147821923356b82b25849527cc29ec8c"
+      "sha256": "bcd84d71d5a846cfaa21418431482515aae30647cd17c497077f39f56096b473"
     },
     {
       "path": "implementation-studies/2026-05/ready-for-your-busiest-day-how-we-scale-01ks0e1b38y1emnqkewpcvbhzb-fin-platform-scaling-and-reliability-architecture.md",
@@ -659,7 +659,7 @@
     },
     {
       "path": "indexes/knowledge-graph.md",
-      "sha256": "42f00bc6a41e00946b23958702354ed0779fe116f4e93ec2ab1ae7b2e3244b7a"
+      "sha256": "881ec26ec0a119ffe8da487eece8d600ca5c6115f0b08688ac57ee3c04cfc8db"
     },
     {
       "path": "indexes/models-by-tag.md",
@@ -671,15 +671,15 @@
     },
     {
       "path": "indexes/sources-by-tag.md",
-      "sha256": "763b2fa5cac3ccb28a21ebcce116e47100d9040e9d282a20194cb667fe62eaaa"
+      "sha256": "574c7c7ddfa0ceec2f107a3c2e09339a144afc1d10d86193bc162d1d3c82a97b"
     },
     {
       "path": "indexes/system-status.md",
-      "sha256": "1d42b7618ea3ea7686dacb7e0dfc53d61ee53ebc64a789a7575ddcf3b9de1982"
+      "sha256": "013ae65d7d2e5cfdeec9fa3123c4417a294fa0ce03a27f453c79eb54002f263f"
     },
     {
       "path": "indexes/tools-by-tag.md",
-      "sha256": "e11298f419b3e0b37eaef85474bbc8c04014fd4cde49dacbd91e025419da2ecb"
+      "sha256": "ec669a86b8d98b14f3999703a06727280a364b528d34a4b657049f019b48234f"
     },
     {
       "path": "indexes/topics-by-tag.md",
@@ -1131,7 +1131,7 @@
     },
     {
       "path": "industry-trends/workflow-based-evaluation.md",
-      "sha256": "f8e936f4873d398d4386f601a983441239350f4c70a47f03e50cf3afa385fc51"
+      "sha256": "0b75577a3d18ec7c9d205c7a7852af03f91d11852924b08a51274d07c1a4b064"
     },
     {
       "path": "industry-trends/workflow-restructuring-around-ai-agents.md",
@@ -1467,7 +1467,7 @@
     },
     {
       "path": "interview-insights/2026-06/reality-the-final-eval-lukas-petersson-and-axel-backlund-of-andon-labs-01kta5x2q-multi-agent-role-splitting-can-help-parallelism-but-does-not-elimina-4aee1dd507.md",
-      "sha256": "2207fb5137bdf5e2db93f43c55e992990fb0a2e5faa1b991c1294df3dbf8dd34"
+      "sha256": "bbe670e3d73267532bd32bfad9178fe4463901769b3aabd652ed78c96025fe77"
     },
     {
       "path": "interview-insights/2026-06/reality-the-final-eval-lukas-petersson-and-axel-backlund-of-andon-labs-01kta5x2q-simple-shared-harnesses-reduce-benchmark-bias-even-if-they-leave-per-becc85a98b.md",
@@ -1503,7 +1503,7 @@
     },
     {
       "path": "interview-insights/2026-06/scaling-past-informal-ai-carina-hong-axiom-math-01kt7fvv1fxx82p8qqktgdd1qa-specification-quality-is-the-real-bottleneck-in-verified-ai.md",
-      "sha256": "059ea3273b5506b65eed99ec58fbf7afeab424e4628cbb73143adc3dd0f22d41"
+      "sha256": "f7e097ff27d296eabb3dc534e9d56166f73b391283acaf5a580fb1c19aa78928"
     },
     {
       "path": "interview-insights/2026-06/scaling-past-informal-ai-carina-hong-axiom-math-01kt7fvv1fxx82p8qqktgdd1qa-verified-outputs-create-a-stronger-learning-loop-than-informal-reasoning.md",
@@ -2091,7 +2091,7 @@
     },
     {
       "path": "signals/2026-06/ainews-not-much-happened-today-01ktdkg6hetmbvv7wbw6djzg7j-recursive-self-improvement-is-becoming-a-formal-lab-program.md",
-      "sha256": "87a9df1c6bbead27cc326552aba4e3d1c15852f5885065b50f2beb2d89cceee7"
+      "sha256": "23a32da9feb87c66f48d715bb4287901b7d3d434caf3dacf920efc0465b8f802"
     },
     {
       "path": "signals/2026-06/ainews-nvidia-cosmos-3-nemotron-3-ultra-and-rtx-spark-01kt363pc5f8s2fhketwp5jdkp-local-ai-hardware-is-being-sold-as-an-integrated-end-user-system.md",
@@ -2231,7 +2231,7 @@
     },
     {
       "path": "sources/8-llm-cost-optimization-techniques-how-to-cut-api-spend-by-up-to-70-visually-explained-01ktkyv6hm99qdvw30jt2405q9.md",
-      "sha256": "0565c4076310f82a0eb1e7352b0e7025cbba2954a21388a866bfb8fc2bf41e9b"
+      "sha256": "2b2301e3d59e2755a835af1c253ebdc6c45e9d361b13f2d1e18ac4c55fc3b230"
     },
     {
       "path": "sources/95-of-devs-are-using-ai-agents-completely-wrong-a-hermes-guide-01krbnbbbpznzgbeefqnzapsz3.md",
@@ -2451,7 +2451,7 @@
     },
     {
       "path": "sources/ainews-moonshot-kimi-k2-6-the-world-s-leading-open-model-refreshes-to-catch-up-to-opus-4-6-ahead-of-deepseek-v4-01kpppts0y51zhjfp0jktzemen.md",
-      "sha256": "cd2aaa28e8920e90b67a51ede72b8d404ccc03d00240cfa9df317f302c1d0a26"
+      "sha256": "d7f896f2fb7adac03722910c9a2ac39f28adb95153d7f528c9d6ae47bc9b5a08"
     },
     {
       "path": "sources/ainews-new-ai-infra-decacorns-fireworks-baseten-with-openrouter-on-the-way-01kskrtd56c1fgw54vw8gae184.md",
@@ -2471,7 +2471,7 @@
     },
     {
       "path": "sources/ainews-not-much-happened-today-01ktdkg6hetmbvv7wbw6djzg7j.md",
-      "sha256": "722893ad661905b79e213440001b4646e8a4a63feabe7326ffe7a7abee66a71c"
+      "sha256": "dd10563da938b2494cffe02d3ae094253052de3d58fdef64e4ee8ea7ca9685f3"
     },
     {
       "path": "sources/ainews-nvidia-cosmos-3-nemotron-3-ultra-and-rtx-spark-01kt363pc5f8s2fhketwp5jdkp.md",
@@ -2615,7 +2615,7 @@
     },
     {
       "path": "sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y.md",
-      "sha256": "24b1fc9de48659a4f6bc4a29fc3aebbe57f7d2ceba3c9c2f0c7336f867c105cc"
+      "sha256": "8bea1325607bdbaf30c45ba7c7a4197cbe5173a2edbac748d8a8dbe08fb5962d"
     },
     {
       "path": "sources/creating-a-stateless-chatbot-in-langgraph-01kqm094n15r71mj5g1xbsk1nj.md",
@@ -2811,7 +2811,7 @@
     },
     {
       "path": "sources/how-openprose-makes-ai-agent-behavior-repeatable-01ktb3ceq8be6weh8yt0k73z4f.md",
-      "sha256": "114807b3720a435bcdeb99bdb78a323fb01b9dd2ea0c892ab4f27e4c9b7ed263"
+      "sha256": "890e55cb1d8449f693afadaaf06f51f33b30f7a5f7aef506c98644cb98930eea"
     },
     {
       "path": "sources/how-to-build-an-efficient-knowledge-base-for-ai-models-01krkb3e658t23tx5zznes57v9.md",
@@ -2931,7 +2931,7 @@
     },
     {
       "path": "sources/improving-composer-through-real-time-rl-01kr1qhv8tq25zjb3rkytptehd.md",
-      "sha256": "63336a476bdb0bcd48e6712026ce0e20f0f30ea49e46c4afff66d36f7b9203be"
+      "sha256": "809a8a8fb5f6ff9bc96e73357213d241ca0564f3dbcd22666d2ed1efddafa59c"
     },
     {
       "path": "sources/introducing-advanced-account-security-01kqfng9s8j91b758trfdhqjyy.md",
@@ -3095,7 +3095,7 @@
     },
     {
       "path": "sources/parloa-builds-service-agents-customers-want-to-talk-to-01kr11qtpam16gysk8yxpsbspy.md",
-      "sha256": "6c0a2b111d243713f7a2e51d2400ca77cf514b61bb714831f472f9c52c2a821e"
+      "sha256": "c32c613a503f88ba88cda02f0d0186578fe992e4e845cf09672bd8a9a62edb74"
     },
     {
       "path": "sources/personalizing-chatgpt-01knw8fhbjwcd9g1as8kctv26f.md",
@@ -3143,7 +3143,7 @@
     },
     {
       "path": "sources/reality-the-final-eval-lukas-petersson-and-axel-backlund-of-andon-labs-01kta5x2q1019991cgcmsykb83.md",
-      "sha256": "117307b8d53b4dc9a5cee58f11e7cf858f09286e4d09a625aab1e3bccf32a513"
+      "sha256": "c50c53aa8c6984710f683c73ba3abf51f462cd438f0444b733c8fff58a08db7d"
     },
     {
       "path": "sources/recall-2-0-an-ai-second-brain-for-people-who-need-one-but-don-t-want-to-build-one-01kqz01mwjpdmw10d64fwahpq9.md",
@@ -3151,7 +3151,7 @@
     },
     {
       "path": "sources/recent-developments-in-llm-architectures-kv-sharing-mhc-and-compressed-attention-01krrba0929cn5qjh3gve00hyf.md",
-      "sha256": "7ef6b1aaebc868a77f28cf36b23a38be8e578daef7147587bf08a4ace72d14e3"
+      "sha256": "e9299c2f2c3086e3c0c8eef41f207b6f2730239977fe794429ea00b51848d11a"
     },
     {
       "path": "sources/retail-ux-is-stuck-multimodal-ai-is-the-reset-button-01krrsfc31qt8htb9zawxb8hz4.md",
@@ -3179,7 +3179,7 @@
     },
     {
       "path": "sources/scaling-past-informal-ai-carina-hong-axiom-math-01kt7fvv1fxx82p8qqktgdd1qa.md",
-      "sha256": "3fafbb2c68b5b5bebe580007033d4c779ddfc26b757a4530648aa1eb0a3aa74a"
+      "sha256": "99ff5e31d103e3566feaac22cb22bec88f76ebae69374b8351a82f4d3a3270d5"
     },
     {
       "path": "sources/scaling-trusted-access-for-cyber-with-gpt-5-5-and-gpt-5-5-cyber-01kr27359qcdmbzw8af82znqzf.md",
@@ -3403,7 +3403,7 @@
     },
     {
       "path": "sources/the-sequence-opinion-860-every-company-s-last-exam-some-reflection-about-practical-ai-evals-01krk3ceraty1xnrx1py5545xh.md",
-      "sha256": "a6832366bde19d5e44e4e1b111982bf80e6d8ae0fc619d60b3a5c795fde947f0"
+      "sha256": "8025c32b95903a3080a802164ac76db22b3fbe14c599355f810faec15c742e45"
     },
     {
       "path": "sources/the-sequence-opinion-864-every-ai-agent-needs-a-computer-01ks52k8mh3afy2fnmb57gzhth.md",
@@ -3667,7 +3667,7 @@
     },
     {
       "path": "tools/claude-code.md",
-      "sha256": "74f6c83aa857b2e281a424f0f31590ea25d2f16703b0bee5030741138092097b"
+      "sha256": "68dd73d68d4a35b1a590aa0c49b8554d18ad929aff2d540356dc3ff65201896b"
     },
     {
       "path": "tools/claude-desktop.md",
@@ -3711,7 +3711,7 @@
     },
     {
       "path": "tools/cursor.md",
-      "sha256": "80a92c045641f84260a40e46d72da2d79ee7d09892daf6b256ca1dea503f84bf"
+      "sha256": "4a4ca75fee26d009a5a40f1681c81c95dc9bef5fe0f1ac3d74d57ef17b712c21"
     },
     {
       "path": "tools/deskin.md",
@@ -3975,7 +3975,7 @@
     },
     {
       "path": "tools/openprose.md",
-      "sha256": "5a3b9badd7fe54763bc58c99a39534e3969568692e4df7da76e551072fccc72b"
+      "sha256": "a81249ffdbc015f65b6897d11dfc16f8a7ba17283ea35fb0fe2f7d5ea5d57a54"
     },
     {
       "path": "tools/operator.md",
@@ -5065,6 +5065,6 @@
   "signal_count": 160,
   "source_count": 360,
   "synthesis_cache_dir": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis",
-  "taxonomy_version": "27539b556704",
+  "taxonomy_version": "f6428a8b0f56",
   "tool_version": "1"
 }

@@ -5,7 +5,6 @@ entity_id: tool:claude-code
 category: tool
 tags:
 - agentic
-- autonomous
 - browser-use
 - cli-tool
 - coding
@@ -16,12 +15,11 @@ tags:
 - workflow-automation
 first_seen: '2026-03-25'
 last_seen: '2026-05-20'
-source_count: 18
-evidence_count: 208
+source_count: 17
+evidence_count: 196
 source_ids:
 - a-guide-to-agent-native-product-management-every-01krc5a85g6t1qh1y38nt7yzmn
 - building-a-complete-personal-harness-llm-wiki-developer-s-second-brain-in-obsidian-01krbnant10607tp88nmdzn55s
-- claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y
 - how-claude-code-and-obsidian-broke-personal-knowledge-management-01kqky9zvey7e9mbv4tfscr37y
 - how-i-built-an-ai-second-brain-using-claude-code-and-obsidian-01kr434kyy8fyj0wpm1gyx443z
 - how-to-build-claude-skills-2-0-better-than-99-of-people-01kqfzngwjk9z6mbkcj9yx6tfn
@@ -38,7 +36,7 @@ source_ids:
 - the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3
 - your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn
 value_level: high
-confidence: 0.92
+confidence: 0.918824
 synthesis_state: stage1-placeholder
 types:
 - ai-application
@@ -95,9 +93,6 @@ Claude Code is the environment the article uses to load and run Claude Skills fr
 - It can read and write files in an Obsidian vault, which allows it to generate and maintain structured notes.
 - It can use MCP integrations to search Gmail, pull calendar events, and access Drive data from one command.
 - It can persist instructions in CLAUDE.md so recurring behavior does not need to be re-entered each session.
-- It can ingest large amounts of project state and use that context to drive multi-file changes across a codebase.
-- It can run in a terminal loop that reads errors and retries until the build passes.
-- It has direct access to local files, grep, and the local test suite, which makes it useful for repo-native debugging and refactoring.
 - It can generate and revise code while using verification tools to compare outputs against an expected result.
 - It can continue iterating on a task until the result is close enough to the reference output.
 - It can inspect rendered web pages through Chrome when the task is visual rather than purely textual.
@@ -148,9 +143,6 @@ Claude Code is the environment the article uses to load and run Claude Skills fr
 - It integrates with MCP, which the source uses for Gmail, Google Calendar, and Google Drive access.
 - It works with local markdown files and Obsidian vault structures, so it fits file-native knowledge workflows.
 - It uses CLAUDE.md as an instruction file, which creates a lightweight configuration surface for repeated commands.
-- It works through the terminal and therefore integrates naturally with local shell commands, grep, and test runners.
-- Its workflow is described around Plan mode, subagents, Skills, and a larger context window, which indicates a terminal-native execution environment rather than an IDE plugin.
-- The source contrasts it with GUI-first workflows rather than naming explicit third-party integrations.
 - The source explicitly describes using Google Chrome as a visual inspection tool for Claude Code.
 - The source also describes using code execution and output comparison as a verification loop for LLM-based processing.
 - It is used with Obsidian as the corpus it reads.
@@ -210,25 +202,6 @@ The article does not provide evidence about robustness, failure modes, or produc
 - It can be extended with skills and slash commands so the same agent can handle ingestion, querying, and vault maintenance. (`2e5895970511` · supporting · core_capabilities[2]; [[sources/building-a-complete-personal-harness-llm-wiki-developer-s-second-brain-in-obsidian-01krbnant10607tp88nmdzn55s|Building a Complete Personal Harness: LLM Wiki + Developer’s Second Brain in Obsidian]])
 - "Claude Code is just a process on your computer. You open a terminal in the vault folder, type claude, and it reads and writes .md files directly." (`e5b4675c4e55` · supporting · supporting_snippet; [[sources/building-a-complete-personal-harness-llm-wiki-developer-s-second-brain-in-obsidian-01krbnant10607tp88nmdzn55s|Building a Complete Personal Harness: LLM Wiki + Developer’s Second Brain in Obsidian]])
 - The article does not present measured reliability data, so the recommendation is preference-based rather than benchmarked. It also gives up Obsidian-only features until a more complex integration path is added later. (`ae67976ba944` · uncertainty · weaknesses_limitations; [[sources/building-a-complete-personal-harness-llm-wiki-developer-s-second-brain-in-obsidian-01krbnant10607tp88nmdzn55s|Building a Complete Personal Harness: LLM Wiki + Developer’s Second Brain in Obsidian]])
-
-### Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong (2026-05-04)
-
-- It works through the terminal and therefore integrates naturally with local shell commands, grep, and test runners. (`43a0ff6cc489` · neutral · integration_ecosystem[0]; [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]])
-- Its workflow is described around Plan mode, subagents, Skills, and a larger context window, which indicates a terminal-native execution environment rather than an IDE plugin. (`0f327fbb673b` · neutral · integration_ecosystem[1]; [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]])
-- The source contrasts it with GUI-first workflows rather than naming explicit third-party integrations. (`0bbb06f9aec5` · neutral · integration_ecosystem[2]; [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]])
-- The source describes it as a serious, established coding agent with enough capability to be the leading choice for hard terminal-native refactors. The mention of GA-scale context and feature additions suggests a product that has matured into a broader autonomous loop rather than a narrow command-line helper. The article treats it as one of four distinct workflow products, not an experimental side project. (`8887445fa01b` · neutral · maturity_signals; [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]])
-- Best fit for terminal-centered engineering workflows where the agent needs direct access to the file system, grep, and local tests. It is positioned for complex refactors, cross-cutting changes, and cases where the human is comfortable reviewing terminal output rather than a GUI. For service automation teams, it is more relevant as a deep implementation tool than as a review or coordination layer. (`96a903312d6f` · neutral · operational_relevance; [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]])
-- A terminal-first coding agent for deep local software work. It operates directly in the shell, reads project state, and iterates on code until tests and builds pass. (`3402b4a97dec` · neutral · short_description; [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]])
-- - Handles large, cross-cutting changes well because it can ingest substantial project state and keep iterating against compiler or test failures.
-- Lives in the terminal, so it has direct access to local files, grep, and test execution, which matters when the work depends on the full local repo context.
-- The recent additions cited in the source — Plan mode, subagents, Skills, and a larger context window — support longer autonomous loops on harder tasks. (`0e9c796c0918` · neutral · strengths; [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]])
-- It can ingest large amounts of project state and use that context to drive multi-file changes across a codebase. (`5c389744fd2b` · supporting · core_capabilities[0]; [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]])
-- It can run in a terminal loop that reads errors and retries until the build passes. (`3cdfed4fe9bf` · supporting · core_capabilities[1]; [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]])
-- It has direct access to local files, grep, and the local test suite, which makes it useful for repo-native debugging and refactoring. (`afc21b47fa50` · supporting · core_capabilities[2]; [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]])
-- "Anthropic built a terminal-first agent designed to ingest large amounts of project state and execute complex changes without a graphical support. With the recent updates to Plan mode, subagents, Skills, and the bigger context window, it operates as a non-stop loop that reads errors and tries again until the build passes." (`5e788e9d82bc` · supporting · supporting_snippet; [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]])
-- - It assumes the user is comfortable with the command line as the primary interface, which makes it a poor fit for GUI-first teams.
-- The source explicitly notes there is no visual parallel-execution story, so it is weaker when a team wants side-by-side comparison of multiple candidate changes.
-- The article also frames it as best for deep infrastructural work, not for visually driven UI iteration. (`e0dda0e7dc50` · uncertainty · weaknesses_limitations; [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]])
 
 ### How Claude Code and Obsidian Broke Personal Knowledge Management (2026-04-11)
 
@@ -503,9 +476,6 @@ claude
 - The source does not provide independent evaluation of reliability, cost, or failure modes, so the practical ceiling is unclear. The workflow also depends on precise scenario writing; if the spec is vague, the agent can still generate the wrong implementation while producing code that compiles. The article implies that maintenance burden drops, but it does not show how well this holds across large, messy, or legacy codebases. (uncertainty; [[sources/sdd-writing-specifications-for-ai-bdd-as-the-missing-link-spec-driven-development-01kqz04y32hqhskkq6c3jh3esj|SDD Writing Specifications for AI: BDD as the Missing Link — Spec-Driven Development]])
 - The article does not present measured reliability data, so the recommendation is preference-based rather than benchmarked. It also gives up Obsidian-only features until a more complex integration path is added later. (uncertainty; [[sources/building-a-complete-personal-harness-llm-wiki-developer-s-second-brain-in-obsidian-01krbnant10607tp88nmdzn55s|Building a Complete Personal Harness: LLM Wiki + Developer’s Second Brain in Obsidian]])
 - The source also shows that it needs prompt iteration and cleanup to behave well: the first version over-long summarized email, missed recurring events, and mis-carried tasks. OAuth and permission setup can be finicky, and the workflow still depends on careful instruction design rather than magic autonomy. That makes it powerful, but not maintenance-free. (uncertainty; [[sources/how-i-built-an-ai-second-brain-using-claude-code-and-obsidian-01kr434kyy8fyj0wpm1gyx443z|How I Built an AI Second Brain Using Claude Code and Obsidian]])
-- - It assumes the user is comfortable with the command line as the primary interface, which makes it a poor fit for GUI-first teams.
-- The source explicitly notes there is no visual parallel-execution story, so it is weaker when a team wants side-by-side comparison of multiple candidate changes.
-- The article also frames it as best for deep infrastructural work, not for visually driven UI iteration. (uncertainty; [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]])
 - The source does not provide a rigorous benchmark, so the gains are based on a personal workflow report rather than controlled measurement. The approach depends on having a clear acceptance signal; tasks without a precise target, or with hidden requirements, may not benefit as much. The Chrome-based visual loop also depends on environment/tool access and may be brittle in some stacks. (uncertainty; [[sources/how-to-make-claude-code-validate-its-own-work-01krkb42j4y9839773m7rz83xe|How to Make Claude Code Validate its own Work]])
 - The article does not provide evidence about accuracy, latency, or drift, so the quality of the generated briefings is not measured. The workflow also depends on a current instruction file and a clean vault; stale instructions or messy notes can degrade output quality. (uncertainty; [[sources/the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3|The Automated Obsidian Intelligence Vault That Gets Smarter Every Day]])
 - The article does not provide benchmarks, pricing, or reliability data. The recommendation is personal and workflow-specific, so it may not fit teams that do not use terminal-first development or that prefer a GUI editor as the primary workspace. (uncertainty; [[sources/setting-up-mac-for-development-may-2026-01ktpm1xqjsx1ra42yp56bera0|Setting Up Mac for Development [May 2026]]])
@@ -525,7 +495,6 @@ claude
 
 - [[sources/a-guide-to-agent-native-product-management-every-01krc5a85g6t1qh1y38nt7yzmn|A Guide to Agent-native Product Management - Every]]
 - [[sources/building-a-complete-personal-harness-llm-wiki-developer-s-second-brain-in-obsidian-01krbnant10607tp88nmdzn55s|Building a Complete Personal Harness: LLM Wiki + Developer’s Second Brain in Obsidian]]
-- [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]]
 - [[sources/how-claude-code-and-obsidian-broke-personal-knowledge-management-01kqky9zvey7e9mbv4tfscr37y|How Claude Code and Obsidian Broke Personal Knowledge Management]]
 - [[sources/how-i-built-an-ai-second-brain-using-claude-code-and-obsidian-01kr434kyy8fyj0wpm1gyx443z|How I Built an AI Second Brain Using Claude Code and Obsidian]]
 - [[sources/how-to-build-claude-skills-2-0-better-than-99-of-people-01kqfzngwjk9z6mbkcj9yx6tfn|How to build Claude Skills 2.0 Better than 99% of People]]

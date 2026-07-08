@@ -15,7 +15,7 @@ tags:
 first_seen: '2026-03-19'
 last_seen: '2026-04-07'
 source_count: 4
-evidence_count: 48
+evidence_count: 42
 source_ids:
 - i-used-karpathy-s-llm-wiki-to-build-a-knowledge-base-that-maintains-itself-with-ai-01kr439at95y3c5a5s41jwz1ee
 - improving-composer-through-real-time-rl-01kr1qhv8tq25zjb3rkytptehd
@@ -47,9 +47,6 @@ Cursor is an IDE-centered coding product that can use Composer 2 as its built-in
 - It gives each session an isolated remote machine with a terminal, browser, and full desktop for autonomous task execution.
 - It supports multiple models, including Composer 2 and other frontier-lab models with custom agent harnesses.
 - It can be scaled with Kubernetes through a Helm chart and operator, or monitored through a fleet-management API.
-- It turns live user interactions into training signal for a coding agent.
-- It supports a rapid checkpoint-to-production loop so model updates can ship multiple times per day.
-- It uses production evals before deployment to catch regressions in model behavior.
 - It can read an instruction document and translate it into a project structure.
 - It can create folders, schema files, and starter pages in one guided session.
 - It can run setup tasks for adjacent tools such as Obsidian from the same workflow.
@@ -61,9 +58,6 @@ Cursor is an IDE-centered coding product that can use Composer 2 as its built-in
 - The worker connects outbound to Cursor’s cloud over HTTPS, so it fits environments where inbound connectivity is restricted.
 - The product integrates with Kubernetes through a Helm chart and a WorkerDeployment resource for automated scaling and lifecycle management.
 - It supports browser, terminal, and desktop-based agent execution inside the worker environment.
-- It depends on client-side instrumentation to collect interaction signals from the editor workflow.
-- It depends on backend data pipelines to transform those signals into training rewards.
-- It depends on an eval layer, including CursorBench, before redeploying a checkpoint.
 - It works with markdown repositories and file-based knowledge bases.
 - It is used alongside Obsidian so generated wiki pages can be reviewed visually while the agent edits them.
 - It can consume a schema file such as CLAUDE.md as part of the agent context.
@@ -103,9 +97,6 @@ The source is a vendor announcement, so the evidence is self-reported and not in
 
 ### Improving Composer through real-time RL (2026-03-26)
 
-- It depends on client-side instrumentation to collect interaction signals from the editor workflow. (`f5780bc523ef` · neutral · integration_ecosystem[0]; [[sources/improving-composer-through-real-time-rl-01kr1qhv8tq25zjb3rkytptehd|Improving Composer through real-time RL]])
-- It depends on backend data pipelines to transform those signals into training rewards. (`13802a03acc3` · neutral · integration_ecosystem[1]; [[sources/improving-composer-through-real-time-rl-01kr1qhv8tq25zjb3rkytptehd|Improving Composer through real-time RL]])
-- It depends on an eval layer, including CursorBench, before redeploying a checkpoint. (`147e1787311d` · neutral · integration_ecosystem[2]; [[sources/improving-composer-through-real-time-rl-01kr1qhv8tq25zjb3rkytptehd|Improving Composer through real-time RL]])
 - Cursor appears to have a production-grade internal loop rather than a lab demo: the article describes live checkpoints, automated reward aggregation, eval checks, and rapid deployment. The presence of concrete A/B results and named internal tooling suggests an operationally mature engineering environment, even though the evidence is first-party and limited to one product. As of 2026-03-26, this is best read as a serious vendor system with real deployment practice, not as a generic template that every team can copy directly. (`821314720f6d` · neutral · maturity_signals; [[sources/improving-composer-through-real-time-rl-01kr1qhv8tq25zjb3rkytptehd|Improving Composer through real-time RL]])
 - Cursor is operationally relevant because it combines the coding surface, telemetry, eval loop, and deployment path needed to turn model usage into product improvement. For teams building coding agents or agentic IDE features, it is an example of a product where model behavior is continuously shaped by production feedback rather than only offline training. The article’s details are most useful for practitioners thinking about how to wire instrumentation, reward extraction, and fast redeployment into one loop. (`3965a59c88e5` · neutral · operational_relevance; [[sources/improving-composer-through-real-time-rl-01kr1qhv8tq25zjb3rkytptehd|Improving Composer through real-time RL]])
 - An AI-first coding environment that supports agentic development workflows inside the editor. In this article, it is used as the production surface for Composer checkpoints that are trained from real user interactions. (`1ef3ac7e5080` · neutral · short_description; [[sources/improving-composer-through-real-time-rl-01kr1qhv8tq25zjb3rkytptehd|Improving Composer through real-time RL]])
@@ -113,9 +104,6 @@ The source is a vendor announcement, so the evidence is self-reported and not in
 - Ships updated Composer checkpoints behind Auto as often as every five hours, showing a tight feedback loop between product usage and deployment.
 - Includes eval gating with CursorBench before rollout, which reduces the chance of shipping regressions after each training cycle.
 - The setup can surface reward-hacking bugs as operational issues in the training pipeline, which can be fixed from real user feedback. (`1b2924f3e21f` · neutral · strengths; [[sources/improving-composer-through-real-time-rl-01kr1qhv8tq25zjb3rkytptehd|Improving Composer through real-time RL]])
-- It turns live user interactions into training signal for a coding agent. (`0e317bc3edf3` · supporting · core_capabilities[0]; [[sources/improving-composer-through-real-time-rl-01kr1qhv8tq25zjb3rkytptehd|Improving Composer through real-time RL]])
-- It supports a rapid checkpoint-to-production loop so model updates can ship multiple times per day. (`1f79c82cda2d` · supporting · core_capabilities[1]; [[sources/improving-composer-through-real-time-rl-01kr1qhv8tq25zjb3rkytptehd|Improving Composer through real-time RL]])
-- It uses production evals before deployment to catch regressions in model behavior. (`42846d6745d5` · supporting · core_capabilities[2]; [[sources/improving-composer-through-real-time-rl-01kr1qhv8tq25zjb3rkytptehd|Improving Composer through real-time RL]])
 - "The infrastructure for real-time RL depends on many distinct layers of the Cursor stack. The process to produce a new checkpoint starts with client-side instrumentation to translate user interactions into signal, extends through backend data pipelines to feed that signal in our training loop, and ends with a fast deployment path to get the updated checkpoint live." (`e3d147fc7296` · supporting · supporting_snippet; [[sources/improving-composer-through-real-time-rl-01kr1qhv8tq25zjb3rkytptehd|Improving Composer through real-time RL]])
 - The article also makes clear that this is a demanding system, not a simple feature toggle. It depends on client-side instrumentation, backend data pipelines, reward design, evals, and a fast deployment path; small teams may struggle to reproduce that stack. The piece does not provide enough detail to judge cost, reliability at scale, or how robust the system is against subtler manipulation over time. (`50aff88b3a9a` · uncertainty · weaknesses_limitations; [[sources/improving-composer-through-real-time-rl-01kr1qhv8tq25zjb3rkytptehd|Improving Composer through real-time RL]])
 
