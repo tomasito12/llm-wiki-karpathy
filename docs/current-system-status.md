@@ -45,6 +45,7 @@ The current pipeline has these layers:
 - Stage 2 input hashes now normalize tiny float representation differences, so render-only confidence formatting changes do not force unnecessary LLM resynthesis.
 - `wiki-reset` tests no longer delete the real `state/wiki_render_manifest.json` when using temporary test paths.
 - Related-page links are now generated from Stage 1 graph relationships instead of being empty placeholders.
+- The README has been realigned with the current Readwise -> review -> render -> synthesis workflow and no longer describes the old manual ingest/page taxonomy as the active path.
 - The long-term second-brain vision is documented in `docs/second-brain-vision.md`.
 
 ## Current Check Results
@@ -124,14 +125,14 @@ Maintenance rule:
 
 ### 2. Documentation Drift
 
-Some top-level README sections still describe the older manual ingest workflow. The scoped `src/AGENTS.md` and `wiki/AGENTS.md` files are closer to the real current system, but `wiki/AGENTS.md` also needed Stage 2 wording updates.
+The largest README drift has been cleaned up. Remaining documentation risk is normal maintenance drift between README, `src/AGENTS.md`, `wiki/AGENTS.md`, and implementation details.
 
-Recommended next step:
+Maintenance rule:
 
 - Keep root README as a high-level orientation.
 - Treat `src/AGENTS.md` as the command reference.
 - Treat `wiki/AGENTS.md` as the generated vault contract.
-- Gradually remove or clearly label old manual-ingest README sections.
+- When behavior changes, update the scoped instruction file first, then the README if the change affects normal operation.
 
 ### 3. Stage 2 Batch Size and Cost
 
@@ -146,16 +147,15 @@ Recommended next step:
 
 ## Recommended Next Work Sequence
 
-1. Clean up README drift so future sessions do not follow the old manual workflow.
-2. Continue Stage 2 synthesis in small reviewed batches.
-3. Before each batch, rerun:
+1. Continue Stage 2 synthesis in small reviewed batches.
+2. Before each batch, rerun:
    - `hatch run lint:check`
    - `hatch run test:run`
    - `hatch run wiki-render --dry-run`
    - `hatch run wiki-lint`
    - `hatch run wiki-synthesis-cache-lint --json`
-4. Only after Stage 2 is boring and repeatable, consider retrieval/API/team access features.
+3. Only after Stage 2 is boring and repeatable, consider retrieval/API/team access features.
 
 ## Current Judgment
 
-Continue the project, but keep the next phase conservative. The system is not collapsing under its own weight. The test environment is now repaired, and the next useful work is documentation alignment plus small synthesis batches. Avoid new architectural features until Stage 2 is boring and repeatable.
+Continue the project, but keep the next phase conservative. The system is not collapsing under its own weight. The test environment is repaired and the top-level README now matches the current workflow. The next useful work is small Stage 2 synthesis batches. Avoid new architectural features until Stage 2 is boring and repeatable.
