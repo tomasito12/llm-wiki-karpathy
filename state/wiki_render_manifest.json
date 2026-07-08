@@ -4159,11 +4159,11 @@
     },
     {
       "path": "topics/agent-maintained-knowledge-bases.md",
-      "sha256": "ff730c965831b0b40ae62544d84269b61ba41e5d7d4c54d6da13c3bc0ba68a4b"
+      "sha256": "4317b8befc5e57898e25e34422fb03c6b69f1647c7ef19e2004d03b9e7c53555"
     },
     {
       "path": "topics/agent-memory-architecture.md",
-      "sha256": "42c45df48357eea053805e64ca849b26c5cc4bbdf6eb6bad80ee64a6e4bf6776"
+      "sha256": "3639d94c022a382cd43fdb9590f2a9b987fd102d5076c16a504773d1bc1908e7"
     },
     {
       "path": "topics/agent-memory.md",
@@ -4171,7 +4171,7 @@
     },
     {
       "path": "topics/agent-native-auditability.md",
-      "sha256": "b54e798b975d2d8384cf936d433dd00cb578053a787fe42930efc660a18c4e4d"
+      "sha256": "844c7fe61071bb39a05a6b2fd71868656e670493d004efa8d49981b400cf2d12"
     },
     {
       "path": "topics/agent-native-product-management.md",
@@ -4183,11 +4183,11 @@
     },
     {
       "path": "topics/agent-runtime-architecture-for-voice.md",
-      "sha256": "f423d3caa78c626ed64f45bda7bffcb42e104ef5e05494453c142162fa5c7c23"
+      "sha256": "d1a060211ff4cc65d82858c45dee8dba145a6b7c71777460b1bd1b65c29a26c1"
     },
     {
       "path": "topics/agent-runtime-architecture.md",
-      "sha256": "61f1a13fadc56df82cd772740124805753f0522eda4031ae5a7ff71ca3a533de"
+      "sha256": "b06de6a5a8216f01b284d4c27317a4e413dfb6548b0e46529b01f718eaf9807a"
     },
     {
       "path": "topics/agent-self-verification.md",
@@ -4203,7 +4203,7 @@
     },
     {
       "path": "topics/agent-tool-wrapper-overhead.md",
-      "sha256": "c94cbd52396cf07acf264b0be95329ae4ea9dc8ef56ebd8753a1445d9d562ba4"
+      "sha256": "ea1d2b509a4be47a316e464aad64b94a4391c22127920dcf8ba293f81117ab8a"
     },
     {
       "path": "topics/agent-workflow-vs-workflow-orchestration.md",
@@ -4211,7 +4211,7 @@
     },
     {
       "path": "topics/agent-workspace-layering.md",
-      "sha256": "6a2b865a96453a97a7bb05f6ccdcca783680956cb5cb6eb8f78fad31ec28f7fd"
+      "sha256": "7bef0e249b69d4a4feecb1b9993754a7fae9860c481c994cd71f02d69408a44d"
     },
     {
       "path": "topics/agentic-coding-workflow-shape.md",
@@ -4219,11 +4219,11 @@
     },
     {
       "path": "topics/agentic-coding-workflows.md",
-      "sha256": "f808c7457240035397b80fb5f5b2a6ab580bf23da6208bc7ddd5c877ae16aab2"
+      "sha256": "dcba8a6e19ee14ffe3aa8b0f6c244adf93705932422d1d65d05bbb6c4a1d0ad1"
     },
     {
       "path": "topics/agentic-personal-knowledge-management.md",
-      "sha256": "5553a2c7915f2a5ada153d49acac0e6cc7e6a6b6e5d084a15d5e5c46a416c21f"
+      "sha256": "99171874f35bd68bb9c2c795f9811492a22dcb5d7b7324b25fb8e521808238cb"
     },
     {
       "path": "topics/agentic-workflow-latency-optimization.md",
@@ -4231,7 +4231,7 @@
     },
     {
       "path": "topics/agentic-workflows.md",
-      "sha256": "8d9ae6c02a38cacd6c68ac0abef2eb3377ed13170852d464e58d689d20549e52"
+      "sha256": "a0e3a9aa341153089b944962be0bd7c45b7edeb8c9ac90afb51a29ccce1d33e6"
     },
     {
       "path": "topics/ai-adoption-as-behavior-change.md",

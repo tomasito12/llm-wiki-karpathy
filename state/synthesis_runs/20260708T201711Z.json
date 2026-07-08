@@ -1,0 +1,156 @@
+{
+  "created_at": "20260708T201711Z",
+  "options": {
+    "cache_dir": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis",
+    "category": "how_to",
+    "entity": null,
+    "graph_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/wiki_render_graph.json",
+    "include_single_source": false,
+    "limit": 3,
+    "model": "gpt-5.4-mini-2026-03-17",
+    "preview_dir": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews",
+    "review": true
+  },
+  "reviews": [
+    {
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/how_to/model-routing-and-cascades.json",
+      "cached_input_hash": "2d28389210a1a579",
+      "category": "how_to",
+      "current_input_hash": "2d28389210a1a579",
+      "entity_id": "how_to:model-routing-and-cascades",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/how_to/model-routing-and-cascades.md",
+      "rendered_synthesis_state": "synthesized",
+      "slug": "model-routing-and-cascades",
+      "target_path": "how-to/model-routing-and-cascades.md",
+      "title": "Model Routing And Cascades",
+      "validation_reason": "cache entry matches current evidence hash",
+      "validation_state": "fresh",
+      "wrote_preview": true
+    },
+    {
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/how_to/prompt-caching.json",
+      "cached_input_hash": "24a08851160f1978",
+      "category": "how_to",
+      "current_input_hash": "24a08851160f1978",
+      "entity_id": "how_to:prompt-caching",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/how_to/prompt-caching.md",
+      "rendered_synthesis_state": "synthesized",
+      "slug": "prompt-caching",
+      "target_path": "how-to/prompt-caching.md",
+      "title": "Prompt Caching",
+      "validation_reason": "cache entry matches current evidence hash",
+      "validation_state": "fresh",
+      "wrote_preview": true
+    },
+    {
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/how_to/semantic-caching.json",
+      "cached_input_hash": "dbb158e993ea6501",
+      "category": "how_to",
+      "current_input_hash": "dbb158e993ea6501",
+      "entity_id": "how_to:semantic-caching",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/how_to/semantic-caching.md",
+      "rendered_synthesis_state": "synthesized",
+      "slug": "semantic-caching",
+      "target_path": "how-to/semantic-caching.md",
+      "title": "Semantic Caching",
+      "validation_reason": "cache entry matches current evidence hash",
+      "validation_state": "fresh",
+      "wrote_preview": true
+    }
+  ],
+  "run": {
+    "called": 3,
+    "dry_run": false,
+    "items": [
+      {
+        "action": "written",
+        "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/how_to/model-routing-and-cascades.json",
+        "cached_input_hash": "",
+        "category": "how_to",
+        "current_input_hash": "2d28389210a1a579",
+        "entity_id": "how_to:model-routing-and-cascades",
+        "model": "gpt-5.4-mini-2026-03-17",
+        "provider_request_id": "chatcmpl-DzSzJtnX5Iko6hMuj9vu1rPI3FKy7",
+        "reason": "no synthesis cache entry exists",
+        "slug": "model-routing-and-cascades",
+        "state": "new",
+        "title": "Model Routing And Cascades",
+        "token_usage": {
+          "completion_tokens": 925,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens": 4150,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "total_tokens": 5075
+        }
+      },
+      {
+        "action": "written",
+        "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/how_to/prompt-caching.json",
+        "cached_input_hash": "",
+        "category": "how_to",
+        "current_input_hash": "24a08851160f1978",
+        "entity_id": "how_to:prompt-caching",
+        "model": "gpt-5.4-mini-2026-03-17",
+        "provider_request_id": "chatcmpl-DzSzRrndn0jIOavFfYZQUUmFUUNSJ",
+        "reason": "no synthesis cache entry exists",
+        "slug": "prompt-caching",
+        "state": "new",
+        "title": "Prompt Caching",
+        "token_usage": {
+          "completion_tokens": 878,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens": 4170,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "total_tokens": 5048
+        }
+      },
+      {
+        "action": "written",
+        "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/how_to/semantic-caching.json",
+        "cached_input_hash": "",
+        "category": "how_to",
+        "current_input_hash": "dbb158e993ea6501",
+        "entity_id": "how_to:semantic-caching",
+        "model": "gpt-5.4-mini-2026-03-17",
+        "provider_request_id": "chatcmpl-DzSzY6aQAS29vaT0Bok7THGsJtxhv",
+        "reason": "no synthesis cache entry exists",
+        "slug": "semantic-caching",
+        "state": "new",
+        "title": "Semantic Caching",
+        "token_usage": {
+          "completion_tokens": 897,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens": 4237,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "total_tokens": 5134
+        }
+      }
+    ],
+    "planned": 3,
+    "written": 3
+  }
+}

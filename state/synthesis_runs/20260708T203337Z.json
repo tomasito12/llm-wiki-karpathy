@@ -1,0 +1,244 @@
+{
+  "created_at": "20260708T203337Z",
+  "options": {
+    "cache_dir": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis",
+    "category": "topic",
+    "entity": null,
+    "graph_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/wiki_render_graph.json",
+    "include_single_source": false,
+    "limit": 5,
+    "model": "gpt-5.4-mini-2026-03-17",
+    "preview_dir": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews",
+    "review": true
+  },
+  "reviews": [
+    {
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/topic/agent-tool-wrapper-overhead.json",
+      "cached_input_hash": "598f311591ae67f3",
+      "category": "topic",
+      "current_input_hash": "598f311591ae67f3",
+      "entity_id": "topic:agent-tool-wrapper-overhead",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/topic/agent-tool-wrapper-overhead.md",
+      "rendered_synthesis_state": "synthesized",
+      "slug": "agent-tool-wrapper-overhead",
+      "target_path": "topics/agent-tool-wrapper-overhead.md",
+      "title": "Agent Tool Wrapper Overhead",
+      "validation_reason": "cache entry matches current evidence hash",
+      "validation_state": "fresh",
+      "wrote_preview": true
+    },
+    {
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/topic/agent-workspace-layering.json",
+      "cached_input_hash": "b4dd1490e0cc9eeb",
+      "category": "topic",
+      "current_input_hash": "b4dd1490e0cc9eeb",
+      "entity_id": "topic:agent-workspace-layering",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/topic/agent-workspace-layering.md",
+      "rendered_synthesis_state": "synthesized",
+      "slug": "agent-workspace-layering",
+      "target_path": "topics/agent-workspace-layering.md",
+      "title": "Agent Workspace Layering",
+      "validation_reason": "cache entry matches current evidence hash",
+      "validation_state": "fresh",
+      "wrote_preview": true
+    },
+    {
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/topic/agentic-coding-workflows.json",
+      "cached_input_hash": "dded6abffb7f4628",
+      "category": "topic",
+      "current_input_hash": "dded6abffb7f4628",
+      "entity_id": "topic:agentic-coding-workflows",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/topic/agentic-coding-workflows.md",
+      "rendered_synthesis_state": "synthesized",
+      "slug": "agentic-coding-workflows",
+      "target_path": "topics/agentic-coding-workflows.md",
+      "title": "Agentic Coding Workflows",
+      "validation_reason": "cache entry matches current evidence hash",
+      "validation_state": "fresh",
+      "wrote_preview": true
+    },
+    {
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/topic/agentic-personal-knowledge-management.json",
+      "cached_input_hash": "7820951e155467e9",
+      "category": "topic",
+      "current_input_hash": "7820951e155467e9",
+      "entity_id": "topic:agentic-personal-knowledge-management",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/topic/agentic-personal-knowledge-management.md",
+      "rendered_synthesis_state": "synthesized",
+      "slug": "agentic-personal-knowledge-management",
+      "target_path": "topics/agentic-personal-knowledge-management.md",
+      "title": "Agentic Personal Knowledge Management",
+      "validation_reason": "cache entry matches current evidence hash",
+      "validation_state": "fresh",
+      "wrote_preview": true
+    },
+    {
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/topic/agentic-workflows.json",
+      "cached_input_hash": "8acf1d0348d25adc",
+      "category": "topic",
+      "current_input_hash": "8acf1d0348d25adc",
+      "entity_id": "topic:agentic-workflows",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/topic/agentic-workflows.md",
+      "rendered_synthesis_state": "synthesized",
+      "slug": "agentic-workflows",
+      "target_path": "topics/agentic-workflows.md",
+      "title": "Agentic Workflows",
+      "validation_reason": "cache entry matches current evidence hash",
+      "validation_state": "fresh",
+      "wrote_preview": true
+    }
+  ],
+  "run": {
+    "called": 5,
+    "dry_run": false,
+    "items": [
+      {
+        "action": "written",
+        "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/topic/agent-tool-wrapper-overhead.json",
+        "cached_input_hash": "",
+        "category": "topic",
+        "current_input_hash": "598f311591ae67f3",
+        "entity_id": "topic:agent-tool-wrapper-overhead",
+        "model": "gpt-5.4-mini-2026-03-17",
+        "provider_request_id": "chatcmpl-DzTEuH8kjtyV4u7436xiLuiFBXWNu",
+        "reason": "no synthesis cache entry exists",
+        "slug": "agent-tool-wrapper-overhead",
+        "state": "new",
+        "title": "Agent Tool Wrapper Overhead",
+        "token_usage": {
+          "completion_tokens": 826,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens": 3168,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "total_tokens": 3994
+        }
+      },
+      {
+        "action": "written",
+        "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/topic/agent-workspace-layering.json",
+        "cached_input_hash": "",
+        "category": "topic",
+        "current_input_hash": "b4dd1490e0cc9eeb",
+        "entity_id": "topic:agent-workspace-layering",
+        "model": "gpt-5.4-mini-2026-03-17",
+        "provider_request_id": "chatcmpl-DzTF1CgO2Nc5jqLUDZywxgxvFDVua",
+        "reason": "no synthesis cache entry exists",
+        "slug": "agent-workspace-layering",
+        "state": "new",
+        "title": "Agent Workspace Layering",
+        "token_usage": {
+          "completion_tokens": 1134,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens": 8405,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "total_tokens": 9539
+        }
+      },
+      {
+        "action": "written",
+        "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/topic/agentic-coding-workflows.json",
+        "cached_input_hash": "",
+        "category": "topic",
+        "current_input_hash": "dded6abffb7f4628",
+        "entity_id": "topic:agentic-coding-workflows",
+        "model": "gpt-5.4-mini-2026-03-17",
+        "provider_request_id": "chatcmpl-DzTFAjOf7qbKcBZoVQe4blhj6PHTX",
+        "reason": "no synthesis cache entry exists",
+        "slug": "agentic-coding-workflows",
+        "state": "new",
+        "title": "Agentic Coding Workflows",
+        "token_usage": {
+          "completion_tokens": 1040,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens": 8953,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "total_tokens": 9993
+        }
+      },
+      {
+        "action": "written",
+        "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/topic/agentic-personal-knowledge-management.json",
+        "cached_input_hash": "",
+        "category": "topic",
+        "current_input_hash": "7820951e155467e9",
+        "entity_id": "topic:agentic-personal-knowledge-management",
+        "model": "gpt-5.4-mini-2026-03-17",
+        "provider_request_id": "chatcmpl-DzTFI3JvxHhGWlSlkTlLgROREKwKy",
+        "reason": "no synthesis cache entry exists",
+        "slug": "agentic-personal-knowledge-management",
+        "state": "new",
+        "title": "Agentic Personal Knowledge Management",
+        "token_usage": {
+          "completion_tokens": 1069,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens": 11443,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "total_tokens": 12512
+        }
+      },
+      {
+        "action": "written",
+        "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/topic/agentic-workflows.json",
+        "cached_input_hash": "",
+        "category": "topic",
+        "current_input_hash": "8acf1d0348d25adc",
+        "entity_id": "topic:agentic-workflows",
+        "model": "gpt-5.4-mini-2026-03-17",
+        "provider_request_id": "chatcmpl-DzTFQMwYoVRL1zrcMDKoyGE0xxA8f",
+        "reason": "no synthesis cache entry exists",
+        "slug": "agentic-workflows",
+        "state": "new",
+        "title": "Agentic Workflows",
+        "token_usage": {
+          "completion_tokens": 1044,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens": 8432,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "total_tokens": 9476
+        }
+      }
+    ],
+    "planned": 5,
+    "written": 5
+  }
+}

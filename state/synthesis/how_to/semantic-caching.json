@@ -1,0 +1,67 @@
+{
+  "category": "how_to",
+  "consensus": [
+    "Semantic caching reuses an earlier answer when a new request means roughly the same thing, even if the wording differs.",
+    "The basic workflow is: embed the incoming query, search a vector store or cache for similar prior queries, and return the cached answer if similarity is high enough.",
+    "If there is no strong match, call the model, store the result, and use it for later reuse.",
+    "It works best for repeated or near-duplicate questions, especially support/FAQ-style workloads and other slow-changing facts.",
+    "Safe use depends on scoping and freshness rules such as user/workspace/corpus/persona/session filters and time-to-live expiration."
+  ],
+  "context_card": {
+    "best_for_questions_about": [
+      "When semantic caching is worth using",
+      "How semantic caching works at a high level",
+      "What infrastructure semantic caching needs",
+      "How to choose or tune similarity thresholds",
+      "How to avoid stale or cross-boundary reuse"
+    ],
+    "not_enough_for": [
+      "Exact implementation details for a specific stack",
+      "Universal threshold values or savings estimates",
+      "High-confidence guidance for unique or fast-changing queries",
+      "Policy design for complex multi-turn conversations beyond the cited basics"
+    ],
+    "related_tags": [
+      "agent-memory",
+      "ai-economics",
+      "ai-engineering",
+      "inference-systems",
+      "retrieval-systems",
+      "support-automation"
+    ],
+    "strongest_sources": [
+      "Agentic AI: How to Save on Tokens",
+      "8 LLM Cost Optimization Techniques: How to Cut API Spend by Up to 70% (Visually Explained)"
+    ],
+    "use_this_page_when": "Use this page when you are deciding whether semantic caching fits a repetitive Q&A workload, or when you need a quick implementation checklist and the main failure modes."
+  },
+  "entity_id": "how_to:semantic-caching",
+  "evidence_quality": [
+    "Evidence is fairly consistent across two reviewed sources, with 26 grounded claims.",
+    "The guidance is practical but mostly explanatory rather than experimental; there are no universal performance guarantees.",
+    "Threshold tuning and savings are explicitly workload-specific, so any numbers or hit rates should be treated as local to the setup.",
+    "The sources agree on the main risk areas: wrong similarity matches, stale answers, and missing scoping."
+  ],
+  "executive_synthesis": "Semantic caching is a cost-and-latency optimization for workloads where users ask the same thing in many phrasings. Instead of matching exact strings, it compares request meaning with embeddings or vector search, then reuses a stored answer when similarity crosses a chosen threshold. The hard part is not the lookup itself but defining safe reuse rules: where the cache is allowed to apply, how long answers stay valid, and how to avoid returning the wrong response for a near match. The sources suggest starting only after repetition is visible in logs, then tuning thresholds and expiration against real traffic and error cases. It is most useful for repetitive, slow-changing Q&A; it is less attractive for unique or fast-changing queries and can become engineering-heavy.",
+  "last_synthesized_at": "2026-07-08T20:17:11Z",
+  "practical_takeaway": "Use semantic caching only when repeated intent is common. Build it with embeddings, a similarity threshold, metadata scoping, and TTL; then tune the threshold against real traffic. If queries are mostly unique, fast-changing, or hard to scope safely, skip it or expect diminishing returns.",
+  "slug": "semantic-caching",
+  "synthesis_input_hash": "dbb158e993ea6501",
+  "synthesis_prompt_version": 1,
+  "synthesis_schema_version": 1,
+  "tensions": [
+    "The sources agree on the architecture, but they stress that the similarity threshold is the main failure mode: too low can return the wrong answer, too high can erase savings.",
+    "Savings and hit rates are presented as workload-specific, not universal, so there is no fixed rule for expected benefit.",
+    "One source emphasizes adding metadata filters and TTL to prevent cross-boundary or stale reuse, while the other frames these as part of the broader safe-reuse design; the difference is emphasis, not disagreement.",
+    "The technique is described as useful and practical, but also more engineering-heavy than simpler prompt caching and potentially turning into a project."
+  ],
+  "title": "Semantic Caching",
+  "what_to_remember": [
+    "Matches meaning, not exact strings.",
+    "Best for repeated or near-duplicate questions.",
+    "Needs embeddings or a vector search system.",
+    "Use similarity thresholds plus metadata scoping and TTL.",
+    "Tune against real traffic; do not assume universal hit rates.",
+    "Wrong matches and stale answers are the main risks."
+  ]
+}
