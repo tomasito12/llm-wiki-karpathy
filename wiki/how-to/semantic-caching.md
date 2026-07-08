@@ -19,82 +19,72 @@ source_ids:
 - agentic-ai-how-to-save-on-tokens-01kr4qf7weme5tht04bghph2dv
 value_level: high
 confidence: 0.935
-synthesis_state: stage1-placeholder
+synthesis_state: synthesized
+synthesis_stale: false
+synthesis_input_hash: dbb158e993ea6501
+current_input_hash: dbb158e993ea6501
+synthesis_schema_version: 1
+synthesis_prompt_version: 1
+last_synthesized_at: '2026-07-08T20:17:11Z'
 ---
 
 # Semantic Caching
 
-## Current understanding
+## Executive synthesis
 
-<!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
-Semantic caching reuses a previous answer when a new question means the same thing, even if the wording is different. It is useful when users keep asking similar support or FAQ questions in many forms. The problem it solves is paying full inference cost for repeated intent. This matters most in high-repetition workflows where exact string matching is too strict. It can turn a slow model call into a fast cache lookup.
+Semantic caching is a cost-and-latency optimization for workloads where users ask the same thing in many phrasings. Instead of matching exact strings, it compares request meaning with embeddings or vector search, then reuses a stored answer when similarity crosses a chosen threshold. The hard part is not the lookup itself but defining safe reuse rules: where the cache is allowed to apply, how long answers stay valid, and how to avoid returning the wrong response for a near match. The sources suggest starting only after repetition is visible in logs, then tuning thresholds and expiration against real traffic and error cases. It is most useful for repetitive, slow-changing Q&A; it is less attractive for unique or fast-changing queries and can become engineering-heavy.
 
-## Caveats
+## Context card
 
-The article warns that the similarity threshold is the main failure mode: too low returns the wrong answer, too high reduces savings. The cited hit rates and savings are workload-specific and should not be treated as universal as of 2026-04-17.
+- **Use this page when:** Use this page when you are deciding whether semantic caching fits a repetitive Q&A workload, or when you need a quick implementation checklist and the main failure modes.
+- **Best for questions about:** When semantic caching is worth using, How semantic caching works at a high level, What infrastructure semantic caching needs, How to choose or tune similarity thresholds, How to avoid stale or cross-boundary reuse
+- **Not enough for:** Exact implementation details for a specific stack, Universal threshold values or savings estimates, High-confidence guidance for unique or fast-changing queries, Policy design for complex multi-turn conversations beyond the cited basics
+- **Strongest sources:** Agentic AI: How to Save on Tokens, 8 LLM Cost Optimization Techniques: How to Cut API Spend by Up to 70% (Visually Explained)
+- **Related tags:** agent-memory, ai-economics, ai-engineering, inference-systems, retrieval-systems, support-automation
 
-## Implementation Steps
+## What to remember
 
-- Embed each incoming query into a vector.
-- Search for similar cached queries in a vector store.
-- Return the cached response when similarity is above the chosen threshold.
-- Call the model and store the result when there is no match.
-- Tune the threshold using production error cases and hit-rate data.
-- Detect repeated questions or repeated intents in logs before building the cache.
-- Create embeddings for requests and compare them with cosine similarity or another vector similarity method.
-- Set a similarity threshold and test it against real traffic.
-- Attach metadata filters for user, workspace, corpus version, session, and persona.
-- Define a time-to-live policy so stale answers expire.
-- Store and retrieve by semantic index so multiple phrasings can map to one saved answer.
-- Cache deterministic expensive steps such as retrieval results, SQL query results, and tool outputs when appropriate.
+- Matches meaning, not exact strings.
+- Best for repeated or near-duplicate questions.
+- Needs embeddings or a vector search system.
+- Use similarity thresholds plus metadata scoping and TTL.
+- Tune against real traffic; do not assume universal hit rates.
+- Wrong matches and stale answers are the main risks.
 
-## Prerequisites
+## Consensus
 
-- A vector embedding model
-- A cache or vector store
-- A workload with repeated questions or intents
-- A workload with repeated or near-duplicate questions.
-- An embedding or vector search system.
-- Clear scoping and expiration rules for cached answers.
+- Semantic caching reuses an earlier answer when a new request means roughly the same thing, even if the wording differs.
+- The basic workflow is: embed the incoming query, search a vector store or cache for similar prior queries, and return the cached answer if similarity is high enough.
+- If there is no strong match, call the model, store the result, and use it for later reuse.
+- It works best for repeated or near-duplicate questions, especially support/FAQ-style workloads and other slow-changing facts.
+- Safe use depends on scoping and freshness rules such as user/workspace/corpus/persona/session filters and time-to-live expiration.
 
-## Evidence / supporting sources
+## Tensions / open questions
 
-### 8 LLM Cost Optimization Techniques: How to Cut API Spend by Up to 70% (Visually Explained) (2026-04-17)
+- The sources agree on the architecture, but they stress that the similarity threshold is the main failure mode: too low can return the wrong answer, too high can erase savings.
+- Savings and hit rates are presented as workload-specific, not universal, so there is no fixed rule for expected benefit.
+- One source emphasizes adding metadata filters and TTL to prevent cross-boundary or stale reuse, while the other frames these as part of the broader safe-reuse design; the difference is emphasis, not disagreement.
+- The technique is described as useful and practical, but also more engineering-heavy than simpler prompt caching and potentially turning into a project.
 
-- Embed the incoming query and compare it to cached queries by meaning. If the similarity score is high enough, return the stored answer instead of calling the model again. If there is no strong match, generate a fresh answer and store it for later. Start with a conservative threshold and adjust it based on mistakes and hit rate. Use this only where repeated intent is common and wrong reuse would be acceptable or easy to detect. (`bc608616d722` · neutral · answer_summary; [[sources/8-llm-cost-optimization-techniques-how-to-cut-api-spend-by-up-to-70-visually-explained-01ktkyv6hm99qdvw30jt2405q9|8 LLM Cost Optimization Techniques: How to Cut API Spend by Up to 70% (Visually Explained)]])
-- Embed each incoming query into a vector. (`488b909c0aa4` · neutral · implementation_steps[0]; [[sources/8-llm-cost-optimization-techniques-how-to-cut-api-spend-by-up-to-70-visually-explained-01ktkyv6hm99qdvw30jt2405q9|8 LLM Cost Optimization Techniques: How to Cut API Spend by Up to 70% (Visually Explained)]])
-- Search for similar cached queries in a vector store. (`567485a130c5` · neutral · implementation_steps[1]; [[sources/8-llm-cost-optimization-techniques-how-to-cut-api-spend-by-up-to-70-visually-explained-01ktkyv6hm99qdvw30jt2405q9|8 LLM Cost Optimization Techniques: How to Cut API Spend by Up to 70% (Visually Explained)]])
-- Return the cached response when similarity is above the chosen threshold. (`f736135719c0` · neutral · implementation_steps[2]; [[sources/8-llm-cost-optimization-techniques-how-to-cut-api-spend-by-up-to-70-visually-explained-01ktkyv6hm99qdvw30jt2405q9|8 LLM Cost Optimization Techniques: How to Cut API Spend by Up to 70% (Visually Explained)]])
-- Call the model and store the result when there is no match. (`067c25d42cb8` · neutral · implementation_steps[3]; [[sources/8-llm-cost-optimization-techniques-how-to-cut-api-spend-by-up-to-70-visually-explained-01ktkyv6hm99qdvw30jt2405q9|8 LLM Cost Optimization Techniques: How to Cut API Spend by Up to 70% (Visually Explained)]])
-- Tune the threshold using production error cases and hit-rate data. (`29f9e1daf13f` · neutral · implementation_steps[4]; [[sources/8-llm-cost-optimization-techniques-how-to-cut-api-spend-by-up-to-70-visually-explained-01ktkyv6hm99qdvw30jt2405q9|8 LLM Cost Optimization Techniques: How to Cut API Spend by Up to 70% (Visually Explained)]])
-- A vector embedding model (`203f76453721` · neutral · prerequisites[0]; [[sources/8-llm-cost-optimization-techniques-how-to-cut-api-spend-by-up-to-70-visually-explained-01ktkyv6hm99qdvw30jt2405q9|8 LLM Cost Optimization Techniques: How to Cut API Spend by Up to 70% (Visually Explained)]])
-- A cache or vector store (`d38d84015073` · neutral · prerequisites[1]; [[sources/8-llm-cost-optimization-techniques-how-to-cut-api-spend-by-up-to-70-visually-explained-01ktkyv6hm99qdvw30jt2405q9|8 LLM Cost Optimization Techniques: How to Cut API Spend by Up to 70% (Visually Explained)]])
-- A workload with repeated questions or intents (`9f6485e7a6bd` · neutral · prerequisites[2]; [[sources/8-llm-cost-optimization-techniques-how-to-cut-api-spend-by-up-to-70-visually-explained-01ktkyv6hm99qdvw30jt2405q9|8 LLM Cost Optimization Techniques: How to Cut API Spend by Up to 70% (Visually Explained)]])
-- Semantic caching reuses a previous answer when a new question means the same thing, even if the wording is different. It is useful when users keep asking similar support or FAQ questions in many forms. The problem it solves is paying full inference cost for repeated intent. This matters most in high-repetition workflows where exact string matching is too strict. It can turn a slow model call into a fast cache lookup. (`b037fdda4383` · neutral · what_and_problem; [[sources/8-llm-cost-optimization-techniques-how-to-cut-api-spend-by-up-to-70-visually-explained-01ktkyv6hm99qdvw30jt2405q9|8 LLM Cost Optimization Techniques: How to Cut API Spend by Up to 70% (Visually Explained)]])
-- "Semantic caching does not match exact strings. It matches meaning." (`345b7df2802e` · supporting · supporting_snippet; [[sources/8-llm-cost-optimization-techniques-how-to-cut-api-spend-by-up-to-70-visually-explained-01ktkyv6hm99qdvw30jt2405q9|8 LLM Cost Optimization Techniques: How to Cut API Spend by Up to 70% (Visually Explained)]])
-- The article warns that the similarity threshold is the main failure mode: too low returns the wrong answer, too high reduces savings. The cited hit rates and savings are workload-specific and should not be treated as universal as of 2026-04-17. (`3b5df29233a1` · uncertainty · caveats; [[sources/8-llm-cost-optimization-techniques-how-to-cut-api-spend-by-up-to-70-visually-explained-01ktkyv6hm99qdvw30jt2405q9|8 LLM Cost Optimization Techniques: How to Cut API Spend by Up to 70% (Visually Explained)]])
+## Evidence quality
 
-### Agentic AI: How to Save on Tokens (2026-05-08)
+- Evidence is fairly consistent across two reviewed sources, with 26 grounded claims.
+- The guidance is practical but mostly explanatory rather than experimental; there are no universal performance guarantees.
+- Threshold tuning and savings are explicitly workload-specific, so any numbers or hit rates should be treated as local to the setup.
+- The sources agree on the main risk areas: wrong similarity matches, stale answers, and missing scoping.
 
-- Embed incoming requests and compare them to stored requests using a similarity threshold. If a new query is close enough to a previous one, return the saved answer instead of calling the model again. Add metadata such as user, workspace, corpus version, persona, session scope, and time-to-live so the cache does not cross the wrong boundaries or serve stale answers. Start only after you see repetition in logs, because designing safe reuse rules is the hard part. Use it when the same question is asked in many forms and the answers do not age quickly. (`3ecc97b3e31e` · neutral · answer_summary; [[sources/agentic-ai-how-to-save-on-tokens-01kr4qf7weme5tht04bghph2dv|Agentic AI: How to Save on Tokens]])
-- Detect repeated questions or repeated intents in logs before building the cache. (`700c9574d1f6` · neutral · implementation_steps[0]; [[sources/agentic-ai-how-to-save-on-tokens-01kr4qf7weme5tht04bghph2dv|Agentic AI: How to Save on Tokens]])
-- Create embeddings for requests and compare them with cosine similarity or another vector similarity method. (`27f3d5e6c608` · neutral · implementation_steps[1]; [[sources/agentic-ai-how-to-save-on-tokens-01kr4qf7weme5tht04bghph2dv|Agentic AI: How to Save on Tokens]])
-- Set a similarity threshold and test it against real traffic. (`1075b3c3d2d2` · neutral · implementation_steps[2]; [[sources/agentic-ai-how-to-save-on-tokens-01kr4qf7weme5tht04bghph2dv|Agentic AI: How to Save on Tokens]])
-- Attach metadata filters for user, workspace, corpus version, session, and persona. (`cc0f8dde83e9` · neutral · implementation_steps[3]; [[sources/agentic-ai-how-to-save-on-tokens-01kr4qf7weme5tht04bghph2dv|Agentic AI: How to Save on Tokens]])
-- Define a time-to-live policy so stale answers expire. (`015a1161449c` · neutral · implementation_steps[4]; [[sources/agentic-ai-how-to-save-on-tokens-01kr4qf7weme5tht04bghph2dv|Agentic AI: How to Save on Tokens]])
-- Store and retrieve by semantic index so multiple phrasings can map to one saved answer. (`64c301023d02` · neutral · implementation_steps[5]; [[sources/agentic-ai-how-to-save-on-tokens-01kr4qf7weme5tht04bghph2dv|Agentic AI: How to Save on Tokens]])
-- Cache deterministic expensive steps such as retrieval results, SQL query results, and tool outputs when appropriate. (`754b0ba84777` · neutral · implementation_steps[6]; [[sources/agentic-ai-how-to-save-on-tokens-01kr4qf7weme5tht04bghph2dv|Agentic AI: How to Save on Tokens]])
-- A workload with repeated or near-duplicate questions. (`38b32ce5cb43` · neutral · prerequisites[0]; [[sources/agentic-ai-how-to-save-on-tokens-01kr4qf7weme5tht04bghph2dv|Agentic AI: How to Save on Tokens]])
-- An embedding or vector search system. (`377cf2d4155a` · neutral · prerequisites[1]; [[sources/agentic-ai-how-to-save-on-tokens-01kr4qf7weme5tht04bghph2dv|Agentic AI: How to Save on Tokens]])
-- Clear scoping and expiration rules for cached answers. (`f047f3790c99` · neutral · prerequisites[2]; [[sources/agentic-ai-how-to-save-on-tokens-01kr4qf7weme5tht04bghph2dv|Agentic AI: How to Save on Tokens]])
-- Semantic caching reuses an earlier answer when a new request means roughly the same thing as a previous one. It helps when many users ask near-duplicate questions and you do not want to spend model calls answering the same thing over and over. This can reduce cost and latency, but it is riskier than exact prompt reuse because the system has to decide whether two requests are close enough. It is best suited to repetitive question-and-answer workloads with slow-changing facts. (`d83559bbfe7d` · neutral · what_and_problem; [[sources/agentic-ai-how-to-save-on-tokens-01kr4qf7weme5tht04bghph2dv|Agentic AI: How to Save on Tokens]])
-- "Semantic caching matches on meaning" ... "you need to consider what threshold to use for similarity, how long the answer should stay valid, and what happens on multi-turn questions." (`393e902ee110` · supporting · supporting_snippet; [[sources/agentic-ai-how-to-save-on-tokens-01kr4qf7weme5tht04bghph2dv|Agentic AI: How to Save on Tokens]])
-- This is more engineering-heavy than prompt caching and can turn into a project. Wrong similarity thresholds, stale answers, or missing user scoping can create bad reuse. It is less attractive for tasks with unique or fast-changing queries, and the article notes that the savings depend heavily on the setup. (`f90254da8958` · uncertainty · caveats; [[sources/agentic-ai-how-to-save-on-tokens-01kr4qf7weme5tht04bghph2dv|Agentic AI: How to Save on Tokens]])
+## Practical takeaway
 
-## Contradictions / tensions
+Use semantic caching only when repeated intent is common. Build it with embeddings, a similarity threshold, metadata scoping, and TTL; then tune the threshold against real traffic. If queries are mostly unique, fast-changing, or hard to scope safely, skip it or expect diminishing returns.
 
-- The article warns that the similarity threshold is the main failure mode: too low returns the wrong answer, too high reduces savings. The cited hit rates and savings are workload-specific and should not be treated as universal as of 2026-04-17. (uncertainty; [[sources/8-llm-cost-optimization-techniques-how-to-cut-api-spend-by-up-to-70-visually-explained-01ktkyv6hm99qdvw30jt2405q9|8 LLM Cost Optimization Techniques: How to Cut API Spend by Up to 70% (Visually Explained)]])
-- This is more engineering-heavy than prompt caching and can turn into a project. Wrong similarity thresholds, stale answers, or missing user scoping can create bad reuse. It is less attractive for tasks with unique or fast-changing queries, and the article notes that the savings depend heavily on the setup. (uncertainty; [[sources/agentic-ai-how-to-save-on-tokens-01kr4qf7weme5tht04bghph2dv|Agentic AI: How to Save on Tokens]])
+## Evidence index
+
+- Sources: 2
+- Evidence items: 26
+- Current input hash: `dbb158e993ea6501`
+- Cached input hash: `dbb158e993ea6501`
+- Last synthesized: 2026-07-08T20:17:11Z
+- Synthesis status: `fresh`
 
 ## Related pages
 

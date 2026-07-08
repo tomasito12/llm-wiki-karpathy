@@ -427,7 +427,7 @@
     },
     {
       "path": "how-to/model-routing-and-cascades.md",
-      "sha256": "39f0f54b1de3f51b31840e855b3625e060c12b770570ada4b9415de4f9bd87bd"
+      "sha256": "1667d5b54aa3e6575b39541fd2af9cfcba5966debd6b8b937cf32aa8fe66bb9c"
     },
     {
       "path": "how-to/multi-agent-system-design.md",
@@ -459,7 +459,7 @@
     },
     {
       "path": "how-to/prompt-caching.md",
-      "sha256": "03c8ca3f864d279eee33d73dc2ec25fff2b5f57f4ceb3dc708040af8ec2ebd78"
+      "sha256": "3aec3416e244bcaa53ab6d0f41c6a2de8331b7cd43d197fad8296f90f2f6df3e"
     },
     {
       "path": "how-to/prompt-compression.md",
@@ -491,7 +491,7 @@
     },
     {
       "path": "how-to/semantic-caching.md",
-      "sha256": "31cc956e6341edd62c974e1fa7a60ce5b6426e64f84548287b5aaf97ba2f698d"
+      "sha256": "8d70aac5a211a90c99d318512e67f4564a45a0f08e55f01c143c0ac30e635697"
     },
     {
       "path": "how-to/sms-support-concierge.md",
