@@ -19,7 +19,7 @@ source_ids:
 - the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y
 - what-we-lost-in-the-ai-chat-stream-01kts1km6z675n7yzsm6jdstn0
 value_level: high
-confidence: 0.9166666666666666
+confidence: 0.916667
 synthesis_state: stage1-placeholder
 ---
 

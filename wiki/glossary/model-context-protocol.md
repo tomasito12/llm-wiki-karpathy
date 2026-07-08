@@ -24,7 +24,7 @@ source_ids:
 - technology-radar-01krc5f8a8a6x35ke2kdjn5d9w
 - the-sequence-opinion-848-the-agent-s-hands-cli-or-mcp-01kpx19wnknk0ms9zpszqvv62b
 value_level: high
-confidence: 0.8742857142857142
+confidence: 0.874286
 synthesis_state: stage1-placeholder
 ---
 

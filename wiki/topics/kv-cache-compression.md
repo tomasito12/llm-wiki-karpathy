@@ -19,7 +19,7 @@ source_ids:
 - recent-developments-in-llm-architectures-kv-sharing-mhc-and-compressed-attention-01krrba0929cn5qjh3gve00hyf
 - the-sequence-radar-832-last-week-in-ai-compression-voice-and-why-it-all-matters-01knem857g2mezerkwj34t8vnh
 value_level: high
-confidence: 0.9400000000000001
+confidence: 0.94
 synthesis_state: stage1-placeholder
 ---
 

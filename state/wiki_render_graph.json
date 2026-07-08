@@ -26937,7 +26937,7 @@
     {
       "aliases": [],
       "category": "glossary",
-      "confidence": 0.8600000000000001,
+      "confidence": 0.86,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "glossary:fine-tuning",
@@ -27419,7 +27419,7 @@
     {
       "aliases": [],
       "category": "glossary",
-      "confidence": 0.8999999999999999,
+      "confidence": 0.9,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "glossary:hallucinations",
@@ -28494,7 +28494,7 @@
     {
       "aliases": [],
       "category": "glossary",
-      "confidence": 0.9566666666666667,
+      "confidence": 0.956667,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "glossary:kv-cache",
@@ -28982,7 +28982,7 @@
     {
       "aliases": [],
       "category": "glossary",
-      "confidence": 0.9360000000000002,
+      "confidence": 0.936,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "glossary:mixture-of-experts",
@@ -29390,7 +29390,7 @@
     {
       "aliases": [],
       "category": "glossary",
-      "confidence": 0.8742857142857142,
+      "confidence": 0.874286,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "glossary:model-context-protocol",
@@ -29948,7 +29948,7 @@
     {
       "aliases": [],
       "category": "glossary",
-      "confidence": 0.9066666666666666,
+      "confidence": 0.906667,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "glossary:ontology",
@@ -30318,7 +30318,7 @@
     {
       "aliases": [],
       "category": "glossary",
-      "confidence": 0.7733333333333334,
+      "confidence": 0.773333,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "glossary:passkey",
@@ -32678,7 +32678,7 @@
     {
       "aliases": [],
       "category": "how_to",
-      "confidence": 0.9633333333333333,
+      "confidence": 0.963333,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "how_to:agent-maintained-knowledge-bases",
@@ -33542,7 +33542,7 @@
     {
       "aliases": [],
       "category": "how_to",
-      "confidence": 0.9333333333333335,
+      "confidence": 0.933333,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "how_to:agentic-personal-knowledge-management",
@@ -34689,7 +34689,7 @@
     {
       "aliases": [],
       "category": "how_to",
-      "confidence": 0.9533333333333333,
+      "confidence": 0.953333,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "how_to:claude-skills-setup",
@@ -41688,7 +41688,7 @@
     {
       "aliases": [],
       "category": "how_to",
-      "confidence": 0.9266666666666666,
+      "confidence": 0.926667,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "how_to:local-model-setup",
@@ -43063,7 +43063,7 @@
     {
       "aliases": [],
       "category": "how_to",
-      "confidence": 0.9299999999999999,
+      "confidence": 0.93,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "how_to:model-routing-and-cascades",
@@ -55311,7 +55311,7 @@
     {
       "aliases": [],
       "category": "model",
-      "confidence": 0.7949999999999999,
+      "confidence": 0.795,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "model:composer-2",
@@ -64327,7 +64327,7 @@
     {
       "aliases": [],
       "category": "model",
-      "confidence": 0.8066666666666666,
+      "confidence": 0.806667,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "model:opus-4-6",
@@ -72888,7 +72888,7 @@
     {
       "aliases": [],
       "category": "tool",
-      "confidence": 0.9199999999999997,
+      "confidence": 0.92,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "tool:claude-code",
@@ -82575,7 +82575,7 @@
     {
       "aliases": [],
       "category": "tool",
-      "confidence": 0.9199999999999999,
+      "confidence": 0.92,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "tool:fin",
@@ -88335,7 +88335,7 @@
     {
       "aliases": [],
       "category": "tool",
-      "confidence": 0.9199999999999999,
+      "confidence": 0.92,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "tool:hermes-agent",
@@ -90937,7 +90937,7 @@
     {
       "aliases": [],
       "category": "tool",
-      "confidence": 0.8866666666666667,
+      "confidence": 0.886667,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "tool:langgraph",
@@ -97812,7 +97812,7 @@
     {
       "aliases": [],
       "category": "tool",
-      "confidence": 0.9400000000000001,
+      "confidence": 0.94,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "tool:obsidian",
@@ -100724,7 +100724,7 @@
     {
       "aliases": [],
       "category": "tool",
-      "confidence": 0.9149999999999999,
+      "confidence": 0.915,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "tool:ollama",
@@ -115855,7 +115855,7 @@
     {
       "aliases": [],
       "category": "topic",
-      "confidence": 0.9199999999999999,
+      "confidence": 0.92,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "topic:agent-led-inbound-qualification",
@@ -116353,7 +116353,7 @@
     {
       "aliases": [],
       "category": "topic",
-      "confidence": 0.9574999999999999,
+      "confidence": 0.9575,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "topic:agent-maintained-knowledge-bases",
@@ -119523,7 +119523,7 @@
     {
       "aliases": [],
       "category": "topic",
-      "confidence": 0.9400000000000001,
+      "confidence": 0.94,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "topic:agent-runtime-architecture",
@@ -120022,7 +120022,7 @@
     {
       "aliases": [],
       "category": "topic",
-      "confidence": 0.9299999999999999,
+      "confidence": 0.93,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "topic:agent-runtime-architecture-for-voice",
@@ -121778,7 +121778,7 @@
     {
       "aliases": [],
       "category": "topic",
-      "confidence": 0.9257142857142856,
+      "confidence": 0.925714,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "topic:agent-workspace-layering",
@@ -124240,7 +124240,7 @@
     {
       "aliases": [],
       "category": "topic",
-      "confidence": 0.9355555555555556,
+      "confidence": 0.935556,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "topic:agentic-personal-knowledge-management",
@@ -125794,7 +125794,7 @@
     {
       "aliases": [],
       "category": "topic",
-      "confidence": 0.9257142857142858,
+      "confidence": 0.925714,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "topic:agentic-workflows",
@@ -128813,7 +128813,7 @@
     {
       "aliases": [],
       "category": "topic",
-      "confidence": 0.8200000000000001,
+      "confidence": 0.82,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "topic:ai-products-shift-from-models-to-systems",
@@ -129858,7 +129858,7 @@
     {
       "aliases": [],
       "category": "topic",
-      "confidence": 0.9179999999999999,
+      "confidence": 0.918,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "topic:ai-workflow-restructuring",
@@ -131465,7 +131465,7 @@
     {
       "aliases": [],
       "category": "topic",
-      "confidence": 0.9433333333333334,
+      "confidence": 0.943333,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "topic:approval-based-coding-workflows",
@@ -133203,7 +133203,7 @@
     {
       "aliases": [],
       "category": "topic",
-      "confidence": 0.8866666666666666,
+      "confidence": 0.886667,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "topic:behavioral-instruction-layers-for-agents",
@@ -134586,7 +134586,7 @@
     {
       "aliases": [],
       "category": "topic",
-      "confidence": 0.9166666666666666,
+      "confidence": 0.916667,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "topic:cognitive-debt-in-ai-workflows",
@@ -136512,7 +136512,7 @@
     {
       "aliases": [],
       "category": "topic",
-      "confidence": 0.927857142857143,
+      "confidence": 0.927857,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "topic:context-engineering",
@@ -139741,7 +139741,7 @@
     {
       "aliases": [],
       "category": "topic",
-      "confidence": 0.8400000000000001,
+      "confidence": 0.84,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "topic:dense-vs-moe-model-consistency",
@@ -141012,7 +141012,7 @@
     {
       "aliases": [],
       "category": "topic",
-      "confidence": 0.9066666666666667,
+      "confidence": 0.906667,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "topic:enterprise-conversational-ai-integration",
@@ -148256,7 +148256,7 @@
     {
       "aliases": [],
       "category": "topic",
-      "confidence": 0.8825000000000001,
+      "confidence": 0.8825,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "topic:intent-driven-commerce-interfaces",
@@ -150199,7 +150199,7 @@
     {
       "aliases": [],
       "category": "topic",
-      "confidence": 0.9579999999999999,
+      "confidence": 0.958,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "topic:knowledge-management",
@@ -151127,7 +151127,7 @@
     {
       "aliases": [],
       "category": "topic",
-      "confidence": 0.9400000000000001,
+      "confidence": 0.94,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "topic:kv-cache-compression",
@@ -155131,7 +155131,7 @@
     {
       "aliases": [],
       "category": "topic",
-      "confidence": 0.9450000000000001,
+      "confidence": 0.945,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "topic:local-pii-redaction",
@@ -156151,7 +156151,7 @@
     {
       "aliases": [],
       "category": "topic",
-      "confidence": 0.9199999999999999,
+      "confidence": 0.92,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "topic:manual-capture-friction",
@@ -158389,7 +158389,7 @@
     {
       "aliases": [],
       "category": "topic",
-      "confidence": 0.9166666666666666,
+      "confidence": 0.916667,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "topic:ontology-driven-extraction",
@@ -161527,7 +161527,7 @@
     {
       "aliases": [],
       "category": "topic",
-      "confidence": 0.9299999999999999,
+      "confidence": 0.93,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "topic:personalized-conversational-ai",
@@ -163271,7 +163271,7 @@
     {
       "aliases": [],
       "category": "topic",
-      "confidence": 0.9366666666666666,
+      "confidence": 0.936667,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "topic:progressive-disclosure-skill-design",
@@ -166850,7 +166850,7 @@
     {
       "aliases": [],
       "category": "topic",
-      "confidence": 0.8999999999999999,
+      "confidence": 0.9,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "topic:realtime-multimodal-interaction",
@@ -171185,7 +171185,7 @@
     {
       "aliases": [],
       "category": "topic",
-      "confidence": 0.9450000000000001,
+      "confidence": 0.945,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "topic:structured-specification-for-agentic-development",
@@ -175061,7 +175061,7 @@
     {
       "aliases": [],
       "category": "topic",
-      "confidence": 0.9249999999999999,
+      "confidence": 0.925,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "topic:tiered-access-for-sensitive-model-capabilities",
@@ -177785,7 +177785,7 @@
     {
       "aliases": [],
       "category": "topic",
-      "confidence": 0.9124999999999999,
+      "confidence": 0.9125,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "topic:use-case-specific-local-model-selection",
@@ -180717,7 +180717,7 @@
     {
       "aliases": [],
       "category": "topic",
-      "confidence": 0.9450000000000001,
+      "confidence": 0.945,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "topic:visual-specifications-for-ai-systems",
@@ -181787,7 +181787,7 @@
     {
       "aliases": [],
       "category": "topic",
-      "confidence": 0.9299999999999999,
+      "confidence": 0.93,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "topic:wiki-schema-governance",
@@ -185433,7 +185433,7 @@
         "Agentic coding is becoming a supervised workflow, not a hands-off feature"
       ],
       "category": "trend",
-      "confidence": 0.9125000000000001,
+      "confidence": 0.9125,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "trend:agentic-coding-shifts-toward-higher-supervision-costs",
@@ -186899,7 +186899,7 @@
         "Agents Are Moving Toward Persistent Memory-Backed Workflows"
       ],
       "category": "trend",
-      "confidence": 0.8633333333333333,
+      "confidence": 0.863333,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "trend:agents-move-toward-persistent-memory-backed-workflows",
@@ -190438,7 +190438,7 @@
         "AI products are shifting from standalone models to operational systems"
       ],
       "category": "trend",
-      "confidence": 0.8945454545454546,
+      "confidence": 0.894545,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "trend:ai-products-shift-from-models-to-systems",
@@ -195877,7 +195877,7 @@
     {
       "aliases": [],
       "category": "trend",
-      "confidence": 0.9299999999999999,
+      "confidence": 0.93,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "trend:apple-silicon-local-inference-becomes-practical",
@@ -199041,7 +199041,7 @@
     {
       "aliases": [],
       "category": "trend",
-      "confidence": 0.8533333333333334,
+      "confidence": 0.853333,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "trend:enterprise-agents-move-into-customer-infrastructure",
@@ -199764,7 +199764,7 @@
     {
       "aliases": [],
       "category": "trend",
-      "confidence": 0.8825000000000001,
+      "confidence": 0.8825,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "trend:enterprise-ai-moves-toward-governed-human-oversight-workflows",
@@ -201869,7 +201869,7 @@
         "Harness Design Becomes More Important for Agent Reliability"
       ],
       "category": "trend",
-      "confidence": 0.9400000000000002,
+      "confidence": 0.94,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "trend:harness-design-becomes-more-important-for-agent-reliability",
@@ -207333,7 +207333,7 @@
     {
       "aliases": [],
       "category": "trend",
-      "confidence": 0.8049999999999999,
+      "confidence": 0.805,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "trend:knowledge-work-moves-toward-agentic-workflow-completion",
@@ -209642,7 +209642,7 @@
         "Models are becoming execution layers for software creation"
       ],
       "category": "trend",
-      "confidence": 0.8500000000000001,
+      "confidence": 0.85,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "trend:models-becoming-execution-layers",
@@ -211573,7 +211573,7 @@
         "Open-weight models are being adapted for consumer and local hardware"
       ],
       "category": "trend",
-      "confidence": 0.8850000000000001,
+      "confidence": 0.885,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "trend:open-weight-models-become-viable-on-consumer-hardware",
@@ -215213,7 +215213,7 @@
     {
       "aliases": [],
       "category": "trend",
-      "confidence": 0.8633333333333333,
+      "confidence": 0.863333,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "trend:sales-moves-from-fast-follow-up-to-agent-led-intake",
@@ -215725,7 +215725,7 @@
     {
       "aliases": [],
       "category": "trend",
-      "confidence": 0.7966666666666667,
+      "confidence": 0.796667,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "trend:skills-move-ai-products-toward-workflow-packaging",
@@ -216791,7 +216791,7 @@
         "Stable API names no longer guarantee stable access or behavior"
       ],
       "category": "trend",
-      "confidence": 0.9166666666666666,
+      "confidence": 0.916667,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "trend:stable-api-names-no-longer-guarantee-stable-model-behavior",
@@ -218075,7 +218075,7 @@
     {
       "aliases": [],
       "category": "trend",
-      "confidence": 0.8833333333333333,
+      "confidence": 0.883333,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "trend:support-automation-shifts-toward-agentic-workflow-completion",
@@ -219629,7 +219629,7 @@
         "Verification Loops Become Central to AI Workflows"
       ],
       "category": "trend",
-      "confidence": 0.9280000000000002,
+      "confidence": 0.928,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "trend:verification-loops-become-central-to-ai-workflows",
@@ -221832,7 +221832,7 @@
         "Workflow Restructuring Around AI Agents"
       ],
       "category": "trend",
-      "confidence": 0.8961538461538462,
+      "confidence": 0.896154,
       "counter_count": 0,
       "duplicate_candidates": [],
       "entity_id": "trend:workflow-restructuring-around-ai-agents",

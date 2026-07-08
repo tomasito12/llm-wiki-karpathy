@@ -20,7 +20,7 @@ source_ids:
 - i-spent-3-days-researching-self-hosted-ai-here-s-why-you-should-and-shouldn-t-actually-do-it-01kqkvbh9k2p2m6eh234khs2kf
 - kimi-k2-6-just-dropped-the-open-source-coding-agent-that-already-beats-claude-opus-4-5-at-76-lower-cost-just-got-better-01kqkv823tq6868pfbrjg0khg6
 value_level: high
-confidence: 0.9360000000000002
+confidence: 0.936
 synthesis_state: stage1-placeholder
 ---
 

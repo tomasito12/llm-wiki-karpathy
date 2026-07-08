@@ -16,7 +16,7 @@ source_ids:
 - why-andrej-karpathy-s-llm-wiki-is-the-future-of-personal-knowledge-01kqm0rf7jxk8010thyjvag0j8
 - you-probably-don-t-need-a-graph-database-for-your-knowledge-graph-01kqz02qzddjehycrjafswxv5r
 value_level: high
-confidence: 0.9066666666666666
+confidence: 0.906667
 synthesis_state: stage1-placeholder
 ---
 

@@ -16,7 +16,7 @@ source_ids:
 - introducing-openai-privacy-filter-01kptv6v2rm47hbeqs6trnpaaj
 - openai-just-open-sourced-the-one-thing-every-startup-should-have-built-first-01kqn8asyw9tae3fncffmy92cc
 value_level: high
-confidence: 0.9450000000000001
+confidence: 0.945
 synthesis_state: stage1-placeholder
 ---
 

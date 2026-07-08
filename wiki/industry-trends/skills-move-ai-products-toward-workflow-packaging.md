@@ -17,7 +17,7 @@ source_ids:
 - personalizing-chatgpt-01knw8fhbjwcd9g1as8kctv26f
 - the-complete-guide-to-building-skills-for-claude-01krv8epdjta6664ek10fvp7tz
 value_level: medium
-confidence: 0.7966666666666667
+confidence: 0.796667
 synthesis_state: stage1-placeholder
 maturity: unknown
 ---

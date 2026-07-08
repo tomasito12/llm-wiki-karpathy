@@ -30,7 +30,7 @@ source_ids:
 - using-projects-in-chatgpt-01knw8fhqktagvstg6j6xzk4xq
 - why-obsidian-won-as-the-base-for-the-personal-llm-harness-and-when-you-shouldn-t-pick-it-01krbnbqc948bayfn39ae9t4gb
 value_level: high
-confidence: 0.9257142857142856
+confidence: 0.925714
 synthesis_state: stage1-placeholder
 ---
 

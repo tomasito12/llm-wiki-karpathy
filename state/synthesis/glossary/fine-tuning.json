@@ -38,7 +38,7 @@
   "last_synthesized_at": "2026-06-17T19:33:15Z",
   "practical_takeaway": "Treat fine-tuning as an operational optimization for recurring, narrow workflows: use it when you have enough domain examples and a clear success criterion, and avoid assuming it is worthwhile unless the performance gain justifies the extra data and maintenance work.",
   "slug": "fine-tuning",
-  "synthesis_input_hash": "62cdb343e43306e7",
+  "synthesis_input_hash": "f4bb45a475b8a952",
   "synthesis_prompt_version": 1,
   "synthesis_schema_version": 1,
   "tensions": [

@@ -17,7 +17,7 @@ source_ids:
 - how-to-make-the-case-for-giving-your-ai-agent-system-access-01ktv9jzh8ynayfwz0kx9wat67
 - what-is-an-ai-contact-center-01krxb3f32t1081mt5z1jz13q5
 value_level: high
-confidence: 0.8833333333333333
+confidence: 0.883333
 synthesis_state: stage1-placeholder
 maturity: unknown
 ---

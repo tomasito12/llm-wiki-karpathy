@@ -38,7 +38,7 @@ source_ids:
 - the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3
 - your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn
 value_level: high
-confidence: 0.9199999999999997
+confidence: 0.92
 synthesis_state: stage1-placeholder
 types:
 - ai-application

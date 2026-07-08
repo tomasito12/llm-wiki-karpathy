@@ -17,7 +17,7 @@ source_ids:
 - extending-fin-as-the-most-open-agent-platform-01ktpp7k8sthayjgk3vd9ezxr6
 - run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy
 value_level: high
-confidence: 0.8533333333333334
+confidence: 0.853333
 synthesis_state: stage1-placeholder
 maturity: unknown
 ---

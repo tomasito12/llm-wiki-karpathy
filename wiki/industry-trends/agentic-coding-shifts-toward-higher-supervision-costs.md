@@ -24,7 +24,7 @@ source_ids:
 - ainews-cognition-raises-1b-in-26b-series-d-01kspqrzp50vrh0jz9vejapst1
 - you-need-ai-that-reduces-maintenance-costs-01krv8d7xrmg4v2th7v6p8f0aj
 value_level: high
-confidence: 0.9125000000000001
+confidence: 0.9125
 synthesis_state: stage1-placeholder
 maturity: unknown
 ---

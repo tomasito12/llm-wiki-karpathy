@@ -22,7 +22,7 @@ source_ids:
 - ainews-open-models-model-labs-vs-agent-labs-and-what-s-untrainable-sarah-guo-01kttayprkz03fnbsa7sq7zzwt
 - gpt-5-5-instant-smarter-clearer-and-more-personalized-01kqwq48t17nzsnykvwspqt7s1
 value_level: high
-confidence: 0.9166666666666666
+confidence: 0.916667
 synthesis_state: stage1-placeholder
 maturity: unknown
 ---

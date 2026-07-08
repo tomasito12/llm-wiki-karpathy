@@ -238,7 +238,9 @@ def run_wiki_reset(
         clear_ingest_manifest(manifest_path or default_ingest_manifest_path())
     if clear_wiki_render_manifest:
         remove_wiki_render_manifest(
-            wiki_render_manifest_path or default_wiki_render_manifest_path()
+            wiki_render_manifest_path
+            or _wiki_render_manifest_path_for(manifest_path)
+            or default_wiki_render_manifest_path()
         )
     if clear_reviews:
         clear_review_artifacts(reviews_root or default_reviews_root())
@@ -251,6 +253,13 @@ def run_wiki_reset(
 def default_wiki_root() -> Path:
     """Default ``wiki/`` directory under repo root."""
     return _repo_root() / "wiki"
+
+
+def _wiki_render_manifest_path_for(manifest_path: Path | None) -> Path | None:
+    """Return a sibling wiki-render manifest for custom state paths."""
+    if manifest_path is None:
+        return None
+    return manifest_path.parent / "wiki_render_manifest.json"
 
 
 def default_readwise_index_path() -> Path:

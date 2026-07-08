@@ -19,7 +19,7 @@ source_ids:
 - what-is-an-ai-contact-center-01krxb3f32t1081mt5z1jz13q5
 - what-is-conversational-ai-01krxatcsstvh8etwgrmwqh7af
 value_level: high
-confidence: 0.9066666666666667
+confidence: 0.906667
 synthesis_state: stage1-placeholder
 ---
 

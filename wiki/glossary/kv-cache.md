@@ -15,7 +15,7 @@ source_ids:
 - how-llms-actually-work-01kv4tanr9r0k17sysdm6cv45b
 - recent-developments-in-llm-architectures-kv-sharing-mhc-and-compressed-attention-01krrba0929cn5qjh3gve00hyf
 value_level: high
-confidence: 0.9566666666666667
+confidence: 0.956667
 synthesis_state: stage1-placeholder
 ---
 

@@ -18,7 +18,7 @@ source_ids:
 - claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y
 - how-i-use-obsidian-claude-cowork-to-run-my-life-01kv4tcedck5ftexd9hqeptc7c
 value_level: medium
-confidence: 0.8066666666666666
+confidence: 0.806667
 synthesis_state: stage1-placeholder
 types:
 - coding-model

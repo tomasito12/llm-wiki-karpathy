@@ -48,7 +48,7 @@
   "last_synthesized_at": "2026-06-17T20:16:47Z",
   "practical_takeaway": "Treat inbound qualification as a separate agent-managed workflow, not a prompt. Give the agent a clear playbook, structured capture fields, routing/disqualification rules, shared memory, and a clean CRM handoff. Measure the agent on conversion and handoff quality, and keep humans on higher-value work such as complex qualification, relationship building, and multi-stakeholder deals.",
   "slug": "agent-led-inbound-qualification",
-  "synthesis_input_hash": "67fd00ffb2358ac0",
+  "synthesis_input_hash": "b44b053dbe64c0fe",
   "synthesis_prompt_version": 1,
   "synthesis_schema_version": 1,
   "tensions": [

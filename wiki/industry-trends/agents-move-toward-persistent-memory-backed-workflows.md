@@ -19,7 +19,7 @@ source_ids:
 - how-we-built-an-ai-second-brain-for-60k-knowledge-workers-01kqz014gcexykw32fheswwzd3
 - i-built-a-personal-ai-operating-system-it-now-knows-more-about-my-week-than-i-do-01kqm0pmnw3vtap5a84xh1r9h4
 value_level: high
-confidence: 0.8633333333333333
+confidence: 0.863333
 synthesis_state: stage1-placeholder
 maturity: unknown
 ---

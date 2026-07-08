@@ -18,7 +18,7 @@ source_ids:
 - ainews-openai-launches-gpt-image-2-01kps9gb2r0nk49023ns9pmqb7
 - how-to-make-claude-code-validate-its-own-work-01krkb42j4y9839773m7rz83xe
 value_level: high
-confidence: 0.9450000000000001
+confidence: 0.945
 synthesis_state: stage1-placeholder
 ---
 

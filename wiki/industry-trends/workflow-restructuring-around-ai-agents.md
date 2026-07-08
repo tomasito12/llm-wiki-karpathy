@@ -39,7 +39,7 @@ source_ids:
 - the-sequence-radar-873-last-week-in-ai-soccer-s-1s-and-supermodels-01ktgwcb0ytk4gvgteb59ksqye
 - wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9
 value_level: high
-confidence: 0.8961538461538462
+confidence: 0.896154
 synthesis_state: stage1-placeholder
 maturity: unknown
 ---

@@ -21,7 +21,7 @@ source_ids:
 - parloa-builds-service-agents-customers-want-to-talk-to-01kr11qtpam16gysk8yxpsbspy
 - playing-a-different-game-01kt9zfvk8krrb2yv7mb50hywx
 value_level: high
-confidence: 0.9299999999999999
+confidence: 0.93
 synthesis_state: stage1-placeholder
 ---
 

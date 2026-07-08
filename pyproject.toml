@@ -6,7 +6,7 @@ requires-python = ">=3.12,<3.13"
 dependencies = []
 
 [tool.hatch.envs.default]
-python = "3"
+python = "3.12"
 installer = "uv"
 skip-install = true
 dependencies = [

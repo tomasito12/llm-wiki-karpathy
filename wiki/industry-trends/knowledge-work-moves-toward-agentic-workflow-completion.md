@@ -17,7 +17,7 @@ source_ids:
 - i-deleted-notion-and-obsidian-here-s-what-replaced-them-and-why-i-m-never-going-back-01ktpk839jym2sq0c0w7hzvght
 - the-next-era-of-knowledge-work-01kt4kxtskp8d1y3yxh2yh07pm
 value_level: high
-confidence: 0.8049999999999999
+confidence: 0.805
 synthesis_state: stage1-placeholder
 maturity: unknown
 ---

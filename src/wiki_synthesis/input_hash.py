@@ -81,4 +81,6 @@ def _normalize(value: Any) -> Any:
         return [_normalize(item) for item in value]
     if isinstance(value, tuple | set):
         return sorted(_normalize(item) for item in value)
+    if isinstance(value, float):
+        return round(value, 6)
     return value

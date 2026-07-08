@@ -22,7 +22,7 @@ source_ids:
 - antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-01kqkzbbr47x5jcmdm2wy72k03
 - running-codex-safely-at-openai-01kr4j0wpfyavt95avxpff49qc
 value_level: high
-confidence: 0.9433333333333334
+confidence: 0.943333
 synthesis_state: stage1-placeholder
 ---
 

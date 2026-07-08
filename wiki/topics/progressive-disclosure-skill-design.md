@@ -18,7 +18,7 @@ source_ids:
 - how-we-built-an-ai-second-brain-for-60k-knowledge-workers-01kqz014gcexykw32fheswwzd3
 - the-complete-guide-to-building-skills-for-claude-01krv8epdjta6664ek10fvp7tz
 value_level: high
-confidence: 0.9366666666666666
+confidence: 0.936667
 synthesis_state: stage1-placeholder
 ---
 

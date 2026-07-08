@@ -31,6 +31,16 @@ def test_synthesis_input_hash_changes_when_evidence_text_changes() -> None:
     assert synthesis_input_hash(original) != synthesis_input_hash(changed)
 
 
+def test_synthesis_input_hash_ignores_float_representation_noise() -> None:
+    """Tiny float representation differences should not force resynthesis."""
+    original = _page(evidence=[{"evidence_id": "a", "text": "First claim"}])
+    changed = _page(evidence=[{"evidence_id": "a", "text": "First claim"}])
+    original["confidence"] = 0.927857142857143
+    changed["confidence"] = 0.9278571428571428
+
+    assert synthesis_input_hash(original) == synthesis_input_hash(changed)
+
+
 def _page(*, evidence: list[dict[str, object]]) -> dict[str, object]:
     """Return a minimal graph-export page."""
     return {

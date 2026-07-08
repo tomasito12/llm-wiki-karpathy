@@ -22,7 +22,7 @@ source_ids:
 - the-local-ai-stack-for-apple-silicon-now-with-superpowers-01krjqdz9985k9ja2fh5ftkd71
 - what-is-the-best-local-llm-for-coding-in-2026-01krh1w7s8g0v7eg3xh8bcn02z
 value_level: high
-confidence: 0.9124999999999999
+confidence: 0.9125
 synthesis_state: stage1-placeholder
 ---
 

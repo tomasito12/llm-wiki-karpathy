@@ -18,7 +18,7 @@ source_ids:
 - hermes-agent-the-open-source-ai-agent-that-actually-remembers-what-it-learned-yesterday-01kqkyhgefymbv50vnchz4b8w0
 - the-agent-wars-why-i-m-trading-my-openclaw-setup-for-hermes-01krbnd5x8h4xphg9ga77n8hkw
 value_level: high
-confidence: 0.9199999999999999
+confidence: 0.92
 synthesis_state: stage1-placeholder
 types:
 - ai-application

@@ -28,7 +28,7 @@ source_ids:
 - millions-of-calls-one-judge-how-we-evaluated-our-voicebot-in-production-01kqkyaqcyqgmyjjqs3r374v14
 - the-4-lines-every-claude-md-needs-01kqfhwht8d87smkknhrrcgt1x
 value_level: high
-confidence: 0.9280000000000002
+confidence: 0.928
 synthesis_state: stage1-placeholder
 maturity: unknown
 ---

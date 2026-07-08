@@ -14,7 +14,7 @@ source_ids:
 - technology-radar-01krc5f8a8a6x35ke2kdjn5d9w
 - trusted-access-for-the-next-era-of-cyber-defense-01kp6svpv90410gkqh95k962t0
 value_level: high
-confidence: 0.7733333333333334
+confidence: 0.773333
 synthesis_state: stage1-placeholder
 ---
 

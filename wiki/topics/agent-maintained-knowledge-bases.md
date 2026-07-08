@@ -26,7 +26,7 @@ source_ids:
 - obsidian-starter-kit-v4-is-live-the-ai-native-release-is-here-01kts4g66e8xermwccbvrd4mz7
 - the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3
 value_level: high
-confidence: 0.9574999999999999
+confidence: 0.9575
 synthesis_state: stage1-placeholder
 ---
 

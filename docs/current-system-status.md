@@ -8,7 +8,7 @@ This document is a short orientation map for future sessions. It explains what i
 
 The foundation is usable and internally consistent enough to continue. The wiki can be regenerated deterministically from reviewed source artifacts, Stage 2 synthesis caches can be planned and rendered, and the current Obsidian output passes the wiki-specific checks.
 
-The main instability is not the wiki pipeline itself. The Python test runner currently crashes before test collection because the Hatch environment uses Python 3.11.4 even though the project declares Python `>=3.12,<3.13`, and importing `readline` exits with code `245`. This should be treated as an environment/tooling issue and fixed before relying on the full test suite again.
+The previous test-runner blocker has been fixed. Hatch now uses Python 3.12 for project environments, Pytest no longer crashes on `readline`, and the full test suite plus coverage run successfully.
 
 ## Current Architecture
 
@@ -40,7 +40,10 @@ The current pipeline has these layers:
 - `wiki-lint` passes.
 - `wiki-synthesis-cache-lint` passes for all existing synthesis cache entries.
 - `lint:check` passes (`ruff` and `ty`).
+- `test:run` and `test:cov` pass on Python 3.12.
 - Existing Stage 2 synthesis cache entries are fresh against the current graph.
+- Stage 2 input hashes now normalize tiny float representation differences, so render-only confidence formatting changes do not force unnecessary LLM resynthesis.
+- `wiki-reset` tests no longer delete the real `state/wiki_render_manifest.json` when using temporary test paths.
 - Related-page links are now generated from Stage 1 graph relationships instead of being empty placeholders.
 - The long-term second-brain vision is documented in `docs/second-brain-vision.md`.
 
@@ -65,10 +68,18 @@ hatch run lint:check
 => ruff ok, ty ok
 
 hatch run test:run
-=> exits 245 before useful output
+=> 892 passed before the final hash regression test was added
+
+hatch run test:cov
+=> 893 passed, total coverage 75%
 ```
 
-Targeted Pytest runs with `python -X faulthandler -m pytest` also crash before test collection. The stack trace points into Pytest startup/capture and importing `readline`. A direct `hatch run python -c "import readline"` also exits with code `245`.
+The earlier failure mode was fixed in this pass:
+
+- Hatch previously selected Anaconda Python 3.11.4.
+- The project now pins Hatch environments to Python 3.12.
+- `hatch run python -c "import readline"` succeeds.
+- Pytest starts normally and completes.
 
 ## Stage 2 Status
 
@@ -101,17 +112,15 @@ Current cache count:
 
 ## Main Risks
 
-### 1. Test Environment Is Not Trustworthy
+### 1. Keep the Test Environment Pinned
 
-The project declares Python `>=3.12,<3.13`, but Hatch currently uses Python 3.11.4. This likely explains the Pytest/readline crash.
+The project now explicitly pins Hatch environments to Python 3.12. Keep that pin unless the project Python requirement changes.
 
-Recommended next step:
+Maintenance rule:
 
-1. Install or expose Python 3.12 locally.
-2. Recreate Hatch environments.
-3. Rerun `hatch run test:run` and `hatch run test:cov`.
-
-Do not interpret the current Pytest crash as a product regression until the Python environment is corrected.
+- If tests crash before collection, first check `hatch run python --version`.
+- Do not silently fall back to Anaconda Python 3.11.
+- Recreate Hatch environments after changing Python constraints.
 
 ### 2. Documentation Drift
 
@@ -137,17 +146,16 @@ Recommended next step:
 
 ## Recommended Next Work Sequence
 
-1. Fix Python/Hatch test environment.
-2. Rerun full checks:
+1. Clean up README drift so future sessions do not follow the old manual workflow.
+2. Continue Stage 2 synthesis in small reviewed batches.
+3. Before each batch, rerun:
    - `hatch run lint:check`
    - `hatch run test:run`
    - `hatch run wiki-render --dry-run`
    - `hatch run wiki-lint`
    - `hatch run wiki-synthesis-cache-lint --json`
-3. Clean up README drift so future sessions do not follow the old manual workflow.
-4. Continue Stage 2 synthesis in small reviewed batches.
-5. Only after Stage 2 is boring and repeatable, consider retrieval/API/team access features.
+4. Only after Stage 2 is boring and repeatable, consider retrieval/API/team access features.
 
 ## Current Judgment
 
-Continue the project, but keep the next phase conservative. The system is not collapsing under its own weight, but it needs boring maintenance now: test environment repair, documentation alignment, and small synthesis batches. Avoid new architectural features until those are done.
+Continue the project, but keep the next phase conservative. The system is not collapsing under its own weight. The test environment is now repaired, and the next useful work is documentation alignment plus small synthesis batches. Avoid new architectural features until Stage 2 is boring and repeatable.

@@ -12,7 +12,6 @@ from src.wiki_reset.reset import (
     default_ingest_manifest_path,
     default_readwise_index_path,
     default_reviews_root,
-    default_wiki_render_manifest_path,
     default_wiki_root,
     readwise_library_document_count,
     run_wiki_reset,
@@ -81,7 +80,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--wiki-render-manifest",
         type=Path,
-        default=default_wiki_render_manifest_path(),
+        default=None,
         help="Wiki render manifest path (default: <repo>/state/wiki_render_manifest.json).",
     )
     parser.add_argument(
@@ -145,13 +144,16 @@ def main() -> int:
             return 1
 
     try:
+        wiki_render_manifest_path = (
+            args.wiki_render_manifest.resolve() if args.wiki_render_manifest is not None else None
+        )
         deleted, state_results = run_wiki_reset(
             args.wiki_dir.resolve(),
             index_path,
             clear_readwise_index=clear_rw,
             manifest_path=args.manifest.resolve(),
             clear_wiki_render_manifest=not args.keep_wiki_render_manifest,
-            wiki_render_manifest_path=args.wiki_render_manifest.resolve(),
+            wiki_render_manifest_path=wiki_render_manifest_path,
             clear_reviews=clear_reviews,
             reset_tag_taxonomy_config=reset_tags,
             reviews_root=default_reviews_root(),

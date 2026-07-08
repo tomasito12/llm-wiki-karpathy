@@ -53,7 +53,7 @@ source_ids:
 - the-sequence-radar-861-last-week-in-ai-ipos-interactive-models-and-recursive-dreams-01krttfdzf801rjfeteqjnv2zd
 - understanding-ai-agent-architecture-a-complete-technical-breakdown-01kts4bnmwj0s06zzvt8mhy00m
 value_level: high
-confidence: 0.8945454545454546
+confidence: 0.894545
 synthesis_state: stage1-placeholder
 maturity: unknown
 ---

@@ -42,7 +42,7 @@
   "last_synthesized_at": "2026-06-17T20:03:55Z",
   "practical_takeaway": "Treat hallucination control as a core design and eval requirement, not a polish issue: test whether the model actually uses retrieved context, measure unsupported claims, and add verification or refusal paths where wrong answers are costly.",
   "slug": "hallucinations",
-  "synthesis_input_hash": "5dd7d342aef5586f",
+  "synthesis_input_hash": "3367cf29e3e85a7d",
   "synthesis_prompt_version": 1,
   "synthesis_schema_version": 1,
   "tensions": [

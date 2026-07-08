@@ -16,7 +16,7 @@ source_ids:
 - this-open-source-app-turns-your-documents-into-a-self-building-wiki-01krh1c36qjjqw53cwe4hw1s5g
 - you-probably-don-t-need-a-graph-database-for-your-knowledge-graph-01kqz02qzddjehycrjafswxv5r
 value_level: high
-confidence: 0.9579999999999999
+confidence: 0.958
 synthesis_state: stage1-placeholder
 ---
 

@@ -16,7 +16,7 @@ source_ids:
 - i-ran-gemma-4-locally-here-s-what-nobody-s-telling-you-01kqfzwx5z81csjrvzvv6xgq9x
 - run-gemma-4-e2b-locally-with-ollama-no-cloud-no-limits-01kqz03kb05v3j801whhfw5twr
 value_level: high
-confidence: 0.9266666666666666
+confidence: 0.926667
 synthesis_state: stage1-placeholder
 ---
 

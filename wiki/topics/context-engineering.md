@@ -31,7 +31,7 @@ source_ids:
 - the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deepseek-and-kimi-advance-01kq4r8j0majmt8av52cng4zw0
 - this-open-source-app-turns-your-documents-into-a-self-building-wiki-01krh1c36qjjqw53cwe4hw1s5g
 value_level: high
-confidence: 0.927857142857143
+confidence: 0.927857
 synthesis_state: stage1-placeholder
 ---
 

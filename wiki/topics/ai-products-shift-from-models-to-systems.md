@@ -17,7 +17,7 @@ source_ids:
 - never-stop-disrupting-yourself-introducing-the-fin-api-platform-01knematzwtvhs80k0zszqge55
 - the-shortest-boom-in-history-why-the-ai-era-will-end-sooner-than-you-think-01ktpm1319ma2vsncrkbqrxsmw
 value_level: high
-confidence: 0.8200000000000001
+confidence: 0.82
 synthesis_state: stage1-placeholder
 ---
 

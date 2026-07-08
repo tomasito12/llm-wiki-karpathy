@@ -17,7 +17,7 @@ source_ids:
 - extending-fin-as-the-most-open-agent-platform-01ktpp7k8sthayjgk3vd9ezxr6
 - how-to-make-the-case-for-giving-your-ai-agent-system-access-01ktv9jzh8ynayfwz0kx9wat67
 value_level: high
-confidence: 0.9199999999999999
+confidence: 0.92
 synthesis_state: stage1-placeholder
 types:
 - cloud-saas

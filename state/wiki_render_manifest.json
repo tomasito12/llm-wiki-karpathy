@@ -31,7 +31,7 @@
     },
     {
       "path": "foundation-models/composer-2.md",
-      "sha256": "82133c39165aec838840362b44169420d4efbb0d8ad6d88e1408cf3083769924"
+      "sha256": "143322b4e375b48f3a5c72261d7b2ed7d2071caa15f804d2ec9c190af27207aa"
     },
     {
       "path": "foundation-models/deepseek-v4.md",
@@ -119,7 +119,7 @@
     },
     {
       "path": "foundation-models/opus-4-6.md",
-      "sha256": "4ba111d0570ff09250910bd1f79d489b2eb38cc7ef1e4c2278e4d6704515e5c0"
+      "sha256": "816edb720659c660045aa69edb0ca18313709a3097e5df586071f1d51688f56c"
     },
     {
       "path": "foundation-models/privacy-filter.md",
@@ -211,7 +211,7 @@
     },
     {
       "path": "glossary/fine-tuning.md",
-      "sha256": "639d80e61406e7e7cfaa81c155937bd8c401c2a53aa0c47cc2e30f4dd3ed0caf"
+      "sha256": "da92084c548ddc51bd201126f1b35c475631ec6cf3b7b31c48fc5ee7943734d3"
     },
     {
       "path": "glossary/gherkin.md",
@@ -223,7 +223,7 @@
     },
     {
       "path": "glossary/hallucinations.md",
-      "sha256": "92fe7b37cd83bda9644e4b057210ae04cdafda8fd62b8a48792fa3947f4a784c"
+      "sha256": "846fe218ded456377eba9ffc35e19e4dd364140bdb29fb00d8ab243e6e792ce7"
     },
     {
       "path": "glossary/harness.md",
@@ -243,7 +243,7 @@
     },
     {
       "path": "glossary/kv-cache.md",
-      "sha256": "afc1106808d69d0845501b2484dd25c0cea870d487fc2843ff188d21a2bb4f20"
+      "sha256": "4f18ed9c1c15b27fe9c0e43b0cf5fa5bf53348e2a837987981c8fe467520c1b9"
     },
     {
       "path": "glossary/living-specification.md",
@@ -255,15 +255,15 @@
     },
     {
       "path": "glossary/mixture-of-experts.md",
-      "sha256": "37ea2cbdb0693201c9c4d4e98e21fc5ba06af47c61942ab14b259dd9842b8a86"
+      "sha256": "0ee75d2e90fd9b7da67325ba434f220448ceb6ea295cc1c0ac73ac593de74496"
     },
     {
       "path": "glossary/model-context-protocol.md",
-      "sha256": "bbd9238bb1f427876d061f55c5bf5b46d2b0182e2616f3199b561bfffc42b60a"
+      "sha256": "8396531f154e0776bc86f246bcd60c2c6552aae1a1bf7c734ad12fbaa212e1db"
     },
     {
       "path": "glossary/ontology.md",
-      "sha256": "72e0562f89f439da5cdfe2b2d8fb6b2934f7373ae836bbf54532002de66591de"
+      "sha256": "0674206f9996e5101a1e34b764d59344fbc5e66c7e8b45c6bf92301022622710"
     },
     {
       "path": "glossary/parallel-agent-reinforcement-learning.md",
@@ -271,7 +271,7 @@
     },
     {
       "path": "glossary/passkey.md",
-      "sha256": "a1eea8bdc7197ec398c6a2eb53918ca12c645474d1b3d1d496bf77d67b54cb86"
+      "sha256": "f13de20908f40528a7e521dc19a31a01698c46569f2c5b98666cbae175d1e417"
     },
     {
       "path": "glossary/recursive-self-improvement.md",
@@ -319,11 +319,11 @@
     },
     {
       "path": "how-to/agent-maintained-knowledge-bases.md",
-      "sha256": "b71959944107ec1976f8d9e316226232e40df99e540801903ed75afcf1f4dd39"
+      "sha256": "a3455958e9cc92e7956b25bde6e4b9c8ea3fbcc6a849ae0c926459e44deb345d"
     },
     {
       "path": "how-to/agentic-personal-knowledge-management.md",
-      "sha256": "92ad902161ffc178ce29cc8cce80a3489a42691f827be1c1ad58e9d0adacdf8a"
+      "sha256": "a0d51764422eaeb55111bd3cef03c15102619694967276001dba1e396bdc968a"
     },
     {
       "path": "how-to/chatgpt-projects-setup.md",
@@ -331,7 +331,7 @@
     },
     {
       "path": "how-to/claude-skills-setup.md",
-      "sha256": "0765d62dd72a640f8b482ff155696badf9917b1d50cf881ed5346c75decd1cd0"
+      "sha256": "0fdcce4cfe779bcaefe50755372f56938627b0e8902953e616559359af4481dc"
     },
     {
       "path": "how-to/commit-driven-documentation-sync.md",
@@ -415,7 +415,7 @@
     },
     {
       "path": "how-to/local-model-setup.md",
-      "sha256": "134c6d6af67892505da0d4f05548544ae6d80e0db0ae8f59266b7096c2d57daf"
+      "sha256": "ba475b39951ee22407bb73ee0845731061d3be9032821b0c72fab1dc734aa3ea"
     },
     {
       "path": "how-to/manager-drafting-workflows.md",
@@ -427,7 +427,7 @@
     },
     {
       "path": "how-to/model-routing-and-cascades.md",
-      "sha256": "a7e81060e021bca5810958768bb0229fecad0b648909181a8c46bf7a750c6e46"
+      "sha256": "39f0f54b1de3f51b31840e855b3625e060c12b770570ada4b9415de4f9bd87bd"
     },
     {
       "path": "how-to/multi-agent-system-design.md",
@@ -723,7 +723,7 @@
     },
     {
       "path": "industry-trends/agentic-coding-shifts-toward-higher-supervision-costs.md",
-      "sha256": "d63d098d3217a413aa37ff459b0248560d0b07d26c43db084a55ab1ae8b63266"
+      "sha256": "1ef8ef80ccafb3226dbbe0ddc20d78c8dd58672cb0a521eb7d628a44d4f90ff3"
     },
     {
       "path": "industry-trends/agentic-commerce-interfaces.md",
@@ -735,7 +735,7 @@
     },
     {
       "path": "industry-trends/agents-move-toward-persistent-memory-backed-workflows.md",
-      "sha256": "542590c4e12d7c555360128466bf25bd0ee8c12171f91fc3ebee8f14fd43e9ce"
+      "sha256": "eba4b47f0d6223b198387acf8dc607edeed9f2e1ee8447b1dc33db8c173c5327"
     },
     {
       "path": "industry-trends/agents-shift-toward-persistent-memory-backed-workflows.md",
@@ -803,7 +803,7 @@
     },
     {
       "path": "industry-trends/ai-products-shift-from-models-to-systems.md",
-      "sha256": "d984da02133c6a2747a8030535993fd5d97dfeb9c6bdf6756e6d2976a9243205"
+      "sha256": "d2b74225a2bb2158b90bae9224d59158178bbf724b50a119b7bc3db7f3d219e6"
     },
     {
       "path": "industry-trends/ai-products-shift-toward-agentic-commerce-interfaces.md",
@@ -839,7 +839,7 @@
     },
     {
       "path": "industry-trends/apple-silicon-local-inference-becomes-practical.md",
-      "sha256": "0228da8963fd39c6b8322437c5f44fce278d8233d54b769c20f40711ece133c5"
+      "sha256": "053f2f8130d2d3736ef1d159104e7bd0ebb9034c9f3c9273064d3b3502d1ae47"
     },
     {
       "path": "industry-trends/artifact-first-ai-workflows.md",
@@ -887,7 +887,7 @@
     },
     {
       "path": "industry-trends/enterprise-agents-move-into-customer-infrastructure.md",
-      "sha256": "7a63120d61c0ea8398e805e8918a0a44fe1d87fd0cfccaa3287b7745d69184d0"
+      "sha256": "9315ca9a060228682a02fda304922c51be827f3559de921e38953ad392065374"
     },
     {
       "path": "industry-trends/enterprise-agents-need-layered-connectivity-stacks.md",
@@ -895,7 +895,7 @@
     },
     {
       "path": "industry-trends/enterprise-ai-moves-toward-governed-human-oversight-workflows.md",
-      "sha256": "a3d2d1fd683bdfabccfd5e900ca903d89404c87b9ce488a62942370d25adcdda"
+      "sha256": "9ae5d115fe8974734aff8bd38a170b11819f9c40e7b6dd1c29a5de760c50669d"
     },
     {
       "path": "industry-trends/enterprise-ai-shifts-toward-governed-human-oversight-workflows.md",
@@ -919,7 +919,7 @@
     },
     {
       "path": "industry-trends/harness-design-becomes-more-important-for-agent-reliability.md",
-      "sha256": "41661eec2939aa839cf24a4638d1f1cbdd13c819401871f112b708fa3ac74cfb"
+      "sha256": "e54505eb0d7b0627b84d2bc14dc4cf73836e8eaae1c0b502337cb4f9ff2f7e4a"
     },
     {
       "path": "industry-trends/high-risk-models-move-to-gated-access.md",
@@ -971,7 +971,7 @@
     },
     {
       "path": "industry-trends/knowledge-work-moves-toward-agentic-workflow-completion.md",
-      "sha256": "3d9ae97f71af42bdcda3b92f1317df7cd418e42517255330c8edd5fa863bc979"
+      "sha256": "789b1505278f91e1fee724f1b27b2449b6dcd91d5dfe7fd48c1cfdde99e91f3c"
     },
     {
       "path": "industry-trends/latent-reasoning-replaces-token-chain-of-thought.md",
@@ -1011,7 +1011,7 @@
     },
     {
       "path": "industry-trends/models-becoming-execution-layers.md",
-      "sha256": "d874ae61197db358de3cad918e9a90adb0f4759145f45eaed4293c9b951e9a47"
+      "sha256": "0ed5db7d414cc514f8b7318b57ed351fe016bcfdcb0c42e63f0049ff78a88fbc"
     },
     {
       "path": "industry-trends/open-model-pressure.md",
@@ -1023,7 +1023,7 @@
     },
     {
       "path": "industry-trends/open-weight-models-become-viable-on-consumer-hardware.md",
-      "sha256": "8c5583a846bddef5f7cbfe329afc0d7a668f44154a9629107abebf4af9a353bc"
+      "sha256": "f546098f2b22c402a071c381184052b1ada6a6f3ec1eb86c2cc9d6f9ef3bd404"
     },
     {
       "path": "industry-trends/persistent-agents.md",
@@ -1063,11 +1063,11 @@
     },
     {
       "path": "industry-trends/sales-moves-from-fast-follow-up-to-agent-led-intake.md",
-      "sha256": "c3e320747e9fe6232f4b5c97f95b806c6cbddbaf53a65fe9bd6fa27231afa52f"
+      "sha256": "0d6be950682b23629089feba0b6b4dd2a0d983cb0b2fcd194a34b6aafe6468d0"
     },
     {
       "path": "industry-trends/skills-move-ai-products-toward-workflow-packaging.md",
-      "sha256": "0018f85fbf1a2786f444dd4d53922dd50b97e755ddcbee74adb2937cbfa61ac3"
+      "sha256": "724bab45d2332f437b59a85fe6969fb34fb1e536e50d5cdd9e9f248992480edb"
     },
     {
       "path": "industry-trends/software-differentiation-shifts-from-engineering-to-distribution.md",
@@ -1079,7 +1079,7 @@
     },
     {
       "path": "industry-trends/stable-api-names-no-longer-guarantee-stable-model-behavior.md",
-      "sha256": "67727077d512a02b060d8fb1215fb4c67899be7774e66479f53c254ec83f075f"
+      "sha256": "7acb201e575ecf7e796177cab8f66e74fd066e7bb6a39ea817f3a49f6961e1e0"
     },
     {
       "path": "industry-trends/support-automation-as-operating-model.md",
@@ -1095,7 +1095,7 @@
     },
     {
       "path": "industry-trends/support-automation-shifts-toward-agentic-workflow-completion.md",
-      "sha256": "fa21e1d024fab349aa9fe6c1789587e951618174fe82ba0758d591c743e6fa34"
+      "sha256": "1b3c27752b24182d7574e569f53926e019c8e3e555e564f62faa67188e8f3868"
     },
     {
       "path": "industry-trends/text-generation-moves-beyond-left-to-right-decoding.md",
@@ -1115,7 +1115,7 @@
     },
     {
       "path": "industry-trends/verification-loops-become-central-to-ai-workflows.md",
-      "sha256": "50ff126d82dcadf9ffa0d0d11caf7d04fa047a6ec743fe9368fc265c97535974"
+      "sha256": "5f66671390d4a3109d2a92d4b4923f2bc643395805bab17232422159a635e2e1"
     },
     {
       "path": "industry-trends/vertical-models.md",
@@ -1135,7 +1135,7 @@
     },
     {
       "path": "industry-trends/workflow-restructuring-around-ai-agents.md",
-      "sha256": "89fe27d92c1a474e48880a70760bb3e819089d3dca7bb14ef8fc8d00bb4aa7a6"
+      "sha256": "701f0b6734d396106df3e795d67a4210761465ca31ed22394736b7124ea764c8"
     },
     {
       "path": "industry-trends/writing-workflows-shift-toward-ai-assisted-structured-output.md",
@@ -3667,7 +3667,7 @@
     },
     {
       "path": "tools/claude-code.md",
-      "sha256": "d7d5f99293481117bbb579e47e129e8597230cda3eade23e313143e3f140ffc8"
+      "sha256": "74f6c83aa857b2e281a424f0f31590ea25d2f16703b0bee5030741138092097b"
     },
     {
       "path": "tools/claude-desktop.md",
@@ -3751,7 +3751,7 @@
     },
     {
       "path": "tools/fin.md",
-      "sha256": "aca52f9f175a1d4950322133229086ce638bd385d93b12444a7b2d5bb0cb39ad"
+      "sha256": "262b791fa321ccee5845d87b82f1a6b971432f4d1c757f07873a241f1f3fb1ac"
     },
     {
       "path": "tools/final-cut-pro.md",
@@ -3811,7 +3811,7 @@
     },
     {
       "path": "tools/hermes-agent.md",
-      "sha256": "5b2c5d91b92e1fd4628940642fef3abab83982c314a32489cc621d38df324f4c"
+      "sha256": "a5009d2f2bfa29cde6550ca5ad97a24fc09e45d42f7c3b94bbc7d99e4dc8be0a"
     },
     {
       "path": "tools/hidden-bar.md",
@@ -3851,7 +3851,7 @@
     },
     {
       "path": "tools/langgraph.md",
-      "sha256": "49ec4a74e0e4f71fd5a17ba319e1419d3be76a97340f23f33be057fdf63e9a56"
+      "sha256": "1ad389af5c0614e1b61294874da2f1c49d8383f5c3de89f05f00a6cd4c29e371"
     },
     {
       "path": "tools/launchy.md",
@@ -3951,11 +3951,11 @@
     },
     {
       "path": "tools/obsidian.md",
-      "sha256": "1b9d4ffb05e52cdc3e868327ebf86db5f520fc5d69880fa7e66d7e3ab2379e89"
+      "sha256": "53fc40123f7d4406b8d91ba4b60431c821afd9d5cddf9883e3fee158e113909b"
     },
     {
       "path": "tools/ollama.md",
-      "sha256": "da8d2b7e1774e6eec64c6e121e20a333ee094989951fffe334c72013111bec64"
+      "sha256": "71880205d0912cc8fcb6023630b6d6cf4bc61f83f995503eb346c35957445ad1"
     },
     {
       "path": "tools/omnisearch.md",
@@ -4155,11 +4155,11 @@
     },
     {
       "path": "topics/agent-led-inbound-qualification.md",
-      "sha256": "0f17848dc81503244085c3656329035591748c585de115a155837de96aa96d85"
+      "sha256": "e17d233e0e1ae0b7a361439cb059057e50327d6587cec7aadd236a21bab73ded"
     },
     {
       "path": "topics/agent-maintained-knowledge-bases.md",
-      "sha256": "85a2271722c32a99df48487292549d59c92c6fcf942bfe1476b40541cfbef6ef"
+      "sha256": "ff730c965831b0b40ae62544d84269b61ba41e5d7d4c54d6da13c3bc0ba68a4b"
     },
     {
       "path": "topics/agent-memory-architecture.md",
@@ -4183,11 +4183,11 @@
     },
     {
       "path": "topics/agent-runtime-architecture-for-voice.md",
-      "sha256": "b5304f167dbfd015c34d55db8d73aeefb44a917f4d1010742b5e84aad97a8be4"
+      "sha256": "f423d3caa78c626ed64f45bda7bffcb42e104ef5e05494453c142162fa5c7c23"
     },
     {
       "path": "topics/agent-runtime-architecture.md",
-      "sha256": "ba3b093339adc2cf506e7ec9ad2e9f2e3dd69405121e7c2a35816cb3bf2aaa69"
+      "sha256": "61f1a13fadc56df82cd772740124805753f0522eda4031ae5a7ff71ca3a533de"
     },
     {
       "path": "topics/agent-self-verification.md",
@@ -4211,7 +4211,7 @@
     },
     {
       "path": "topics/agent-workspace-layering.md",
-      "sha256": "c905d907ed2793219659f29e0e5a12e3f6231c5775d331f2e2c18a4fe6fdb641"
+      "sha256": "6a2b865a96453a97a7bb05f6ccdcca783680956cb5cb6eb8f78fad31ec28f7fd"
     },
     {
       "path": "topics/agentic-coding-workflow-shape.md",
@@ -4223,7 +4223,7 @@
     },
     {
       "path": "topics/agentic-personal-knowledge-management.md",
-      "sha256": "f0ccda784e087d9ca8f903e06fd76cf1bccb40a8fa953aeef60582183d121847"
+      "sha256": "5553a2c7915f2a5ada153d49acac0e6cc7e6a6b6e5d084a15d5e5c46a416c21f"
     },
     {
       "path": "topics/agentic-workflow-latency-optimization.md",
@@ -4231,7 +4231,7 @@
     },
     {
       "path": "topics/agentic-workflows.md",
-      "sha256": "be59a8dbf1c435e2fec17983edeb4aa0422c45fc9eaa8bb70849bf9e68ecac24"
+      "sha256": "8d9ae6c02a38cacd6c68ac0abef2eb3377ed13170852d464e58d689d20549e52"
     },
     {
       "path": "topics/ai-adoption-as-behavior-change.md",
@@ -4275,7 +4275,7 @@
     },
     {
       "path": "topics/ai-products-shift-from-models-to-systems.md",
-      "sha256": "e46cc59fb3aacddffeeb9b6302bdc90719107a52751dba6fbb209667e7d1276a"
+      "sha256": "3afcac175056950b79900caf791c3f0acb45bd4ed0b35a7962fdc855c5c32c4a"
     },
     {
       "path": "topics/ai-program-ownership.md",
@@ -4295,7 +4295,7 @@
     },
     {
       "path": "topics/ai-workflow-restructuring.md",
-      "sha256": "ddafcd76a1a022d990c612012536f38430959a61cf8b25716be5eef16691b32c"
+      "sha256": "fefe8e670a8ad2f39a6e7dc4dd4f3ddbb1d01ddba261e5fef234981401d5d905"
     },
     {
       "path": "topics/answer-concision-as-product-quality.md",
@@ -4311,7 +4311,7 @@
     },
     {
       "path": "topics/approval-based-coding-workflows.md",
-      "sha256": "1ca5771682c1187d09fde046f096f6e9a0f0e995de711e4bcae320b790c79ba7"
+      "sha256": "9a7f4ee9596753ad8fc95dc4d53c857b5bdb6381bd2908624dcca32b3f98363b"
     },
     {
       "path": "topics/artifact-first-ai-workflows.md",
@@ -4339,7 +4339,7 @@
     },
     {
       "path": "topics/behavioral-instruction-layers-for-agents.md",
-      "sha256": "58569922838cfce5d99fbb113aaf8f53aaf6c32d30dd674a1e13ff77cf780fad"
+      "sha256": "414802079313eff7531651d8a9f165d80ad9047408e48c2393fb502e59146f1d"
     },
     {
       "path": "topics/bounded-corpus-synthesis.md",
@@ -4363,7 +4363,7 @@
     },
     {
       "path": "topics/cognitive-debt-in-ai-workflows.md",
-      "sha256": "f1fd4b2e926acf54595c346b6b7e717a73395c569d67752044d62e21aa3af0a2"
+      "sha256": "68c054e7128e6d23e314d3c12e0068e9ef66cbe5f7704cc4651f4dcfacab9b79"
     },
     {
       "path": "topics/commit-driven-documentation-generation.md",
@@ -4395,7 +4395,7 @@
     },
     {
       "path": "topics/context-engineering.md",
-      "sha256": "2c1c82e7b8be67683c7e09990a7fca5f27b9decf0f3d3483d0a37e6a89f27c0c"
+      "sha256": "bfc25b692706bcd73d0905781db8ae8c80ca81d65a5ac9b9b09058fbfa0b2c15"
     },
     {
       "path": "topics/contextual-operations-summarization.md",
@@ -4427,7 +4427,7 @@
     },
     {
       "path": "topics/dense-vs-moe-model-consistency.md",
-      "sha256": "522a0525498f37918e88c0894e1983e2b96c0d7d1d92ac36bbc7429b64c09f90"
+      "sha256": "ce2a99df0f7a949b1fb7512a7ebc894860e19a73203109bc7a99b0092cccc487"
     },
     {
       "path": "topics/development-cost-amortization.md",
@@ -4451,7 +4451,7 @@
     },
     {
       "path": "topics/enterprise-conversational-ai-integration.md",
-      "sha256": "e79cfdd45bfce7e6d2f3440a116f973145b778d5a03120c5620f221623c27c03"
+      "sha256": "d3f6e6eb9bce104ef3c095a5c272559193c0a9f880a45464f484320f4c7f5b04"
     },
     {
       "path": "topics/eu-ai-act-three-clock-compliance.md",
@@ -4547,7 +4547,7 @@
     },
     {
       "path": "topics/intent-driven-commerce-interfaces.md",
-      "sha256": "ee8809749a25e6d03977408fc440fd83599a7e4b70d53b3ec4399b89f5194268"
+      "sha256": "c09137f7a65060667ae8e433f03ce1a07498470cb2592831dc4e43675d5f8ac5"
     },
     {
       "path": "topics/interactive-ai.md",
@@ -4575,7 +4575,7 @@
     },
     {
       "path": "topics/knowledge-management.md",
-      "sha256": "a70a54065230f7976b58b0ca3d8fe87d1b1b6972e755f451a9f485d37bf17fb6"
+      "sha256": "e9d245a33d6bcfaae4d549240420235c845fcdca082bc80453c0f33380898494"
     },
     {
       "path": "topics/knowledge-systems-shift-toward-compilation-over-retrieval.md",
@@ -4583,7 +4583,7 @@
     },
     {
       "path": "topics/kv-cache-compression.md",
-      "sha256": "4e8bb1e9b55600222ac2bd86e1fb06c134a41e4cb237d92a1e1985ab80850fdd"
+      "sha256": "710f5688bf4c74b41027742a90668bd97972ca44c9ec12209dba1638c2162fb9"
     },
     {
       "path": "topics/langgraph-message-reducers.md",
@@ -4639,7 +4639,7 @@
     },
     {
       "path": "topics/local-pii-redaction.md",
-      "sha256": "ddf3df19ce86037357e3dcb1fe55c634787bc628e417481fcf5c534d45b392f3"
+      "sha256": "cf28189ea41e7f6281a10e22a74e63109a929ce26af81a48277092457dff79b5"
     },
     {
       "path": "topics/local-voice-api.md",
@@ -4655,7 +4655,7 @@
     },
     {
       "path": "topics/manual-capture-friction.md",
-      "sha256": "291fa8726b5a46dd454939dd33792b98645d8a48982b24a51e02307283659cf4"
+      "sha256": "e7a63a27e42002ca45c9aa13edb8a57c37890b52f1488d15b8fc7520a1ac9202"
     },
     {
       "path": "topics/mcp-enabled-agent-voice-output.md",
@@ -4699,7 +4699,7 @@
     },
     {
       "path": "topics/ontology-driven-extraction.md",
-      "sha256": "075217fe583a4165c8ef3d7a8f49468791af93b3fc4f280785f40a473d8967b1"
+      "sha256": "4aabdbec9baaebbc1153c6fa190672873a146adc2a8291c88f4437022573457a"
     },
     {
       "path": "topics/open-agent-platform-integration.md",
@@ -4747,7 +4747,7 @@
     },
     {
       "path": "topics/personalized-conversational-ai.md",
-      "sha256": "5b5b7561933b76d74d3be89dd5ced3134ec68bc3d36836a654a81cc80d9d6a1c"
+      "sha256": "2b660e87e2127b25d19503bd3284e1b31e3143bf0a45db6ed4ec7c386858a127"
     },
     {
       "path": "topics/practitioner-feedback-loops-for-agents.md",
@@ -4775,7 +4775,7 @@
     },
     {
       "path": "topics/progressive-disclosure-skill-design.md",
-      "sha256": "385e2a6ce92b94117e995155d44d8c1d74a33fb1d61042bf322897f49bef3317"
+      "sha256": "1cd82f40d5b2b307bdb01052f48dbef8d13bf4c4fe0f27f142f472ef34cfc74c"
     },
     {
       "path": "topics/project-scoped-memory-boundaries.md",
@@ -4831,7 +4831,7 @@
     },
     {
       "path": "topics/realtime-multimodal-interaction.md",
-      "sha256": "1f2ab63b4aa831b5682e8b3d6832ac0b309f277983a60e55a5d44b2112095998"
+      "sha256": "8da32c17240f257b1a397eb2a47439e3317dad9fd35e3b31327ce48e854821de"
     },
     {
       "path": "topics/realtime-voice-integration-for-enterprise-workflows.md",
@@ -4907,7 +4907,7 @@
     },
     {
       "path": "topics/structured-specification-for-agentic-development.md",
-      "sha256": "c60d321efffd22518beedb364128f8c815f44705867257f29f707f2af59f9f18"
+      "sha256": "0deaa38d19d1fd22e8574307c5f10a08b880c4bff0d1d98f6d3b210185f11695"
     },
     {
       "path": "topics/super-app-agent-integration.md",
@@ -4959,7 +4959,7 @@
     },
     {
       "path": "topics/tiered-access-for-sensitive-model-capabilities.md",
-      "sha256": "00545d03cb7ce2fd004b9206639b22ceab7ba574204c19482b53d7381bcb75c8"
+      "sha256": "c94179ac9340099ed61e1b516ff54ae69281533b1fd9cbf85d37fa129c468cb3"
     },
     {
       "path": "topics/time-boxed-ai-writing-routines.md",
@@ -4999,7 +4999,7 @@
     },
     {
       "path": "topics/use-case-specific-local-model-selection.md",
-      "sha256": "95401fb622eb47168e86ab54f578ca296fbc06cf4bd016b6356a9d99e8ed77b7"
+      "sha256": "57f8c26d8adab8cdf0c7fdbf23da62fe208b5b28236d44912046fc258b3692b8"
     },
     {
       "path": "topics/verifiable-ai-governance.md",
@@ -5019,7 +5019,7 @@
     },
     {
       "path": "topics/visual-specifications-for-ai-systems.md",
-      "sha256": "e16159f1e4c1c77100bef0f69807dcad72227019c85dea6810baba006f735b7f"
+      "sha256": "88f57820db46f327881ef84cb6ffbc0c4be21f7458279a2bfac7ea29304a6f16"
     },
     {
       "path": "topics/voice-agents-shift-toward-workflow-completion.md",
@@ -5039,7 +5039,7 @@
     },
     {
       "path": "topics/wiki-schema-governance.md",
-      "sha256": "084fccbd680002e5b09007371c283125f2941ea0302f8fad7f14f626d6c956e1"
+      "sha256": "37cda7e1843c671bc3856fdd2573da1f8bc0379a695f485125b50cd5e5dc2ac2"
     },
     {
       "path": "topics/workflow-based-agent-evaluation.md",

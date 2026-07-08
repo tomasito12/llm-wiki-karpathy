@@ -22,7 +22,7 @@ source_ids:
 - how-enterprises-are-scaling-ai-01krarcpxqyaw1peg33barp2xa
 - running-codex-safely-at-openai-01kr4j0wpfyavt95avxpff49qc
 value_level: high
-confidence: 0.8825000000000001
+confidence: 0.8825
 synthesis_state: stage1-placeholder
 maturity: unknown
 ---

@@ -14,7 +14,7 @@ source_ids:
 - ainews-thinking-machines-native-interaction-models-tml-interaction-small-276b-a12b-advances-sota-realtime-voice-and-kills-standard-vad-01krd7h0s789k86g2yk4qr8zg8
 - retail-ux-is-stuck-multimodal-ai-is-the-reset-button-01krrsfc31qt8htb9zawxb8hz4
 value_level: high
-confidence: 0.8999999999999999
+confidence: 0.9
 synthesis_state: stage1-placeholder
 ---
 

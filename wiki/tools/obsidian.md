@@ -30,7 +30,7 @@ source_ids:
 - why-andrej-karpathy-s-llm-wiki-is-the-future-of-personal-knowledge-01kqm0rf7jxk8010thyjvag0j8
 - why-obsidian-won-as-the-base-for-the-personal-llm-harness-and-when-you-shouldn-t-pick-it-01krbnbqc948bayfn39ae9t4gb
 value_level: high
-confidence: 0.9400000000000001
+confidence: 0.94
 synthesis_state: stage1-placeholder
 types:
 - app

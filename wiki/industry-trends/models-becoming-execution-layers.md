@@ -29,7 +29,7 @@ source_ids:
 - the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deepseek-and-kimi-advance-01kq4r8j0majmt8av52cng4zw0
 - what-is-conversational-ai-01krxatcsstvh8etwgrmwqh7af
 value_level: high
-confidence: 0.8500000000000001
+confidence: 0.85
 synthesis_state: stage1-placeholder
 maturity: unknown
 ---

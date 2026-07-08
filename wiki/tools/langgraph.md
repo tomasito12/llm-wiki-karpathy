@@ -18,7 +18,7 @@ source_ids:
 - the-best-rag-architectures-for-ai-agents-every-developer-must-know-01kqkzctgpjxtkpzxn009b6tgj
 - understanding-ai-agent-architecture-a-complete-technical-breakdown-01kts4bnmwj0s06zzvt8mhy00m
 value_level: high
-confidence: 0.8866666666666667
+confidence: 0.886667
 synthesis_state: stage1-placeholder
 types:
 - ai-infrastructure

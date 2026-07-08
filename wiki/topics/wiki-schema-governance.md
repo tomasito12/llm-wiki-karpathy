@@ -21,7 +21,7 @@ source_ids:
 - i-used-karpathy-s-llm-wiki-to-build-a-research-brain-that-updates-itself-here-s-what-two-weeks-taught-me-01kqkv78qyrcbmcnbttz4ae769
 - llm-wiki-github-01kqh081eg75gw49db3mqd9cpq
 value_level: high
-confidence: 0.9299999999999999
+confidence: 0.93
 synthesis_state: stage1-placeholder
 ---
 

@@ -18,7 +18,7 @@ source_ids:
 - one-rtx-3090-and-you-don-t-need-any-ai-subscription-anymore-thanks-to-alibaba-qwen-01kqz0732jaxwc8wy3c9fxzdbq
 - why-i-stopped-using-gemma-4-and-switched-to-qwen-3-6-01kqm05wc7wq68ypednrdcpa0b
 value_level: high
-confidence: 0.8400000000000001
+confidence: 0.84
 synthesis_state: stage1-placeholder
 ---
 

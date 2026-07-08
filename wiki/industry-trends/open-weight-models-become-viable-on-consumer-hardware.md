@@ -27,7 +27,7 @@ source_ids:
 - run-gemma-4-e2b-locally-with-ollama-no-cloud-no-limits-01kqz03kb05v3j801whhfw5twr
 - why-i-stopped-using-gemma-4-and-switched-to-qwen-3-6-01kqm05wc7wq68ypednrdcpa0b
 value_level: high
-confidence: 0.8850000000000001
+confidence: 0.885
 synthesis_state: stage1-placeholder
 maturity: unknown
 ---

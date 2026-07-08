@@ -31,7 +31,7 @@ source_ids:
 - what-is-the-best-local-llm-for-coding-in-2026-01krh1w7s8g0v7eg3xh8bcn02z
 - why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd
 value_level: high
-confidence: 0.9149999999999999
+confidence: 0.915
 synthesis_state: stage1-placeholder
 types:
 - ai-infrastructure

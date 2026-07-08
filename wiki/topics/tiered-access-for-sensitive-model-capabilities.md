@@ -19,7 +19,7 @@ source_ids:
 - strengthening-societal-resilience-with-rosalind-biodefense-openai-01kssnct9yf4qe7sfryvn72dsn
 - trusted-access-for-the-next-era-of-cyber-defense-01kp6svpv90410gkqh95k962t0
 value_level: high
-confidence: 0.9249999999999999
+confidence: 0.925
 synthesis_state: stage1-placeholder
 ---
 

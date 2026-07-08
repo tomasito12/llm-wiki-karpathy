@@ -20,7 +20,7 @@ source_ids:
 - give-your-ai-unlimited-updated-context-01krkap6426ped2hk2anmke10k
 - karpathy-s-llm-wiki-how-to-actually-use-ai-so-it-stops-starting-over-01kqktnemtp7dbmtzfbef6h1hr
 value_level: high
-confidence: 0.9633333333333333
+confidence: 0.963333
 synthesis_state: stage1-placeholder
 ---
 

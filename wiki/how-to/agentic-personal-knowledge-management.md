@@ -18,7 +18,7 @@ source_ids:
 - obsidian-claude-code-is-your-24-7-ai-agent-here-is-how-to-build-yours-01kqkvgnyhw96eaf0eb9fj5gft
 - the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3
 value_level: high
-confidence: 0.9333333333333335
+confidence: 0.933333
 synthesis_state: stage1-placeholder
 ---
 

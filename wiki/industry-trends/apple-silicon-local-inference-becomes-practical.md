@@ -16,7 +16,7 @@ source_ids:
 - choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj
 - the-local-ai-stack-for-apple-silicon-now-with-superpowers-01krjqdz9985k9ja2fh5ftkd71
 value_level: high
-confidence: 0.9299999999999999
+confidence: 0.93
 synthesis_state: stage1-placeholder
 maturity: unknown
 ---

@@ -23,7 +23,7 @@ source_ids:
 - personalizing-chatgpt-01knw8fhbjwcd9g1as8kctv26f
 - the-4-lines-every-claude-md-needs-01kqfhwht8d87smkknhrrcgt1x
 value_level: high
-confidence: 0.8866666666666666
+confidence: 0.886667
 synthesis_state: stage1-placeholder
 ---
 

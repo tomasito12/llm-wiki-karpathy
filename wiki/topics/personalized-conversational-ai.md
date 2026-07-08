@@ -17,7 +17,7 @@ source_ids:
 - gpt-5-5-instant-smarter-clearer-and-more-personalized-01kqwq48t17nzsnykvwspqt7s1
 - personalizing-chatgpt-01knw8fhbjwcd9g1as8kctv26f
 value_level: high
-confidence: 0.9299999999999999
+confidence: 0.93
 synthesis_state: stage1-placeholder
 ---
 

@@ -18,7 +18,7 @@ source_ids:
 - tech-habits-what-a-70-pocket-ereader-revealed-about-notes-ai-and-what-actually-matters-01krbndenzat583sf5chesgda8
 - the-solution-might-be-cancelling-my-ai-subscription-01ktjza3q91sx1nzsgss3fhgwg
 value_level: high
-confidence: 0.9199999999999999
+confidence: 0.92
 synthesis_state: stage1-placeholder
 ---
 

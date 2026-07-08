@@ -20,11 +20,11 @@ source_ids:
 - announcing-fin-for-sales-a-new-role-for-fin-customer-agent-01kpv1kfp3y4qs3dhz4fwpy238
 - speed-to-lead-is-a-solved-problem-01ksjkhkyrt5s1hhgt7reab7yp
 value_level: high
-confidence: 0.9199999999999999
+confidence: 0.92
 synthesis_state: synthesized
 synthesis_stale: false
-synthesis_input_hash: 67fd00ffb2358ac0
-current_input_hash: 67fd00ffb2358ac0
+synthesis_input_hash: b44b053dbe64c0fe
+current_input_hash: b44b053dbe64c0fe
 synthesis_schema_version: 1
 synthesis_prompt_version: 1
 last_synthesized_at: '2026-06-17T20:16:47Z'
@@ -81,8 +81,8 @@ Treat inbound qualification as a separate agent-managed workflow, not a prompt. 
 
 - Sources: 3
 - Evidence items: 24
-- Current input hash: `67fd00ffb2358ac0`
-- Cached input hash: `67fd00ffb2358ac0`
+- Current input hash: `b44b053dbe64c0fe`
+- Cached input hash: `b44b053dbe64c0fe`
 - Last synthesized: 2026-06-17T20:16:47Z
 - Synthesis status: `fresh`
 

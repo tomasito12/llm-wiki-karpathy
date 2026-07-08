@@ -18,7 +18,7 @@ source_ids:
 - the-complete-guide-to-building-skills-for-claude-01krv8epdjta6664ek10fvp7tz
 - your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn
 value_level: high
-confidence: 0.9533333333333333
+confidence: 0.953333
 synthesis_state: stage1-placeholder
 ---
 

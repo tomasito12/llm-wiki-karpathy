@@ -13,11 +13,11 @@ source_ids:
 - announcing-fin-apex-the-age-of-vertical-models-is-here-01knemav1h6cxbst4dbfq9ws30
 - i-spent-3-days-researching-self-hosted-ai-here-s-why-you-should-and-shouldn-t-actually-do-it-01kqkvbh9k2p2m6eh234khs2kf
 value_level: high
-confidence: 0.8600000000000001
+confidence: 0.86
 synthesis_state: synthesized
 synthesis_stale: false
-synthesis_input_hash: 62cdb343e43306e7
-current_input_hash: 62cdb343e43306e7
+synthesis_input_hash: f4bb45a475b8a952
+current_input_hash: f4bb45a475b8a952
 synthesis_schema_version: 1
 synthesis_prompt_version: 1
 last_synthesized_at: '2026-06-17T19:33:15Z'
@@ -71,8 +71,8 @@ Treat fine-tuning as an operational optimization for recurring, narrow workflows
 
 - Sources: 2
 - Evidence items: 8
-- Current input hash: `62cdb343e43306e7`
-- Cached input hash: `62cdb343e43306e7`
+- Current input hash: `f4bb45a475b8a952`
+- Cached input hash: `f4bb45a475b8a952`
 - Last synthesized: 2026-06-17T19:33:15Z
 - Synthesis status: `fresh`
 

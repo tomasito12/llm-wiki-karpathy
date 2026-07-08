@@ -22,7 +22,7 @@ source_ids:
 - lippert-s-ai-agent-cuts-costs-by-80-and-boosts-sales-01krxb2zvf0njv32xzz3djwk13
 - retail-ux-is-stuck-multimodal-ai-is-the-reset-button-01krrsfc31qt8htb9zawxb8hz4
 value_level: high
-confidence: 0.8825000000000001
+confidence: 0.8825
 synthesis_state: stage1-placeholder
 ---
 

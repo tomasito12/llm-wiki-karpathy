@@ -16,11 +16,11 @@ source_ids:
 - gpt-5-5-instant-smarter-clearer-and-more-personalized-01kqwq48t17nzsnykvwspqt7s1
 - i-ran-gemma-4-locally-here-s-what-nobody-s-telling-you-01kqfzwx5z81csjrvzvv6xgq9x
 value_level: high
-confidence: 0.8999999999999999
+confidence: 0.9
 synthesis_state: synthesized
 synthesis_stale: false
-synthesis_input_hash: 5dd7d342aef5586f
-current_input_hash: 5dd7d342aef5586f
+synthesis_input_hash: 3367cf29e3e85a7d
+current_input_hash: 3367cf29e3e85a7d
 synthesis_schema_version: 1
 synthesis_prompt_version: 1
 last_synthesized_at: '2026-06-17T20:03:55Z'
@@ -77,8 +77,8 @@ Treat hallucination control as a core design and eval requirement, not a polish 
 
 - Sources: 2
 - Evidence items: 8
-- Current input hash: `5dd7d342aef5586f`
-- Cached input hash: `5dd7d342aef5586f`
+- Current input hash: `3367cf29e3e85a7d`
+- Cached input hash: `3367cf29e3e85a7d`
 - Last synthesized: 2026-06-17T20:03:55Z
 - Synthesis status: `fresh`
 

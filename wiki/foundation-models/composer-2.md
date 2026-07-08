@@ -16,7 +16,7 @@ source_ids:
 - introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1
 - run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy
 value_level: high
-confidence: 0.7949999999999999
+confidence: 0.795
 synthesis_state: stage1-placeholder
 types:
 - coding-model

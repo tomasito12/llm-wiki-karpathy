@@ -20,7 +20,7 @@ source_ids:
 - the-agent-wars-why-i-m-trading-my-openclaw-setup-for-hermes-01krbnd5x8h4xphg9ga77n8hkw
 - the-sequence-opinion-864-every-ai-agent-needs-a-computer-01ks52k8mh3afy2fnmb57gzhth
 value_level: high
-confidence: 0.9400000000000001
+confidence: 0.94
 synthesis_state: stage1-placeholder
 ---
 

@@ -21,7 +21,7 @@ source_ids:
 - spec-driven-development-three-maturity-levels-every-ai-team-should-know-01kr432t128r5x0bvxwskbtd1w
 - zeespec-how-to-write-a-complete-system-specification-for-ai-in-1-hour-01kqfz6p0jfhx9r1y4rd3x27sa
 value_level: high
-confidence: 0.9450000000000001
+confidence: 0.945
 synthesis_state: stage1-placeholder
 ---
 

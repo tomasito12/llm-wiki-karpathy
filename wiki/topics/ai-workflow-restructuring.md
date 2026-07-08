@@ -22,7 +22,7 @@ source_ids:
 - stop-using-llms-like-giant-problem-solvers-01kta19b01w75cp072qdrvrh3q
 - the-next-era-of-knowledge-work-01kt4kxtskp8d1y3yxh2yh07pm
 value_level: high
-confidence: 0.9179999999999999
+confidence: 0.918
 synthesis_state: stage1-placeholder
 ---
 

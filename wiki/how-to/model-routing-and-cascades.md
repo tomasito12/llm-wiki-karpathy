@@ -18,7 +18,7 @@ source_ids:
 - 8-llm-cost-optimization-techniques-how-to-cut-api-spend-by-up-to-70-visually-explained-01ktkyv6hm99qdvw30jt2405q9
 - agentic-ai-how-to-save-on-tokens-01kr4qf7weme5tht04bghph2dv
 value_level: high
-confidence: 0.9299999999999999
+confidence: 0.93
 synthesis_state: stage1-placeholder
 ---
 

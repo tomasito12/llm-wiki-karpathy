@@ -123,6 +123,8 @@ def test_run_wiki_reset_default_preserves_readwise_index(tmp_path: Path) -> None
     before = idx.read_text(encoding="utf-8")
     manifest = tmp_path / "state" / "ingest_manifest.json"
     manifest.write_text('{"version": 1, "records": {"x": {}}}', encoding="utf-8")
+    wiki_render_manifest = tmp_path / "state" / "wiki_render_manifest.json"
+    wiki_render_manifest.write_text('{"files": []}', encoding="utf-8")
 
     reviews = tmp_path / "state" / "reviews"
     reviews.mkdir(parents=True)
@@ -149,6 +151,7 @@ def test_run_wiki_reset_default_preserves_readwise_index(tmp_path: Path) -> None
     }
     assert idx.read_text(encoding="utf-8") == before
     assert '"records": {}' in manifest.read_text(encoding="utf-8")
+    assert not wiki_render_manifest.exists()
     assert not (reviews / "some-source").exists()
     assert not feedback_db.exists()
     log_text = (wiki / "log.md").read_text(encoding="utf-8")

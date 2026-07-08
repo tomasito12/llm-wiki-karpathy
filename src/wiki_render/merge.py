@@ -109,7 +109,7 @@ def _merge_group(
         evidence_count=len(evidence),
         evidence_set_hash=evidence_set_hash(evidence),
         stance_counts=stance_counts,
-        confidence=(sum(confidence_values) / len(confidence_values)) if confidence_values else None,
+        confidence=_average_confidence(confidence_values),
         value_level=_best_value_level(ordered),
         maturity="unknown" if category == "trend" else "",
         duplicate_candidates=_duplicate_candidates(ordered),
@@ -152,6 +152,13 @@ def _dedupe_lists(group: list[Contribution], key: str) -> list[str]:
                 seen.add(clean)
                 output.append(clean)
     return output
+
+
+def _average_confidence(values: list[float]) -> float | None:
+    """Return a stable aggregate confidence for deterministic renders."""
+    if not values:
+        return None
+    return round(sum(values) / len(values), 6)
 
 
 def _aliases(group: list[Contribution], slug: str, title: str) -> list[str]:

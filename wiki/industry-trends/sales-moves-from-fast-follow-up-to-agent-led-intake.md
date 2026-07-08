@@ -17,7 +17,7 @@ source_ids:
 - announcing-fin-for-sales-a-new-role-for-fin-customer-agent-01kpv1kfp3y4qs3dhz4fwpy238
 - speed-to-lead-is-a-solved-problem-01ksjkhkyrt5s1hhgt7reab7yp
 value_level: high
-confidence: 0.8633333333333333
+confidence: 0.863333
 synthesis_state: stage1-placeholder
 maturity: unknown
 ---

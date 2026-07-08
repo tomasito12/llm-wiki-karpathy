@@ -19,7 +19,7 @@ source_ids:
 - the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deepseek-and-kimi-advance-01kq4r8j0majmt8av52cng4zw0
 - the-ultimate-guide-to-knowledge-management-for-your-sales-agent-01krh989qjyns47e84f2k7v769
 value_level: high
-confidence: 0.9257142857142858
+confidence: 0.925714
 synthesis_state: stage1-placeholder
 ---
 

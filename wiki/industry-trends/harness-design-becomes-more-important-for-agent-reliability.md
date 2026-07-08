@@ -33,7 +33,7 @@ source_ids:
 - the-sequence-opinion-844-harness-engineering-the-operating-system-for-agentic-software-01kpazg4xdw7fnnebga7hdkbqn
 - unified-agentic-memory-across-harnesses-using-hooks-01kr7bk2d0hagq604nt14zrqcv
 value_level: high
-confidence: 0.9400000000000002
+confidence: 0.94
 synthesis_state: stage1-placeholder
 maturity: unknown
 ---

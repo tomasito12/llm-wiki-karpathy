@@ -27,7 +27,7 @@ source_ids:
 - obsidian-starter-kit-v4-is-live-the-ai-native-release-is-here-01kts4g66e8xermwccbvrd4mz7
 - recall-2-0-an-ai-second-brain-for-people-who-need-one-but-don-t-want-to-build-one-01kqz01mwjpdmw10d64fwahpq9
 value_level: high
-confidence: 0.9355555555555556
+confidence: 0.935556
 synthesis_state: stage1-placeholder
 ---
 
