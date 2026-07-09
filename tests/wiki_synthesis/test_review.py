@@ -35,6 +35,7 @@ def test_build_review_preview_writes_synthesized_markdown(tmp_path: Path) -> Non
     assert report.wrote_preview
     assert preview_path.exists()
     assert "synthesis_state: synthesized" in rendered.text
+    assert "## Example in practice" in rendered.text
     assert "[[topics/edge-inference|Edge Inference]]" in rendered.text
     assert "Local models make inference controllable." in preview_path.read_text(encoding="utf-8")
 
@@ -70,6 +71,15 @@ def _cache_payload(page: dict[str, Any]) -> dict[str, Any]:
         "synthesis_input_hash": synthesis_input_hash(page),
         "last_synthesized_at": "2026-06-17T00:00:00Z",
         "executive_synthesis": "Local models make inference controllable.",
+        "practical_example": {
+            "title": "Private support draft",
+            "example": (
+                "A support team could run a local model to draft internal answers before "
+                "sharing any sensitive customer details with a hosted model."
+            ),
+            "why_it_helps": "It makes the deployment tradeoff easy to picture.",
+            "basis": "illustrative",
+        },
         "what_to_remember": ["Use them when privacy or latency matters."],
         "consensus": ["They trade hosted convenience for control."],
         "tensions": ["They add operational work."],

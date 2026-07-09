@@ -223,6 +223,7 @@ def _render_synthesized_knowledge_page(
         )
     body += heading(2, "Executive synthesis")
     body += paragraph(str(cache_entry.get("executive_synthesis", "")))
+    body += _practical_example_section(cache_entry)
     body += _context_card_section(cache_entry)
     body += _cache_list_section("What to remember", cache_entry, "what_to_remember")
     body += _cache_list_section("Consensus", cache_entry, "consensus")
@@ -234,6 +235,27 @@ def _render_synthesized_knowledge_page(
     body += _related_section(page, related_page_index)
     body += sources_section(page.source_ids, page.source_titles)
     return RenderedFile(relative_path=page.path, text=markdown_document(frontmatter, body))
+
+
+def _practical_example_section(cache_entry: dict[str, Any]) -> str:
+    """Render an optional practical example from a synthesis cache entry."""
+    value = cache_entry.get("practical_example")
+    if not isinstance(value, dict):
+        return ""
+    title = _display_value(value.get("title"))
+    example = _display_value(value.get("example"))
+    why_it_helps = _display_value(value.get("why_it_helps"))
+    basis = _display_value(value.get("basis"))
+    if not title or not example:
+        return ""
+    body = heading(2, "Example in practice")
+    body += heading(3, title)
+    body += paragraph(example)
+    if why_it_helps:
+        body += bullet_list([f"Why it helps: {why_it_helps}"])
+    if basis:
+        body += bullet_list([f"Basis: `{basis}`"])
+    return body
 
 
 def _context_card_section(cache_entry: dict[str, Any]) -> str:

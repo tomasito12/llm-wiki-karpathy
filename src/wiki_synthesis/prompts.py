@@ -21,6 +21,8 @@ Rules:
 - Do not invent facts, sources, numbers, dates, or claims.
 - Preserve uncertainty, disagreement, weak evidence, and time sensitivity.
 - Prefer useful synthesis over exhaustive restatement.
+- Write for a reader who sits between AI engineering and business/domain work.
+- Use plain language and explain abstract ideas through concrete workflow examples.
 - Separate consensus from tensions and open questions.
 - If evidence is thin, say so clearly.
 - If sources disagree, describe the disagreement instead of resolving it artificially.
@@ -66,6 +68,12 @@ OUTPUT_SCHEMA = {
     "synthesis_input_hash": "...",
     "last_synthesized_at": "...",
     "executive_synthesis": "...",
+    "practical_example": {
+        "title": "...",
+        "example": "...",
+        "why_it_helps": "...",
+        "basis": "source-grounded | illustrative",
+    },
     "what_to_remember": ["..."],
     "consensus": ["..."],
     "tensions": ["..."],
@@ -189,6 +197,7 @@ def _page_purpose_block() -> str:
 This page should become an Obsidian-readable synthesis page.
 It should answer:
 - What should I remember?
+- What is a concrete example that makes the idea easier to understand?
 - When is this page useful?
 - What do the sources agree on?
 - Where are the tensions, caveats, or uncertainty?
@@ -275,6 +284,7 @@ def _previous_synthesis_block(previous_cache: dict[str, Any] | None) -> str:
             "synthesis_input_hash",
             "last_synthesized_at",
             "executive_synthesis",
+            "practical_example",
             "what_to_remember",
             "consensus",
             "tensions",
@@ -306,11 +316,19 @@ def _output_schema_block(current_hash: str) -> str:
 def _style_rules_block() -> str:
     """Return writing style rules for the synthesis output."""
     return """STYLE RULES
-- Write concise, plain English.
+- Write concise, plain English for a technically curious domain expert.
+- Avoid unnecessary technical abstraction when a concrete workflow example would explain the idea.
 - Avoid hype.
 - Avoid generic statements.
 - Make uncertainty visible.
 - Prefer 3 to 7 bullets per list.
+- practical_example must be 80 to 140 words.
+- Prefer service automation, chatbot, voicebot, contact-center, enterprise workflow, or
+  AI-workflow examples when they fit the evidence.
+- If the example is directly described by the sources, set basis to "source-grounded".
+- If the example is a plausible application of the synthesized pattern, set basis to
+  "illustrative" and do not present it as a sourced fact.
+- Do not invent real customer names, EnBW-specific facts, benchmarks, dates, or numeric outcomes.
 - Do not cite evidence IDs in every sentence, but keep source names in strongest_sources."""
 
 

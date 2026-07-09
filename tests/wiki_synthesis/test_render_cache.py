@@ -21,6 +21,7 @@ def test_render_knowledge_page_uses_fresh_synthesis_cache(tmp_path: Path) -> Non
 
     assert "synthesis_state: synthesized" in rendered.text
     assert "## Executive synthesis" in rendered.text
+    assert "## Example in practice" in rendered.text
     assert "Local models make inference controllable." in rendered.text
     assert "## Evidence index" in rendered.text
     assert "Current input hash:" in rendered.text
@@ -39,6 +40,25 @@ def test_render_knowledge_page_marks_stale_synthesis_cache(tmp_path: Path) -> No
     assert "Cached input hash: `oldhash`" in rendered.text
 
 
+def test_render_knowledge_page_keeps_old_cache_without_practical_example(
+    tmp_path: Path,
+) -> None:
+    """Older cache entries without examples should still render as usable Stage 2 pages."""
+    page = _knowledge_page()
+    _write_cache(
+        tmp_path,
+        page,
+        input_hash=synthesis_input_hash_for_knowledge_page(page),
+        include_example=False,
+    )
+
+    rendered = render_knowledge_page(page, synthesis_cache_dir=tmp_path)
+
+    assert "synthesis_state: synthesized" in rendered.text
+    assert "## Example in practice" not in rendered.text
+    assert "Local models make inference controllable." in rendered.text
+
+
 def test_render_knowledge_page_falls_back_without_cache(tmp_path: Path) -> None:
     """A missing cache entry should keep the existing Stage 1 render."""
     rendered = render_knowledge_page(_knowledge_page(), synthesis_cache_dir=tmp_path)
@@ -48,35 +68,49 @@ def test_render_knowledge_page_falls_back_without_cache(tmp_path: Path) -> None:
     assert "## Evidence / supporting sources" in rendered.text
 
 
-def _write_cache(cache_dir: Path, page: KnowledgePage, *, input_hash: str) -> None:
+def _write_cache(
+    cache_dir: Path,
+    page: KnowledgePage,
+    *,
+    input_hash: str,
+    include_example: bool = True,
+) -> None:
     """Write one complete synthesis cache fixture."""
     cache_path = cache_file_path(cache_dir, category=page.category, slug=page.slug)
-    atomic_write_json(
-        cache_path,
-        {
-            "entity_id": page.entity_id,
-            "category": page.category,
-            "slug": page.slug,
-            "title": page.title,
-            "synthesis_schema_version": 1,
-            "synthesis_prompt_version": 1,
-            "synthesis_input_hash": input_hash,
-            "last_synthesized_at": "2026-06-16T00:00:00Z",
-            "executive_synthesis": "Local models make inference controllable.",
-            "what_to_remember": ["Use them when privacy or latency matters."],
-            "consensus": ["They trade hosted convenience for control."],
-            "tensions": ["They add operational work."],
-            "evidence_quality": ["Two sources with consistent practitioner claims."],
-            "practical_takeaway": "Start with narrow workloads before broad rollout.",
-            "context_card": {
-                "use_this_page_when": "Answering local deployment questions.",
-                "best_for_questions_about": ["privacy", "latency"],
-                "not_enough_for": ["benchmark selection"],
-                "strongest_sources": ["Source A"],
-                "related_tags": ["ai-engineering"],
-            },
+    payload = {
+        "entity_id": page.entity_id,
+        "category": page.category,
+        "slug": page.slug,
+        "title": page.title,
+        "synthesis_schema_version": 1,
+        "synthesis_prompt_version": 1,
+        "synthesis_input_hash": input_hash,
+        "last_synthesized_at": "2026-06-16T00:00:00Z",
+        "executive_synthesis": "Local models make inference controllable.",
+        "what_to_remember": ["Use them when privacy or latency matters."],
+        "consensus": ["They trade hosted convenience for control."],
+        "tensions": ["They add operational work."],
+        "evidence_quality": ["Two sources with consistent practitioner claims."],
+        "practical_takeaway": "Start with narrow workloads before broad rollout.",
+        "context_card": {
+            "use_this_page_when": "Answering local deployment questions.",
+            "best_for_questions_about": ["privacy", "latency"],
+            "not_enough_for": ["benchmark selection"],
+            "strongest_sources": ["Source A"],
+            "related_tags": ["ai-engineering"],
         },
-    )
+    }
+    if include_example:
+        payload["practical_example"] = {
+            "title": "Private support draft",
+            "example": (
+                "A support team could run a local model to draft internal answers before "
+                "sharing any sensitive customer details with a hosted model."
+            ),
+            "why_it_helps": "It makes the deployment tradeoff easy to picture.",
+            "basis": "illustrative",
+        }
+    atomic_write_json(cache_path, payload)
 
 
 def _knowledge_page() -> KnowledgePage:

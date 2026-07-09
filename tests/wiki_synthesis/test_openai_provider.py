@@ -136,6 +136,15 @@ def _payload() -> dict[str, Any]:
         "synthesis_input_hash": "hash",
         "last_synthesized_at": "2026-06-17T00:00:00Z",
         "executive_synthesis": "Local models make inference controllable.",
+        "practical_example": {
+            "title": "Private support draft",
+            "example": (
+                "A support team could run a local model to draft internal answers before "
+                "sharing any sensitive customer details with a hosted model."
+            ),
+            "why_it_helps": "It makes the deployment tradeoff easy to picture.",
+            "basis": "illustrative",
+        },
         "what_to_remember": ["Use them when privacy or latency matters."],
         "consensus": ["They trade hosted convenience for control."],
         "tensions": ["They add operational work."],

@@ -29,6 +29,8 @@ def test_build_prompt_bundle_contains_grounding_context() -> None:
     assert "[evidence-a]" in bundle.user_prompt
     assert "Local models run near users." in bundle.user_prompt
     assert '"synthesis_input_hash":' in bundle.user_prompt
+    assert '"practical_example":' in bundle.user_prompt
+    assert "service automation, chatbot, voicebot" in bundle.user_prompt
     assert current_hash in bundle.user_prompt
 
 

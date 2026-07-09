@@ -90,6 +90,7 @@ def test_run_synthesis_writes_validated_cache(tmp_path: Path) -> None:
     assert payload["synthesis_input_hash"] == report.items[0].current_input_hash
     assert payload["last_synthesized_at"] == "2026-06-16T12:00:00Z"
     assert payload["executive_synthesis"] == "Local models make inference controllable."
+    assert payload["practical_example"]["basis"] == "illustrative"
     assert report.items[0].model == "test-model"
     assert report.items[0].provider_request_id == "test-topic:local-models-test-model"
     assert report.items[0].token_usage == {"total_tokens": 123}
@@ -161,6 +162,7 @@ def _provider_payload() -> dict[str, Any]:
     """Return a complete provider synthesis payload."""
     return {
         "executive_synthesis": "Local models make inference controllable.",
+        "practical_example": _practical_example(),
         "what_to_remember": ["Use them when privacy or latency matters."],
         "consensus": ["They trade hosted convenience for control."],
         "tensions": ["They add operational work."],
@@ -173,6 +175,20 @@ def _provider_payload() -> dict[str, Any]:
             "strongest_sources": ["Source A"],
             "related_tags": ["ai-engineering"],
         },
+    }
+
+
+def _practical_example() -> dict[str, str]:
+    """Return a complete practical-example payload."""
+    return {
+        "title": "Local assistant for private support drafts",
+        "example": (
+            "A support team could run a local model to draft first-pass answers for "
+            "internal knowledge-base questions before any sensitive customer details "
+            "leave the laptop or internal network."
+        ),
+        "why_it_helps": "It makes the privacy and latency tradeoff concrete.",
+        "basis": "illustrative",
     }
 
 

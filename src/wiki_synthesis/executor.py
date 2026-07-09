@@ -173,6 +173,7 @@ def normalize_synthesis_payload(
         "synthesis_input_hash": bundle.synthesis_input_hash,
         "last_synthesized_at": _iso_utc(now),
         "executive_synthesis": _required_text(payload, "executive_synthesis"),
+        "practical_example": _practical_example(payload.get("practical_example")),
         "what_to_remember": _required_text_list(payload, "what_to_remember"),
         "consensus": _required_text_list(payload, "consensus"),
         "tensions": _required_text_list(payload, "tensions"),
@@ -189,6 +190,7 @@ def validate_synthesis_content_payload(payload: dict[str, Any]) -> None:
         _required_text(payload, key)
     for key in SYNTHESIS_CONTENT_LIST_FIELDS:
         _required_text_list(payload, key)
+    _practical_example(payload.get("practical_example"))
 
 
 def synthesis_response_json_schema() -> dict[str, Any]:
@@ -207,6 +209,17 @@ def synthesis_response_json_schema() -> dict[str, Any]:
             "synthesis_input_hash": {"type": "string"},
             "last_synthesized_at": {"type": "string"},
             "executive_synthesis": {"type": "string"},
+            "practical_example": {
+                "type": "object",
+                "additionalProperties": False,
+                "properties": {
+                    "title": {"type": "string"},
+                    "example": {"type": "string"},
+                    "why_it_helps": {"type": "string"},
+                    "basis": {"type": "string", "enum": ["source-grounded", "illustrative"]},
+                },
+                "required": ["title", "example", "why_it_helps", "basis"],
+            },
             "what_to_remember": string_array,
             "consensus": string_array,
             "tensions": string_array,
@@ -241,6 +254,7 @@ def synthesis_response_json_schema() -> dict[str, Any]:
             "synthesis_input_hash",
             "last_synthesized_at",
             "executive_synthesis",
+            "practical_example",
             "what_to_remember",
             "consensus",
             "tensions",
@@ -322,6 +336,24 @@ def _required_text_list(payload: dict[str, Any], key: str) -> list[str]:
     return items
 
 
+def _practical_example(value: Any) -> dict[str, str]:
+    """Return a normalized practical example from provider output."""
+    example = value if isinstance(value, dict) else {}
+    basis = _optional_text(example.get("basis"))
+    if basis not in {"source-grounded", "illustrative"}:
+        basis = "illustrative"
+    return {
+        "title": _required_nested_text(example, "title", parent="practical_example"),
+        "example": _required_nested_text(example, "example", parent="practical_example"),
+        "why_it_helps": _required_nested_text(
+            example,
+            "why_it_helps",
+            parent="practical_example",
+        ),
+        "basis": basis,
+    }
+
+
 def _context_card(value: Any) -> dict[str, Any]:
     """Return a normalized context card."""
     card = value if isinstance(value, dict) else {}
@@ -337,6 +369,15 @@ def _context_card(value: Any) -> dict[str, Any]:
 def _optional_text(value: Any) -> str:
     """Return stripped optional text."""
     return str(value or "").strip()
+
+
+def _required_nested_text(value: dict[str, Any], key: str, *, parent: str) -> str:
+    """Return one required nested text field."""
+    text = value.get(key)
+    if not isinstance(text, str) or not text.strip():
+        msg = f"Missing required text field: {parent}.{key}"
+        raise ValueError(msg)
+    return text.strip()
 
 
 def _optional_text_list(value: Any) -> list[str]:
