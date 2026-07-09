@@ -3695,7 +3695,7 @@
     },
     {
       "path": "tools/cognigy-ai.md",
-      "sha256": "76103748b304351ef7ea3941b5568baac5151938f20117517ca3467b8453a014"
+      "sha256": "4ed1650423331f5a75f7faeb1348504c2f56e0b093fd58a0ad338022cdcea6c8"
     },
     {
       "path": "tools/command-x.md",
@@ -3743,7 +3743,7 @@
     },
     {
       "path": "tools/fin-for-sales.md",
-      "sha256": "929d2322fc6d14002be77d94fcb1d1f5a98d7561821dcc800ae3a5d3e2f3820e"
+      "sha256": "8a806335fea40f7d17185983f8ae9264eb1b83a6b650af24695cc8235fe1034f"
     },
     {
       "path": "tools/fin-voice-2.md",
@@ -3751,7 +3751,7 @@
     },
     {
       "path": "tools/fin.md",
-      "sha256": "262b791fa321ccee5845d87b82f1a6b971432f4d1c757f07873a241f1f3fb1ac"
+      "sha256": "d31445deb9b51f7415d1e5620609650173f1ccc840fea304e777cf842189ef89"
     },
     {
       "path": "tools/final-cut-pro.md",
@@ -3851,7 +3851,7 @@
     },
     {
       "path": "tools/langgraph.md",
-      "sha256": "1ad389af5c0614e1b61294874da2f1c49d8383f5c3de89f05f00a6cd4c29e371"
+      "sha256": "b42c51a6e688f0cb6a5d7bc22caa5ffa3d0f6370a70364dbe4157839049e3393"
     },
     {
       "path": "tools/launchy.md",
@@ -3927,7 +3927,7 @@
     },
     {
       "path": "tools/notebooklm.md",
-      "sha256": "83504ade38e86ffae8e0d860aa5a822824ac6b9006ddccf5806c31f722b4d838"
+      "sha256": "d4ba6f8416e4c703d2572acdae74c17ded89dd851b37cb2c95207c98b83a7665"
     },
     {
       "path": "tools/notion-3-0.md",
@@ -4295,7 +4295,7 @@
     },
     {
       "path": "topics/ai-workflow-restructuring.md",
-      "sha256": "fefe8e670a8ad2f39a6e7dc4dd4f3ddbb1d01ddba261e5fef234981401d5d905"
+      "sha256": "ffaf919d2d3a3a8fa3a8003fd407cea113462cec25b76265263ccecd55b095f3"
     },
     {
       "path": "topics/answer-concision-as-product-quality.md",
@@ -4395,7 +4395,7 @@
     },
     {
       "path": "topics/context-engineering.md",
-      "sha256": "bfc25b692706bcd73d0905781db8ae8c80ca81d65a5ac9b9b09058fbfa0b2c15"
+      "sha256": "9307525c21bb2dffa9fd900c8e9ea920f359676fba4bd01cf8b97ce6f7bf72dd"
     },
     {
       "path": "topics/contextual-operations-summarization.md",
@@ -4451,7 +4451,7 @@
     },
     {
       "path": "topics/enterprise-conversational-ai-integration.md",
-      "sha256": "d3f6e6eb9bce104ef3c095a5c272559193c0a9f880a45464f484320f4c7f5b04"
+      "sha256": "170f15a96bf5e72430a72b287f1d4343dc2b7207e0c5e53b465c31a7fa5a127e"
     },
     {
       "path": "topics/eu-ai-act-three-clock-compliance.md",
@@ -4487,7 +4487,7 @@
     },
     {
       "path": "topics/governance-as-enabler-for-enterprise-ai.md",
-      "sha256": "e8d6d59f472b9799b681278cd40f5ea7deac3deabdc5ff1d9ea7b12bd6ba3e62"
+      "sha256": "5e7c094b03a2cb494934611298dc3ae74161758ead2457dab99f9880abb92723"
     },
     {
       "path": "topics/governed-cyber-model-access.md",
@@ -4515,7 +4515,7 @@
     },
     {
       "path": "topics/harness-engineering.md",
-      "sha256": "78dd00d21f3267ba2959596b8852d04f63c3c039738fe987a4febcb5b7ea6cf7"
+      "sha256": "a67cc3ad05828f83109afdeae7625da4401d2251a3e1dd5b34672b9711208efb"
     },
     {
       "path": "topics/human-feedback-loops-in-support-operations.md",

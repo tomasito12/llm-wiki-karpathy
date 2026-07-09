@@ -1,0 +1,70 @@
+{
+  "category": "topic",
+  "consensus": [
+    "AI workflow restructuring is about redesigning the work around AI, not just adding a chatbot or asking for better prompts.",
+    "The most reliable pattern is to split work into smaller units and keep deterministic control flow, validation, logging, IDs, caching, and traceability in code while the model handles semantic judgment.",
+    "Value is more likely when AI is inserted into the full workflow: finding inputs, coordinating actions, drafting, checking quality, and getting approval.",
+    "This approach is especially relevant for repetitive, document-heavy, coordination-heavy, or partially automatable enterprise processes.",
+    "Guided workflows can still be a successful outcome when full autonomy is blocked by systems, permissions, governance, or process ambiguity."
+  ],
+  "context_card": {
+    "best_for_questions_about": [
+      "How to redesign enterprise workflows around AI",
+      "When to use guided workflows instead of full agent autonomy",
+      "Why smaller, bounded AI tasks are often more reliable than end-to-end prompts",
+      "Where AI fits best in service automation, document processing, and knowledge work",
+      "How to judge whether AI is embedded in operations rather than used only for drafting"
+    ],
+    "not_enough_for": [
+      "A universal implementation blueprint for every department",
+      "Hard benchmarks comparing workflow redesign approaches across industries",
+      "A complete answer on governance, safety, or ROI in every context",
+      "Proof that full autonomy is generally achievable or preferable"
+    ],
+    "related_tags": [
+      "agent-systems",
+      "ai-engineering",
+      "enterprise-workflows",
+      "orchestration",
+      "process-design",
+      "workflow-automation",
+      "workflow-design"
+    ],
+    "strongest_sources": [
+      "Stop Using LLMs Like Giant Problem Solvers",
+      "The Next Era Of Knowledge Work",
+      "Agents can do the work",
+      "Boston Children\u2019s uses AI to unlock new diagnoses"
+    ],
+    "use_this_page_when": "Use this page when deciding whether to redesign a process around AI, how much of the workflow should be automated, and whether to favor guided execution over full agent autonomy."
+  },
+  "entity_id": "topic:ai-workflow-restructuring",
+  "evidence_quality": [
+    "Evidence is fairly strong across five sources, but it is mostly qualitative synthesis rather than controlled experiments.",
+    "The clearest support comes from recurring patterns across enterprise examples and workflow-design guidance, not from broad comparative studies.",
+    "Some evidence is vendor- or article-specific, so claims about ROI and operational gains should be treated as directional rather than definitive.",
+    "The page is current-sensitive: it reflects 2026 observations about adoption patterns and workflow design, which may shift as tooling and governance mature."
+  ],
+  "executive_synthesis": "AI workflow restructuring is the practice of redesigning work so AI fits the operational reality of the organization. The sources agree that the main leverage comes from changing the workflow, not from treating the model as a standalone problem solver. In practice, that means breaking work into smaller units, keeping orchestration and validation in deterministic code, and placing the model where semantic judgment is actually needed. The pattern is most useful in enterprise settings where work is repetitive, document-heavy, coordination-heavy, or only partially automatable. A guided flow can be a valid endpoint when deeper automation is blocked by systems, permissions, or governance. The main uncertainty is not whether the pattern exists, but how far it can be pushed safely and economically in a given organization.",
+  "last_synthesized_at": "2026-07-09T15:57:08Z",
+  "practical_takeaway": "Start by mapping a real workflow, then look for repetitive steps with enough volume to matter. Redesign the process so code handles control, validation, and traceability, and AI handles the judgment-heavy parts. If full automation is unsafe or unsupported, ship a guided workflow that reduces friction and captures value without requiring autonomous action.",
+  "slug": "ai-workflow-restructuring",
+  "synthesis_input_hash": "b9c0b8b85abd7354",
+  "synthesis_prompt_version": 1,
+  "synthesis_schema_version": 1,
+  "tensions": [
+    "Some sources frame the goal as increased autonomy, while others show that value often comes from moving to guided workflows instead of autonomous execution.",
+    "Enterprise examples suggest measurable gains are possible, but the strongest quantified result here comes from a single article and should not be generalized too broadly.",
+    "Consumer adoption data suggests workflows are becoming more specialized over time, but that evidence is indirect and may understate enterprise behavior.",
+    "The sources emphasize reliability and operational fit, but they do not resolve when the added complexity of orchestration is worth it versus simpler chat-based use."
+  ],
+  "title": "AI Workflow Restructuring",
+  "what_to_remember": [
+    "Treat the model as one component in a larger system, not the whole system.",
+    "Design for workflow completion, not isolated output generation.",
+    "Smaller units of work are easier to inspect, retry, and audit.",
+    "Guided workflows can be a real product outcome when autonomy is blocked.",
+    "The biggest gains usually come from reducing handoffs across search, drafting, verification, and approval.",
+    "Look for repetitive workflows with enough volume to justify redesign."
+  ]
+}

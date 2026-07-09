@@ -1,0 +1,61 @@
+{
+  "category": "topic",
+  "consensus": [
+    "Governance works better as part of AI workflow design than as a late-stage compliance gate.",
+    "Early involvement from security, legal, compliance, and IT can reduce rework, reversals, and rollout friction.",
+    "For enterprise AI, useful outputs are not enough; outputs also need to be reviewable, traceable, and acceptable within organizational rules.",
+    "Governance can be an adoption advantage in regulated, public-sector, or process-heavy settings because it makes AI easier to approve and operate."
+  ],
+  "context_card": {
+    "best_for_questions_about": [
+      "How governance can enable rather than slow enterprise AI",
+      "Why enterprise AI programs benefit from early security/legal/compliance involvement",
+      "How workflow design and approval paths affect production rollout",
+      "Why reviewability, traceability, and standards matter for enterprise AI adoption"
+    ],
+    "not_enough_for": [
+      "A full governance framework or operating model",
+      "Quantitative proof that governance always speeds delivery",
+      "Detailed implementation guidance for a specific industry or regulator",
+      "Cases where minimal governance is better than embedded governance"
+    ],
+    "related_tags": [
+      "ai-governance",
+      "compliance-systems",
+      "enterprise-ai",
+      "organizational-design"
+    ],
+    "strongest_sources": [
+      "How enterprises are scaling AI",
+      "Why an AI Enterprise Architecture toolkit is trending on GitHub in 2026"
+    ],
+    "use_this_page_when": "Use this page when deciding whether governance should be treated as an enabler inside enterprise AI design, especially if approval, auditability, or rollout friction are blocking adoption."
+  },
+  "entity_id": "topic:governance-as-enabler-for-enterprise-ai",
+  "evidence_quality": [
+    "Evidence is moderately strong but limited: 2 sources, 14 reviewed evidence items, and consistent support across both.",
+    "The evidence is mostly interpretive and based on enterprise reports and examples, not controlled experiments.",
+    "Claims are strongest for regulated, compliance-heavy, and process-heavy environments; less is established for low-risk or informal use cases.",
+    "The sources are recent, so this pattern may be time-sensitive as enterprise AI practices evolve."
+  ],
+  "executive_synthesis": "The core idea is that enterprise AI governance should be designed into the workflow, not bolted on after generation. Across both sources, governance is framed as something that can speed adoption when it creates reviewable, traceable, standards-aligned outputs that fit existing approval and operating processes. The practical value shows up most in regulated or process-heavy environments, where rollout friction, trust, and defensibility often determine whether AI reaches production. The evidence is fairly consistent, but it is still thin and mostly qualitative, so this page is best treated as a pattern summary rather than a proven universal rule.",
+  "last_synthesized_at": "2026-07-09T15:56:59Z",
+  "practical_takeaway": "If enterprise AI is getting stuck at approval, compliance, or operational handoff, move governance earlier and design it into the workflow, with security, legal, compliance, and IT involved as partners. Aim for outputs that are reviewable and easy to approve, not just fluent. This is most likely to help where defensibility and auditability matter.",
+  "slug": "governance-as-enabler-for-enterprise-ai",
+  "synthesis_input_hash": "4d3c6e2e5a6dca4f",
+  "synthesis_prompt_version": 1,
+  "synthesis_schema_version": 1,
+  "tensions": [
+    "The sources strongly favor embedded governance, but they do not show when governance may become too heavy or slow for low-risk use cases.",
+    "The evidence suggests governance improves speed and trust, but it does not quantify the tradeoff or provide comparative benchmarks.",
+    "Most support comes from enterprise examples and architecture/tooling commentary, so the claim is more a recurring operating pattern than a validated causal law."
+  ],
+  "title": "Governance as an Enabler for Enterprise AI",
+  "what_to_remember": [
+    "Governance is presented as a design input, not a post-hoc checkpoint.",
+    "Early cross-functional involvement reduces reversals later.",
+    "Reviewability and standards alignment matter as much as model quality in enterprise settings.",
+    "The main benefit is faster, safer rollout inside institutional constraints.",
+    "The pattern is strongest where approval, auditability, and trust determine production access."
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "created_at": "20260709T153536Z",
+  "options": {
+    "cache_dir": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis",
+    "category": null,
+    "entity": "tool:langgraph",
+    "graph_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/wiki_render_graph.json",
+    "include_single_source": false,
+    "limit": 1,
+    "model": "gpt-5.4-mini-2026-03-17",
+    "preview_dir": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews",
+    "review": true
+  },
+  "reviews": [
+    {
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/tool/langgraph.json",
+      "cached_input_hash": "f5044f14c24a0853",
+      "category": "tool",
+      "current_input_hash": "f5044f14c24a0853",
+      "entity_id": "tool:langgraph",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/tool/langgraph.md",
+      "rendered_synthesis_state": "synthesized",
+      "slug": "langgraph",
+      "target_path": "tools/langgraph.md",
+      "title": "LangGraph",
+      "validation_reason": "cache entry matches current evidence hash",
+      "validation_state": "fresh",
+      "wrote_preview": true
+    }
+  ],
+  "run": {
+    "called": 1,
+    "dry_run": false,
+    "items": [
+      {
+        "action": "written",
+        "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/tool/langgraph.json",
+        "cached_input_hash": "",
+        "category": "tool",
+        "current_input_hash": "f5044f14c24a0853",
+        "entity_id": "tool:langgraph",
+        "model": "gpt-5.4-mini-2026-03-17",
+        "provider_request_id": "chatcmpl-Dzl4bvDmNS4uANBSL2LQtXIjRNTZO",
+        "reason": "no synthesis cache entry exists",
+        "slug": "langgraph",
+        "state": "new",
+        "title": "LangGraph",
+        "token_usage": {
+          "completion_tokens": 1010,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens": 4749,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "total_tokens": 5759
+        }
+      }
+    ],
+    "planned": 1,
+    "written": 1
+  }
+}

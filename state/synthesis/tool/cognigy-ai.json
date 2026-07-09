@@ -1,0 +1,74 @@
+{
+  "category": "tool",
+  "consensus": [
+    "Cognigy.AI is an enterprise conversational AI platform for customer-service automation.",
+    "It is used to build agents across voice, chat, phone, messaging, and WhatsApp, with orchestration and handoff to human agents.",
+    "The platform is positioned around backend/system integration, including CRM, billing, Zendesk, GIS, and other enterprise stacks.",
+    "A recurring theme is support for both customer-facing automation and agent-assist workflows, not just standalone chatbots.",
+    "Multiple sources describe it as modular and customizable, with business users able to manage or extend agents in some deployments."
+  ],
+  "context_card": {
+    "best_for_questions_about": [
+      "Whether Cognigy.AI fits enterprise support automation",
+      "How it supports omnichannel conversational workflows",
+      "What kinds of integrations and handoffs it is designed for",
+      "Whether it can support voice, chat, WhatsApp, and agent-assist use cases",
+      "How strongly the sources support claims of real-world deployment"
+    ],
+    "not_enough_for": [
+      "Independent performance benchmarking",
+      "Pricing, licensing, or total cost of ownership",
+      "Detailed governance, auditability, failure handling, or accuracy limits",
+      "How much tuning or engineering is required in practice",
+      "Comparisons against specific competing platforms"
+    ],
+    "related_tags": [
+      "agentic",
+      "api-first",
+      "chat-interface",
+      "customer-support",
+      "enterprise-managed",
+      "tool-use",
+      "voice",
+      "workflow-automation"
+    ],
+    "strongest_sources": [
+      "AI Agent on WhatsAppPeaking at 1.1 Million Conversations per Month",
+      "E.ON's AI Agents Provide Best-in-Class Service",
+      "Lippert's AI Agent Cuts Costs by 80% and Boosts Sales",
+      "AI in Customer Service: A Complete Guide",
+      "What Is Conversational AI?"
+    ],
+    "use_this_page_when": "Use this page when deciding whether Cognigy.AI is a fit for enterprise customer-service automation, especially if you need omnichannel orchestration, backend integration, and human handoff rather than a simple FAQ bot."
+  },
+  "entity_id": "tool:cognigy-ai",
+  "evidence_quality": [
+    "Evidence is broad across five sources and repeatedly converges on the same platform shape: enterprise conversational AI for service automation.",
+    "Most claims come from vendor-authored articles and case studies, so they are useful for product positioning but not independent validation.",
+    "The evidence is strong on capabilities and deployment narratives, but weak on measurement methodology, failure modes, governance, and pricing.",
+    "Some maturity signals exist through named customer deployments and production-style descriptions, but they remain promotional rather than benchmarked.",
+    "The page is good for understanding fit and use cases, but not for validating ROI claims or operational reliability."
+  ],
+  "executive_synthesis": "Cognigy.AI appears to be an enterprise conversational AI platform built for customer-service automation across voice, chat, phone, messaging, and WhatsApp. The sources consistently describe it as a system for orchestration, backend integration, routing, self-service, and human escalation, with additional support for agent-assist and knowledge-enabled workflows. It is repeatedly framed as modular and customizable, and in some case studies business users can manage or extend agents internally. The evidence suggests real enterprise usage, but most of it is vendor-authored, so maturity and business-impact claims should be treated as directional rather than independently proven.",
+  "last_synthesized_at": "2026-07-09T15:35:06Z",
+  "practical_takeaway": "If you need an enterprise support automation layer that connects to existing systems and handles both automation and handoff across multiple channels, Cognigy.AI looks relevant. If you need independent proof of ROI, governance depth, or operational reliability, this page is not enough on its own.",
+  "slug": "cognigy-ai",
+  "synthesis_input_hash": "a5ab33c6ad2e062f",
+  "synthesis_prompt_version": 1,
+  "synthesis_schema_version": 1,
+  "tensions": [
+    "The platform is presented as mature and broadly deployed, but the strongest evidence is still vendor case studies rather than independent evaluation.",
+    "Sources emphasize easy customization and business-user control, but they give little detail on implementation complexity, guardrails, or how much tuning is actually required.",
+    "Several articles mention strong business outcomes, but the methodology behind those outcomes is not shown.",
+    "The platform is described as flexible across LLMs and integrations, but the practical tradeoff between flexibility and operational complexity is not explained."
+  ],
+  "title": "Cognigy.AI",
+  "what_to_remember": [
+    "Enterprise conversational AI for customer-service workflows, not just a chatbot tool.",
+    "Strong fit for omnichannel support: voice, chat, phone, messaging, and WhatsApp.",
+    "Designed to connect with operational systems like CRM, billing, Zendesk, and GIS.",
+    "Supports self-service, routing, proactive messaging, escalation, and agent-assist.",
+    "Case studies suggest business users can manage or extend agents, but that claim is vendor-reported.",
+    "Good evidence for use cases and positioning; weak evidence for independent ROI, governance, and failure handling."
+  ]
+}
