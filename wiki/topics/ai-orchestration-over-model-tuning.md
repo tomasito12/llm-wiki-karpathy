@@ -18,57 +18,71 @@ source_ids:
 - from-data-scientist-to-ai-architect-01krkb9hsmdhm4gb4ya9n6k0ze
 value_level: high
 confidence: 0.95
-synthesis_state: stage1-placeholder
+synthesis_state: synthesized
+synthesis_stale: false
+synthesis_input_hash: db969fcceef2c5c1
+current_input_hash: db969fcceef2c5c1
+synthesis_schema_version: 1
+synthesis_prompt_version: 1
+last_synthesized_at: '2026-07-09T16:20:32Z'
 ---
 
 # AI Orchestration Over Model Tuning
 
-## Current understanding
+## Executive synthesis
 
-<!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
-AI orchestration is the discipline of assembling retrieval, prompting, state management, tool use, error handling, and evaluation into a working system. The durable insight is that many production problems attributed to model weakness are actually failures in the surrounding system design. In practice, teams often get more reliability from better orchestration than from switching models or tuning weights early.
+AI orchestration over model tuning is the idea that many AI product failures come from the system around the model, not the model itself. The reviewed sources agree that context assembly, retrieval, routing, state management, validation, monitoring, retries, and evaluation are first-class engineering concerns. In practice, this means teams should usually improve the orchestration layer first—fix inputs, add retrieval, enforce structured outputs, add guardrails, and close the loop with evals—before spending effort on fine-tuning or more complex agent designs. The main limitation of this evidence is that it is principled rather than comparative: it strongly supports an orchestration-first approach, but does not provide hard metrics for when tuning would be superior.
 
-## Key Points
+## Context card
 
-- Retrieval, context management, and error handling are part of the system, not optional extras.
-- A simple prompt can fail because the orchestration layer never gave the model the right inputs.
-- Fine-tuning should come after simpler system fixes have been exhausted.
-- Evals are part of orchestration because they close the loop on whether the system improved.
-- A model API can be the easiest part of the stack.
-- Context assembly and request routing are often the real sources of complexity.
-- Monitoring and retries are part of the product, not peripheral infrastructure.
+- **Use this page when:** Use this page when deciding whether a problem is a model issue or an orchestration issue, and when prioritizing system work for AI product reliability.
+- **Best for questions about:** What AI orchestration means in practice, Why model quality is often not the main bottleneck, Which system components matter before fine-tuning, How to think about reliability in AI products, When to improve retrieval, guardrails, evals, or retries
+- **Not enough for:** A full architecture reference for building orchestration systems, Detailed implementation patterns for a specific stack, Benchmarks comparing orchestration strategies, Situations where fine-tuning is clearly the best first move
+- **Strongest sources:** From Data Scientist to AI Architect, 15 AI Engineering Terms — Beginners Get Wrong (And What It Costs You)
+- **Related tags:** agent-systems, ai-engineering, orchestration, runtime-architecture, workflow-design
 
-## Operational Insight
+## What to remember
 
-Use orchestration as the first lever when a system underperforms. Add retrieval, structured outputs, guardrails, and evals before reaching for fine-tuning or complex agents.
+- Most AI engineering problems are systems problems, not model problems.
+- The model API is often the easiest part of the stack.
+- Context assembly and request routing are frequent hidden sources of complexity.
+- Retrieval, error handling, monitoring, and evals are part of the product.
+- Use orchestration improvements before fine-tuning or complex agent expansion.
+- A simple prompt can fail because the system never supplied the right inputs.
 
-## Evidence / supporting sources
+## Consensus
 
-### 15 AI Engineering Terms — Beginners Get Wrong (And What It Costs You) (2026-04-21)
+- AI orchestration is the work of assembling retrieval, prompting, state/memory, tool use, routing, validation, logging, monitoring, retries, and evaluation into a functioning system.
+- Across both sources, many production failures blamed on the model are described as failures in the surrounding system design: bad context, unclear instructions, missing retrieval, weak error handling, or absent evals.
+- The orchestration layer is presented as a first-class part of the product, not optional plumbing.
+- The model call is often described as the easiest part of the stack; the harder work is getting the right inputs in, checking outputs, and recovering from failures.
+- Both sources recommend fixing orchestration before moving to fine-tuning or more complex agent designs.
 
-- AI orchestration is the discipline of assembling retrieval, prompting, state management, tool use, error handling, and evaluation into a working system. The durable insight is that many production problems attributed to model weakness are actually failures in the surrounding system design. In practice, teams often get more reliability from better orchestration than from switching models or tuning weights early. (`2d833cd82a5c` · neutral · knowledge_summary; [[sources/15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-01kr434xn20g7q62nvzdvzgzx1|15 AI Engineering Terms — Beginners Get Wrong (And What It Costs You)]])
-- Use orchestration as the first lever when a system underperforms. Add retrieval, structured outputs, guardrails, and evals before reaching for fine-tuning or complex agents. (`7fbd90289e14` · neutral · operational_insight; [[sources/15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-01kr434xn20g7q62nvzdvzgzx1|15 AI Engineering Terms — Beginners Get Wrong (And What It Costs You)]])
-- As of 2026-04-21, this is a durable operating principle for AI products because it aligns with how chatbots, voice agents, and service automation systems fail in production. It helps teams focus on data flow, controls, and measurement instead of over-indexing on model selection alone. (`d14734775aab` · neutral · relevance_note; [[sources/15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-01kr434xn20g7q62nvzdvzgzx1|15 AI Engineering Terms — Beginners Get Wrong (And What It Costs You)]])
-- Retrieval, context management, and error handling are part of the system, not optional extras. (`7d1e1ba92dde` · supporting · key_points[0]; [[sources/15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-01kr434xn20g7q62nvzdvzgzx1|15 AI Engineering Terms — Beginners Get Wrong (And What It Costs You)]])
-- A simple prompt can fail because the orchestration layer never gave the model the right inputs. (`a7cccf708178` · supporting · key_points[1]; [[sources/15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-01kr434xn20g7q62nvzdvzgzx1|15 AI Engineering Terms — Beginners Get Wrong (And What It Costs You)]])
-- Fine-tuning should come after simpler system fixes have been exhausted. (`e79f9686d0a0` · supporting · key_points[2]; [[sources/15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-01kr434xn20g7q62nvzdvzgzx1|15 AI Engineering Terms — Beginners Get Wrong (And What It Costs You)]])
-- Evals are part of orchestration because they close the loop on whether the system improved. (`d712f15ea348` · supporting · key_points[3]; [[sources/15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-01kr434xn20g7q62nvzdvzgzx1|15 AI Engineering Terms — Beginners Get Wrong (And What It Costs You)]])
-- Most AI engineering problems are not model problems. They are systems problems.
-The model is usually capable enough. What is wrong is what you are giving it: bad context, unclear instructions, no retrieval, no evals, no error handling. (`e737db7b2a6b` · supporting · supporting_snippet; [[sources/15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-01kr434xn20g7q62nvzdvzgzx1|15 AI Engineering Terms — Beginners Get Wrong (And What It Costs You)]])
+## Tensions / open questions
 
-### From Data Scientist to AI Architect (2026-05-08)
+- The sources strongly favor orchestration first, but they do not claim fine-tuning is never useful; they only say it should usually come after simpler system fixes.
+- There is no direct empirical comparison here showing how much reliability gain comes from orchestration versus model changes.
+- The guidance is broad across AI products, but the evidence is especially framed around assistants, chatbots, voice agents, support bots, and workflow automation; it may be less complete for other AI use cases.
 
-- In many modern AI applications, the core engineering problem shifts from fitting a model to orchestrating components around a model. That orchestration can include ingestion, retrieval, prompt construction, memory, routing, logging, monitoring, and retries. The practical unit of value becomes the whole pipeline rather than the model call alone. This changes how teams allocate time, evaluate quality, and structure their codebase. (`3440daaf0299` · neutral · knowledge_summary; [[sources/from-data-scientist-to-ai-architect-01krkb9hsmdhm4gb4ya9n6k0ze|From Data Scientist to AI Architect]])
-- When building AI products, optimize the orchestration layer as a first-class system. Measure how inputs are assembled, how outputs are validated, and how failures are retried rather than assuming the model call is the main bottleneck. (`0eb4239cb7af` · neutral · operational_insight; [[sources/from-data-scientist-to-ai-architect-01krkb9hsmdhm4gb4ya9n6k0ze|From Data Scientist to AI Architect]])
-- This pattern is durable because production AI behavior often depends on the glue around the model. It matters for assistants, support bots, and agent workflows where context management and failure handling determine reliability more than raw model capability. (`d16fe01afcde` · neutral · relevance_note; [[sources/from-data-scientist-to-ai-architect-01krkb9hsmdhm4gb4ya9n6k0ze|From Data Scientist to AI Architect]])
-- A model API can be the easiest part of the stack. (`13e282e2d6b9` · supporting · key_points[0]; [[sources/from-data-scientist-to-ai-architect-01krkb9hsmdhm4gb4ya9n6k0ze|From Data Scientist to AI Architect]])
-- Context assembly and request routing are often the real sources of complexity. (`07a9189d2904` · supporting · key_points[1]; [[sources/from-data-scientist-to-ai-architect-01krkb9hsmdhm4gb4ya9n6k0ze|From Data Scientist to AI Architect]])
-- Monitoring and retries are part of the product, not peripheral infrastructure. (`a3af822276b3` · supporting · key_points[2]; [[sources/from-data-scientist-to-ai-architect-01krkb9hsmdhm4gb4ya9n6k0ze|From Data Scientist to AI Architect]])
-- “The real work is in data ingestion, routing, assembling context, caching, monitoring, and handling retries.” (`c786eafdb5c6` · supporting · supporting_snippet; [[sources/from-data-scientist-to-ai-architect-01krkb9hsmdhm4gb4ya9n6k0ze|From Data Scientist to AI Architect]])
+## Evidence quality
 
-## Contradictions / tensions
+- Moderate-to-strong support from two sources with 15 reviewed evidence items total.
+- Evidence is consistent across sources and dates close together, suggesting a stable operating principle rather than a one-off claim.
+- The evidence is conceptual and operational, not empirical; it gives strong guidance but no comparative metrics or controlled studies.
+- The page is useful for prioritization, but not sufficient to prove that orchestration will always outperform model changes in every case.
 
-No contradictions captured in current sources.
+## Practical takeaway
+
+When an AI system underperforms, treat the orchestration layer as the default place to debug and improve: inspect context assembly, routing, retrieval, output validation, retries, monitoring, and evals before assuming the model needs tuning.
+
+## Evidence index
+
+- Sources: 2
+- Evidence items: 15
+- Current input hash: `db969fcceef2c5c1`
+- Cached input hash: `db969fcceef2c5c1`
+- Last synthesized: 2026-07-09T16:20:32Z
+- Synthesis status: `fresh`
 
 ## Related pages
 

@@ -18,58 +18,69 @@ source_ids:
 - operator-a-look-under-the-hood-01krmvv5hry22g6cxvat4xzge0
 value_level: high
 confidence: 0.95
-synthesis_state: stage1-placeholder
+synthesis_state: synthesized
+synthesis_stale: false
+synthesis_input_hash: ad4cb8aac6c9d2a1
+current_input_hash: ad4cb8aac6c9d2a1
+synthesis_schema_version: 1
+synthesis_prompt_version: 1
+last_synthesized_at: '2026-07-09T16:20:03Z'
 ---
 
 # Approval-Based Agent Actions
 
-## Current understanding
+## Executive synthesis
 
-<!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
-Some agent systems are most useful when they prepare work for review rather than execute directly. The agent does the drafting, analysis, or recommendation step, then a human approves the result before it takes effect. This pattern reduces risk in customer-facing or operationally sensitive workflows because it preserves human control over final changes. It also makes agent output easier to audit, edit, and roll back. The approach is especially relevant when the agent is updating live systems, policies, or support content.
+Approval-based agent actions are a supervised workflow pattern: the agent prepares a proposal, structured diff, or draft change, and a human must review and approve it before anything affects a live system. The sources agree that this is useful when failures are costly, changes are hard to detect or roll back, or the workflow touches customers, configuration, or external communications. The main benefit is that teams can keep the agent for cognitive and drafting work while preserving human control over the final commit. The main limitation is that the evidence here is narrow and mostly describes one product pattern; it does not compare this approach against other safety controls or show when fully autonomous write actions are preferable.
 
-## Key Points
+## Context card
 
-- The agent can do cognitive and drafting work without being trusted to publish directly.
-- A proposal format makes AI output legible as a change request rather than an opaque chat response.
-- Human approval is a control mechanism, not just a UX detail; it defines the boundary of system autonomy.
-- The pattern is useful when failure costs are high and edits must be reviewed before release.
-- Reviewable diffs provide a precise human checkpoint for high-stakes actions.
-- Accept/reject/refine workflows preserve human authority without removing agent leverage.
-- Safe write actions are more demanding than read-only analysis because they affect live systems.
-- Auditable proposals support governance and incident review after changes are applied.
+- **Use this page when:** Use this page when deciding whether an agent should propose changes for human review rather than execute writes directly, especially in support, operations, or other live-system workflows.
+- **Best for questions about:** How to design approval-based agent workflows, When human approval should gate agent write actions, Why reviewable diffs matter for agent safety and auditability, How to keep agents useful without granting full autonomy
+- **Not enough for:** A full implementation blueprint for approval workflows, Detailed technical controls beyond proposal/review/approve, Evidence about performance tradeoffs across different approval UX designs, Claims about when full autonomy is better than supervised changes
+- **Strongest sources:** Meet Operator: An Agent for your customer operations, Operator: A look under the hood
+- **Related tags:** agent-systems, auditability, human-ai-workflows, support-automation, workflow-design
 
-## Operational Insight
+## What to remember
 
-Use agents to compress the expensive reasoning and drafting work, but keep the final commit behind an explicit approval step when the action affects customers, configuration, or external communications.
+- Treat write actions as proposals first, execution second.
+- Reviewable diffs are the key interface: they make changes inspectable before release.
+- Human approval is not cosmetic; it defines the system's autonomy boundary.
+- This pattern is most useful when errors are costly, hard to detect, or hard to roll back.
+- It is a good middle ground between manual operation and full autonomy for live support and configuration work.
 
-## Evidence / supporting sources
+## Consensus
 
-### Meet Operator: An Agent for your customer operations (2026-05-15)
+- The core pattern is to let the agent do the drafting, analysis, or proposed change, but require human approval before anything is applied to live systems.
+- A structured proposal or reviewable diff makes AI output legible as a change request instead of an opaque chat response.
+- This approval step acts as a real control boundary: it preserves human authority while still capturing agent leverage on the expensive thinking and drafting work.
+- The pattern is especially relevant for high-stakes, customer-facing, configuration, or compliance-sensitive actions where mistakes are costly or hard to roll back.
+- Auditable proposals help with governance, incident review, and post-change accountability.
 
-- Some agent systems are most useful when they prepare work for review rather than execute directly. The agent does the drafting, analysis, or recommendation step, then a human approves the result before it takes effect. This pattern reduces risk in customer-facing or operationally sensitive workflows because it preserves human control over final changes. It also makes agent output easier to audit, edit, and roll back. The approach is especially relevant when the agent is updating live systems, policies, or support content. (`7e0cf85843f1` · neutral · knowledge_summary; [[sources/meet-operator-an-agent-for-your-customer-operations-01krmvv5n3fkq5e3h1w2mjttew|Meet Operator: An Agent for your customer operations]])
-- Use agents to compress the expensive reasoning and drafting work, but keep the final commit behind an explicit approval step when the action affects customers, configuration, or external communications. (`3f0cb2d058ad` · neutral · operational_insight; [[sources/meet-operator-an-agent-for-your-customer-operations-01krmvv5n3fkq5e3h1w2mjttew|Meet Operator: An Agent for your customer operations]])
-- This pattern matters wherever AI systems touch live customer operations, compliance-sensitive changes, or shared configuration. It gives teams a practical middle ground between manual work and full autonomy, which is durable across agent products and support stacks. (`a9f1e5620e70` · neutral · relevance_note; [[sources/meet-operator-an-agent-for-your-customer-operations-01krmvv5n3fkq5e3h1w2mjttew|Meet Operator: An Agent for your customer operations]])
-- The agent can do cognitive and drafting work without being trusted to publish directly. (`385df898ec0d` · supporting · key_points[0]; [[sources/meet-operator-an-agent-for-your-customer-operations-01krmvv5n3fkq5e3h1w2mjttew|Meet Operator: An Agent for your customer operations]])
-- A proposal format makes AI output legible as a change request rather than an opaque chat response. (`18ddbab8625d` · supporting · key_points[1]; [[sources/meet-operator-an-agent-for-your-customer-operations-01krmvv5n3fkq5e3h1w2mjttew|Meet Operator: An Agent for your customer operations]])
-- Human approval is a control mechanism, not just a UX detail; it defines the boundary of system autonomy. (`beede18aa874` · supporting · key_points[2]; [[sources/meet-operator-an-agent-for-your-customer-operations-01krmvv5n3fkq5e3h1w2mjttew|Meet Operator: An Agent for your customer operations]])
-- The pattern is useful when failure costs are high and edits must be reviewed before release. (`188e517d24f2` · supporting · key_points[3]; [[sources/meet-operator-an-agent-for-your-customer-operations-01krmvv5n3fkq5e3h1w2mjttew|Meet Operator: An Agent for your customer operations]])
-- “When Operator updates content, adjusts configuration, or modifies how Fin behaves, it creates a proposal – a structured diff of what’s changing and why. You review it, edit if needed, and approve before it takes effect.” (`d41b549840b9` · supporting · supporting_snippet; [[sources/meet-operator-an-agent-for-your-customer-operations-01krmvv5n3fkq5e3h1w2mjttew|Meet Operator: An Agent for your customer operations]])
+## Tensions / open questions
 
-### Operator: A look under the hood (2026-05-15)
+- The sources strongly favor approval gating, but they do not establish that it is always the best pattern; they mainly argue it is safer and more deployable in high-stakes contexts.
+- The pattern is described as durable and practical, but the evidence is limited to two related sources rather than independent comparisons or failures of alternatives.
+- The review step is framed as both a UX feature and a governance control; the sources emphasize the control aspect, but they do not resolve how much workflow friction is acceptable.
 
-- When an agent can change live systems, the safest pattern is to route changes through a human review step before anything is applied. The agent should present a structured diff or proposal rather than silently executing write operations. This preserves human oversight while still letting the agent do the drafting and pre-work. The pattern is especially important when mistakes are costly, hard to detect, or difficult to roll back. (`2341fabafff4` · neutral · knowledge_summary; [[sources/operator-a-look-under-the-hood-01krmvv5hry22g6cxvat4xzge0|Operator: A look under the hood]])
-- Treat write actions as proposals first and execution second. In production support systems, a reviewable diff is often the difference between useful automation and an unsafe autonomous system. (`260ba8dc4d71` · neutral · operational_insight; [[sources/operator-a-look-under-the-hood-01krmvv5hry22g6cxvat4xzge0|Operator: A look under the hood]])
-- This is a durable control pattern for enterprise agents that act on knowledge bases, support workflows, or configuration. It reduces blast radius by turning automation into a supervised workflow, which is often easier to deploy than full autonomy. (`718d9bdd5e0c` · neutral · relevance_note; [[sources/operator-a-look-under-the-hood-01krmvv5hry22g6cxvat4xzge0|Operator: A look under the hood]])
-- Reviewable diffs provide a precise human checkpoint for high-stakes actions. (`1555e8526965` · supporting · key_points[0]; [[sources/operator-a-look-under-the-hood-01krmvv5hry22g6cxvat4xzge0|Operator: A look under the hood]])
-- Accept/reject/refine workflows preserve human authority without removing agent leverage. (`45f4afc7a8e8` · supporting · key_points[1]; [[sources/operator-a-look-under-the-hood-01krmvv5hry22g6cxvat4xzge0|Operator: A look under the hood]])
-- Safe write actions are more demanding than read-only analysis because they affect live systems. (`828573f6dd72` · supporting · key_points[2]; [[sources/operator-a-look-under-the-hood-01krmvv5hry22g6cxvat4xzge0|Operator: A look under the hood]])
-- Auditable proposals support governance and incident review after changes are applied. (`2e0688a7cb5b` · supporting · key_points[3]; [[sources/operator-a-look-under-the-hood-01krmvv5hry22g6cxvat4xzge0|Operator: A look under the hood]])
-- "To prevent this, we built a robust proposal system, whereby every change Operator suggests is presented as a reviewable diff. You see exactly what will change before anything is applied, with the option to accept, reject, or refine." (`39ecb7bb24af` · supporting · supporting_snippet; [[sources/operator-a-look-under-the-hood-01krmvv5hry22g6cxvat4xzge0|Operator: A look under the hood]])
+## Evidence quality
 
-## Contradictions / tensions
+- Evidence is fairly strong but narrow: 16 reviewed items from 2 sources, both about the same Operator pattern.
+- Claims are consistent across sources and several are high-confidence, but the evidence is product-adjacent rather than comparative or experimental.
+- The page supports a clear operational pattern, but not a broad theory of all agent approval systems.
 
-No contradictions captured in current sources.
+## Practical takeaway
+
+If an agent can write to a live system, default to proposals first and execution second: show a reviewable diff, let a human accept/reject/refine it, and treat approval as the boundary between assistance and action.
+
+## Evidence index
+
+- Sources: 2
+- Evidence items: 16
+- Current input hash: `ad4cb8aac6c9d2a1`
+- Cached input hash: `ad4cb8aac6c9d2a1`
+- Last synthesized: 2026-07-09T16:20:03Z
+- Synthesis status: `fresh`
 
 ## Related pages
 

@@ -24,76 +24,70 @@ source_ids:
 - the-4-lines-every-claude-md-needs-01kqfhwht8d87smkknhrrcgt1x
 value_level: high
 confidence: 0.886667
-synthesis_state: stage1-placeholder
+synthesis_state: synthesized
+synthesis_stale: false
+synthesis_input_hash: 68e6801cf7f640ef
+current_input_hash: 68e6801cf7f640ef
+synthesis_schema_version: 1
+synthesis_prompt_version: 1
+last_synthesized_at: '2026-07-09T16:20:22Z'
 ---
 
 # Behavioral Instruction Layers
 
-## Current understanding
+## Executive synthesis
 
-<!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
-Agent instruction files work best when they separate behavioral guardrails from project-specific facts. The behavioral layer should constrain how an agent reasons and edits: ask before assuming, keep changes minimal, avoid touching unrelated code, and verify outcomes. Project-specific context should be thin and only cover information the agent cannot infer from the repository itself, such as build commands, non-obvious conventions, or past failure modes. Longer rule lists tend to degrade when they repeat what the code already shows or compete with the model’s own reasoning.
+Behavioral Instruction Layers are a way to separate agent behavior from task content: persistent defaults for stable preferences, a live prompt for the current request, and thin project context only where it changes the odds of mistakes. Across the sources, the main claim is that agents improve more when you steer how they think, prioritize, and verify than when you repeat repository facts or keep adding longer rule lists. The pattern is especially useful when the real problem is overcommitment, context switching, unclear priorities, or inconsistent judgment. The evidence is practical and consistent, but it is mostly heuristic: it tells you how to structure instructions, not precisely how many layers to use or how to encode every preference.
 
-## Examples
+## Context card
 
-The source distills the behavioral layer into four lines: “Don’t assume. Don’t hide confusion. Surface tradeoffs.” “Minimum code that solves the problem. Nothing speculative.” “Touch only what you must. Clean up only your own mess.” “Define success criteria. Loop until verified.”
+- **Use this page when:** Use this page when you need a compact mental model for how to shape agent behavior with layered instructions, especially when the problem is instruction hierarchy, overcommitment, or noisy context.
+- **Best for questions about:** how to structure agent instructions into behavior vs task context, when custom instructions or CLAUDE.md-style files help agent behavior, how to keep instruction layers small, durable, and easier to debug, how to encode recurring user failure modes into agent guidance
+- **Not enough for:** a universal schema for all agent stacks, formal proof that layered instructions improve outcomes in every setting, detailed implementation guidance for a specific product or framework, deciding exactly which preferences belong in memory vs prompt in every case
+- **Strongest sources:** The 4 Lines Every CLAUDE.md Needs, Personalizing ChatGPT, How I Built an AI Second Brain Using Claude Code and Obsidian
+- **Related tags:** agent-systems, ai-engineering, context-engineering, developer-tooling, human-ai-workflows, model-behavior, model-personality, organizational-design, software-engineering, workflow-design
 
-## Key Points
+## What to remember
 
-- Behavioral rules should override default model tendencies rather than restate repository facts.
-- Project context is most valuable when the model cannot infer it by reading files.
-- The more a rule resembles a style preference already visible in the repo, the less value it adds.
-- Instruction files should be judged by whether removing a line would actually cause mistakes.
-- Instruction text can encode recurring failure modes such as FOMO or perfectionism.
-- Behavioral guidance can be more valuable than generic summarization when the real problem is prioritization.
-- The pattern works best when paired with explicit, concrete rules such as limiting the number of priorities.
-- Stable preferences should be persistent, not re-specified every turn.
-- The live prompt should carry the immediate task and any exceptions.
-- Memory should not be used as a catch-all for every detail the user mentions.
-- The clearer the instruction hierarchy, the easier it is to troubleshoot inconsistent behavior.
+- Behavioral layers should shape reasoning and verification, not restate facts.
+- Persistent preferences and one-off task constraints should live in different places.
+- Add project context only when it materially reduces mistakes.
+- Instruction files should be judged by whether removing a line would likely cause an error.
+- This pattern is useful when the main issue is behavior, not raw capability.
 
-## Operational Insight
+## Consensus
 
-For agent workflows, keep instruction files small and behavior-focused. Add context only when it materially changes the agent’s chances of making a mistake, not as a dumping ground for preferences.
+- Behavioral instructions work best when they change how the agent reasons, not when they restate facts the model can already infer.
+- Stable preferences belong in a persistent layer; immediate task constraints belong in the live prompt.
+- Project-specific context is most useful when it prevents likely mistakes, not when it becomes a dump of preferences or redundant detail.
+- Instruction layers are easier to maintain and debug when they are small, explicit, and separated by scope or lifetime.
+- These patterns are useful across assistants, not just coding tools, because the core problem is often behavior and instruction hierarchy rather than model capability.
 
-## Evidence / supporting sources
+## Tensions / open questions
 
-### How I Built an AI Second Brain Using Claude Code and Obsidian (2026-05-03)
+- One source frames the layer as a compact four-line behavioral core, while another emphasizes a broader stack of defaults, memory, and live prompt; these are compatible, but they imply different levels of granularity.
+- There is a tension between adding context that improves personalization and keeping instruction files thin; the sources favor thinness, but do not give a hard boundary for what counts as necessary context.
+- The second-brain example suggests encoding recurring personal tendencies can be valuable, but the ChatGPT source warns against using memory as a catch-all for every detail, so the scope of 'personalization' remains somewhat underspecified.
 
-- Behavioral instruction layers are prompts or policy text that encode the user’s habits, failure modes, and decision preferences into an agent workflow. Instead of only asking the model to summarize information, the system also tells it how to push back, prioritize, and challenge bad defaults. This makes the assistant behave more like an accountability layer than a passive formatter. The pattern is useful when the main problem is not information access but overcommitment, context switching, or inconsistent judgment. It is a lightweight way to shape agent output without building a separate rules engine. (`d4823f1173ac` · neutral · knowledge_summary; [[sources/how-i-built-an-ai-second-brain-using-claude-code-and-obsidian-01kr434kyy8fyj0wpm1gyx443z|How I Built an AI Second Brain Using Claude Code and Obsidian]])
-- Encoding personal tendencies into the instruction layer can make the agent more useful than raw summarization alone, because the system can surface tradeoffs and nudge decisions. The durable lesson is to define behavior, not just tasks. (`62e9408c6b6c` · neutral · operational_insight; [[sources/how-i-built-an-ai-second-brain-using-claude-code-and-obsidian-01kr434kyy8fyj0wpm1gyx443z|How I Built an AI Second Brain Using Claude Code and Obsidian]])
-- This matters for AI-assisted work because many workflows fail on behavior, not capability. An agent that can reflect user tendencies can improve prioritization, reduce overload, and support human-in-the-loop decision making. (`56023b3c5edf` · neutral · relevance_note; [[sources/how-i-built-an-ai-second-brain-using-claude-code-and-obsidian-01kr434kyy8fyj0wpm1gyx443z|How I Built an AI Second Brain Using Claude Code and Obsidian]])
-- Instruction text can encode recurring failure modes such as FOMO or perfectionism. (`871fcc64650c` · supporting · key_points[0]; [[sources/how-i-built-an-ai-second-brain-using-claude-code-and-obsidian-01kr434kyy8fyj0wpm1gyx443z|How I Built an AI Second Brain Using Claude Code and Obsidian]])
-- Behavioral guidance can be more valuable than generic summarization when the real problem is prioritization. (`920a6d503c40` · supporting · key_points[1]; [[sources/how-i-built-an-ai-second-brain-using-claude-code-and-obsidian-01kr434kyy8fyj0wpm1gyx443z|How I Built an AI Second Brain Using Claude Code and Obsidian]])
-- The pattern works best when paired with explicit, concrete rules such as limiting the number of priorities. (`0c46a3d24966` · supporting · key_points[2]; [[sources/how-i-built-an-ai-second-brain-using-claude-code-and-obsidian-01kr434kyy8fyj0wpm1gyx443z|How I Built an AI Second Brain Using Claude Code and Obsidian]])
-- "Do you context-switch too much? Do you say yes to every meeting? Do you over-prepare when “good enough” would move things forward?" (`8b692c3bed8d` · supporting · supporting_snippet; [[sources/how-i-built-an-ai-second-brain-using-claude-code-and-obsidian-01kr434kyy8fyj0wpm1gyx443z|How I Built an AI Second Brain Using Claude Code and Obsidian]])
+## Evidence quality
 
-### Personalizing ChatGPT (2026-04-10)
+- Moderate evidence from three reviewed sources, with strong agreement on the high-level pattern and weaker evidence on exact implementation details.
+- The sources are practical and explanatory rather than experimental; they support useful design heuristics more than quantified performance claims.
+- Evidence is strongest for prompt/instruction organization, not for any single preferred wording or fixed number of layers.
+- The second-brain example broadens the idea beyond coding, but it is still a single workflow account rather than broad field evidence.
 
-- Agent behavior becomes more controllable when instructions are separated into layers with different lifetimes and scopes. Stable preferences belong in a default configuration layer, while immediate task constraints stay in the active request. A memory layer can hold user-approved recurring context that should survive across sessions. This reduces conflict between long-term behavior and one-off task needs. (`803f6b367faf` · neutral · knowledge_summary; [[sources/personalizing-chatgpt-01knw8fhbjwcd9g1as8kctv26f|Personalizing ChatGPT]])
-- Design personalization as a stack of instructions, not a single prompt blob. That makes behavior easier to reason about, update, and debug when outputs drift. (`92d7702fa115` · neutral · operational_insight; [[sources/personalizing-chatgpt-01knw8fhbjwcd9g1as8kctv26f|Personalizing ChatGPT]])
-- This is durable for AI assistants because many production failures come from unclear instruction hierarchy rather than model weakness alone. Layering also helps support systems separate policy, persona, and task context without overfitting the assistant to a single conversation. (`ccc77690eddc` · neutral · relevance_note; [[sources/personalizing-chatgpt-01knw8fhbjwcd9g1as8kctv26f|Personalizing ChatGPT]])
-- Stable preferences should be persistent, not re-specified every turn. (`d2d1f0107b89` · supporting · key_points[0]; [[sources/personalizing-chatgpt-01knw8fhbjwcd9g1as8kctv26f|Personalizing ChatGPT]])
-- The live prompt should carry the immediate task and any exceptions. (`e4f21c64ac27` · supporting · key_points[1]; [[sources/personalizing-chatgpt-01knw8fhbjwcd9g1as8kctv26f|Personalizing ChatGPT]])
-- Memory should not be used as a catch-all for every detail the user mentions. (`881b2f715a8b` · supporting · key_points[2]; [[sources/personalizing-chatgpt-01knw8fhbjwcd9g1as8kctv26f|Personalizing ChatGPT]])
-- The clearer the instruction hierarchy, the easier it is to troubleshoot inconsistent behavior. (`fba6a9174e31` · supporting · key_points[3]; [[sources/personalizing-chatgpt-01knw8fhbjwcd9g1as8kctv26f|Personalizing ChatGPT]])
-- "Think of custom instructions like setting your default 'working style' so you don’t have to repeat yourself every time. Use them for stable preferences (role, tone, formats), and use the chat prompt itself for the specific task at hand." (`573688a71c13` · supporting · supporting_snippet; [[sources/personalizing-chatgpt-01knw8fhbjwcd9g1as8kctv26f|Personalizing ChatGPT]])
+## Practical takeaway
 
-### The 4 Lines Every CLAUDE.md Needs (2026-04-27)
+Keep instruction files behavior-focused and short. Put durable preferences in a persistent layer, keep the current task and exceptions in the live prompt, and add project context only when it prevents specific mistakes. If removing a rule would not cause a likely error, it probably does not belong in the behavioral layer.
 
-- The source distills the behavioral layer into four lines: “Don’t assume. Don’t hide confusion. Surface tradeoffs.” “Minimum code that solves the problem. Nothing speculative.” “Touch only what you must. Clean up only your own mess.” “Define success criteria. Loop until verified.” (`10818cdb8211` · neutral · examples; [[sources/the-4-lines-every-claude-md-needs-01kqfhwht8d87smkknhrrcgt1x|The 4 Lines Every CLAUDE.md Needs]])
-- Agent instruction files work best when they separate behavioral guardrails from project-specific facts. The behavioral layer should constrain how an agent reasons and edits: ask before assuming, keep changes minimal, avoid touching unrelated code, and verify outcomes. Project-specific context should be thin and only cover information the agent cannot infer from the repository itself, such as build commands, non-obvious conventions, or past failure modes. Longer rule lists tend to degrade when they repeat what the code already shows or compete with the model’s own reasoning. (`98cd172042ec` · neutral · knowledge_summary; [[sources/the-4-lines-every-claude-md-needs-01kqfhwht8d87smkknhrrcgt1x|The 4 Lines Every CLAUDE.md Needs]])
-- For agent workflows, keep instruction files small and behavior-focused. Add context only when it materially changes the agent’s chances of making a mistake, not as a dumping ground for preferences. (`74f186a3439a` · neutral · operational_insight; [[sources/the-4-lines-every-claude-md-needs-01kqfhwht8d87smkknhrrcgt1x|The 4 Lines Every CLAUDE.md Needs]])
-- This is durable because agent instruction design comes up across coding assistants, support bots, and workflow automation systems. The same separation between behavior and context helps reduce prompt bloat, improve compliance with instructions, and keep agent output easier to review. (`acf51fb7628f` · neutral · relevance_note; [[sources/the-4-lines-every-claude-md-needs-01kqfhwht8d87smkknhrrcgt1x|The 4 Lines Every CLAUDE.md Needs]])
-- Behavioral rules should override default model tendencies rather than restate repository facts. (`75793284f3f3` · supporting · key_points[0]; [[sources/the-4-lines-every-claude-md-needs-01kqfhwht8d87smkknhrrcgt1x|The 4 Lines Every CLAUDE.md Needs]])
-- Project context is most valuable when the model cannot infer it by reading files. (`26ac4debab22` · supporting · key_points[1]; [[sources/the-4-lines-every-claude-md-needs-01kqfhwht8d87smkknhrrcgt1x|The 4 Lines Every CLAUDE.md Needs]])
-- The more a rule resembles a style preference already visible in the repo, the less value it adds. (`76a0a90fccc4` · supporting · key_points[2]; [[sources/the-4-lines-every-claude-md-needs-01kqfhwht8d87smkknhrrcgt1x|The 4 Lines Every CLAUDE.md Needs]])
-- Instruction files should be judged by whether removing a line would actually cause mistakes. (`bc48ce97bc1b` · supporting · key_points[3]; [[sources/the-4-lines-every-claude-md-needs-01kqfhwht8d87smkknhrrcgt1x|The 4 Lines Every CLAUDE.md Needs]])
-- “The 4 lines work because they shape how the agent thinks, not what it does. They’re transferable across projects, languages, and problem types.” (`09af8002b37c` · supporting · supporting_snippet; [[sources/the-4-lines-every-claude-md-needs-01kqfhwht8d87smkknhrrcgt1x|The 4 Lines Every CLAUDE.md Needs]])
+## Evidence index
 
-## Contradictions / tensions
-
-No contradictions captured in current sources.
+- Sources: 3
+- Evidence items: 24
+- Current input hash: `68e6801cf7f640ef`
+- Cached input hash: `68e6801cf7f640ef`
+- Last synthesized: 2026-07-09T16:20:22Z
+- Synthesis status: `fresh`
 
 ## Related pages
 

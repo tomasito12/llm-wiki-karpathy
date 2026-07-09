@@ -23,76 +23,73 @@ source_ids:
 - running-codex-safely-at-openai-01kr4j0wpfyavt95avxpff49qc
 value_level: high
 confidence: 0.943333
-synthesis_state: stage1-placeholder
+synthesis_state: synthesized
+synthesis_stale: false
+synthesis_input_hash: 9a6e57bfda557138
+current_input_hash: 9a6e57bfda557138
+synthesis_schema_version: 1
+synthesis_prompt_version: 1
+last_synthesized_at: '2026-07-09T16:20:12Z'
 ---
 
 # Approval-Based Coding Workflows
 
-## Current understanding
+## Executive synthesis
 
-<!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
-Approval-based coding workflows keep a human in the loop for significant or destructive changes while still letting the assistant handle planning, edits, and command execution. The practical advantage is reduced risk: the user can inspect a plan or diff before committing to each step. This pattern is especially valuable in refactoring, large codebases, or regulated environments where irreversible mistakes are costly. The tradeoff is slower throughput and more manual review overhead.
+Approval-based coding workflows put a human or policy gate between AI-generated work and risky actions such as merging, shipping, or running destructive commands. Across the sources, the pattern is presented as a safety mechanism rather than a clerical checkpoint: the system can handle routine work quickly, but higher-risk changes should be explicit, inspectable, and reviewable. The practical design split is consistent: sandboxing limits what the agent can do, approval policy decides when it must ask, and logging/diffs create the audit trail. This makes the workflow especially useful where correctness, reversibility, and accountability matter more than raw speed. The main gap in the evidence is that it explains the pattern well but gives little hard data on optimal thresholds, developer friction, or how different organizations should tune the gate.
 
-## Examples
+## Context card
 
-The source says Claude Code "shows you the plan, then executes step by step" and "asks before running destructive commands, shows you exactly what it’s changing, and provides clear diffs."
+- **Use this page when:** Use this page when deciding whether to add approval gates to AI coding or agent workflows, or when you need a concise model for how approvals, sandboxing, reviewability, and rollback fit together.
+- **Best for questions about:** How approval gates change AI coding workflows, When to use human-in-the-loop approval for AI-generated code, How to separate sandboxing, approvals, and logging in agent systems, Why diff visibility and plan review matter in coding agents, How to keep AI-assisted changes auditable and reversible
+- **Not enough for:** A universal policy for approval thresholds across teams, Quantitative performance or safety comparisons between different tools or implementations, How to design a full enterprise rollout from scratch, Edge cases outside code-editing and command-running agents
+- **Strongest sources:** Running Codex safely at OpenAI, AI is approving our pull requests: Here’s how we made it safe, Antigravity vs Claude Code: Which AI Coding Assistant Should You Actually Use?
+- **Related tags:** agent-orchestration, agent-systems, ai-engineering, ai-governance, auditability, coding-agents, enterprise-workflows, runtime-architecture, software-engineering
 
-## Key Points
+## What to remember
 
-- Planning plus approval reduces coordination errors in multi-step tasks.
-- Diff visibility is an operational control, not just a UX detail.
-- The pattern is slower than full autonomy but usually easier to trust on critical changes.
-- Automated approval can be used to force smaller changes rather than merely speed up merges.
-- A strict gate is safer when it refuses oversized or overly broad changes instead of trying to handle everything.
-- Human override remains important for exceptions and accountability.
-- The gate should be paired with production monitoring and rollback readiness.
-- Sandboxing and approval policy solve different problems and should not be conflated.
-- Auto-approval is useful only for clearly low-risk requests; otherwise it becomes a hidden escalation path.
-- The operational goal is frictionless routine work plus explicit review for higher-risk actions.
-- Policy design must account for developer throughput, not just risk reduction.
+- Approval is a control mechanism, not just a process step.
+- Keep sandboxing, approval policy, and logging separate.
+- Use small diffs and explicit intent to make review practical.
+- Human override still matters for exceptions and accountability.
+- Pair approval gates with monitoring and rollback readiness.
+- This pattern is durable for coding agents and other high-stakes automation.
 
-## Operational Insight
+## Consensus
 
-Use approvals where correctness and reversibility matter more than speed; the workflow is valuable because it turns AI output into an inspectable sequence rather than a black box.
+- Approval-based coding workflows use a gate to decide whether an AI-assisted change can merge, ship, or execute, while keeping humans available for override on higher-risk cases.
+- The main value is not just control, but making AI work inspectable: plan, diff, and step-by-step execution are easier to review than a black box.
+- These workflows are most useful when they enforce small, narrow changes with auditable review artifacts.
+- Sandboxing and approval policy solve different problems and should be designed separately: one limits what the system can technically do, the other decides what needs sign-off.
+- They are especially relevant for coding agents and other agentic developer tools that can edit code, run commands, or touch infrastructure.
+- Operationally, they should be paired with monitoring and rollback readiness rather than treated as a replacement for accountability.
 
-## Evidence / supporting sources
+## Tensions / open questions
 
-### AI is approving our pull requests: Here’s how we made it safe (2026-04-21)
+- Stricter gates improve safety and auditability, but they also slow throughput and add manual review overhead.
+- Auto-approval can improve efficiency for clearly low-risk requests, but it can become a hidden escalation path if used too broadly.
+- The sources emphasize human override for exceptions, which means the workflow is not fully autonomous; the exact boundary for when to override remains organization-specific.
+- The evidence supports the pattern conceptually, but does not resolve how much friction is acceptable for different teams or risk levels.
 
-- Approval-gated coding workflows use an automated reviewer or policy gate to decide whether a change can merge or ship, with humans retaining override paths for higher-risk cases. The durable design idea is to treat approval as a controllable safety mechanism, not just a clerical step. These workflows work best when they are strict about scope, produce auditable evidence, and push engineers toward smaller, easier-to-review changes. They also need a clear fallback path for larger, more complex, or ambiguous changes that exceed the automation's confidence or policy envelope. (`1b55d6262cb1` · neutral · knowledge_summary; [[sources/ai-is-approving-our-pull-requests-here-s-how-we-made-it-safe-01kprfajavby0csbdvyey6rq33|AI is approving our pull requests: Here’s how we made it safe]])
-- Use the approval gate to enforce change discipline: small diffs, explicit intent, and auditable review artifacts. Do not treat the gate as a substitute for accountability; keep human override and production monitoring in place. (`390950385afd` · neutral · operational_insight; [[sources/ai-is-approving-our-pull-requests-here-s-how-we-made-it-safe-01kprfajavby0csbdvyey6rq33|AI is approving our pull requests: Here’s how we made it safe]])
-- This pattern matters for AI engineering because approval gates can reduce review bottlenecks while also shaping safer release behavior. It is especially relevant in software teams that want AI-assisted code changes without losing auditability or rollback discipline as of 2026-04-21. (`d87c440ac144` · neutral · relevance_note; [[sources/ai-is-approving-our-pull-requests-here-s-how-we-made-it-safe-01kprfajavby0csbdvyey6rq33|AI is approving our pull requests: Here’s how we made it safe]])
-- Automated approval can be used to force smaller changes rather than merely speed up merges. (`37ff710a7d2f` · supporting · key_points[0]; [[sources/ai-is-approving-our-pull-requests-here-s-how-we-made-it-safe-01kprfajavby0csbdvyey6rq33|AI is approving our pull requests: Here’s how we made it safe]])
-- A strict gate is safer when it refuses oversized or overly broad changes instead of trying to handle everything. (`f8a00eb47af0` · supporting · key_points[1]; [[sources/ai-is-approving-our-pull-requests-here-s-how-we-made-it-safe-01kprfajavby0csbdvyey6rq33|AI is approving our pull requests: Here’s how we made it safe]])
-- Human override remains important for exceptions and accountability. (`5dbdb08bafd1` · supporting · key_points[2]; [[sources/ai-is-approving-our-pull-requests-here-s-how-we-made-it-safe-01kprfajavby0csbdvyey6rq33|AI is approving our pull requests: Here’s how we made it safe]])
-- The gate should be paired with production monitoring and rollback readiness. (`185eaa2c4597` · supporting · key_points[3]; [[sources/ai-is-approving-our-pull-requests-here-s-how-we-made-it-safe-01kprfajavby0csbdvyey6rq33|AI is approving our pull requests: Here’s how we made it safe]])
-- "Our Agent is strict. It won’t approve large PRs. If a change is too big, too complex, or too broad in scope, it flags it and requires it to be broken down." (`dac6b0888a03` · supporting · supporting_snippet; [[sources/ai-is-approving-our-pull-requests-here-s-how-we-made-it-safe-01kprfajavby0csbdvyey6rq33|AI is approving our pull requests: Here’s how we made it safe]])
+## Evidence quality
 
-### Antigravity vs Claude Code: Which AI Coding Assistant Should You Actually Use? (2026-04-16)
+- Evidence is fairly strong for the core pattern: 3 reviewed sources converge on the same architecture and operational logic.
+- The evidence is mostly conceptual and operational guidance, not controlled experiments or broad benchmarks.
+- The sources are current to 2026, so the guidance is time-sensitive and may shift as tools and policies evolve.
+- There is little direct evidence on which approval thresholds, UI patterns, or policy settings work best in different orgs.
 
-- The source says Claude Code "shows you the plan, then executes step by step" and "asks before running destructive commands, shows you exactly what it’s changing, and provides clear diffs." (`0a5fb173ba31` · neutral · examples; [[sources/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-01kqkzbbr47x5jcmdm2wy72k03|Antigravity vs Claude Code: Which AI Coding Assistant Should You Actually Use?]])
-- Approval-based coding workflows keep a human in the loop for significant or destructive changes while still letting the assistant handle planning, edits, and command execution. The practical advantage is reduced risk: the user can inspect a plan or diff before committing to each step. This pattern is especially valuable in refactoring, large codebases, or regulated environments where irreversible mistakes are costly. The tradeoff is slower throughput and more manual review overhead. (`a4299bc02678` · neutral · knowledge_summary; [[sources/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-01kqkzbbr47x5jcmdm2wy72k03|Antigravity vs Claude Code: Which AI Coding Assistant Should You Actually Use?]])
-- Use approvals where correctness and reversibility matter more than speed; the workflow is valuable because it turns AI output into an inspectable sequence rather than a black box. (`22e1b14c2e22` · neutral · operational_insight; [[sources/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-01kqkzbbr47x5jcmdm2wy72k03|Antigravity vs Claude Code: Which AI Coding Assistant Should You Actually Use?]])
-- This is a durable operating pattern for AI coding assistants, agent tools, and any high-stakes automation that can benefit from staged approval gates. It also transfers well to support automation and other human-facing workflows where auditing and reversibility matter more than raw speed. (`a9f29f967d50` · neutral · relevance_note; [[sources/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-01kqkzbbr47x5jcmdm2wy72k03|Antigravity vs Claude Code: Which AI Coding Assistant Should You Actually Use?]])
-- Planning plus approval reduces coordination errors in multi-step tasks. (`d45931fae119` · supporting · key_points[0]; [[sources/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-01kqkzbbr47x5jcmdm2wy72k03|Antigravity vs Claude Code: Which AI Coding Assistant Should You Actually Use?]])
-- Diff visibility is an operational control, not just a UX detail. (`49159288fbbb` · supporting · key_points[1]; [[sources/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-01kqkzbbr47x5jcmdm2wy72k03|Antigravity vs Claude Code: Which AI Coding Assistant Should You Actually Use?]])
-- The pattern is slower than full autonomy but usually easier to trust on critical changes. (`93bd6dcb0a73` · supporting · key_points[2]; [[sources/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-01kqkzbbr47x5jcmdm2wy72k03|Antigravity vs Claude Code: Which AI Coding Assistant Should You Actually Use?]])
-- "You describe a task, it plans the work, shows you the plan, then executes step by step. Every significant change asks for permission." (`e166ccbd6960` · supporting · supporting_snippet; [[sources/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-01kqkzbbr47x5jcmdm2wy72k03|Antigravity vs Claude Code: Which AI Coding Assistant Should You Actually Use?]])
+## Practical takeaway
 
-### Running Codex safely at OpenAI (2026-05-08)
+Use approval gates to make AI-assisted coding safer and more reviewable, but keep them narrow: let low-risk work flow automatically, require explicit review for broad or destructive changes, and pair the gate with sandboxing, logging, monitoring, and rollback.
 
-- Coding agents can be useful in production only when their execution is partitioned into low-risk actions that run freely and higher-risk actions that require explicit review. The practical design problem is not whether to add approvals, but how to place them so they reduce risk without freezing ordinary engineering work. A workable setup usually separates execution boundaries, approval policy, and logging, because those solve different parts of the control problem. This pattern becomes more important as agents gain access to repositories, shells, and development tools. (`b24ef993d638` · neutral · knowledge_summary; [[sources/running-codex-safely-at-openai-01kr4j0wpfyavt95avxpff49qc|Running Codex safely at OpenAI]])
-- Treat approval policy as a separate layer from the sandbox. Let the sandbox define what the agent can physically do, and let approvals decide which actions deserve human sign-off. (`b735d95af303` · neutral · operational_insight; [[sources/running-codex-safely-at-openai-01kr4j0wpfyavt95avxpff49qc|Running Codex safely at OpenAI]])
-- This is durable for any organization deploying coding agents or other agentic developer tools. The same pattern applies whenever an autonomous system can edit code, run commands, or touch infrastructure, especially in enterprise environments where safety and developer speed both matter. (`1b5acdaaca2a` · neutral · relevance_note; [[sources/running-codex-safely-at-openai-01kr4j0wpfyavt95avxpff49qc|Running Codex safely at OpenAI]])
-- Sandboxing and approval policy solve different problems and should not be conflated. (`e5ea1d25fc91` · supporting · key_points[0]; [[sources/running-codex-safely-at-openai-01kr4j0wpfyavt95avxpff49qc|Running Codex safely at OpenAI]])
-- Auto-approval is useful only for clearly low-risk requests; otherwise it becomes a hidden escalation path. (`be3f4db2144d` · supporting · key_points[1]; [[sources/running-codex-safely-at-openai-01kr4j0wpfyavt95avxpff49qc|Running Codex safely at OpenAI]])
-- The operational goal is frictionless routine work plus explicit review for higher-risk actions. (`7aebd0d566c1` · supporting · key_points[2]; [[sources/running-codex-safely-at-openai-01kr4j0wpfyavt95avxpff49qc|Running Codex safely at OpenAI]])
-- Policy design must account for developer throughput, not just risk reduction. (`800490cd7383` · supporting · key_points[3]; [[sources/running-codex-safely-at-openai-01kr4j0wpfyavt95avxpff49qc|Running Codex safely at OpenAI]])
-- “Approvals and sandboxing work together. The sandbox defines the technical execution boundary… Approval policy determines when Codex must ask to perform an action…” (`53b07dd22b17` · supporting · supporting_snippet; [[sources/running-codex-safely-at-openai-01kr4j0wpfyavt95avxpff49qc|Running Codex safely at OpenAI]])
+## Evidence index
 
-## Contradictions / tensions
-
-No contradictions captured in current sources.
+- Sources: 3
+- Evidence items: 24
+- Current input hash: `9a6e57bfda557138`
+- Cached input hash: `9a6e57bfda557138`
+- Last synthesized: 2026-07-09T16:20:12Z
+- Synthesis status: `fresh`
 
 ## Related pages
 

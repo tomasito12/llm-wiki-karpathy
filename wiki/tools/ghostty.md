@@ -16,7 +16,13 @@ source_ids:
 - the-first-10-apps-i-install-on-every-new-mac-2026-01kts4hyfyardwc2qg7v9n53dy
 value_level: high
 confidence: 0.915
-synthesis_state: stage1-placeholder
+synthesis_state: synthesized
+synthesis_stale: false
+synthesis_input_hash: aaebca19208d5462
+current_input_hash: aaebca19208d5462
+synthesis_schema_version: 1
+synthesis_prompt_version: 1
+last_synthesized_at: '2026-07-09T16:43:57Z'
 types:
 - app
 - terminal
@@ -24,88 +30,70 @@ types:
 
 # Ghostty
 
-## Current understanding
+## Executive synthesis
 
-<!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
-A free, open-source terminal for macOS built by Mitchell Hashimoto, written in Zig and native Swift. The author uses it because it is faster than the built-in Terminal and iTerm2 without requiring heavy configuration.
+Ghostty is presented as a fast, native, open-source terminal for macOS that reduces setup friction and fits command-line-heavy workflows. The main value proposition is ergonomic rather than exotic: GPU-accelerated rendering for smooth long scrollback, simple text configuration, built-in themes, and a lightweight feel that avoids Electron-style overhead. The sources position it as especially useful when the terminal is part of an active coding loop, including agentic tools that produce long output and need frequent human review. Evidence quality is modest: the claims are mostly anecdotal, with no independent benchmarks and little coverage of cross-platform behavior, plugin-heavy usage, or enterprise adoption. If you rarely use a terminal, the sources say to skip it.
 
-## Core Capabilities
+## Example in practice
 
-- It provides a fast terminal experience with low configuration overhead.
-- It runs natively on macOS and uses GPU acceleration.
-- It supports command-line workflows without requiring a paid license.
-- It renders terminal output with GPU acceleration so large scrollback stays smooth during long command sessions.
-- It uses a simple key-value configuration file, which makes changes easy to edit and reason about.
-- It supports custom GLSL shaders, allowing visual effects such as animated gradients or other terminal overlays.
-- It includes many built-in themes, which reduces the need to hunt for separate theme files.
+### Agentic coding loop on macOS
 
-## Integration Ecosystem
+A developer is using Claude Code to iterate on a small service-automation script. The agent prints long traces, writes files, and pauses for review. In Ghostty, the developer can keep the scrollback smooth, tweak the terminal with a simple config file, and switch themes without a lot of setup. That makes the review loop feel less like fighting the terminal and more like supervising the code changes. If the same person only opens a terminal once in a while, the benefit is much smaller.
 
-- It is used alongside Cursor and Claude Code for side-project coding.
-- It is compared against Terminal.app and iTerm2 as the author’s alternatives.
-- It can be installed on macOS with Homebrew using `brew install --cask ghostty`.
-- It reads configuration from `~/.config/ghostty/config`, which fits standard dotfile-based workflows.
-- It can launch a default shell such as `/bin/zsh -l`, so it integrates with existing shell startup habits.
-- It can load custom shader files from the local filesystem, which makes it compatible with user-maintained visual customization assets.
+- Why it helps: It shows why Ghostty matters most when the terminal is an everyday work surface for long, repetitive, command-line sessions rather than a rarely used utility.
 
-## Maturity signals
+- Basis: `illustrative`
 
-The article treats Ghostty as a serious, polished terminal choice, not a novelty. Mentioning the HashiCorp founder and native implementation signals a credible maintainer pedigree. The source does not provide broad adoption numbers, so maturity evidence is qualitative rather than market-based.
+## Context card
 
-## Strengths
+- **Use this page when:** Use this page when deciding whether Ghostty is a sensible terminal for a Mac-based, command-line-heavy workflow, especially if you care about speed, low setup overhead, and terminal use inside AI-assisted coding loops.
+- **Best for questions about:** Whether Ghostty is a good terminal choice for daily command-line work, How Ghostty fits into AI-assisted coding or agentic terminal workflows, What Ghostty is useful for beyond being a terminal emulator, How much setup and customization Ghostty typically requires, Whether Ghostty is worth loading as context for macOS terminal decisions
+- **Not enough for:** Independent performance comparisons against Terminal.app, iTerm2, or other terminals, Cross-platform behavior or parity across operating systems, How it performs in heavy plugin ecosystems or multi-pane workflows, Enterprise adoption, ecosystem depth, or broad market maturity, Whether non-terminal users should adopt it
+- **Strongest sources:** The First 10 Apps I Install on Every New Mac (2026), The Best Terminal for Claude Code - Ghostty
+- **Related tags:** cli-tool, local-first, open-source
 
-- It is faster than both Terminal.app and iTerm2, according to the author’s experience.
-- It ships with sane defaults, reducing the setup tax that often delays terminal adoption.
-- It is free and open source, so adoption cost is mostly switching friction rather than licensing.
-- Native Swift on Mac and GPU acceleration are presented as part of its performance story.
+## What to remember
 
-## Weaknesses / limitations
+- Fast, native, open-source terminal for macOS with GPU acceleration.
+- Best fit is frequent command-line work, especially long AI-assisted coding or review loops.
+- Text-based config and built-in themes reduce setup and customization friction.
+- Useful mainly for people who already rely on a terminal; not a must-have for casual users.
+- Claims of speed are experiential, not independently benchmarked.
 
-The source explicitly says most readers will not need it and should skip it if they do not use a terminal. It is also only relevant if you do meaningful command-line work; otherwise the advantage over Terminal.app is not operationally important.
+## Consensus
 
-## Evidence / supporting sources
+- Ghostty is a GPU-accelerated terminal emulator with a strong focus on fast startup, smooth scrolling, and low setup friction.
+- The sources agree it is free and open source and designed around native macOS behavior rather than an Electron wrapper.
+- It is useful when terminal work is frequent and the terminal is part of an active development or agentic coding workflow.
+- Its configuration is text-based and fits dotfile-style workflows, including a standard config file path on macOS.
+- Built-in themes and shader support make it easy to customize without extra tooling.
 
-### The Best Terminal for Claude Code - Ghostty (2026-04-17)
+## Tensions / open questions
 
-- It can be installed on macOS with Homebrew using `brew install --cask ghostty`. (`d84934155fbc` · neutral · integration_ecosystem[0]; [[sources/the-best-terminal-for-claude-code-ghostty-01kr4pm55j8vbyk7am14aec7yz|The Best Terminal for Claude Code - Ghostty]])
-- It reads configuration from `~/.config/ghostty/config`, which fits standard dotfile-based workflows. (`a469009e1139` · neutral · integration_ecosystem[1]; [[sources/the-best-terminal-for-claude-code-ghostty-01kr4pm55j8vbyk7am14aec7yz|The Best Terminal for Claude Code - Ghostty]])
-- It can launch a default shell such as `/bin/zsh -l`, so it integrates with existing shell startup habits. (`e0be71b0126e` · neutral · integration_ecosystem[2]; [[sources/the-best-terminal-for-claude-code-ghostty-01kr4pm55j8vbyk7am14aec7yz|The Best Terminal for Claude Code - Ghostty]])
-- It can load custom shader files from the local filesystem, which makes it compatible with user-maintained visual customization assets. (`c2856bfce9b1` · neutral · integration_ecosystem[3]; [[sources/the-best-terminal-for-claude-code-ghostty-01kr4pm55j8vbyk7am14aec7yz|The Best Terminal for Claude Code - Ghostty]])
-- The source treats Ghostty as established enough to install via Homebrew on macOS and to configure through a documented text file. That suggests a practical, usable product rather than a prototype, but the article does not evidence enterprise adoption or ecosystem depth. The surrounding language is enthusiastic, yet the maturity signal is still modest because the support is anecdotal. (`7946151a0b50` · neutral · maturity_signals; [[sources/the-best-terminal-for-claude-code-ghostty-01kr4pm55j8vbyk7am14aec7yz|The Best Terminal for Claude Code - Ghostty]])
-- Ghostty fits workflows where the terminal is part of the active coding harness, especially for agentic coding tools that produce large scrollback and require frequent human confirmations. The article positions it as a better fit than heavier terminals when performance, startup speed, and memory footprint matter. It is also relevant when developers want quick terminal tweaks without leaving the terminal workflow. For conversational AI and service automation work, that matters most when operators stay in a terminal for long review-and-approval loops rather than in a browser UI. (`f43675c1ec65` · neutral · operational_relevance; [[sources/the-best-terminal-for-claude-code-ghostty-01kr4pm55j8vbyk7am14aec7yz|The Best Terminal for Claude Code - Ghostty]])
-- Ghostty is a GPU-accelerated terminal emulator built in Zig. On macOS it uses AppKit rather than Electron, and it is designed to be fast, configurable, and lightweight. (`30c84de6771c` · neutral · short_description; [[sources/the-best-terminal-for-claude-code-ghostty-01kr4pm55j8vbyk7am14aec7yz|The Best Terminal for Claude Code - Ghostty]])
-- - GPU rendering is presented as the main practical advantage because it keeps scrolling smooth even with large volumes of output, which matters when an agent prints long traces or generated code.
-- The native macOS build is framed as lower-memory and faster-starting than Electron-based terminals, which helps when the machine is already carrying heavy development tools.
-- Plain-text configuration reduces friction for repeated tuning of fonts, themes, and shell startup behavior because changes are easy to read and edit.
-- Built-in themes, shader support, and background images make it easier to tune the visual environment for long coding sessions without extra tooling. (`d1cdf8b96c02` · neutral · strengths; [[sources/the-best-terminal-for-claude-code-ghostty-01kr4pm55j8vbyk7am14aec7yz|The Best Terminal for Claude Code - Ghostty]])
-- It renders terminal output with GPU acceleration so large scrollback stays smooth during long command sessions. (`71aeae50e3b6` · supporting · core_capabilities[0]; [[sources/the-best-terminal-for-claude-code-ghostty-01kr4pm55j8vbyk7am14aec7yz|The Best Terminal for Claude Code - Ghostty]])
-- It uses a simple key-value configuration file, which makes changes easy to edit and reason about. (`bf63a4226179` · supporting · core_capabilities[1]; [[sources/the-best-terminal-for-claude-code-ghostty-01kr4pm55j8vbyk7am14aec7yz|The Best Terminal for Claude Code - Ghostty]])
-- It supports custom GLSL shaders, allowing visual effects such as animated gradients or other terminal overlays. (`3acca5a2e05b` · supporting · core_capabilities[2]; [[sources/the-best-terminal-for-claude-code-ghostty-01kr4pm55j8vbyk7am14aec7yz|The Best Terminal for Claude Code - Ghostty]])
-- It includes many built-in themes, which reduces the need to hunt for separate theme files. (`e030c150e423` · supporting · core_capabilities[3]; [[sources/the-best-terminal-for-claude-code-ghostty-01kr4pm55j8vbyk7am14aec7yz|The Best Terminal for Claude Code - Ghostty]])
-- "Ghostty is a GPU-accelerated terminal emulator built from scratch in Zig by Mitchell Hashimoto (founder of HashiCorp). It's not a terminal wrapped in bloated, performance-hungry Electron; it's a native performance, modern architecture product—fast is right." (`25dbc19de675` · supporting · supporting_snippet; [[sources/the-best-terminal-for-claude-code-ghostty-01kr4pm55j8vbyk7am14aec7yz|The Best Terminal for Claude Code - Ghostty]])
-- The article does not provide independent benchmarks, and the performance claims are based on the author's own experience. It also does not show how Ghostty behaves under cross-platform parity, multi-pane workflows, or heavy plugin ecosystems, so the tradeoff surface is incomplete. (`00592bd51748` · uncertainty · weaknesses_limitations; [[sources/the-best-terminal-for-claude-code-ghostty-01kr4pm55j8vbyk7am14aec7yz|The Best Terminal for Claude Code - Ghostty]])
+- The sources claim Ghostty is faster than Terminal.app and iTerm2, but they only provide the author's own experience, not benchmarks.
+- The writing is enthusiastic, but the maturity signal is qualitative; there is no evidence here for adoption scale or ecosystem depth.
+- The article focused on Claude Code and macOS use, so portability and behavior in more complex terminal environments remain unclear.
+- One source frames it as useful for serious daily terminal work, while also saying most readers who do not use a terminal should skip it.
 
-### The First 10 Apps I Install on Every New Mac (2026) (2026-05-17)
+## Evidence quality
 
-- It is used alongside Cursor and Claude Code for side-project coding. (`2d0d1c8fa3aa` · neutral · integration_ecosystem[0]; [[sources/the-first-10-apps-i-install-on-every-new-mac-2026-01kts4hyfyardwc2qg7v9n53dy|The First 10 Apps I Install on Every New Mac (2026)]])
-- It is compared against Terminal.app and iTerm2 as the author’s alternatives. (`aa2807517960` · neutral · integration_ecosystem[1]; [[sources/the-first-10-apps-i-install-on-every-new-mac-2026-01kts4hyfyardwc2qg7v9n53dy|The First 10 Apps I Install on Every New Mac (2026)]])
-- The article treats Ghostty as a serious, polished terminal choice, not a novelty. Mentioning the HashiCorp founder and native implementation signals a credible maintainer pedigree. The source does not provide broad adoption numbers, so maturity evidence is qualitative rather than market-based. (`87a48629ef0b` · neutral · maturity_signals; [[sources/the-first-10-apps-i-install-on-every-new-mac-2026-01kts4hyfyardwc2qg7v9n53dy|The First 10 Apps I Install on Every New Mac (2026)]])
-- This is the terminal choice for people who touch the command line every day and value speed plus sane defaults. The source frames it as useful for side projects and weekend builds rather than core professional development, but the operational pattern still matters for any automation-minded user who needs quick terminal access. The lesson is that terminal ergonomics can be a meaningful productivity lever when command-line work is frequent. (`f40620aa66e0` · neutral · operational_relevance; [[sources/the-first-10-apps-i-install-on-every-new-mac-2026-01kts4hyfyardwc2qg7v9n53dy|The First 10 Apps I Install on Every New Mac (2026)]])
-- A free, open-source terminal for macOS built by Mitchell Hashimoto, written in Zig and native Swift. The author uses it because it is faster than the built-in Terminal and iTerm2 without requiring heavy configuration. (`913d661284d9` · neutral · short_description; [[sources/the-first-10-apps-i-install-on-every-new-mac-2026-01kts4hyfyardwc2qg7v9n53dy|The First 10 Apps I Install on Every New Mac (2026)]])
-- - It is faster than both Terminal.app and iTerm2, according to the author’s experience.
-- It ships with sane defaults, reducing the setup tax that often delays terminal adoption.
-- It is free and open source, so adoption cost is mostly switching friction rather than licensing.
-- Native Swift on Mac and GPU acceleration are presented as part of its performance story. (`0b6bdc2c56d3` · neutral · strengths; [[sources/the-first-10-apps-i-install-on-every-new-mac-2026-01kts4hyfyardwc2qg7v9n53dy|The First 10 Apps I Install on Every New Mac (2026)]])
-- It provides a fast terminal experience with low configuration overhead. (`57c16fbf5854` · supporting · core_capabilities[0]; [[sources/the-first-10-apps-i-install-on-every-new-mac-2026-01kts4hyfyardwc2qg7v9n53dy|The First 10 Apps I Install on Every New Mac (2026)]])
-- It runs natively on macOS and uses GPU acceleration. (`b85555fc020b` · supporting · core_capabilities[1]; [[sources/the-first-10-apps-i-install-on-every-new-mac-2026-01kts4hyfyardwc2qg7v9n53dy|The First 10 Apps I Install on Every New Mac (2026)]])
-- It supports command-line workflows without requiring a paid license. (`e0a38368e23b` · supporting · core_capabilities[2]; [[sources/the-first-10-apps-i-install-on-every-new-mac-2026-01kts4hyfyardwc2qg7v9n53dy|The First 10 Apps I Install on Every New Mac (2026)]])
-- "I use Ghostty because it’s faster than both. Built by Mitchell Hashimoto (the HashiCorp founder), written in Zig and native Swift on Mac, GPU-accelerated, and it ships with sane defaults that don’t make me configure 40 settings before I can use it. It’s free and open source." (`341e7918eb1f` · supporting · supporting_snippet; [[sources/the-first-10-apps-i-install-on-every-new-mac-2026-01kts4hyfyardwc2qg7v9n53dy|The First 10 Apps I Install on Every New Mac (2026)]])
-- The source explicitly says most readers will not need it and should skip it if they do not use a terminal. It is also only relevant if you do meaningful command-line work; otherwise the advantage over Terminal.app is not operationally important. (`0d78fa82df22` · uncertainty · weaknesses_limitations; [[sources/the-first-10-apps-i-install-on-every-new-mac-2026-01kts4hyfyardwc2qg7v9n53dy|The First 10 Apps I Install on Every New Mac (2026)]])
+- Evidence is thin and comes from only two source articles with overlapping author perspective.
+- Performance claims are experiential, not benchmarked, so speed advantages should be treated as reported impressions rather than measured facts.
+- There is decent agreement on product shape and use case, but limited evidence on ecosystem depth or enterprise maturity.
+- The strongest signals are practical usability cues: native macOS behavior, text config, GPU acceleration, and open-source distribution.
 
-## Contradictions / tensions
+## Practical takeaway
 
-- The article does not provide independent benchmarks, and the performance claims are based on the author's own experience. It also does not show how Ghostty behaves under cross-platform parity, multi-pane workflows, or heavy plugin ecosystems, so the tradeoff surface is incomplete. (uncertainty; [[sources/the-best-terminal-for-claude-code-ghostty-01kr4pm55j8vbyk7am14aec7yz|The Best Terminal for Claude Code - Ghostty]])
-- The source explicitly says most readers will not need it and should skip it if they do not use a terminal. It is also only relevant if you do meaningful command-line work; otherwise the advantage over Terminal.app is not operationally important. (uncertainty; [[sources/the-first-10-apps-i-install-on-every-new-mac-2026-01kts4hyfyardwc2qg7v9n53dy|The First 10 Apps I Install on Every New Mac (2026)]])
+Choose Ghostty if you live in the terminal on macOS and want a fast, low-friction, open-source terminal with simple configuration. Skip it if you do not use a terminal often, or if you need evidence about enterprise adoption, plugin-heavy workflows, or cross-platform parity.
+
+## Evidence index
+
+- Sources: 2
+- Evidence items: 25
+- Current input hash: `aaebca19208d5462`
+- Cached input hash: `aaebca19208d5462`
+- Last synthesized: 2026-07-09T16:43:57Z
+- Synthesis status: `fresh`
 
 ## Related pages
 

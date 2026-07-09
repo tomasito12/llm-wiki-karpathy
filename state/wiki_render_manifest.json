@@ -3611,7 +3611,7 @@
     },
     {
       "path": "tools/1password.md",
-      "sha256": "096eb043f05a9fe17aa50862fed07376a843a91e039b52e0bbc88377b6fe2b54"
+      "sha256": "836530a040f85f4912cc5d345c3043da80d3e0c4f61f985dcf6f5ead968f3d6f"
     },
     {
       "path": "tools/agents-sdk.md",
@@ -3667,7 +3667,7 @@
     },
     {
       "path": "tools/claude-code.md",
-      "sha256": "68dd73d68d4a35b1a590aa0c49b8554d18ad929aff2d540356dc3ff65201896b"
+      "sha256": "c9723386128f7f7c9452789792218cd0b698f070cf96bec97c6d0c4c7a31795e"
     },
     {
       "path": "tools/claude-desktop.md",
@@ -3679,7 +3679,7 @@
     },
     {
       "path": "tools/cleanshot-x.md",
-      "sha256": "4ff1d45aafb0ed55e5ab6eca2e4c3d310385af4073a00a832592a92bca7a10b3"
+      "sha256": "cffbd451e83b3335d7afac52484aa5deff98adedc00f9a98fd2653af2504111b"
     },
     {
       "path": "tools/cleanupbuddy.md",
@@ -3691,7 +3691,7 @@
     },
     {
       "path": "tools/codex.md",
-      "sha256": "94405d8c54b1e1a154882e581557b3b1cbfa80f7f12fc0f18c85efca1d4f79e9"
+      "sha256": "943cc0b3b8cf2987686a68b1feea0ffc8350f9429fc0aeca291578bedb8a239a"
     },
     {
       "path": "tools/cognigy-ai.md",
@@ -3711,7 +3711,7 @@
     },
     {
       "path": "tools/cursor.md",
-      "sha256": "4a4ca75fee26d009a5a40f1681c81c95dc9bef5fe0f1ac3d74d57ef17b712c21"
+      "sha256": "ef2c83ad448cb03bbfa059b62d4fd507477dcc02595daaef55da263d0b12bd86"
     },
     {
       "path": "tools/deskin.md",
@@ -3719,7 +3719,7 @@
     },
     {
       "path": "tools/dictaflow.md",
-      "sha256": "2ca11a6e286ae26ef390e1d211d82ce3cf396286cffb79407562513bc0dda769"
+      "sha256": "8e23dc17bf422d8a6dd3cbb062ac35ef40bbbaf6f28eb5adaed37fa9b153d46f"
     },
     {
       "path": "tools/dockdoor.md",
@@ -3791,7 +3791,7 @@
     },
     {
       "path": "tools/ghostty.md",
-      "sha256": "3cf77e0eb313b8f673e059b79092a35bc41674f9f10605fc9e2ba32d65cfdd07"
+      "sha256": "48d9e65212837064b3c8dc71d39f31f14b4c3e598e891156d27d03ac8f66ef64"
     },
     {
       "path": "tools/github-mcp.md",
@@ -3811,7 +3811,7 @@
     },
     {
       "path": "tools/hermes-agent.md",
-      "sha256": "a5009d2f2bfa29cde6550ca5ad97a24fc09e45d42f7c3b94bbc7d99e4dc8be0a"
+      "sha256": "7e3a76bbebd70ed94d09ceb89b5f7551f391fdd6a06f9a4169f8e930a33d2f03"
     },
     {
       "path": "tools/hidden-bar.md",
@@ -3867,7 +3867,7 @@
     },
     {
       "path": "tools/llama-cpp.md",
-      "sha256": "3fbbce3a91f1e05ef03a0da775b6405e17db8b4e7b9ac7efc370f25ee1eb1548"
+      "sha256": "4033b51674e7c0c12ac65584844eb771bed79c4e8ab0d959e9b0a5077808ae50"
     },
     {
       "path": "tools/loop.md",
@@ -3951,7 +3951,7 @@
     },
     {
       "path": "tools/obsidian.md",
-      "sha256": "53fc40123f7d4406b8d91ba4b60431c821afd9d5cddf9883e3fee158e113909b"
+      "sha256": "45d51d8bd6a200f206c4e609e8238f7707b65fd7af51ddf21adce98edf07f7db"
     },
     {
       "path": "tools/ollama.md",
@@ -4267,7 +4267,7 @@
     },
     {
       "path": "topics/ai-orchestration-over-model-tuning.md",
-      "sha256": "3577ceddf49de1ab3d508d9f1b523fa7f8735be287032ab7da0a298a6ad1f48d"
+      "sha256": "4191bf566550a311072758af1d090288fe3d51727dba11c6df581883c1a0781c"
     },
     {
       "path": "topics/ai-production-readiness-contracts-and-controls.md",
@@ -4275,7 +4275,7 @@
     },
     {
       "path": "topics/ai-products-shift-from-models-to-systems.md",
-      "sha256": "3afcac175056950b79900caf791c3f0acb45bd4ed0b35a7962fdc855c5c32c4a"
+      "sha256": "b6aadbbcb63079bd97bfaf53c09ffd6c406e8083bf632257d86341111afe0035"
     },
     {
       "path": "topics/ai-program-ownership.md",
@@ -4307,11 +4307,11 @@
     },
     {
       "path": "topics/approval-based-agent-actions.md",
-      "sha256": "bd5257d604c30f256e017c15533ae1e1a6b30604ad7732b903000826f5295664"
+      "sha256": "c2429cd4bd81441ba73a436b1ba8e1a9fbe6ad85c6f58beaf1d36dc8a4ab3c2b"
     },
     {
       "path": "topics/approval-based-coding-workflows.md",
-      "sha256": "9a7f4ee9596753ad8fc95dc4d53c857b5bdb6381bd2908624dcca32b3f98363b"
+      "sha256": "0d2e8a4132e1de6faa4a38d140a0f99899f474081d2bd737b729250eafa0b18d"
     },
     {
       "path": "topics/artifact-first-ai-workflows.md",
@@ -4339,7 +4339,7 @@
     },
     {
       "path": "topics/behavioral-instruction-layers-for-agents.md",
-      "sha256": "414802079313eff7531651d8a9f165d80ad9047408e48c2393fb502e59146f1d"
+      "sha256": "33657490ea864b76742c4e5bb77d455212cde443ab0fcd6518dc1e0d8eda6a9e"
     },
     {
       "path": "topics/bounded-corpus-synthesis.md",

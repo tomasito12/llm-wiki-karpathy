@@ -16,7 +16,13 @@ source_ids:
 - i-ran-gemma-4-as-a-local-model-in-codex-cli-01kqkv211fd31ce6qv924evxhr
 value_level: high
 confidence: 0.935
-synthesis_state: stage1-placeholder
+synthesis_state: synthesized
+synthesis_stale: false
+synthesis_input_hash: 7672c8ab765c35ed
+current_input_hash: 7672c8ab765c35ed
+synthesis_schema_version: 1
+synthesis_prompt_version: 1
+last_synthesized_at: '2026-07-09T16:46:24Z'
 types:
 - ai-infrastructure
 - model-serving
@@ -24,93 +30,71 @@ types:
 
 # llama.cpp
 
-## Current understanding
+## Executive synthesis
 
-<!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
-An open-source model serving and inference stack that can run local models through a lightweight server. In this piece it is used to host Gemma 4 on Apple Silicon and on a CUDA build for the GB10 machine.
+llama.cpp is a mature open-source runtime for local inference when you need control more than convenience. The sources describe it as a C/C++ engine with a Metal backend on Apple Silicon, GGUF support, and the ability to offload layers between CPU and GPU through `n_gpu_layers`. It can be used either as a library or as an HTTP server, which makes it fit both embedded product code and service-style deployment. In practice, it shows up as the workable option when teams need local model serving, offline or self-hosted workflows, or a coding-agent setup that must read files, write code, and emit tool calls without sending prompts to a cloud API. The main caution is that it is not presented as the best choice for pure speed or low-friction setup: the sources say it can be slower than MLX on smaller compute-bound models, lacks MLX’s native on-device LoRA/QLoRA path, and may require careful pinning and debugging because defaults and build choices can change behavior.
 
-## Core Capabilities
+## Example in practice
 
-- It can host a local Gemma 4 model with direct control over server flags and memory usage.
-- It can expose a tool-calling interface compatible with a coding agent when the right template and protocol settings are used.
-- It can be configured to run through a direct GGUF path, which avoids unwanted downloads and memory surprises.
-- It reads GGUF model files, which keeps it aligned with the broadest local model distribution channel described in the source.
-- It supports layer offload between CPU and GPU through n_gpu_layers, which helps on devices with constrained unified memory.
-- It can run either as a library or as an HTTP server, which lets teams choose between embedded and service-style integration.
+### Local coding-agent runtime with controlled memory use
 
-## Integration Ecosystem
+A team wants a local coding assistant that can work inside Codex CLI without sending prompts to a cloud API. They configure llama.cpp as a custom provider, point it at a GGUF model, and tune the template plus offload settings so the model emits tool calls in the expected format. On a 24 GB machine, they keep memory use under control by adjusting context length, quantization, and GPU offload. In the described setup, this became the fallback when other serving options had streaming or attention issues, and the direct GGUF path avoided surprise downloads and memory blowups.
 
-- The article says it can be configured as a custom model provider in Codex CLI through `config.toml`.
-- It works with GGUF model files and a local server process, which makes it compatible with offline or self-hosted workflows.
-- It was installed through Homebrew on macOS in the described setup.
-- It uses GGUF files as its main model format.
-- It supports Metal on Apple Silicon.
-- It can be embedded as a library or exposed as an HTTP server.
+- Why it helps: It shows why llama.cpp matters in practice: it can turn a local model into a usable agent backend when compatibility, memory control, and tool-call formatting are the real constraints.
 
-## Maturity signals
+- Basis: `source-grounded`
 
-The piece treats llama.cpp as a practical option rather than an experimental toy, because it became the working path after other servers failed. It also appears mature enough to be pinned, tuned, and integrated into Codex CLI profiles. At the same time, the article makes clear that it still demands hands-on debugging rather than one-click setup.
+## Context card
 
-## Strengths
+- **Use this page when:** Use this page when you need a local LLM runtime that prioritizes compatibility, control, and offline integration over peak benchmark performance.
+- **Best for questions about:** Running local models with tight control over memory and offload, Using GGUF models in an on-device or self-hosted workflow, Integrating a local runtime as either a library or an HTTP server, Making coding-agent or tool-calling setups work offline, Choosing a broad-compatibility fallback runtime on Apple Silicon
+- **Not enough for:** Choosing the fastest runtime in every case, Native on-device fine-tuning workflows such as LoRA/QLoRA, Deep comparative performance claims across all model sizes and hardware, One-click setup or low-friction operationalization without debugging
+- **Strongest sources:** Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks, I ran Gemma 4 as a local model in Codex CLI
+- **Related tags:** api-first, local-first, open-source
 
-- It can serve local models with enough control over context length, quantization, and GPU offload to make a 24 GB machine usable for an agentic coding workload.
-- It supports the Gemma 4 tool-calling template through the `--jinja` flag, which matters because the agent is only useful if tool calls are emitted in the expected format.
-- The article shows it can run as a custom provider inside Codex CLI, so it can plug into an existing coding-agent workflow rather than requiring a separate interface.
+## What to remember
 
-## Weaknesses / limitations
+- Open-source local inference runtime with GGUF support and a broad model ecosystem.
+- Can run as either a library or an HTTP server, so it fits embedded and service-style deployments.
+- Supports CPU/GPU layer offload with `n_gpu_layers`, which is useful on memory-limited hardware.
+- Useful for local agents and offline workflows when tool calls and file/code access must stay on-device.
+- Often chosen as a practical fallback when other runtimes or servers are less compatible.
+- Strong on flexibility and control; weaker as a default choice if your main goal is simplest setup or peak small-model speed.
 
-- The setup was fragile on Apple Silicon: the article reports a streaming bug in Ollama and a Flash Attention freeze, which is why llama.cpp became the fallback.
-- The configuration was easy to break through hidden defaults, such as the `-hf` path downloading an unwanted vision projector and causing out-of-memory failure.
-- The source notes that version changes can alter benchmark behavior, so operational results depend heavily on pinning builds and flags.
+## Consensus
 
-## Evidence / supporting sources
+- llama.cpp is an open-source local inference stack for running models through a lightweight server or as an embeddable library.
+- It reads GGUF model files and supports layer offload between CPU and GPU with `n_gpu_layers`, which helps when memory is tight.
+- On Apple Silicon it supports a Metal backend and is positioned as a broad-compatibility option rather than a niche runtime.
+- It is useful for agentic or offline workflows where teams need local control over memory use, quantization, and tool-calling templates.
+- The sources treat it as a practical, mature tool that is often used as a fallback when other serving options fail or are less compatible.
 
-### Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks (2026-04-20)
+## Tensions / open questions
 
-- It uses GGUF files as its main model format. (`e932143a080f` · neutral · integration_ecosystem[0]; [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]])
-- It supports Metal on Apple Silicon. (`b8a18eabf9e6` · neutral · integration_ecosystem[1]; [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]])
-- It can be embedded as a library or exposed as an HTTP server. (`c8cdc5025b05` · neutral · integration_ecosystem[2]; [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]])
-- The source describes llama.cpp as the broadest model ecosystem in local inference, which is a strong maturity signal. It is treated as an established engine rather than a niche or experimental product. Its continued relevance in the article comes from flexibility and ecosystem reach, not from a single benchmark peak. (`297dd68856a9` · neutral · maturity_signals; [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]])
-- llama.cpp is the broad compatibility option when teams need maximum control over local inference on Apple Silicon. It is especially relevant when deployment constraints require CPU/GPU layer offload or when a model appears first in GGUF form. For service automation and internal tools, it is a practical fallback when MLX conversions are missing or memory constraints make partial offload necessary. (`527fc4fb3fa0` · neutral · operational_relevance; [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]])
-- llama.cpp is a C/C++ inference engine with a Metal backend for Apple Silicon. It can read GGUF files, offload layers between CPU and GPU, and run either as a library or as an HTTP server. (`627defd263e0` · neutral · short_description; [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]])
-- - Broad model ecosystem support makes it useful when model availability matters more than backend-specific performance.
-- Layer offload via n_gpu_layers helps fit models onto customer hardware with limited unified memory.
-- It can be used as either a library or an HTTP server, which gives teams flexibility in how deeply they integrate it into product code. (`070b83db4e85` · neutral · strengths; [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]])
-- It reads GGUF model files, which keeps it aligned with the broadest local model distribution channel described in the source. (`b72bc9f3c552` · supporting · core_capabilities[0]; [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]])
-- It supports layer offload between CPU and GPU through n_gpu_layers, which helps on devices with constrained unified memory. (`363fffc61719` · supporting · core_capabilities[1]; [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]])
-- It can run either as a library or as an HTTP server, which lets teams choose between embedded and service-style integration. (`661fa0d704b6` · supporting · core_capabilities[2]; [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]])
-- "llama.cpp is a C/C++ inference engine with a Metal backend for Apple Silicon. It reads GGUF files, supports layer offload between CPU and GPU via n_gpu_layers, and works as a library or as an HTTP server. It has the broadest model ecosystem in local inference." (`2d644bafa021` · supporting · supporting_snippet; [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]])
-- - The source presents it as generally slower than MLX for smaller compute-bound models.
-- It lacks the native on-device LoRA/QLoRA fine-tuning path that MLX provides.
-- For very large dense models, the article says it converges with MLX because memory bandwidth dominates, so it does not provide a decisive speed advantage there. (`46f5b7c9f0cd` · uncertainty · weaknesses_limitations; [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]])
+- The sources frame llama.cpp as broadly compatible and practical, but not as the fastest option for smaller compute-bound models.
+- It lacks the native on-device LoRA/QLoRA fine-tuning path that MLX provides, so it is not the whole answer for local model adaptation.
+- The hands-on article shows it can be the working fallback after other servers fail, but also highlights that it still requires debugging and careful configuration.
+- Operational behavior depends on flags, templates, and version pinning, so a setup that works in one environment may not transfer cleanly.
 
-### I ran Gemma 4 as a local model in Codex CLI (2026-04-13)
+## Evidence quality
 
-- The article says it can be configured as a custom model provider in Codex CLI through `config.toml`. (`6958037ee38d` · neutral · integration_ecosystem[0]; [[sources/i-ran-gemma-4-as-a-local-model-in-codex-cli-01kqkv211fd31ce6qv924evxhr|I ran Gemma 4 as a local model in Codex CLI]])
-- It works with GGUF model files and a local server process, which makes it compatible with offline or self-hosted workflows. (`f0ce73077765` · neutral · integration_ecosystem[1]; [[sources/i-ran-gemma-4-as-a-local-model-in-codex-cli-01kqkv211fd31ce6qv924evxhr|I ran Gemma 4 as a local model in Codex CLI]])
-- It was installed through Homebrew on macOS in the described setup. (`a2729e3fa2a7` · neutral · integration_ecosystem[2]; [[sources/i-ran-gemma-4-as-a-local-model-in-codex-cli-01kqkv211fd31ce6qv924evxhr|I ran Gemma 4 as a local model in Codex CLI]])
-- The piece treats llama.cpp as a practical option rather than an experimental toy, because it became the working path after other servers failed. It also appears mature enough to be pinned, tuned, and integrated into Codex CLI profiles. At the same time, the article makes clear that it still demands hands-on debugging rather than one-click setup. (`166d79382b36` · neutral · maturity_signals; [[sources/i-ran-gemma-4-as-a-local-model-in-codex-cli-01kqkv211fd31ce6qv924evxhr|I ran Gemma 4 as a local model in Codex CLI]])
-- This is relevant wherever teams need local inference with tight control over memory use, quantization, and tool-calling templates. It fits agent workflows when the model must read files, write code, and call tools without sending prompts to a cloud API. The article shows it can be the workable path when other serving options fail on a given machine or tool protocol. (`154cfc699ae7` · neutral · operational_relevance; [[sources/i-ran-gemma-4-as-a-local-model-in-codex-cli-01kqkv211fd31ce6qv924evxhr|I ran Gemma 4 as a local model in Codex CLI]])
-- An open-source model serving and inference stack that can run local models through a lightweight server. In this piece it is used to host Gemma 4 on Apple Silicon and on a CUDA build for the GB10 machine. (`05b59da1dafe` · neutral · short_description; [[sources/i-ran-gemma-4-as-a-local-model-in-codex-cli-01kqkv211fd31ce6qv924evxhr|I ran Gemma 4 as a local model in Codex CLI]])
-- - It can serve local models with enough control over context length, quantization, and GPU offload to make a 24 GB machine usable for an agentic coding workload.
-- It supports the Gemma 4 tool-calling template through the `--jinja` flag, which matters because the agent is only useful if tool calls are emitted in the expected format.
-- The article shows it can run as a custom provider inside Codex CLI, so it can plug into an existing coding-agent workflow rather than requiring a separate interface. (`9cbdc65d622b` · neutral · strengths; [[sources/i-ran-gemma-4-as-a-local-model-in-codex-cli-01kqkv211fd31ce6qv924evxhr|I ran Gemma 4 as a local model in Codex CLI]])
-- It can host a local Gemma 4 model with direct control over server flags and memory usage. (`5fe0f6cfafdf` · supporting · core_capabilities[0]; [[sources/i-ran-gemma-4-as-a-local-model-in-codex-cli-01kqkv211fd31ce6qv924evxhr|I ran Gemma 4 as a local model in Codex CLI]])
-- It can expose a tool-calling interface compatible with a coding agent when the right template and protocol settings are used. (`6e87a4032dcb` · supporting · core_capabilities[1]; [[sources/i-ran-gemma-4-as-a-local-model-in-codex-cli-01kqkv211fd31ce6qv924evxhr|I ran Gemma 4 as a local model in Codex CLI]])
-- It can be configured to run through a direct GGUF path, which avoids unwanted downloads and memory surprises. (`1922941eb720` · supporting · core_capabilities[2]; [[sources/i-ran-gemma-4-as-a-local-model-in-codex-cli-01kqkv211fd31ce6qv924evxhr|I ran Gemma 4 as a local model in Codex CLI]])
-- "I switched to llama.cpp, installed via Homebrew. The working server command has six load-bearing flags:" (`e0228b4c3909` · supporting · supporting_snippet; [[sources/i-ran-gemma-4-as-a-local-model-in-codex-cli-01kqkv211fd31ce6qv924evxhr|I ran Gemma 4 as a local model in Codex CLI]])
-- - The setup was fragile on Apple Silicon: the article reports a streaming bug in Ollama and a Flash Attention freeze, which is why llama.cpp became the fallback.
-- The configuration was easy to break through hidden defaults, such as the `-hf` path downloading an unwanted vision projector and causing out-of-memory failure.
-- The source notes that version changes can alter benchmark behavior, so operational results depend heavily on pinning builds and flags. (`56c654eb29fb` · uncertainty · weaknesses_limitations; [[sources/i-ran-gemma-4-as-a-local-model-in-codex-cli-01kqkv211fd31ce6qv924evxhr|I ran Gemma 4 as a local model in Codex CLI]])
+- Evidence is fairly strong for core capabilities and integration patterns: two reviewed sources agree on GGUF support, offload, library/server modes, and local deployment use.
+- Evidence is strong for practical usefulness in agent workflows, but that comes mainly from one hands-on setup report rather than broad comparative testing.
+- Evidence is weaker for performance judgments, because the sources explicitly frame tradeoffs as context-dependent and note cases where speed converges or varies with version/build choices.
+- Operational details appear time-sensitive: build flags, templates, and hidden defaults can materially change behavior, so results may not transfer cleanly across setups.
 
-## Contradictions / tensions
+## Practical takeaway
 
-- - The setup was fragile on Apple Silicon: the article reports a streaming bug in Ollama and a Flash Attention freeze, which is why llama.cpp became the fallback.
-- The configuration was easy to break through hidden defaults, such as the `-hf` path downloading an unwanted vision projector and causing out-of-memory failure.
-- The source notes that version changes can alter benchmark behavior, so operational results depend heavily on pinning builds and flags. (uncertainty; [[sources/i-ran-gemma-4-as-a-local-model-in-codex-cli-01kqkv211fd31ce6qv924evxhr|I ran Gemma 4 as a local model in Codex CLI]])
-- - The source presents it as generally slower than MLX for smaller compute-bound models.
-- It lacks the native on-device LoRA/QLoRA fine-tuning path that MLX provides.
-- For very large dense models, the article says it converges with MLX because memory bandwidth dominates, so it does not provide a decisive speed advantage there. (uncertainty; [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]])
+Choose llama.cpp when your priority is broad model compatibility, local control, and flexible integration on constrained hardware. Do not choose it expecting the simplest setup or the fastest small-model runtime; expect to tune flags, templates, and build choices.
+
+## Evidence index
+
+- Sources: 2
+- Evidence items: 24
+- Current input hash: `7672c8ab765c35ed`
+- Cached input hash: `7672c8ab765c35ed`
+- Last synthesized: 2026-07-09T16:46:24Z
+- Synthesis status: `fresh`
 
 ## Related pages
 

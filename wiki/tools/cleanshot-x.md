@@ -17,7 +17,13 @@ source_ids:
 - the-first-10-apps-i-install-on-every-new-mac-2026-01kts4hyfyardwc2qg7v9n53dy
 value_level: high
 confidence: 0.95
-synthesis_state: stage1-placeholder
+synthesis_state: synthesized
+synthesis_stale: false
+synthesis_input_hash: c158f5b39a5ebcce
+current_input_hash: c158f5b39a5ebcce
+synthesis_schema_version: 1
+synthesis_prompt_version: 1
+last_synthesized_at: '2026-07-09T16:43:24Z'
 types:
 - app
 - screenshot
@@ -25,84 +31,68 @@ types:
 
 # CleanShot X
 
-## Current understanding
+## Executive synthesis
 
-<!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
-A paid Mac screenshot utility with annotation, scrolling capture, OCR, recording, cloud sharing, and pinning. The author uses it because it turns screenshots into a faster communication workflow.
+CleanShot X is a mature Mac screenshot and screen-recording utility built for high-frequency visual communication. The sources consistently describe it as more than a capture tool: it combines scrolling screenshots, annotation, OCR, GIF/MP4 recording, cloud sharing, and pinning captures so people can turn UI states or incidents into shareable output fast. It seems most useful in support, product, design, and internal documentation workflows where screenshots need to be cleaned up and distributed immediately. The main caveat is that the evidence is opinion-based and feature-focused; it does not prove superiority over the built-in macOS tool or other screenshot apps, and for light use the native tool may be enough.
 
-## Core Capabilities
+## Example in practice
 
-- It captures and annotates screenshots for operational communication.
-- It records long scrolling pages and screen activity when a single frame is insufficient.
-- It performs OCR on screenshots so text can be reused without manual retyping.
-- It shares screenshots via short links for fast distribution.
-- It captures scrolling screenshots so long pages and interfaces can be documented in one image.
-- It records screen activity as GIF or MP4 for lightweight demos and troubleshooting.
-- It hides desktop icons before capture and provides annotation tools for cleaner handoff.
-- It can pin captures on screen, keeping reference images visible while working.
+### Turning a bug report into shareable evidence
 
-## Integration Ecosystem
+A support engineer is troubleshooting a customer issue in a web dashboard. They capture a scrolling screenshot of the full page, annotate the problem area, use OCR to copy text from an error message, and share the result as a short link in chat. If they need to show a quick repro step, they record a short GIF or MP4 instead. During the call, they pin the capture on screen so they can compare the live UI against the reference without switching windows.
 
-- It can be used to create screenshots that are dropped into chat tools or ticketing systems.
-- The article notes that Setapp includes it for users of that subscription bundle.
+- Why it helps: It shows how CleanShot X compresses several small steps—capture, cleanup, extraction, and sharing—into one workflow, which is where the tool’s value appears strongest.
 
-## Maturity signals
+- Basis: `source-grounded`
 
-The article describes it as a well-established paid utility used about 30 times a day by the author. The existence of a Setapp bundle option suggests it is a recognized product in the Mac utility ecosystem. No enterprise adoption is claimed, but the feature set is mature and operationally specific.
+## Context card
 
-## Strengths
+- **Use this page when:** Use this page when you need a quick judgment on whether CleanShot X is a practical capture-and-sharing tool for high-volume visual communication, or when you want a compact summary of what it adds over basic screenshot tools.
+- **Best for questions about:** What CleanShot X is used for in day-to-day work, Whether it helps with screenshots, screen recordings, OCR, and sharing, How it fits support, PM, design, and documentation workflows, Whether it is worth it beyond the built-in macOS screenshot tool
+- **Not enough for:** Benchmarks against other screenshot tools, Enterprise procurement, admin, or security evaluation, Long-term support or update guarantees, A rigorous comparison with native macOS capture features
+- **Strongest sources:** MKBHD’s Top 6 Mac Apps of All Time: The Ultimate Productivity Setup, The First 10 Apps I Install on Every New Mac (2026)
+- **Related tags:** content-creation, image-generation, local-first, workflow-automation
 
-- Annotated screenshots help turn visual evidence into ticket-ready communication.
-- Scrolling capture handles long pages, which is useful when a single screen does not contain the whole problem.
-- OCR can extract text from images, which avoids retyping and speeds up incident or support workflows.
-- Cloud sharing creates a short link in about two seconds, which is faster than manual attachment flows.
-- The pinning feature keeps reference screenshots floating on screen during calls, which helps with comparison and follow-up.
+## What to remember
 
-## Weaknesses / limitations
+- It bundles screenshot capture, scrolling capture, screen recording, OCR, annotation, cloud sharing, and pinning into one Mac utility.
+- Its main advantage is speed: turning visual evidence into something shareable with less switching between tools.
+- It is especially relevant for support, PM, design, and documentation work where screenshots become tickets, chat posts, or docs.
+- For occasional use, the native macOS screenshot tool may be sufficient.
+- The evidence suggests maturity and polish, but not proven superiority over alternatives.
 
-The source makes clear that the built-in macOS screenshot tool is already adequate for light use, so CleanShot X is mainly justified by higher volume. The standalone version is a one-time purchase, but the article does not discuss long-term support guarantees beyond major-version updates.
+## Consensus
 
-## Evidence / supporting sources
+- CleanShot X is a paid Mac utility for screenshots and screen recording, with capture, annotation, and sharing workflows combined in one app.
+- Both sources agree it is especially useful when teams need to move quickly from visual evidence to something shareable, such as tickets, chat messages, or docs.
+- Its core capabilities repeatedly mentioned are scrolling screenshots, screen recording as GIF or MP4, annotation, OCR, cloud sharing with short links, and pinning captures on screen.
+- The sources treat it as a mature, polished desktop tool aimed at people who document work frequently.
 
-### MKBHD’s Top 6 Mac Apps of All Time: The Ultimate Productivity Setup (2026-05-28)
+## Tensions / open questions
 
-- The article presents CleanShot X as a polished utility rather than a niche prototype. No ecosystem or enterprise data is provided, so maturity can only be inferred from the breadth of capture features described. As of 2026-05-28, it reads as a mature desktop utility with a clear audience. (`bc8ad04e96a4` · neutral · maturity_signals; [[sources/mkbhd-s-top-6-mac-apps-of-all-time-the-ultimate-productivity-setup-01ktkywtpj3kpgvrszw5qcyj64|MKBHD’s Top 6 Mac Apps of All Time: The Ultimate Productivity Setup]])
-- This is useful wherever teams need to capture UI states, annotate issues, or produce lightweight walkthroughs without jumping between tools. In the article it stands out because it reduces the friction around screenshots, scrolling captures, GIFs, and screen recordings. For service automation work, tools like this often support support tickets, bug reports, and internal documentation. (`1903900402ef` · neutral · operational_relevance; [[sources/mkbhd-s-top-6-mac-apps-of-all-time-the-ultimate-productivity-setup-01ktkywtpj3kpgvrszw5qcyj64|MKBHD’s Top 6 Mac Apps of All Time: The Ultimate Productivity Setup]])
-- A Mac screenshot and screen-recording tool that combines capture, annotation, and capture management into one utility. (`bb15e4adc9c8` · neutral · short_description; [[sources/mkbhd-s-top-6-mac-apps-of-all-time-the-ultimate-productivity-setup-01ktkywtpj3kpgvrszw5qcyj64|MKBHD’s Top 6 Mac Apps of All Time: The Ultimate Productivity Setup]])
-- - It supports scrolling screenshots, which matters when workflows need full-page documentation instead of cropped fragments.
-- It can record the screen as GIF or MP4, which makes it useful for quick demonstrations and troubleshooting clips.
-- It can hide desktop icons automatically before capture, reducing cleanup work before sharing.
-- It includes annotation tools and pinned captures, which helps keep visual assets close to the workflow instead of buried in a folder. (`f551622d67d3` · neutral · strengths; [[sources/mkbhd-s-top-6-mac-apps-of-all-time-the-ultimate-productivity-setup-01ktkywtpj3kpgvrszw5qcyj64|MKBHD’s Top 6 Mac Apps of All Time: The Ultimate Productivity Setup]])
-- It captures scrolling screenshots so long pages and interfaces can be documented in one image. (`994caa3c7948` · supporting · core_capabilities[0]; [[sources/mkbhd-s-top-6-mac-apps-of-all-time-the-ultimate-productivity-setup-01ktkywtpj3kpgvrszw5qcyj64|MKBHD’s Top 6 Mac Apps of All Time: The Ultimate Productivity Setup]])
-- It records screen activity as GIF or MP4 for lightweight demos and troubleshooting. (`2823e538de55` · supporting · core_capabilities[1]; [[sources/mkbhd-s-top-6-mac-apps-of-all-time-the-ultimate-productivity-setup-01ktkywtpj3kpgvrszw5qcyj64|MKBHD’s Top 6 Mac Apps of All Time: The Ultimate Productivity Setup]])
-- It hides desktop icons before capture and provides annotation tools for cleaner handoff. (`51e29e2fac0f` · supporting · core_capabilities[2]; [[sources/mkbhd-s-top-6-mac-apps-of-all-time-the-ultimate-productivity-setup-01ktkywtpj3kpgvrszw5qcyj64|MKBHD’s Top 6 Mac Apps of All Time: The Ultimate Productivity Setup]])
-- It can pin captures on screen, keeping reference images visible while working. (`0c10df3eb4ca` · supporting · core_capabilities[3]; [[sources/mkbhd-s-top-6-mac-apps-of-all-time-the-ultimate-productivity-setup-01ktkywtpj3kpgvrszw5qcyj64|MKBHD’s Top 6 Mac Apps of All Time: The Ultimate Productivity Setup]])
-- "It allows you to take scrolling screenshots, record your screen as a GIF or an MP4, hide your messy desktop icons automatically before capturing, and annotate images with gorgeous, highly polished design tools. It pins your captures to the screen so you can drag them directly into your workflow." (`aa0e8a1f2008` · supporting · supporting_snippet; [[sources/mkbhd-s-top-6-mac-apps-of-all-time-the-ultimate-productivity-setup-01ktkywtpj3kpgvrszw5qcyj64|MKBHD’s Top 6 Mac Apps of All Time: The Ultimate Productivity Setup]])
-- The source does not compare it against other screenshot tools with benchmarks or workflow tests. Its value is largely about convenience and polish, so the gain may be incremental rather than transformational for users already satisfied with native macOS capture tools. (`8743a8d6f4eb` · uncertainty · weaknesses_limitations; [[sources/mkbhd-s-top-6-mac-apps-of-all-time-the-ultimate-productivity-setup-01ktkywtpj3kpgvrszw5qcyj64|MKBHD’s Top 6 Mac Apps of All Time: The Ultimate Productivity Setup]])
+- The sources present CleanShot X as highly useful, but also acknowledge that macOS built-in capture tools are adequate for light use.
+- The page implies strong practical value, but does not provide benchmarks or direct comparisons, so the benefit may be mostly convenience and polish rather than a dramatic capability leap.
+- It is described as a paid tool with a one-time purchase and Setapp availability, but the evidence here does not establish long-term support strength or enterprise readiness.
 
-### The First 10 Apps I Install on Every New Mac (2026) (2026-05-17)
+## Evidence quality
 
-- It can be used to create screenshots that are dropped into chat tools or ticketing systems. (`88b2f7ea4c3d` · neutral · integration_ecosystem[0]; [[sources/the-first-10-apps-i-install-on-every-new-mac-2026-01kts4hyfyardwc2qg7v9n53dy|The First 10 Apps I Install on Every New Mac (2026)]])
-- The article notes that Setapp includes it for users of that subscription bundle. (`8b8ae5576476` · neutral · integration_ecosystem[1]; [[sources/the-first-10-apps-i-install-on-every-new-mac-2026-01kts4hyfyardwc2qg7v9n53dy|The First 10 Apps I Install on Every New Mac (2026)]])
-- The article describes it as a well-established paid utility used about 30 times a day by the author. The existence of a Setapp bundle option suggests it is a recognized product in the Mac utility ecosystem. No enterprise adoption is claimed, but the feature set is mature and operationally specific. (`7fe22621adab` · neutral · maturity_signals; [[sources/the-first-10-apps-i-install-on-every-new-mac-2026-01kts4hyfyardwc2qg7v9n53dy|The First 10 Apps I Install on Every New Mac (2026)]])
-- This is a high-frequency productivity tool for people who document work in tickets, chat, and docs. The source shows that its value is not just capture, but speed to shareable output, which is useful in support, PM, and design workflows. In operational terms, it reduces friction when visual communication is part of the job and when screenshots must be annotated or distributed quickly. (`298858caed98` · neutral · operational_relevance; [[sources/the-first-10-apps-i-install-on-every-new-mac-2026-01kts4hyfyardwc2qg7v9n53dy|The First 10 Apps I Install on Every New Mac (2026)]])
-- A paid Mac screenshot utility with annotation, scrolling capture, OCR, recording, cloud sharing, and pinning. The author uses it because it turns screenshots into a faster communication workflow. (`1e99480119bf` · neutral · short_description; [[sources/the-first-10-apps-i-install-on-every-new-mac-2026-01kts4hyfyardwc2qg7v9n53dy|The First 10 Apps I Install on Every New Mac (2026)]])
-- - Annotated screenshots help turn visual evidence into ticket-ready communication.
-- Scrolling capture handles long pages, which is useful when a single screen does not contain the whole problem.
-- OCR can extract text from images, which avoids retyping and speeds up incident or support workflows.
-- Cloud sharing creates a short link in about two seconds, which is faster than manual attachment flows.
-- The pinning feature keeps reference screenshots floating on screen during calls, which helps with comparison and follow-up. (`b306a85a35d3` · neutral · strengths; [[sources/the-first-10-apps-i-install-on-every-new-mac-2026-01kts4hyfyardwc2qg7v9n53dy|The First 10 Apps I Install on Every New Mac (2026)]])
-- It captures and annotates screenshots for operational communication. (`1804cde1704b` · supporting · core_capabilities[0]; [[sources/the-first-10-apps-i-install-on-every-new-mac-2026-01kts4hyfyardwc2qg7v9n53dy|The First 10 Apps I Install on Every New Mac (2026)]])
-- It records long scrolling pages and screen activity when a single frame is insufficient. (`73d0665f7806` · supporting · core_capabilities[1]; [[sources/the-first-10-apps-i-install-on-every-new-mac-2026-01kts4hyfyardwc2qg7v9n53dy|The First 10 Apps I Install on Every New Mac (2026)]])
-- It performs OCR on screenshots so text can be reused without manual retyping. (`dd59dc37f12e` · supporting · core_capabilities[2]; [[sources/the-first-10-apps-i-install-on-every-new-mac-2026-01kts4hyfyardwc2qg7v9n53dy|The First 10 Apps I Install on Every New Mac (2026)]])
-- It shares screenshots via short links for fast distribution. (`2d61b6ba5cb0` · supporting · core_capabilities[3]; [[sources/the-first-10-apps-i-install-on-every-new-mac-2026-01kts4hyfyardwc2qg7v9n53dy|The First 10 Apps I Install on Every New Mac (2026)]])
-- "I use CleanShot maybe 30 times a day. Annotated screenshots for tickets, scrolling captures of long pages, screen recordings I can immediately drop into Slack-equivalents, OCR on screenshots so I can grab text out of images, the built-in cloud sharing that gives me a short link in 2 seconds." (`a74ec7b84876` · supporting · supporting_snippet; [[sources/the-first-10-apps-i-install-on-every-new-mac-2026-01kts4hyfyardwc2qg7v9n53dy|The First 10 Apps I Install on Every New Mac (2026)]])
-- The source makes clear that the built-in macOS screenshot tool is already adequate for light use, so CleanShot X is mainly justified by higher volume. The standalone version is a one-time purchase, but the article does not discuss long-term support guarantees beyond major-version updates. (`2633748a17e0` · uncertainty · weaknesses_limitations; [[sources/the-first-10-apps-i-install-on-every-new-mac-2026-01kts4hyfyardwc2qg7v9n53dy|The First 10 Apps I Install on Every New Mac (2026)]])
+- Strong agreement across two reviewed sources on the feature set and workflow value.
+- Evidence is descriptive rather than experimental; no benchmarks or head-to-head tests are provided.
+- The sources are opinionated usage writeups, so maturity is inferred from repeated feature descriptions and frequent use, not from market data.
+- Limitations are lightly covered: the built-in macOS tool may be enough for light use, and long-term support details are not established here.
 
-## Contradictions / tensions
+## Practical takeaway
 
-- The source makes clear that the built-in macOS screenshot tool is already adequate for light use, so CleanShot X is mainly justified by higher volume. The standalone version is a one-time purchase, but the article does not discuss long-term support guarantees beyond major-version updates. (uncertainty; [[sources/the-first-10-apps-i-install-on-every-new-mac-2026-01kts4hyfyardwc2qg7v9n53dy|The First 10 Apps I Install on Every New Mac (2026)]])
-- The source does not compare it against other screenshot tools with benchmarks or workflow tests. Its value is largely about convenience and polish, so the gain may be incremental rather than transformational for users already satisfied with native macOS capture tools. (uncertainty; [[sources/mkbhd-s-top-6-mac-apps-of-all-time-the-ultimate-productivity-setup-01ktkywtpj3kpgvrszw5qcyj64|MKBHD’s Top 6 Mac Apps of All Time: The Ultimate Productivity Setup]])
+If your job involves repeated screenshots, annotated feedback, or quick visual handoffs, CleanShot X looks like a solid productivity upgrade. If you only capture occasionally, the built-in macOS screenshot tool may already be enough.
+
+## Evidence index
+
+- Sources: 2
+- Evidence items: 22
+- Current input hash: `c158f5b39a5ebcce`
+- Cached input hash: `c158f5b39a5ebcce`
+- Last synthesized: 2026-07-09T16:43:24Z
+- Synthesis status: `fresh`
 
 ## Related pages
 
