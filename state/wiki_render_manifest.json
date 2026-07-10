@@ -4547,7 +4547,7 @@
     },
     {
       "path": "topics/intent-driven-commerce-interfaces.md",
-      "sha256": "c09137f7a65060667ae8e433f03ce1a07498470cb2592831dc4e43675d5f8ac5"
+      "sha256": "8d2fb7588c5a86f7a763f3eb448ee71ff78e129d48745f12cb4787a7641dd6ab"
     },
     {
       "path": "topics/interactive-ai.md",
@@ -4647,7 +4647,7 @@
     },
     {
       "path": "topics/maintenance-aware-ai-evaluation.md",
-      "sha256": "54cfc9a25c8c764e7e6165936649412d5b59e7c27082f325359119143d310910"
+      "sha256": "878784c2f0e6e7957d33f821983b9c5c147cba5396e0275a167fccc99aa9611e"
     },
     {
       "path": "topics/manager-workflow-augmentation.md",
@@ -4723,7 +4723,7 @@
     },
     {
       "path": "topics/organizational-ai-readiness.md",
-      "sha256": "3b093644a38847a2eae1bfe303a8d38f938b79c2d47b33217ccc9d55486facdc"
+      "sha256": "0fd5d5f32d9d63ec63976b7c387c8e8943dc13b8331f4b8cd7fc3d61003284ce"
     },
     {
       "path": "topics/outcome-based-pricing-for-ai-agents.md",
@@ -4767,7 +4767,7 @@
     },
     {
       "path": "topics/production-debt-in-ai-systems.md",
-      "sha256": "8cdf8b41372b316213a4a2af900bb652721d8f13298b04ac03c7610ebd010538"
+      "sha256": "cbb4dcca6984d4ad1b2b9165e12ba0f27e0787aa5c7e657c995d3af7792a3210"
     },
     {
       "path": "topics/production-traceability-for-agent-improvement.md",
@@ -4803,7 +4803,7 @@
     },
     {
       "path": "topics/provenance-tracking.md",
-      "sha256": "5461f03c28d2ecbde78ce61cde6956f87be6625233a03ba226047c4c59f80a92"
+      "sha256": "9a9cdab50c453f1404ac78a25411fe3ea1858d8d086e3673d6ea9ef91554d0de"
     },
     {
       "path": "topics/rag-as-grounded-retrieval.md",

@@ -1,0 +1,68 @@
+{
+  "created_at": "20260710T202740Z",
+  "options": {
+    "cache_dir": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis",
+    "category": null,
+    "entity": "topic:intent-driven-commerce-interfaces",
+    "graph_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/wiki_render_graph.json",
+    "include_single_source": false,
+    "limit": 1,
+    "model": "gpt-5.4-mini-2026-03-17",
+    "preview_dir": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews",
+    "review": true
+  },
+  "reviews": [
+    {
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/topic/intent-driven-commerce-interfaces.json",
+      "cached_input_hash": "a2fc067e986b4914",
+      "category": "topic",
+      "current_input_hash": "a2fc067e986b4914",
+      "entity_id": "topic:intent-driven-commerce-interfaces",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/topic/intent-driven-commerce-interfaces.md",
+      "rendered_synthesis_state": "synthesized",
+      "slug": "intent-driven-commerce-interfaces",
+      "target_path": "topics/intent-driven-commerce-interfaces.md",
+      "title": "Intent-Driven Commerce Interfaces",
+      "validation_reason": "cache entry matches current evidence hash",
+      "validation_state": "fresh",
+      "wrote_preview": true
+    }
+  ],
+  "run": {
+    "called": 1,
+    "dry_run": false,
+    "items": [
+      {
+        "action": "written",
+        "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/topic/intent-driven-commerce-interfaces.json",
+        "cached_input_hash": "",
+        "category": "topic",
+        "current_input_hash": "a2fc067e986b4914",
+        "entity_id": "topic:intent-driven-commerce-interfaces",
+        "model": "gpt-5.4-mini-2026-03-17",
+        "provider_request_id": "chatcmpl-E0C6mdNRGPL3XJfAIFHqnuMnk7C2f",
+        "reason": "no synthesis cache entry exists",
+        "slug": "intent-driven-commerce-interfaces",
+        "state": "new",
+        "title": "Intent-Driven Commerce Interfaces",
+        "token_usage": {
+          "completion_tokens": 1145,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens": 5902,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "total_tokens": 7047
+        }
+      }
+    ],
+    "planned": 1,
+    "written": 1
+  }
+}
