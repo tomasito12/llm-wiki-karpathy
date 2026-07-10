@@ -1,6 +1,6 @@
 # Current System Status
 
-Last reviewed: 2026-07-08
+Last reviewed: 2026-07-10
 
 This document is a short orientation map for future sessions. It explains what is stable, what is partially built, and what should be handled next before adding more features.
 
@@ -49,31 +49,70 @@ The current pipeline has these layers:
 - The long-term second-brain vision is documented in `docs/second-brain-vision.md`.
 - The user's EnBW AI expert role and service-automation relevance profile are documented in the README, second-brain vision, ingestion philosophy, and code-agent command reference.
 
+## Standard Operating Flow
+
+Use this flow when new Readwise sources have been reviewed or when Stage 2
+synthesis batches were created.
+
+1. Sync or add sources.
+   - `hatch run readwise-sync`
+   - Do not edit files under `raw/` by hand.
+
+2. Review/classify sources.
+   - Use the dashboard or pre-analysis workflow.
+   - The durable review artifacts live under `state/reviews/<source_id>/review.json`.
+
+3. Render Stage 1 and graph data.
+   - `hatch run wiki-render`
+   - This updates the generated Obsidian vault and `state/wiki_render_graph.json`.
+
+4. Plan synthesis work.
+   - `hatch run wiki-synthesis-plan --changed-only --limit 20`
+   - Prefer small batches and high-value entities first.
+
+5. Run targeted Stage 2 synthesis.
+   - `hatch run wiki-synthesis-workflow --entity topic:example --yes`
+   - This writes final cache files under `state/synthesis/<category>/<slug>.json`.
+   - It also writes preview and audit artifacts under `state/synthesis_previews/`
+     and `state/synthesis_runs/`.
+
+6. Review previews.
+   - Inspect `state/synthesis_previews/<category>/<slug>.md`.
+   - If the page is poor, refresh only that entity instead of rerunning the whole batch.
+
+7. Validate and render final wiki output.
+   - `hatch run wiki-synthesis-cache-lint`
+   - `hatch run wiki-render --dry-run`
+   - If the dry-run would write files and the previews look good, run `hatch run wiki-render`.
+
+8. Commit only durable artifacts.
+   - Commit final synthesis caches in `state/synthesis/`.
+   - Commit generated wiki pages and `state/wiki_render_manifest.json` when they changed.
+   - Do not commit `state/synthesis_previews/`, `state/synthesis_runs/`, or
+     `state/synthesis_backups/` unless there is a deliberate review/audit reason.
+
 ## Current Check Results
 
-Run on 2026-07-08:
+Run on 2026-07-10:
 
 ```text
 hatch run wiki-render --dry-run
 => sources=360 pages=614 files=1264 written=0 unchanged=1264 pruned=0
 
-hatch run wiki-lint
-=> ok
-
-hatch run wiki-synthesis-cache-lint --json
-=> checked=10 ok=10 warnings=0 errors=0
+hatch run wiki-synthesis-cache-lint
+=> checked=89 ok=89 warnings=0 errors=0
 
 hatch run wiki-synthesis-plan --changed-only --limit 20 --json
-=> new=157 stale=0 unchanged=10 skipped_single_source=447 skipped_evidence_object=275
+=> new=83 stale=0 unchanged=84 skipped_single_source=447 skipped_evidence_object=275
 
 hatch run lint:check
 => ruff ok, ty ok
 
 hatch run test:run
-=> 892 passed before the final hash regression test was added
+=> 901 passed
 
 hatch run test:cov
-=> 893 passed, total coverage 75%
+=> 901 passed, total coverage 75%
 ```
 
 The earlier failure mode was fixed in this pass:
@@ -109,8 +148,11 @@ Current behavior:
 
 Current cache count:
 
-- 7 glossary synthesis pages
-- 3 topic synthesis pages
+- 13 glossary synthesis pages
+- 8 how-to synthesis pages
+- 11 model synthesis pages
+- 16 tool synthesis pages
+- 41 topic synthesis pages
 
 ## Main Risks
 
