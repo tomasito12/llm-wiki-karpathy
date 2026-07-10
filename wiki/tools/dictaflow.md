@@ -36,13 +36,13 @@ types:
 
 DictaFlow appears to be a focused macOS dictation tool for people who want fast voice-to-text without sending audio to the cloud. The main idea is simple: hold a key to speak, release it to insert cleaned-up text at the cursor, and correct yourself mid-sentence without breaking the flow. The sources also say it handles acronyms, code terms, and even some locked-down desktop environments like Citrix and Remote Desktop, which makes it more interesting than a casual note-taking app. The tradeoff is that the evidence is promotional and thin: there are no independent accuracy, latency, or security results, so this page is best used as a positioning summary rather than a purchase verdict.
 
-## Example in practice
+## Typical use case
 
 ### Voice entry for private, constrained desktop work
 
 A support or operations analyst needs to update a ticket, write a quick incident note, or draft a customer reply while working inside a restrictive desktop session. Instead of typing everything manually, they hold a key, speak the update, correct themselves mid-sentence, and release to drop cleaned-up text into the field. Because transcription happens on-device, the workflow avoids sending private speech to a cloud service. If the environment is Citrix or Remote Desktop, the source claims DictaFlow can still type directly there, which is the kind of constraint that often breaks other voice tools.
 
-- Why it helps: It shows why the product is more than a basic dictation app: the value is not just speech-to-text, but low-friction drafting that can still work in privacy-sensitive or locked-down environments.
+- Why this helps: It shows why the product is more than a basic dictation app: the value is not just speech-to-text, but low-friction drafting that can still work in privacy-sensitive or locked-down environments.
 
 - Basis: `source-grounded`
 

@@ -16,7 +16,7 @@ author: Kevin O'Brien
 publication: Intercom
 published_date: '2026-04-13'
 assessed_as_of: '2026-04-13'
-ingested_at: '2026-06-06T21:47:58+00:00'
+ingested_at: '2026-07-10T11:54:07.422887+00:00'
 canonical_url: https://www.intercom.com/blog/from-swarms-to-product-turning-customer-signals-into-scalable-features/
 content_sha256: 76e89e57453dbdb5620a44f97fb32594293b83b5ab59888a4d0689d68aea1192
 derived_topics:

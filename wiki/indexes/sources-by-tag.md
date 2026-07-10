@@ -229,7 +229,6 @@ category: index
 - [[sources/sdd-writing-specifications-for-ai-bdd-as-the-missing-link-spec-driven-development-01kqz04y32hqhskkq6c3jh3esj|SDD Writing Specifications for AI: BDD as the Missing Link — Spec-Driven Development]]
 - [[sources/setting-up-mac-for-development-may-2026-01ktpm1xqjsx1ra42yp56bera0|Setting Up Mac for Development [May 2026]]]
 - [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]]
-- [[sources/the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3|The Automated Obsidian Intelligence Vault That Gets Smarter Every Day]]
 - [[sources/the-best-rag-architectures-for-ai-agents-every-developer-must-know-01kqkzctgpjxtkpzxn009b6tgj|The Best RAG Architectures for AI Agents Every Developer Must Know]]
 - [[sources/the-next-era-of-knowledge-work-01kt4kxtskp8d1y3yxh2yh07pm|The Next Era Of Knowledge Work]]
 - [[sources/the-next-evolution-of-the-agents-sdk-01kp91t7d4xwf49s0xabbv4dqf|The next evolution of the Agents SDK]]
@@ -827,7 +826,6 @@ category: index
 - [[sources/setting-up-mac-for-development-may-2026-01ktpm1xqjsx1ra42yp56bera0|Setting Up Mac for Development [May 2026]]]
 - [[sources/spec-driven-development-three-maturity-levels-every-ai-team-should-know-01kr432t128r5x0bvxwskbtd1w|Spec Driven Development — Three Maturity Levels Every AI Team Should Know]]
 - [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]]
-- [[sources/the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3|The Automated Obsidian Intelligence Vault That Gets Smarter Every Day]]
 - [[sources/the-first-10-apps-i-install-on-every-new-mac-2026-01kts4hyfyardwc2qg7v9n53dy|The First 10 Apps I Install on Every New Mac (2026)]]
 - [[sources/what-is-the-best-local-llm-for-coding-in-2026-01krh1w7s8g0v7eg3xh8bcn02z|What Is the Best Local LLM for Coding in 2026?]]
 - [[sources/why-an-ai-enterprise-architecture-toolkit-is-trending-on-github-in-2026-01kqfgqa7je4vz36s8nywev6j5|Why an AI Enterprise Architecture toolkit is trending on GitHub in 2026]]
@@ -1677,6 +1675,7 @@ category: index
 - [[sources/how-to-build-an-efficient-knowledge-base-for-ai-models-01krkb3e658t23tx5zznes57v9|How to Build an Efficient Knowledge Base for AI Models]]
 - [[sources/how-to-build-production-ready-ai-agents-mcp-cli-and-skills-the-right-tool-for-the-right-job-01kr4347xhzg1papsh9y4v36a2|How to Build Production-Ready AI Agents: MCP, CLI, and Skills — the Right Tool for the Right Job]]
 - [[sources/how-we-built-an-ai-second-brain-for-60k-knowledge-workers-01kqz014gcexykw32fheswwzd3|How We Built an AI Second Brain for 60K Knowledge Workers]]
+- [[sources/i-built-a-personal-ai-operating-system-it-now-knows-more-about-my-week-than-i-do-01kqm0pmnw3vtap5a84xh1r9h4|I Built a Personal AI Operating System. It Now Knows More About My Week Than I Do.]]
 - [[sources/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-01kqkzqzvq3q6bbsq60pr92ar9|I Built an AI System That Knows My Entire Life. Here Is How It Works.]]
 - [[sources/i-deleted-notion-and-obsidian-here-s-what-replaced-them-and-why-i-m-never-going-back-01ktpk839jym2sq0c0w7hzvght|I Deleted Notion and Obsidian. Here’s What Replaced Them — and Why I’m Never Going Back.]]
 - [[sources/i-found-a-full-llm-wiki-app-so-i-built-the-smaller-thing-i-actually-needed-01kqz036fj7zddpk9fppjf11va|I Found a Full LLM Wiki App. So I Built the Smaller Thing I Actually Needed.]]
@@ -1845,6 +1844,10 @@ category: index
 ## mobile-capable
 
 - [[sources/the-local-ai-stack-for-apple-silicon-now-with-superpowers-01krjqdz9985k9ja2fh5ftkd71|The Local AI Stack for Apple Silicon, Now With Superpowers.]]
+
+## model-architecture
+
+- [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]]
 
 ## model-behavior
 
@@ -2634,7 +2637,6 @@ category: index
 
 - [[sources/a-guide-to-agent-native-product-management-every-01krc5a85g6t1qh1y38nt7yzmn|A Guide to Agent-native Product Management - Every]]
 - [[sources/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-01kts19400x91hkkaam8ed7tvt|Build Your Own Local Web Browsing LLM Agent in 250 Lines of Python]]
-- [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]]
 - [[sources/e-on-s-ai-agents-provide-best-in-class-service-01krxb2edwbr7tb7hadmsrnbye|E.ON's AI Agents Provide Best-in-Class Service]]
 - [[sources/extending-fin-as-the-most-open-agent-platform-01ktpp7k8sthayjgk3vd9ezxr6|Extending Fin as the most open Agent platform]]
 - [[sources/give-your-ai-unlimited-updated-context-01krkap6426ped2hk2anmke10k|Give Your AI Unlimited Updated Context]]

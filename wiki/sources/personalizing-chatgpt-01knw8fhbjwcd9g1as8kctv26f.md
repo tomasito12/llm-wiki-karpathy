@@ -15,7 +15,7 @@ author: OpenAI Blog
 publication: OpenAI
 published_date: '2026-04-10'
 assessed_as_of: '2026-04-10'
-ingested_at: '2026-06-06T22:02:36+00:00'
+ingested_at: '2026-07-09T19:20:40.651977+00:00'
 canonical_url: https://openai.com/academy/personalization
 content_sha256: 6b1f3671442592ed0cb9b967065a6d77c737d5418ae176ca904db74ff4a135c9
 derived_topics:

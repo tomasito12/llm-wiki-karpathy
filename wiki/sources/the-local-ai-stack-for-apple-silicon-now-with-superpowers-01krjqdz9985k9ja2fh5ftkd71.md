@@ -22,7 +22,7 @@ author: Marco Kotrotsos
 publication: Medium
 published_date: '2026-05-08'
 assessed_as_of: '2026-05-08'
-ingested_at: '2026-06-09T18:11:58+00:00'
+ingested_at: '2026-07-09T19:23:30.472042+00:00'
 canonical_url: https://kotrotsos.medium.com/the-local-ai-stack-for-apple-silicon-now-with-superpowers-c6038147eb1a
 content_sha256: 3758f18903f5a610aa941ba9c4e1b72b5c1a4d18ea41e173cbc22753cf94a820
 derived_models:

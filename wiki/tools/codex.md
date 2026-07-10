@@ -40,13 +40,13 @@ types:
 
 Codex appears to be OpenAI’s managed agent/workspace for doing real work across code and knowledge tasks, not just a code-completion tool. The sources consistently describe it as useful for searching, drafting, coding, analyzing, verifying, and coordinating work across fragmented systems, including documents, spreadsheets, web research, and internal knowledge. Its main distinguishing feature is the control layer: sandboxing, approvals, workspace-scoped identity, compliance logging, OpenTelemetry-style exports, and support across desktop, CLI, IDE, and MCP-connected surfaces. That makes it relevant for enterprise teams that want agent-assisted automation without giving unrestricted system access. The main caveat is evidence quality: the sources are vendor-authored, with no independent benchmarks, failure rates, or cost data, so the claims are strongest on intended use and governance posture, not proven outcomes.
 
-## Example in practice
+## Typical use case
 
 ### Mixed research-and-drafting workflow with approvals
 
 A product operations team needs to update a set of release notes, check a few spreadsheets, pull evidence from internal docs, and draft a summary for approval. In a Codex-style workflow, one person can keep the work in one workspace, let the agent search across the mixed inputs, draft the artifact, and run small supporting tasks in parallel. If a step is risky, such as a write action or external access, the agent pauses for approval. The team can then review the prompts, tool actions, and outcomes through logs instead of reconstructing the work manually after the fact.
 
-- Why it helps: It shows why Codex matters beyond pure coding: the value is in moving between search, drafting, verification, and controlled execution without handing the task across multiple tools or people.
+- Why this helps: It shows why Codex matters beyond pure coding: the value is in moving between search, drafting, verification, and controlled execution without handing the task across multiple tools or people.
 
 - Basis: `source-grounded`
 

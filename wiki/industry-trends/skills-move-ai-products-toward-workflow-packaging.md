@@ -11,7 +11,7 @@ tags:
 first_seen: '2026-01-26'
 last_seen: '2026-04-24'
 source_count: 3
-evidence_count: 25
+evidence_count: 22
 source_ids:
 - ai-agent-skills-explained-simply-01kr43s6p07ryvwqmstm9thx41
 - personalizing-chatgpt-01knw8fhbjwcd9g1as8kctv26f
@@ -34,9 +34,6 @@ AI products increasingly compete on whether they can package repeatable workflow
 - Skills are packaged as folders with SKILL.md, optional scripts, references, and assets.
 - The guide covers distribution through Claude.ai, Claude Code, the API, and organization deployment.
 - It recommends starting from 2 to 3 concrete use cases and then testing trigger accuracy.
-- Skills are described as reusable workflows for repeatable tasks.
-- The page explicitly contrasts "one-off prompts" with "more consistent workflows".
-- The guidance extends the product beyond chat into structured process reuse.
 - Skills are described as filesystem-based resources.
 - The format is presented as reusable and version-controlled.
 - The article explicitly contrasts skills with prompts, RAG, and fine-tuning.
@@ -72,9 +69,6 @@ What they give you: Procedural knowledge" (`43b53939b7f8` · supporting · suppo
 
 - AI products increasingly expose reusable workflow structures instead of only raw chat interactions. The practical shift is from ad hoc prompting to packaged behaviors that users can reuse, configure, and carry across sessions. This makes the product feel more like a workflow system than a blank conversational box. (`a929605c89bb` · neutral · trend_description; [[sources/personalizing-chatgpt-01knw8fhbjwcd9g1as8kctv26f|Personalizing ChatGPT]])
 - The source says that "skills can help" and that "a skill can guide ChatGPT to follow a consistent process, format, or set of instructions that matches how you work," which frames product value around repeatable workflows rather than isolated prompts. (`640ffcba626e` · supporting · evidence_from_source; [[sources/personalizing-chatgpt-01knw8fhbjwcd9g1as8kctv26f|Personalizing ChatGPT]])
-- Skills are described as reusable workflows for repeatable tasks. (`e7b7feb31dc4` · supporting · supporting_data_points[0]; [[sources/personalizing-chatgpt-01knw8fhbjwcd9g1as8kctv26f|Personalizing ChatGPT]])
-- The page explicitly contrasts "one-off prompts" with "more consistent workflows". (`06905e7e7baf` · supporting · supporting_data_points[1]; [[sources/personalizing-chatgpt-01knw8fhbjwcd9g1as8kctv26f|Personalizing ChatGPT]])
-- The guidance extends the product beyond chat into structured process reuse. (`366c955a54a3` · supporting · supporting_data_points[2]; [[sources/personalizing-chatgpt-01knw8fhbjwcd9g1as8kctv26f|Personalizing ChatGPT]])
 - "Skills let you turn repeatable tasks into structured, reusable workflows. Instead of starting from scratch each time, a skill can guide ChatGPT to follow a consistent process, format, or set of instructions that matches how you work." (`b8ceeb9c1e2e` · supporting · supporting_snippet; [[sources/personalizing-chatgpt-01knw8fhbjwcd9g1as8kctv26f|Personalizing ChatGPT]])
 - Actionable as of 2026-04-10; the source presents this as a product direction already available in ChatGPT guidance, not as a future roadmap. (`673c7926faa3` · uncertainty · time_sensitivity; [[sources/personalizing-chatgpt-01knw8fhbjwcd9g1as8kctv26f|Personalizing ChatGPT]])
 - The source is vendor guidance and does not show adoption, usage frequency, or measured outcome improvements, so the trend is directional rather than empirically validated. (`013e88beda63` · uncertainty · uncertainty_note; [[sources/personalizing-chatgpt-01knw8fhbjwcd9g1as8kctv26f|Personalizing ChatGPT]])

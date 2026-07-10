@@ -19,7 +19,13 @@ source_ids:
 - how-i-use-obsidian-claude-cowork-to-run-my-life-01kv4tcedck5ftexd9hqeptc7c
 value_level: medium
 confidence: 0.806667
-synthesis_state: stage1-placeholder
+synthesis_state: synthesized
+synthesis_stale: false
+synthesis_input_hash: 111b2e3c1a5f0e65
+current_input_hash: 111b2e3c1a5f0e65
+synthesis_schema_version: 1
+synthesis_prompt_version: 1
+last_synthesized_at: '2026-07-09T19:17:57Z'
 types:
 - coding-model
 - frontier-model
@@ -28,89 +34,70 @@ types:
 
 # Opus 4.6
 
-## Current understanding
+## Executive synthesis
 
-<!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
-- Presented as the deeper-reasoning option in Claude Code for complex work.
-- The article implies it is the more capable but less default choice inside the same paid coding assistant.
-- Its significance is in giving users a reason to stay within Anthropic’s stack when tasks require more deliberation.
+Opus 4.6 is best understood as a high-capability, premium escalation model: useful when the task is hard, synthesis-heavy, or reasoned judgment matters more than efficiency. The sources consistently place it above the default option in Anthropic-adjacent coding workflows and describe it as the model to switch to for complex coding work, deep research, or difficult refactoring. The repeated caveat is cost: it uses tokens faster, so it is not the default operating point for routine work or high-volume automation. A second, important theme is that raw model strength is not enough to predict real output quality; the wrapper, review loop, worktree handling, and execution environment can change results materially. In short, Opus 4.6 looks worth testing as an escalation model, but not as a standalone answer to agent performance or procurement decisions.
 
-## Comparative Observations
+## Practical relevance
 
-- The article uses Opus 4.6 as the contrast case against Sonnet 4.6.
-- It is implicitly contrasted with Antigravity’s multi-model flexibility, where model choice can vary by agent and task.
+### Escalation model for hard synthesis
 
-## Core Capabilities
+In the reviewed sources, Opus 4.6 appears in workflows as the model you switch to when a task becomes genuinely hard: complex synthesis, deep research, or reasoning-heavy coding. It is not framed as the default for everyday use; instead, it sits above a cheaper baseline and is used selectively when quality matters more than token efficiency. That makes it relevant if you are designing a routing layer, evaluating a coding assistant, or deciding when to spend more for a better answer. The evidence is thinner on exact failure modes, latency, and cost numbers, so this is a “test and gate carefully” model rather than a broadly justified default.
 
-- It is positioned for deeper reasoning on complex coding work.
-- It is the higher-capability Anthropic option inside Claude Code’s model lineup.
+- Why this matters: It shows the practical role of Opus 4.6 without overstating it: a premium escalation choice, not a universal default.
 
-## Maturity signals
+- Basis: `source-grounded`
 
-The model is presented as part of an established paid product rather than an experimental preview, which is a modest maturity signal. Beyond that, the article offers no adoption or benchmark evidence.
+## Context card
 
-## Pricing / inference implications
+- **Use this page when:** You want a quick read on whether Opus 4.6 is the right escalation model for harder reasoning, coding, or synthesis tasks, and you need the main caveats before loading it into a workflow or comparing tools.
+- **Best for questions about:** What Opus 4.6 is useful for in practice, When to escalate to Opus 4.6 instead of using a cheaper default model, How Opus 4.6 fits into coding assistants and agent workflows, Whether model quality alone predicts shipped-code performance, What the main cost and workflow caveats are
+- **Not enough for:** A controlled benchmark comparison against other models, Detailed failure-mode analysis at the model level, Pricing details or token economics beyond the general cost warning, Direct service-automation guidance specific to Opus 4.6, Release, adoption, or maturity evidence beyond product positioning
+- **Strongest sources:** How I Use Obsidian + Claude Cowork to Run My Life, Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong, Antigravity vs Claude Code: Which AI Coding Assistant Should You Actually Use?
+- **Related tags:** coding-model, developer-focused, frontier-model, proprietary-model, tool-use-capable
 
-The source implies that higher-end model usage sits behind Claude Code’s paid access, but it does not specify incremental pricing or token economics for Opus 4.6.
+## What to remember
 
-## Provider
+- Opus 4.6 is the deeper-reasoning / higher-capability Anthropic option in the reviewed sources.
+- It is best reserved for complex coding, deep research, and synthesis-heavy work.
+- It is not the default choice because it uses tokens faster and likely costs more to run.
+- Model quality alone is not enough to predict agent performance; the wrapper and workflow matter a lot.
+- Evidence here is useful for routing and product judgment, not for benchmark-driven model selection.
 
-Anthropic
+## Consensus
 
-## Service automation implications
+- Opus 4.6 is presented as the higher-capability Anthropic option, used when deeper reasoning or stronger synthesis is needed.
+- Across sources, it is treated as a premium escalation model rather than the default for routine work.
+- The main practical value is in complex coding, difficult refactoring, deep research, and synthesis-heavy tasks where quality matters more than efficiency.
+- Evidence consistently suggests it should be routed selectively because it uses tokens faster and likely has higher cost pressure.
+- Sources agree that the surrounding tool or agent framework can materially change outcomes, so model choice alone is not enough to predict real-world performance.
 
-No direct service automation implications are discussed for Opus 4.6 in this source.
+## Tensions / open questions
 
-## Weaknesses / limitations
+- Sources position Opus 4.6 as stronger for complex work, but provide no controlled benchmark or failure analysis to prove that strength.
+- It is described as a top-tier option inside established products, yet there is no external adoption or maturity evidence beyond that product positioning.
+- The model may be important in coding-agent comparisons, but the sources repeatedly warn that wrapper quality can dominate apparent performance, making model-only conclusions unreliable.
+- Cost is consistently flagged as a constraint, but no source gives incremental pricing or precise token economics.
 
-The article does not provide a separate performance evaluation for Opus 4.6. Its usefulness is asserted through product positioning rather than through controlled comparison or benchmark data.
+## Evidence quality
 
-## Evidence / supporting sources
+- Strongest evidence is practical and source-grounded, but it comes from product/editorial usage rather than controlled evaluations.
+- There are 3 sources and 25 evidence items, but most claims are positioning and workflow inference, not benchmark data.
+- Evidence is consistent on role and constraints, weak on quantified performance, latency, cost, and failure modes.
+- Confidence is moderate-to-high for use case and routing guidance, low for any claim about absolute model superiority.
 
-### Antigravity vs Claude Code: Which AI Coding Assistant Should You Actually Use? (2026-04-16)
+## Practical takeaway
 
-- The article uses Opus 4.6 as the contrast case against Sonnet 4.6. (`76c9798824aa` · neutral · comparative_observations[0]; [[sources/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-01kqkzbbr47x5jcmdm2wy72k03|Antigravity vs Claude Code: Which AI Coding Assistant Should You Actually Use?]])
-- It is implicitly contrasted with Antigravity’s multi-model flexibility, where model choice can vary by agent and task. (`b007e977ca3d` · neutral · comparative_observations[1]; [[sources/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-01kqkzbbr47x5jcmdm2wy72k03|Antigravity vs Claude Code: Which AI Coding Assistant Should You Actually Use?]])
-- If selected for difficult refactoring or reasoning-heavy tasks, Opus 4.6 would be used inside the same sequential, approval-driven workflow as Claude Code. That suggests the deployment pattern is less about autonomous swarming and more about giving a single agent more thinking capacity when the task warrants it. The source does not provide enough detail to estimate its cost or latency impact. (`648979f6e96b` · neutral · deployment_implications; [[sources/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-01kqkzbbr47x5jcmdm2wy72k03|Antigravity vs Claude Code: Which AI Coding Assistant Should You Actually Use?]])
-- The model is presented as part of an established paid product rather than an experimental preview, which is a modest maturity signal. Beyond that, the article offers no adoption or benchmark evidence. (`d50dd23ff64a` · neutral · maturity_signals; [[sources/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-01kqkzbbr47x5jcmdm2wy72k03|Antigravity vs Claude Code: Which AI Coding Assistant Should You Actually Use?]])
-- - Presented as the deeper-reasoning option in Claude Code for complex work.
-- The article implies it is the more capable but less default choice inside the same paid coding assistant.
-- Its significance is in giving users a reason to stay within Anthropic’s stack when tasks require more deliberation. (`5731b95fecdf` · neutral · operational_profile; [[sources/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-01kqkzbbr47x5jcmdm2wy72k03|Antigravity vs Claude Code: Which AI Coding Assistant Should You Actually Use?]])
-- The source implies that higher-end model usage sits behind Claude Code’s paid access, but it does not specify incremental pricing or token economics for Opus 4.6. (`4685f1d910f9` · neutral · pricing_inference_implications; [[sources/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-01kqkzbbr47x5jcmdm2wy72k03|Antigravity vs Claude Code: Which AI Coding Assistant Should You Actually Use?]])
-- No direct service automation implications are discussed for Opus 4.6 in this source. (`06281f344287` · neutral · service_automation_implications; [[sources/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-01kqkzbbr47x5jcmdm2wy72k03|Antigravity vs Claude Code: Which AI Coding Assistant Should You Actually Use?]])
-- It is positioned for deeper reasoning on complex coding work. (`bc9987d3f1b1` · supporting · core_capabilities[0]; [[sources/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-01kqkzbbr47x5jcmdm2wy72k03|Antigravity vs Claude Code: Which AI Coding Assistant Should You Actually Use?]])
-- It is the higher-capability Anthropic option inside Claude Code’s model lineup. (`ee11b66177e9` · supporting · core_capabilities[1]; [[sources/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-01kqkzbbr47x5jcmdm2wy72k03|Antigravity vs Claude Code: Which AI Coding Assistant Should You Actually Use?]])
-- "You get Sonnet 4.6 (the default for most tasks), or Opus 4.6 if you need deeper reasoning on complex work." (`38de5d459ebd` · supporting · supporting_snippet; [[sources/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-01kqkzbbr47x5jcmdm2wy72k03|Antigravity vs Claude Code: Which AI Coding Assistant Should You Actually Use?]])
-- The article does not provide a separate performance evaluation for Opus 4.6. Its usefulness is asserted through product positioning rather than through controlled comparison or benchmark data. (`bcb8502f55ac` · uncertainty · weaknesses_limitations; [[sources/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-01kqkzbbr47x5jcmdm2wy72k03|Antigravity vs Claude Code: Which AI Coding Assistant Should You Actually Use?]])
+Use Opus 4.6 when the task is high-stakes, complex, or synthesis-heavy and you can justify the token cost; do not choose it just because you want the strongest model name, because the wrapper and workflow matter too.
 
-### Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong (2026-05-04)
+## Evidence index
 
-- When the same underlying model runs inside different products, the surrounding harness can change practical output quality enough that model choice alone is insufficient for procurement. For production agent systems, that means evaluation must include the wrapper, worktree handling, review loop, and execution environment, not just the model endpoint. The article uses Opus 4.6 to support the idea that orchestration can dominate apparent capability. (`93939706c53e` · neutral · deployment_implications; [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]])
-- The model is referenced as a concrete baseline inside a live comparison of coding agents, which implies broad enough recognition to serve as a shared reference point. The article does not present release notes or benchmark methodology for the model itself, so maturity should be read only from its use as a comparison anchor. (`c453d4cb2d10` · neutral · maturity_signals; [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]])
-- The source treats Opus 4.6 as a strong base model whose performance can vary materially depending on the agent wrapper around it. It is used as the example for why the surrounding tool framework matters as much as the raw model. That makes it useful as a reference point for comparing agent systems, not just model quality. (`d9a732cee95b` · neutral · operational_profile; [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]])
-- No model-specific pricing detail is given. The only operational inference is that model cost cannot be judged in isolation from the wrapper because different tools built around the same model still perform differently. (`26cd0227d2cf` · neutral · pricing_inference_implications; [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]])
-- No direct service-automation implication is stated beyond the general lesson that workflow wrapper quality affects outcomes more than raw model scores. (`e0a648cb04c3` · neutral · service_automation_implications; [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]])
-- "When different tools run the exact same underlying model like Opus 4.6, we still see significant performance gaps across standard problem sets. The model is just the engine. The agent framework is the actual car." (`541ea3bda971` · supporting · supporting_snippet; [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]])
-- The source does not provide a detailed model-level failure analysis. Its main limitation, as presented here, is that raw model strength is not enough to predict shipped-code performance when the agent framework changes. (`32508f5a788b` · uncertainty · weaknesses_limitations; [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]])
-
-### How I Use Obsidian + Claude Cowork to Run My Life (2026-06-05)
-
-- In a deployed workflow, Opus acts as the escalation model for tasks where answer quality matters more than efficiency. That means the orchestration layer should identify synthesis-heavy tasks and route them upward rather than using Opus everywhere. The source implies higher token cost, so careful gating matters for sustainable use. (`060fe17b7c7f` · neutral · deployment_implications; [[sources/how-i-use-obsidian-claude-cowork-to-run-my-life-01kv4tcedck5ftexd9hqeptc7c|How I Use Obsidian + Claude Cowork to Run My Life]])
-- The model is treated as a top-tier option inside an established product workflow, which suggests stable availability and practical trust. No external adoption or benchmark evidence is provided. The source presents it as the quality-first choice in a model routing ladder. (`6ab9db182c89` · neutral · maturity_signals; [[sources/how-i-use-obsidian-claude-cowork-to-run-my-life-01kv4tcedck5ftexd9hqeptc7c|How I Use Obsidian + Claude Cowork to Run My Life]])
-- Opus 4.6 is the high-capability model in the workflow and is reserved for complex synthesis and deep research tasks.
-- The source treats it as the strongest option when quality matters more than cost.
-- It is the model used for harder synthesis, which implies higher reasoning depth or better handling of complex context.
-- It is not the default because it burns tokens faster, so the workflow uses it selectively. (`87e3f2608c4a` · neutral · operational_profile; [[sources/how-i-use-obsidian-claude-cowork-to-run-my-life-01kv4tcedck5ftexd9hqeptc7c|How I Use Obsidian + Claude Cowork to Run My Life]])
-- The source explicitly says it "uses tokens faster," so the economic implication is that it should be reserved for the hardest tasks. That makes it a premium tier in a routing cascade rather than the default operating point. (`6fe98b8211c1` · neutral · pricing_inference_implications; [[sources/how-i-use-obsidian-claude-cowork-to-run-my-life-01kv4tcedck5ftexd9hqeptc7c|How I Use Obsidian + Claude Cowork to Run My Life]])
-- For service automation, this kind of model is best reserved for escalations, complex case synthesis, and tasks that need stronger judgment than a routine support model can provide. It is less suitable as the default model in high-volume automation because of cost pressure. (`d6852250ab3b` · neutral · service_automation_implications; [[sources/how-i-use-obsidian-claude-cowork-to-run-my-life-01kv4tcedck5ftexd9hqeptc7c|How I Use Obsidian + Claude Cowork to Run My Life]])
-- "When something is meteor, a complex synthesis, a deep research task, something where the quality really matters, that's when I'll switch to Opus. It uses tokens faster, but it does the best job possible right now." (`7d9d338e2565` · supporting · supporting_snippet; [[sources/how-i-use-obsidian-claude-cowork-to-run-my-life-01kv4tcedck5ftexd9hqeptc7c|How I Use Obsidian + Claude Cowork to Run My Life]])
-- Its main limitation in the source is cost: it uses tokens faster, so it is not efficient for routine work. The source does not provide benchmark numbers or concrete failure modes. (`e96fec58de02` · uncertainty · weaknesses_limitations; [[sources/how-i-use-obsidian-claude-cowork-to-run-my-life-01kv4tcedck5ftexd9hqeptc7c|How I Use Obsidian + Claude Cowork to Run My Life]])
-
-## Contradictions / tensions
-
-- The article does not provide a separate performance evaluation for Opus 4.6. Its usefulness is asserted through product positioning rather than through controlled comparison or benchmark data. (uncertainty; [[sources/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-01kqkzbbr47x5jcmdm2wy72k03|Antigravity vs Claude Code: Which AI Coding Assistant Should You Actually Use?]])
-- The source does not provide a detailed model-level failure analysis. Its main limitation, as presented here, is that raw model strength is not enough to predict shipped-code performance when the agent framework changes. (uncertainty; [[sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y|Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong]])
-- Its main limitation in the source is cost: it uses tokens faster, so it is not efficient for routine work. The source does not provide benchmark numbers or concrete failure modes. (uncertainty; [[sources/how-i-use-obsidian-claude-cowork-to-run-my-life-01kv4tcedck5ftexd9hqeptc7c|How I Use Obsidian + Claude Cowork to Run My Life]])
+- Sources: 3
+- Evidence items: 25
+- Current input hash: `111b2e3c1a5f0e65`
+- Cached input hash: `111b2e3c1a5f0e65`
+- Last synthesized: 2026-07-09T19:17:57Z
+- Synthesis status: `fresh`
 
 ## Related pages
 

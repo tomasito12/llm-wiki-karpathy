@@ -12,7 +12,13 @@ source_ids:
 - kimi-k2-6-just-dropped-the-open-source-coding-agent-that-already-beats-claude-opus-4-5-at-76-lower-cost-just-got-better-01kqkv823tq6868pfbrjg0khg6
 value_level: high
 confidence: 0.87
-synthesis_state: stage1-placeholder
+synthesis_state: synthesized
+synthesis_stale: false
+synthesis_input_hash: 41bf3e565d01c834
+current_input_hash: 41bf3e565d01c834
+synthesis_schema_version: 1
+synthesis_prompt_version: 1
+last_synthesized_at: '2026-07-09T19:17:30Z'
 types:
 - coding-model
 - open-weight-model
@@ -20,110 +26,70 @@ types:
 
 # Kimi 2.5
 
-## Current understanding
+## Executive synthesis
 
-<!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
-A large open-weight mixture-of-experts model tuned for agentic coding and multi-step task execution. The article presents it as unusually strong on hard benchmarks, especially when tools and swarm orchestration are available.
+Kimi 2.5 is presented as an open-weight Moonshot AI model that matters mainly because it appears to be good enough for real coding-product use, especially agentic and multi-step workflows. The evidence suggests it can back products like Cursor’s Composer 2 and is available through hosted access paths such as Ollama’s cloud free tier, which makes it relevant for teams exploring lower-friction experimentation, hosting, or fine-tuning. The stronger source also frames it as strong on tool-using benchmarks and comparatively inexpensive, but those claims come from a commentary article rather than a controlled independent evaluation. Net: this page is most useful as a signal that Kimi 2.5 is worth testing for coding agents and open-weight deployment, not as proof that it is broadly superior across all tasks.
 
-- Performs strongly on hard, tool-using benchmarks, which suggests it can handle multi-step reasoning rather than only short prompts.
-- Supports parallel agent orchestration, which can improve throughput on large engineering tasks.
-- Uses an open-weight release pattern that makes it easier to inspect and potentially deploy in more flexible environments than closed models.
-- Has very low token pricing relative to the article’s cited premium competitors, which matters for repeated agent runs.
+## Practical relevance
 
-## Benchmark Observations
+### Worth testing for coding-agent backends
 
-- The article reports 50.2% on Humanity’s Last Exam with tools, ahead of GPT-5.2 and Claude Opus 4.5 in the cited table.
-- It reports 76.8% on SWE-bench Verified and 74.9% to 78.4% on BrowseComp depending on swarm use.
-- The article claims a 4.5x speedup from swarm execution compared with single-agent execution on the same tasks.
+A team evaluating coding-assistant infrastructure could treat Kimi 2.5 as a candidate when the goal is to run multi-step, tool-using work at lower operational cost and with more deployment flexibility than a closed API. The sources suggest it already sits behind a real coding product and is available through hosted/open-weight channels, so it is worth testing for refactoring, code review, or large-codebase question answering. What is less certain is whether those strengths generalize to simple single-turn prompts or to non-coding automation. That makes it a “test and compare” model, not a default choice for every assistant workload.
 
-## Comparative Observations
+- Why this matters: It helps teams decide whether the model is relevant for practical experimentation: the signal is strongest for agentic coding workflows, while the evidence is weaker for broader use cases or definitive superiority.
 
-- The source says K2.5 beats GPT-5.2 and Claude Opus 4.5 on Humanity’s Last Exam with tools.
-- It is said to outperform GPT-5.2 on BrowseComp and to sit within striking distance of Claude Sonnet 4.6 on SWE-bench Verified.
-- The article frames it as 76% cheaper than Claude Opus 4.5 on the cited pricing comparison.
-- The article contrasts it with proprietary Claude workflows by implying similar UX can be delivered through a local or open-weight backend.
-- It is presented as evidence that open-weight models can be productized in ways that challenge the assumption that only large closed labs can ship frontier coding systems.
+- Basis: `source-grounded`
 
-## Core Capabilities
+## Context card
 
-- It is optimized for agentic code tasks and multi-step reasoning.
-- It supports tool-using benchmark performance that the article ties to practical coding workflows.
-- It combines open weights with low inference cost, which makes it easier to evaluate for large-scale automation.
-- It can back a coding product that the article frames as frontier-level in user experience.
-- It can be adapted as an open-weight base model for downstream product or workflow tuning.
-- It is available through the Ollama cloud free tier, which makes it practical for experimentation.
+- **Use this page when:** Use this page when you need a quick read on whether Kimi 2.5 is relevant for coding agents, local or hosted deployment, or open-weight productization—and when you need to separate practical signals from benchmark-heavy marketing claims.
+- **Best for questions about:** What Kimi 2.5 seems useful for in coding-agent workflows, Whether Kimi 2.5 is open-weight and easy to adapt or host, How strong the evidence is behind claims that it can back a real product, When Kimi 2.5 may be worth testing versus when the evidence is too thin
+- **Not enough for:** A controlled benchmark-based verdict on Kimi 2.5 quality, A reliable cost comparison against proprietary models, Claims about general-purpose excellence outside coding and agentic tasks, Direct evidence that it should be used for service automation
+- **Strongest sources:** I Spent 3 Days Researching Self-Hosted AI. Here’s Why You Should (And Shouldn’t) Actually Do It, Kimi K2.6 Just Dropped — The Open-Source Coding Agent That Already Beats Claude Opus 4.5 at 76% Lower Cost Just Got Better
+- **Related tags:** model, foundation-models, agent-systems, ai-engineering, runtime-architecture
 
-## Maturity signals
+## What to remember
 
-The article says K2.5 was launched in July 2025 and had already accumulated benchmark visibility and community reaction by April 2026. It is available on Hugging Face and GitHub, which are practical distribution signals for an open-weight model. The source also notes that Western attention has been limited compared with Llama and Qwen, so visibility is lower than capability might suggest.
+- Open-weight Moonshot AI model tied to coding-agent and multi-step task use.
+- The main practical value is deployment flexibility: easier to adapt, host, or fine-tune than a closed model.
+- It is described as powering a real coding product, which is a stronger maturity signal than a lab-only release.
+- Evidence for strong benchmark performance exists, but it is coming from a commentary source and should be treated cautiously.
+- Best fit appears to be agentic coding workflows, not simple chat or broad general-purpose use.
+- If you need a default model for production, test it against your own tasks rather than assuming benchmark strength carries over.
 
-## Pricing / inference implications
+## Consensus
 
-The article cites $0.50 per million input tokens and $2.80 per million output tokens via OpenRouter, with a direct API cache price of $0.10 per million cached input tokens. That pricing makes long-context and repeat-query coding agents materially cheaper to run than the premium alternatives named in the source.
+- The sources agree Kimi 2.5 is an open-weight model from Moonshot AI that is positioned for coding and agentic workflows.
+- Both sources treat it as practical, not just experimental: it is described as powering a real coding product and as being available through hosted/free-tier access paths.
+- The model is framed as useful for multi-step, tool-using tasks rather than only short, single-turn prompts.
+- Open weights are presented as an important advantage because they make adaptation, hosting, or fine-tuning more feasible than with closed proprietary models.
 
-## Provider
+## Tensions / open questions
 
-Moonshot AI
+- The benchmark-heavy source presents Kimi 2.5 as highly competitive, but the self-hosting source provides only indirect evidence from product usage, not a controlled evaluation.
+- The model is described as strong for agentic, tool-using tasks, but the same source says the advantage is narrower on simple single-turn prompts and that Claude/GPT remain strong for interactive use.
+- Cost and performance claims are suggestive, but the supplied evidence does not independently verify them.
+- There is a visibility gap: the model is described as having less Western attention than some peers, which may affect how much third-party validation is available.
 
-## Service automation implications
+## Evidence quality
 
-No direct service automation implications are substantiated in the source; the relevance would be indirect for back-office automation that benefits from parallel task routing.
+- Evidence is moderate but uneven: one source is a product-story / self-hosting article, the other is a benchmark-heavy commentary piece.
+- There are adoption signals, but not a controlled evaluation of Kimi 2.5 itself from the self-hosting article.
+- Performance claims are strong in the second source, but independent verification is not provided in the supplied evidence.
+- Several claims are indirect or inferential, so the page should be treated as a practical orientation rather than a definitive model card.
 
-## Weaknesses / limitations
+## Practical takeaway
 
-The article itself notes that its advantages are most pronounced on agentic benchmarks and narrower on simple single-turn tasks. The source also frames Claude and GPT as still strong for interactive use, so K2.5 is not a universal replacement. Independent verification of the benchmark and cost claims is not provided here.
+Treat Kimi 2.5 as an open-weight coding-agent candidate with real product signals, but verify it on your own workflow before relying on it; the evidence is strongest for agentic coding use and weakest for general-purpose claims.
 
-## Evidence / supporting sources
+## Evidence index
 
-### I Spent 3 Days Researching Self-Hosted AI. Here’s Why You Should (And Shouldn’t) Actually Do It (2026-04-22)
-
-- The article contrasts it with proprietary Claude workflows by implying similar UX can be delivered through a local or open-weight backend. (`4b084012516c` · neutral · comparative_observations[0]; [[sources/i-spent-3-days-researching-self-hosted-ai-here-s-why-you-should-and-shouldn-t-actually-do-it-01kqkvbh9k2p2m6eh234khs2kf|I Spent 3 Days Researching Self-Hosted AI. Here’s Why You Should (And Shouldn’t) Actually Do It]])
-- It is presented as evidence that open-weight models can be productized in ways that challenge the assumption that only large closed labs can ship frontier coding systems. (`e80e66e6a44b` · neutral · comparative_observations[1]; [[sources/i-spent-3-days-researching-self-hosted-ai-here-s-why-you-should-and-shouldn-t-actually-do-it-01kqkvbh9k2p2m6eh234khs2kf|I Spent 3 Days Researching Self-Hosted AI. Here’s Why You Should (And Shouldn’t) Actually Do It]])
-- It shows that open-weight models can be wrapped into coding products and shipped as practical substitutes for some proprietary workflows. That reduces the assumption that frontier coding UX must depend on a closed model API. (`b32556290799` · neutral · deployment_implications; [[sources/i-spent-3-days-researching-self-hosted-ai-here-s-why-you-should-and-shouldn-t-actually-do-it-01kqkvbh9k2p2m6eh234khs2kf|I Spent 3 Days Researching Self-Hosted AI. Here’s Why You Should (And Shouldn’t) Actually Do It]])
-- It is described as powering Cursor’s Composer 2 and as being available in Ollama’s cloud free tier, both of which are practical adoption signals. The source also frames it as part of a real product stack rather than a lab-only model. (`1d3fb2178431` · neutral · maturity_signals; [[sources/i-spent-3-days-researching-self-hosted-ai-here-s-why-you-should-and-shouldn-t-actually-do-it-01kqkvbh9k2p2m6eh234khs2kf|I Spent 3 Days Researching Self-Hosted AI. Here’s Why You Should (And Shouldn’t) Actually Do It]])
-- An open-weight model presented here as strong enough to power a real coding product and to be used through local or hosted workflows. The article treats it as evidence that open-weight models can be fine-tuned into frontier-style product behavior.
-
-- The article uses it as the model behind Cursor’s Composer 2, which suggests it can support real coding-product workloads.
-- It is positioned as open-weight, which makes it easier to adapt, host, or fine-tune than a closed proprietary model.
-- Its presence in Ollama’s cloud free tier suggests it is being operationalized for developer workflows rather than remaining purely experimental. (`052b2089679a` · neutral · operational_profile; [[sources/i-spent-3-days-researching-self-hosted-ai-here-s-why-you-should-and-shouldn-t-actually-do-it-01kqkvbh9k2p2m6eh234khs2kf|I Spent 3 Days Researching Self-Hosted AI. Here’s Why You Should (And Shouldn’t) Actually Do It]])
-- Because it appears in a free tier and in an open-weight deployment story, the article implies it may be usable in lower-cost workflows than premium proprietary APIs. The source does not give enough pricing data to quantify the economics beyond that. (`67b50b325fba` · neutral · pricing_inference_implications; [[sources/i-spent-3-days-researching-self-hosted-ai-here-s-why-you-should-and-shouldn-t-actually-do-it-01kqkvbh9k2p2m6eh234khs2kf|I Spent 3 Days Researching Self-Hosted AI. Here’s Why You Should (And Shouldn’t) Actually Do It]])
-- The article does not establish direct service automation implications beyond the general possibility of local or hosted deployment for internal agents. (`7dea1cf6bcb4` · neutral · service_automation_implications; [[sources/i-spent-3-days-researching-self-hosted-ai-here-s-why-you-should-and-shouldn-t-actually-do-it-01kqkvbh9k2p2m6eh234khs2kf|I Spent 3 Days Researching Self-Hosted AI. Here’s Why You Should (And Shouldn’t) Actually Do It]])
-- It can back a coding product that the article frames as frontier-level in user experience. (`6262f6161657` · supporting · core_capabilities[0]; [[sources/i-spent-3-days-researching-self-hosted-ai-here-s-why-you-should-and-shouldn-t-actually-do-it-01kqkvbh9k2p2m6eh234khs2kf|I Spent 3 Days Researching Self-Hosted AI. Here’s Why You Should (And Shouldn’t) Actually Do It]])
-- It can be adapted as an open-weight base model for downstream product or workflow tuning. (`3d8787295861` · supporting · core_capabilities[1]; [[sources/i-spent-3-days-researching-self-hosted-ai-here-s-why-you-should-and-shouldn-t-actually-do-it-01kqkvbh9k2p2m6eh234khs2kf|I Spent 3 Days Researching Self-Hosted AI. Here’s Why You Should (And Shouldn’t) Actually Do It]])
-- It is available through the Ollama cloud free tier, which makes it practical for experimentation. (`2734ae8fca94` · supporting · core_capabilities[2]; [[sources/i-spent-3-days-researching-self-hosted-ai-here-s-why-you-should-and-shouldn-t-actually-do-it-01kqkvbh9k2p2m6eh234khs2kf|I Spent 3 Days Researching Self-Hosted AI. Here’s Why You Should (And Shouldn’t) Actually Do It]])
-- “Cursor launches Composer 2... and a developer intercepts API traffic and finds the model ID: kimi-k2p5-rl-0317-s515-fast. ... Composer 2 was Kimi K2.5 → an open-weight Chinese model( Moonshot AI) which is fine-tuned with RL!” (`028af495672c` · supporting · supporting_snippet; [[sources/i-spent-3-days-researching-self-hosted-ai-here-s-why-you-should-and-shouldn-t-actually-do-it-01kqkvbh9k2p2m6eh234khs2kf|I Spent 3 Days Researching Self-Hosted AI. Here’s Why You Should (And Shouldn’t) Actually Do It]])
-- The article does not provide a direct benchmark for Kimi K2.5 itself, so the performance claims are indirect. Its usefulness here is framed through product behavior and product interception, not through a controlled evaluation of code quality or reliability. (`607ba908db5a` · uncertainty · weaknesses_limitations; [[sources/i-spent-3-days-researching-self-hosted-ai-here-s-why-you-should-and-shouldn-t-actually-do-it-01kqkvbh9k2p2m6eh234khs2kf|I Spent 3 Days Researching Self-Hosted AI. Here’s Why You Should (And Shouldn’t) Actually Do It]])
-
-### Kimi K2.6 Just Dropped — The Open-Source Coding Agent That Already Beats Claude Opus 4.5 at 76% Lower Cost Just Got Better (2026-04-20)
-
-- The source says K2.5 beats GPT-5.2 and Claude Opus 4.5 on Humanity’s Last Exam with tools. (`7e0c71f9be04` · neutral · comparative_observations[0]; [[sources/kimi-k2-6-just-dropped-the-open-source-coding-agent-that-already-beats-claude-opus-4-5-at-76-lower-cost-just-got-better-01kqkv823tq6868pfbrjg0khg6|Kimi K2.6 Just Dropped — The Open-Source Coding Agent That Already Beats Claude Opus 4.5 at 76% Lower Cost Just Got Better]])
-- It is said to outperform GPT-5.2 on BrowseComp and to sit within striking distance of Claude Sonnet 4.6 on SWE-bench Verified. (`a7db20c56c39` · neutral · comparative_observations[1]; [[sources/kimi-k2-6-just-dropped-the-open-source-coding-agent-that-already-beats-claude-opus-4-5-at-76-lower-cost-just-got-better-01kqkv823tq6868pfbrjg0khg6|Kimi K2.6 Just Dropped — The Open-Source Coding Agent That Already Beats Claude Opus 4.5 at 76% Lower Cost Just Got Better]])
-- The article frames it as 76% cheaper than Claude Opus 4.5 on the cited pricing comparison. (`e79e698c2e6e` · neutral · comparative_observations[2]; [[sources/kimi-k2-6-just-dropped-the-open-source-coding-agent-that-already-beats-claude-opus-4-5-at-76-lower-cost-just-got-better-01kqkv823tq6868pfbrjg0khg6|Kimi K2.6 Just Dropped — The Open-Source Coding Agent That Already Beats Claude Opus 4.5 at 76% Lower Cost Just Got Better]])
-- It favors workflows that decompose work into subtasks, run them in parallel, and aggregate results. That makes it attractive for automated refactoring, code review, and large-codebase question answering where input-heavy loops dominate cost. (`318cd1ff3b1f` · neutral · deployment_implications; [[sources/kimi-k2-6-just-dropped-the-open-source-coding-agent-that-already-beats-claude-opus-4-5-at-76-lower-cost-just-got-better-01kqkv823tq6868pfbrjg0khg6|Kimi K2.6 Just Dropped — The Open-Source Coding Agent That Already Beats Claude Opus 4.5 at 76% Lower Cost Just Got Better]])
-- The article says K2.5 was launched in July 2025 and had already accumulated benchmark visibility and community reaction by April 2026. It is available on Hugging Face and GitHub, which are practical distribution signals for an open-weight model. The source also notes that Western attention has been limited compared with Llama and Qwen, so visibility is lower than capability might suggest. (`65b05e35eb66` · neutral · maturity_signals; [[sources/kimi-k2-6-just-dropped-the-open-source-coding-agent-that-already-beats-claude-opus-4-5-at-76-lower-cost-just-got-better-01kqkv823tq6868pfbrjg0khg6|Kimi K2.6 Just Dropped — The Open-Source Coding Agent That Already Beats Claude Opus 4.5 at 76% Lower Cost Just Got Better]])
-- A large open-weight mixture-of-experts model tuned for agentic coding and multi-step task execution. The article presents it as unusually strong on hard benchmarks, especially when tools and swarm orchestration are available.
-
-- Performs strongly on hard, tool-using benchmarks, which suggests it can handle multi-step reasoning rather than only short prompts.
-- Supports parallel agent orchestration, which can improve throughput on large engineering tasks.
-- Uses an open-weight release pattern that makes it easier to inspect and potentially deploy in more flexible environments than closed models.
-- Has very low token pricing relative to the article’s cited premium competitors, which matters for repeated agent runs. (`1596549c71af` · neutral · operational_profile; [[sources/kimi-k2-6-just-dropped-the-open-source-coding-agent-that-already-beats-claude-opus-4-5-at-76-lower-cost-just-got-better-01kqkv823tq6868pfbrjg0khg6|Kimi K2.6 Just Dropped — The Open-Source Coding Agent That Already Beats Claude Opus 4.5 at 76% Lower Cost Just Got Better]])
-- The article cites $0.50 per million input tokens and $2.80 per million output tokens via OpenRouter, with a direct API cache price of $0.10 per million cached input tokens. That pricing makes long-context and repeat-query coding agents materially cheaper to run than the premium alternatives named in the source. (`900950a09008` · neutral · pricing_inference_implications; [[sources/kimi-k2-6-just-dropped-the-open-source-coding-agent-that-already-beats-claude-opus-4-5-at-76-lower-cost-just-got-better-01kqkv823tq6868pfbrjg0khg6|Kimi K2.6 Just Dropped — The Open-Source Coding Agent That Already Beats Claude Opus 4.5 at 76% Lower Cost Just Got Better]])
-- No direct service automation implications are substantiated in the source; the relevance would be indirect for back-office automation that benefits from parallel task routing. (`e981ebe9f384` · neutral · service_automation_implications; [[sources/kimi-k2-6-just-dropped-the-open-source-coding-agent-that-already-beats-claude-opus-4-5-at-76-lower-cost-just-got-better-01kqkv823tq6868pfbrjg0khg6|Kimi K2.6 Just Dropped — The Open-Source Coding Agent That Already Beats Claude Opus 4.5 at 76% Lower Cost Just Got Better]])
-- The article reports 50.2% on Humanity’s Last Exam with tools, ahead of GPT-5.2 and Claude Opus 4.5 in the cited table. (`f8d9e3270626` · supporting · benchmark_observations[0]; [[sources/kimi-k2-6-just-dropped-the-open-source-coding-agent-that-already-beats-claude-opus-4-5-at-76-lower-cost-just-got-better-01kqkv823tq6868pfbrjg0khg6|Kimi K2.6 Just Dropped — The Open-Source Coding Agent That Already Beats Claude Opus 4.5 at 76% Lower Cost Just Got Better]])
-- It reports 76.8% on SWE-bench Verified and 74.9% to 78.4% on BrowseComp depending on swarm use. (`a3f647013285` · supporting · benchmark_observations[1]; [[sources/kimi-k2-6-just-dropped-the-open-source-coding-agent-that-already-beats-claude-opus-4-5-at-76-lower-cost-just-got-better-01kqkv823tq6868pfbrjg0khg6|Kimi K2.6 Just Dropped — The Open-Source Coding Agent That Already Beats Claude Opus 4.5 at 76% Lower Cost Just Got Better]])
-- The article claims a 4.5x speedup from swarm execution compared with single-agent execution on the same tasks. (`918ddc479938` · supporting · benchmark_observations[2]; [[sources/kimi-k2-6-just-dropped-the-open-source-coding-agent-that-already-beats-claude-opus-4-5-at-76-lower-cost-just-got-better-01kqkv823tq6868pfbrjg0khg6|Kimi K2.6 Just Dropped — The Open-Source Coding Agent That Already Beats Claude Opus 4.5 at 76% Lower Cost Just Got Better]])
-- It is optimized for agentic code tasks and multi-step reasoning. (`c6b6ad33a6d9` · supporting · core_capabilities[0]; [[sources/kimi-k2-6-just-dropped-the-open-source-coding-agent-that-already-beats-claude-opus-4-5-at-76-lower-cost-just-got-better-01kqkv823tq6868pfbrjg0khg6|Kimi K2.6 Just Dropped — The Open-Source Coding Agent That Already Beats Claude Opus 4.5 at 76% Lower Cost Just Got Better]])
-- It supports tool-using benchmark performance that the article ties to practical coding workflows. (`b131c457c9bc` · supporting · core_capabilities[1]; [[sources/kimi-k2-6-just-dropped-the-open-source-coding-agent-that-already-beats-claude-opus-4-5-at-76-lower-cost-just-got-better-01kqkv823tq6868pfbrjg0khg6|Kimi K2.6 Just Dropped — The Open-Source Coding Agent That Already Beats Claude Opus 4.5 at 76% Lower Cost Just Got Better]])
-- It combines open weights with low inference cost, which makes it easier to evaluate for large-scale automation. (`aba528793539` · supporting · core_capabilities[2]; [[sources/kimi-k2-6-just-dropped-the-open-source-coding-agent-that-already-beats-claude-opus-4-5-at-76-lower-cost-just-got-better-01kqkv823tq6868pfbrjg0khg6|Kimi K2.6 Just Dropped — The Open-Source Coding Agent That Already Beats Claude Opus 4.5 at 76% Lower Cost Just Got Better]])
-- Kimi K2.5 scores
-76.8% on SWE-bench Verified
-— within striking distance of Claude Sonnet 4.6. (`900a7ce4b4c5` · supporting · supporting_snippet; [[sources/kimi-k2-6-just-dropped-the-open-source-coding-agent-that-already-beats-claude-opus-4-5-at-76-lower-cost-just-got-better-01kqkv823tq6868pfbrjg0khg6|Kimi K2.6 Just Dropped — The Open-Source Coding Agent That Already Beats Claude Opus 4.5 at 76% Lower Cost Just Got Better]])
-- The article itself notes that its advantages are most pronounced on agentic benchmarks and narrower on simple single-turn tasks. The source also frames Claude and GPT as still strong for interactive use, so K2.5 is not a universal replacement. Independent verification of the benchmark and cost claims is not provided here. (`5434ae657f7c` · uncertainty · weaknesses_limitations; [[sources/kimi-k2-6-just-dropped-the-open-source-coding-agent-that-already-beats-claude-opus-4-5-at-76-lower-cost-just-got-better-01kqkv823tq6868pfbrjg0khg6|Kimi K2.6 Just Dropped — The Open-Source Coding Agent That Already Beats Claude Opus 4.5 at 76% Lower Cost Just Got Better]])
-
-## Contradictions / tensions
-
-- The article itself notes that its advantages are most pronounced on agentic benchmarks and narrower on simple single-turn tasks. The source also frames Claude and GPT as still strong for interactive use, so K2.5 is not a universal replacement. Independent verification of the benchmark and cost claims is not provided here. (uncertainty; [[sources/kimi-k2-6-just-dropped-the-open-source-coding-agent-that-already-beats-claude-opus-4-5-at-76-lower-cost-just-got-better-01kqkv823tq6868pfbrjg0khg6|Kimi K2.6 Just Dropped — The Open-Source Coding Agent That Already Beats Claude Opus 4.5 at 76% Lower Cost Just Got Better]])
-- The article does not provide a direct benchmark for Kimi K2.5 itself, so the performance claims are indirect. Its usefulness here is framed through product behavior and product interception, not through a controlled evaluation of code quality or reliability. (uncertainty; [[sources/i-spent-3-days-researching-self-hosted-ai-here-s-why-you-should-and-shouldn-t-actually-do-it-01kqkvbh9k2p2m6eh234khs2kf|I Spent 3 Days Researching Self-Hosted AI. Here’s Why You Should (And Shouldn’t) Actually Do It]])
+- Sources: 2
+- Evidence items: 28
+- Current input hash: `41bf3e565d01c834`
+- Cached input hash: `41bf3e565d01c834`
+- Last synthesized: 2026-07-09T19:17:30Z
+- Synthesis status: `fresh`
 
 ## Related pages
 

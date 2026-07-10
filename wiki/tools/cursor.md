@@ -43,13 +43,13 @@ types:
 
 Cursor is a practical AI coding environment built around agentic work inside the IDE. The sources consistently show it being used to turn natural-language instructions into multi-file changes, project scaffolding, and file-based workflows such as markdown knowledge bases. Beyond editing, Cursor is presented as a product layer that combines model choice, usage packaging, evals, and deployment, including cloud agents that can run in customer-owned infrastructure with isolated machines and browser/terminal/desktop access. The main caveat is evidence quality: the picture is coherent, but it is mostly first-party and does not include independent benchmarking, adoption data, or deep operational proof. So this page is most useful when you want to understand what Cursor is good for and what its deployment model is trying to solve, not when you need a neutral performance comparison.
 
-## Example in practice
+## Typical use case
 
 ### Bootstrapping and maintaining a file-native knowledge base
 
 A team wants to stand up a markdown-based internal knowledge base. In Cursor, they drop in an instruction file, ask it to create the folder structure and starter pages, and then let it edit both schema and content files as the vault evolves. In a separate enterprise setup, the same kind of agent work can run in a customer-owned environment, with each session getting an isolated machine that has a terminal, browser, and desktop. That means the team can use one product both to bootstrap the workflow and to keep it running under tighter network control.
 
-- Why it helps: It shows Cursor as more than a code editor: it can act as the build console for a file-based workflow, while also fitting environments that need internal execution boundaries.
+- Why this helps: It shows Cursor as more than a code editor: it can act as the build console for a file-based workflow, while also fitting environments that need internal execution boundaries.
 
 - Basis: `source-grounded`
 

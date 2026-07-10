@@ -3,7 +3,7 @@
   "files": [
     {
       "path": "foundation-models/apex-1-0.md",
-      "sha256": "f78febcb98f6117636c056de64e0864178220f336ba9de8052bbb806757c9aac"
+      "sha256": "38acd53db46264d8dd541840ff87bca433011b666ccdf3af7d0349ae7800b7a8"
     },
     {
       "path": "foundation-models/apex-flash.md",
@@ -11,7 +11,7 @@
     },
     {
       "path": "foundation-models/apple-foundation-models.md",
-      "sha256": "1b7da81dffaf5c08e431b5cce085c676c7c0f0fba8f661b06b3ef8a9abeddd34"
+      "sha256": "a11ed41786ecd057940feaf5f34b00bbb8d9428053a76e061a56ee44cf2825d4"
     },
     {
       "path": "foundation-models/claude-opus-4-6.md",
@@ -31,11 +31,11 @@
     },
     {
       "path": "foundation-models/composer-2.md",
-      "sha256": "143322b4e375b48f3a5c72261d7b2ed7d2071caa15f804d2ec9c190af27207aa"
+      "sha256": "dd1415bb868d359a19b743c89758cd087447e76ca52328dbf1792f4f2589446b"
     },
     {
       "path": "foundation-models/deepseek-v4.md",
-      "sha256": "e9956041e0c23818d419268011f802d0abc94671a5ec871193bd198285d516d0"
+      "sha256": "80609396487b6065b0185977db9a52869e225b94be376c4418bbfae7751b96c3"
     },
     {
       "path": "foundation-models/gemini-3-1-flash-live.md",
@@ -51,7 +51,7 @@
     },
     {
       "path": "foundation-models/gemma-4.md",
-      "sha256": "3f0654eb6098ee0fb88b11c5fe8d973945b1b895804adad8573e59f4532d800a"
+      "sha256": "be83d0f1e1087b4a94414ad6e5fdac1c7361fb82ba36304d23f43cd853f5f6ee"
     },
     {
       "path": "foundation-models/gpt-5-4-cyber.md",
@@ -59,7 +59,7 @@
     },
     {
       "path": "foundation-models/gpt-5-4.md",
-      "sha256": "5cec9bc9b90a8877fd2089e5eaf317d1cddf8f5fb093a96395e7178b92c39af1"
+      "sha256": "3faea102bbfbfaf91240a87ff4e6a672d0856b084d10d248cee747b7082516e8"
     },
     {
       "path": "foundation-models/gpt-5-5-cyber.md",
@@ -71,7 +71,7 @@
     },
     {
       "path": "foundation-models/gpt-5-5.md",
-      "sha256": "830a1d4418eb1e5a4d7f807efba0512e11f5e1acc721d70ea24a106de28e706a"
+      "sha256": "1977aca5840a443226277ec5d39aa662864ca0faea3616ab1e16da9a11eec7e8"
     },
     {
       "path": "foundation-models/gpt-image-2.md",
@@ -95,11 +95,11 @@
     },
     {
       "path": "foundation-models/kimi-2-5.md",
-      "sha256": "720d94ea3a1921a3549192ce7c4215220c6ae30134a4fac3589c650145e8fcc1"
+      "sha256": "4177cb49a6df02fcc5122286b3f4a0efa051ff51de2594975878a41bcda993a4"
     },
     {
       "path": "foundation-models/kimi-2-6.md",
-      "sha256": "13a76429d58e29a0262fd778ba1b531c7c6becfe1220a571a1891d379d277d37"
+      "sha256": "f6a4f14d521467a5349e8195a8f4837028eed422f96da10298ced16ac0e78d79"
     },
     {
       "path": "foundation-models/kimi-k2-5.md",
@@ -119,11 +119,11 @@
     },
     {
       "path": "foundation-models/opus-4-6.md",
-      "sha256": "1bd008481e22681d73a5f3f093e48ffea24f9e95c4cf12521ad28f43402238b2"
+      "sha256": "673773ff4356cb491a47de7cc7416e034e7831727db96f88e47f5d11dcb0fb52"
     },
     {
       "path": "foundation-models/privacy-filter.md",
-      "sha256": "c19fc00fc822bf88b093f99ec1fde789bea8e8927ac3849521ca3b7537313348"
+      "sha256": "a6561f92642c96c7f199ba8d552587b3c3ca955f85c2e3fbe0a8202d64b4c7f3"
     },
     {
       "path": "foundation-models/qwen-3-5-9b.md",
@@ -139,7 +139,7 @@
     },
     {
       "path": "foundation-models/qwen3-30b-a3b.md",
-      "sha256": "cbbe2fd8e28b2421a462217c60d269335939baaf93ff7558a31d4168611e709d"
+      "sha256": "8ac760d0631addce6802fcc5a5efaf723ae24aea9ef6d790ac960af1bf81e4e1"
     },
     {
       "path": "foundation-models/qwen3-6-27b.md",
@@ -255,7 +255,7 @@
     },
     {
       "path": "glossary/mixture-of-experts.md",
-      "sha256": "a05c7821380410e8377d462b9f38e04091874a630791d02954835a161d4b16ad"
+      "sha256": "93ca1b70423e627b69683568e5b164ad4825f80f9d0619d547116767dcbaee93"
     },
     {
       "path": "glossary/model-context-protocol.md",
@@ -283,7 +283,7 @@
     },
     {
       "path": "glossary/retrieval-augmented-generation.md",
-      "sha256": "a3d790ce5d1b85df3757a8125d45c4fd252e1cf2d7876af9e54c8ea500eb602a"
+      "sha256": "47cdf1eb0e3d86c473037989cb41a35b6e6ae0859eb5e34ba0096f1b0806d8c7"
     },
     {
       "path": "glossary/sim-to-real.md",
@@ -635,7 +635,7 @@
     },
     {
       "path": "indexes/glossary-by-tag.md",
-      "sha256": "2e2fb455d488e10787094702c2415c0ca5e8d9cc7c57a3090dd19270f90e1656"
+      "sha256": "d7b9d96bb7e7540f94989434dc4e9b30bc45e5c83eb047cc164d76e96c779283"
     },
     {
       "path": "indexes/how-to-by-tag.md",
@@ -659,7 +659,7 @@
     },
     {
       "path": "indexes/knowledge-graph.md",
-      "sha256": "881ec26ec0a119ffe8da487eece8d600ca5c6115f0b08688ac57ee3c04cfc8db"
+      "sha256": "b0bf396d05f45ff07393a395505a63443262519e9c0044e062ec4fedc415ea32"
     },
     {
       "path": "indexes/models-by-tag.md",
@@ -671,11 +671,11 @@
     },
     {
       "path": "indexes/sources-by-tag.md",
-      "sha256": "574c7c7ddfa0ceec2f107a3c2e09339a144afc1d10d86193bc162d1d3c82a97b"
+      "sha256": "adca70117303833d03f3afaa209e6cefc051c17f1fd0e60bf7982db6d725a79b"
     },
     {
       "path": "indexes/system-status.md",
-      "sha256": "013ae65d7d2e5cfdeec9fa3123c4417a294fa0ce03a27f453c79eb54002f263f"
+      "sha256": "af35364e0455e6c637dd3105eca1ba71d9d66857a0ef178d919b7682f6326b10"
     },
     {
       "path": "indexes/tools-by-tag.md",
@@ -783,7 +783,7 @@
     },
     {
       "path": "industry-trends/ai-product-feature-gating-moves-toward-generalization-tests.md",
-      "sha256": "92915bf8152fffa4694ad660b7ca0f6c93430478e68b4df53d5e3773fc61f529"
+      "sha256": "49289ff10cfda0d4e4922b7384b4ffbb9a004e3269e6dc2ecda3d8ea1ea5c67f"
     },
     {
       "path": "industry-trends/ai-product-pricing-shifts-toward-measured-outcomes.md",
@@ -1067,7 +1067,7 @@
     },
     {
       "path": "industry-trends/skills-move-ai-products-toward-workflow-packaging.md",
-      "sha256": "724bab45d2332f437b59a85fe6969fb34fb1e536e50d5cdd9e9f248992480edb"
+      "sha256": "a8d3355851a22b87eb667b0e44ffbddff59fd8e9e52f56c60e1d173d07071dea"
     },
     {
       "path": "industry-trends/software-differentiation-shifts-from-engineering-to-distribution.md",
@@ -2275,7 +2275,7 @@
     },
     {
       "path": "sources/ai-101-from-prompt-engineering-to-skill-engineering-01ktte6tg010d5ayfzf7f4e90k.md",
-      "sha256": "ba0c76c7e7a21de2734a0624858ed62a9f87831927dccb014c229ae2457017ef"
+      "sha256": "03b4b6b85294c098e9c757df8e62674eca85f3798353022a2f7e5667da118e3f"
     },
     {
       "path": "sources/ai-agent-on-whatsapppeaking-at-1-1-million-conversations-per-month-01krxb2md77sjdtamz26vqqa7m.md",
@@ -2611,7 +2611,7 @@
     },
     {
       "path": "sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj.md",
-      "sha256": "f6a944f889ef81e3d1b833d76d299081028816bc2e540974a33b40b5afb82079"
+      "sha256": "0750f00f17950500f42bd9affaf42d87132c273822a94689345c1da8d818922d"
     },
     {
       "path": "sources/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y.md",
@@ -2687,7 +2687,7 @@
     },
     {
       "path": "sources/from-swarms-to-product-turning-customer-signals-into-scalable-features-01kp4e6k2cznqad07kyn0zadbh.md",
-      "sha256": "e3ebc22c099d912a3afb6988447ade42d4f5cc1bb64ac4437fc14a67dde84a1a"
+      "sha256": "f685e2b924025484bfb02f87726f7cc51387b35c14fd8b9ee05916f67e49960b"
     },
     {
       "path": "sources/from-vibe-coding-to-spec-driven-development-01krkb186m11xe8rdxgc7wz89m.md",
@@ -2751,7 +2751,7 @@
     },
     {
       "path": "sources/hack-your-mac-less-friction-more-flow-01ktkytmegqhsajvn3bh9kjfa6.md",
-      "sha256": "4ebf3f8590e5ba9801eaec3f6acff98df96a01e9fa97344d130523ffefa30981"
+      "sha256": "9cd49ec502f5c6b0fc8b7bb6be92fec206009b4cc7de33490e192fb31e093560"
     },
     {
       "path": "sources/harness-engineering-what-every-ai-engineer-needs-to-know-in-2026-01kqfyrmc31stvazs0r8kbpbbx.md",
@@ -2867,7 +2867,7 @@
     },
     {
       "path": "sources/i-built-a-personal-ai-operating-system-it-now-knows-more-about-my-week-than-i-do-01kqm0pmnw3vtap5a84xh1r9h4.md",
-      "sha256": "4ccb5e813ea2a8351e157604ca0c4e447804e9faa709690ae4154fc23288dd37"
+      "sha256": "0f4034feee9b4d22a3780b2038c99d9da238852d15b900dc626c42bdaf7509f3"
     },
     {
       "path": "sources/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-01kqkzqzvq3q6bbsq60pr92ar9.md",
@@ -3027,7 +3027,7 @@
     },
     {
       "path": "sources/mistral-s-open-tts-anthropic-s-activation-translator-and-matt-pocock-s-skills-repo-tokenizer-28-01ks0hkbaqjfmjt0d06dbjby2a.md",
-      "sha256": "ce0704b6112a5d348ffd51d57c31898dda74e0b8a2ee4e7a331a5758548c3e92"
+      "sha256": "17c1ee9dabc02b4fb12df57ddc721fcdf9881b3cafb60a9e9437eeea4ab470f8"
     },
     {
       "path": "sources/mkbhd-s-top-6-mac-apps-of-all-time-the-ultimate-productivity-setup-01ktkywtpj3kpgvrszw5qcyj64.md",
@@ -3099,7 +3099,7 @@
     },
     {
       "path": "sources/personalizing-chatgpt-01knw8fhbjwcd9g1as8kctv26f.md",
-      "sha256": "2af570c0a9e08100263d01b4eaa79b38bd58ad235fd1e9700bd4369b6b831667"
+      "sha256": "f1baa249d47f857163e74f5a73dde2bee826811f8cfa229d1d0feec3026da3b4"
     },
     {
       "path": "sources/pewdiepie-released-his-trillion-dollar-ai-project-for-free-01ktpg789t4ma9vmfc1h1dh8gd.md",
@@ -3271,7 +3271,7 @@
     },
     {
       "path": "sources/the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3.md",
-      "sha256": "53c8327f972d23eb50c349d8cf69077be7f4fbd049b26d9e95f2a9920bb6824b"
+      "sha256": "dcc67af6925785857855418e1f652ed50ee3d04cc6d0abda4c291cd3e1561876"
     },
     {
       "path": "sources/the-best-rag-architectures-for-ai-agents-every-developer-must-know-01kqkzctgpjxtkpzxn009b6tgj.md",
@@ -3295,7 +3295,7 @@
     },
     {
       "path": "sources/the-first-10-apps-i-install-on-every-new-mac-2026-01kts4hyfyardwc2qg7v9n53dy.md",
-      "sha256": "cf7a36d3937a4d2f352cf4e76c94c8814416a975deed862e85155c7989ab7661"
+      "sha256": "bb463d68d71d0350ad3fb978018df7333916a330aef2160a7b14cd432583ee33"
     },
     {
       "path": "sources/the-hardest-percentages-01kp69pz8s9dp41q7ps3z6xftt.md",
@@ -3311,7 +3311,7 @@
     },
     {
       "path": "sources/the-local-ai-stack-for-apple-silicon-now-with-superpowers-01krjqdz9985k9ja2fh5ftkd71.md",
-      "sha256": "646590bdf93dd56b982f38c0d10ca85627084472f2f2c97bb71ea62ff74de283"
+      "sha256": "60b4a7dacc490c5b34551b2e864c69d0d5903ec6692b795a72942b5ca4bc1b60"
     },
     {
       "path": "sources/the-must-know-topics-for-an-llm-engineer-01kt148b3g2c0z4q4ykbxxxxqg.md",
@@ -3611,7 +3611,7 @@
     },
     {
       "path": "tools/1password.md",
-      "sha256": "836530a040f85f4912cc5d345c3043da80d3e0c4f61f985dcf6f5ead968f3d6f"
+      "sha256": "94bb316e3f0defc0748e88b6abdbdee088b2fbdb3bef200d869734491d0c7f96"
     },
     {
       "path": "tools/agents-sdk.md",
@@ -3667,7 +3667,7 @@
     },
     {
       "path": "tools/claude-code.md",
-      "sha256": "c9723386128f7f7c9452789792218cd0b698f070cf96bec97c6d0c4c7a31795e"
+      "sha256": "d2dfce8cbaeb7d0632a71e7d8edea40519df07534375cc8aca1fc0f543ad55df"
     },
     {
       "path": "tools/claude-desktop.md",
@@ -3679,7 +3679,7 @@
     },
     {
       "path": "tools/cleanshot-x.md",
-      "sha256": "cffbd451e83b3335d7afac52484aa5deff98adedc00f9a98fd2653af2504111b"
+      "sha256": "658be76554d5c8e5e2e5c0747c23583de4d042078274efcff504d5115634a4c6"
     },
     {
       "path": "tools/cleanupbuddy.md",
@@ -3691,7 +3691,7 @@
     },
     {
       "path": "tools/codex.md",
-      "sha256": "943cc0b3b8cf2987686a68b1feea0ffc8350f9429fc0aeca291578bedb8a239a"
+      "sha256": "3d21eabc2e4a2f9fc6a932fb0ae57204b5eb909b86d7dd00ef9a88439349c241"
     },
     {
       "path": "tools/cognigy-ai.md",
@@ -3711,7 +3711,7 @@
     },
     {
       "path": "tools/cursor.md",
-      "sha256": "ef2c83ad448cb03bbfa059b62d4fd507477dcc02595daaef55da263d0b12bd86"
+      "sha256": "8c7038e73cbbaa8077d7b85b173d4fc62b61779afada9c7b3f78b7408d462be3"
     },
     {
       "path": "tools/deskin.md",
@@ -3719,7 +3719,7 @@
     },
     {
       "path": "tools/dictaflow.md",
-      "sha256": "8e23dc17bf422d8a6dd3cbb062ac35ef40bbbaf6f28eb5adaed37fa9b153d46f"
+      "sha256": "8c993871ddeaac66a80b5a914fe8dd908452f261d47c0fd6f0e09fcc28d01ece"
     },
     {
       "path": "tools/dockdoor.md",
@@ -3791,7 +3791,7 @@
     },
     {
       "path": "tools/ghostty.md",
-      "sha256": "48d9e65212837064b3c8dc71d39f31f14b4c3e598e891156d27d03ac8f66ef64"
+      "sha256": "1a5260359d2a6a0a56a454da709d3d25669b36833543923fc9a61881c09b652a"
     },
     {
       "path": "tools/github-mcp.md",
@@ -3811,7 +3811,7 @@
     },
     {
       "path": "tools/hermes-agent.md",
-      "sha256": "7e3a76bbebd70ed94d09ceb89b5f7551f391fdd6a06f9a4169f8e930a33d2f03"
+      "sha256": "0ba9741b72082b92be69409d1dd46cba0edd17049737a6b8861e091a3cc6af70"
     },
     {
       "path": "tools/hidden-bar.md",
@@ -3867,7 +3867,7 @@
     },
     {
       "path": "tools/llama-cpp.md",
-      "sha256": "4033b51674e7c0c12ac65584844eb771bed79c4e8ab0d959e9b0a5077808ae50"
+      "sha256": "b4d66c3d665f277369d223c186d7b13edb902ef7d3cc071addb7bd666e5497c6"
     },
     {
       "path": "tools/loop.md",
@@ -3891,7 +3891,7 @@
     },
     {
       "path": "tools/mimestream.md",
-      "sha256": "94e317e9dea60a551e9ce2ff3afb3f58e9ea1dc16e262586e9aa381d33a6559f"
+      "sha256": "2ad7f7f23220a43acc3eb68ced5aafe12cad6390a88efbcde267cd2b2ac23400"
     },
     {
       "path": "tools/mlx.md",
@@ -3935,7 +3935,7 @@
     },
     {
       "path": "tools/notion-calendar.md",
-      "sha256": "dcbe17084985bc0317370583f775423c9083fcccbb10d18e6143a5c408b64669"
+      "sha256": "db96346734184f9a30792737649b1c0fa880f83afeb7613a60652ae879087ef7"
     },
     {
       "path": "tools/notion-custom-agents.md",
@@ -3951,11 +3951,11 @@
     },
     {
       "path": "tools/obsidian.md",
-      "sha256": "45d51d8bd6a200f206c4e609e8238f7707b65fd7af51ddf21adce98edf07f7db"
+      "sha256": "34c9bf90dd5cdd723d2cee0993f88caa90b49d1022f29c13d112c37ece27ab27"
     },
     {
       "path": "tools/ollama.md",
-      "sha256": "71880205d0912cc8fcb6023630b6d6cf4bc61f83f995503eb346c35957445ad1"
+      "sha256": "e77b3e463a07308e5883d97220df3937d6c972e80560cb54fb1afdf827923629"
     },
     {
       "path": "tools/omnisearch.md",
@@ -4039,7 +4039,7 @@
     },
     {
       "path": "tools/soda.md",
-      "sha256": "ffa80711c98690e0d500fef39cf50eba8b5eedff8b8ad6b9964da2c3905373ab"
+      "sha256": "a69a058c38ca172e3732c498656262cc6fc41d1e70e20f613e23019853bf2f25"
     },
     {
       "path": "tools/substage.md",
@@ -4299,7 +4299,7 @@
     },
     {
       "path": "topics/answer-concision-as-product-quality.md",
-      "sha256": "6f7ff6196cfff1253d7d53826e28f6b326caed76251b7967ad63c99b82ceb4f5"
+      "sha256": "fcccac687cbaafd45f84fb81efea89b0fe3f761990677cb2da3aac1231c8577b"
     },
     {
       "path": "topics/answer-inference-vs-agentic-inference.md",
@@ -4315,7 +4315,7 @@
     },
     {
       "path": "topics/artifact-first-ai-workflows.md",
-      "sha256": "019b0a734838a486bcd0e841ddfc18f5efcf087713e90d1f3fbbc1263a913c4c"
+      "sha256": "e3cea6275548f7c9ab06e991ac98ed46af1af290e14901b0a57795f605f87d16"
     },
     {
       "path": "topics/atomic-binary-evaluation-judges.md",
@@ -4363,7 +4363,7 @@
     },
     {
       "path": "topics/cognitive-debt-in-ai-workflows.md",
-      "sha256": "68c054e7128e6d23e314d3c12e0068e9ef66cbe5f7704cc4651f4dcfacab9b79"
+      "sha256": "740ea2b649d2554339425a371458ae9eb1196ac5246cf44f0ec6e3a346c0aff0"
     },
     {
       "path": "topics/commit-driven-documentation-generation.md",
@@ -4383,7 +4383,7 @@
     },
     {
       "path": "topics/consumer-ai-distribution.md",
-      "sha256": "6ee95b54ca29ee44e59b33b1022a8160e464e5107eda1e294dda7eeedd67da0a"
+      "sha256": "e8968f45a23a187c4d066ad88de6f730248041abb65ad043d22b271cc9967735"
     },
     {
       "path": "topics/consumer-ai-monetization-under-load.md",
@@ -4427,7 +4427,7 @@
     },
     {
       "path": "topics/dense-vs-moe-model-consistency.md",
-      "sha256": "ce2a99df0f7a949b1fb7512a7ebc894860e19a73203109bc7a99b0092cccc487"
+      "sha256": "b82edb10a9960438f51940f105d2f9cfa05c7d58506de85a3cbc9f30df181abb"
     },
     {
       "path": "topics/development-cost-amortization.md",
@@ -4459,15 +4459,15 @@
     },
     {
       "path": "topics/file-grammar-skills-for-ai.md",
-      "sha256": "946bc8ff241e12c221c2decbd5d7fd0602ca12e7572079fff5e028cf4f4ea6bb"
+      "sha256": "c92373eff570e5d2716ba8c7985cddffe1992f64d736e8e3d4838dbfffa97552"
     },
     {
       "path": "topics/file-native-agent-workflows.md",
-      "sha256": "cfccdb02fc364372fbd8abf9c038b2f3559edc57527b46335b2e550024c22b32"
+      "sha256": "e5844b70bb99e4454acf05e97e56c1b07527a3e9faebc71dcbd701d129531f31"
     },
     {
       "path": "topics/file-native-ai-workflows.md",
-      "sha256": "96ef298bcd350b8f7b980eb9cbbf30a0cd399c836dcccf1e6aa84e03904fb444"
+      "sha256": "9bddb1cb65fe7fb25bd3b9371b6dcaca315dad8ab6d7d87d793f085638c8c834"
     },
     {
       "path": "topics/forecasting-with-noisy-public-signals.md",
@@ -4503,7 +4503,7 @@
     },
     {
       "path": "topics/graph-grounding-for-ai.md",
-      "sha256": "be616537c7892f98a5a085de5af17d6b268476c121c0e87a9ed3563b06c78e68"
+      "sha256": "6e8438e7547fe6d2c7c6c31787b01da70707f9e2e9ee5cdd3f521f9731b58af1"
     },
     {
       "path": "topics/hallucination-propagation-in-multi-agent-systems.md",
@@ -4511,7 +4511,7 @@
     },
     {
       "path": "topics/harness-decay.md",
-      "sha256": "849b3f907a870de37b3f0fb700a16a39e4e21df85211be46aa3c5ebd415fc0ba"
+      "sha256": "5b22f22339d82444f592a1332678162fa43ed9139d6f2309ae4e6ee6114916e6"
     },
     {
       "path": "topics/harness-engineering.md",
@@ -5065,6 +5065,6 @@
   "signal_count": 160,
   "source_count": 360,
   "synthesis_cache_dir": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis",
-  "taxonomy_version": "f6428a8b0f56",
+  "taxonomy_version": "b69edc6c3d3d",
   "tool_version": "1"
 }

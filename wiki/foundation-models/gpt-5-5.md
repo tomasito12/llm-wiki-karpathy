@@ -18,7 +18,13 @@ source_ids:
 - the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deepseek-and-kimi-advance-01kq4r8j0majmt8av52cng4zw0
 value_level: high
 confidence: 0.89
-synthesis_state: stage1-placeholder
+synthesis_state: synthesized
+synthesis_stale: false
+synthesis_input_hash: cb8322fafc039e4b
+current_input_hash: cb8322fafc039e4b
+synthesis_schema_version: 1
+synthesis_prompt_version: 1
+last_synthesized_at: '2026-07-09T19:17:20Z'
 types:
 - frontier-model
 - multimodal-model
@@ -27,98 +33,70 @@ types:
 
 # GPT-5.5
 
-## Current understanding
+## Executive synthesis
 
-<!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
-A frontier model positioned as a runtime component inside coding, research, enterprise assistant, and autonomous workflows. The source frames it as useful for reasoning, coding, tool use, long-context work, and professional tasks rather than as a standalone chatbot.
+GPT-5.5 is best understood as a frontier, tool-using runtime model meant for integrated workflows: reasoning, coding, long-context work, and professional tasks. The strongest source on security frames it as the default starting point for most verified defensive workflows, where it can support secure code review, vulnerability triage, malware analysis, detection engineering, and patch validation. Across sources, the real story is less about a clean benchmark win and more about how the model is used inside governed systems. That means access policy, identity verification, approved-use scoping, and review overhead are part of the deployment decision, not just model capability. Evidence is solid for positioning and practical relevance, but thin on measured tradeoffs, pricing, and failure cases.
 
-- The source links GPT-5.5 to reasoning, coding, tool use, long-context work, and professional tasks, which suggests it is meant for broad workflow coverage rather than one narrow task.
-- It is described as a runtime inside systems, which matters because teams can treat the model as an execution layer for agents and assistants rather than only a text generator.
-- The model is presented as part of OpenAI's push to make ChatGPT a multimodal work environment, implying better fit for integrated workflows that mix text, code, images, and tools.
+## Practical relevance
 
-## Benchmark Observations
+### A governed default for defensive security work
 
-- The source does not provide formal benchmark numbers.
-- OpenAI states GPT-5.5 is not expected to outperform GPT-5.5-Cyber across every cyber evaluation, which suggests the comparison is about access behavior more than a clear capability win.
+A security team is choosing a default model for analyst-facing workflows. GPT-5.5 is the fit when the task is legitimate defensive work and the team can enforce verified identity and approved-use scoping. In that setting, the model is relevant for reviewing code, triaging vulnerabilities, drafting detections, and helping with malware analysis or patch validation. The evidence is thinner on exact performance gains, costs, or failure rates, so it is better treated as a governed default to test and operationalize than as a proven universal winner.
 
-## Comparative Observations
+- Why this matters: This makes the model’s value concrete: not “better chatbot,” but a workflow component that can speed up analyst work when access controls and review processes are already in place.
 
-- The source treats benchmark narrative as secondary, implying that operational integration matters more than leaderboard position.
-- It is framed as part of a broader move beyond 'smarter chatbot' positioning toward execution-oriented systems.
-- The article positions GPT-5.5 as the recommended starting point for most security workflows, ahead of the more permissive GPT-5.5-Cyber.
-- Compared with GPT-5.5-Cyber, GPT-5.5 is framed as the safer, broadly useful default rather than the most permissive option.
+- Basis: `source-grounded`
 
-## Core Capabilities
+## Context card
 
-- It is presented as a model for reasoning and coding, which makes it relevant to autonomous development and analysis workflows.
-- It is described as supporting tool use, which means it can participate in workflows that require external actions instead of only text generation.
-- It is described as handling long-context work, which is important for tasks that need persistent memory across long sessions or large documents.
-- It can support secure code review and vulnerability triage for verified defenders working in authorized environments.
-- It can help with malware analysis and binary reverse engineering when access controls allow defensive use.
-- It can assist detection engineering and patch validation as part of a defensive security workflow.
+- **Use this page when:** You need a quick read on what GPT-5.5 is for, how it is framed in enterprise/security settings, and what the sources imply about its operational constraints and governance requirements.
+- **Best for questions about:** What GPT-5.5 is useful for in enterprise or security workflows, When GPT-5.5 is the right default versus a more permissive variant, How GPT-5.5 fits into agentic, tool-using, long-context systems, What governance and access controls matter when deploying GPT-5.5
+- **Not enough for:** Hard benchmark comparisons against other models, Cost, pricing, or token-economics decisions, Detailed failure modes or reliability rates, General-purpose consumer-chatbot evaluation outside the cited workflow framing
+- **Strongest sources:** Scaling Trusted Access for Cyber with GPT-5.5 and GPT-5.5-Cyber, The Sequence Radar #849: Last Week in AI: OpenAI Ships Agents, xAI Eyes Cursor, DeepSeek and Kimi Advance
+- **Related tags:** enterprise-oriented, frontier-model, proprietary-model, runtime-model, tool-use-capable, ai-governance, ai-safety, agent-systems
 
-## Maturity signals
+## What to remember
 
-The model is described as central to OpenAI's current product direction, which signals strong platform importance. The source does not provide independent adoption data, so enterprise readiness should be treated as plausible but not proven from this piece alone.
+- It is a frontier model framed around reasoning, coding, tool use, and long-context work.
+- The practical value is in runtime integration: memory, permissions, tools, and long-running workflows.
+- For security, GPT-5.5 is the safer broadly useful default for verified defenders.
+- Access policy and governance are part of the deployment stack, not an afterthought.
+- The sources do not give hard benchmarks, pricing, or failure-mode detail.
+- Its strongest signal is operational relevance, not leaderboard dominance.
 
-## Pricing / inference implications
+## Consensus
 
-No pricing details are given. The practical inference is that if GPT-5.5 is being used for long-context and tool-heavy workflows, inference and orchestration costs may matter more than raw token price, but the source does not quantify that.
+- GPT-5.5 is positioned as a frontier model for reasoning, coding, tool use, and long-context work, so it is most relevant when the task spans multiple steps or large context windows.
+- The strongest practical framing in the sources is operational: GPT-5.5 is meant to sit inside workflows as a runtime component for agents, assistants, and professional tasks, not just as a standalone chatbot.
+- In security settings, GPT-5.5 is presented as the safer broadly useful default for verified defenders, especially for secure code review, vulnerability triage, malware analysis, detection engineering, and patch validation.
+- Both sources imply that orchestration, permissions, and governance matter as much as raw model capability when GPT-5.5 is deployed in production workflows.
+- The sources agree that benchmark-style evaluation is not the main story here; operational fit and controlled access are emphasized more than leaderboard claims.
 
-## Provider
+## Tensions / open questions
 
-OpenAI
+- GPT-5.5 is described as the recommended default for most security workflows, but the sources also say it is not expected to outperform GPT-5.5-Cyber across every cyber evaluation.
+- The sources emphasize strategic positioning and operational fit, but provide no formal benchmarks, failure cases, or cost details, so the comparative advantage remains partly unmeasured.
+- One source suggests broad runtime and agentic usefulness, while the security source is narrower and more concrete; the broader applicability is plausible but less directly demonstrated.
 
-## Service automation implications
+## Evidence quality
 
-The source does not directly analyze customer support or contact center use cases, but a model framed as a runtime with memory, tools, and permissions could support agent-assisted service workflows if integrated carefully. As of 2026-04-26, that implication is indirect rather than demonstrated here.
+- Evidence is limited to 2 sources and 26 reviewed claims, so the picture is directional rather than exhaustive.
+- Claims about usefulness are strong, but formal benchmark numbers, costs, and failure cases are missing.
+- The security-focused source is more concrete about deployment and governance than about comparative performance.
+- The product-direction source is useful for understanding positioning, but it is not independent evidence of adoption or readiness.
 
-## Weaknesses / limitations
+## Practical takeaway
 
-The source gives no hard benchmarks, failure cases, or cost details, so operational tradeoffs are unclear. The article also admits that benchmark narrative is becoming secondary, which means the claim is more strategic than evaluative.
+Treat GPT-5.5 as a governed, tool-using model for integrated enterprise or security workflows. Use it when the job needs long context, external tools, and controlled access; do not rely on this page for benchmark selection, pricing, or broad claims outside the cited workflow settings.
 
-## Evidence / supporting sources
+## Evidence index
 
-### Scaling Trusted Access for Cyber with GPT-5.5 and GPT-5.5-Cyber (2026-05-07)
-
-- The article positions GPT-5.5 as the recommended starting point for most security workflows, ahead of the more permissive GPT-5.5-Cyber. (`02566404bf27` · neutral · comparative_observations[0]; [[sources/scaling-trusted-access-for-cyber-with-gpt-5-5-and-gpt-5-5-cyber-01kr27359qcdmbzw8af82znqzf|Scaling Trusted Access for Cyber with GPT-5.5 and GPT-5.5-Cyber]])
-- Compared with GPT-5.5-Cyber, GPT-5.5 is framed as the safer, broadly useful default rather than the most permissive option. (`0f3fbc8cdf2c` · neutral · comparative_observations[1]; [[sources/scaling-trusted-access-for-cyber-with-gpt-5-5-and-gpt-5-5-cyber-01kr27359qcdmbzw8af82znqzf|Scaling Trusted Access for Cyber with GPT-5.5 and GPT-5.5-Cyber]])
-- Adopting GPT-5.5 in a cyber setting means access policy becomes part of the model stack: defenders need verified identity, approved-use scoping, and in some cases phishing-resistant account protection. The article implies it can serve as the main model for defensive workflows, while more permissive use is reserved for edge cases that still trigger refusals. For production teams, the practical implication is that model selection is tied to authorization and governance rather than capability alone. (`94b36a415a0c` · neutral · deployment_implications; [[sources/scaling-trusted-access-for-cyber-with-gpt-5-5-and-gpt-5-5-cyber-01kr27359qcdmbzw8af82znqzf|Scaling Trusted Access for Cyber with GPT-5.5 and GPT-5.5-Cyber]])
-- As of 2026-05-07, OpenAI positions GPT-5.5 as the main broadly usable cyber model and says it is already delivering capabilities through Trusted Access for Cyber. The article describes partner-facing rollout and governance controls rather than a finished, universally open product. That makes it feel operationally mature for gated defender workflows, but still vendor-managed and policy-dependent. (`a9cd22ced7c4` · neutral · maturity_signals; [[sources/scaling-trusted-access-for-cyber-with-gpt-5-5-and-gpt-5-5-cyber-01kr27359qcdmbzw8af82znqzf|Scaling Trusted Access for Cyber with GPT-5.5 and GPT-5.5-Cyber]])
-- GPT-5.5 is presented as OpenAI’s broadly useful cyber-capable model for verified defensive work. The source frames it as the default starting point for most legitimate security workflows, including secure code review, vulnerability triage, malware analysis, detection engineering, and patch validation. The model’s value in this article is less about a new capability jump and more about being paired with access controls that let it do more useful defensive work with fewer refusals. (`cc7bede3b3d2` · neutral · operational_profile; [[sources/scaling-trusted-access-for-cyber-with-gpt-5-5-and-gpt-5-5-cyber-01kr27359qcdmbzw8af82znqzf|Scaling Trusted Access for Cyber with GPT-5.5 and GPT-5.5-Cyber]])
-- The article gives no pricing detail. The main inference is operational rather than economic: if the model is used at scale in security workflows, the real cost question is likely governed access, verification overhead, and review burden rather than only token pricing. (`3cd3d7d6b2b7` · neutral · pricing_inference_implications; [[sources/scaling-trusted-access-for-cyber-with-gpt-5-5-and-gpt-5-5-cyber-01kr27359qcdmbzw8af82znqzf|Scaling Trusted Access for Cyber with GPT-5.5 and GPT-5.5-Cyber]])
-- Relevant for security support workflows, but the source does not connect GPT-5.5 to customer support automation directly. Its clearest service-automation value is in analyst-facing security operations where it can help summarize alerts, draft detections, and triage vulnerabilities faster. (`3c76d1dbaad1` · neutral · service_automation_implications; [[sources/scaling-trusted-access-for-cyber-with-gpt-5-5-and-gpt-5-5-cyber-01kr27359qcdmbzw8af82znqzf|Scaling Trusted Access for Cyber with GPT-5.5 and GPT-5.5-Cyber]])
-- The source does not provide formal benchmark numbers. (`df32194a876e` · supporting · benchmark_observations[0]; [[sources/scaling-trusted-access-for-cyber-with-gpt-5-5-and-gpt-5-5-cyber-01kr27359qcdmbzw8af82znqzf|Scaling Trusted Access for Cyber with GPT-5.5 and GPT-5.5-Cyber]])
-- OpenAI states GPT-5.5 is not expected to outperform GPT-5.5-Cyber across every cyber evaluation, which suggests the comparison is about access behavior more than a clear capability win. (`7f3240125d11` · supporting · benchmark_observations[1]; [[sources/scaling-trusted-access-for-cyber-with-gpt-5-5-and-gpt-5-5-cyber-01kr27359qcdmbzw8af82znqzf|Scaling Trusted Access for Cyber with GPT-5.5 and GPT-5.5-Cyber]])
-- It can support secure code review and vulnerability triage for verified defenders working in authorized environments. (`8178572b43a4` · supporting · core_capabilities[0]; [[sources/scaling-trusted-access-for-cyber-with-gpt-5-5-and-gpt-5-5-cyber-01kr27359qcdmbzw8af82znqzf|Scaling Trusted Access for Cyber with GPT-5.5 and GPT-5.5-Cyber]])
-- It can help with malware analysis and binary reverse engineering when access controls allow defensive use. (`cdf85449cfa8` · supporting · core_capabilities[1]; [[sources/scaling-trusted-access-for-cyber-with-gpt-5-5-and-gpt-5-5-cyber-01kr27359qcdmbzw8af82znqzf|Scaling Trusted Access for Cyber with GPT-5.5 and GPT-5.5-Cyber]])
-- It can assist detection engineering and patch validation as part of a defensive security workflow. (`d10b703db9d6` · supporting · core_capabilities[2]; [[sources/scaling-trusted-access-for-cyber-with-gpt-5-5-and-gpt-5-5-cyber-01kr27359qcdmbzw8af82znqzf|Scaling Trusted Access for Cyber with GPT-5.5 and GPT-5.5-Cyber]])
-- “For most teams, GPT‑5.5 with TAC is our strongest broadly useful model for legitimate defensive work, with strong safeguards against misuse.” (`7047dfa3bbcb` · supporting · supporting_snippet; [[sources/scaling-trusted-access-for-cyber-with-gpt-5-5-and-gpt-5-5-cyber-01kr27359qcdmbzw8af82znqzf|Scaling Trusted Access for Cyber with GPT-5.5 and GPT-5.5-Cyber]])
-- OpenAI says GPT-5.5 is not expected to outperform GPT-5.5-Cyber across every cyber evaluation because the cyber-permissive preview is mainly about more permissive behavior, not a broad capability leap. The source does not quantify false refusals, security gains, or failure modes, so its comparative advantage is directional rather than measured. (`d7e9076bea4e` · uncertainty · weaknesses_limitations; [[sources/scaling-trusted-access-for-cyber-with-gpt-5-5-and-gpt-5-5-cyber-01kr27359qcdmbzw8af82znqzf|Scaling Trusted Access for Cyber with GPT-5.5 and GPT-5.5-Cyber]])
-
-### The Sequence Radar #849: Last Week in AI: OpenAI Ships Agents, xAI Eyes Cursor, DeepSeek and Kimi Advance (2026-04-26)
-
-- The source treats benchmark narrative as secondary, implying that operational integration matters more than leaderboard position. (`0a4e79ce0926` · neutral · comparative_observations[0]; [[sources/the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deepseek-and-kimi-advance-01kq4r8j0majmt8av52cng4zw0|The Sequence Radar #849: Last Week in AI: OpenAI Ships Agents, xAI Eyes Cursor, DeepSeek and Kimi Advance]])
-- It is framed as part of a broader move beyond 'smarter chatbot' positioning toward execution-oriented systems. (`77781f3ec751` · neutral · comparative_observations[1]; [[sources/the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deepseek-and-kimi-advance-01kq4r8j0majmt8av52cng4zw0|The Sequence Radar #849: Last Week in AI: OpenAI Ships Agents, xAI Eyes Cursor, DeepSeek and Kimi Advance]])
-- It encourages teams to design around model-plus-harness workflows: memory, permissions, tools, and long-running execution loops become first-class concerns. It also suggests more of the engineering effort shifts from prompt crafting to orchestration and governance. (`f51bf444371d` · neutral · deployment_implications; [[sources/the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deepseek-and-kimi-advance-01kq4r8j0majmt8av52cng4zw0|The Sequence Radar #849: Last Week in AI: OpenAI Ships Agents, xAI Eyes Cursor, DeepSeek and Kimi Advance]])
-- The model is described as central to OpenAI's current product direction, which signals strong platform importance. The source does not provide independent adoption data, so enterprise readiness should be treated as plausible but not proven from this piece alone. (`7366acd564a6` · neutral · maturity_signals; [[sources/the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deepseek-and-kimi-advance-01kq4r8j0majmt8av52cng4zw0|The Sequence Radar #849: Last Week in AI: OpenAI Ships Agents, xAI Eyes Cursor, DeepSeek and Kimi Advance]])
-- A frontier model positioned as a runtime component inside coding, research, enterprise assistant, and autonomous workflows. The source frames it as useful for reasoning, coding, tool use, long-context work, and professional tasks rather than as a standalone chatbot.
-
-- The source links GPT-5.5 to reasoning, coding, tool use, long-context work, and professional tasks, which suggests it is meant for broad workflow coverage rather than one narrow task.
-- It is described as a runtime inside systems, which matters because teams can treat the model as an execution layer for agents and assistants rather than only a text generator.
-- The model is presented as part of OpenAI's push to make ChatGPT a multimodal work environment, implying better fit for integrated workflows that mix text, code, images, and tools. (`3b320995f8e1` · neutral · operational_profile; [[sources/the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deepseek-and-kimi-advance-01kq4r8j0majmt8av52cng4zw0|The Sequence Radar #849: Last Week in AI: OpenAI Ships Agents, xAI Eyes Cursor, DeepSeek and Kimi Advance]])
-- No pricing details are given. The practical inference is that if GPT-5.5 is being used for long-context and tool-heavy workflows, inference and orchestration costs may matter more than raw token price, but the source does not quantify that. (`93a6968555c5` · neutral · pricing_inference_implications; [[sources/the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deepseek-and-kimi-advance-01kq4r8j0majmt8av52cng4zw0|The Sequence Radar #849: Last Week in AI: OpenAI Ships Agents, xAI Eyes Cursor, DeepSeek and Kimi Advance]])
-- The source does not directly analyze customer support or contact center use cases, but a model framed as a runtime with memory, tools, and permissions could support agent-assisted service workflows if integrated carefully. As of 2026-04-26, that implication is indirect rather than demonstrated here. (`a272671dac6a` · neutral · service_automation_implications; [[sources/the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deepseek-and-kimi-advance-01kq4r8j0majmt8av52cng4zw0|The Sequence Radar #849: Last Week in AI: OpenAI Ships Agents, xAI Eyes Cursor, DeepSeek and Kimi Advance]])
-- It is presented as a model for reasoning and coding, which makes it relevant to autonomous development and analysis workflows. (`b0088247542c` · supporting · core_capabilities[0]; [[sources/the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deepseek-and-kimi-advance-01kq4r8j0majmt8av52cng4zw0|The Sequence Radar #849: Last Week in AI: OpenAI Ships Agents, xAI Eyes Cursor, DeepSeek and Kimi Advance]])
-- It is described as supporting tool use, which means it can participate in workflows that require external actions instead of only text generation. (`63e5fc24faab` · supporting · core_capabilities[1]; [[sources/the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deepseek-and-kimi-advance-01kq4r8j0majmt8av52cng4zw0|The Sequence Radar #849: Last Week in AI: OpenAI Ships Agents, xAI Eyes Cursor, DeepSeek and Kimi Advance]])
-- It is described as handling long-context work, which is important for tasks that need persistent memory across long sessions or large documents. (`024954e16bbb` · supporting · core_capabilities[2]; [[sources/the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deepseek-and-kimi-advance-01kq4r8j0majmt8av52cng4zw0|The Sequence Radar #849: Last Week in AI: OpenAI Ships Agents, xAI Eyes Cursor, DeepSeek and Kimi Advance]])
-- OpenAI’s GPT-5.5 release is the obvious center of gravity. It represents the continued expansion of frontier-model capability across reasoning, coding, tool use, long-context work, and professional tasks. (`ba8debe3557b` · supporting · supporting_snippet; [[sources/the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deepseek-and-kimi-advance-01kq4r8j0majmt8av52cng4zw0|The Sequence Radar #849: Last Week in AI: OpenAI Ships Agents, xAI Eyes Cursor, DeepSeek and Kimi Advance]])
-- The source gives no hard benchmarks, failure cases, or cost details, so operational tradeoffs are unclear. The article also admits that benchmark narrative is becoming secondary, which means the claim is more strategic than evaluative. (`215cc4861ea8` · uncertainty · weaknesses_limitations; [[sources/the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deepseek-and-kimi-advance-01kq4r8j0majmt8av52cng4zw0|The Sequence Radar #849: Last Week in AI: OpenAI Ships Agents, xAI Eyes Cursor, DeepSeek and Kimi Advance]])
-
-## Contradictions / tensions
-
-- The source gives no hard benchmarks, failure cases, or cost details, so operational tradeoffs are unclear. The article also admits that benchmark narrative is becoming secondary, which means the claim is more strategic than evaluative. (uncertainty; [[sources/the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deepseek-and-kimi-advance-01kq4r8j0majmt8av52cng4zw0|The Sequence Radar #849: Last Week in AI: OpenAI Ships Agents, xAI Eyes Cursor, DeepSeek and Kimi Advance]])
-- OpenAI says GPT-5.5 is not expected to outperform GPT-5.5-Cyber across every cyber evaluation because the cyber-permissive preview is mainly about more permissive behavior, not a broad capability leap. The source does not quantify false refusals, security gains, or failure modes, so its comparative advantage is directional rather than measured. (uncertainty; [[sources/scaling-trusted-access-for-cyber-with-gpt-5-5-and-gpt-5-5-cyber-01kr27359qcdmbzw8af82znqzf|Scaling Trusted Access for Cyber with GPT-5.5 and GPT-5.5-Cyber]])
+- Sources: 2
+- Evidence items: 26
+- Current input hash: `cb8322fafc039e4b`
+- Cached input hash: `cb8322fafc039e4b`
+- Last synthesized: 2026-07-09T19:17:20Z
+- Synthesis status: `fresh`
 
 ## Related pages
 

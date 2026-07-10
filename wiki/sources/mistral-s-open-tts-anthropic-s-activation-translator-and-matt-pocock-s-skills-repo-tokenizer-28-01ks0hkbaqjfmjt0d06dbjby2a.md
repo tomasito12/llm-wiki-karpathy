@@ -15,7 +15,7 @@ author: Sairam Sundaresan
 publication: artofsaience.com
 published_date: '2026-05-17'
 assessed_as_of: '2026-05-17'
-ingested_at: '2026-06-06T22:01:00+00:00'
+ingested_at: '2026-07-10T11:47:55.207161+00:00'
 canonical_url: https://newsletter.artofsaience.com/p/mistrals-open-tts-anthropics-activation?utm_source=unread-posts-digest-email&inbox=true&utm_medium=email&triedRedirect=true
 content_sha256: adfc6dbe9071c9324d571a491c18c7bb0805f873049768736c65977aae2d0e07
 derived_signals:

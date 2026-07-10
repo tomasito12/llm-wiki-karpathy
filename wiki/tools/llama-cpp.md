@@ -34,13 +34,13 @@ types:
 
 llama.cpp is a mature open-source runtime for local inference when you need control more than convenience. The sources describe it as a C/C++ engine with a Metal backend on Apple Silicon, GGUF support, and the ability to offload layers between CPU and GPU through `n_gpu_layers`. It can be used either as a library or as an HTTP server, which makes it fit both embedded product code and service-style deployment. In practice, it shows up as the workable option when teams need local model serving, offline or self-hosted workflows, or a coding-agent setup that must read files, write code, and emit tool calls without sending prompts to a cloud API. The main caution is that it is not presented as the best choice for pure speed or low-friction setup: the sources say it can be slower than MLX on smaller compute-bound models, lacks MLX’s native on-device LoRA/QLoRA path, and may require careful pinning and debugging because defaults and build choices can change behavior.
 
-## Example in practice
+## Typical use case
 
 ### Local coding-agent runtime with controlled memory use
 
 A team wants a local coding assistant that can work inside Codex CLI without sending prompts to a cloud API. They configure llama.cpp as a custom provider, point it at a GGUF model, and tune the template plus offload settings so the model emits tool calls in the expected format. On a 24 GB machine, they keep memory use under control by adjusting context length, quantization, and GPU offload. In the described setup, this became the fallback when other serving options had streaming or attention issues, and the direct GGUF path avoided surprise downloads and memory blowups.
 
-- Why it helps: It shows why llama.cpp matters in practice: it can turn a local model into a usable agent backend when compatibility, memory control, and tool-call formatting are the real constraints.
+- Why this helps: It shows why llama.cpp matters in practice: it can turn a local model into a usable agent backend when compatibility, memory control, and tool-call formatting are the real constraints.
 
 - Basis: `source-grounded`
 

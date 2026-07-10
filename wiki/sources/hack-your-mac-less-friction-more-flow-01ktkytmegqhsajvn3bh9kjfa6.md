@@ -7,7 +7,7 @@ author: Zeeshan Saghir
 publication: Medium
 published_date: '2026-02-26'
 assessed_as_of: '2026-02-26'
-ingested_at: '2026-06-15T22:48:39+00:00'
+ingested_at: '2026-07-10T11:44:01.145123+00:00'
 canonical_url: https://medium.com/@simpleandkind788/hack-your-mac-less-friction-more-flow-c98b1e147b42
 content_sha256: bb8c86122114debbfb07c1001db026ee66971545849f2a3070e50835834cffb6
 ---

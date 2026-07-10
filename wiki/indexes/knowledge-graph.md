@@ -6,7 +6,7 @@ category: diagnostics
 # Knowledge Graph Diagnostics
 
 - Tool version: `1`
-- Taxonomy version: `f6428a8b0f56`
+- Taxonomy version: `b69edc6c3d3d`
 - Sources: 360
 - Knowledge pages: 614
 - Signals: 160
@@ -263,12 +263,12 @@ category: diagnostics
 - [[industry-trends/provenance-becomes-layered-and-verifiable|AI Governance Shifts Toward Layered Verification]] — sources: 1, evidence: 8
 - [[industry-trends/ai-governance-shifts-toward-verification-mechanisms|AI Governance Shifts Toward Verification Mechanisms]] — sources: 1, evidence: 8
 - [[industry-trends/ai-infrastructure-scarcity-spreads-beyond-gpus|AI Infrastructure Scarcity Spreads Beyond GPUs]] — sources: 1, evidence: 10
-- [[industry-trends/ai-product-feature-gating-moves-toward-generalization-tests|AI Product Gating Moves Toward Generalization Tests]] — sources: 1, evidence: 8
+- [[industry-trends/ai-product-feature-gating-moves-toward-generalization-tests|AI Product Gating Moves Toward Generalization Tests]] — sources: 1, evidence: 5
 - [[industry-trends/ai-product-pricing-shifts-toward-measured-outcomes|AI Product Pricing Shifts Toward Measured Outcomes]] — sources: 1, evidence: 8
 - [[industry-trends/ai-products-shift-toward-agentic-commerce-interfaces|AI Products Shift Toward Agentic Commerce Interfaces]] — sources: 1, evidence: 9
 - [[industry-trends/ai-products-shift-toward-ambient-computing|AI Products Shift Toward Ambient Computing]] — sources: 1, evidence: 8
 - [[industry-trends/ai-products-shift-toward-customer-specific-deployment|AI Products Shift Toward Customer-Specific Deployment]] — sources: 1, evidence: 8
-- [[industry-trends/skills-move-ai-products-toward-workflow-packaging|AI Products Shift Toward Workflow Packaging]] — sources: 3, evidence: 25
+- [[industry-trends/skills-move-ai-products-toward-workflow-packaging|AI Products Shift Toward Workflow Packaging]] — sources: 3, evidence: 22
 - [[industry-trends/ai-products-shift-from-demos-to-grounded-workflows|AI Products Shift from Demos to Grounded Workflows]] — sources: 1, evidence: 5
 - [[industry-trends/ai-products-shift-from-demos-to-production-controls|AI Products Shift from Demos to Production Controls]] — sources: 1, evidence: 8
 - [[industry-trends/ai-products-shift-from-models-to-grounded-systems|AI Products Shift from Models to Grounded Systems]] — sources: 1, evidence: 8
@@ -383,7 +383,7 @@ category: diagnostics
 - [[tools/calendar|Calendar]] — sources: 1, evidence: 11
 - [[tools/caveman|Caveman]] — sources: 1, evidence: 11
 - [[tools/claude|Claude]] — sources: 1, evidence: 12
-- [[tools/claude-code|Claude Code]] — sources: 17, evidence: 196
+- [[tools/claude-code|Claude Code]] — sources: 16, evidence: 185
 - [[tools/claude-desktop|Claude Desktop]] — sources: 1, evidence: 11
 - [[tools/cleanshot-x|CleanShot X]] — sources: 2, evidence: 22
 - [[tools/cleanupbuddy|CleanUpBuddy]] — sources: 1, evidence: 10
@@ -451,7 +451,7 @@ category: diagnostics
 - [[tools/oasis|OASIS]] — sources: 1, evidence: 13
 - [[tools/obsidian|Obsidian]] — sources: 12, evidence: 136
 - [[tools/obsidian-starter-kit-plugin|Obsidian Starter Kit plugin]] — sources: 1, evidence: 14
-- [[tools/ollama|Ollama]] — sources: 12, evidence: 143
+- [[tools/ollama|Ollama]] — sources: 12, evidence: 137
 - [[tools/omnisearch|Omnisearch]] — sources: 1, evidence: 11
 - [[tools/one-thing|One Thing]] — sources: 1, evidence: 8
 - [[tools/openai-realtime-api|OpenAI Realtime API]] — sources: 1, evidence: 10
@@ -472,7 +472,7 @@ category: diagnostics
 - [[tools/remind-me-faster|Remind Me Faster]] — sources: 1, evidence: 11
 - [[tools/screenfloat-2|ScreenFloat 2]] — sources: 1, evidence: 10
 - [[tools/shottr|Shottr]] — sources: 1, evidence: 9
-- [[tools/soda|Soda]] — sources: 1, evidence: 11
+- [[tools/soda|Soda]] — sources: 1, evidence: 6
 - [[tools/substage|Substage]] — sources: 1, evidence: 9
 - [[tools/supabase-mcp|Supabase MCP]] — sources: 1, evidence: 11
 - [[tools/taskade-mcp|Taskade MCP]] — sources: 1, evidence: 11
@@ -501,7 +501,7 @@ category: diagnostics
 
 - [[foundation-models/apex-1-0|Apex 1.0]] — sources: 4, evidence: 48
 - [[foundation-models/apex-flash|Apex Flash]] — sources: 1, evidence: 11
-- [[foundation-models/apple-foundation-models|Apple Foundation Models]] — sources: 1, evidence: 14
+- [[foundation-models/apple-foundation-models|Apple Foundation Models]] — sources: 1, evidence: 7
 - [[foundation-models/claude|Claude]] — sources: 1, evidence: 17
 - [[foundation-models/claude-opus-4-6|Claude Opus 4.6]] — sources: 1, evidence: 12
 - [[foundation-models/claude-opus-4-7|Claude Opus 4.7]] — sources: 1, evidence: 14
@@ -538,7 +538,7 @@ category: diagnostics
 - [[foundation-models/voxtral-tts|Voxtral TTS]] — sources: 1, evidence: 14
 - [[foundation-models/gpt-5-4|gpt-5.4]] — sources: 2, evidence: 24
 - [[foundation-models/gpt-realtime-1-5|gpt-realtime-1.5]] — sources: 1, evidence: 11
-- [[foundation-models/qwen3-30b-a3b|qwen3:30b-a3b]] — sources: 1, evidence: 12
+- [[foundation-models/qwen3-30b-a3b|qwen3:30b-a3b]] — sources: 1, evidence: 7
 
 ## Duplicate candidates
 
@@ -974,7 +974,7 @@ No duplicate candidates captured.
 ## Highest source-count pages
 
 - [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]] — 22
-- [[tools/claude-code|Claude Code]] — 17
+- [[tools/claude-code|Claude Code]] — 16
 - [[topics/context-engineering|Context Engineering]] — 14
 - [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]] — 13
 - [[tools/obsidian|Obsidian]] — 12
@@ -1001,9 +1001,9 @@ No duplicate candidates captured.
 
 ## Highest evidence-count pages
 
-- [[tools/claude-code|Claude Code]] — 196
+- [[tools/claude-code|Claude Code]] — 185
 - [[industry-trends/ai-products-shift-from-models-to-systems|AI Products Shift from Models to Systems]] — 182
-- [[tools/ollama|Ollama]] — 143
+- [[tools/ollama|Ollama]] — 137
 - [[tools/obsidian|Obsidian]] — 136
 - [[industry-trends/workflow-restructuring-around-ai-agents|Software workflows are restructuring around durable agents]] — 112
 - [[topics/context-engineering|Context Engineering]] — 98

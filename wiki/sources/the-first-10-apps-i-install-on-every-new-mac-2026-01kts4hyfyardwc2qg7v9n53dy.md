@@ -20,7 +20,7 @@ author: Jessica Lin
 publication: Medium
 published_date: '2026-05-17'
 assessed_as_of: '2026-05-17'
-ingested_at: '2026-06-16T01:14:59+00:00'
+ingested_at: '2026-07-09T19:44:52.195828+00:00'
 canonical_url: https://jess-writes-about-tech.medium.com/the-first-10-apps-i-install-on-every-new-mac-2026-20ee15bc92c4
 content_sha256: de68b352654a451a4078f292ead2109bf02b6b501a95c9c7c6310e76934d6d8e
 derived_tools:

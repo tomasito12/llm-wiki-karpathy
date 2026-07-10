@@ -85,6 +85,10 @@ category: index
 - [[glossary/ontology|Ontology]]
 - [[glossary/retrieval-augmented-generation|Retrieval-Augmented Generation]]
 
+## model-architecture
+
+- [[glossary/mixture-of-experts|Mixture-of-Experts]]
+
 ## multimodal
 
 - [[glossary/aria-live-region|ARIA live region]]
@@ -125,7 +129,6 @@ category: index
 - [[glossary/behavior-driven-development|Behavior-Driven Development]]
 - [[glossary/gherkin|Gherkin]]
 - [[glossary/harness|Harness]]
-- [[glossary/mixture-of-experts|Mixture-of-Experts]]
 - [[glossary/model-context-protocol|Model Context Protocol]]
 - [[glossary/transport-layer-security-gap|Transport Layer Security Gap]]
 

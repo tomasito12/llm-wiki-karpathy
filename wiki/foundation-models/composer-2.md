@@ -17,7 +17,13 @@ source_ids:
 - run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy
 value_level: high
 confidence: 0.795
-synthesis_state: stage1-placeholder
+synthesis_state: synthesized
+synthesis_stale: false
+synthesis_input_hash: f3a8e831d1f85d98
+current_input_hash: f3a8e831d1f85d98
+synthesis_schema_version: 1
+synthesis_prompt_version: 1
+last_synthesized_at: '2026-07-09T19:16:40Z'
 types:
 - coding-model
 - frontier-model
@@ -26,86 +32,70 @@ types:
 
 # Composer 2
 
-## Current understanding
+## Executive synthesis
 
-<!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
-Composer 2 is Cursor's coding model positioned for demanding software work. The source frames it as frontier-level on coding tasks and emphasizes that it can handle long-horizon work requiring many actions. Cursor attributes its quality jump to continued pretraining followed by reinforcement learning, which suggests the model is optimized for agentic coding rather than short completion quality alone. A faster variant is offered with the same intelligence claim, which makes deployment choice partly about throughput and cost.
+Composer 2 is Cursor’s coding model for agentic software work, not a general-purpose chat model. The sources consistently frame it as useful for long-horizon coding tasks that may require many actions, especially when paired with tool use, terminal interaction, repo access, and verification loops. Cursor also offers a faster variant, so the practical choice is not just model quality but the balance between latency, token cost, and workflow throughput. The main caveat is evidence quality: the strongest claims come from Cursor’s own benchmark-oriented marketing, so the model looks productized and worth testing, but not independently validated here. It is most relevant when your question is whether a coding agent can sustain multi-step work inside an execution harness, including self-hosted infrastructure.
 
-## Benchmark Observations
+## Practical relevance
 
-- The source reports 61.3 on CursorBench, 61.7 on Terminal-Bench 2.0, and 73.7 on SWE-bench Multilingual for Composer 2.
-- It reports large gains over Composer 1.5 and Composer 1 across all three benchmarks listed.
-- The source says Cursor's Terminal-Bench 2.0 score used the official Harbor evaluation framework with default settings and five iterations per model-agent pair.
+### Worth testing for long-running coding agents
 
-## Comparative Observations
+Composer 2 appears relevant when you are building or evaluating a coding agent that must make many tool calls, run tests, and work inside a repo over a long task. Cursor positions it for this kind of multi-step software work and says it can be used in custom agent harnesses, including self-hosted execution. The evidence is thinner on how well it fails, how it compares outside Cursor’s own setup, and whether the fast variant is the right default. So this is a page to consult when deciding whether Composer 2 belongs in the shortlist for agentic coding, not when you need a trusted independent benchmark verdict.
 
-- Composer 2 is reported to outperform Composer 1.5 and Composer 1 on every benchmark table shown in the source.
-- The fast variant is presented as lower cost than other fast models, while keeping the same intelligence claim within Cursor's framing.
+- Why this matters: It turns the abstract claim of “frontier-level coding” into a concrete deployment question: can this model support a multi-step coding loop with tools, tests, and infrastructure constraints?
 
-## Core Capabilities
+- Basis: `source-grounded`
 
-- It is positioned as a coding-focused model for long-horizon tasks that may require hundreds of actions.
-- It is trained from a continued-pretraining base and then reinforced on coding tasks, which the source presents as the reason for the quality jump.
-- It has a faster variant that claims the same intelligence while changing the price point.
-- It can be selected as the model inside Cursor’s multi-model agent workflow.
-- It is compatible with custom-built agent harnesses, which matters when coding tasks need tool execution and verification loops.
+## Context card
 
-## Maturity signals
+- **Use this page when:** Use this page when you need a quick read on whether Composer 2 is worth testing for coding agents, especially long-running tool-using workflows, and you want the main constraints, pricing tradeoff, and evidence caveats in one place.
+- **Best for questions about:** What Composer 2 is used for in coding-agent workflows, Whether Composer 2 looks suitable for long multi-step software tasks, How Cursor positions Composer 2 relative to its earlier models, What the pricing/fast-variant tradeoff implies for agent workloads, Whether Composer 2 can fit into self-hosted or custom agent harnesses
+- **Not enough for:** Independent quality claims beyond Cursor’s own evaluation, Failure modes or regressions in real-world coding work, Detailed pricing-inference or end-to-end deployment cost estimates, Comparisons against non-Cursor frontier models, Use in general chat, support bots, or other non-coding automation
+- **Strongest sources:** Introducing Composer 2, Run cloud agents in your own infrastructure
+- **Related tags:** coding-model, developer-focused, proprietary-model, tool-use-capable
 
-Cursor reports explicit benchmark tables, pricing, and a fast variant, which suggests a product that is being iterated as a commercial model offering rather than an experimental demo. The source does not show independent adoption signals, but it does show enough packaging detail to indicate operational maturity inside Cursor's product line. As of 2026-03-19, the model appears sufficiently productized to test in real coding workflows, but the validation remains vendor-led.
+## What to remember
 
-## Pricing / inference implications
+- Composer 2 is a Cursor coding model aimed at long-horizon, multi-step software work.
+- It is meant to work inside agent loops with tools, tests, repo access, and verification.
+- Cursor offers a standard and a faster variant, so cost and latency are part of the decision.
+- The sources say it outperforms Composer 1 and 1.5 on the benchmarks shown, but those claims are vendor-led.
+- The self-hosted agent article shows Composer 2 can be one option in customer-run infrastructure, but it does not prove relative quality there.
+- Evidence is good for understanding product positioning and deployment shape, weak for independent reliability or comparative performance beyond Cursor’s own framing.
 
-The source sets pricing at $0.50/M input and $2.50/M output tokens for Composer 2, with a faster variant at $1.50/M input and $7.50/M output tokens. That creates a practical cost-control lever for coding-agent workloads where throughput and repeated tool calls can dominate spend. The article implies that teams should compare total workflow cost, not only raw token price, because long-horizon tasks can amplify retries and output-heavy loops.
+## Consensus
 
-## Provider
+- Composer 2 is Cursor’s coding-focused model, positioned for demanding software work and long-horizon agentic tasks.
+- The sources present it as usable inside agent-style workflows, including self-hosted or custom-built agent harnesses with tool use and verification loops.
+- Cursor provides a standard and a faster variant, making deployment partly a tradeoff between throughput/cost and the claimed intelligence level.
+- The vendor source reports benchmark improvements over Composer 1 and 1.5, but the evidence is still vendor-led rather than independently established.
 
-Cursor
+## Tensions / open questions
 
-## Service automation implications
+- Cursor reports strong benchmark gains and frontier-level positioning, but the evidence is vendor-controlled and not independently validated.
+- The fast variant is described as retaining the same intelligence claim while changing cost, but the sources do not show workload-specific tradeoffs or failure cases.
+- The self-hosted agent source implies operational flexibility, yet it provides no Composer 2-specific performance, pricing, or adoption evidence.
+- The model is clearly positioned for coding agents, but the sources do not justify extending that confidence to customer-facing automation or general chat use.
 
-The main service-automation implication is indirect: stronger long-horizon coding models can improve internal automation for building and maintaining support tooling, but the source does not connect Composer 2 to customer-facing support automation directly. Any use in chatbots or voicebots would still need separate evidence.
+## Evidence quality
 
-## Weaknesses / limitations
+- Evidence is narrow: only 2 sources and 24 reviewed evidence items, both vendor-authored Cursor articles.
+- Benchmarks and quality claims are reported by the vendor; the sources do not establish independent real-world reliability.
+- The self-hosted agent source is operationally useful, but it gives almost no performance or failure data for Composer 2 specifically.
+- Pricing is explicit in one source, but total cost depends on the surrounding agent harness and customer-run infrastructure.
 
-The evidence is vendor-controlled and benchmark-centric, so real-world reliability is not independently established in this source. The article does not provide failure modes, benchmark task composition, or workload-specific regressions, so the "frontier-level" framing should be treated cautiously as of 2026-03-19.
+## Practical takeaway
 
-## Evidence / supporting sources
+Treat Composer 2 as a Cursor-native coding model that is most interesting for long-horizon agent workflows; test it for fit in a real agent harness, but do not rely on the vendor benchmarks alone to decide production use.
 
-### Introducing Composer 2 (2026-03-19)
+## Evidence index
 
-- Composer 2 is reported to outperform Composer 1.5 and Composer 1 on every benchmark table shown in the source. (`9920cc1e2d4f` · neutral · comparative_observations[0]; [[sources/introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1|Introducing Composer 2]])
-- The fast variant is presented as lower cost than other fast models, while keeping the same intelligence claim within Cursor's framing. (`1f58fc85ff90` · neutral · comparative_observations[1]; [[sources/introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1|Introducing Composer 2]])
-- Adopting Composer 2 appears to favor agent-style coding loops that can run for many steps, not just single-shot code generation. Teams evaluating it would want harnesses that capture terminal interaction, tool use, and long task trajectories rather than relying only on brief prompt-response tests. The pricing split between standard and fast variants creates a concrete deployment tradeoff between latency and inference cost. (`8ec0abc86dec` · neutral · deployment_implications; [[sources/introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1|Introducing Composer 2]])
-- Cursor reports explicit benchmark tables, pricing, and a fast variant, which suggests a product that is being iterated as a commercial model offering rather than an experimental demo. The source does not show independent adoption signals, but it does show enough packaging detail to indicate operational maturity inside Cursor's product line. As of 2026-03-19, the model appears sufficiently productized to test in real coding workflows, but the validation remains vendor-led. (`ec737dcde498` · neutral · maturity_signals; [[sources/introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1|Introducing Composer 2]])
-- Composer 2 is Cursor's coding model positioned for demanding software work. The source frames it as frontier-level on coding tasks and emphasizes that it can handle long-horizon work requiring many actions. Cursor attributes its quality jump to continued pretraining followed by reinforcement learning, which suggests the model is optimized for agentic coding rather than short completion quality alone. A faster variant is offered with the same intelligence claim, which makes deployment choice partly about throughput and cost. (`44adfa2f9fe4` · neutral · operational_profile; [[sources/introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1|Introducing Composer 2]])
-- The source sets pricing at $0.50/M input and $2.50/M output tokens for Composer 2, with a faster variant at $1.50/M input and $7.50/M output tokens. That creates a practical cost-control lever for coding-agent workloads where throughput and repeated tool calls can dominate spend. The article implies that teams should compare total workflow cost, not only raw token price, because long-horizon tasks can amplify retries and output-heavy loops. (`cfab601c79ef` · neutral · pricing_inference_implications; [[sources/introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1|Introducing Composer 2]])
-- The main service-automation implication is indirect: stronger long-horizon coding models can improve internal automation for building and maintaining support tooling, but the source does not connect Composer 2 to customer-facing support automation directly. Any use in chatbots or voicebots would still need separate evidence. (`c602feb91a10` · neutral · service_automation_implications; [[sources/introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1|Introducing Composer 2]])
-- The source reports 61.3 on CursorBench, 61.7 on Terminal-Bench 2.0, and 73.7 on SWE-bench Multilingual for Composer 2. (`d464781e4d7d` · supporting · benchmark_observations[0]; [[sources/introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1|Introducing Composer 2]])
-- It reports large gains over Composer 1.5 and Composer 1 across all three benchmarks listed. (`0180de1fe827` · supporting · benchmark_observations[1]; [[sources/introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1|Introducing Composer 2]])
-- The source says Cursor's Terminal-Bench 2.0 score used the official Harbor evaluation framework with default settings and five iterations per model-agent pair. (`1cf715cf3d08` · supporting · benchmark_observations[2]; [[sources/introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1|Introducing Composer 2]])
-- It is positioned as a coding-focused model for long-horizon tasks that may require hundreds of actions. (`f0e0c60db430` · supporting · core_capabilities[0]; [[sources/introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1|Introducing Composer 2]])
-- It is trained from a continued-pretraining base and then reinforced on coding tasks, which the source presents as the reason for the quality jump. (`55abe2729e8c` · supporting · core_capabilities[1]; [[sources/introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1|Introducing Composer 2]])
-- It has a faster variant that claims the same intelligence while changing the price point. (`1fce8d0b619e` · supporting · core_capabilities[2]; [[sources/introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1|Introducing Composer 2]])
-- "Composer 2 is now available in Cursor. It's frontier-level at coding and priced at $0.50/M input and $2.50/M output tokens" (`c22bf9a46c78` · supporting · supporting_snippet; [[sources/introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1|Introducing Composer 2]])
-- The evidence is vendor-controlled and benchmark-centric, so real-world reliability is not independently established in this source. The article does not provide failure modes, benchmark task composition, or workload-specific regressions, so the "frontier-level" framing should be treated cautiously as of 2026-03-19. (`846b0d66987f` · uncertainty · weaknesses_limitations; [[sources/introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1|Introducing Composer 2]])
-
-### Run cloud agents in your own infrastructure (2026-03-25)
-
-- If used in self-hosted agents, Composer 2 has to work inside a worker-based execution loop where tool calls, repo access, and test runs happen on customer machines. That shifts the real deployment question from raw chat quality to whether the model can support reliable multi-step coding workflows under enterprise security constraints. (`3113f0fa8043` · neutral · deployment_implications; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
-- The source treats Composer 2 as an already-usable option in a generally available product, which suggests productization rather than a research preview. However, the article offers no independent evidence about adoption, benchmark standing, or ecosystem depth. (`8eed41e66f2a` · neutral · maturity_signals; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
-- Composer 2 is presented as one of the models available to Cursor’s self-hosted cloud agents. In this source, its main operational significance is that it can be used inside an agent harness that runs in customer infrastructure, which means model choice is being exposed as part of the agent execution layer rather than as a standalone chat experience. (`47e323db6885` · neutral · operational_profile; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
-- No pricing or inference-cost details are given. The only defensible inference is that model choice is being combined with self-hosted execution, so total cost would depend on both model usage and customer-run worker infrastructure. (`05b2bc4c1650` · neutral · pricing_inference_implications; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
-- No direct service-automation implication is stated beyond its use in autonomous coding agents. (`2e60ec9f4763` · neutral · service_automation_implications; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
-- It can be selected as the model inside Cursor’s multi-model agent workflow. (`e3266c802127` · supporting · core_capabilities[0]; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
-- It is compatible with custom-built agent harnesses, which matters when coding tasks need tool execution and verification loops. (`c91b63c8bc97` · supporting · core_capabilities[1]; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
-- "Multi-model: use Composer 2 or any model from frontier labs with custom-built agent harnesses." (`1c40dabee54e` · supporting · supporting_snippet; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
-- The article does not provide benchmark data, pricing, or failure cases for Composer 2. Because it is only mentioned as an available option, the source gives no basis for judging its quality relative to the other frontier models Cursor supports. (`774848323072` · uncertainty · weaknesses_limitations; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
-
-## Contradictions / tensions
-
-- The evidence is vendor-controlled and benchmark-centric, so real-world reliability is not independently established in this source. The article does not provide failure modes, benchmark task composition, or workload-specific regressions, so the "frontier-level" framing should be treated cautiously as of 2026-03-19. (uncertainty; [[sources/introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1|Introducing Composer 2]])
-- The article does not provide benchmark data, pricing, or failure cases for Composer 2. Because it is only mentioned as an available option, the source gives no basis for judging its quality relative to the other frontier models Cursor supports. (uncertainty; [[sources/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy|Run cloud agents in your own infrastructure]])
+- Sources: 2
+- Evidence items: 24
+- Current input hash: `f3a8e831d1f85d98`
+- Cached input hash: `f3a8e831d1f85d98`
+- Last synthesized: 2026-07-09T19:16:40Z
+- Synthesis status: `fresh`
 
 ## Related pages
 

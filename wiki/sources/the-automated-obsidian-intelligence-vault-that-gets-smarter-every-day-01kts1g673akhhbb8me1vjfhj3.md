@@ -5,10 +5,8 @@ category: source
 tags:
 - agent-memory
 - agent-systems
-- agentic
 - api-first
 - autonomous
-- cli-tool
 - knowledge-systems
 - local-first
 - workflow-automation
@@ -17,13 +15,12 @@ author: Shashwat
 publication: Medium
 published_date: '2026-05-15'
 assessed_as_of: '2026-05-15'
-ingested_at: '2026-06-16T00:53:42+00:00'
+ingested_at: '2026-07-09T19:18:18.456416+00:00'
 canonical_url: https://ai.plainenglish.io/the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-709e240150d3
 content_sha256: 368002cd12dc60dc44f25a1d096080ff875dadc10b93225c53820323708db15a
 derived_how_to:
 - how-to/agentic-personal-knowledge-management.md
 derived_tools:
-- tools/claude-code.md
 - tools/n8n.md
 - tools/obsidian.md
 derived_topics:
@@ -31,7 +28,6 @@ derived_topics:
 - topics/file-native-ai-workflows.md
 derived_pages:
 - how-to/agentic-personal-knowledge-management.md
-- tools/claude-code.md
 - tools/n8n.md
 - tools/obsidian.md
 - topics/agent-maintained-knowledge-bases.md
@@ -53,7 +49,6 @@ This piece is about turning a note-taking vault into an automatic thinking assis
 ## Derived knowledge pages
 
 - [[how-to/agentic-personal-knowledge-management]]
-- [[tools/claude-code]]
 - [[tools/n8n]]
 - [[tools/obsidian]]
 - [[topics/agent-maintained-knowledge-bases]]

@@ -35,13 +35,13 @@ types:
 
 CleanShot X is a mature Mac screenshot and screen-recording utility built for high-frequency visual communication. The sources consistently describe it as more than a capture tool: it combines scrolling screenshots, annotation, OCR, GIF/MP4 recording, cloud sharing, and pinning captures so people can turn UI states or incidents into shareable output fast. It seems most useful in support, product, design, and internal documentation workflows where screenshots need to be cleaned up and distributed immediately. The main caveat is that the evidence is opinion-based and feature-focused; it does not prove superiority over the built-in macOS tool or other screenshot apps, and for light use the native tool may be enough.
 
-## Example in practice
+## Typical use case
 
 ### Turning a bug report into shareable evidence
 
 A support engineer is troubleshooting a customer issue in a web dashboard. They capture a scrolling screenshot of the full page, annotate the problem area, use OCR to copy text from an error message, and share the result as a short link in chat. If they need to show a quick repro step, they record a short GIF or MP4 instead. During the call, they pin the capture on screen so they can compare the live UI against the reference without switching windows.
 
-- Why it helps: It shows how CleanShot X compresses several small steps—capture, cleanup, extraction, and sharing—into one workflow, which is where the tool’s value appears strongest.
+- Why this helps: It shows how CleanShot X compresses several small steps—capture, cleanup, extraction, and sharing—into one workflow, which is where the tool’s value appears strongest.
 
 - Basis: `source-grounded`
 

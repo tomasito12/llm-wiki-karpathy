@@ -17,6 +17,7 @@ confidence: 0.92
 synthesis_state: stage1-placeholder
 types:
 - app
+- e-mail
 ---
 
 # Mimestream

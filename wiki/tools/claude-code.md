@@ -15,8 +15,8 @@ tags:
 - workflow-automation
 first_seen: '2026-03-25'
 last_seen: '2026-05-20'
-source_count: 17
-evidence_count: 196
+source_count: 16
+evidence_count: 185
 source_ids:
 - a-guide-to-agent-native-product-management-every-01krc5a85g6t1qh1y38nt7yzmn
 - building-a-complete-personal-harness-llm-wiki-developer-s-second-brain-in-obsidian-01krbnant10607tp88nmdzn55s
@@ -33,14 +33,13 @@ source_ids:
 - sdd-writing-specifications-for-ai-bdd-as-the-missing-link-spec-driven-development-01kqz04y32hqhskkq6c3jh3esj
 - setting-up-mac-for-development-may-2026-01ktpm1xqjsx1ra42yp56bera0
 - technology-radar-01krc5f8a8a6x35ke2kdjn5d9w
-- the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3
 - your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn
 value_level: high
-confidence: 0.918824
-synthesis_state: synthesized
-synthesis_stale: false
+confidence: 0.9225
+synthesis_state: stale
+synthesis_stale: true
 synthesis_input_hash: 4d88471923f971a5
-current_input_hash: 4d88471923f971a5
+current_input_hash: f36bd84d3ce2faba
 synthesis_schema_version: 1
 synthesis_prompt_version: 1
 last_synthesized_at: '2026-07-09T16:43:16Z'
@@ -54,17 +53,20 @@ types:
 
 # Claude Code
 
+> [!warning] Synthesis may be stale
+> New or changed evidence exists. The prose synthesis below was generated from an older evidence hash.
+
 ## Executive synthesis
 
 Claude Code is best understood as a terminal-first execution layer for agentic work: it can read and write local files, run multi-step tasks, call tools, and keep going until a task is complete or verified. Across the sources, it shows up most strongly in file-native workflows such as Obsidian vault maintenance, structured wiki ingestion, and repo-centered spec-to-code loops. The common pattern is not “ask a question and get an answer,” but “give the agent a workspace, instructions, and a target, then review the diffs.” Its value rises when the workflow is repetitive, local, and governed by clear rules like CLAUDE.md, git review, or tests. The main caveat is that this is still a harnessed agent, not a set-and-forget system: the sources repeatedly warn that bad instructions, missing guardrails, or weak verification can produce wrong or destructive edits.
 
-## Example in practice
+## Typical use case
 
 ### Scheduled repo or vault maintenance with review
 
 A team keeps product notes, issue drafts, and weekly review artifacts in a repository. They give Claude Code a CLAUDE.md file that defines the folder structure, naming rules, and what not to edit. On a schedule, the agent reads the latest notes, updates related markdown pages, drafts a summary, and opens a pull request with the changes. A human then reviews the diff and accepts or corrects it. The same pattern can also pull in connected data through MCP, so the agent can summarize a live workflow instead of only static files.
 
-- Why it helps: It shows why Claude Code is more useful as a workflow executor than as a chat assistant: it can keep structured artifacts in sync across sessions, while git and human review provide the control layer.
+- Why this helps: It shows why Claude Code is more useful as a workflow executor than as a chat assistant: it can keep structured artifacts in sync across sessions, while git and human review provide the control layer.
 
 - Basis: `source-grounded`
 
@@ -113,12 +115,12 @@ Use Claude Code when the job is to maintain and transform local files across mul
 
 ## Evidence index
 
-- Sources: 17
-- Evidence items: 196
-- Current input hash: `4d88471923f971a5`
+- Sources: 16
+- Evidence items: 185
+- Current input hash: `f36bd84d3ce2faba`
 - Cached input hash: `4d88471923f971a5`
 - Last synthesized: 2026-07-09T16:43:16Z
-- Synthesis status: `fresh`
+- Synthesis status: `stale`
 
 ## Related pages
 
@@ -129,7 +131,6 @@ Use Claude Code when the job is to maintain and transform local files across mul
 - [[tools/e2b-mcp|E2B MCP]]
 - [[tools/ollama|Ollama]]
 - [[tools/granola|Granola]]
-- [[tools/n8n|n8n]]
 
 ## Sources
 
@@ -148,5 +149,4 @@ Use Claude Code when the job is to maintain and transform local files across mul
 - [[sources/sdd-writing-specifications-for-ai-bdd-as-the-missing-link-spec-driven-development-01kqz04y32hqhskkq6c3jh3esj|SDD Writing Specifications for AI: BDD as the Missing Link — Spec-Driven Development]]
 - [[sources/setting-up-mac-for-development-may-2026-01ktpm1xqjsx1ra42yp56bera0|Setting Up Mac for Development [May 2026]]]
 - [[sources/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w|Technology Radar]]
-- [[sources/the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3|The Automated Obsidian Intelligence Vault That Gets Smarter Every Day]]
 - [[sources/your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn|Your Obsidian Vault Is a Knowledge Graph. Here’s How to Make It Think (quickly).]]

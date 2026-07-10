@@ -14,16 +14,16 @@ tags:
 - inference-systems
 - local-first
 - memory-systems
+- model-architecture
 - open-source
 - runtime-systems
 - software-engineering
-- tool-use
 source_id: choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj
 author: Michael Hannecke
 publication: Medium
 published_date: '2026-04-20'
 assessed_as_of: '2026-04-20'
-ingested_at: '2026-06-15T21:56:24+00:00'
+ingested_at: '2026-07-09T19:30:09.966124+00:00'
 canonical_url: https://medium.com/@michael.hannecke/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-2449067b8b67
 content_sha256: 7ed1d5f17c02c7433d06a5e33ff0e6bdce685c40f08d53e1f1c03c7d7a99a8e5
 derived_glossary:

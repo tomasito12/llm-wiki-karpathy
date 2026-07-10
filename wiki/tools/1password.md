@@ -36,13 +36,13 @@ types:
 
 1Password is a mature, subscription-based password manager that works across major operating systems and browsers and does more than store logins. The reviewed sources consistently describe it as useful for browser autofill, secure document storage, SSH keys, API tokens, secure notes, and sharing secrets with people who may not use the same device ecosystem. The practical value is that it becomes an identity and access layer for everyday work: once credentials, documents, and shared secrets are organized, the rest of the software stack is easier to sign into and rehydrate on a new machine. The main caveat is cost and fit: the sources frame it as expensive relative to free alternatives, and they do not provide evidence about enterprise policy controls or measurable security superiority.
 
-## Example in practice
+## Typical use case
 
 ### Rehydrating a work setup on a fresh machine
 
 A consultant sets up a new Mac and needs to get back into email, internal dashboards, and a client portal without hunting through old notes. 1Password holds the logins, browser autofill fills the forms, and a secure document entry keeps a passport scan available for travel. The consultant also shares a project vault with a contractor who uses Windows, so the same secrets stay organized without forcing everyone onto one device ecosystem.
 
-- Why it helps: It shows why 1Password is more than a password list: it reduces setup friction, supports mixed-device collaboration, and keeps identity documents and operational secrets in one place.
+- Why this helps: It shows why 1Password is more than a password list: it reduces setup friction, supports mixed-device collaboration, and keeps identity documents and operational secrets in one place.
 
 - Basis: `source-grounded`
 

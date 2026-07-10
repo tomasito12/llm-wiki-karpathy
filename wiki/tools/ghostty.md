@@ -34,13 +34,13 @@ types:
 
 Ghostty is presented as a fast, native, open-source terminal for macOS that reduces setup friction and fits command-line-heavy workflows. The main value proposition is ergonomic rather than exotic: GPU-accelerated rendering for smooth long scrollback, simple text configuration, built-in themes, and a lightweight feel that avoids Electron-style overhead. The sources position it as especially useful when the terminal is part of an active coding loop, including agentic tools that produce long output and need frequent human review. Evidence quality is modest: the claims are mostly anecdotal, with no independent benchmarks and little coverage of cross-platform behavior, plugin-heavy usage, or enterprise adoption. If you rarely use a terminal, the sources say to skip it.
 
-## Example in practice
+## Typical use case
 
 ### Agentic coding loop on macOS
 
 A developer is using Claude Code to iterate on a small service-automation script. The agent prints long traces, writes files, and pauses for review. In Ghostty, the developer can keep the scrollback smooth, tweak the terminal with a simple config file, and switch themes without a lot of setup. That makes the review loop feel less like fighting the terminal and more like supervising the code changes. If the same person only opens a terminal once in a while, the benefit is much smaller.
 
-- Why it helps: It shows why Ghostty matters most when the terminal is an everyday work surface for long, repetitive, command-line sessions rather than a rarely used utility.
+- Why this helps: It shows why Ghostty matters most when the terminal is an everyday work surface for long, repetitive, command-line sessions rather than a rarely used utility.
 
 - Basis: `illustrative`
 

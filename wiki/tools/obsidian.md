@@ -52,13 +52,13 @@ types:
 
 Obsidian emerges in these sources as a local-first, file-native knowledge workspace that works well when you want humans and AI tools to operate on the same plain-text corpus. The common pattern is not “Obsidian as the brain,” but Obsidian as the visible front end and durable storage layer for raw sources, wiki pages, daily notes, and project context. That makes it especially useful for AI-assisted personal knowledge systems, documentation workflows, and agent-driven drafting or review. The main caveat is that the value depends on disciplined structure and external orchestration: Obsidian by itself does not solve schema design, maintenance, sync, collaboration, or governance.
 
-## Example in practice
+## Typical use case
 
 ### An AI-maintained vault with human review
 
 A developer sets up an Obsidian vault with separate folders for raw sources, wiki pages, and working notes. Claude Code reads and writes the Markdown files directly, while Obsidian is used to browse backlinks, search, and review what changed. A Local REST API or MCP bridge can expose note context, and Git can be used to inspect diffs before accepting AI edits. In practice, the human uses Obsidian to notice gaps or bad links, while the agent keeps drafting daily notes, summaries, and linked pages in the background.
 
-- Why it helps: This shows the main pattern in the sources: Obsidian stays the user-facing workspace, while file-aware tools do the maintenance work on the same local files.
+- Why this helps: This shows the main pattern in the sources: Obsidian stays the user-facing workspace, while file-aware tools do the maintenance work on the same local files.
 
 - Basis: `source-grounded`
 

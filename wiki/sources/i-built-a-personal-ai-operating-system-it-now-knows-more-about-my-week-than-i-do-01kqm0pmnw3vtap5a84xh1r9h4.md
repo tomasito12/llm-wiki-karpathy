@@ -9,6 +9,7 @@ tags:
 - agent-systems
 - developer-focused
 - human-ai-collaboration
+- knowledge-systems
 - local-first
 - low-latency
 - open-source
@@ -21,7 +22,7 @@ author: Alex E
 publication: Medium
 published_date: '2026-04-12'
 assessed_as_of: '2026-04-12'
-ingested_at: '2026-06-06T21:54:42+00:00'
+ingested_at: '2026-07-10T11:51:13.914631+00:00'
 canonical_url: https://medium.com/towards-artificial-intelligence/i-built-a-personal-ai-operating-system-it-now-knows-more-about-my-week-than-i-do-bddad36f8934
 content_sha256: a703465d127ea5f0bdf67a9780245cf626a1c86fda58475c62d9edd028f7e85a
 derived_models:

@@ -17,61 +17,78 @@ source_ids:
 - obsidian-s-official-skills-are-here-it-s-time-to-let-ai-plug-into-your-local-vault-01kqfzks8n4e91tn6m1vs562sk
 value_level: high
 confidence: 0.9
-synthesis_state: stage1-placeholder
+synthesis_state: synthesized
+synthesis_stale: false
+synthesis_input_hash: a3f0ffedd91d9903
+current_input_hash: a3f0ffedd91d9903
+synthesis_schema_version: 1
+synthesis_prompt_version: 1
+last_synthesized_at: '2026-07-09T19:00:07Z'
 ---
 
 # File Grammar Skills for AI
 
-## Current understanding
+## Executive synthesis
 
-<!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
-A useful way to make AI outputs reliable is to encode the rules of a file format as a skill or instruction pack. The model can then check those rules before acting, which reduces malformed output and keeps generated content compatible with the target application. This is especially helpful when the target is a structured local format rather than free text. The pattern generalizes to any workflow where a model must write valid artifacts, not just answer questions.
+File grammar skills are a pattern for making AI behavior reusable and reliable by putting instructions in a predictable file or folder structure. The key idea is simple: keep a short discovery layer for matching, then load the fuller procedure only when the request fits. That helps with context bloat and makes repeated workflows easier to maintain than re-explaining rules in every prompt. The sources agree this is especially valuable when the AI must generate structured artifacts that need to stay valid, editable, and compatible with another tool. The main limitation is that the evidence is conceptual, not measured: it supports the design logic, but not precise performance claims.
 
-## Examples
+## Example in practice
 
-The source gives three concrete file grammars: Obsidian-flavored Markdown, Bases, and JSON Canvas. It describes the model as loading each skill's name and description, then activating the matching skill when a request fits.
+### Support-summary skill folder
 
-## Key Points
+A team sets up a folder for a support-report skill. The top file has a short description: “Use this when turning ticket notes into a customer-ready incident summary.” When the model sees a request that matches, it loads the detailed instructions: required sections, tone, redaction rules, and a template for the final note. If the task doesn’t match, the skill stays dormant. This means the team does not repeat the same formatting rules in every prompt, and the generated summary is more likely to follow the same structure each time. The skill files remain editable by humans outside the AI system.
 
-- Skill files can teach a model to follow a file format before it writes anything.
-- Structured generation is more reliable when the target format is explicit and narrow.
-- The approach is useful for local artifacts that must remain editable outside the AI system.
-- The durable unit is a folder, not just a prompt snippet.
-- Metadata is used for matching before the full instructions are loaded.
-- Progressive disclosure helps control context size and keeps instructions maintainable.
-- The pattern is strongest when workflows are repetitive and rules are stable.
+- Why it helps: It shows how a small match layer plus a deeper instruction file can keep outputs consistent without stuffing every conversation with rules.
 
-## Operational Insight
+- Basis: `illustrative`
 
-Treat file grammar as first-class operational knowledge, not as an afterthought. A skill file can act like a lightweight validator and style guide for generation workflows, which is often cheaper than post-processing bad output.
+## Context card
 
-## Evidence / supporting sources
+- **Use this page when:** Use this page when you need a compact mental model for file-based AI skills: what they are, why they reduce prompt repetition, and when they are a better fit than ad hoc prompting.
+- **Best for questions about:** How file-based AI skills work, When to use skill files instead of repeated prompting, How to keep AI output valid for structured artifacts, Why progressive disclosure matters in workflow automation
+- **Not enough for:** Choosing one specific skill-file syntax for your stack, Implementing a full production runtime or orchestration layer, Measuring ROI or reliability gains quantitatively, Cases where the task is highly open-ended or changes every turn
+- **Strongest sources:** Obsidian’s Official Skills Are Here! It’s time to let AI plug into your local Vault., How to build Claude Skills 2.0 Better than 99% of People
+- **Related tags:** ai-engineering, context-engineering, runtime-architecture, workflow-automation
 
-### How to build Claude Skills 2.0 Better than 99% of People (2026-03-25)
+## What to remember
 
-- A file grammar approach packages instructions, metadata, and optional resources into a predictable file structure that an AI system can discover and load when needed. This pattern is useful when repeated tasks need stable behavior without re-explaining rules in every conversation. The key design choice is to separate compact discovery metadata from fuller runtime instructions. That lets teams keep the reusable logic in versioned files instead of scattering it across prompts. The approach works best when the file format is simple enough for automated loading and selective expansion. (`68e4e8f9ac76` · neutral · knowledge_summary; [[sources/how-to-build-claude-skills-2-0-better-than-99-of-people-01kqfzngwjk9z6mbkcj9yx6tfn|How to build Claude Skills 2.0 Better than 99% of People]])
-- For durable workflow automation, treat the instruction file as a contract: metadata decides matching, while the body holds the task procedure. Keep the top layer short and let the system load detail only after a match, which reduces context bloat and keeps repeated workflows manageable. (`c390d1d0e3fa` · neutral · operational_insight; [[sources/how-to-build-claude-skills-2-0-better-than-99-of-people-01kqfzngwjk9z6mbkcj9yx6tfn|How to build Claude Skills 2.0 Better than 99% of People]])
-- This is operationally useful wherever teams need repeatable AI behavior across many similar tasks, especially in support automation, content generation, and internal workflow tooling. It gives a maintainable way to encode rules and templates so the same process can be reused without manual re-prompting. (`681bc44f8c1a` · neutral · relevance_note; [[sources/how-to-build-claude-skills-2-0-better-than-99-of-people-01kqfzngwjk9z6mbkcj9yx6tfn|How to build Claude Skills 2.0 Better than 99% of People]])
-- The durable unit is a folder, not just a prompt snippet. (`bb01b84289c8` · supporting · key_points[0]; [[sources/how-to-build-claude-skills-2-0-better-than-99-of-people-01kqfzngwjk9z6mbkcj9yx6tfn|How to build Claude Skills 2.0 Better than 99% of People]])
-- Metadata is used for matching before the full instructions are loaded. (`7a07599865da` · supporting · key_points[1]; [[sources/how-to-build-claude-skills-2-0-better-than-99-of-people-01kqfzngwjk9z6mbkcj9yx6tfn|How to build Claude Skills 2.0 Better than 99% of People]])
-- Progressive disclosure helps control context size and keeps instructions maintainable. (`11b32a3b8e9a` · supporting · key_points[2]; [[sources/how-to-build-claude-skills-2-0-better-than-99-of-people-01kqfzngwjk9z6mbkcj9yx6tfn|How to build Claude Skills 2.0 Better than 99% of People]])
-- The pattern is strongest when workflows are repetitive and rules are stable. (`c0899eb868fa` · supporting · key_points[3]; [[sources/how-to-build-claude-skills-2-0-better-than-99-of-people-01kqfzngwjk9z6mbkcj9yx6tfn|How to build Claude Skills 2.0 Better than 99% of People]])
-- "A Skill is a set of instructions packaged in a simple folder that you can set up once and benefit from every time." (`0ff03ccaba9f` · supporting · supporting_snippet; [[sources/how-to-build-claude-skills-2-0-better-than-99-of-people-01kqfzngwjk9z6mbkcj9yx6tfn|How to build Claude Skills 2.0 Better than 99% of People]])
+- Think of a skill as a durable folder of instructions, not a one-off prompt snippet.
+- Use metadata for matching first, then load the detailed rules only after the request fits.
+- This pattern is strongest for repeated tasks with stable rules and narrow output formats.
+- It is especially useful for AI-generated files and other structured artifacts that must survive parsing or editing.
+- The point is operational reliability and maintainability, not just shorter prompts.
 
-### Obsidian’s Official Skills Are Here! It’s time to let AI plug into your local Vault. (2026-01-16)
+## Consensus
 
-- The source gives three concrete file grammars: Obsidian-flavored Markdown, Bases, and JSON Canvas. It describes the model as loading each skill's name and description, then activating the matching skill when a request fits. (`0ccccdd08844` · neutral · examples; [[sources/obsidian-s-official-skills-are-here-it-s-time-to-let-ai-plug-into-your-local-vault-01kqfzks8n4e91tn6m1vs562sk|Obsidian’s Official Skills Are Here! It’s time to let AI plug into your local Vault.]])
-- A useful way to make AI outputs reliable is to encode the rules of a file format as a skill or instruction pack. The model can then check those rules before acting, which reduces malformed output and keeps generated content compatible with the target application. This is especially helpful when the target is a structured local format rather than free text. The pattern generalizes to any workflow where a model must write valid artifacts, not just answer questions. (`e82ffe61ca05` · neutral · knowledge_summary; [[sources/obsidian-s-official-skills-are-here-it-s-time-to-let-ai-plug-into-your-local-vault-01kqfzks8n4e91tn6m1vs562sk|Obsidian’s Official Skills Are Here! It’s time to let AI plug into your local Vault.]])
-- Treat file grammar as first-class operational knowledge, not as an afterthought. A skill file can act like a lightweight validator and style guide for generation workflows, which is often cheaper than post-processing bad output. (`679ef33c9dd1` · neutral · operational_insight; [[sources/obsidian-s-official-skills-are-here-it-s-time-to-let-ai-plug-into-your-local-vault-01kqfzks8n4e91tn6m1vs562sk|Obsidian’s Official Skills Are Here! It’s time to let AI plug into your local Vault.]])
-- This matters long-term because many AI systems need to generate structured artifacts that must survive parsing, editing, and round-tripping through another tool. Encoding file rules as machine-readable instructions is a reusable pattern for agents that create notes, diagrams, configs, or other local files. (`bbedd494e2af` · neutral · relevance_note; [[sources/obsidian-s-official-skills-are-here-it-s-time-to-let-ai-plug-into-your-local-vault-01kqfzks8n4e91tn6m1vs562sk|Obsidian’s Official Skills Are Here! It’s time to let AI plug into your local Vault.]])
-- Skill files can teach a model to follow a file format before it writes anything. (`7c19ef143032` · supporting · key_points[0]; [[sources/obsidian-s-official-skills-are-here-it-s-time-to-let-ai-plug-into-your-local-vault-01kqfzks8n4e91tn6m1vs562sk|Obsidian’s Official Skills Are Here! It’s time to let AI plug into your local Vault.]])
-- Structured generation is more reliable when the target format is explicit and narrow. (`78914845cb11` · supporting · key_points[1]; [[sources/obsidian-s-official-skills-are-here-it-s-time-to-let-ai-plug-into-your-local-vault-01kqfzks8n4e91tn6m1vs562sk|Obsidian’s Official Skills Are Here! It’s time to let AI plug into your local Vault.]])
-- The approach is useful for local artifacts that must remain editable outside the AI system. (`759352829ae6` · supporting · key_points[2]; [[sources/obsidian-s-official-skills-are-here-it-s-time-to-let-ai-plug-into-your-local-vault-01kqfzks8n4e91tn6m1vs562sk|Obsidian’s Official Skills Are Here! It’s time to let AI plug into your local Vault.]])
-- "When your request matches a skill's description, that skill activates and Claude follows the rules in that file for subsequent actions." (`1bf65e26a703` · supporting · supporting_snippet; [[sources/obsidian-s-official-skills-are-here-it-s-time-to-let-ai-plug-into-your-local-vault-01kqfzks8n4e91tn6m1vs562sk|Obsidian’s Official Skills Are Here! It’s time to let AI plug into your local Vault.]])
+- File grammar skills are a durable way to package instructions, metadata, and optional resources into a predictable folder or file structure that an AI system can discover and load when needed.
+- The metadata layer is meant to be small and used for matching first; the fuller instructions are loaded only after a request fits, which helps control context size.
+- This approach is most useful for repeated, rules-heavy workflows where outputs need to stay valid across many runs, especially when the target artifact must be parsed, edited, or round-tripped by another tool.
+- Treating the instruction file as a contract can improve reliability because the file itself teaches the model what format to follow before it writes anything.
 
-## Contradictions / tensions
+## Tensions / open questions
 
-No contradictions captured in current sources.
+- The sources strongly imply the pattern generalizes, but they do not prove where it breaks down or how often it fails in practice.
+- One source emphasizes local, editable artifacts; the other emphasizes reusable workflow automation more broadly. That suggests the same pattern, but in slightly different operational settings.
+- The benefits are described as reliability and maintainability, but the evidence does not quantify tradeoffs such as setup cost, governance overhead, or versioning complexity.
+
+## Evidence quality
+
+- Evidence is strong for the core pattern: both sources independently support file-packaged instructions, metadata-based matching, and progressive disclosure.
+- The sources are mostly explanatory and example-driven rather than empirical, so this page is best read as a design pattern, not a measured benchmark.
+- The evidence points to broad usefulness for structured local artifacts and repeated workflows, but it does not establish universal applicability.
+
+## Practical takeaway
+
+Use file grammar skills when you have a repeatable workflow with a stable format: put matching metadata up front, keep the detailed procedure in the file body, and let the system load depth only after a match. This is less about clever prompting and more about making the AI follow a reusable contract for structured outputs.
+
+## Evidence index
+
+- Sources: 2
+- Evidence items: 16
+- Current input hash: `a3f0ffedd91d9903`
+- Cached input hash: `a3f0ffedd91d9903`
+- Last synthesized: 2026-07-09T19:00:07Z
+- Synthesis status: `fresh`
 
 ## Related pages
 

@@ -16,7 +16,7 @@ tags:
 first_seen: '2025-11-11'
 last_seen: '2026-05-23'
 source_count: 12
-evidence_count: 143
+evidence_count: 137
 source_ids:
 - build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-01kts19400x91hkkaam8ed7tvt
 - choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj
@@ -36,7 +36,6 @@ synthesis_state: stage1-placeholder
 types:
 - ai-infrastructure
 - app
-- cloud-saas
 - library
 - model-serving
 - terminal
@@ -63,9 +62,6 @@ Ollama is a local model runner that installs on a personal computer and provides
 - It runs local models so inference can stay on personal hardware rather than an external API.
 - It can support multiple model roles in the same system, including quality-sensitive and low-latency channels.
 - It can sit underneath web, messaging, voice, and MCP-connected workflows as a shared model runtime.
-- It exposes local models through an HTTP API, which makes it easy to integrate with existing application services.
-- It packages a model registry around the backend, reducing manual model-management overhead for developers.
-- It can sit on either llama.cpp or MLX depending on version and model support, which changes its runtime behavior and migration profile.
 - It can serve models locally so prompts and outputs stay on user-owned infrastructure.
 - It can present an Anthropic-compatible interface so Claude Code-style workflows can be redirected with less integration work.
 - It can route requests to an Ollama cloud free tier as well as to local hardware, which gives teams a migration path between hosted and self-hosted setups.
@@ -101,9 +97,6 @@ Ollama is a local model runner that installs on a personal computer and provides
 - The source places it under a FastAPI application that also exposes web, messaging, voice, and MCP interfaces.
 - It is used alongside PostgreSQL and pgvector in a persistent assistant stack.
 - It is paired with multiple local models rather than a single monolithic model choice.
-- It exposes an HTTP API that fits service-oriented integration patterns.
-- It has historically used llama.cpp as its backend, which ties it to GGUF-based model workflows.
-- It added an MLX preview for selected Apple Silicon models in version 0.19.
 - It is presented as compatible with Claude Code through an Anthropic API-shaped interface.
 - It is tied in the article to model availability including Kimi K2.5, GLM-5, Qwen 3.5, and MiniMax M2.7 on the cloud free tier.
 - The article uses Ollama with a Python orchestrator through its HTTP API.
@@ -164,18 +157,12 @@ The article describes Ollama as widely supported and easy to install, which sugg
 
 ### Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks (2026-04-20)
 
-- It exposes an HTTP API that fits service-oriented integration patterns. (`4b3beaf6a6f7` · neutral · integration_ecosystem[0]; [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]])
-- It has historically used llama.cpp as its backend, which ties it to GGUF-based model workflows. (`a520b29664d9` · neutral · integration_ecosystem[1]; [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]])
-- It added an MLX preview for selected Apple Silicon models in version 0.19. (`7a1a60cb1cd9` · neutral · integration_ecosystem[2]; [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]])
 - The source presents Ollama as established enough to be part of the runtime landscape rather than an experimental add-on. Version 0.19’s MLX preview and the planned fuller rollout suggest active platform evolution as of 2026-04-20. At the same time, the article explicitly frames backend changes as a source of migration risk, which is a sign of real operational relevance rather than static maturity. (`453de87ed0d0` · neutral · maturity_signals; [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]])
 - Ollama is relevant when teams want a simple local inference layer with an API rather than direct engine integration. It reduces setup friction for developer workflows and internal tooling, but it also creates a coupling to whichever backend Ollama exposes. For product teams, that makes it useful as a convenience layer, but less ideal if backend portability or low-level control is a requirement. (`d8d980d06957` · neutral · operational_relevance; [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]])
 - Ollama is a local model runtime and wrapper that provides a model registry and HTTP API around an inference backend. In the source it is described as historically built on llama.cpp, with version 0.19 adding an MLX preview for selected Apple Silicon models. (`f950c1dd54f2` · neutral · short_description; [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]])
 - - Provides a model registry plus HTTP API, which makes local inference easier to wire into applications that expect a service endpoint.
 - Historically sits on top of llama.cpp, so it inherits a broad local-model ecosystem and a familiar deployment model.
 - The source says version 0.19 introduced an MLX preview, which matters for Apple Silicon teams tracking backend performance changes. (`5c1720994f84` · neutral · strengths; [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]])
-- It exposes local models through an HTTP API, which makes it easy to integrate with existing application services. (`7ccdc6d581b0` · supporting · core_capabilities[0]; [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]])
-- It packages a model registry around the backend, reducing manual model-management overhead for developers. (`1ac0b795ca44` · supporting · core_capabilities[1]; [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]])
-- It can sit on either llama.cpp or MLX depending on version and model support, which changes its runtime behavior and migration profile. (`fc5158b670d3` · supporting · core_capabilities[2]; [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]])
 - "Ollama wraps a model registry and HTTP API around an inference backend. Historically built on llama.cpp, version 0.19 introduced an MLX preview for selected models. The full MLX rollout is expected in Q2 2026." (`2ca26fc697f6` · supporting · supporting_snippet; [[sources/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj|Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks]])
 - - The source treats Ollama as a wrapper, so its abstraction can hide backend shifts that affect compatibility and migration cost.
 - It is ruled out for App Store distribution when an embedded framework is required instead of a separate daemon process.

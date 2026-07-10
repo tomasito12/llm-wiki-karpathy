@@ -7,7 +7,7 @@ author: 🔳 Turing Post
 publication: beehiiv.com
 published_date: '2026-06-10'
 assessed_as_of: '2026-06-10'
-ingested_at: '2026-06-15T20:53:34+00:00'
+ingested_at: '2026-07-09T19:26:45.810831+00:00'
 canonical_url: mailto:reader-forwarded-email/70f24580d6ed828ee99c5a74037b283f
 content_sha256: 256b96476836d576beda85a85268b1a42e6e042a37edc31fb16bafe133c66f16
 ---

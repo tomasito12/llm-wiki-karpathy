@@ -39,13 +39,13 @@ types:
 
 Hermes Agent is a local-first, self-hosted AI agent built around persistent memory and reusable skills. The main idea is simple: when the agent succeeds at a task, it can turn that workflow into a markdown Skill and reuse it later, while keeping deterministic Tools separate from learned behavior. That makes it a good fit for repeated workflows, especially codebase work, research, and internal automation where data locality and control matter. The evidence also points to clear caveats: the project is early-stage, self-authored skills can go stale when UIs or APIs change, and the stronger claims about efficiency come mostly from user impressions rather than measured benchmarks.
 
-## Example in practice
+## Typical use case
 
 ### Turning one good workflow into a reusable skill
 
 A team uses Hermes for a recurring support-to-engineering workflow. The agent checks a service ticket, looks up the related code or runbook, runs a command in an isolated Docker-backed terminal, and records the successful procedure as a reusable Skill. Next week, when a similar ticket arrives, Hermes can apply the saved Skill instead of rebuilding the whole plan from scratch. Because it is self-hosted, the team can keep the memory and task execution on their own infrastructure and connect the agent to the model and memory systems they already use.
 
-- Why it helps: This makes the core idea concrete: Hermes is not just answering once, it is trying to remember the procedure and make the next similar task cheaper and more consistent.
+- Why this helps: This makes the core idea concrete: Hermes is not just answering once, it is trying to remember the procedure and make the next similar task cheaper and more consistent.
 
 - Basis: `source-grounded`
 

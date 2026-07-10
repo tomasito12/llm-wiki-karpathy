@@ -6,9 +6,9 @@ category: glossary
 tags:
 - ai-engineering
 - inference
+- model-architecture
 - orchestration
 - runtime-architecture
-- tool-use
 first_seen: '2026-04-09'
 last_seen: '2026-05-12'
 source_count: 5
@@ -21,16 +21,19 @@ source_ids:
 - kimi-k2-6-just-dropped-the-open-source-coding-agent-that-already-beats-claude-opus-4-5-at-76-lower-cost-just-got-better-01kqkv823tq6868pfbrjg0khg6
 value_level: high
 confidence: 0.936
-synthesis_state: synthesized
-synthesis_stale: false
+synthesis_state: stale
+synthesis_stale: true
 synthesis_input_hash: 7aa97804fcc3ee23
-current_input_hash: 7aa97804fcc3ee23
+current_input_hash: 634af74296cc4b9f
 synthesis_schema_version: 1
 synthesis_prompt_version: 1
 last_synthesized_at: '2026-07-08T19:30:31Z'
 ---
 
 # Mixture-of-Experts
+
+> [!warning] Synthesis may be stale
+> New or changed evidence exists. The prose synthesis below was generated from an older evidence hash.
 
 ## Executive synthesis
 
@@ -82,10 +85,10 @@ Treat MoE as a compute-saving way to scale capacity, not as a free performance u
 
 - Sources: 5
 - Evidence items: 20
-- Current input hash: `7aa97804fcc3ee23`
+- Current input hash: `634af74296cc4b9f`
 - Cached input hash: `7aa97804fcc3ee23`
 - Last synthesized: 2026-07-08T19:30:31Z
-- Synthesis status: `fresh`
+- Synthesis status: `stale`
 
 ## Related pages
 

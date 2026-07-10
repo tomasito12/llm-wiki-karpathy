@@ -17,7 +17,13 @@ source_ids:
 - openai-just-open-sourced-the-one-thing-every-startup-should-have-built-first-01kqn8asyw9tae3fncffmy92cc
 value_level: high
 confidence: 0.955
-synthesis_state: stage1-placeholder
+synthesis_state: synthesized
+synthesis_stale: false
+synthesis_input_hash: 1aaa91fcfc491467
+current_input_hash: 1aaa91fcfc491467
+synthesis_schema_version: 1
+synthesis_prompt_version: 1
+last_synthesized_at: '2026-07-09T19:18:06Z'
 types:
 - open-weight-model
 - reasoning-model
@@ -25,117 +31,71 @@ types:
 
 # Privacy Filter
 
-## Current understanding
+## Executive synthesis
 
-<!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
-- Open-weight model specialized for masking personally identifiable information in text.
-- Built as a bidirectional token-classification model with span decoding, so it labels inputs in one pass and reconstructs coherent redaction spans.
-- The source positions it as context-aware rather than purely rule-based, which matters for subtle cases like private names, dates, secrets, and ambiguous references.
-- The model is small enough to run locally, which is the main operational differentiator for privacy-sensitive preprocessing workflows.
+Privacy Filter is a small open-weight model for context-aware PII masking. The core pattern is simple: run it locally as a preprocessing step so sensitive text can be redacted before it is logged, indexed, reviewed by humans, or sent to hosted AI systems. The sources agree it is stronger than rule-based masking for context-dependent cases and that its long context window makes it practical for longer documents and noisy production text. The main caveat is that it reduces privacy risk; it does not by itself guarantee compliance, anonymization, or correctness across every language and domain. Treat it as a privacy layer worth testing where unredacted text is a liability, especially in support, back-office, and retrieval pipelines.
 
-## Benchmark Observations
+## Practical relevance
 
-- OpenAI reports 96% F1 on PII-Masking-300k, with 94.04% precision and 98.04% recall.
-- OpenAI reports 97.43% F1 on a corrected version of the benchmark after annotation issues were identified.
-- The source says fine-tuning on a small amount of data raised F1 from 54% to 96% on the domain-adaption benchmark it evaluated.
-- The article reports 96% F1 on the PII-Masking-300k benchmark and 97.43% on a corrected version of that benchmark.
-- The article notes that OpenAI flagged annotation issues in the benchmark, which limits how much confidence to place in the published score alone.
-- The article says OpenAI reported a jump from 54% F1 to 96% F1 on a domain-adaptation benchmark after light fine-tuning.
+### Good fit for pre-send redaction in support pipelines
 
-## Comparative Observations
+A support workflow ingests customer emails, chat transcripts, or ticket attachments. Privacy Filter can run locally first to mask names, contact details, account numbers, dates, and secrets before the text is stored, indexed, or sent to a hosted summarization or routing model. The evidence is strong that this is the intended use case, but weak on real deployment behavior such as latency and throughput. That makes it a sensible candidate to test if your main risk is leaking sensitive text into downstream systems, not if you need a proven end-to-end compliance solution.
 
-- The source contrasts Privacy Filter with traditional PII tools that rely on deterministic rules for formats like phone numbers and email addresses, saying those tools miss subtler context-dependent personal information.
-- OpenAI frames the model as achieving frontier-level privacy filtering performance while remaining small enough to run locally.
-- The article positions the model against regex-based masking and argues it is better at context-sensitive identification of private names and entities.
-- It is described as solving a narrow redaction problem more directly than a general-purpose reasoning model such as GPT-5.5, Claude, or Gemini.
-- The piece frames it as a case where a small specialist model can be more appropriate than a much larger frontier model because the task is token labeling, not reasoning.
+- Why this matters: It explains the practical value: keep raw text on the local machine while reducing the chance that private data reaches storage, logs, or cloud models.
 
-## Core Capabilities
+- Basis: `source-grounded`
 
-- It masks personally identifiable information in text, including names, addresses, emails, phone numbers, dates, account numbers, and secrets.
-- It performs token-level classification and span decoding, which helps produce coherent redaction boundaries.
-- It supports long-context inference up to 128,000 tokens, which matters for documents and logs.
-- It allows fine-tuning for different privacy policies and data distributions.
-- It detects and masks personally identifiable information in unstructured text before the text is sent elsewhere.
-- It can process long documents in one pass because the article says it supports a 128k context window.
-- It can be tuned for different operating points, so teams can choose more recall or more precision depending on the workflow.
-- It can be fine-tuned on small labeled datasets to adapt to specialized vocabularies and domain-specific identifiers.
+## Context card
 
-## Maturity signals
+- **Use this page when:** You want a quick read on whether a local PII-masking model is worth testing as a privacy layer in an AI or data pipeline, especially before sending text to a hosted model.
+- **Best for questions about:** Whether Privacy Filter is a good fit for pre-send redaction of customer messages, tickets, transcripts, logs, or documents., How a local PII-masking model differs from rule-based redaction tools., When to use a specialist privacy filter instead of a general-purpose language model., What the model can and cannot do in a privacy workflow.
+- **Not enough for:** Production sizing, latency, throughput, or cost estimates., Proof that it works well in a specific language, script, or industry domain without local evaluation., Compliance sign-off or legal advice., Claims about broad anonymization beyond text redaction.
+- **Strongest sources:** Introducing OpenAI Privacy Filter, OpenAI Just Open-Sourced the One Thing Every Startup Should Have Built First
+- **Related tags:** inference-efficient, long-context-model, open-weight-model, tool-use-capable
 
-OpenAI says the model is released under Apache 2.0 on Hugging Face and GitHub, with documentation for architecture, taxonomy, decoding, evaluation, and limitations. That combination points to a real release artifact rather than a concept note. The source does not provide external adoption evidence, so maturity should be read as release-ready rather than proven at scale.
+## What to remember
 
-## Pricing / inference implications
+- It is a local open-weight model for masking PII in unstructured text.
+- Its main role is as a preprocessing layer before storage, indexing, review, or cloud model calls.
+- It handles context-aware redaction with token-level span decoding, not brittle format-only rules.
+- Long-context support makes it more practical for documents and logs than chunk-heavy workflows.
+- Fine-tuning and threshold tuning are supported, so teams should evaluate it on their own policy and data distribution.
+- Treat benchmark scores as useful signals, not proof of production quality.
 
-Running locally implies potentially lower marginal cost for high-volume redaction than sending all text to a hosted service, but the source gives no latency, hardware, or serving-cost numbers. The 1.5B total parameters with 50M active parameters suggest a relatively compact deployment footprint compared with larger frontier models.
+## Consensus
 
-## Provider
+- Privacy Filter is a small open-weight model for masking personally identifiable information in unstructured text.
+- Its main value is as a local preprocessing layer before training, indexing, logging, review, or handing text to hosted systems.
+- It uses token-level classification with span decoding, so it is meant to produce coherent redaction spans rather than simple regex matches.
+- The sources agree it is designed for long documents and can run locally, which matters when unredacted text should stay on-device or on-premise.
+- Both sources describe it as useful for privacy risk reduction, not as a complete compliance or anonymization solution.
 
-OpenAI
+## Tensions / open questions
 
-## Service automation implications
+- OpenAI reports strong benchmark results, but one source notes annotation issues and both sources stop short of third-party validation.
+- The model is positioned as better than regex-based masking, yet it can still miss uncommon identifiers and ambiguous references, especially in short or context-poor text.
+- It is described as small enough for local use, but the sources do not provide latency, hardware, or throughput data.
+- The model reduces privacy risk, but the sources explicitly say it is not itself a compliance or anonymization solution.
 
-Useful for support and back-office systems that need to scrub names, contact details, account numbers, or secrets before storage or handoff. It can reduce risk in ticket queues, chat transcripts, document review, and logging pipelines, but human review remains important in high-stakes workflows.
+## Evidence quality
 
-## Weaknesses / limitations
+- Evidence is reasonably strong for the model’s intended function, local deployment pattern, and main limitations because both sources align on these points.
+- Benchmark claims are vendor-reported, and one source notes annotation issues, so published scores should be treated as suggestive rather than definitive.
+- There is no external adoption evidence, throughput data, or independent evaluation in the provided sources.
+- Real-world quality likely depends on language, domain, and label coverage, so local validation is still required.
 
-The source says performance may vary across languages, scripts, naming conventions, and domains outside the training distribution. It can miss uncommon identifiers and ambiguous private references, and it can over- or under-redact when context is limited, especially in short sequences. OpenAI also notes it is not an anonymization tool or compliance certification.
+## Practical takeaway
 
-## Evidence / supporting sources
+Use Privacy Filter when you need local, context-aware PII masking as a front door to downstream AI or data systems. Validate it on your own texts and policies; do not treat its benchmark scores or redaction behavior as a substitute for compliance review.
 
-### Introducing OpenAI Privacy Filter (2026-04-22)
+## Evidence index
 
-- The source contrasts Privacy Filter with traditional PII tools that rely on deterministic rules for formats like phone numbers and email addresses, saying those tools miss subtler context-dependent personal information. (`136ac0a57b7a` · neutral · comparative_observations[0]; [[sources/introducing-openai-privacy-filter-01kptv6v2rm47hbeqs6trnpaaj|Introducing OpenAI Privacy Filter]])
-- OpenAI frames the model as achieving frontier-level privacy filtering performance while remaining small enough to run locally. (`be1303ad0a15` · neutral · comparative_observations[1]; [[sources/introducing-openai-privacy-filter-01kptv6v2rm47hbeqs6trnpaaj|Introducing OpenAI Privacy Filter]])
-- - Fits as a local preprocessing stage before training, indexing, logging, or human review, so sensitive text can be filtered before leaving a machine.
-- The 128,000-token context window and single-pass labeling make it practical for long documents and noisy production text where multi-step chunking would be awkward.
-- Developers can tune recall versus precision and fine-tune for local policy, so deployment should include task-specific evaluation rather than relying on the default threshold.
-- The model is better treated as a privacy layer inside a broader workflow than as a standalone compliance mechanism. (`0297bc2ab830` · neutral · deployment_implications; [[sources/introducing-openai-privacy-filter-01kptv6v2rm47hbeqs6trnpaaj|Introducing OpenAI Privacy Filter]])
-- OpenAI says the model is released under Apache 2.0 on Hugging Face and GitHub, with documentation for architecture, taxonomy, decoding, evaluation, and limitations. That combination points to a real release artifact rather than a concept note. The source does not provide external adoption evidence, so maturity should be read as release-ready rather than proven at scale. (`caeaa81e70ad` · neutral · maturity_signals; [[sources/introducing-openai-privacy-filter-01kptv6v2rm47hbeqs6trnpaaj|Introducing OpenAI Privacy Filter]])
-- - Open-weight model specialized for masking personally identifiable information in text.
-- Built as a bidirectional token-classification model with span decoding, so it labels inputs in one pass and reconstructs coherent redaction spans.
-- The source positions it as context-aware rather than purely rule-based, which matters for subtle cases like private names, dates, secrets, and ambiguous references.
-- The model is small enough to run locally, which is the main operational differentiator for privacy-sensitive preprocessing workflows. (`191e744f5f64` · neutral · operational_profile; [[sources/introducing-openai-privacy-filter-01kptv6v2rm47hbeqs6trnpaaj|Introducing OpenAI Privacy Filter]])
-- Running locally implies potentially lower marginal cost for high-volume redaction than sending all text to a hosted service, but the source gives no latency, hardware, or serving-cost numbers. The 1.5B total parameters with 50M active parameters suggest a relatively compact deployment footprint compared with larger frontier models. (`8eb24fa2e864` · neutral · pricing_inference_implications; [[sources/introducing-openai-privacy-filter-01kptv6v2rm47hbeqs6trnpaaj|Introducing OpenAI Privacy Filter]])
-- Useful for support and back-office systems that need to scrub names, contact details, account numbers, or secrets before storage or handoff. It can reduce risk in ticket queues, chat transcripts, document review, and logging pipelines, but human review remains important in high-stakes workflows. (`09e6ccfe08bb` · neutral · service_automation_implications; [[sources/introducing-openai-privacy-filter-01kptv6v2rm47hbeqs6trnpaaj|Introducing OpenAI Privacy Filter]])
-- OpenAI reports 96% F1 on PII-Masking-300k, with 94.04% precision and 98.04% recall. (`f515a757e80d` · supporting · benchmark_observations[0]; [[sources/introducing-openai-privacy-filter-01kptv6v2rm47hbeqs6trnpaaj|Introducing OpenAI Privacy Filter]])
-- OpenAI reports 97.43% F1 on a corrected version of the benchmark after annotation issues were identified. (`61efa0df1fd1` · supporting · benchmark_observations[1]; [[sources/introducing-openai-privacy-filter-01kptv6v2rm47hbeqs6trnpaaj|Introducing OpenAI Privacy Filter]])
-- The source says fine-tuning on a small amount of data raised F1 from 54% to 96% on the domain-adaption benchmark it evaluated. (`a8a6bc4a4041` · supporting · benchmark_observations[2]; [[sources/introducing-openai-privacy-filter-01kptv6v2rm47hbeqs6trnpaaj|Introducing OpenAI Privacy Filter]])
-- It masks personally identifiable information in text, including names, addresses, emails, phone numbers, dates, account numbers, and secrets. (`40b72dcc986c` · supporting · core_capabilities[0]; [[sources/introducing-openai-privacy-filter-01kptv6v2rm47hbeqs6trnpaaj|Introducing OpenAI Privacy Filter]])
-- It performs token-level classification and span decoding, which helps produce coherent redaction boundaries. (`c9b66f9c5f01` · supporting · core_capabilities[1]; [[sources/introducing-openai-privacy-filter-01kptv6v2rm47hbeqs6trnpaaj|Introducing OpenAI Privacy Filter]])
-- It supports long-context inference up to 128,000 tokens, which matters for documents and logs. (`6b318c3dc79e` · supporting · core_capabilities[2]; [[sources/introducing-openai-privacy-filter-01kptv6v2rm47hbeqs6trnpaaj|Introducing OpenAI Privacy Filter]])
-- It allows fine-tuning for different privacy policies and data distributions. (`79e03f971420` · supporting · core_capabilities[3]; [[sources/introducing-openai-privacy-filter-01kptv6v2rm47hbeqs6trnpaaj|Introducing OpenAI Privacy Filter]])
-- "Privacy Filter is a small model with frontier personal data detection capability. It is designed for high-throughput privacy workflows, and is able to perform context-aware detection of PII in unstructured text. It can run locally" (`b1a9683123e0` · supporting · supporting_snippet; [[sources/introducing-openai-privacy-filter-01kptv6v2rm47hbeqs6trnpaaj|Introducing OpenAI Privacy Filter]])
-- The source says performance may vary across languages, scripts, naming conventions, and domains outside the training distribution. It can miss uncommon identifiers and ambiguous private references, and it can over- or under-redact when context is limited, especially in short sequences. OpenAI also notes it is not an anonymization tool or compliance certification. (`917d4e1596c4` · uncertainty · weaknesses_limitations; [[sources/introducing-openai-privacy-filter-01kptv6v2rm47hbeqs6trnpaaj|Introducing OpenAI Privacy Filter]])
-
-### OpenAI Just Open-Sourced the One Thing Every Startup Should Have Built First (2026-04-26)
-
-- The article positions the model against regex-based masking and argues it is better at context-sensitive identification of private names and entities. (`ce1018e5060d` · neutral · comparative_observations[0]; [[sources/openai-just-open-sourced-the-one-thing-every-startup-should-have-built-first-01kqn8asyw9tae3fncffmy92cc|OpenAI Just Open-Sourced the One Thing Every Startup Should Have Built First]])
-- It is described as solving a narrow redaction problem more directly than a general-purpose reasoning model such as GPT-5.5, Claude, or Gemini. (`3e5c1a790eaf` · neutral · comparative_observations[1]; [[sources/openai-just-open-sourced-the-one-thing-every-startup-should-have-built-first-01kqn8asyw9tae3fncffmy92cc|OpenAI Just Open-Sourced the One Thing Every Startup Should Have Built First]])
-- The piece frames it as a case where a small specialist model can be more appropriate than a much larger frontier model because the task is token labeling, not reasoning. (`7ea7a4f25dbf` · neutral · comparative_observations[2]; [[sources/openai-just-open-sourced-the-one-thing-every-startup-should-have-built-first-01kqn8asyw9tae3fncffmy92cc|OpenAI Just Open-Sourced the One Thing Every Startup Should Have Built First]])
-- Use it as a preprocessing layer before any hosted model call, especially for emails, support tickets, transcripts, logs, and retrieval indexing. The article’s long-context design reduces the need to chunk documents before redaction, which simplifies pipeline logic and lowers the chance of breaking entity spans. Its local execution and permissive license make it easier to keep raw text on-premise while still using downstream cloud models for summarization, extraction, or classification. The article does not provide throughput or latency data, so deployment sizing and batch behavior still need measurement on real workloads. (`62fb8e8cd3fc` · neutral · deployment_implications; [[sources/openai-just-open-sourced-the-one-thing-every-startup-should-have-built-first-01kqn8asyw9tae3fncffmy92cc|OpenAI Just Open-Sourced the One Thing Every Startup Should Have Built First]])
-- The article presents it as a released open-weight model on Hugging Face and GitHub, under Apache 2.0. That suggests practical reuse potential rather than a closed demo, but the source does not show production adoption or third-party validation. The main maturity signal is the clear packaging around local use, fine-tuning, and evaluation rather than a research-only release. (`c85a4a146235` · neutral · maturity_signals; [[sources/openai-just-open-sourced-the-one-thing-every-startup-should-have-built-first-01kqn8asyw9tae3fncffmy92cc|OpenAI Just Open-Sourced the One Thing Every Startup Should Have Built First]])
-- - A local token-classification model for masking personally identifiable information in unstructured text.
-- Designed to run on a laptop or in a browser, which keeps unredacted text on the user’s machine instead of sending it to a cloud API.
-- Uses a bidirectional labeling approach with BIOES spans and constrained decoding so it can mark entity boundaries cleanly rather than relying on brittle regex rules.
-- Exposes operating points that let teams trade recall for precision depending on whether the use case is ingestion, review, or user-facing redaction.
-- Can be fine-tuned on small domain-specific datasets when the default categories are not enough for a specialized workflow. (`5fec6192e144` · neutral · operational_profile; [[sources/openai-just-open-sourced-the-one-thing-every-startup-should-have-built-first-01kqn8asyw9tae3fncffmy92cc|OpenAI Just Open-Sourced the One Thing Every Startup Should Have Built First]])
-- Local execution suggests low marginal inference cost compared with sending every document to a hosted model for redaction, but the article gives no actual latency or hardware cost numbers. Because it is small and runs on a laptop, it likely fits batch preprocessing or edge-style workflows better than heavy server-side inference, but that remains an inference from the deployment description, not a measured claim. (`f18a002eb028` · neutral · pricing_inference_implications; [[sources/openai-just-open-sourced-the-one-thing-every-startup-should-have-built-first-01kqn8asyw9tae3fncffmy92cc|OpenAI Just Open-Sourced the One Thing Every Startup Should Have Built First]])
-- Strong fit as a pre-send filter for support automation pipelines that ingest customer messages, tickets, and transcripts. It can reduce the chance that private data is forwarded into hosted summarization, routing, or response-generation systems, but it does not replace legal review, retention controls, or human oversight. (`df7b96915861` · neutral · service_automation_implications; [[sources/openai-just-open-sourced-the-one-thing-every-startup-should-have-built-first-01kqn8asyw9tae3fncffmy92cc|OpenAI Just Open-Sourced the One Thing Every Startup Should Have Built First]])
-- The article reports 96% F1 on the PII-Masking-300k benchmark and 97.43% on a corrected version of that benchmark. (`5397ca0150c8` · supporting · benchmark_observations[0]; [[sources/openai-just-open-sourced-the-one-thing-every-startup-should-have-built-first-01kqn8asyw9tae3fncffmy92cc|OpenAI Just Open-Sourced the One Thing Every Startup Should Have Built First]])
-- The article notes that OpenAI flagged annotation issues in the benchmark, which limits how much confidence to place in the published score alone. (`d3d463e6069b` · supporting · benchmark_observations[1]; [[sources/openai-just-open-sourced-the-one-thing-every-startup-should-have-built-first-01kqn8asyw9tae3fncffmy92cc|OpenAI Just Open-Sourced the One Thing Every Startup Should Have Built First]])
-- The article says OpenAI reported a jump from 54% F1 to 96% F1 on a domain-adaptation benchmark after light fine-tuning. (`de2222145614` · supporting · benchmark_observations[2]; [[sources/openai-just-open-sourced-the-one-thing-every-startup-should-have-built-first-01kqn8asyw9tae3fncffmy92cc|OpenAI Just Open-Sourced the One Thing Every Startup Should Have Built First]])
-- It detects and masks personally identifiable information in unstructured text before the text is sent elsewhere. (`089cae6397ee` · supporting · core_capabilities[0]; [[sources/openai-just-open-sourced-the-one-thing-every-startup-should-have-built-first-01kqn8asyw9tae3fncffmy92cc|OpenAI Just Open-Sourced the One Thing Every Startup Should Have Built First]])
-- It can process long documents in one pass because the article says it supports a 128k context window. (`16ce05b9428d` · supporting · core_capabilities[1]; [[sources/openai-just-open-sourced-the-one-thing-every-startup-should-have-built-first-01kqn8asyw9tae3fncffmy92cc|OpenAI Just Open-Sourced the One Thing Every Startup Should Have Built First]])
-- It can be tuned for different operating points, so teams can choose more recall or more precision depending on the workflow. (`faebae420458` · supporting · core_capabilities[2]; [[sources/openai-just-open-sourced-the-one-thing-every-startup-should-have-built-first-01kqn8asyw9tae3fncffmy92cc|OpenAI Just Open-Sourced the One Thing Every Startup Should Have Built First]])
-- It can be fine-tuned on small labeled datasets to adapt to specialized vocabularies and domain-specific identifiers. (`4911b0dab64a` · supporting · core_capabilities[3]; [[sources/openai-just-open-sourced-the-one-thing-every-startup-should-have-built-first-01kqn8asyw9tae3fncffmy92cc|OpenAI Just Open-Sourced the One Thing Every Startup Should Have Built First]])
-- “OpenAI released Privacy Filter. Open weights. Apache 2.0. On Hugging Face and GitHub. It’s a small model: 1.5B total parameters, only 50M active because it’s a sparse Mixture-of-Experts. It runs on a laptop. It runs in a browser. The whole point is that it runs locally, so the unfiltered text never has to leave your machine.” (`34d6b6021250` · supporting · supporting_snippet; [[sources/openai-just-open-sourced-the-one-thing-every-startup-should-have-built-first-01kqn8asyw9tae3fncffmy92cc|OpenAI Just Open-Sourced the One Thing Every Startup Should Have Built First]])
-- The model is not a compliance solution by itself, and the article explicitly says it only reduces risk. It may miss categories that are not explicitly represented in its label set, and short or context-poor texts are harder to classify reliably. The reported benchmark numbers are vendor-reported, so real-world quality in your language and domain still needs validation. (`cbc608edd308` · uncertainty · weaknesses_limitations; [[sources/openai-just-open-sourced-the-one-thing-every-startup-should-have-built-first-01kqn8asyw9tae3fncffmy92cc|OpenAI Just Open-Sourced the One Thing Every Startup Should Have Built First]])
-
-## Contradictions / tensions
-
-- The source says performance may vary across languages, scripts, naming conventions, and domains outside the training distribution. It can miss uncommon identifiers and ambiguous private references, and it can over- or under-redact when context is limited, especially in short sequences. OpenAI also notes it is not an anonymization tool or compliance certification. (uncertainty; [[sources/introducing-openai-privacy-filter-01kptv6v2rm47hbeqs6trnpaaj|Introducing OpenAI Privacy Filter]])
-- The model is not a compliance solution by itself, and the article explicitly says it only reduces risk. It may miss categories that are not explicitly represented in its label set, and short or context-poor texts are harder to classify reliably. The reported benchmark numbers are vendor-reported, so real-world quality in your language and domain still needs validation. (uncertainty; [[sources/openai-just-open-sourced-the-one-thing-every-startup-should-have-built-first-01kqn8asyw9tae3fncffmy92cc|OpenAI Just Open-Sourced the One Thing Every Startup Should Have Built First]])
+- Sources: 2
+- Evidence items: 33
+- Current input hash: `1aaa91fcfc491467`
+- Cached input hash: `1aaa91fcfc491467`
+- Last synthesized: 2026-07-09T19:18:06Z
+- Synthesis status: `fresh`
 
 ## Related pages
 
