@@ -80,6 +80,7 @@ def _cache_payload(page: dict[str, Any]) -> dict[str, Any]:
             "why_it_helps": "It makes the deployment tradeoff easy to picture.",
             "basis": "illustrative",
         },
+        "workflow_variants": [],
         "what_to_remember": ["Use them when privacy or latency matters."],
         "consensus": ["They trade hosted convenience for control."],
         "tensions": ["They add operational work."],

@@ -91,6 +91,7 @@ def test_run_synthesis_writes_validated_cache(tmp_path: Path) -> None:
     assert payload["last_synthesized_at"] == "2026-06-16T12:00:00Z"
     assert payload["executive_synthesis"] == "Local models make inference controllable."
     assert payload["practical_example"]["basis"] == "illustrative"
+    assert payload["workflow_variants"] == []
     assert report.items[0].model == "test-model"
     assert report.items[0].provider_request_id == "test-topic:local-models-test-model"
     assert report.items[0].token_usage == {"total_tokens": 123}
@@ -130,6 +131,46 @@ def test_normalize_synthesis_payload_overwrites_untrusted_metadata() -> None:
     assert payload["synthesis_input_hash"] == bundle.synthesis_input_hash
 
 
+def test_normalize_synthesis_payload_preserves_workflow_variants() -> None:
+    """Workflow variants should be normalized and preserved in cache payloads."""
+    bundle = build_prompt_bundle(_graph(), entity_id="topic:local-models")
+    provider_payload = {
+        **_provider_payload(),
+        "workflow_variants": [
+            {
+                "title": "Prompt-first setup",
+                "use_when": "Use when task context is stable.",
+                "steps": ["Define the task", "Evaluate answers"],
+                "caveats": ["Can become brittle."],
+                "sources": ["Source A"],
+            }
+        ],
+    }
+
+    payload = normalize_synthesis_payload(
+        provider_payload,
+        bundle=bundle,
+        now=datetime(2026, 6, 16, 12, 0, tzinfo=UTC),
+    )
+
+    assert payload["workflow_variants"][0]["title"] == "Prompt-first setup"
+    assert payload["workflow_variants"][0]["steps"] == ["Define the task", "Evaluate answers"]
+
+
+def test_normalize_synthesis_payload_requires_workflow_variants_field() -> None:
+    """Provider output should include the workflow_variants list, even when empty."""
+    bundle = build_prompt_bundle(_graph(), entity_id="topic:local-models")
+    provider_payload = _provider_payload()
+    provider_payload.pop("workflow_variants")
+
+    with pytest.raises(ValueError, match="workflow_variants"):
+        normalize_synthesis_payload(
+            provider_payload,
+            bundle=bundle,
+            now=datetime(2026, 6, 16, 12, 0, tzinfo=UTC),
+        )
+
+
 class StaticProvider:
     """Provider returning a predefined payload."""
 
@@ -163,6 +204,7 @@ def _provider_payload() -> dict[str, Any]:
     return {
         "executive_synthesis": "Local models make inference controllable.",
         "practical_example": _practical_example(),
+        "workflow_variants": [],
         "what_to_remember": ["Use them when privacy or latency matters."],
         "consensus": ["They trade hosted convenience for control."],
         "tensions": ["They add operational work."],

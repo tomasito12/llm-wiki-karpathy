@@ -7,7 +7,7 @@ from collections.abc import Callable, Iterable
 from dataclasses import asdict, dataclass
 from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any, Protocol
+from typing import Any, Protocol, cast
 
 from src.pipeline.atomic import atomic_write_json
 from src.wiki_synthesis import SYNTHESIS_PROMPT_VERSION, SYNTHESIS_SCHEMA_VERSION
@@ -174,6 +174,7 @@ def normalize_synthesis_payload(
         "last_synthesized_at": _iso_utc(now),
         "executive_synthesis": _required_text(payload, "executive_synthesis"),
         "practical_example": _practical_example(payload.get("practical_example")),
+        "workflow_variants": _workflow_variants(payload.get("workflow_variants")),
         "what_to_remember": _required_text_list(payload, "what_to_remember"),
         "consensus": _required_text_list(payload, "consensus"),
         "tensions": _required_text_list(payload, "tensions"),
@@ -191,6 +192,7 @@ def validate_synthesis_content_payload(payload: dict[str, Any]) -> None:
     for key in SYNTHESIS_CONTENT_LIST_FIELDS:
         _required_text_list(payload, key)
     _practical_example(payload.get("practical_example"))
+    _workflow_variants(payload.get("workflow_variants"))
 
 
 def synthesis_response_json_schema() -> dict[str, Any]:
@@ -219,6 +221,21 @@ def synthesis_response_json_schema() -> dict[str, Any]:
                     "basis": {"type": "string", "enum": ["source-grounded", "illustrative"]},
                 },
                 "required": ["title", "example", "why_it_helps", "basis"],
+            },
+            "workflow_variants": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "additionalProperties": False,
+                    "properties": {
+                        "title": {"type": "string"},
+                        "use_when": {"type": "string"},
+                        "steps": string_array,
+                        "caveats": string_array,
+                        "sources": string_array,
+                    },
+                    "required": ["title", "use_when", "steps", "caveats", "sources"],
+                },
             },
             "what_to_remember": string_array,
             "consensus": string_array,
@@ -255,6 +272,7 @@ def synthesis_response_json_schema() -> dict[str, Any]:
             "last_synthesized_at",
             "executive_synthesis",
             "practical_example",
+            "workflow_variants",
             "what_to_remember",
             "consensus",
             "tensions",
@@ -354,6 +372,30 @@ def _practical_example(value: Any) -> dict[str, str]:
     }
 
 
+def _workflow_variants(value: Any) -> list[dict[str, Any]]:
+    """Return normalized workflow variants from provider output."""
+    if not isinstance(value, list):
+        msg = "Missing required list field: workflow_variants"
+        raise ValueError(msg)
+    variants: list[dict[str, Any]] = []
+    for index, item in enumerate(value):
+        if not isinstance(item, dict):
+            msg = f"workflow_variants[{index}] must be an object"
+            raise ValueError(msg)
+        variant = cast(dict[str, Any], item)
+        parent = f"workflow_variants[{index}]"
+        variants.append(
+            {
+                "title": _required_nested_text(variant, "title", parent=parent),
+                "use_when": _required_nested_text(variant, "use_when", parent=parent),
+                "steps": _required_nested_text_list(variant, "steps", parent=parent),
+                "caveats": _optional_text_list(variant.get("caveats")),
+                "sources": _optional_text_list(variant.get("sources")),
+            }
+        )
+    return variants
+
+
 def _context_card(value: Any) -> dict[str, Any]:
     """Return a normalized context card."""
     card = value if isinstance(value, dict) else {}
@@ -378,6 +420,15 @@ def _required_nested_text(value: dict[str, Any], key: str, *, parent: str) -> st
         msg = f"Missing required text field: {parent}.{key}"
         raise ValueError(msg)
     return text.strip()
+
+
+def _required_nested_text_list(value: dict[str, Any], key: str, *, parent: str) -> list[str]:
+    """Return one required nested text-list field."""
+    items = _optional_text_list(value.get(key))
+    if not items:
+        msg = f"Missing required list field: {parent}.{key}"
+        raise ValueError(msg)
+    return items
 
 
 def _optional_text_list(value: Any) -> list[str]:

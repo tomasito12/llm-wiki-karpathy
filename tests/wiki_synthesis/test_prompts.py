@@ -30,6 +30,7 @@ def test_build_prompt_bundle_contains_grounding_context() -> None:
     assert "Local models run near users." in bundle.user_prompt
     assert '"synthesis_input_hash":' in bundle.user_prompt
     assert '"practical_example":' in bundle.user_prompt
+    assert '"workflow_variants":' in bundle.user_prompt
     assert "service automation, chatbot, voicebot" in bundle.user_prompt
     assert current_hash in bundle.user_prompt
 
@@ -63,6 +64,28 @@ def test_build_prompt_bundle_warns_for_single_source_pages() -> None:
     assert "source-grounded readable summary" in bundle.user_prompt
 
 
+def test_build_prompt_bundle_uses_relevance_guidance_for_models() -> None:
+    """Model prompts should ask for practical relevance instead of forced examples."""
+    bundle = build_prompt_bundle(_graph(category="model"), entity_id="model:local-models")
+
+    assert "For foundation model pages" in bundle.system_prompt
+    assert "Do not force a workflow example" in bundle.system_prompt
+    assert 'Treat practical_example as "Practical relevance"' in bundle.user_prompt
+    assert "not as a hypothetical workflow" in bundle.user_prompt
+    assert "Use an empty list unless the evidence explicitly describes distinct workflows" in (
+        bundle.user_prompt
+    )
+
+
+def test_build_prompt_bundle_requires_workflow_variants_for_how_tos() -> None:
+    """How-to prompts should preserve materially different workflows as variants."""
+    bundle = build_prompt_bundle(_graph(category="how_to"), entity_id="how_to:local-models")
+
+    assert "For how-to pages" in bundle.system_prompt
+    assert "Always include at least one workflow variant for how-to pages." in bundle.user_prompt
+    assert "Do not merge incompatible workflows" in bundle.user_prompt
+
+
 def test_prompt_bundle_messages_are_chat_ready() -> None:
     """Prompt bundles should expose system/user chat messages."""
     messages = build_prompt_bundle(_graph(), entity_id="topic:local-models").messages()
@@ -78,9 +101,11 @@ def test_find_knowledge_page_raises_for_missing_entity() -> None:
         find_knowledge_page(_graph(), entity_id="topic:missing")
 
 
-def _graph(*, source_count: int = 2) -> dict[str, Any]:
+def _graph(*, source_count: int = 2, category: str = "topic") -> dict[str, Any]:
     """Return a minimal graph export with one knowledge page."""
     source_ids = ["source-a", "source-b"][:source_count]
+    entity_id = f"{category}:local-models"
+    path_prefix = "models" if category == "model" else f"{category}s"
     return {
         "sources": [
             {
@@ -100,11 +125,11 @@ def _graph(*, source_count: int = 2) -> dict[str, Any]:
         ],
         "knowledge_pages": [
             {
-                "entity_id": "topic:local-models",
-                "category": "topic",
+                "entity_id": entity_id,
+                "category": category,
                 "slug": "local-models",
                 "title": "Local Models",
-                "path": "topics/local-models.md",
+                "path": f"{path_prefix}/local-models.md",
                 "aliases": [],
                 "tags": ["ai-engineering"],
                 "types": [],
@@ -126,7 +151,7 @@ def _graph(*, source_count: int = 2) -> dict[str, Any]:
                         "source_date": "2026-01-01",
                         "published_date": "2026-01-01",
                         "assessed_as_of": "2026-06-16",
-                        "category": "topic",
+                        "category": category,
                         "entity_slug": "local-models",
                         "confidence": 0.9,
                         "value_level": "high",

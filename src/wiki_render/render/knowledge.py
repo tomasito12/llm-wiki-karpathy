@@ -223,7 +223,8 @@ def _render_synthesized_knowledge_page(
         )
     body += heading(2, "Executive synthesis")
     body += paragraph(str(cache_entry.get("executive_synthesis", "")))
-    body += _practical_example_section(cache_entry)
+    body += _workflow_variants_section(cache_entry)
+    body += _practical_example_section(cache_entry, category=page.category)
     body += _context_card_section(cache_entry)
     body += _cache_list_section("What to remember", cache_entry, "what_to_remember")
     body += _cache_list_section("Consensus", cache_entry, "consensus")
@@ -237,7 +238,7 @@ def _render_synthesized_knowledge_page(
     return RenderedFile(relative_path=page.path, text=markdown_document(frontmatter, body))
 
 
-def _practical_example_section(cache_entry: dict[str, Any]) -> str:
+def _practical_example_section(cache_entry: dict[str, Any], *, category: str) -> str:
     """Render an optional practical example from a synthesis cache entry."""
     value = cache_entry.get("practical_example")
     if not isinstance(value, dict):
@@ -248,14 +249,56 @@ def _practical_example_section(cache_entry: dict[str, Any]) -> str:
     basis = _display_value(value.get("basis"))
     if not title or not example:
         return ""
-    body = heading(2, "Example in practice")
+    section_title, explanation_label = _practical_example_labels(category)
+    body = heading(2, section_title)
     body += heading(3, title)
     body += paragraph(example)
     if why_it_helps:
-        body += bullet_list([f"Why it helps: {why_it_helps}"])
+        body += bullet_list([f"{explanation_label}: {why_it_helps}"])
     if basis:
         body += bullet_list([f"Basis: `{basis}`"])
     return body
+
+
+def _workflow_variants_section(cache_entry: dict[str, Any]) -> str:
+    """Render workflow variants when a synthesis cache provides them."""
+    variants = cache_entry.get("workflow_variants")
+    if not isinstance(variants, list) or not variants:
+        return ""
+    rendered = ""
+    for item in variants:
+        if not isinstance(item, dict):
+            continue
+        title = _display_value(item.get("title"))
+        use_when = _display_value(item.get("use_when"))
+        steps = _display_value(item.get("steps"))
+        caveats = _display_value(item.get("caveats"))
+        sources = _display_value(item.get("sources"))
+        if not title:
+            continue
+        rendered += heading(3, title)
+        rows: list[str] = []
+        if use_when:
+            rows.append(f"Use when: {use_when}")
+        if steps:
+            rows.append(f"Steps: {steps}")
+        if caveats:
+            rows.append(f"Caveats: {caveats}")
+        if sources:
+            rows.append(f"Sources: {sources}")
+        rendered += bullet_list(rows)
+    return heading(2, "Workflow variants") + rendered if rendered else ""
+
+
+def _practical_example_labels(category: str) -> tuple[str, str]:
+    """Return category-specific render labels for the practical example block."""
+    if category == "model":
+        return ("Practical relevance", "Why this matters")
+    if category == "tool":
+        return ("Typical use case", "Why this helps")
+    if category == "how_to":
+        return ("Example workflow", "Why this helps")
+    return ("Example in practice", "Why it helps")
 
 
 def _context_card_section(cache_entry: dict[str, Any]) -> str:

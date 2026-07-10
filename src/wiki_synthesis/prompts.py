@@ -22,7 +22,7 @@ Rules:
 - Preserve uncertainty, disagreement, weak evidence, and time sensitivity.
 - Prefer useful synthesis over exhaustive restatement.
 - Write for a reader who sits between AI engineering and business/domain work.
-- Use plain language and explain abstract ideas through concrete workflow examples.
+- Use plain language and make abstract ideas concrete through examples or practical relevance.
 - Separate consensus from tensions and open questions.
 - If evidence is thin, say so clearly.
 - If sources disagree, describe the disagreement instead of resolving it artificially.
@@ -54,7 +54,9 @@ CATEGORY_INSTRUCTIONS: dict[str, str] = {
     ),
     "model": (
         "For foundation model pages, focus on what the model is useful for, constraints, "
-        "maturity signals, and when not to use it. Avoid unsupported benchmarking claims."
+        "maturity signals, and when not to use it. Avoid unsupported benchmarking claims. "
+        "Do not force a workflow example when the evidence is better expressed as practical "
+        "relevance."
     ),
 }
 
@@ -74,6 +76,15 @@ OUTPUT_SCHEMA = {
         "why_it_helps": "...",
         "basis": "source-grounded | illustrative",
     },
+    "workflow_variants": [
+        {
+            "title": "...",
+            "use_when": "...",
+            "steps": ["..."],
+            "caveats": ["..."],
+            "sources": ["..."],
+        }
+    ],
     "what_to_remember": ["..."],
     "consensus": ["..."],
     "tensions": ["..."],
@@ -137,7 +148,7 @@ def build_prompt_bundle(
             _evidence_block(page),
             _previous_synthesis_block(previous_cache),
             _output_schema_block(current_hash),
-            _style_rules_block(),
+            _style_rules_block(category),
         ]
     )
     return PromptBundle(
@@ -197,7 +208,7 @@ def _page_purpose_block() -> str:
 This page should become an Obsidian-readable synthesis page.
 It should answer:
 - What should I remember?
-- What is a concrete example that makes the idea easier to understand?
+- What concrete example, workflow, use case, or practical relevance makes this easier?
 - When is this page useful?
 - What do the sources agree on?
 - Where are the tensions, caveats, or uncertainty?
@@ -285,6 +296,7 @@ def _previous_synthesis_block(previous_cache: dict[str, Any] | None) -> str:
             "last_synthesized_at",
             "executive_synthesis",
             "practical_example",
+            "workflow_variants",
             "what_to_remember",
             "consensus",
             "tensions",
@@ -313,23 +325,65 @@ def _output_schema_block(current_hash: str) -> str:
     )
 
 
-def _style_rules_block() -> str:
+def _style_rules_block(category: str) -> str:
     """Return writing style rules for the synthesis output."""
-    return """STYLE RULES
+    base = f"""STYLE RULES
 - Write concise, plain English for a technically curious domain expert.
-- Avoid unnecessary technical abstraction when a concrete workflow example would explain the idea.
+- Avoid unnecessary technical abstraction when a concrete example or relevance framing would help.
 - Avoid hype.
 - Avoid generic statements.
 - Make uncertainty visible.
 - Prefer 3 to 7 bullets per list.
 - practical_example must be 80 to 140 words.
-- Prefer service automation, chatbot, voicebot, contact-center, enterprise workflow, or
-  AI-workflow examples when they fit the evidence.
+- Interpret practical_example according to the category guidance below.
 - If the example is directly described by the sources, set basis to "source-grounded".
 - If the example is a plausible application of the synthesized pattern, set basis to
   "illustrative" and do not present it as a sourced fact.
 - Do not invent real customer names, EnBW-specific facts, benchmarks, dates, or numeric outcomes.
-- Do not cite evidence IDs in every sentence, but keep source names in strongest_sources."""
+- Do not cite evidence IDs in every sentence, but keep source names in strongest_sources.
+
+{_practical_example_guidance(category)}"""
+    workflow_guidance = _workflow_variants_guidance(category)
+    return f"{base}\n\n{workflow_guidance}"
+
+
+def _practical_example_guidance(category: str) -> str:
+    """Return category-specific guidance for the practical_example field."""
+    if category == "model":
+        return """CATEGORY GUIDANCE FOR practical_example
+- Treat practical_example as "Practical relevance", not as a hypothetical workflow.
+- The title should name the relevance angle, such as "Worth watching for coding agents".
+- The example field should explain where this model appears relevant, where evidence is thin,
+  and whether it is worth testing, watching, or ignoring for now.
+- Prefer basis "source-grounded"; use "illustrative" only when clearly framed as inference."""
+    if category == "tool":
+        return """CATEGORY GUIDANCE FOR practical_example
+- Treat practical_example as "Typical use case".
+- The title should name the use case.
+- Prefer service automation, chatbot, voicebot, contact-center, enterprise workflow, or
+  AI-workflow examples when they fit the evidence."""
+    if category == "how_to":
+        return """CATEGORY GUIDANCE FOR practical_example
+- Treat practical_example as "Example workflow".
+- The title should name the workflow.
+- Show what a practitioner would actually do, in sequence, without adding unsupported steps."""
+    return """CATEGORY GUIDANCE FOR practical_example
+- Treat practical_example as "Example in practice".
+- Prefer service automation, chatbot, voicebot, contact-center, enterprise workflow, or
+  AI-workflow examples when they fit the evidence."""
+
+
+def _workflow_variants_guidance(category: str) -> str:
+    """Return category-specific guidance for workflow variants."""
+    if category != "how_to":
+        return """CATEGORY GUIDANCE FOR workflow_variants
+- Use an empty list unless the evidence explicitly describes distinct workflows."""
+    return """CATEGORY GUIDANCE FOR workflow_variants
+- Always include at least one workflow variant for how-to pages.
+- If sources describe materially different workflows, list them as separate variants.
+- Do not merge incompatible workflows into one artificial step sequence.
+- Each variant should explain when to use it, the main steps, caveats, and source titles.
+- If all sources describe the same basic workflow, include one consolidated variant."""
 
 
 def _source_map(graph: dict[str, Any]) -> dict[str, dict[str, Any]]:
