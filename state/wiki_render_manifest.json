@@ -4575,7 +4575,7 @@
     },
     {
       "path": "topics/knowledge-management.md",
-      "sha256": "e9d245a33d6bcfaae4d549240420235c845fcdca082bc80453c0f33380898494"
+      "sha256": "64b8ec3638b7b765c836340ac51f9b3ebfcd9b6f3ca613d92298eda5a15d6773"
     },
     {
       "path": "topics/knowledge-systems-shift-toward-compilation-over-retrieval.md",
@@ -4603,7 +4603,7 @@
     },
     {
       "path": "topics/layered-agent-architecture.md",
-      "sha256": "29fc008ad59f7853caabc8ef5c2f95523e264eaf414928a73488be5fe44b0348"
+      "sha256": "c416984ba54a18215ddfc8655be592e38f500cde5ee900d445f664021025fb65"
     },
     {
       "path": "topics/layered-ai-architecture.md",
@@ -4635,7 +4635,7 @@
     },
     {
       "path": "topics/local-model-deployment.md",
-      "sha256": "eb4533ae8e5eeb23f33ef50450805c57e737bca787137482d5638fb9ceb02748"
+      "sha256": "3b28749df6007cf54a1371515eddceb2e3a1e3258bef9479768b9e4878f366ec"
     },
     {
       "path": "topics/local-pii-redaction.md",
@@ -4699,7 +4699,7 @@
     },
     {
       "path": "topics/ontology-driven-extraction.md",
-      "sha256": "4aabdbec9baaebbc1153c6fa190672873a146adc2a8291c88f4437022573457a"
+      "sha256": "30a736d7819c066613c080753fd98d8ffcdc2aa34a407e1aa3630e917f575a5b"
     },
     {
       "path": "topics/open-agent-platform-integration.md",
@@ -4763,7 +4763,7 @@
     },
     {
       "path": "topics/procedural-knowledge-for-agents.md",
-      "sha256": "b8f9ccea4631328af45872968948cdaa4d4a488d55ed9e7e390178c377ecbb2a"
+      "sha256": "4f62238cacf0e72fa12d3b8f84c2871b1cbc585459ee389b944c5b102e9b1b6d"
     },
     {
       "path": "topics/production-debt-in-ai-systems.md",

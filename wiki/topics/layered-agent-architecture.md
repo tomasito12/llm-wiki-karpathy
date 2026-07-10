@@ -20,65 +20,82 @@ source_ids:
 - understanding-ai-agent-architecture-a-complete-technical-breakdown-01kts4bnmwj0s06zzvt8mhy00m
 value_level: high
 confidence: 0.955
-synthesis_state: stage1-placeholder
+synthesis_state: synthesized
+synthesis_stale: false
+synthesis_input_hash: a42a35eb95fd6cd7
+current_input_hash: a42a35eb95fd6cd7
+synthesis_schema_version: 1
+synthesis_prompt_version: 1
+last_synthesized_at: '2026-07-10T12:45:36Z'
 ---
 
 # Layered Agent Architecture
 
-## Current understanding
+## Executive synthesis
 
-<!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
-A production agent is best understood as a set of distinct layers rather than a single prompt wrapped around a model. Separating reasoning, memory, tool execution, planning, runtime control, observability, and security makes the system easier to debug and safer to operate. This decomposition also helps teams assign different storage, policy, and observability choices to different failure modes. The main design lesson is that autonomy depends on coordination across layers, not just model quality.
+Layered agent architecture is a practical way to keep production AI agents controllable. Instead of one prompt doing everything, the system splits reasoning, memory, tool selection, action execution, observability, and security into separate layers. That matters because many failures happen at the boundaries: the model should decide, but not directly become the control plane; the action layer should make side effects reviewable and auditable; and safety plus monitoring should sit with the runtime, not after it. The sources strongly agree on the design pattern, but they are architectural rather than empirical, so this is better treated as a robust operating model than a benchmark-backed rule.
 
-## Key Points
+## Example in practice
 
-- Separate reasoning from execution so the model does not directly become the control plane.
-- Use different layers for short-term task state and long-term memory.
-- Put observability and safety alongside the runtime, not as optional add-ons.
-- Layering makes agent systems easier to test, secure, and operate.
-- The tooling layer should encode decisions about data selection and context assembly, not just expose raw endpoints.
-- The intelligence layer should understand what is meaningful in a given workspace, not just match keywords.
-- The action layer should make side effects reviewable, reversible, and auditable.
-- Layer boundaries help teams scale debugging across many workspace configurations and edge cases.
+### Support automation with reviewable actions
 
-## Operational Insight
+A support-automation agent receives a customer request, gathers only the workspace context that is relevant, uses the reasoning layer to decide what matters, and then asks the action layer to draft or apply a change. The action step is constrained so the side effect is reviewable, reversible, and auditable. Monitoring records what happened, while security checks gate what the agent may do. This is more useful than a single prompt that reads everything and writes directly, because it gives the team separate places to inspect retrieval, reasoning, and write-back risk.
 
-Treat each layer as a controlled interface with its own failure modes and policies. That prevents the model from becoming an unbounded executor and makes it easier to swap components without rewriting the whole system.
+- Why it helps: It shows how layered design turns a risky end-to-end agent into a system with clear control points for context, action, and oversight.
 
-## Evidence / supporting sources
+- Basis: `source-grounded`
 
-### Operator: A look under the hood (2026-05-15)
+## Context card
 
-- A production agent is easier to reason about when its responsibilities are separated into layers such as tooling, intelligence, and action. The tooling layer decides which operations to perform and how to assemble the right context. The intelligence layer decides what matters in a specific workspace or question. The action layer governs how changes are proposed and applied safely. This decomposition helps teams distinguish retrieval, reasoning, and write-back risk instead of treating the agent as one monolithic prompt loop. (`d4e48e6d96e0` · neutral · knowledge_summary; [[sources/operator-a-look-under-the-hood-01krmvv5hry22g6cxvat4xzge0|Operator: A look under the hood]])
-- For enterprise agents, separate data selection, workspace awareness, and side-effectful actions into different control planes. That makes reliability, safety, and debugging much more tractable than putting everything behind one prompt and a few API calls. (`e820733bedd5` · neutral · operational_insight; [[sources/operator-a-look-under-the-hood-01krmvv5hry22g6cxvat4xzge0|Operator: A look under the hood]])
-- This matters because many real agent systems fail when retrieval, reasoning, and action are blended together with no clear control boundaries. A layered design gives teams a durable way to isolate safety, inspection, and rollback concerns in support automation, internal assistants, and other enterprise workflows. (`91980dccf2b0` · neutral · relevance_note; [[sources/operator-a-look-under-the-hood-01krmvv5hry22g6cxvat4xzge0|Operator: A look under the hood]])
-- The tooling layer should encode decisions about data selection and context assembly, not just expose raw endpoints. (`08bf328c6ab3` · supporting · key_points[0]; [[sources/operator-a-look-under-the-hood-01krmvv5hry22g6cxvat4xzge0|Operator: A look under the hood]])
-- The intelligence layer should understand what is meaningful in a given workspace, not just match keywords. (`b9e04ad165a0` · supporting · key_points[1]; [[sources/operator-a-look-under-the-hood-01krmvv5hry22g6cxvat4xzge0|Operator: A look under the hood]])
-- The action layer should make side effects reviewable, reversible, and auditable. (`4fa5269c4647` · supporting · key_points[2]; [[sources/operator-a-look-under-the-hood-01krmvv5hry22g6cxvat4xzge0|Operator: A look under the hood]])
-- Layer boundaries help teams scale debugging across many workspace configurations and edge cases. (`a3a95a41296c` · supporting · key_points[3]; [[sources/operator-a-look-under-the-hood-01krmvv5hry22g6cxvat4xzge0|Operator: A look under the hood]])
-- "With Operator, we’ve invested deeply in every layer: tooling, reasoning, how the Agent takes action, and the infrastructure that makes it reliable at scale." (`1ee120d35d5c` · supporting · supporting_snippet; [[sources/operator-a-look-under-the-hood-01krmvv5hry22g6cxvat4xzge0|Operator: A look under the hood]])
+- **Use this page when:** Use this page when you need a mental model for production agents that must call tools, preserve state, and operate under governance constraints.
+- **Best for questions about:** How to structure a production AI agent, How to separate reasoning, memory, and tool execution, How to make agent actions reviewable and auditable, How to reduce risk in enterprise or support automation agents, Why observability and safety need to be part of the runtime
+- **Not enough for:** A full reference architecture for every agent type, Implementation details for a specific framework or vendor, Performance benchmarks or comparative evaluation data, When a simple single-prompt workflow is sufficient
+- **Strongest sources:** Operator: A look under the hood, Understanding AI Agent Architecture: A Complete Technical Breakdown
+- **Related tags:** agent-orchestration, agent-systems, enterprise-ai, infrastructure, runtime-architecture, runtime-systems, support-automation
 
-### Understanding AI Agent Architecture: A Complete Technical Breakdown (2026-05-09)
+## What to remember
 
-- A production agent is best understood as a set of distinct layers rather than a single prompt wrapped around a model. Separating reasoning, memory, tool execution, planning, runtime control, observability, and security makes the system easier to debug and safer to operate. This decomposition also helps teams assign different storage, policy, and observability choices to different failure modes. The main design lesson is that autonomy depends on coordination across layers, not just model quality. (`a8e910025395` · neutral · knowledge_summary; [[sources/understanding-ai-agent-architecture-a-complete-technical-breakdown-01kts4bnmwj0s06zzvt8mhy00m|Understanding AI Agent Architecture: A Complete Technical Breakdown]])
-- Treat each layer as a controlled interface with its own failure modes and policies. That prevents the model from becoming an unbounded executor and makes it easier to swap components without rewriting the whole system. (`7adb5d85c7a0` · neutral · operational_insight; [[sources/understanding-ai-agent-architecture-a-complete-technical-breakdown-01kts4bnmwj0s06zzvt8mhy00m|Understanding AI Agent Architecture: A Complete Technical Breakdown]])
-- This architecture is durable for any agentic system that must call tools, preserve state, and operate under governance constraints. It is especially relevant for conversational AI and service automation because those systems often fail at the boundaries between reasoning, action, and control. (`4a91ad39b38d` · neutral · relevance_note; [[sources/understanding-ai-agent-architecture-a-complete-technical-breakdown-01kts4bnmwj0s06zzvt8mhy00m|Understanding AI Agent Architecture: A Complete Technical Breakdown]])
-- Separate reasoning from execution so the model does not directly become the control plane. (`990a9b4987ac` · supporting · key_points[0]; [[sources/understanding-ai-agent-architecture-a-complete-technical-breakdown-01kts4bnmwj0s06zzvt8mhy00m|Understanding AI Agent Architecture: A Complete Technical Breakdown]])
-- Use different layers for short-term task state and long-term memory. (`a6809575ff28` · supporting · key_points[1]; [[sources/understanding-ai-agent-architecture-a-complete-technical-breakdown-01kts4bnmwj0s06zzvt8mhy00m|Understanding AI Agent Architecture: A Complete Technical Breakdown]])
-- Put observability and safety alongside the runtime, not as optional add-ons. (`472526146397` · supporting · key_points[2]; [[sources/understanding-ai-agent-architecture-a-complete-technical-breakdown-01kts4bnmwj0s06zzvt8mhy00m|Understanding AI Agent Architecture: A Complete Technical Breakdown]])
-- Layering makes agent systems easier to test, secure, and operate. (`f6555d4dda40` · supporting · key_points[3]; [[sources/understanding-ai-agent-architecture-a-complete-technical-breakdown-01kts4bnmwj0s06zzvt8mhy00m|Understanding AI Agent Architecture: A Complete Technical Breakdown]])
-- A production AI agent consists of seven primary components:
-1. LLM Brain (Reasoning Engine)
-2. Memory System (State Management)
-3. Tool Interface Layer (Action Execution)
-4. Planning & Decision Engine
-5. Execution Loop (Agent Runtime)
-6. Monitoring & Observability
-7. Security & Safety Layer (`3222fae43176` · supporting · supporting_snippet; [[sources/understanding-ai-agent-architecture-a-complete-technical-breakdown-01kts4bnmwj0s06zzvt8mhy00m|Understanding AI Agent Architecture: A Complete Technical Breakdown]])
+- A production agent is easier to reason about as layered components, not one monolithic loop.
+- The model should assist decisions, not directly control all actions.
+- Tooling should assemble context and choose operations, not just expose raw APIs.
+- The action layer should make side effects safe to inspect and rollback.
+- Observability and safety need to be built into the runtime.
+- Layering helps teams debug, secure, test, and govern agent behavior across edge cases.
 
-## Contradictions / tensions
+## Consensus
 
-No contradictions captured in current sources.
+- A layered agent architecture is more than a single prompt wrapped around a model. It splits responsibilities across reasoning, memory, tool use, planning, execution, observability, and security.
+- Reasoning should be separated from execution so the model does not become the control plane.
+- Tooling and action layers should encode context selection, side effects, and safety checks instead of exposing raw endpoints.
+- Short-term task state and long-term memory should be handled differently.
+- Observability and safety belong in the runtime design, not as optional add-ons.
+- Clear layer boundaries make systems easier to debug, test, secure, audit, and operate at scale.
+
+## Tensions / open questions
+
+- The sources agree on the layered pattern, but they do not specify a single canonical set of layers. One source emphasizes tooling, intelligence, and action; the other uses a broader seven-part decomposition.
+- The guidance is strong for enterprise and governed workflows, but the evidence does not show where a simpler architecture is good enough.
+- The claims are mostly conceptual. There is little direct evidence here about measurable improvements or tradeoffs across implementations.
+
+## Evidence quality
+
+- Strong conceptual agreement across two sources.
+- The evidence is largely explanatory and architectural, not empirical. It supports design guidance more than measured outcome claims.
+- Both sources are recent and aligned on the main pattern, but they discuss it at a high level rather than with implementation-specific detail.
+- The page is suitable for architecture discussions, but not for choosing one concrete framework or proving ROI.
+
+## Practical takeaway
+
+If your agent must use tools, keep state, or operate under policy constraints, design it as layered control planes. Separate reasoning from execution, split short-term state from long-term memory, and make observability and safety first-class parts of the runtime.
+
+## Evidence index
+
+- Sources: 2
+- Evidence items: 16
+- Current input hash: `a42a35eb95fd6cd7`
+- Cached input hash: `a42a35eb95fd6cd7`
+- Last synthesized: 2026-07-10T12:45:36Z
+- Synthesis status: `fresh`
 
 ## Related pages
 

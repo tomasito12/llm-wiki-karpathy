@@ -17,76 +17,83 @@ source_ids:
 - you-probably-don-t-need-a-graph-database-for-your-knowledge-graph-01kqz02qzddjehycrjafswxv5r
 value_level: high
 confidence: 0.916667
-synthesis_state: stage1-placeholder
+synthesis_state: synthesized
+synthesis_stale: false
+synthesis_input_hash: 487ad2b09b304586
+current_input_hash: 487ad2b09b304586
+synthesis_schema_version: 1
+synthesis_prompt_version: 1
+last_synthesized_at: '2026-07-10T12:45:57Z'
 ---
 
 # Ontology-Driven Extraction
 
-## Current understanding
+## Executive synthesis
 
-<!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
-Ontology-driven extraction uses a domain ontology to shape what an extractor looks for, how it formats output, and which values it should accept. Instead of asking a model for generic entity extraction, the system constrains the task with explicit entity types, properties, aliases, and validation expectations. This usually improves consistency, reduces hallucinated structure, and makes downstream validation easier. The approach is especially useful when documents vary in phrasing but must map into a stable schema.
+Ontology-driven extraction is a way to make unstructured text easier to trust and reuse by forcing it into a typed schema. In practice, you define the concepts, properties, aliases, and relation types up front, then ask the extractor to match that ontology instead of inventing its own structure. The technical idea is useful for knowledge systems that need stable memory, search, provenance, or contradiction handling over time. It also helps when documents use different wording for the same concept. The main caveat is that storage is not reasoning: a graph database can hold facts, but classification, validation, and inference often need separate logic or reasoners. The evidence is consistent, but mostly operational rather than benchmark-driven.
 
-## Examples
+## Example in practice
 
-The source describes a pipeline that "identifies entities and concepts from the summaries, deduplicates them against the existing ontology" and uses explicit relation types like "is-a, part-of, related-to, contradicts."
+### Support-doc intake with controlled entity types
 
-## Key Points
+A support team receives emails, chat transcripts, and incident notes about the same product issue. An ontology defines entity types such as customer, product, issue, symptom, and resolution, plus relations like related-to and contradicts. The extractor uses that ontology to map different phrasings to one canonical concept, rather than creating a new node for every wording variation. If one note says the issue is resolved and another says it is still open, the typed relations make that conflict explicit instead of hiding it in free text.
 
-- Explicit entity types and required properties can reduce ambiguity in extraction.
-- Aliases let the extractor map variant surface forms to a canonical concept.
-- Hybrid strategies can split work between language models and regex where structure is predictable.
-- Concept deduplication is one of the hardest parts of maintaining a knowledge base.
-- Explicit relation types outperform free-form linking for keeping the graph clean.
-- Ontology quality directly affects contradiction detection and gap analysis.
-- Typed extraction is a control mechanism for long-lived AI memory systems.
-- ABoxes and TBoxes are different layers of a knowledge system and should not be conflated.
-- Graph databases can store assertions without providing full ontology reasoning.
-- Inference often requires external reasoners or logic engines.
+- Why it helps: This makes the knowledge base easier to search, deduplicate, and audit. It also gives downstream agents a more stable memory layer, because they can rely on named concepts and explicit relations instead of loose text links.
 
-## Operational Insight
+- Basis: `source-grounded`
 
-Use the ontology as part of the prompt and extraction plan, not as a post-processing artifact. The more specific the schema, aliases, and property requirements, the less cleanup work you leave to later stages.
+## Context card
 
-## Evidence / supporting sources
+- **Use this page when:** Use this page when you are deciding whether to constrain extraction with a typed ontology, how that affects memory and search quality, and what extra reasoning or validation components you may need.
+- **Best for questions about:** How to structure extraction from unstructured text with a schema or ontology, How to reduce duplicate concepts and messy links in a knowledge base, When to use typed entities, aliases, and explicit relations in AI memory systems, How ontology-driven extraction supports auditability, provenance, and stable retrieval, How to separate extraction, validation, and reasoning in a knowledge pipeline
+- **Not enough for:** A full implementation guide for ontology design, A benchmarked comparison of extraction methods across domains, How to build ontology reasoning inside a specific graph database, Detailed rules-engine or reasoner architecture
+- **Strongest sources:** Ontology-Driven GraphRAG: A Framework for Zero-Noise Knowledge Extraction, Why Andrej Karpathy’s “LLM Wiki” is the Future of Personal Knowledge, You Probably Don’t Need a Graph Database for Your Knowledge Graph
+- **Related tags:** agent-memory, auditability, knowledge-systems
 
-### Ontology-Driven GraphRAG: A Framework for Zero-Noise Knowledge Extraction (2025-12-03)
+## What to remember
 
-- Ontology-driven extraction uses a domain ontology to shape what an extractor looks for, how it formats output, and which values it should accept. Instead of asking a model for generic entity extraction, the system constrains the task with explicit entity types, properties, aliases, and validation expectations. This usually improves consistency, reduces hallucinated structure, and makes downstream validation easier. The approach is especially useful when documents vary in phrasing but must map into a stable schema. (`b8dae1e6a028` · neutral · knowledge_summary; [[sources/ontology-driven-graphrag-a-framework-for-zero-noise-knowledge-extraction-01kqkvd7bwfhpbgqtw20czkk22|Ontology-Driven GraphRAG: A Framework for Zero-Noise Knowledge Extraction]])
-- Use the ontology as part of the prompt and extraction plan, not as a post-processing artifact. The more specific the schema, aliases, and property requirements, the less cleanup work you leave to later stages. (`dd482620edcb` · neutral · operational_insight; [[sources/ontology-driven-graphrag-a-framework-for-zero-noise-knowledge-extraction-01kqkvd7bwfhpbgqtw20czkk22|Ontology-Driven GraphRAG: A Framework for Zero-Noise Knowledge Extraction]])
-- This pattern matters whenever teams need reliable structured extraction from unstructured text at scale. It is especially relevant for medical, legal, and support-document workflows where schema fidelity matters as much as recall. (`e4a7d96fa0ca` · neutral · relevance_note; [[sources/ontology-driven-graphrag-a-framework-for-zero-noise-knowledge-extraction-01kqkvd7bwfhpbgqtw20czkk22|Ontology-Driven GraphRAG: A Framework for Zero-Noise Knowledge Extraction]])
-- Explicit entity types and required properties can reduce ambiguity in extraction. (`42b53738d8a3` · supporting · key_points[0]; [[sources/ontology-driven-graphrag-a-framework-for-zero-noise-knowledge-extraction-01kqkvd7bwfhpbgqtw20czkk22|Ontology-Driven GraphRAG: A Framework for Zero-Noise Knowledge Extraction]])
-- Aliases let the extractor map variant surface forms to a canonical concept. (`7e9bbfd92cd1` · supporting · key_points[1]; [[sources/ontology-driven-graphrag-a-framework-for-zero-noise-knowledge-extraction-01kqkvd7bwfhpbgqtw20czkk22|Ontology-Driven GraphRAG: A Framework for Zero-Noise Knowledge Extraction]])
-- Hybrid strategies can split work between language models and regex where structure is predictable. (`44ad6268ae4c` · supporting · key_points[2]; [[sources/ontology-driven-graphrag-a-framework-for-zero-noise-knowledge-extraction-01kqkvd7bwfhpbgqtw20czkk22|Ontology-Driven GraphRAG: A Framework for Zero-Noise Knowledge Extraction]])
-- “we use the ontology to construct a precise, domain-specific prompt.” (`42baecb80c40` · supporting · supporting_snippet; [[sources/ontology-driven-graphrag-a-framework-for-zero-noise-knowledge-extraction-01kqkvd7bwfhpbgqtw20czkk22|Ontology-Driven GraphRAG: A Framework for Zero-Noise Knowledge Extraction]])
+- The ontology is a control surface, not just metadata.
+- Typed entities and explicit relation types reduce duplication and ambiguity.
+- Aliases are essential for mapping variant wording to the same concept.
+- Put the ontology into the extraction prompt and workflow, not only into post-processing.
+- Graph storage and ontology reasoning are different layers.
+- If the ontology is weak, the downstream quality benefits will also be weak.
 
-### Why Andrej Karpathy’s “LLM Wiki” is the Future of Personal Knowledge (2026-04-06)
+## Consensus
 
-- The source describes a pipeline that "identifies entities and concepts from the summaries, deduplicates them against the existing ontology" and uses explicit relation types like "is-a, part-of, related-to, contradicts." (`0a509ca790ea` · neutral · examples; [[sources/why-andrej-karpathy-s-llm-wiki-is-the-future-of-personal-knowledge-01kqm0rf7jxk8010thyjvag0j8|Why Andrej Karpathy’s “LLM Wiki” is the Future of Personal Knowledge]])
-- Structured extraction improves knowledge systems when the model must identify concepts, deduplicate near-synonyms, and attach typed relations instead of producing loose text links. A typed ontology gives the system stable nodes and edges for concepts such as is-a, part-of, related-to, and contradicts. This makes it easier to detect duplicates, surface contradictions, and keep a large wiki internally consistent. The approach is especially useful when the corpus grows enough that free-form linking becomes unreliable. (`a273a5c75bae` · neutral · knowledge_summary; [[sources/why-andrej-karpathy-s-llm-wiki-is-the-future-of-personal-knowledge-01kqm0rf7jxk8010thyjvag0j8|Why Andrej Karpathy’s “LLM Wiki” is the Future of Personal Knowledge]])
-- If a knowledge system will grow, invest in a typed concept graph early. The more the system must reconcile overlapping terms and conflicting claims, the more the ontology becomes the real control surface. (`4d80080a5bc0` · neutral · operational_insight; [[sources/why-andrej-karpathy-s-llm-wiki-is-the-future-of-personal-knowledge-01kqm0rf7jxk8010thyjvag0j8|Why Andrej Karpathy’s “LLM Wiki” is the Future of Personal Knowledge]])
-- Ontology-driven extraction matters in AI systems that need stable memory, search, or provenance over time. It reduces the chance that the model fragments the same concept into multiple pages or loses track of contradictions as the corpus expands. (`6f2720238ffd` · neutral · relevance_note; [[sources/why-andrej-karpathy-s-llm-wiki-is-the-future-of-personal-knowledge-01kqm0rf7jxk8010thyjvag0j8|Why Andrej Karpathy’s “LLM Wiki” is the Future of Personal Knowledge]])
-- Concept deduplication is one of the hardest parts of maintaining a knowledge base. (`755578396ff6` · supporting · key_points[0]; [[sources/why-andrej-karpathy-s-llm-wiki-is-the-future-of-personal-knowledge-01kqm0rf7jxk8010thyjvag0j8|Why Andrej Karpathy’s “LLM Wiki” is the Future of Personal Knowledge]])
-- Explicit relation types outperform free-form linking for keeping the graph clean. (`5459c2583a30` · supporting · key_points[1]; [[sources/why-andrej-karpathy-s-llm-wiki-is-the-future-of-personal-knowledge-01kqm0rf7jxk8010thyjvag0j8|Why Andrej Karpathy’s “LLM Wiki” is the Future of Personal Knowledge]])
-- Ontology quality directly affects contradiction detection and gap analysis. (`b55e58ac260c` · supporting · key_points[2]; [[sources/why-andrej-karpathy-s-llm-wiki-is-the-future-of-personal-knowledge-01kqm0rf7jxk8010thyjvag0j8|Why Andrej Karpathy’s “LLM Wiki” is the Future of Personal Knowledge]])
-- Typed extraction is a control mechanism for long-lived AI memory systems. (`3520868dbd29` · supporting · key_points[3]; [[sources/why-andrej-karpathy-s-llm-wiki-is-the-future-of-personal-knowledge-01kqm0rf7jxk8010thyjvag0j8|Why Andrej Karpathy’s “LLM Wiki” is the Future of Personal Knowledge]])
-- I have found that maintaining a typed entity system with explicit relation types (is-a, part-of, related-to, contradicts) produces much cleaner wikis than letting the LLM free-form link things. (`e86d08a7926b` · supporting · supporting_snippet; [[sources/why-andrej-karpathy-s-llm-wiki-is-the-future-of-personal-knowledge-01kqm0rf7jxk8010thyjvag0j8|Why Andrej Karpathy’s “LLM Wiki” is the Future of Personal Knowledge]])
+- Ontology-driven extraction uses a domain ontology to constrain what the system looks for, how it names things, and which relations or properties it accepts.
+- Typed entities and explicit relation types such as is-a, part-of, related-to, and contradicts help keep extracted knowledge cleaner than free-form linking.
+- Aliases and deduplication are important because the same concept often appears under different surface forms.
+- The ontology should be part of the extraction prompt and plan, not just a cleanup step after extraction.
+- This pattern is useful when teams need stable memory, search, provenance, or downstream reasoning over time.
+- Extraction quality depends on the ontology itself. If the ontology is weak or incomplete, contradiction detection, gap analysis, and validation will also suffer.
 
-### You Probably Don’t Need a Graph Database for Your Knowledge Graph (2026-04-29)
+## Tensions / open questions
 
-- Ontology-driven extraction uses a domain ontology to structure information extraction and constrain how entities and relations are interpreted. It can improve consistency and downstream reasoning, but it also adds modeling work and often depends on external reasoning systems. Inference, validation, and schema management are separate concerns from storing graph-shaped data. (`d81a13c6461c` · neutral · knowledge_summary; [[sources/you-probably-don-t-need-a-graph-database-for-your-knowledge-graph-01kqz02qzddjehycrjafswxv5r|You Probably Don’t Need a Graph Database for Your Knowledge Graph]])
-- Do not treat ontology modeling as equivalent to graph storage. If the workflow needs classification, validation, or inference, plan for the reasoning layer explicitly rather than assuming the database will handle it. (`0d4ce37eaf9e` · neutral · operational_insight; [[sources/you-probably-don-t-need-a-graph-database-for-your-knowledge-graph-01kqz02qzddjehycrjafswxv5r|You Probably Don’t Need a Graph Database for Your Knowledge Graph]])
-- Ontology-driven extraction matters in enterprise AI because it can turn unstructured text into structured knowledge that agents can use. The main operational challenge is that the ontology is only useful if reasoning and validation are supported cleanly in the pipeline. (`973bf1f449ed` · neutral · relevance_note; [[sources/you-probably-don-t-need-a-graph-database-for-your-knowledge-graph-01kqz02qzddjehycrjafswxv5r|You Probably Don’t Need a Graph Database for Your Knowledge Graph]])
-- ABoxes and TBoxes are different layers of a knowledge system and should not be conflated. (`c5c873b3ca17` · supporting · key_points[0]; [[sources/you-probably-don-t-need-a-graph-database-for-your-knowledge-graph-01kqz02qzddjehycrjafswxv5r|You Probably Don’t Need a Graph Database for Your Knowledge Graph]])
-- Graph databases can store assertions without providing full ontology reasoning. (`b9879061baa0` · supporting · key_points[1]; [[sources/you-probably-don-t-need-a-graph-database-for-your-knowledge-graph-01kqz02qzddjehycrjafswxv5r|You Probably Don’t Need a Graph Database for Your Knowledge Graph]])
-- Inference often requires external reasoners or logic engines. (`d636447aad8c` · supporting · key_points[2]; [[sources/you-probably-don-t-need-a-graph-database-for-your-knowledge-graph-01kqz02qzddjehycrjafswxv5r|You Probably Don’t Need a Graph Database for Your Knowledge Graph]])
-- They handle facts but not rules.
+- A tighter ontology reduces ambiguity, but it adds modeling work and maintenance overhead.
+- Some sources emphasize extraction quality and clean memory; another emphasizes that graph storage alone does not provide ontology reasoning.
+- The sources suggest this pattern scales better as the corpus grows, but they do not provide hard thresholds for when free-form linking stops being sufficient.
 
-In description logic terms, GraphDB stores A-Boxes (assertions) but not T-Boxes (terminology and rules). (`4a2c2a85152c` · supporting · supporting_snippet; [[sources/you-probably-don-t-need-a-graph-database-for-your-knowledge-graph-01kqz02qzddjehycrjafswxv5r|You Probably Don’t Need a Graph Database for Your Knowledge Graph]])
+## Evidence quality
 
-## Contradictions / tensions
+- Good agreement across three sources on the core pattern: ontology-constrained extraction improves consistency and makes downstream handling easier.
+- Evidence is mostly conceptual and operational, not experimental. The sources explain mechanisms and tradeoffs more than they report measured results.
+- The strongest support comes from two complementary angles: one source on extraction workflows and one on knowledge-system design over time.
+- Evidence is weaker on exact implementation choices, performance gains, and when the added modeling effort is not worth it.
+- One source adds an important architectural caveat: graph storage is not the same as ontology reasoning.
 
-No contradictions captured in current sources.
+## Practical takeaway
+
+Use ontology-driven extraction when consistency matters more than raw recall. Define the ontology early, include aliases and validation rules, and plan for separate reasoning or validation if you need classification or inference. Do not assume the graph store alone will do that job.
+
+## Evidence index
+
+- Sources: 3
+- Evidence items: 23
+- Current input hash: `487ad2b09b304586`
+- Cached input hash: `487ad2b09b304586`
+- Last synthesized: 2026-07-10T12:45:57Z
+- Synthesis status: `fresh`
 
 ## Related pages
 
