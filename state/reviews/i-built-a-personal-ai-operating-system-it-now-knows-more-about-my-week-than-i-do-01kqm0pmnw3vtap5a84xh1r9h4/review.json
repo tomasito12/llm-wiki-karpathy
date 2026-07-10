@@ -336,7 +336,6 @@
             "It is part of a fully local inference stack rather than a cloud-hosted setup."
           ],
           "deployment_implications": "For deployment, the source suggests using this class of model as the higher-quality lane in a routed system rather than forcing every interaction through one model. That makes sense for briefings, messaging, and other outputs where latency is less important than synthesis. It also implies that local orchestration should support model switching by channel or task rather than one-size-fits-all inference.",
-          "evidence_type": null,
           "match_candidates": [],
           "maturity_signals": "The model is used in a working local assistant stack, which is a practical maturity signal. The source does not provide independent validation or ecosystem context, so the evidence remains limited to one deployment.",
           "model_name": "qwen3:30b-a3b",
@@ -373,56 +372,56 @@
             "final_list": null,
             "llm_list": [],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "comparative_observations": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "It is positioned as the higher-quality counterpart to ministral-3:3b instruct in the same system.",
               "The source frames it as slower or heavier than the smaller voice model, but more suitable for quality-sensitive text tasks."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "core_capabilities": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "It serves as the higher-quality model lane for non-realtime assistant outputs.",
               "It supports a routed architecture where different channels use different models.",
               "It is part of a fully local inference stack rather than a cloud-hosted setup."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "deployment_implications": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "maturity_signals": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "model_name": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "operational_profile": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "pricing_inference_implications": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "provider": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "related_models": {
             "final_list": null,
@@ -435,9 +434,9 @@
             "status": "pending"
           },
           "service_automation_implications": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -445,9 +444,9 @@
             "status": "pending"
           },
           "weaknesses_limitations": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           }
         },
         "tags": {
@@ -457,6 +456,14 @@
             "reasoning-model",
             "developer-focused"
           ]
+        },
+        "types": {
+          "approved_new_types": [],
+          "approved_types": [
+            "open-weight-model",
+            "reasoning-model"
+          ],
+          "reviewer_types_added": []
         }
       }
     ],
@@ -506,7 +513,7 @@
           "evidence_from_source": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_trends": {
             "final_list": null,
@@ -525,7 +532,7 @@
               "The assistant tracks weekly continuity such as slipped tasks and contact freshness."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -535,27 +542,27 @@
           "time_sensitivity": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_description": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "uncertainty_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -658,7 +665,6 @@
             "It can support multiple model roles in the same system, including quality-sensitive and low-latency channels.",
             "It can sit underneath web, messaging, voice, and MCP-connected workflows as a shared model runtime."
           ],
-          "evidence_type": null,
           "integration_ecosystem": [
             "The source places it under a FastAPI application that also exposes web, messaging, voice, and MCP interfaces.",
             "It is used alongside PostgreSQL and pgvector in a persistent assistant stack.",
@@ -702,7 +708,7 @@
               "It can sit underneath web, messaging, voice, and MCP-connected workflows as a shared model runtime."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "integration_ecosystem": {
             "final_list": null,
@@ -712,22 +718,22 @@
               "It is paired with multiple local models rather than a single monolithic model choice."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "maturity_signals": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "name": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_relevance": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_tools": {
             "final_list": null,
@@ -742,12 +748,12 @@
           "short_description": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "strengths": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -757,7 +763,7 @@
           "weaknesses_limitations": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -767,6 +773,14 @@
             "open-source",
             "low-latency"
           ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "model-serving"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
         }
       }
     ],
@@ -812,7 +826,7 @@
           "examples": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "key_points": {
             "final_list": null,
@@ -822,17 +836,17 @@
               "Draft-first, approval-led action flows are a practical safety boundary for assistants with access to private context."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "knowledge_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_insight": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_topics": {
             "final_list": null,
@@ -842,12 +856,12 @@
               "agent-runtime-architecture"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "relevance_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -857,12 +871,12 @@
           "topic_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "topic_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -870,7 +884,8 @@
           "final_tags": [
             "agent-systems",
             "agent-memory",
-            "workflow-design"
+            "workflow-design",
+            "knowledge-systems"
           ]
         }
       },
@@ -913,7 +928,7 @@
           "examples": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "key_points": {
             "final_list": null,
@@ -923,17 +938,17 @@
               "Recurring briefings, review notes, and reminders are natural products of a timed runtime."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "knowledge_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_insight": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_topics": {
             "final_list": null,
@@ -941,12 +956,12 @@
               "agentic-personal-knowledge-management"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "relevance_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -956,12 +971,12 @@
           "topic_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "topic_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -977,19 +992,21 @@
   },
   "review_analytics": {
     "batch_actions_used": [],
-    "evidence_type_counts": {},
+    "evidence_type_counts": {
+      "implementation_case": 5
+    },
     "fields_modified": 0,
-    "proposals_approved": 0,
+    "proposals_approved": 5,
     "proposals_deferred": 0,
     "proposals_modified": 0,
     "proposals_rejected": 0,
-    "proposals_total": 0,
-    "review_duration_seconds": null,
-    "review_finished_at": null,
-    "review_started_at": null
+    "proposals_total": 5,
+    "review_duration_seconds": 192.9,
+    "review_finished_at": "2026-07-10T11:51:13.914631+00:00",
+    "review_started_at": "2026-07-10T11:48:01+00:00"
   },
   "review_session": {
-    "last_saved_at": null,
+    "last_saved_at": "2026-07-10T11:51:14+00:00",
     "saved_by": null
   },
   "source": {
