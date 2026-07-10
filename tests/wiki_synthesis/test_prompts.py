@@ -18,9 +18,12 @@ def test_build_prompt_bundle_contains_grounding_context() -> None:
 
     bundle = build_prompt_bundle(graph, entity_id="topic:local-models")
 
+    assert bundle.prompt_version == 1
     assert bundle.synthesis_input_hash == current_hash
     assert "Category-specific rule:" in bundle.system_prompt
     assert "For topic pages" in bundle.system_prompt
+    assert "mixed AI/product/operations team" in bundle.system_prompt
+    assert "explain them briefly in context" in bundle.system_prompt
     assert "ENTITY" in bundle.user_prompt
     assert "- entity_id: topic:local-models" in bundle.user_prompt
     assert "SOURCES" in bundle.user_prompt
@@ -29,9 +32,13 @@ def test_build_prompt_bundle_contains_grounding_context() -> None:
     assert "[evidence-a]" in bundle.user_prompt
     assert "Local models run near users." in bundle.user_prompt
     assert '"synthesis_input_hash":' in bundle.user_prompt
+    assert '"synthesis_prompt_version": 1' in bundle.user_prompt
     assert '"practical_example":' in bundle.user_prompt
     assert '"workflow_variants":' in bundle.user_prompt
     assert "service automation, chatbot, voicebot" in bundle.user_prompt
+    assert "start with the practical function" in bundle.user_prompt
+    assert "then name the technical concept or architecture" in bundle.user_prompt
+    assert "Do not write in childish" in bundle.user_prompt
     assert current_hash in bundle.user_prompt
 
 

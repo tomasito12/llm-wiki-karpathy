@@ -23,6 +23,9 @@ Rules:
 - Prefer useful synthesis over exhaustive restatement.
 - Write for a reader who sits between AI engineering and business/domain work.
 - Use plain language and make abstract ideas concrete through examples or practical relevance.
+- Write for a mixed AI/product/operations team, not only for AI engineers.
+- Keep important technical terms, but explain them briefly in context the first time they matter.
+- Use short sentences and avoid stacking many abstract nouns in one sentence.
 - Separate consensus from tensions and open questions.
 - If evidence is thin, say so clearly.
 - If sources disagree, describe the disagreement instead of resolving it artificially.
@@ -329,6 +332,17 @@ def _style_rules_block(category: str) -> str:
     """Return writing style rules for the synthesis output."""
     base = f"""STYLE RULES
 - Write concise, plain English for a technically curious domain expert.
+- Use clear professional language for a mixed AI/product/operations team.
+- Do not write in childish "easy language"; keep nuance and important technical terms.
+- Explain technical terms briefly when they are needed for understanding.
+- Prefer short sentences over dense paragraphs.
+- Avoid stacked abstractions such as "quality evaluation loop" without explaining what the
+  team does.
+- Make executive_synthesis especially readable: start with the practical function in plain
+  terms, then name the technical concept or architecture, then add mechanism, caveat, and
+  evidence strength.
+- For abstract concepts, include a concrete work example inside executive_synthesis or
+  practical_example when the evidence supports it.
 - Avoid unnecessary technical abstraction when a concrete example or relevance framing would help.
 - Avoid hype.
 - Avoid generic statements.
