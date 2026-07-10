@@ -127,7 +127,7 @@
     },
     {
       "path": "foundation-models/qwen-3-5-9b.md",
-      "sha256": "d3a387d05ba67ef0967353277facf1359b82f6a718196ec4da7238b1416265db"
+      "sha256": "a1a5711bd3e99702eea704ef2d88fb798a8bf179c56f90a67102fa7f52d2d882"
     },
     {
       "path": "foundation-models/qwen-3-5.md",
@@ -255,7 +255,7 @@
     },
     {
       "path": "glossary/mixture-of-experts.md",
-      "sha256": "93ca1b70423e627b69683568e5b164ad4825f80f9d0619d547116767dcbaee93"
+      "sha256": "52286a9cfb37825f39449cac5ab412f5e1296f2dd3a90b310fd13423fc83963a"
     },
     {
       "path": "glossary/model-context-protocol.md",
@@ -3667,7 +3667,7 @@
     },
     {
       "path": "tools/claude-code.md",
-      "sha256": "d2dfce8cbaeb7d0632a71e7d8edea40519df07534375cc8aca1fc0f543ad55df"
+      "sha256": "70081b1d92b59bf8c08a9af495b277f38e80da1564c340950577d0ffaace9e3e"
     },
     {
       "path": "tools/claude-desktop.md",
@@ -3955,7 +3955,7 @@
     },
     {
       "path": "tools/ollama.md",
-      "sha256": "e77b3e463a07308e5883d97220df3937d6c972e80560cb54fb1afdf827923629"
+      "sha256": "d14746e5535e917202c74eae9e1789f07c89bc913cd779b0f78b9d783ee46c8a"
     },
     {
       "path": "tools/omnisearch.md",
@@ -4535,7 +4535,7 @@
     },
     {
       "path": "topics/hybrid-retrieval.md",
-      "sha256": "59ccf03e7c2bd314c89abd1f76e10b0346f87fe948ee1cc9b8f65fb728fedbdf"
+      "sha256": "a8c8bcda063bac6df3db3c43f594639186fa48a84f10ca677de27936223ac1d7"
     },
     {
       "path": "topics/incremental-and-reversible-infrastructure-changes.md",
@@ -4571,7 +4571,7 @@
     },
     {
       "path": "topics/knowledge-layer-architecture.md",
-      "sha256": "5d421c768f9da0f11031562170586f9f36e2fde081b6f08b293b469a500ddfc6"
+      "sha256": "0f6158584bdee5e8edd06e940f389afa5de8f30c0ce651c2dcd858ad69a77241"
     },
     {
       "path": "topics/knowledge-management.md",
@@ -4787,7 +4787,7 @@
     },
     {
       "path": "topics/prompt-engineering.md",
-      "sha256": "72f4da091e139a48cbf755069f1679833d3b8fd5f080cf0d7b97a800f98e5d84"
+      "sha256": "e9647a606c4514428bf26a0ff8285604e8ac60604ec84b918bf1fa81b5d11750"
     },
     {
       "path": "topics/prompt-injection-defensive-context-handling.md",

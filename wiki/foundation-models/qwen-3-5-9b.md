@@ -17,7 +17,13 @@ source_ids:
 - run-your-own-ai-agent-locally-ollama-mcp-and-skills-explained-01krbndqeaakn1z9vmar5vjf14
 value_level: high
 confidence: 0.89
-synthesis_state: stage1-placeholder
+synthesis_state: synthesized
+synthesis_stale: false
+synthesis_input_hash: ad2b721da3c32cbf
+current_input_hash: ad2b721da3c32cbf
+synthesis_schema_version: 1
+synthesis_prompt_version: 1
+last_synthesized_at: '2026-07-10T12:38:44Z'
 types:
 - coding-model
 - open-weight-model
@@ -26,97 +32,70 @@ types:
 
 # Qwen 3.5 9B
 
-## Current understanding
+## Executive synthesis
 
-<!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
-This local 9B model is used as the agent runtime for a tool-using workflow. In the article it is positioned as capable enough for a small local orchestration task with tool traces and a relatively large context window.
+Qwen 3.5 9B looks like a practical local model for small agent prototypes, especially when you want tool use, long context, and self-hosting. The sources describe it as a 256K-context model trained with tool-use traces, and they show it running in quantized form on local hardware. In practice, that makes it relevant for search/fetch/extract loops, browser-backed assistants, and simple triage-style workflows. The main caveat is that it is not shown to be robust on its own. The articles repeatedly show brittleness in multi-step tool use, so the surrounding harness matters. Evidence quality is moderate for developer use, but thin for enterprise reliability or benchmark claims.
 
-- The article highlights a 256K context window, which matters for agent workflows that need to keep long procedures, tool traces, or multi-step context in memory.
-- It is described as being trained with tool-use traces, which is operationally relevant for function-calling and MCP-style orchestration.
-- The quantized model is small enough to fit on a 16 GB RAM machine in the example, which makes local experimentation more accessible.
+## Practical relevance
 
-## Comparative Observations
+### Worth testing for local browser agents
 
-- The author says qwen3.5:4b is an easier swap if the machine has less RAM.
-- The author says llama3.1:8b is a fine substitute if a different local model is preferred.
-- The article implies this 9B local model is usable for the task, but only with stronger orchestration than a larger or more reliable model would likely need.
-- It is contrasted indirectly with the limitations of smaller models in general, such as empty turns and missed tool chaining, rather than with a specific benchmark competitor.
+A team building a local web-browsing agent could try Qwen 3.5 9B as the runtime when the task is split into search, fetch, and extract steps. The sources show it being used for that kind of loop, and they also show it can fill a JSON schema from a page snapshot. That makes it a reasonable candidate for prototypes that need grounded answers from pages rather than free-form chat. The evidence is thinner for cases that need high reliability, complex handoffs, or long multi-step autonomy, so it is better viewed as a candidate for controlled experiments than as a drop-in support system.
 
-## Core Capabilities
+- Why this matters: It gives a concrete sense of where the model fits: local, tool-based workflows with simple structure, not fully autonomous production support.
 
-- It supports long-context agent workflows with a 256K context window.
-- It is trained with tool-use traces, which is useful for orchestrated function calling.
-- It can run locally in a quantized form on a laptop-class machine.
-- It can drive a tool-using agent loop when the system prompt and recursion are explicit.
-- It can participate in JSON-mode extraction when the browser server asks it to fill a schema from a page snapshot.
-- It is small enough to fit a local-first stack, which makes it practical for self-hosted workflows.
+- Basis: `source-grounded`
 
-## Maturity signals
+## Context card
 
-The article frames this as a usable local model rather than a research preview, but the evidence is limited to a single laptop demo. The author’s ability to run it locally on 16 GB RAM is a practical maturity signal for development use. There is no evidence here of enterprise deployment or benchmark leadership.
+- **Use this page when:** Use this page when you need to judge whether Qwen 3.5 9B is a practical local model for agent prototypes, tool use, or low-cost self-hosted experimentation.
+- **Best for questions about:** Whether Qwen 3.5 9B is a good fit for local agent prototypes, What its 256K context window and tool-use training mean in practice, How much orchestration a smaller local model needs for search/fetch/extract tasks, When to prefer a smaller local model because RAM is limited
+- **Not enough for:** Formal instruction-following or tool-use benchmarks, Support-grade reliability or handoff behavior, Enterprise deployment readiness, Throughput, latency, electricity cost, or detailed economics
+- **Strongest sources:** Run Your Own AI Agent Locally: Ollama, MCP, and Skills Explained, Build Your Own Local Web Browsing LLM Agent in 250 Lines of Python
+- **Related tags:** developer-focused, low-cost, open-weight-model, tool-use-capable
 
-## Pricing / inference implications
+## What to remember
 
-As a local model, it avoids per-call API pricing, but the source does not quantify electricity, hardware, or latency costs. The article implies that deployment feasibility depends on available RAM and model quantization more than on subscription pricing.
+- 256K context is the main capability signal for long agent workflows.
+- Tool-use traces make it relevant for function calling and MCP-style orchestration.
+- It can run locally in quantized form, which lowers dependence on cloud APIs.
+- It is developer-ready for prototypes, but not validated as broadly robust.
+- Smaller local models need tighter prompts and stronger harnesses than more capable models.
 
-## Provider
+## Consensus
 
-Qwen
+- Qwen 3.5 9B is useful as a local, tool-capable model for small agent workflows.
+- The sources agree it supports long-context work, with a 256K context window.
+- It is trained with tool-use traces, which makes it relevant for function calling and MCP-style orchestration.
+- It can run in quantized form on local hardware, including a laptop-class machine in the example source.
+- The evidence points to practical developer readiness for prototyping, not to broad enterprise validation or benchmark leadership.
 
-## Service automation implications
+## Tensions / open questions
 
-The article’s example is an operations check, so the model could support simple triage-style service workflows, but the source does not demonstrate support-grade reliability or handoff behavior.
+- The model is presented as usable for local agent prototypes, but the evidence is limited to two hands-on articles and does not include formal benchmarks.
+- The long context window and tool-use traces suggest capability, but the same sources show brittle behavior in multi-step tool use.
+- It appears feasible on local hardware, but the RAM-friendly setup depends on quantization and the source does not quantify the full cost tradeoff.
+- The model may be enough for simple service or triage workflows, but the sources do not show support-grade reliability or handoff behavior.
 
-## Weaknesses / limitations
+## Evidence quality
 
-- The article does not provide any systematic evaluation of instruction-following quality, tool accuracy, or hallucination rate.
-- A 9B local model can be memory-sensitive, and the author explicitly suggests a smaller variant if RAM is tight.
-- No pricing or throughput comparison is given, so the inference economics for heavy use remain unclear.
+- Evidence is hands-on and practical, but limited to two articles and one-off demos.
+- There is no systematic evaluation of accuracy, hallucination rate, or tool reliability.
+- The sources are useful for deployment fit and workflow relevance, but weak on comparative performance.
+- The maturity signal is real-world usage by the authors, not formal validation.
 
-## Evidence / supporting sources
+## Practical takeaway
 
-### Build Your Own Local Web Browsing LLM Agent in 250 Lines of Python (2026-05-23)
+Test Qwen 3.5 9B when you want a local, low-cost, tool-capable model for constrained agent work. Expect to invest in orchestration, prompt discipline, and output constraints. Do not assume strong reliability without your own evaluation.
 
-- The article implies this 9B local model is usable for the task, but only with stronger orchestration than a larger or more reliable model would likely need. (`786a2f09e830` · neutral · comparative_observations[0]; [[sources/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-01kts19400x91hkkaam8ed7tvt|Build Your Own Local Web Browsing LLM Agent in 250 Lines of Python]])
-- It is contrasted indirectly with the limitations of smaller models in general, such as empty turns and missed tool chaining, rather than with a specific benchmark competitor. (`b1afb33905f1` · neutral · comparative_observations[1]; [[sources/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-01kts19400x91hkkaam8ed7tvt|Build Your Own Local Web Browsing LLM Agent in 250 Lines of Python]])
-- Using a 9B model makes the stack feasible on local hardware, but it also raises the importance of prompt discipline, recursive tool handling, and readable tool errors. The article shows that a smaller model can chain search and fetch, but it may also produce empty turns, guess URLs, or stop after search unless the harness explicitly nudges it. For structured extraction, the model is called inside the browser server with JSON formatting enabled, so deployment depends on careful snapshot budgeting and output constraints. (`4910fbb89600` · neutral · deployment_implications; [[sources/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-01kts19400x91hkkaam8ed7tvt|Build Your Own Local Web Browsing LLM Agent in 250 Lines of Python]])
-- The source uses Qwen 3.5 9B as the working model across all stages, which is a practical signal that it is sufficiently usable for local agent prototyping as of 2026-05-23. The article does not provide formal benchmarks, but it does show successful end-to-end use on live web pages and structured extraction tasks. The evidence is hands-on and limited to one project, so maturity should be read as developer-ready rather than universally robust. (`337540a2f946` · neutral · maturity_signals; [[sources/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-01kts19400x91hkkaam8ed7tvt|Build Your Own Local Web Browsing LLM Agent in 250 Lines of Python]])
-- A small tool-capable local model used to run the agent loop in this tutorial. The source implies it is capable enough to search, fetch, and extract when the system prompt and tool loop are tightly constrained, but it also needs strong orchestration to stay on task. (`91909eda56e2` · neutral · operational_profile; [[sources/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-01kts19400x91hkkaam8ed7tvt|Build Your Own Local Web Browsing LLM Agent in 250 Lines of Python]])
-- The article does not provide pricing, but the local 9B setup implies a low marginal inference cost compared with hosted API calls. The tradeoff is not price alone; the source makes clear that lower-capability local models need more harness work, which can offset some of the cost advantage in engineering time. (`d36d7b015e21` · neutral · pricing_inference_implications; [[sources/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-01kts19400x91hkkaam8ed7tvt|Build Your Own Local Web Browsing LLM Agent in 250 Lines of Python]])
-- Useful for browser-backed service workflows when the task is simple enough to be broken into search, fetch, and extract steps. The source suggests it can power grounded support lookups, but only if the agent is tightly instructed to fetch actual pages rather than answer from snippets. It is not presented as a drop-in autonomous support model; the orchestration matters as much as the model. (`a2786f8a20a4` · neutral · service_automation_implications; [[sources/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-01kts19400x91hkkaam8ed7tvt|Build Your Own Local Web Browsing LLM Agent in 250 Lines of Python]])
-- It can drive a tool-using agent loop when the system prompt and recursion are explicit. (`0a8493352882` · supporting · core_capabilities[0]; [[sources/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-01kts19400x91hkkaam8ed7tvt|Build Your Own Local Web Browsing LLM Agent in 250 Lines of Python]])
-- It can participate in JSON-mode extraction when the browser server asks it to fill a schema from a page snapshot. (`7915283a6037` · supporting · core_capabilities[1]; [[sources/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-01kts19400x91hkkaam8ed7tvt|Build Your Own Local Web Browsing LLM Agent in 250 Lines of Python]])
-- It is small enough to fit a local-first stack, which makes it practical for self-hosted workflows. (`d5cce12b76a1` · supporting · core_capabilities[2]; [[sources/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-01kts19400x91hkkaam8ed7tvt|Build Your Own Local Web Browsing LLM Agent in 250 Lines of Python]])
-- "I am using the qwen3.5:9b model throughout. So, please make sure you have Ollama installed with that model pulled, or edit the config to point at another tool-capable model." (`8cfc8e4a91a1` · supporting · supporting_snippet; [[sources/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-01kts19400x91hkkaam8ed7tvt|Build Your Own Local Web Browsing LLM Agent in 250 Lines of Python]])
-- The article repeatedly shows that this class of model can be brittle in multi-step tool use. It may stop after search snippets, return an empty response after a tool result, or infer an incorrect URL pattern, so the surrounding harness has to compensate. The source also shows that extraction quality depends on how much of the page survives truncation, which limits reliability on long pages. (`583acc4c132f` · uncertainty · weaknesses_limitations; [[sources/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-01kts19400x91hkkaam8ed7tvt|Build Your Own Local Web Browsing LLM Agent in 250 Lines of Python]])
+## Evidence index
 
-### Run Your Own AI Agent Locally: Ollama, MCP, and Skills Explained (2026-05-05)
-
-- The author says qwen3.5:4b is an easier swap if the machine has less RAM. (`2b79b901702c` · neutral · comparative_observations[0]; [[sources/run-your-own-ai-agent-locally-ollama-mcp-and-skills-explained-01krbndqeaakn1z9vmar5vjf14|Run Your Own AI Agent Locally: Ollama, MCP, and Skills Explained]])
-- The author says llama3.1:8b is a fine substitute if a different local model is preferred. (`3ec9890dc223` · neutral · comparative_observations[1]; [[sources/run-your-own-ai-agent-locally-ollama-mcp-and-skills-explained-01krbndqeaakn1z9vmar5vjf14|Run Your Own AI Agent Locally: Ollama, MCP, and Skills Explained]])
-- The model is used as a local tool-calling runtime, so the main workflow implication is that agent loops can be tested without a cloud LLM dependency. Its long context and tool-use training reduce the need for external prompt scaffolding in small procedural tasks. (`ff69c73ef8c7` · neutral · deployment_implications; [[sources/run-your-own-ai-agent-locally-ollama-mcp-and-skills-explained-01krbndqeaakn1z9vmar5vjf14|Run Your Own AI Agent Locally: Ollama, MCP, and Skills Explained]])
-- The article frames this as a usable local model rather than a research preview, but the evidence is limited to a single laptop demo. The author’s ability to run it locally on 16 GB RAM is a practical maturity signal for development use. There is no evidence here of enterprise deployment or benchmark leadership. (`3393edd65eb6` · neutral · maturity_signals; [[sources/run-your-own-ai-agent-locally-ollama-mcp-and-skills-explained-01krbndqeaakn1z9vmar5vjf14|Run Your Own AI Agent Locally: Ollama, MCP, and Skills Explained]])
-- This local 9B model is used as the agent runtime for a tool-using workflow. In the article it is positioned as capable enough for a small local orchestration task with tool traces and a relatively large context window.
-
-- The article highlights a 256K context window, which matters for agent workflows that need to keep long procedures, tool traces, or multi-step context in memory.
-- It is described as being trained with tool-use traces, which is operationally relevant for function-calling and MCP-style orchestration.
-- The quantized model is small enough to fit on a 16 GB RAM machine in the example, which makes local experimentation more accessible. (`e4dd6b20c886` · neutral · operational_profile; [[sources/run-your-own-ai-agent-locally-ollama-mcp-and-skills-explained-01krbndqeaakn1z9vmar5vjf14|Run Your Own AI Agent Locally: Ollama, MCP, and Skills Explained]])
-- As a local model, it avoids per-call API pricing, but the source does not quantify electricity, hardware, or latency costs. The article implies that deployment feasibility depends on available RAM and model quantization more than on subscription pricing. (`30ba2baa4f5d` · neutral · pricing_inference_implications; [[sources/run-your-own-ai-agent-locally-ollama-mcp-and-skills-explained-01krbndqeaakn1z9vmar5vjf14|Run Your Own AI Agent Locally: Ollama, MCP, and Skills Explained]])
-- The article’s example is an operations check, so the model could support simple triage-style service workflows, but the source does not demonstrate support-grade reliability or handoff behavior. (`596980a9912b` · neutral · service_automation_implications; [[sources/run-your-own-ai-agent-locally-ollama-mcp-and-skills-explained-01krbndqeaakn1z9vmar5vjf14|Run Your Own AI Agent Locally: Ollama, MCP, and Skills Explained]])
-- It supports long-context agent workflows with a 256K context window. (`074384b15f31` · supporting · core_capabilities[0]; [[sources/run-your-own-ai-agent-locally-ollama-mcp-and-skills-explained-01krbndqeaakn1z9vmar5vjf14|Run Your Own AI Agent Locally: Ollama, MCP, and Skills Explained]])
-- It is trained with tool-use traces, which is useful for orchestrated function calling. (`7af420961c61` · supporting · core_capabilities[1]; [[sources/run-your-own-ai-agent-locally-ollama-mcp-and-skills-explained-01krbndqeaakn1z9vmar5vjf14|Run Your Own AI Agent Locally: Ollama, MCP, and Skills Explained]])
-- It can run locally in a quantized form on a laptop-class machine. (`21a3c78741c1` · supporting · core_capabilities[2]; [[sources/run-your-own-ai-agent-locally-ollama-mcp-and-skills-explained-01krbndqeaakn1z9vmar5vjf14|Run Your Own AI Agent Locally: Ollama, MCP, and Skills Explained]])
-- "Qwen 3.5 9B is a recent model with a 256K context window, trained with tool-use traces, and quantized to 6.6 GB." (`215054e37c4a` · supporting · supporting_snippet; [[sources/run-your-own-ai-agent-locally-ollama-mcp-and-skills-explained-01krbndqeaakn1z9vmar5vjf14|Run Your Own AI Agent Locally: Ollama, MCP, and Skills Explained]])
-- - The article does not provide any systematic evaluation of instruction-following quality, tool accuracy, or hallucination rate.
-- A 9B local model can be memory-sensitive, and the author explicitly suggests a smaller variant if RAM is tight.
-- No pricing or throughput comparison is given, so the inference economics for heavy use remain unclear. (`3fe6134cb6a3` · uncertainty · weaknesses_limitations; [[sources/run-your-own-ai-agent-locally-ollama-mcp-and-skills-explained-01krbndqeaakn1z9vmar5vjf14|Run Your Own AI Agent Locally: Ollama, MCP, and Skills Explained]])
-
-## Contradictions / tensions
-
-- - The article does not provide any systematic evaluation of instruction-following quality, tool accuracy, or hallucination rate.
-- A 9B local model can be memory-sensitive, and the author explicitly suggests a smaller variant if RAM is tight.
-- No pricing or throughput comparison is given, so the inference economics for heavy use remain unclear. (uncertainty; [[sources/run-your-own-ai-agent-locally-ollama-mcp-and-skills-explained-01krbndqeaakn1z9vmar5vjf14|Run Your Own AI Agent Locally: Ollama, MCP, and Skills Explained]])
-- The article repeatedly shows that this class of model can be brittle in multi-step tool use. It may stop after search snippets, return an empty response after a tool result, or infer an incorrect URL pattern, so the surrounding harness has to compensate. The source also shows that extraction quality depends on how much of the page survives truncation, which limits reliability on long pages. (uncertainty; [[sources/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-01kts19400x91hkkaam8ed7tvt|Build Your Own Local Web Browsing LLM Agent in 250 Lines of Python]])
+- Sources: 2
+- Evidence items: 24
+- Current input hash: `ad2b721da3c32cbf`
+- Cached input hash: `ad2b721da3c32cbf`
+- Last synthesized: 2026-07-10T12:38:44Z
+- Synthesis status: `fresh`
 
 ## Related pages
 

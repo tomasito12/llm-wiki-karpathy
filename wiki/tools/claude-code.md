@@ -36,13 +36,13 @@ source_ids:
 - your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn
 value_level: high
 confidence: 0.9225
-synthesis_state: stale
-synthesis_stale: true
-synthesis_input_hash: 4d88471923f971a5
+synthesis_state: synthesized
+synthesis_stale: false
+synthesis_input_hash: f36bd84d3ce2faba
 current_input_hash: f36bd84d3ce2faba
 synthesis_schema_version: 1
 synthesis_prompt_version: 1
-last_synthesized_at: '2026-07-09T16:43:16Z'
+last_synthesized_at: '2026-07-10T12:03:48Z'
 types:
 - ai-application
 - ai-orchestration
@@ -52,9 +52,6 @@ types:
 ---
 
 # Claude Code
-
-> [!warning] Synthesis may be stale
-> New or changed evidence exists. The prose synthesis below was generated from an older evidence hash.
 
 ## Executive synthesis
 
@@ -89,11 +86,11 @@ A team keeps product notes, issue drafts, and weekly review artifacts in a repos
 
 ## Consensus
 
-- Claude Code is a terminal-based coding agent that reads and writes files directly in a local workspace or repository.
-- It is most useful for multi-step workflows: planning, editing, checking, and iterating on work rather than only chatting or autocomplete.
-- It fits file-native knowledge and engineering workflows, especially when paired with a root instruction file such as CLAUDE.md and related repo or vault conventions.
-- MCP integrations and other tool connections extend it beyond local files into connected systems, which broadens it from coding into workflow automation.
-- The sources consistently treat it as practical and mature enough for real day-to-day use, but mostly through practitioner stories rather than independent evaluation.
+- Claude Code is a terminal-based coding agent that can read and write files directly in a local workspace or repository.
+- It is most useful for multi-step work: planning, editing, checking, iterating, and maintaining artifacts rather than only chatting or autocomplete.
+- It fits file-native workflows especially well when paired with persistent instructions such as CLAUDE.md, repo rules, and git-based review.
+- MCP and other tool connections extend it beyond local files into connected systems, making it useful for workflow automation as well as coding.
+- The sources treat it as practical and mature enough for real day-to-day use, but that maturity is shown mainly through practitioner workflows rather than independent evaluation.
 
 ## Tensions / open questions
 
@@ -104,10 +101,10 @@ A team keeps product notes, issue drafts, and weekly review artifacts in a repos
 
 ## Evidence quality
 
-- Evidence is broad across 17 sources and 196 reviewed claims, with strong agreement on core workflow shape.
+- Evidence is broad across 16 sources and 185 reviewed claims, with strong agreement on the core workflow shape.
 - Most support is practitioner evidence and usage writeups, not controlled studies or vendor documentation.
-- Several sources describe real production or recurring personal workflows, which is a good maturity signal but not the same as independent validation.
-- Limitations are consistently noted: careful instructions, human review, and schema discipline still matter, and weak setup can degrade results.
+- Several sources describe real production or recurring personal workflows, which is a useful maturity signal but not the same as independent validation.
+- Limitations are consistently noted: careful instructions, human review, schema discipline, and verification still matter, and weak setup can degrade results.
 
 ## Practical takeaway
 
@@ -118,9 +115,9 @@ Use Claude Code when the job is to maintain and transform local files across mul
 - Sources: 16
 - Evidence items: 185
 - Current input hash: `f36bd84d3ce2faba`
-- Cached input hash: `4d88471923f971a5`
-- Last synthesized: 2026-07-09T16:43:16Z
-- Synthesis status: `stale`
+- Cached input hash: `f36bd84d3ce2faba`
+- Last synthesized: 2026-07-10T12:03:48Z
+- Synthesis status: `fresh`
 
 ## Related pages
 

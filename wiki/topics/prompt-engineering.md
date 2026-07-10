@@ -16,61 +16,79 @@ source_ids:
 - prompting-fundamentals-01knw8fh59zn676twx2a3d0521
 value_level: high
 confidence: 0.94
-synthesis_state: stage1-placeholder
+synthesis_state: synthesized
+synthesis_stale: false
+synthesis_input_hash: 20005f4612be7959
+current_input_hash: 20005f4612be7959
+synthesis_schema_version: 1
+synthesis_prompt_version: 1
+last_synthesized_at: '2026-07-10T12:34:59Z'
 ---
 
 # Prompt Engineering
 
-## Current understanding
+## Executive synthesis
 
-<!-- stage1-placeholder: single-source lead; Stage 2 will synthesize from accumulated EvidenceItems -->
-Prompt engineering is the practice of shaping instructions so a model produces more useful output. The durable operational lesson is that prompt quality depends on several controllable inputs: task framing, context, output constraints, and iterative revision. Clear prompts reduce ambiguity and make it easier to get responses that match a user's real intent. In practice, prompting is less about finding a perfect template and more about tightening instructions based on the model's first pass.
+Prompt engineering is the practice of shaping model instructions so the output is more useful, reliable, and matched to the task. The sources agree that the biggest gains usually come from simple things: name the role, audience, purpose, background, and output format; add concrete constraints; and revise after a weak first pass. In practice, this is less about finding a magic template and more about reducing ambiguity so the model has fewer degrees of freedom. The evidence is consistent but limited: both sources are aligned, and they frame prompting as instruction design for repeatable AI work such as summaries, draft responses, and structured reports.
 
-## Examples
+## Example in practice
 
-Examples in the source include: "Edit this like you hate mediocrity," "Read this as a skeptical, busy reader with 30 seconds to spare," and "Rewrite this three times: once for a boardroom presentation, once for a casual blog, once for a text message to a friend."
+### Drafting a support reply with clearer constraints
 
-## Key Points
+A support lead asks the model to draft a customer reply. Instead of saying, “Write a response,” they ask it to act as a support agent, write for a frustrated customer, keep the tone calm, stay under 120 words, include the next action, and avoid promises the team cannot verify. If the first draft is too generic, they refine the prompt with more context or a clearer output shape and try again. This makes the result easier to review, compare, and reuse across similar cases.
 
-- Use action verbs to make the requested task explicit.
-- Include audience, purpose, and relevant background to reduce ambiguity.
-- Specify tone, format, length, and constraints to shape the output.
-- Iterate on the prompt instead of expecting a one-shot perfect result.
-- Role prompts can shift the model into critique, rewrite, or ideation modes.
-- Adding concrete constraints usually improves usefulness more than asking for a generic answer.
-- Prompting is iterative; weak outputs are feedback on prompt design as much as on the model.
+- Why it helps: The prompt gives the model a task, audience, and success criteria. That usually reduces cleanup and makes the output more consistent.
 
-## Operational Insight
+- Basis: `source-grounded`
 
-Treat prompting as instruction design. The most reliable improvements usually come from clarifying the task, adding the right context, and specifying the expected output shape before trying more exotic tricks.
+## Context card
 
-## Evidence / supporting sources
+- **Use this page when:** Use this page when you want to improve AI outputs for repeatable work and need a practical framing for how to write, debug, and refine prompts.
+- **Best for questions about:** How to make prompts less ambiguous, How to improve summaries, drafts, and structured outputs, How role, audience, and constraints change model behavior, How to iterate on a prompt after a weak response, How teams can standardize prompt patterns for common workflows
+- **Not enough for:** Deep comparison of prompting methods across model families, Claims about guaranteed performance gains or benchmarks, Advanced prompting techniques that are not covered in the evidence, Cases where prompt changes are not the main bottleneck
+- **Strongest sources:** Prompting fundamentals, 100 ChatGPT Prompts That Actually Produce Better AI Content
+- **Related tags:** ai-engineering, human-ai-workflows, prompt-engineering, context-engineering, workflow-design
 
-### 100 ChatGPT Prompts That Actually Produce Better AI Content (2026-04-14)
+## What to remember
 
-- Examples in the source include: "Edit this like you hate mediocrity," "Read this as a skeptical, busy reader with 30 seconds to spare," and "Rewrite this three times: once for a boardroom presentation, once for a casual blog, once for a text message to a friend." (`c9ea3023fd68` · neutral · examples; [[sources/100-chatgpt-prompts-that-actually-produce-better-ai-content-01kr4333x2f7d61k5w8cqftehd|100 ChatGPT Prompts That Actually Produce Better AI Content]])
-- Prompt engineering is the practice of shaping model inputs so the system produces more useful, reliable, and context-aware outputs. In operational settings, it usually means adding role, audience, constraints, examples, and output format instructions so the model has fewer degrees of freedom. Strong prompts often function as lightweight control systems: they steer the model toward a task, a tone, and an evaluation standard. Good prompt engineering also includes revision after failure, not just writing a single instruction once. (`84abca880400` · neutral · knowledge_summary; [[sources/100-chatgpt-prompts-that-actually-produce-better-ai-content-01kr4333x2f7d61k5w8cqftehd|100 ChatGPT Prompts That Actually Produce Better AI Content]])
-- For reliable AI workflows, prompts should specify the role being simulated, the reader or user being served, and the constraints that define success. That reduces ambiguity and makes outputs easier to compare, debug, and reuse. (`aa34981e32c2` · neutral · operational_insight; [[sources/100-chatgpt-prompts-that-actually-produce-better-ai-content-01kr4333x2f7d61k5w8cqftehd|100 ChatGPT Prompts That Actually Produce Better AI Content]])
-- This matters because prompt structure is one of the most reusable control surfaces in AI-assisted writing, support drafting, summarization, and analysis. Teams that standardize prompt patterns can reduce trial-and-error and make output quality more predictable across tasks. (`b0ac622a32bd` · neutral · relevance_note; [[sources/100-chatgpt-prompts-that-actually-produce-better-ai-content-01kr4333x2f7d61k5w8cqftehd|100 ChatGPT Prompts That Actually Produce Better AI Content]])
-- Role prompts can shift the model into critique, rewrite, or ideation modes. (`741c5605331b` · supporting · key_points[0]; [[sources/100-chatgpt-prompts-that-actually-produce-better-ai-content-01kr4333x2f7d61k5w8cqftehd|100 ChatGPT Prompts That Actually Produce Better AI Content]])
-- Adding concrete constraints usually improves usefulness more than asking for a generic answer. (`2b06f7f3af3b` · supporting · key_points[1]; [[sources/100-chatgpt-prompts-that-actually-produce-better-ai-content-01kr4333x2f7d61k5w8cqftehd|100 ChatGPT Prompts That Actually Produce Better AI Content]])
-- Prompting is iterative; weak outputs are feedback on prompt design as much as on the model. (`48c0d5ea6442` · supporting · key_points[2]; [[sources/100-chatgpt-prompts-that-actually-produce-better-ai-content-01kr4333x2f7d61k5w8cqftehd|100 ChatGPT Prompts That Actually Produce Better AI Content]])
-- "These aren’t fill-in-the-blank templates. They’re thinking frameworks. Prompts that force the AI to slow down, reason carefully, and give you something worth keeping." (`77afc0999759` · supporting · supporting_snippet; [[sources/100-chatgpt-prompts-that-actually-produce-better-ai-content-01kr4333x2f7d61k5w8cqftehd|100 ChatGPT Prompts That Actually Produce Better AI Content]])
+- Prompt engineering is instruction design, not a hunt for a perfect one-shot template.
+- The most useful prompt changes are often role, audience, context, constraints, and output format.
+- Concrete constraints usually improve usefulness more than generic requests.
+- Weak output is feedback on the prompt as well as on the model.
+- Iteration is part of the method; revise after failure.
+- This is especially useful for repeatable outputs like summaries, drafts, and structured reports.
 
-### Prompting fundamentals (2026-04-10)
+## Consensus
 
-- Prompt engineering is the practice of shaping instructions so a model produces more useful output. The durable operational lesson is that prompt quality depends on several controllable inputs: task framing, context, output constraints, and iterative revision. Clear prompts reduce ambiguity and make it easier to get responses that match a user's real intent. In practice, prompting is less about finding a perfect template and more about tightening instructions based on the model's first pass. (`a655dd0a8252` · neutral · knowledge_summary; [[sources/prompting-fundamentals-01knw8fh59zn676twx2a3d0521|Prompting fundamentals]])
-- Treat prompting as instruction design. The most reliable improvements usually come from clarifying the task, adding the right context, and specifying the expected output shape before trying more exotic tricks. (`923697f897b7` · neutral · operational_insight; [[sources/prompting-fundamentals-01knw8fh59zn676twx2a3d0521|Prompting fundamentals]])
-- This remains broadly useful for conversational AI and service automation because prompt shape strongly affects answer quality, review burden, and how much downstream cleanup is needed. It is especially relevant when users or operators need repeatable outputs such as summaries, draft responses, or structured reports. (`4ecb7467dc2e` · neutral · relevance_note; [[sources/prompting-fundamentals-01knw8fh59zn676twx2a3d0521|Prompting fundamentals]])
-- Use action verbs to make the requested task explicit. (`fd7405d725e2` · supporting · key_points[0]; [[sources/prompting-fundamentals-01knw8fh59zn676twx2a3d0521|Prompting fundamentals]])
-- Include audience, purpose, and relevant background to reduce ambiguity. (`45d5b5dffb73` · supporting · key_points[1]; [[sources/prompting-fundamentals-01knw8fh59zn676twx2a3d0521|Prompting fundamentals]])
-- Specify tone, format, length, and constraints to shape the output. (`f1dd12dc470c` · supporting · key_points[2]; [[sources/prompting-fundamentals-01knw8fh59zn676twx2a3d0521|Prompting fundamentals]])
-- Iterate on the prompt instead of expecting a one-shot perfect result. (`68d26c1f9916` · supporting · key_points[3]; [[sources/prompting-fundamentals-01knw8fh59zn676twx2a3d0521|Prompting fundamentals]])
-- "Prompt engineering is the process of designing and refining your input in a way that helps ChatGPT give the best possible answer." (`ec555271ad31` · supporting · supporting_snippet; [[sources/prompting-fundamentals-01knw8fh59zn676twx2a3d0521|Prompting fundamentals]])
+- Clear prompts reduce ambiguity and make outputs easier to compare, debug, and reuse.
+- Specify the role, audience, purpose, relevant background, tone, length, format, and constraints when you need reliable outputs.
+- Prompting works best as an iterative process.
+- Prompt shape materially affects answer quality and downstream cleanup.
 
-## Contradictions / tensions
+## Tensions / open questions
 
-No contradictions captured in current sources.
+- The sources emphasize reusable prompt patterns, but they also warn that prompting is not just about templates; it is about thinking through the task.
+- They imply broad usefulness, but the evidence base here is narrow and drawn from only two reviewed sources.
+- The practical value is high for repeatable workflows, but these sources do not show where prompt tweaks stop helping and other approaches become necessary.
+
+## Evidence quality
+
+- Moderate confidence for the core claim that prompt structure matters, because two sources agree and the individual claims are high-confidence within those sources.
+- Limited breadth: the evidence is conceptually consistent, but it is still narrow and does not test many domains or failure modes.
+- Strongest support is for practical instruction patterns, not for broader claims about long-term model behavior or comparative performance across tools.
+
+## Practical takeaway
+
+Treat prompts as instructions you refine. Start by stating the task, audience, context, and output shape. Add concrete constraints. Then revise based on the first answer. That is the most defensible way to get more reliable AI output in day-to-day workflows.
+
+## Evidence index
+
+- Sources: 2
+- Evidence items: 16
+- Current input hash: `20005f4612be7959`
+- Cached input hash: `20005f4612be7959`
+- Last synthesized: 2026-07-10T12:34:59Z
+- Synthesis status: `fresh`
 
 ## Related pages
 

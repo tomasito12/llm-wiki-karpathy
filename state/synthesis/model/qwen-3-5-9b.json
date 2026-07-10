@@ -1,0 +1,70 @@
+{
+  "category": "model",
+  "consensus": [
+    "Qwen 3.5 9B is useful as a local, tool-capable model for small agent workflows.",
+    "The sources agree it supports long-context work, with a 256K context window.",
+    "It is trained with tool-use traces, which makes it relevant for function calling and MCP-style orchestration.",
+    "It can run in quantized form on local hardware, including a laptop-class machine in the example source.",
+    "The evidence points to practical developer readiness for prototyping, not to broad enterprise validation or benchmark leadership."
+  ],
+  "context_card": {
+    "best_for_questions_about": [
+      "Whether Qwen 3.5 9B is a good fit for local agent prototypes",
+      "What its 256K context window and tool-use training mean in practice",
+      "How much orchestration a smaller local model needs for search/fetch/extract tasks",
+      "When to prefer a smaller local model because RAM is limited"
+    ],
+    "not_enough_for": [
+      "Formal instruction-following or tool-use benchmarks",
+      "Support-grade reliability or handoff behavior",
+      "Enterprise deployment readiness",
+      "Throughput, latency, electricity cost, or detailed economics"
+    ],
+    "related_tags": [
+      "developer-focused",
+      "low-cost",
+      "open-weight-model",
+      "tool-use-capable"
+    ],
+    "strongest_sources": [
+      "Run Your Own AI Agent Locally: Ollama, MCP, and Skills Explained",
+      "Build Your Own Local Web Browsing LLM Agent in 250 Lines of Python"
+    ],
+    "use_this_page_when": "Use this page when you need to judge whether Qwen 3.5 9B is a practical local model for agent prototypes, tool use, or low-cost self-hosted experimentation."
+  },
+  "entity_id": "model:qwen-3-5-9b",
+  "evidence_quality": [
+    "Evidence is hands-on and practical, but limited to two articles and one-off demos.",
+    "There is no systematic evaluation of accuracy, hallucination rate, or tool reliability.",
+    "The sources are useful for deployment fit and workflow relevance, but weak on comparative performance.",
+    "The maturity signal is real-world usage by the authors, not formal validation."
+  ],
+  "executive_synthesis": "Qwen 3.5 9B looks like a practical local model for small agent prototypes, especially when you want tool use, long context, and self-hosting. The sources describe it as a 256K-context model trained with tool-use traces, and they show it running in quantized form on local hardware. In practice, that makes it relevant for search/fetch/extract loops, browser-backed assistants, and simple triage-style workflows. The main caveat is that it is not shown to be robust on its own. The articles repeatedly show brittleness in multi-step tool use, so the surrounding harness matters. Evidence quality is moderate for developer use, but thin for enterprise reliability or benchmark claims.",
+  "last_synthesized_at": "2026-07-10T12:38:44Z",
+  "practical_example": {
+    "basis": "source-grounded",
+    "example": "A team building a local web-browsing agent could try Qwen 3.5 9B as the runtime when the task is split into search, fetch, and extract steps. The sources show it being used for that kind of loop, and they also show it can fill a JSON schema from a page snapshot. That makes it a reasonable candidate for prototypes that need grounded answers from pages rather than free-form chat. The evidence is thinner for cases that need high reliability, complex handoffs, or long multi-step autonomy, so it is better viewed as a candidate for controlled experiments than as a drop-in support system.",
+    "title": "Worth testing for local browser agents",
+    "why_it_helps": "It gives a concrete sense of where the model fits: local, tool-based workflows with simple structure, not fully autonomous production support."
+  },
+  "practical_takeaway": "Test Qwen 3.5 9B when you want a local, low-cost, tool-capable model for constrained agent work. Expect to invest in orchestration, prompt discipline, and output constraints. Do not assume strong reliability without your own evaluation.",
+  "slug": "qwen-3-5-9b",
+  "synthesis_input_hash": "ad2b721da3c32cbf",
+  "synthesis_prompt_version": 1,
+  "synthesis_schema_version": 1,
+  "tensions": [
+    "The model is presented as usable for local agent prototypes, but the evidence is limited to two hands-on articles and does not include formal benchmarks.",
+    "The long context window and tool-use traces suggest capability, but the same sources show brittle behavior in multi-step tool use.",
+    "It appears feasible on local hardware, but the RAM-friendly setup depends on quantization and the source does not quantify the full cost tradeoff.",
+    "The model may be enough for simple service or triage workflows, but the sources do not show support-grade reliability or handoff behavior."
+  ],
+  "title": "Qwen 3.5 9B",
+  "what_to_remember": [
+    "256K context is the main capability signal for long agent workflows.",
+    "Tool-use traces make it relevant for function calling and MCP-style orchestration.",
+    "It can run locally in quantized form, which lowers dependence on cloud APIs.",
+    "It is developer-ready for prototypes, but not validated as broadly robust.",
+    "Smaller local models need tighter prompts and stronger harnesses than more capable models."
+  ],
+  "workflow_variants": []
+}
