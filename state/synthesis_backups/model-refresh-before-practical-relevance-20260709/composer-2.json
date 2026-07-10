@@ -1,0 +1,70 @@
+{
+  "category": "model",
+  "consensus": [
+    "Composer 2 is a Cursor coding model aimed at demanding software work, especially long-horizon agentic coding tasks that involve many steps and tool use.",
+    "The sources agree that it is intended to run inside agent workflows, including custom or self-hosted harnesses where tool calls, repo access, and test runs happen in an execution loop.",
+    "Cursor presents a standard and a faster variant, so deployment decisions involve a tradeoff between cost, throughput, and latency.",
+    "The vendor source reports benchmark gains over Composer 1 and 1.5, but this evidence is vendor-controlled rather than independently validated."
+  ],
+  "context_card": {
+    "best_for_questions_about": [
+      "What Composer 2 is used for in coding-agent workflows",
+      "Whether Composer 2 fits long-running, tool-using software tasks",
+      "How its standard vs fast variant changes deployment tradeoffs",
+      "Whether it can be used in self-hosted agent infrastructure"
+    ],
+    "not_enough_for": [
+      "Independent real-world reliability assessment",
+      "Failure modes or regressions in specific enterprise workflows",
+      "Head-to-head comparison with frontier models outside Cursor's framing",
+      "Pricing or infrastructure cost estimates for self-hosted agents"
+    ],
+    "related_tags": [
+      "coding-model",
+      "developer-focused",
+      "proprietary-model",
+      "tool-use-capable",
+      "agentic",
+      "coding-agents",
+      "execution-oriented-agents"
+    ],
+    "strongest_sources": [
+      "Introducing Composer 2",
+      "Run cloud agents in your own infrastructure"
+    ],
+    "use_this_page_when": "Use this page when you want a compact read on Composer 2 as a coding model for agentic software work, especially if you are deciding whether it belongs inside a tool-using or self-hosted coding workflow."
+  },
+  "entity_id": "model:composer-2",
+  "evidence_quality": [
+    "Evidence is mostly vendor-controlled and benchmark-centric, so the quality signal is useful but not independent.",
+    "The source set is thin on failure cases, adoption data, and workload-specific edge cases.",
+    "The pricing and packaging details are concrete, but the self-hosted infrastructure source does not add cost or performance numbers.",
+    "Overall confidence is moderate for product positioning and deployment fit, lower for real-world reliability claims."
+  ],
+  "executive_synthesis": "Composer 2 is Cursor\u2019s coding-focused model for agentic software work, not a general chat model page. The strongest signal is that it is designed for long-horizon tasks that may require many actions, and Cursor positions it to work inside agent harnesses where tools, repo access, and test runs are part of the loop. That makes it most relevant when the question is not \u201ccan it answer a coding prompt?\u201d but \u201ccan it support a reliable multi-step coding workflow under real execution constraints?\u201d Cursor also offers a faster variant, which creates a practical tradeoff between cost and throughput. The evidence is useful for understanding product positioning and deployment fit, but it is mostly vendor-led and benchmark-centric, so independent real-world reliability remains uncertain.",
+  "last_synthesized_at": "2026-07-09T19:01:36Z",
+  "practical_example": {
+    "basis": "illustrative",
+    "example": "A platform team is building an internal agent that opens a repo, edits files, runs tests, and iterates until the checks pass. In that setting, Composer 2 is attractive if the team wants a model tuned for long, tool-heavy coding loops rather than one-shot completions. The team could start with the standard variant for routine runs, then switch to the faster variant if latency matters more than token spend. If they run the agent in customer or company infrastructure, the real evaluation is whether the model stays reliable across many tool calls, not just whether it writes a good snippet in a chat window.",
+    "title": "Choosing a model for an internal code-fix agent",
+    "why_it_helps": "It shows why this model is best thought of as part of an execution workflow, not just as a prompt-answering system, and it highlights the cost/latency tradeoff the sources describe."
+  },
+  "practical_takeaway": "Treat Composer 2 as a productized coding model for agent loops: useful when you need multi-step tool use and verification, but not something to adopt on benchmark claims alone. Evaluate it in the actual execution harness you plan to use, and separate model choice from self-hosted infrastructure cost.",
+  "slug": "composer-2",
+  "synthesis_input_hash": "f3a8e831d1f85d98",
+  "synthesis_prompt_version": 1,
+  "synthesis_schema_version": 1,
+  "tensions": [
+    "Cursor reports strong benchmark gains and frontier-level coding positioning, but the evidence is vendor-controlled and does not establish independent real-world reliability.",
+    "The run-your-own-infrastructure source confirms operational fit for self-hosted agent harnesses, but it provides no benchmark, pricing, or failure-case detail, so quality relative to other frontier models remains unclear.",
+    "The fast variant is framed as lower cost with the same intelligence claim, but the sources do not show workload-specific tradeoffs or whether that claim holds under all agent tasks."
+  ],
+  "title": "Composer 2",
+  "what_to_remember": [
+    "Built for coding agents and long-horizon software tasks, not just single-turn code completion.",
+    "Works in tool-using loops with repo access and test runs, including self-hosted execution setups.",
+    "Has a standard and a faster variant, so latency and cost are part of the decision.",
+    "Cursor reports benchmark improvements over Composer 1 and 1.5, but the evidence is vendor-led.",
+    "Good candidate for workflow testing; not enough evidence here for broad reliability or superiority claims."
+  ]
+}

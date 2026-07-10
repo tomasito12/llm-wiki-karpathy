@@ -1,0 +1,68 @@
+{
+  "created_at": "20260710T123203Z",
+  "options": {
+    "cache_dir": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis",
+    "category": null,
+    "entity": "topic:knowledge-layer-architecture",
+    "graph_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/wiki_render_graph.json",
+    "include_single_source": false,
+    "limit": 1,
+    "model": "gpt-5.4-mini-2026-03-17",
+    "preview_dir": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews",
+    "review": true
+  },
+  "reviews": [
+    {
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/topic/knowledge-layer-architecture.json",
+      "cached_input_hash": "a4fed67e59d1fa70",
+      "category": "topic",
+      "current_input_hash": "a4fed67e59d1fa70",
+      "entity_id": "topic:knowledge-layer-architecture",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/topic/knowledge-layer-architecture.md",
+      "rendered_synthesis_state": "synthesized",
+      "slug": "knowledge-layer-architecture",
+      "target_path": "topics/knowledge-layer-architecture.md",
+      "title": "Knowledge Layer Architecture",
+      "validation_reason": "cache entry matches current evidence hash",
+      "validation_state": "fresh",
+      "wrote_preview": true
+    }
+  ],
+  "run": {
+    "called": 1,
+    "dry_run": false,
+    "items": [
+      {
+        "action": "written",
+        "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/topic/knowledge-layer-architecture.json",
+        "cached_input_hash": "",
+        "category": "topic",
+        "current_input_hash": "a4fed67e59d1fa70",
+        "entity_id": "topic:knowledge-layer-architecture",
+        "model": "gpt-5.4-mini-2026-03-17",
+        "provider_request_id": "chatcmpl-E04gU0YCC8LJGIUao09KOoQxstOYE",
+        "reason": "no synthesis cache entry exists",
+        "slug": "knowledge-layer-architecture",
+        "state": "new",
+        "title": "Knowledge Layer Architecture",
+        "token_usage": {
+          "completion_tokens": 1090,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens": 3811,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "total_tokens": 4901
+        }
+      }
+    ],
+    "planned": 1,
+    "written": 1
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "created_at": "20260709T162032Z",
+  "options": {
+    "cache_dir": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis",
+    "category": null,
+    "entity": "topic:ai-orchestration-over-model-tuning",
+    "graph_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/wiki_render_graph.json",
+    "include_single_source": false,
+    "limit": 1,
+    "model": "gpt-5.4-mini-2026-03-17",
+    "preview_dir": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews",
+    "review": true
+  },
+  "reviews": [
+    {
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/topic/ai-orchestration-over-model-tuning.json",
+      "cached_input_hash": "db969fcceef2c5c1",
+      "category": "topic",
+      "current_input_hash": "db969fcceef2c5c1",
+      "entity_id": "topic:ai-orchestration-over-model-tuning",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/topic/ai-orchestration-over-model-tuning.md",
+      "rendered_synthesis_state": "synthesized",
+      "slug": "ai-orchestration-over-model-tuning",
+      "target_path": "topics/ai-orchestration-over-model-tuning.md",
+      "title": "AI Orchestration Over Model Tuning",
+      "validation_reason": "cache entry matches current evidence hash",
+      "validation_state": "fresh",
+      "wrote_preview": true
+    }
+  ],
+  "run": {
+    "called": 1,
+    "dry_run": false,
+    "items": [
+      {
+        "action": "written",
+        "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/topic/ai-orchestration-over-model-tuning.json",
+        "cached_input_hash": "",
+        "category": "topic",
+        "current_input_hash": "db969fcceef2c5c1",
+        "entity_id": "topic:ai-orchestration-over-model-tuning",
+        "model": "gpt-5.4-mini-2026-03-17",
+        "provider_request_id": "chatcmpl-Dzlm3BZuiKsXvUvNH3OYQkWZmnjbF",
+        "reason": "no synthesis cache entry exists",
+        "slug": "ai-orchestration-over-model-tuning",
+        "state": "new",
+        "title": "AI Orchestration Over Model Tuning",
+        "token_usage": {
+          "completion_tokens": 908,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens": 2879,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "total_tokens": 3787
+        }
+      }
+    ],
+    "planned": 1,
+    "written": 1
+  }
+}

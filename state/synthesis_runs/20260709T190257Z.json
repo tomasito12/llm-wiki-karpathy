@@ -1,0 +1,464 @@
+{
+  "created_at": "20260709T190257Z",
+  "options": {
+    "cache_dir": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis",
+    "category": "model",
+    "entity": null,
+    "graph_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/wiki_render_graph.json",
+    "include_single_source": false,
+    "limit": 10,
+    "model": "gpt-5.4-mini-2026-03-17",
+    "preview_dir": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews",
+    "review": true
+  },
+  "reviews": [
+    {
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/model/apex-1-0.json",
+      "cached_input_hash": "ce3fb40710972681",
+      "category": "model",
+      "current_input_hash": "ce3fb40710972681",
+      "entity_id": "model:apex-1-0",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/model/apex-1-0.md",
+      "rendered_synthesis_state": "synthesized",
+      "slug": "apex-1-0",
+      "target_path": "foundation-models/apex-1-0.md",
+      "title": "Apex 1.0",
+      "validation_reason": "cache entry matches current evidence hash",
+      "validation_state": "fresh",
+      "wrote_preview": true
+    },
+    {
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/model/composer-2.json",
+      "cached_input_hash": "f3a8e831d1f85d98",
+      "category": "model",
+      "current_input_hash": "f3a8e831d1f85d98",
+      "entity_id": "model:composer-2",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/model/composer-2.md",
+      "rendered_synthesis_state": "synthesized",
+      "slug": "composer-2",
+      "target_path": "foundation-models/composer-2.md",
+      "title": "Composer 2",
+      "validation_reason": "cache entry matches current evidence hash",
+      "validation_state": "fresh",
+      "wrote_preview": true
+    },
+    {
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/model/deepseek-v4.json",
+      "cached_input_hash": "5baf6609887ab66d",
+      "category": "model",
+      "current_input_hash": "5baf6609887ab66d",
+      "entity_id": "model:deepseek-v4",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/model/deepseek-v4.md",
+      "rendered_synthesis_state": "synthesized",
+      "slug": "deepseek-v4",
+      "target_path": "foundation-models/deepseek-v4.md",
+      "title": "DeepSeek V4",
+      "validation_reason": "cache entry matches current evidence hash",
+      "validation_state": "fresh",
+      "wrote_preview": true
+    },
+    {
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/model/gemma-4.json",
+      "cached_input_hash": "cd94b9425d03ba70",
+      "category": "model",
+      "current_input_hash": "cd94b9425d03ba70",
+      "entity_id": "model:gemma-4",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/model/gemma-4.md",
+      "rendered_synthesis_state": "synthesized",
+      "slug": "gemma-4",
+      "target_path": "foundation-models/gemma-4.md",
+      "title": "Gemma 4",
+      "validation_reason": "cache entry matches current evidence hash",
+      "validation_state": "fresh",
+      "wrote_preview": true
+    },
+    {
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/model/gpt-5-4.json",
+      "cached_input_hash": "430bc6a83e12379d",
+      "category": "model",
+      "current_input_hash": "430bc6a83e12379d",
+      "entity_id": "model:gpt-5-4",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/model/gpt-5-4.md",
+      "rendered_synthesis_state": "synthesized",
+      "slug": "gpt-5-4",
+      "target_path": "foundation-models/gpt-5-4.md",
+      "title": "gpt-5.4",
+      "validation_reason": "cache entry matches current evidence hash",
+      "validation_state": "fresh",
+      "wrote_preview": true
+    },
+    {
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/model/gpt-5-5.json",
+      "cached_input_hash": "cb8322fafc039e4b",
+      "category": "model",
+      "current_input_hash": "cb8322fafc039e4b",
+      "entity_id": "model:gpt-5-5",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/model/gpt-5-5.md",
+      "rendered_synthesis_state": "synthesized",
+      "slug": "gpt-5-5",
+      "target_path": "foundation-models/gpt-5-5.md",
+      "title": "GPT-5.5",
+      "validation_reason": "cache entry matches current evidence hash",
+      "validation_state": "fresh",
+      "wrote_preview": true
+    },
+    {
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/model/kimi-2-5.json",
+      "cached_input_hash": "41bf3e565d01c834",
+      "category": "model",
+      "current_input_hash": "41bf3e565d01c834",
+      "entity_id": "model:kimi-2-5",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/model/kimi-2-5.md",
+      "rendered_synthesis_state": "synthesized",
+      "slug": "kimi-2-5",
+      "target_path": "foundation-models/kimi-2-5.md",
+      "title": "Kimi 2.5",
+      "validation_reason": "cache entry matches current evidence hash",
+      "validation_state": "fresh",
+      "wrote_preview": true
+    },
+    {
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/model/kimi-2-6.json",
+      "cached_input_hash": "c82c698da2979a6d",
+      "category": "model",
+      "current_input_hash": "c82c698da2979a6d",
+      "entity_id": "model:kimi-2-6",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/model/kimi-2-6.md",
+      "rendered_synthesis_state": "synthesized",
+      "slug": "kimi-2-6",
+      "target_path": "foundation-models/kimi-2-6.md",
+      "title": "Kimi 2.6",
+      "validation_reason": "cache entry matches current evidence hash",
+      "validation_state": "fresh",
+      "wrote_preview": true
+    },
+    {
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/model/opus-4-6.json",
+      "cached_input_hash": "111b2e3c1a5f0e65",
+      "category": "model",
+      "current_input_hash": "111b2e3c1a5f0e65",
+      "entity_id": "model:opus-4-6",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/model/opus-4-6.md",
+      "rendered_synthesis_state": "synthesized",
+      "slug": "opus-4-6",
+      "target_path": "foundation-models/opus-4-6.md",
+      "title": "Opus 4.6",
+      "validation_reason": "cache entry matches current evidence hash",
+      "validation_state": "fresh",
+      "wrote_preview": true
+    },
+    {
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/model/privacy-filter.json",
+      "cached_input_hash": "1aaa91fcfc491467",
+      "category": "model",
+      "current_input_hash": "1aaa91fcfc491467",
+      "entity_id": "model:privacy-filter",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/model/privacy-filter.md",
+      "rendered_synthesis_state": "synthesized",
+      "slug": "privacy-filter",
+      "target_path": "foundation-models/privacy-filter.md",
+      "title": "Privacy Filter",
+      "validation_reason": "cache entry matches current evidence hash",
+      "validation_state": "fresh",
+      "wrote_preview": true
+    }
+  ],
+  "run": {
+    "called": 10,
+    "dry_run": false,
+    "items": [
+      {
+        "action": "written",
+        "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/model/apex-1-0.json",
+        "cached_input_hash": "",
+        "category": "model",
+        "current_input_hash": "ce3fb40710972681",
+        "entity_id": "model:apex-1-0",
+        "model": "gpt-5.4-mini-2026-03-17",
+        "provider_request_id": "chatcmpl-DzoHmqZGNG91DRKP8L9yYwJohDUlK",
+        "reason": "no synthesis cache entry exists",
+        "slug": "apex-1-0",
+        "state": "new",
+        "title": "Apex 1.0",
+        "token_usage": {
+          "completion_tokens": 1263,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens": 7820,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "total_tokens": 9083
+        }
+      },
+      {
+        "action": "written",
+        "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/model/composer-2.json",
+        "cached_input_hash": "",
+        "category": "model",
+        "current_input_hash": "f3a8e831d1f85d98",
+        "entity_id": "model:composer-2",
+        "model": "gpt-5.4-mini-2026-03-17",
+        "provider_request_id": "chatcmpl-DzoHwDRyPq1axlwJpYSUD7xxvqr2v",
+        "reason": "no synthesis cache entry exists",
+        "slug": "composer-2",
+        "state": "new",
+        "title": "Composer 2",
+        "token_usage": {
+          "completion_tokens": 1107,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens": 4138,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "total_tokens": 5245
+        }
+      },
+      {
+        "action": "written",
+        "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/model/deepseek-v4.json",
+        "cached_input_hash": "",
+        "category": "model",
+        "current_input_hash": "5baf6609887ab66d",
+        "entity_id": "model:deepseek-v4",
+        "model": "gpt-5.4-mini-2026-03-17",
+        "provider_request_id": "chatcmpl-DzoI5WKZkKIU31dQpdIsAG3bloBBE",
+        "reason": "no synthesis cache entry exists",
+        "slug": "deepseek-v4",
+        "state": "new",
+        "title": "DeepSeek V4",
+        "token_usage": {
+          "completion_tokens": 1213,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens": 7402,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "total_tokens": 8615
+        }
+      },
+      {
+        "action": "written",
+        "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/model/gemma-4.json",
+        "cached_input_hash": "",
+        "category": "model",
+        "current_input_hash": "cd94b9425d03ba70",
+        "entity_id": "model:gemma-4",
+        "model": "gpt-5.4-mini-2026-03-17",
+        "provider_request_id": "chatcmpl-DzoIEVeDkDB2XpOUB13N5VcvGAURa",
+        "reason": "no synthesis cache entry exists",
+        "slug": "gemma-4",
+        "state": "new",
+        "title": "Gemma 4",
+        "token_usage": {
+          "completion_tokens": 1386,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens": 9887,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "total_tokens": 11273
+        }
+      },
+      {
+        "action": "written",
+        "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/model/gpt-5-4.json",
+        "cached_input_hash": "",
+        "category": "model",
+        "current_input_hash": "430bc6a83e12379d",
+        "entity_id": "model:gpt-5-4",
+        "model": "gpt-5.4-mini-2026-03-17",
+        "provider_request_id": "chatcmpl-DzoIOa8N40QoaO0XC25yYZcbaZMz2",
+        "reason": "no synthesis cache entry exists",
+        "slug": "gpt-5-4",
+        "state": "new",
+        "title": "gpt-5.4",
+        "token_usage": {
+          "completion_tokens": 1149,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens": 4510,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "total_tokens": 5659
+        }
+      },
+      {
+        "action": "written",
+        "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/model/gpt-5-5.json",
+        "cached_input_hash": "",
+        "category": "model",
+        "current_input_hash": "cb8322fafc039e4b",
+        "entity_id": "model:gpt-5-5",
+        "model": "gpt-5.4-mini-2026-03-17",
+        "provider_request_id": "chatcmpl-DzoIWn7AmdWY8Mb6zX0xR5iGLrgfu",
+        "reason": "no synthesis cache entry exists",
+        "slug": "gpt-5-5",
+        "state": "new",
+        "title": "GPT-5.5",
+        "token_usage": {
+          "completion_tokens": 1290,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens": 5501,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "total_tokens": 6791
+        }
+      },
+      {
+        "action": "written",
+        "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/model/kimi-2-5.json",
+        "cached_input_hash": "",
+        "category": "model",
+        "current_input_hash": "41bf3e565d01c834",
+        "entity_id": "model:kimi-2-5",
+        "model": "gpt-5.4-mini-2026-03-17",
+        "provider_request_id": "chatcmpl-DzoIgcKndatpVhuzF38yDgyifmHJX",
+        "reason": "no synthesis cache entry exists",
+        "slug": "kimi-2-5",
+        "state": "new",
+        "title": "Kimi 2.5",
+        "token_usage": {
+          "completion_tokens": 1188,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens": 6160,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "total_tokens": 7348
+        }
+      },
+      {
+        "action": "written",
+        "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/model/kimi-2-6.json",
+        "cached_input_hash": "",
+        "category": "model",
+        "current_input_hash": "c82c698da2979a6d",
+        "entity_id": "model:kimi-2-6",
+        "model": "gpt-5.4-mini-2026-03-17",
+        "provider_request_id": "chatcmpl-DzoIuxKLza5AR7DSoUkUrsNxEQ9hv",
+        "reason": "no synthesis cache entry exists",
+        "slug": "kimi-2-6",
+        "state": "new",
+        "title": "Kimi 2.6",
+        "token_usage": {
+          "completion_tokens": 1120,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens": 5599,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "total_tokens": 6719
+        }
+      },
+      {
+        "action": "written",
+        "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/model/opus-4-6.json",
+        "cached_input_hash": "",
+        "category": "model",
+        "current_input_hash": "111b2e3c1a5f0e65",
+        "entity_id": "model:opus-4-6",
+        "model": "gpt-5.4-mini-2026-03-17",
+        "provider_request_id": "chatcmpl-DzoJ4jtUwMky7RlOwri15BronPDIa",
+        "reason": "no synthesis cache entry exists",
+        "slug": "opus-4-6",
+        "state": "new",
+        "title": "Opus 4.6",
+        "token_usage": {
+          "completion_tokens": 1100,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens": 5101,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "total_tokens": 6201
+        }
+      },
+      {
+        "action": "written",
+        "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/model/privacy-filter.json",
+        "cached_input_hash": "",
+        "category": "model",
+        "current_input_hash": "1aaa91fcfc491467",
+        "entity_id": "model:privacy-filter",
+        "model": "gpt-5.4-mini-2026-03-17",
+        "provider_request_id": "chatcmpl-DzoJCILuCfIhpbUn1sTr5naSJZYcH",
+        "reason": "no synthesis cache entry exists",
+        "slug": "privacy-filter",
+        "state": "new",
+        "title": "Privacy Filter",
+        "token_usage": {
+          "completion_tokens": 1241,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens": 5706,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "total_tokens": 6947
+        }
+      }
+    ],
+    "planned": 10,
+    "written": 10
+  }
+}

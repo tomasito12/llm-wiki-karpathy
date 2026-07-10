@@ -1,0 +1,71 @@
+{
+  "category": "model",
+  "consensus": [
+    "Kimi K2.5 is an open-weight model that the sources treat as useful for coding-agent and multi-step tool-using workflows.",
+    "The sources place it in real product contexts, including being described as the model behind Cursor\u2019s Composer 2 and as available in Ollama\u2019s cloud free tier.",
+    "The strongest fit is for tasks that can be broken into subtasks, run in parallel, and then aggregated, such as refactoring, code review, and large-codebase Q&A.",
+    "Open weights make it easier to adapt, host, or fine-tune than closed proprietary models, which matters for workflow tuning and lower-friction experimentation.",
+    "The sources suggest it can support frontier-like coding UX, but they do not establish that it is a universal replacement for top closed models."
+  ],
+  "context_card": {
+    "best_for_questions_about": [
+      "What Kimi K2.5 is useful for in coding-agent workflows",
+      "Whether an open-weight model can power a real coding product",
+      "When open-weight deployment may reduce cost or increase flexibility",
+      "Whether this page is enough evidence to justify testing Kimi K2.5 in a tool-using workflow"
+    ],
+    "not_enough_for": [
+      "A controlled benchmark comparison of Kimi K2.5 against specific models",
+      "Claims about reliability, safety, or failure modes in production",
+      "Non-coding use cases or general-purpose chat quality",
+      "A quantified cost model for deployment decisions"
+    ],
+    "related_tags": [
+      "model",
+      "open-weight",
+      "coding-agent",
+      "agentic-workflows",
+      "runtime-architecture"
+    ],
+    "strongest_sources": [
+      "Kimi K2.6 Just Dropped \u2014 The Open-Source Coding Agent That Already Beats Claude Opus 4.5 at 76% Lower Cost Just Got Better",
+      "I Spent 3 Days Researching Self-Hosted AI. Here\u2019s Why You Should (And Shouldn\u2019t) Actually Do It"
+    ],
+    "use_this_page_when": "Use this page when you want a quick read on whether Kimi K2.5 is a plausible open-weight base for coding agents, parallel task execution, or productized developer workflows."
+  },
+  "entity_id": "model:kimi-2-5",
+  "evidence_quality": [
+    "Evidence is mostly indirect and source-mediated rather than from a controlled evaluation of Kimi K2.5 itself.",
+    "One source provides product/adoption signals; the other provides benchmark and pricing claims, but both are article-level reports rather than primary technical documentation.",
+    "Benchmark and cost claims are not independently verified in the provided evidence.",
+    "Confidence is stronger for deployment pattern and workflow fit than for absolute performance claims."
+  ],
+  "executive_synthesis": "Kimi K2.5 appears, in the provided sources, as an open-weight model aimed at agentic coding work rather than a general-purpose chat model. The evidence points to it being used in a real coding product and to it fitting workflows where work is split into subtasks, run in parallel, and then merged. That makes it interesting for refactoring, code review, and large-codebase question answering, especially when cost and deployment flexibility matter. The main caution is that the evidence here is mostly indirect: the product-adoption signal is strong, but the benchmark and pricing claims come from article-level reporting rather than independent technical validation. So this page is best for deciding whether Kimi K2.5 is worth a pilot, not for treating it as a proven drop-in replacement for top proprietary models.",
+  "last_synthesized_at": "2026-07-09T19:02:28Z",
+  "practical_example": {
+    "basis": "source-grounded",
+    "example": "A platform team wants an internal coding assistant for a large monorepo. Instead of sending one big prompt to a closed model, they use Kimi K2.5 as the backend for a workflow that splits the job into smaller tasks: one agent scans affected files, another proposes edits, and a third summarizes the diff for review. The team is especially interested because the sources describe Kimi K2.5 as suited to agentic, tool-using work and as something that can back a real coding product. They would still need to test quality on their own codebase before relying on it in production.",
+    "title": "Parallel coding-agent workflow in a large codebase",
+    "why_it_helps": "It shows why the model matters: the value is not just raw chat quality, but whether it can support a multi-step engineering workflow with lower-cost, flexible deployment."
+  },
+  "practical_takeaway": "Treat Kimi K2.5 as a promising open-weight coding-agent base for pilot work, especially where parallel tool use and lower-cost repeated runs matter, but verify performance and reliability on your own tasks before committing.",
+  "slug": "kimi-2-5",
+  "synthesis_input_hash": "41bf3e565d01c834",
+  "synthesis_prompt_version": 1,
+  "synthesis_schema_version": 1,
+  "tensions": [
+    "The sources imply strong benchmark performance, but the evidence here does not include primary benchmark methodology or independent verification.",
+    "One source frames it as close to frontier coding UX; the other cautions that the article does not provide a direct benchmark for Kimi K2.5 itself.",
+    "It may be well-suited to agentic and multi-step tasks, but the sources do not support a claim that it is equally strong on simple single-turn prompts or across all use cases.",
+    "The cost story looks attractive, but the provided evidence is not enough to quantify deployment economics beyond directional signals."
+  ],
+  "title": "Kimi 2.5",
+  "what_to_remember": [
+    "Open-weight and oriented toward agentic coding workflows.",
+    "Used in a real coding-product context, which is a meaningful adoption signal.",
+    "Best fit is task decomposition, parallel execution, and aggregation.",
+    "Useful when you want flexibility to host or fine-tune, not just a closed API.",
+    "Benchmark and pricing claims in the sources are suggestive, not fully validated here.",
+    "Do not assume it is a universal replacement for top proprietary models."
+  ]
+}

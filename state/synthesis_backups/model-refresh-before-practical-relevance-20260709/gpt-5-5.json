@@ -1,0 +1,70 @@
+{
+  "category": "model",
+  "consensus": [
+    "GPT-5.5 is positioned as a frontier, proprietary runtime model for reasoning, coding, tool use, and long-context work, not just a standalone chatbot.",
+    "The strongest source signal is operational: it is meant to sit inside workflows with memory, permissions, and external tools, so orchestration and governance matter as much as prompting.",
+    "In the cyber/security framing, GPT-5.5 is the recommended default starting point for most legitimate defensive workflows, especially secure code review, vulnerability triage, malware analysis, detection engineering, and patch validation.",
+    "The sources agree that benchmark-style comparison is secondary here; they do not provide formal benchmark numbers or enough evaluative detail to treat GPT-5.5 as proven superior across all tasks.",
+    "The model appears most useful in gated enterprise settings where access control and verified use matter."
+  ],
+  "context_card": {
+    "best_for_questions_about": [
+      "What GPT-5.5 is useful for in enterprise and security workflows",
+      "How GPT-5.5 differs from a pure chatbot or one-shot generator",
+      "Whether GPT-5.5 is a good default model for defensive cyber work",
+      "What changes operationally when a model becomes part of a runtime/harness workflow"
+    ],
+    "not_enough_for": [
+      "A benchmark-based ranking against other frontier models",
+      "Cost, pricing, or token economics",
+      "Detailed failure modes, false-refusal rates, or security outcomes",
+      "Broad claims about customer support automation or contact-center performance"
+    ],
+    "related_tags": [
+      "enterprise-oriented",
+      "frontier-model",
+      "proprietary-model",
+      "runtime-model",
+      "tool-use-capable"
+    ],
+    "strongest_sources": [
+      "Scaling Trusted Access for Cyber with GPT-5.5 and GPT-5.5-Cyber | 2026-05-07",
+      "The Sequence Radar #849: Last Week in AI: OpenAI Ships Agents, xAI Eyes Cursor, DeepSeek and Kimi Advance | 2026-04-26"
+    ],
+    "use_this_page_when": "Use this page when you need a quick read on GPT-5.5\u2019s practical role: a broad, governed runtime model for professional and defensive workflows, with emphasis on access control and tool use rather than benchmark bragging."
+  },
+  "entity_id": "model:gpt-5-5",
+  "evidence_quality": [
+    "Evidence is fairly strong for intended use cases and product framing, because both sources consistently describe GPT-5.5 as a runtime-capable model for professional workflows.",
+    "Evidence is weak for performance comparisons: the sources explicitly avoid hard benchmark numbers and do not quantify cost, failure cases, or tradeoffs.",
+    "Evidence is time-sensitive and vendor-framed: the clearest details come from OpenAI-associated positioning around Trusted Access for Cyber, so independent verification is limited.",
+    "Some operational implications are inferential rather than directly demonstrated, especially for non-security enterprise workflows."
+  ],
+  "executive_synthesis": "GPT-5.5 is best understood as a frontier, proprietary model designed to operate inside real workflows: it supports reasoning, coding, tool use, and long-context tasks, and OpenAI frames it as a runtime component rather than just a text generator. The strongest concrete signal comes from security: OpenAI positions GPT-5.5 as the main broadly useful model for verified defensive work, with access controls and approved-use scoping built into deployment. That makes it a practical default for security teams doing code review, vulnerability triage, malware analysis, detection engineering, and patch validation. The tradeoff is that the evidence here is mostly strategic and operational, not benchmark-driven: there are no formal numbers, limited failure detail, and the comparison to GPT-5.5-Cyber is about safer access behavior more than a clear capability win. In short, GPT-5.5 looks like a governed execution layer for enterprise and security workflows, where authorization, orchestration, and review burden are part of the model choice.",
+  "last_synthesized_at": "2026-07-09T19:02:14Z",
+  "practical_example": {
+    "basis": "source-grounded",
+    "example": "A security team wants to speed up daily defensive work without opening the door to unrestricted model behavior. They route verified analysts through GPT-5.5 with approved-use scoping, then use it to summarize alerts, draft detections, triage vulnerabilities, review code changes, and validate patches. The model sits inside the team\u2019s tooling, so analysts can ask for help on long investigations while still relying on identity checks and governance controls. If the team later needs a more permissive workflow, that becomes a separate decision rather than the default path.",
+    "title": "Gated defensive security workflow",
+    "why_it_helps": "It shows why GPT-5.5 is less about a standalone chat experience and more about being a controlled execution layer for real operational work."
+  },
+  "practical_takeaway": "If you are choosing a default GPT-5.5 use case, think governed workflow first: verified users, tool access, and review steps. Use it for broad professional and defensive tasks where long context and tool use matter; do not rely on this page for benchmark selection or cost planning.",
+  "slug": "gpt-5-5",
+  "synthesis_input_hash": "cb8322fafc039e4b",
+  "synthesis_prompt_version": 1,
+  "synthesis_schema_version": 1,
+  "tensions": [
+    "GPT-5.5 is presented as the safer, broadly useful default, but GPT-5.5-Cyber is the more permissive option; the sources do not show a clear capability winner across all cyber evaluations.",
+    "The framing is strong on operational usefulness, but weak on measured evidence: there are no formal benchmark numbers, cost details, or quantified failure modes.",
+    "The model is described as central to OpenAI\u2019s product direction, but independent adoption data is not provided, so enterprise maturity is suggested rather than proven.",
+    "Potential enterprise uses outside security are plausible, but the sources directly demonstrate cyber workflows more than customer support or contact-center automation."
+  ],
+  "title": "GPT-5.5",
+  "what_to_remember": [
+    "Treat GPT-5.5 as a runtime model for real workflows, not just a chat interface.",
+    "Its clearest value is in governed enterprise and security settings with verified access.",
+    "Long-context work and tool use are first-class reasons to consider it.",
+    "OpenAI positions it as the default starting point for most legitimate defensive cyber workflows.",
+    "The evidence here is more about operating model and access control than raw benchmark superiority."
+  ]
+}

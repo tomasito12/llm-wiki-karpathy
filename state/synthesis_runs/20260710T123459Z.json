@@ -1,0 +1,68 @@
+{
+  "created_at": "20260710T123459Z",
+  "options": {
+    "cache_dir": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis",
+    "category": null,
+    "entity": "topic:prompt-engineering",
+    "graph_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/wiki_render_graph.json",
+    "include_single_source": false,
+    "limit": 1,
+    "model": "gpt-5.4-mini-2026-03-17",
+    "preview_dir": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews",
+    "review": true
+  },
+  "reviews": [
+    {
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/topic/prompt-engineering.json",
+      "cached_input_hash": "20005f4612be7959",
+      "category": "topic",
+      "current_input_hash": "20005f4612be7959",
+      "entity_id": "topic:prompt-engineering",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/topic/prompt-engineering.md",
+      "rendered_synthesis_state": "synthesized",
+      "slug": "prompt-engineering",
+      "target_path": "topics/prompt-engineering.md",
+      "title": "Prompt Engineering",
+      "validation_reason": "cache entry matches current evidence hash",
+      "validation_state": "fresh",
+      "wrote_preview": true
+    }
+  ],
+  "run": {
+    "called": 1,
+    "dry_run": false,
+    "items": [
+      {
+        "action": "written",
+        "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/topic/prompt-engineering.json",
+        "cached_input_hash": "",
+        "category": "topic",
+        "current_input_hash": "20005f4612be7959",
+        "entity_id": "topic:prompt-engineering",
+        "model": "gpt-5.4-mini-2026-03-17",
+        "provider_request_id": "chatcmpl-E04jMAJgPOW1qriBDSXTXxQMnxTw6",
+        "reason": "no synthesis cache entry exists",
+        "slug": "prompt-engineering",
+        "state": "new",
+        "title": "Prompt Engineering",
+        "token_usage": {
+          "completion_tokens": 929,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens": 3476,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "total_tokens": 4405
+        }
+      }
+    ],
+    "planned": 1,
+    "written": 1
+  }
+}

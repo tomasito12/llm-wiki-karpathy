@@ -1,0 +1,77 @@
+{
+  "category": "model",
+  "consensus": [
+    "Apex 1.0 is Intercom\u2019s proprietary customer-service model, presented as the model behind Fin and its support workflows.",
+    "The sources consistently frame it as specialized for customer-service tasks rather than general-purpose chat.",
+    "It is positioned as usable through Intercom\u2019s platform and API for customer-support and agent builds, not as a standalone general model.",
+    "The vendor says it is optimized for the business metrics that matter in support: resolution rate, latency, hallucination rate, and cost.",
+    "It appears to be in active production use inside Intercom\u2019s Fin stack, with broad rollout claims across English chat and email conversations."
+  ],
+  "context_card": {
+    "best_for_questions_about": [
+      "What Apex 1.0 is used for in customer support and support agents",
+      "How a specialized support model differs from a general-purpose frontier model",
+      "What the vendor claims about performance, latency, hallucinations, and cost",
+      "Whether Apex 1.0 looks production-ready inside a support platform",
+      "What deployment considerations matter when a model is tied to retrieval and workflow execution"
+    ],
+    "not_enough_for": [
+      "Independent benchmark verification or reproducible methodology",
+      "Pricing analysis or unit economics",
+      "Latency, failure-rate, or multilingual performance details",
+      "Behavior under edge cases, policy constraints, or long-tail support issues",
+      "A general-purpose model selection decision outside customer service"
+    ],
+    "related_tags": [
+      "enterprise-oriented",
+      "proprietary-model",
+      "tool-use-capable",
+      "customer-support",
+      "support-automation",
+      "workflow-automation",
+      "api-first"
+    ],
+    "strongest_sources": [
+      "Never stop disrupting yourself; introducing the Fin API platform",
+      "Announcing Fin Apex: The age of vertical models is here",
+      "Announcing Fin for Ecommerce: Fin\u2019s next role as a Customer Agent",
+      "Extending Fin as the most open Agent platform"
+    ],
+    "use_this_page_when": "Use this page when you need a quick read on whether Apex 1.0 is a fit for support automation or customer-service agent workflows, and you care more about product positioning, deployment fit, and evidence quality than about standalone benchmark scores."
+  },
+  "entity_id": "model:apex-1-0",
+  "evidence_quality": [
+    "Evidence is strong on product positioning and intended use, because multiple Intercom sources say the same thing in different contexts.",
+    "Evidence is weak to moderate on performance claims because they are vendor-reported and not independently validated.",
+    "The sources provide little or no methodological detail for the comparative claims, so benchmark-style statements should be treated cautiously.",
+    "Maturity signals are meaningful because the model is described as already running in production within Fin, but the signal still comes from vendor-authored material.",
+    "There is not enough evidence to estimate pricing, latency, or failure behavior with confidence."
+  ],
+  "executive_synthesis": "Apex 1.0 is Intercom\u2019s proprietary customer-service model, built for support automation rather than general chat. The sources present it as the model behind Fin, available through Intercom\u2019s platform and API, and tuned for the metrics that matter in support: resolution rate, latency, hallucinations, and cost. Intercom also says it is already used at scale in production across English chat and email conversations. That said, the evidence is mostly vendor-authored. The strongest claims are about product fit and rollout; the weakest are the comparative performance claims, because the sources do not show benchmark methodology, sample sizes, or failure cases. For an AI engineering or business reader, the practical read is: Apex 1.0 may be worth evaluating when your workflow is a high-volume support or customer-agent system with live retrieval and action execution, but not as a general-purpose model choice or as a claim of independently verified SOTA performance.",
+  "last_synthesized_at": "2026-07-09T19:01:28Z",
+  "practical_example": {
+    "basis": "source-grounded",
+    "example": "A shopper asks, \u201cWhich of these two plans fits a small team, and can I upgrade later?\u201d The agent asks one or two follow-up questions, checks the product catalog, and then answers with the relevant options. If the same customer later asks about a recent order, the conversation continues in the same thread and the agent moves from shopping advice to support actions such as looking up order state. In the sources, Intercom describes Apex 1.0 as powering this kind of combined conversational and retrieval-driven workflow for ecommerce and support.",
+    "title": "Ecommerce support agent that switches between shopping help and post-purchase service",
+    "why_it_helps": "This makes the model\u2019s role concrete: it is not just answering questions, it is helping a support system move between discovery, policy, and action in one flow."
+  },
+  "practical_takeaway": "Treat Apex 1.0 as a specialized support-workflow model: useful if you need a customer-service agent embedded in a platform with retrieval and actions, but still requiring careful validation of routing, policy, and failure handling before you trust the vendor\u2019s performance claims.",
+  "slug": "apex-1-0",
+  "synthesis_input_hash": "ce3fb40710972681",
+  "synthesis_prompt_version": 1,
+  "synthesis_schema_version": 1,
+  "tensions": [
+    "Intercom claims Apex 1.0 outperforms frontier models on resolution, latency, hallucinations, and cost, but provides no independent benchmark methodology or reproducible results.",
+    "The model is presented as already in broad production use, yet the evidence for maturity is still vendor-authored and promotional rather than third-party validated.",
+    "The sources suggest strong support-workflow fit, but do not show how Apex behaves on edge cases, multilingual traffic, voice, or long-tail issues.",
+    "Pricing is framed as enterprise-level and potentially economical at scale, but there is not enough data to estimate actual unit economics."
+  ],
+  "title": "Apex 1.0",
+  "what_to_remember": [
+    "It is a proprietary Intercom model for customer service, not a general-purpose assistant.",
+    "The main value proposition is support automation: better resolution, lower latency, fewer hallucinations, and lower cost.",
+    "Intercom says it is already running in production across much of Fin\u2019s English chat and email traffic.",
+    "The strongest signal is product integration and workflow fit, not independent benchmark proof.",
+    "If you are evaluating it, you need to test the surrounding retrieval, policy, and action stack, not just the model in isolation."
+  ]
+}

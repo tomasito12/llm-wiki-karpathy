@@ -1,0 +1,68 @@
+{
+  "created_at": "20260710T120348Z",
+  "options": {
+    "cache_dir": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis",
+    "category": null,
+    "entity": "tool:claude-code",
+    "graph_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/wiki_render_graph.json",
+    "include_single_source": false,
+    "limit": 1,
+    "model": "gpt-5.4-mini-2026-03-17",
+    "preview_dir": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews",
+    "review": true
+  },
+  "reviews": [
+    {
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/tool/claude-code.json",
+      "cached_input_hash": "f36bd84d3ce2faba",
+      "category": "tool",
+      "current_input_hash": "f36bd84d3ce2faba",
+      "entity_id": "tool:claude-code",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/tool/claude-code.md",
+      "rendered_synthesis_state": "synthesized",
+      "slug": "claude-code",
+      "target_path": "tools/claude-code.md",
+      "title": "Claude Code",
+      "validation_reason": "cache entry matches current evidence hash",
+      "validation_state": "fresh",
+      "wrote_preview": true
+    }
+  ],
+  "run": {
+    "called": 1,
+    "dry_run": false,
+    "items": [
+      {
+        "action": "written",
+        "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/tool/claude-code.json",
+        "cached_input_hash": "4d88471923f971a5",
+        "category": "tool",
+        "current_input_hash": "f36bd84d3ce2faba",
+        "entity_id": "tool:claude-code",
+        "model": "gpt-5.4-mini-2026-03-17",
+        "provider_request_id": "chatcmpl-E04F7TDlydltxbOIvtucd7Pd8axAG",
+        "reason": "cached synthesis input hash differs from current evidence hash",
+        "slug": "claude-code",
+        "state": "stale",
+        "title": "Claude Code",
+        "token_usage": {
+          "completion_tokens": 1246,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "prompt_tokens": 29308,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "total_tokens": 30554
+        }
+      }
+    ],
+    "planned": 1,
+    "written": 1
+  }
+}
