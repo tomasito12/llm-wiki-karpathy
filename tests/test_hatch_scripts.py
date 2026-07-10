@@ -12,6 +12,7 @@ def test_hatch_scripts_include_local_clis() -> None:
     data = tomllib.loads(pyproject.read_text(encoding="utf-8"))
     scripts = data["tool"]["hatch"]["envs"]["default"]["scripts"]
     assert scripts["wiki-lint"] == ["python -m src.wiki_lint {args}"]
+    assert scripts["wiki-ops-status"] == ["python -m src.wiki_ops.status_cli {args}"]
     assert scripts["wiki-render"] == ["python -m src.wiki_render {args}"]
     assert scripts["wiki-synthesis-indexes"] == ["python -m src.wiki_synthesis.indexes_cli {args}"]
     assert scripts["wiki-synthesis-cache-lint"] == [

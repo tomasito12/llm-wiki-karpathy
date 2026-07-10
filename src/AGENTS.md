@@ -264,6 +264,13 @@ Generated wiki layout rules live in [`src/wiki_contract/`](wiki_contract/). Both
 - Superseded for generation audit by `state/wiki_render_manifest.json`.
 - Inspect: `hatch run ingest-manifest` or `hatch run ingest-manifest --json`.
 
+## Wiki ops status
+
+- Run: `hatch run wiki-ops-status`
+- This command makes no LLM calls and writes no files.
+- Purpose: summarize source/review/render/synthesis/artifact state before deciding what to run next.
+- Use `--json` for future web frontend integration.
+
 ## Wiki lint
 
 - Run: `hatch run wiki-lint` — validates generated pages under managed folders using [`src/wiki_contract/`](wiki_contract/).
