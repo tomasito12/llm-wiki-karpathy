@@ -1,8 +1,8 @@
 {
   "category": "glossary",
   "consensus": [
-    "Mixture-of-Experts (MoE) is an architecture that routes each input, token, or task through only a subset of specialized submodels or expert blocks instead of activating the full network every time.",
-    "The main practical effect is conditional compute: models can keep a very large total parameter count while using far fewer active parameters per inference step.",
+    "Mixture-of-Experts (MoE) is an architecture that routes each input, token, or task through only a subset of specialized expert blocks instead of activating the full network every time.",
+    "The main practical effect is conditional compute: a model can keep a very large total parameter count while using far fewer active parameters per inference step.",
     "Sources agree MoE is useful when teams want better capability or capacity without paying the full inference cost of a dense model of similar nominal size.",
     "Routing behavior is central to MoE performance; the router decides which experts handle each token or input.",
     "MoE matters most in deployment decisions where inference cost, latency, throughput, hardware fit, and benchmark interpretation all matter."
@@ -24,9 +24,9 @@
     "related_tags": [
       "ai-engineering",
       "inference",
+      "model-architecture",
       "orchestration",
-      "runtime-architecture",
-      "tool-use"
+      "runtime-architecture"
     ],
     "strongest_sources": [
       "Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks",
@@ -44,10 +44,16 @@
     "The evidence emphasizes production and inference concerns more than training or research details."
   ],
   "executive_synthesis": "Mixture-of-Experts (MoE) is a model architecture that keeps a large total parameter count but activates only a subset of expert sub-networks for each token or input. In practice, that means MoE can offer more capability per unit of compute than a dense model, which is why it comes up in serving, local deployment, and high-throughput systems. The key thing to remember is that benchmark or size comparisons can be misleading unless you look at active parameters and routing behavior, since those determine real inference cost and can also affect consistency. The main caveat is that MoE shifts complexity into the router and serving stack: if routing is weak or the runtime support is poor, the efficiency gains can be offset by uneven behavior or deployment friction.",
-  "last_synthesized_at": "2026-07-08T19:30:31Z",
+  "last_synthesized_at": "2026-07-10T12:03:25Z",
+  "practical_example": {
+    "basis": "source-grounded",
+    "example": "A team choosing a model for a coding assistant or internal copilot may prefer an MoE model when it needs strong capability at high request volume without activating every parameter on every request. In the sources, this shows up in examples like models with very large total parameters but only a much smaller active slice per token, which can make them cheaper to serve than a dense model of similar nominal size. The practical decision is not just \u201cwhich model is biggest,\u201d but \u201cwhich one fits the latency, cost, and runtime constraints of the deployment.\u201d",
+    "title": "Serving a high-volume assistant",
+    "why_it_helps": "It makes the abstract idea concrete: MoE is mainly a deployment choice about how to trade capacity for compute, not just a model-size label."
+  },
   "practical_takeaway": "Treat MoE as a compute-saving way to scale capacity, not as a free performance upgrade. When evaluating one, compare active parameters, routing quality, latency, and runtime compatibility\u2014not just total parameter count.",
   "slug": "mixture-of-experts",
-  "synthesis_input_hash": "7aa97804fcc3ee23",
+  "synthesis_input_hash": "634af74296cc4b9f",
   "synthesis_prompt_version": 1,
   "synthesis_schema_version": 1,
   "tensions": [
@@ -63,5 +69,6 @@
     "MoE is mainly a deployment/inference tradeoff: capability vs. compute, latency, and cost.",
     "Benchmark comparisons can be misleading if they ignore active parameters.",
     "MoE is most relevant for serving, local deployment, and high-throughput automation."
-  ]
+  ],
+  "workflow_variants": []
 }
