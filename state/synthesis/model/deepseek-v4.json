@@ -1,0 +1,71 @@
+{
+  "category": "model",
+  "consensus": [
+    "DeepSeek V4 is presented as an open-weight model with native multimodal input across text, images, and video.",
+    "The main practical draw is long-context use: sources consistently highlight a context window of over 1 million tokens.",
+    "It is framed as relevant for long-document analysis, large codebases, extended agent traces, and other retrieval-heavy workflows.",
+    "The sources agree it is aimed at lower-cost or more efficient inference, especially when self-hosted or used in high-volume settings.",
+    "It is being treated as a serious competitive entrant in the open or semi-open model ecosystem, not just a research prototype."
+  ],
+  "context_card": {
+    "best_for_questions_about": [
+      "whether DeepSeek V4 is useful for long-context or multimodal workloads",
+      "whether an open-weight model could replace a proprietary API for private deployment",
+      "what the model seems to offer for coding, document review, and agentic workflows",
+      "what the cost and serving implications may be for very long-context inference"
+    ],
+    "not_enough_for": [
+      "hard performance comparisons across vendors",
+      "verified benchmark conclusions from the cited score claims alone",
+      "latency, memory, hardware, or ops cost planning",
+      "reliability limits, failure modes, or production-readiness under real traffic"
+    ],
+    "related_tags": [
+      "inference-efficient",
+      "long-context-model",
+      "open-weight-model",
+      "reasoning-model"
+    ],
+    "strongest_sources": [
+      "10 insane new AI tools in 2026 I stayed up all night playing with: 2nd one is the coolest",
+      "Recent Developments in LLM Architectures: KV Sharing, mHC, and Compressed Attention",
+      "The Sequence Radar #849: Last Week in AI: OpenAI Ships Agents, xAI Eyes Cursor, DeepSeek and Kimi Advance"
+    ],
+    "use_this_page_when": "You want a quick read on whether DeepSeek V4 is worth considering for private, long-context, multimodal, or agent-oriented work, and you need the caveats before treating the launch claims as settled."
+  },
+  "entity_id": "model:deepseek-v4",
+  "evidence_quality": [
+    "Evidence is mostly announcement-style and roundup coverage, with one source leaning promotional.",
+    "Benchmarks are mentioned, but the source does not provide methodology or evaluator details, so the numbers should not be treated as validated.",
+    "Long-context efficiency claims are supported by architecture-focused discussion, but those savings are tied to the full recipe, not the model design alone.",
+    "Maturity signals are suggestive rather than proven: the model is treated as a live flagship product, but adoption data and operational failure modes are not provided."
+  ],
+  "executive_synthesis": "DeepSeek V4 appears to be a practical open-weight frontier model for teams that care about long context, multimodal inputs, and self-hosted deployment. Across the sources, its most consistent value is not general chat quality but the combination of a 1M+ token context window, native text/image/video support, and an efficiency story aimed at lowering inference cost in very long-context settings. One source frames it as cheaper to operate when self-hosted, while another explains that the architecture uses compressed-attention and cache-saving design choices that materially reduce FLOPs and KV-cache use at 1M tokens. The main caveat is evidence quality: benchmark-style claims are present, but methodology is missing, and the architecture article notes that the reported savings come from the full recipe rather than architecture alone. Treat it as promising and relevant to test, but not as fully validated from these sources alone.",
+  "last_synthesized_at": "2026-07-09T19:16:52Z",
+  "practical_example": {
+    "basis": "source-grounded",
+    "example": "A team with large internal documents, codebases, or mixed media inputs could consider DeepSeek V4 as a single model for review and analysis instead of stitching together separate text, image, and video systems. The sources point to it being especially relevant when the workflow needs both very long context and self-hosted control. That said, the evidence here is still mostly launch coverage plus architecture analysis: the model looks promising for high-volume or private deployments, but the sources do not prove real-world reliability, latency, or total serving cost. So this is a strong candidate for evaluation, not a settled default.",
+    "title": "Worth watching for long-context private deployments",
+    "why_it_helps": "It shows why the model matters operationally: consolidation, private deployment, and long-context handling are the main reasons to test it."
+  },
+  "practical_takeaway": "If your problem is long-context, multimodal, or self-hosted inference, DeepSeek V4 looks worth evaluating; if you need validated benchmarks, operational reliability, or cost modeling, the current evidence is not enough on its own.",
+  "slug": "deepseek-v4",
+  "synthesis_input_hash": "5baf6609887ab66d",
+  "synthesis_prompt_version": 1,
+  "synthesis_schema_version": 1,
+  "tensions": [
+    "The sources describe strong benchmark-style results, but they do not give enough methodology to verify them.",
+    "One article implies roughly 50% lower computational cost, while the architecture-focused source attributes savings to a specific full recipe and reports different FLOP/KV-cache reductions at 1M tokens.",
+    "The model is framed as a production-style flagship release, but adoption metrics and operational failure modes are not provided.",
+    "Agentic capability is mentioned, but the evidence does not specify where it works well or breaks down in practice."
+  ],
+  "title": "DeepSeek V4",
+  "what_to_remember": [
+    "Open-weight, self-hostable, and built for text/image/video in one model.",
+    "The standout feature is a 1M+ token context window, which matters for large documents, codebases, and extended agent traces.",
+    "The strongest efficiency story is long-context serving economics, not a validated general-purpose benchmark win.",
+    "It is relevant when you want to consolidate workflows and keep data on your own infrastructure.",
+    "Do not treat the benchmark numbers as settled without independent testing.",
+    "The sources suggest it is a serious competitor, but the evidence is still thin on production reliability."
+  ]
+}

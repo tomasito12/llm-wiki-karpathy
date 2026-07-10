@@ -354,7 +354,7 @@
           "model_name": "Apple Foundation Models",
           "operational_profile": "A small on-device model family built into Apple Intelligence-capable devices and exposed through Swift. The source presents it as optimized for summarization, classification, structured extraction, and conversational tasks rather than frontier reasoning. Its key operational advantage is that it supports guided generation through `@Generable`, built-in tool calling, and stateful sessions with zero per-call cost.",
           "pricing_inference_implications": "The runtime cost is described as zero per call, which makes it attractive for high-volume on-device usage. The tradeoff is that hardware ownership and platform lock-in replace API spend as the main cost consideration. The source positions it as a cost-stable tier for always-on tasks, not a substitute for every model class.",
-          "proposed_new_type": null,
+          "proposed_new_type": "local-model",
           "proposed_tags": [
             "mobile-capable",
             "low-cost",
@@ -385,20 +385,20 @@
             "final_list": null,
             "llm_list": [],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "comparative_observations": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "It is positioned as weaker at reasoning than larger local or cloud models.",
               "It is presented as more convenient for native Swift apps than Python-based runtimes.",
               "It is described as having zero call cost compared with cloud APIs."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "core_capabilities": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "It produces type-safe structured output through the `@Generable` macro, which reduces post-processing in Swift apps.",
               "It supports built-in tool calling, which allows native orchestration without extra glue code.",
@@ -406,37 +406,37 @@
               "It is optimized for common app tasks like summarization, classification, and structured extraction rather than broad reasoning."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "deployment_implications": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "maturity_signals": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "model_name": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "operational_profile": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "pricing_inference_implications": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "provider": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "related_models": {
             "final_list": null,
@@ -449,9 +449,9 @@
             "status": "pending"
           },
           "service_automation_implications": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -459,9 +459,9 @@
             "status": "pending"
           },
           "weaknesses_limitations": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           }
         },
         "tags": {
@@ -471,6 +471,18 @@
             "low-cost",
             "low-latency",
             "tool-use-capable"
+          ]
+        },
+        "types": {
+          "approved_new_types": [
+            "local-model"
+          ],
+          "approved_types": [
+            "multimodal-model",
+            "local-model"
+          ],
+          "reviewer_types_added": [
+            "local-model"
           ]
         }
       }
@@ -522,7 +534,7 @@
           "evidence_from_source": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_trends": {
             "final_list": null,
@@ -541,7 +553,7 @@
               "FluidAudio averages 0.19 seconds for the large model on real audio."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -551,27 +563,27 @@
           "time_sensitivity": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_description": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "uncertainty_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -677,7 +689,6 @@
             "It can use MLX on Apple Silicon, which improves throughput for local inference.",
             "It supports quick model swapping through simple pull commands, which reduces workflow friction."
           ],
-          "evidence_type": null,
           "integration_ecosystem": [
             "It exposes a REST API that can stand in for OpenAI-compatible local endpoints in many development setups.",
             "It supports a wide range of model families mentioned in the source, including Llama, Qwen, Mistral, Phi, Gemma, DeepSeek, and Mixtral.",
@@ -724,7 +735,7 @@
               "It supports quick model swapping through simple pull commands, which reduces workflow friction."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "integration_ecosystem": {
             "final_list": null,
@@ -735,22 +746,22 @@
               "It is usable from command line workflows as well as backend service setups."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "maturity_signals": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "name": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_relevance": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_tools": {
             "final_list": null,
@@ -765,12 +776,12 @@
           "short_description": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "strengths": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -780,7 +791,7 @@
           "weaknesses_limitations": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -791,6 +802,14 @@
             "low-latency",
             "open-source"
           ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "model-serving"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
         }
       }
     ],
@@ -838,7 +857,7 @@
           "examples": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "key_points": {
             "final_list": null,
@@ -849,17 +868,17 @@
               "Design the router around task complexity and user intent, not a one-size-fits-all model policy."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "knowledge_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_insight": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_topics": {
             "final_list": null,
@@ -869,12 +888,12 @@
               "agent-runtime-architecture"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "relevance_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -884,12 +903,12 @@
           "topic_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "topic_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -943,7 +962,7 @@
           "examples": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "key_points": {
             "final_list": null,
@@ -954,17 +973,17 @@
               "Expect quality loss to vary by task when quantization becomes too aggressive."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "knowledge_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_insight": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_topics": {
             "final_list": null,
@@ -972,12 +991,12 @@
               "local-model-deployment"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "relevance_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -987,12 +1006,12 @@
           "topic_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "topic_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -1009,19 +1028,23 @@
   },
   "review_analytics": {
     "batch_actions_used": [],
-    "evidence_type_counts": {},
+    "evidence_type_counts": {
+      "benchmark": 2,
+      "expert_opinion": 1,
+      "mixed": 2
+    },
     "fields_modified": 0,
-    "proposals_approved": 0,
+    "proposals_approved": 5,
     "proposals_deferred": 0,
     "proposals_modified": 0,
     "proposals_rejected": 0,
-    "proposals_total": 0,
-    "review_duration_seconds": null,
-    "review_finished_at": null,
-    "review_started_at": null
+    "proposals_total": 5,
+    "review_duration_seconds": 160.5,
+    "review_finished_at": "2026-07-09T19:23:30.472042+00:00",
+    "review_started_at": "2026-07-09T19:20:50+00:00"
   },
   "review_session": {
-    "last_saved_at": null,
+    "last_saved_at": "2026-07-09T19:23:30+00:00",
     "saved_by": null
   },
   "source": {

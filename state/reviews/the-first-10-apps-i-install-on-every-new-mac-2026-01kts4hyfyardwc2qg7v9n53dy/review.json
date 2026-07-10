@@ -626,7 +626,6 @@
             "It supports vertical tabs, workspaces, and split view so browser-heavy work can stay organized without extra launcher tooling.",
             "It functions as a daily-driver browser while preserving Safari as a fallback for DRM-dependent sites."
           ],
-          "evidence_type": null,
           "integration_ecosystem": [
             "It is the app used to download and install everything else in the stack.",
             "The author keeps Safari alongside it because Widevine DRM support is incomplete for some streaming services."
@@ -671,7 +670,7 @@
               "It functions as a daily-driver browser while preserving Safari as a fallback for DRM-dependent sites."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "integration_ecosystem": {
             "final_list": null,
@@ -680,22 +679,22 @@
               "The author keeps Safari alongside it because Widevine DRM support is incomplete for some streaming services."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "maturity_signals": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "name": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_relevance": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_tools": {
             "final_list": null,
@@ -712,12 +711,12 @@
           "short_description": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "strengths": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -727,7 +726,7 @@
           "weaknesses_limitations": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -737,6 +736,14 @@
             "local-first",
             "open-source"
           ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "browser"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
         }
       },
       {
@@ -747,7 +754,6 @@
             "It stores secure documents, which the author uses for identity documents while traveling.",
             "It fills browser forms reliably enough to reduce repeated login friction across a fresh machine."
           ],
-          "evidence_type": null,
           "integration_ecosystem": [
             "It integrates with browser autofill in the author\u2019s setup.",
             "It supports family-plan sharing for multi-person use cases."
@@ -790,7 +796,7 @@
               "It fills browser forms reliably enough to reduce repeated login friction across a fresh machine."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "integration_ecosystem": {
             "final_list": null,
@@ -799,22 +805,22 @@
               "It supports family-plan sharing for multi-person use cases."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "maturity_signals": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "name": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_relevance": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_tools": {
             "final_list": null,
@@ -829,12 +835,12 @@
           "short_description": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "strengths": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -844,7 +850,7 @@
           "weaknesses_limitations": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -854,6 +860,15 @@
             "cloud-hosted",
             "enterprise-managed"
           ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "security",
+            "app"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
         }
       },
       {
@@ -864,7 +879,6 @@
             "It preserves Gmail labels, filters, and aliases in a way that matches the author\u2019s workflow.",
             "It mirrors Gmail keyboard shortcuts so power users can move faster with less retraining."
           ],
-          "evidence_type": null,
           "integration_ecosystem": [
             "It connects to Gmail accounts used for both personal and work-adjacent email.",
             "It relies on Gmail\u2019s labels, filters, and aliases behavior rather than replacing it with a separate mail model."
@@ -906,7 +920,7 @@
               "It mirrors Gmail keyboard shortcuts so power users can move faster with less retraining."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "integration_ecosystem": {
             "final_list": null,
@@ -915,22 +929,22 @@
               "It relies on Gmail\u2019s labels, filters, and aliases behavior rather than replacing it with a separate mail model."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "maturity_signals": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "name": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_relevance": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_tools": {
             "final_list": null,
@@ -945,12 +959,12 @@
           "short_description": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "strengths": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -960,7 +974,7 @@
           "weaknesses_limitations": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -968,6 +982,17 @@
           "final_tags": [
             "local-first",
             "workflow-automation"
+          ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "app",
+            "e-mail"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": [
+            "e-mail"
           ]
         }
       },
@@ -979,7 +1004,6 @@
             "It provides a quick-join shortcut for the current meeting, which reduces context-switching overhead.",
             "It supports multiple Google accounts without requiring a brittle primary-account workflow."
           ],
-          "evidence_type": null,
           "integration_ecosystem": [
             "It connects to Google Calendar accounts.",
             "It has limited iCloud calendar support, which constrains mixed-ecosystem use."
@@ -1021,7 +1045,7 @@
               "It supports multiple Google accounts without requiring a brittle primary-account workflow."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "integration_ecosystem": {
             "final_list": null,
@@ -1030,22 +1054,22 @@
               "It has limited iCloud calendar support, which constrains mixed-ecosystem use."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "maturity_signals": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "name": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_relevance": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_tools": {
             "final_list": null,
@@ -1060,12 +1084,12 @@
           "short_description": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "strengths": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -1075,7 +1099,7 @@
           "weaknesses_limitations": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -1084,6 +1108,15 @@
             "workflow-automation",
             "cloud-hosted"
           ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "app",
+            "productivity"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
         }
       },
       {
@@ -1094,7 +1127,6 @@
             "It supports a free tier for basic use, with Pro used when limits become too constraining.",
             "It serves as the author\u2019s primary AI workspace for writing, research, and coding."
           ],
-          "evidence_type": null,
           "integration_ecosystem": [
             "It can be replaced by the Claude web app if the global shortcut is not important.",
             "It is used alongside ChatGPT, NotebookLM, and Cursor in the author\u2019s broader AI stack."
@@ -1140,7 +1172,7 @@
               "It serves as the author\u2019s primary AI workspace for writing, research, and coding."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "integration_ecosystem": {
             "final_list": null,
@@ -1149,22 +1181,22 @@
               "It is used alongside ChatGPT, NotebookLM, and Cursor in the author\u2019s broader AI stack."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "maturity_signals": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "name": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_relevance": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_tools": {
             "final_list": null,
@@ -1180,12 +1212,12 @@
           "short_description": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "strengths": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -1195,7 +1227,7 @@
           "weaknesses_limitations": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -1204,6 +1236,15 @@
             "chat-interface",
             "workflow-automation"
           ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "app",
+            "ai-application"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
         }
       },
       {
@@ -1214,7 +1255,6 @@
             "It preserves meeting context for later retrieval instead of focusing only on live transcription.",
             "It supports follow-up work by helping the user reconstruct what was decided."
           ],
-          "evidence_type": null,
           "integration_ecosystem": [
             "It is compared against meeting note-takers such as Otter, Fireflies, Granola, Read.ai, tldv, and Fathom.",
             "It is used as a background layer alongside calendar, email, and task tools."
@@ -1254,38 +1294,38 @@
         "proposal_status": "approved",
         "sections": {
           "core_capabilities": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "It captures contextual signals from calls, app usage, and conversations.",
               "It preserves meeting context for later retrieval instead of focusing only on live transcription.",
               "It supports follow-up work by helping the user reconstruct what was decided."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "integration_ecosystem": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "It is compared against meeting note-takers such as Otter, Fireflies, Granola, Read.ai, tldv, and Fathom.",
               "It is used as a background layer alongside calendar, email, and task tools."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "maturity_signals": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "name": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "operational_relevance": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "related_tools": {
             "final_list": null,
@@ -1301,14 +1341,14 @@
             "status": "pending"
           },
           "short_description": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "strengths": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -1316,9 +1356,9 @@
             "status": "pending"
           },
           "weaknesses_limitations": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           }
         },
         "tags": {
@@ -1328,6 +1368,15 @@
             "memory",
             "voice"
           ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "app",
+            "meeting-notes"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
         }
       },
       {
@@ -1339,7 +1388,6 @@
             "It performs OCR on screenshots so text can be reused without manual retyping.",
             "It shares screenshots via short links for fast distribution."
           ],
-          "evidence_type": null,
           "integration_ecosystem": [
             "It can be used to create screenshots that are dropped into chat tools or ticketing systems.",
             "The article notes that Setapp includes it for users of that subscription bundle."
@@ -1383,7 +1431,7 @@
               "It shares screenshots via short links for fast distribution."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "integration_ecosystem": {
             "final_list": null,
@@ -1392,22 +1440,22 @@
               "The article notes that Setapp includes it for users of that subscription bundle."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "maturity_signals": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "name": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_relevance": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_tools": {
             "final_list": null,
@@ -1422,12 +1470,12 @@
           "short_description": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "strengths": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -1437,7 +1485,7 @@
           "weaknesses_limitations": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -1447,6 +1495,14 @@
             "workflow-automation",
             "local-first"
           ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "screenshot"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
         }
       },
       {
@@ -1457,7 +1513,6 @@
             "It keeps AI out of the editing layer, which the author prefers for focused drafting.",
             "It supports personal and work writing in the same lightweight environment."
           ],
-          "evidence_type": null,
           "integration_ecosystem": [
             "It stores files in a way that pairs with iCloud-based plain markdown workflows.",
             "The source notes separate cross-platform versions are sold for iPad, iPhone, Windows, and Android."
@@ -1500,7 +1555,7 @@
               "It supports personal and work writing in the same lightweight environment."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "integration_ecosystem": {
             "final_list": null,
@@ -1509,22 +1564,22 @@
               "The source notes separate cross-platform versions are sold for iPad, iPhone, Windows, and Android."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "maturity_signals": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "name": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_relevance": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_tools": {
             "final_list": null,
@@ -1539,12 +1594,12 @@
           "short_description": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "strengths": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -1554,7 +1609,7 @@
           "weaknesses_limitations": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -1563,6 +1618,15 @@
             "writing",
             "local-first"
           ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "app",
+            "note-taking"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
         }
       },
       {
@@ -1573,7 +1637,6 @@
             "It organizes tasks into a simple planning model that maps to the author\u2019s thinking.",
             "It works as a one-time purchase rather than a subscription service."
           ],
-          "evidence_type": null,
           "integration_ecosystem": [
             "It exists across Apple platforms, with iPhone and iPad sold separately from the Mac app.",
             "The author compares it with Todoist, TickTick, OmniFocus, and Apple Reminders as alternatives."
@@ -1617,7 +1680,7 @@
               "It works as a one-time purchase rather than a subscription service."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "integration_ecosystem": {
             "final_list": null,
@@ -1626,22 +1689,22 @@
               "The author compares it with Todoist, TickTick, OmniFocus, and Apple Reminders as alternatives."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "maturity_signals": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "name": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_relevance": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_tools": {
             "final_list": null,
@@ -1657,12 +1720,12 @@
           "short_description": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "strengths": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -1672,7 +1735,7 @@
           "weaknesses_limitations": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -1681,6 +1744,15 @@
             "workflow-automation",
             "local-first"
           ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "productivity",
+            "app"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
         }
       },
       {
@@ -1691,7 +1763,6 @@
             "It runs natively on macOS and uses GPU acceleration.",
             "It supports command-line workflows without requiring a paid license."
           ],
-          "evidence_type": null,
           "integration_ecosystem": [
             "It is used alongside Cursor and Claude Code for side-project coding.",
             "It is compared against Terminal.app and iTerm2 as the author\u2019s alternatives."
@@ -1735,7 +1806,7 @@
               "It supports command-line workflows without requiring a paid license."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "integration_ecosystem": {
             "final_list": null,
@@ -1744,22 +1815,22 @@
               "It is compared against Terminal.app and iTerm2 as the author\u2019s alternatives."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "maturity_signals": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "name": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_relevance": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_tools": {
             "final_list": null,
@@ -1775,12 +1846,12 @@
           "short_description": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "strengths": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -1790,7 +1861,7 @@
           "weaknesses_limitations": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -1800,6 +1871,14 @@
             "open-source",
             "local-first"
           ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "terminal"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
         }
       }
     ],
@@ -1807,19 +1886,21 @@
   },
   "review_analytics": {
     "batch_actions_used": [],
-    "evidence_type_counts": {},
+    "evidence_type_counts": {
+      "user_report": 10
+    },
     "fields_modified": 0,
-    "proposals_approved": 0,
+    "proposals_approved": 10,
     "proposals_deferred": 0,
     "proposals_modified": 0,
     "proposals_rejected": 0,
-    "proposals_total": 0,
-    "review_duration_seconds": null,
-    "review_finished_at": null,
-    "review_started_at": null
+    "proposals_total": 10,
+    "review_duration_seconds": 871.2,
+    "review_finished_at": "2026-07-09T19:44:52.195828+00:00",
+    "review_started_at": "2026-07-09T19:30:21+00:00"
   },
   "review_session": {
-    "last_saved_at": null,
+    "last_saved_at": "2026-07-09T19:44:52+00:00",
     "saved_by": null
   },
   "source": {

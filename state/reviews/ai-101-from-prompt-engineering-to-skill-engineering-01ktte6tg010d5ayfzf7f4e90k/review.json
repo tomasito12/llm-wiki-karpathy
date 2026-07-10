@@ -219,12 +219,12 @@
     "proposals_modified": 0,
     "proposals_rejected": 0,
     "proposals_total": 0,
-    "review_duration_seconds": null,
-    "review_finished_at": null,
-    "review_started_at": null
+    "review_duration_seconds": 20.8,
+    "review_finished_at": "2026-07-09T19:26:45.810831+00:00",
+    "review_started_at": "2026-07-09T19:26:25+00:00"
   },
   "review_session": {
-    "last_saved_at": null,
+    "last_saved_at": "2026-07-09T19:26:45+00:00",
     "saved_by": null
   },
   "source": {

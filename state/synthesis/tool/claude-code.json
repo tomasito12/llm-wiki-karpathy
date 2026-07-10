@@ -1,0 +1,77 @@
+{
+  "category": "tool",
+  "consensus": [
+    "Claude Code is a terminal-based coding agent that reads and writes files directly in a local workspace or repository.",
+    "It is most useful for multi-step workflows: planning, editing, checking, and iterating on work rather than only chatting or autocomplete.",
+    "It fits file-native knowledge and engineering workflows, especially when paired with a root instruction file such as CLAUDE.md and related repo or vault conventions.",
+    "MCP integrations and other tool connections extend it beyond local files into connected systems, which broadens it from coding into workflow automation.",
+    "The sources consistently treat it as practical and mature enough for real day-to-day use, but mostly through practitioner stories rather than independent evaluation."
+  ],
+  "context_card": {
+    "best_for_questions_about": [
+      "What Claude Code is actually useful for in repo- or vault-centered workflows",
+      "How to use Claude Code with local markdown, CLAUDE.md, MCP, and Git-based guardrails",
+      "When Claude Code helps with recurring maintenance loops, spec-to-code tasks, and self-verification",
+      "What the main risks are when using Claude Code as an agentic tool"
+    ],
+    "not_enough_for": [
+      "Benchmarks, pricing comparisons, or reliability statistics",
+      "Hard evidence about enterprise-wide adoption or standardization",
+      "Strong claims about safety, robustness, or failure rates in large or messy environments"
+    ],
+    "related_tags": [
+      "agentic",
+      "cli-tool",
+      "coding",
+      "local-first",
+      "multi-step-execution",
+      "workflow-automation",
+      "tool-use",
+      "software-development"
+    ],
+    "strongest_sources": [
+      "Technology Radar",
+      "I Spent 6 Months Tuning Claude Code. Here\u2019s the Exact Setup That Finally Worked.",
+      "How I Built an AI Second Brain Using Claude Code and Obsidian",
+      "Your Obsidian Vault Is a Knowledge Graph. Here\u2019s How to Make It Think (quickly).",
+      "How to Make Claude Code Validate its own Work",
+      "Building a Complete Personal Harness: LLM Wiki + Developer\u2019s Second Brain in Obsidian"
+    ],
+    "use_this_page_when": "Use this page when you want to decide whether Claude Code is a good execution layer for a local, file-based, multi-step workflow that needs edits, verification, and tool access."
+  },
+  "entity_id": "tool:claude-code",
+  "evidence_quality": [
+    "Evidence is broad across 17 sources and 196 reviewed claims, with strong agreement on core workflow shape.",
+    "Most support is practitioner evidence and usage writeups, not controlled studies or vendor documentation.",
+    "Several sources describe real production or recurring personal workflows, which is a good maturity signal but not the same as independent validation.",
+    "Limitations are consistently noted: careful instructions, human review, and schema discipline still matter, and weak setup can degrade results."
+  ],
+  "executive_synthesis": "Claude Code is best understood as a terminal-first execution layer for agentic work: it can read and write local files, run multi-step tasks, call tools, and keep going until a task is complete or verified. Across the sources, it shows up most strongly in file-native workflows such as Obsidian vault maintenance, structured wiki ingestion, and repo-centered spec-to-code loops. The common pattern is not \u201cask a question and get an answer,\u201d but \u201cgive the agent a workspace, instructions, and a target, then review the diffs.\u201d Its value rises when the workflow is repetitive, local, and governed by clear rules like CLAUDE.md, git review, or tests. The main caveat is that this is still a harnessed agent, not a set-and-forget system: the sources repeatedly warn that bad instructions, missing guardrails, or weak verification can produce wrong or destructive edits.",
+  "last_synthesized_at": "2026-07-09T16:43:16Z",
+  "practical_example": {
+    "basis": "source-grounded",
+    "example": "A team keeps product notes, issue drafts, and weekly review artifacts in a repository. They give Claude Code a CLAUDE.md file that defines the folder structure, naming rules, and what not to edit. On a schedule, the agent reads the latest notes, updates related markdown pages, drafts a summary, and opens a pull request with the changes. A human then reviews the diff and accepts or corrects it. The same pattern can also pull in connected data through MCP, so the agent can summarize a live workflow instead of only static files.",
+    "title": "Scheduled repo or vault maintenance with review",
+    "why_it_helps": "It shows why Claude Code is more useful as a workflow executor than as a chat assistant: it can keep structured artifacts in sync across sessions, while git and human review provide the control layer."
+  },
+  "practical_takeaway": "Use Claude Code when the job is to maintain and transform local files across multiple steps, especially in a repository or vault with clear rules; do not use it as a trusted autonomous system unless you also have strong instructions, verification, and review.",
+  "slug": "claude-code",
+  "synthesis_input_hash": "4d88471923f971a5",
+  "synthesis_prompt_version": 1,
+  "synthesis_schema_version": 1,
+  "tensions": [
+    "Some sources present Claude Code as a broadly established production tool, while others describe it as practically useful but still personally or experimentally deployed.",
+    "It is repeatedly described as powerful out of the box, but also as heavily dependent on setup quality, schema discipline, and guardrails.",
+    "MCP and related integrations expand capability, but several sources imply that the setup becomes more fragile or maintenance-heavy as the stack grows.",
+    "The sources suggest it can reduce manual work, but they do not provide controlled evidence that the savings hold across large, messy, or high-stakes environments."
+  ],
+  "title": "Claude Code",
+  "what_to_remember": [
+    "It is a terminal-based agent that can operate directly on files and folders.",
+    "Its real strength is multi-step work: edit, verify, iterate, and maintain.",
+    "CLAUDE.md, repo rules, and git review are central to making it reliable enough to use.",
+    "MCP connections make it much more than a coding helper when external systems are involved.",
+    "The evidence is strong on practical workflows but weak on benchmarks and failure-rate claims.",
+    "Think of it as an execution harness, not just a prompt interface."
+  ]
+}

@@ -405,12 +405,12 @@
           "answer_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "caveats": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "implementation_steps": {
             "final_list": null,
@@ -423,7 +423,7 @@
               "Run a weekly deeper synthesis to surface contradictions, themes, and missing perspectives."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "prerequisites": {
             "final_list": null,
@@ -434,12 +434,12 @@
               "A willingness to maintain the instruction file and folder discipline."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "question_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_howtos": {
             "final_list": null,
@@ -458,7 +458,7 @@
           "what_and_problem": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -564,7 +564,6 @@
             "It stores captures, notes, ideas, and project context in a local vault that other tools can read and write to.",
             "It can be organized into a small fixed folder structure so agent workflows have predictable places to look for content."
           ],
-          "evidence_type": null,
           "integration_ecosystem": [
             "It is used here with n8n to receive routed Markdown files from capture sources.",
             "It is used here with Claude Code to let an agent read the vault and generate daily and weekly briefings."
@@ -606,7 +605,7 @@
               "It can be organized into a small fixed folder structure so agent workflows have predictable places to look for content."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "integration_ecosystem": {
             "final_list": null,
@@ -615,22 +614,22 @@
               "It is used here with Claude Code to let an agent read the vault and generate daily and weekly briefings."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "maturity_signals": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "name": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_relevance": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_tools": {
             "final_list": null,
@@ -644,12 +643,12 @@
           "short_description": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "strengths": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -659,7 +658,7 @@
           "weaknesses_limitations": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -668,6 +667,14 @@
             "local-first",
             "workflow-automation"
           ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "note-taking"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
         }
       },
       {
@@ -677,7 +684,6 @@
             "It watches capture sources and turns raw input into a normalized Markdown file.",
             "It routes captured content directly into a vault without requiring manual filing."
           ],
-          "evidence_type": null,
           "integration_ecosystem": [
             "It is used with Readwise, Telegram, and Obsidian as part of the capture-to-vault pipeline.",
             "It can serve as the control layer between collection tools and an agent-readable store."
@@ -720,7 +726,7 @@
               "It routes captured content directly into a vault without requiring manual filing."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "integration_ecosystem": {
             "final_list": null,
@@ -729,22 +735,22 @@
               "It can serve as the control layer between collection tools and an agent-readable store."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "maturity_signals": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "name": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_relevance": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_tools": {
             "final_list": null,
@@ -760,12 +766,12 @@
           "short_description": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "strengths": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -775,7 +781,7 @@
           "weaknesses_limitations": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -785,6 +791,14 @@
             "autonomous",
             "api-first"
           ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "workflow-automation"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
         }
       },
       {
@@ -795,7 +809,6 @@
             "It can follow a maintained instruction file such as CLAUDE.md to keep behavior aligned over time.",
             "It can generate recurring artifacts like daily briefings and weekly synthesis notes."
           ],
-          "evidence_type": null,
           "integration_ecosystem": [
             "It is used with Obsidian as the corpus it reads.",
             "It is used with n8n as the workflow that schedules and writes out the generated briefing."
@@ -827,41 +840,41 @@
         },
         "notes": null,
         "proposal_id": "44ac8ea6-0df5-44bb-8e8e-045ca24b0bec",
-        "proposal_status": "approved",
+        "proposal_status": "rejected",
         "sections": {
           "core_capabilities": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "It reads a local vault and synthesizes higher-level observations from the stored material.",
               "It can follow a maintained instruction file such as CLAUDE.md to keep behavior aligned over time.",
               "It can generate recurring artifacts like daily briefings and weekly synthesis notes."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "integration_ecosystem": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "It is used with Obsidian as the corpus it reads.",
               "It is used with n8n as the workflow that schedules and writes out the generated briefing."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "maturity_signals": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "name": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "operational_relevance": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "related_tools": {
             "final_list": null,
@@ -873,14 +886,14 @@
             "status": "pending"
           },
           "short_description": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "strengths": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -888,9 +901,9 @@
             "status": "pending"
           },
           "weaknesses_limitations": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           }
         },
         "tags": {
@@ -900,6 +913,14 @@
             "cli-tool",
             "workflow-automation"
           ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "coding-agent"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
         }
       }
     ],
@@ -944,7 +965,7 @@
           "examples": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "key_points": {
             "final_list": null,
@@ -955,17 +976,17 @@
               "Recurring agent review can surface contradictions between older beliefs and newer captures."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "knowledge_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_insight": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_topics": {
             "final_list": null,
@@ -973,12 +994,12 @@
               "knowledge-base-becomes-runtime-infrastructure"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "relevance_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -988,12 +1009,12 @@
           "topic_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "topic_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -1044,7 +1065,7 @@
           "examples": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "key_points": {
             "final_list": null,
@@ -1054,17 +1075,17 @@
               "File-native workflows reduce dependence on chat history as the only memory substrate."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "knowledge_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_insight": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_topics": {
             "final_list": null,
@@ -1072,12 +1093,12 @@
               "agent-maintained-knowledge-bases"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "relevance_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -1087,12 +1108,12 @@
           "topic_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "topic_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -1108,19 +1129,21 @@
   },
   "review_analytics": {
     "batch_actions_used": [],
-    "evidence_type_counts": {},
+    "evidence_type_counts": {
+      "implementation_case": 6
+    },
     "fields_modified": 0,
-    "proposals_approved": 0,
+    "proposals_approved": 5,
     "proposals_deferred": 0,
     "proposals_modified": 0,
-    "proposals_rejected": 0,
-    "proposals_total": 0,
-    "review_duration_seconds": null,
-    "review_finished_at": null,
-    "review_started_at": null
+    "proposals_rejected": 1,
+    "proposals_total": 6,
+    "review_duration_seconds": 274.5,
+    "review_finished_at": "2026-07-09T19:18:18.456416+00:00",
+    "review_started_at": "2026-07-09T19:13:44+00:00"
   },
   "review_session": {
-    "last_saved_at": null,
+    "last_saved_at": "2026-07-09T19:18:18+00:00",
     "saved_by": null
   },
   "source": {

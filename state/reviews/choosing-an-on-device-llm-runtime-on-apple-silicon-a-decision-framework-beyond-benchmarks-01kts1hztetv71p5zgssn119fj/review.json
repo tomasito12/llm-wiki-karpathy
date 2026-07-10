@@ -435,8 +435,10 @@
           "relevance_note": "Mixture-of-Experts affects inference cost, latency, and benchmark interpretation in production model selection. It matters for service automation because apparent speedups can be misleading if teams compare MoE and dense models without accounting for active parameters and routing behavior.",
           "secondary_tag": "tool-use",
           "suggested_action": "ignore",
-          "suggested_new_tag": "",
-          "suggested_new_tags": [],
+          "suggested_new_tag": "model-architecture",
+          "suggested_new_tags": [
+            "model-architecture"
+          ],
           "supporting_snippet": "\"Qwen3.5\u201335B-A3B is a Mixture-of-Experts model (35B total parameters, 3B active per token, 256 experts, 8 routed plus 1 shared active).\"",
           "term": "Mixture-of-Experts",
           "value_level": "high"
@@ -448,12 +450,12 @@
           "extended_explanation": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "proposed_definition": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_terms": {
             "final_list": null,
@@ -466,7 +468,7 @@
           "relevance_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -476,14 +478,16 @@
           "term": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
-          "approved_new_tags": [],
+          "approved_new_tags": [
+            "model-architecture"
+          ],
           "final_tags": [
             "inference",
-            "tool-use"
+            "model-architecture"
           ]
         }
       },
@@ -518,12 +522,12 @@
           "extended_explanation": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "proposed_definition": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_terms": {
             "final_list": null,
@@ -536,7 +540,7 @@
           "relevance_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -546,7 +550,7 @@
           "term": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -604,7 +608,7 @@
           "evidence_from_source": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_trends": {
             "final_list": null,
@@ -625,7 +629,7 @@
               "MLC-LLM is described as strongest for 64K to 128K token contexts."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -635,27 +639,27 @@
           "time_sensitivity": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_description": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "uncertainty_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -765,7 +769,6 @@
             "It packages a model registry around the backend, reducing manual model-management overhead for developers.",
             "It can sit on either llama.cpp or MLX depending on version and model support, which changes its runtime behavior and migration profile."
           ],
-          "evidence_type": null,
           "integration_ecosystem": [
             "It exposes an HTTP API that fits service-oriented integration patterns.",
             "It has historically used llama.cpp as its backend, which ties it to GGUF-based model workflows.",
@@ -803,39 +806,39 @@
         "proposal_status": "approved",
         "sections": {
           "core_capabilities": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "It exposes local models through an HTTP API, which makes it easy to integrate with existing application services.",
               "It packages a model registry around the backend, reducing manual model-management overhead for developers.",
               "It can sit on either llama.cpp or MLX depending on version and model support, which changes its runtime behavior and migration profile."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "integration_ecosystem": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "It exposes an HTTP API that fits service-oriented integration patterns.",
               "It has historically used llama.cpp as its backend, which ties it to GGUF-based model workflows.",
               "It added an MLX preview for selected Apple Silicon models in version 0.19."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "maturity_signals": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "name": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "operational_relevance": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "related_tools": {
             "final_list": null,
@@ -848,14 +851,14 @@
             "status": "pending"
           },
           "short_description": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "strengths": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -863,9 +866,9 @@
             "status": "pending"
           },
           "weaknesses_limitations": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           }
         },
         "tags": {
@@ -875,6 +878,14 @@
             "cloud-hosted",
             "local-first"
           ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "ai-infrastructure"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
         }
       },
       {
@@ -885,7 +896,6 @@
             "It supports layer offload between CPU and GPU through n_gpu_layers, which helps on devices with constrained unified memory.",
             "It can run either as a library or as an HTTP server, which lets teams choose between embedded and service-style integration."
           ],
-          "evidence_type": null,
           "integration_ecosystem": [
             "It uses GGUF files as its main model format.",
             "It supports Metal on Apple Silicon.",
@@ -930,7 +940,7 @@
               "It can run either as a library or as an HTTP server, which lets teams choose between embedded and service-style integration."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "integration_ecosystem": {
             "final_list": null,
@@ -940,22 +950,22 @@
               "It can be embedded as a library or exposed as an HTTP server."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "maturity_signals": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "name": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_relevance": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_tools": {
             "final_list": null,
@@ -970,12 +980,12 @@
           "short_description": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "strengths": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -985,7 +995,7 @@
           "weaknesses_limitations": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -995,6 +1005,15 @@
             "open-source",
             "api-first"
           ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "ai-infrastructure",
+            "model-serving"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
         }
       },
       {
@@ -1006,7 +1025,6 @@
             "It exposes Python bindings through mlx-lm, which is useful for experimentation and scripting.",
             "It uses a Safetensors-based format, which aligns it with common modern model distribution workflows."
           ],
-          "evidence_type": null,
           "integration_ecosystem": [
             "It integrates with mlx-swift for Swift applications.",
             "It integrates with mlx-lm for Python workflows.",
@@ -1053,7 +1071,7 @@
               "It uses a Safetensors-based format, which aligns it with common modern model distribution workflows."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "integration_ecosystem": {
             "final_list": null,
@@ -1064,22 +1082,22 @@
               "It is the backend used by Ollama\u2019s MLX preview for selected models."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "maturity_signals": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "name": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_relevance": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_tools": {
             "final_list": null,
@@ -1094,12 +1112,12 @@
           "short_description": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "strengths": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -1109,7 +1127,7 @@
           "weaknesses_limitations": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -1119,6 +1137,15 @@
             "open-source",
             "coding"
           ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "ai-infrastructure",
+            "library"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
         }
       }
     ],
@@ -1265,7 +1292,7 @@
           "examples": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "key_points": {
             "final_list": null,
@@ -1275,17 +1302,17 @@
               "Backend swaps become implementation changes rather than full refactors when the abstraction boundary is deliberate."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "knowledge_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_insight": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_topics": {
             "final_list": null,
@@ -1295,12 +1322,12 @@
               "layered-local-and-cloud-inference"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "relevance_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -1310,12 +1337,12 @@
           "topic_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "topic_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -1331,19 +1358,21 @@
   },
   "review_analytics": {
     "batch_actions_used": [],
-    "evidence_type_counts": {},
+    "evidence_type_counts": {
+      "mixed": 8
+    },
     "fields_modified": 0,
-    "proposals_approved": 0,
+    "proposals_approved": 8,
     "proposals_deferred": 0,
     "proposals_modified": 0,
     "proposals_rejected": 0,
-    "proposals_total": 0,
-    "review_duration_seconds": null,
-    "review_finished_at": null,
-    "review_started_at": null
+    "proposals_total": 8,
+    "review_duration_seconds": 200.0,
+    "review_finished_at": "2026-07-09T19:30:09.966124+00:00",
+    "review_started_at": "2026-07-09T19:26:50+00:00"
   },
   "review_session": {
-    "last_saved_at": null,
+    "last_saved_at": "2026-07-09T19:30:10+00:00",
     "saved_by": null
   },
   "source": {

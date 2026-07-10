@@ -279,9 +279,9 @@
         "proposal_status": "approved",
         "sections": {
           "evidence_from_source": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "related_trends": {
             "final_list": null,
@@ -292,14 +292,14 @@
             "status": "pending"
           },
           "supporting_data_points": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "Skills are described as reusable workflows for repeatable tasks.",
               "The page explicitly contrasts \"one-off prompts\" with \"more consistent workflows\".",
               "The guidance extends the product beyond chat into structured process reuse."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -307,29 +307,29 @@
             "status": "pending"
           },
           "time_sensitivity": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "trend_description": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "trend_slug": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "trend_title": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "uncertainty_note": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           }
         },
         "tags": {
@@ -463,7 +463,7 @@
           "examples": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "key_points": {
             "final_list": null,
@@ -474,28 +474,28 @@
               "Users should save recurring context and avoid storing one-off facts."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "knowledge_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_insight": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_topics": {
             "final_list": null,
             "llm_list": [],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "relevance_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -505,12 +505,12 @@
           "topic_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "topic_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -562,7 +562,7 @@
           "examples": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "key_points": {
             "final_list": null,
@@ -573,17 +573,17 @@
               "The clearer the instruction hierarchy, the easier it is to troubleshoot inconsistent behavior."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "knowledge_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_insight": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_topics": {
             "final_list": null,
@@ -591,12 +591,12 @@
               "personalized-conversational-ai"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "relevance_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -606,12 +606,12 @@
           "topic_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "topic_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -627,19 +627,21 @@
   },
   "review_analytics": {
     "batch_actions_used": [],
-    "evidence_type_counts": {},
+    "evidence_type_counts": {
+      "vendor_claim": 3
+    },
     "fields_modified": 0,
-    "proposals_approved": 0,
+    "proposals_approved": 3,
     "proposals_deferred": 0,
     "proposals_modified": 0,
     "proposals_rejected": 0,
-    "proposals_total": 0,
-    "review_duration_seconds": null,
-    "review_finished_at": null,
-    "review_started_at": null
+    "proposals_total": 3,
+    "review_duration_seconds": 130.7,
+    "review_finished_at": "2026-07-09T19:20:40.651977+00:00",
+    "review_started_at": "2026-07-09T19:18:30+00:00"
   },
   "review_session": {
-    "last_saved_at": null,
+    "last_saved_at": "2026-07-09T19:20:40+00:00",
     "saved_by": null
   },
   "source": {

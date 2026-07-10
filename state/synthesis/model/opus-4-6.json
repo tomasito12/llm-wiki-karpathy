@@ -1,0 +1,73 @@
+{
+  "category": "model",
+  "consensus": [
+    "Opus 4.6 is presented as the higher-capability Anthropic option, used when deeper reasoning or stronger synthesis is needed.",
+    "Across sources, it is treated as a premium escalation model rather than the default for routine work.",
+    "The main practical value is in complex coding, difficult refactoring, deep research, and synthesis-heavy tasks where quality matters more than efficiency.",
+    "Evidence consistently suggests it should be routed selectively because it uses tokens faster and likely has higher cost pressure.",
+    "Sources agree that the surrounding tool or agent framework can materially change outcomes, so model choice alone is not enough to predict real-world performance."
+  ],
+  "context_card": {
+    "best_for_questions_about": [
+      "What Opus 4.6 is useful for in practice",
+      "When to escalate to Opus 4.6 instead of using a cheaper default model",
+      "How Opus 4.6 fits into coding assistants and agent workflows",
+      "Whether model quality alone predicts shipped-code performance",
+      "What the main cost and workflow caveats are"
+    ],
+    "not_enough_for": [
+      "A controlled benchmark comparison against other models",
+      "Detailed failure-mode analysis at the model level",
+      "Pricing details or token economics beyond the general cost warning",
+      "Direct service-automation guidance specific to Opus 4.6",
+      "Release, adoption, or maturity evidence beyond product positioning"
+    ],
+    "related_tags": [
+      "coding-model",
+      "developer-focused",
+      "frontier-model",
+      "proprietary-model",
+      "tool-use-capable"
+    ],
+    "strongest_sources": [
+      "How I Use Obsidian + Claude Cowork to Run My Life",
+      "Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong",
+      "Antigravity vs Claude Code: Which AI Coding Assistant Should You Actually Use?"
+    ],
+    "use_this_page_when": "You want a quick read on whether Opus 4.6 is the right escalation model for harder reasoning, coding, or synthesis tasks, and you need the main caveats before loading it into a workflow or comparing tools."
+  },
+  "entity_id": "model:opus-4-6",
+  "evidence_quality": [
+    "Strongest evidence is practical and source-grounded, but it comes from product/editorial usage rather than controlled evaluations.",
+    "There are 3 sources and 25 evidence items, but most claims are positioning and workflow inference, not benchmark data.",
+    "Evidence is consistent on role and constraints, weak on quantified performance, latency, cost, and failure modes.",
+    "Confidence is moderate-to-high for use case and routing guidance, low for any claim about absolute model superiority."
+  ],
+  "executive_synthesis": "Opus 4.6 is best understood as a high-capability, premium escalation model: useful when the task is hard, synthesis-heavy, or reasoned judgment matters more than efficiency. The sources consistently place it above the default option in Anthropic-adjacent coding workflows and describe it as the model to switch to for complex coding work, deep research, or difficult refactoring. The repeated caveat is cost: it uses tokens faster, so it is not the default operating point for routine work or high-volume automation. A second, important theme is that raw model strength is not enough to predict real output quality; the wrapper, review loop, worktree handling, and execution environment can change results materially. In short, Opus 4.6 looks worth testing as an escalation model, but not as a standalone answer to agent performance or procurement decisions.",
+  "last_synthesized_at": "2026-07-09T19:17:57Z",
+  "practical_example": {
+    "basis": "source-grounded",
+    "example": "In the reviewed sources, Opus 4.6 appears in workflows as the model you switch to when a task becomes genuinely hard: complex synthesis, deep research, or reasoning-heavy coding. It is not framed as the default for everyday use; instead, it sits above a cheaper baseline and is used selectively when quality matters more than token efficiency. That makes it relevant if you are designing a routing layer, evaluating a coding assistant, or deciding when to spend more for a better answer. The evidence is thinner on exact failure modes, latency, and cost numbers, so this is a \u201ctest and gate carefully\u201d model rather than a broadly justified default.",
+    "title": "Escalation model for hard synthesis",
+    "why_it_helps": "It shows the practical role of Opus 4.6 without overstating it: a premium escalation choice, not a universal default."
+  },
+  "practical_takeaway": "Use Opus 4.6 when the task is high-stakes, complex, or synthesis-heavy and you can justify the token cost; do not choose it just because you want the strongest model name, because the wrapper and workflow matter too.",
+  "slug": "opus-4-6",
+  "synthesis_input_hash": "111b2e3c1a5f0e65",
+  "synthesis_prompt_version": 1,
+  "synthesis_schema_version": 1,
+  "tensions": [
+    "Sources position Opus 4.6 as stronger for complex work, but provide no controlled benchmark or failure analysis to prove that strength.",
+    "It is described as a top-tier option inside established products, yet there is no external adoption or maturity evidence beyond that product positioning.",
+    "The model may be important in coding-agent comparisons, but the sources repeatedly warn that wrapper quality can dominate apparent performance, making model-only conclusions unreliable.",
+    "Cost is consistently flagged as a constraint, but no source gives incremental pricing or precise token economics."
+  ],
+  "title": "Opus 4.6",
+  "what_to_remember": [
+    "Opus 4.6 is the deeper-reasoning / higher-capability Anthropic option in the reviewed sources.",
+    "It is best reserved for complex coding, deep research, and synthesis-heavy work.",
+    "It is not the default choice because it uses tokens faster and likely costs more to run.",
+    "Model quality alone is not enough to predict agent performance; the wrapper and workflow matter a lot.",
+    "Evidence here is useful for routing and product judgment, not for benchmark-driven model selection."
+  ]
+}

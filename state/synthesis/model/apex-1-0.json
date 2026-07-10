@@ -1,0 +1,77 @@
+{
+  "category": "model",
+  "consensus": [
+    "Apex 1.0 is Intercom\u2019s proprietary customer-service model, used inside the Fin support stack rather than as a general-purpose assistant.",
+    "The sources consistently frame it as useful when resolution rate, latency, hallucination rate, and cost matter in high-volume support.",
+    "It is presented as fast enough for real-time customer service and as suitable for both chat and email support conversations.",
+    "The model is tied to task-specific support and product-agent behavior, including conversational resolution and some action-taking in connected systems.",
+    "Intercom positions it as already deployed in production, with strong production-use signals from the broader Fin platform."
+  ],
+  "context_card": {
+    "best_for_questions_about": [
+      "What Apex 1.0 is used for",
+      "Why a specialized support model might matter in customer service",
+      "Whether Apex 1.0 looks production-ready or experimental",
+      "What evidence exists for Intercom\u2019s performance claims",
+      "How Apex 1.0 relates to Fin, support automation, and agent workflows"
+    ],
+    "not_enough_for": [
+      "Independent benchmark validation",
+      "Latency, cost, or failure-mode analysis",
+      "General-purpose model selection outside customer service",
+      "Technical evaluation of tool reliability, edge cases, or multilingual behavior",
+      "Unit economics or pricing comparisons beyond the enterprise-gated signal"
+    ],
+    "related_tags": [
+      "enterprise-oriented",
+      "proprietary-model",
+      "tool-use-capable",
+      "customer-support",
+      "support-automation",
+      "workflow-automation",
+      "api-first"
+    ],
+    "strongest_sources": [
+      "Announcing Fin Apex: The age of vertical models is here",
+      "Never stop disrupting yourself; introducing the Fin API platform",
+      "Announcing Fin for Ecommerce: Fin\u2019s next role as a Customer Agent",
+      "Extending Fin as the most open Agent platform"
+    ],
+    "use_this_page_when": "Use this page when you need a quick read on whether Apex 1.0 is relevant to customer-service automation, what Intercom claims it improves, and how confident you should be in those claims."
+  },
+  "entity_id": "model:apex-1-0",
+  "evidence_quality": [
+    "Evidence is fairly rich but mostly vendor-authored, so the maturity signal is strong while independent validation is weak.",
+    "The main performance claims are repeated across sources, but no source gives a full benchmark methodology, sample sizes, or failure cases.",
+    "Production adoption is a stronger signal than a lab demo here, but it is still self-reported by Intercom.",
+    "There is little evidence on behavior outside customer support, especially for edge cases, multilingual traffic, or tool failures."
+  ],
+  "executive_synthesis": "Apex 1.0 is Intercom\u2019s proprietary customer-service model behind Fin, positioned as a specialized alternative to general frontier models for support and product-agent workflows. Across the sources, the main value proposition is consistent: it is meant to improve resolution rate, latency, hallucination rate, and cost in real customer-service settings, and it is described as fast enough for real-time conversations. Intercom also frames it as already running in production across a large share of English chat and email support traffic, which is a meaningful maturity signal. The main caveat is that all of the performance evidence is vendor-reported, with no disclosed benchmark methodology, sample sizes, or failure analysis. That makes Apex 1.0 worth watching or testing for high-volume support automation, but not something to treat as independently validated beyond Intercom\u2019s own product claims.",
+  "last_synthesized_at": "2026-07-09T19:16:32Z",
+  "practical_example": {
+    "basis": "source-grounded",
+    "example": "Apex 1.0 appears most relevant if you are evaluating AI for customer service, especially where response speed, trust, and containment matter more than open-ended chat. The sources describe it as the model behind Fin, used for English chat and email support, and also as part of an ecommerce customer-agent flow that can ask follow-up questions, use retrieval, and handle post-purchase support. That makes it interesting for teams with high ticket volume and live product or order data. The evidence is thin on independent validation, so it is better treated as a vendor-claimed production model to test or benchmark carefully, not as a proven general-purpose replacement.",
+    "title": "Worth watching for customer-support automation",
+    "why_it_helps": "It shows the practical boundary: this is not mainly a general assistant story; it is a support automation story where integration, retrieval, and policy safety matter as much as raw model quality."
+  },
+  "practical_takeaway": "If you are working on customer-service automation, Apex 1.0 is worth considering as a specialized, enterprise-gated option, but only with your own evaluation of resolution quality, latency, and failure modes. If you need a general-purpose model or independent benchmark evidence, this page is not enough on its own.",
+  "slug": "apex-1-0",
+  "synthesis_input_hash": "ce3fb40710972681",
+  "synthesis_prompt_version": 1,
+  "synthesis_schema_version": 1,
+  "tensions": [
+    "Intercom claims Apex 1.0 outperforms frontier models and is cheaper/faster, but provides no public benchmark methodology or scores.",
+    "The model is presented as already in production at scale, yet the evidence remains vendor-authored rather than independently verified.",
+    "The sources suggest strong support for customer service and ecommerce support flows, but they do not show how Apex behaves in edge cases, multilingual settings, or with tool failures.",
+    "Pricing is implied to be enterprise-level, but the actual cost structure and unit economics are not disclosed."
+  ],
+  "title": "Apex 1.0",
+  "what_to_remember": [
+    "Apex 1.0 is a specialized customer-service model inside Intercom\u2019s Fin platform, not a general-purpose assistant.",
+    "Its main claimed advantages are better resolution, lower latency, fewer hallucinations, and lower cost in support workflows.",
+    "Intercom says it is already powering large volumes of English chat and email conversations, which is a strong production signal but still self-reported.",
+    "The evidence supports relevance for support automation and ecommerce customer-agent flows, especially when retrieval and tool use are part of the job.",
+    "Do not treat the performance story as independently validated; the sources do not disclose benchmark methods, sample sizes, or failures.",
+    "The model is enterprise-oriented and likely selective to deploy, so it is most relevant for high-volume support teams rather than small or experimental projects."
+  ]
+}
