@@ -1,0 +1,76 @@
+{
+  "category": "topic",
+  "consensus": [
+    "Local model deployment means running a model on hardware or infrastructure you control, instead of sending every request to a hosted API.",
+    "The main reasons to do it are privacy, offline operation, lower dependency on external APIs, and more predictable per-request cost.",
+    "It changes the engineering problem from API integration to fit and runtime management: model size, memory, disk, accelerator capacity, runtime backend, and preprocessing all matter.",
+    "A local setup can expose a localhost API, so it can support scripts, desktop tools, and internal applications, not just chat.",
+    "The operational burden moves in-house. Teams own updates, compatibility, observability, failure handling, and hardware issues."
+  ],
+  "context_card": {
+    "best_for_questions_about": [
+      "When local model deployment is a better choice than cloud APIs",
+      "What operational changes come with self-hosted or on-device inference",
+      "How hardware limits, quantization, and runtime choice affect local LLM use",
+      "When offline, private, or cost-predictable inference matters",
+      "How to think about local inference in scripts, desktop tools, or internal copilots"
+    ],
+    "not_enough_for": [
+      "A full vendor comparison",
+      "Exact hardware sizing rules for a specific model",
+      "Production SRE runbooks for serving a local model fleet",
+      "Performance benchmarks across runtimes or quantization schemes"
+    ],
+    "related_tags": [
+      "ai-engineering",
+      "developer-tools",
+      "inference-systems",
+      "infrastructure",
+      "runtime-architecture",
+      "runtime-systems",
+      "serving-infrastructure"
+    ],
+    "strongest_sources": [
+      "How To Run an Open-Source LLM on Your Personal Computer",
+      "I Ran Gemma 4 Locally. Here\u2019s What Nobody\u2019s Telling You.",
+      "I Spent 3 Days Researching Self-Hosted AI. Here\u2019s Why You Should (And Shouldn\u2019t) Actually Do It",
+      "Run Gemma 4:E2B Locally with Ollama: No Cloud, No Limits"
+    ],
+    "use_this_page_when": "Use this page when deciding whether to keep inference local, how that changes system design, and what tradeoffs to expect for privacy, offline use, cost, and operations."
+  },
+  "entity_id": "topic:local-model-deployment",
+  "evidence_quality": [
+    "Evidence is consistent across four reviewed sources, but it is mostly explanatory rather than experimental.",
+    "Confidence is high on the main tradeoffs: privacy, offline operation, cost control, and added operational burden.",
+    "The evidence is weaker on exact thresholds. It does not give universal hardware sizing, benchmark numbers, or a single best runtime.",
+    "Some claims are source-specific examples from open-weight models and consumer hardware. They support the pattern, but they are not broad performance proof."
+  ],
+  "executive_synthesis": "Local model deployment is a way to keep inference close to the team: on a user-controlled machine or internal infrastructure instead of a hosted API. In practice, it is chosen for privacy, offline operation, predictable cost, and tighter control over data flow. The technical work shifts from simple API use to making the model fit the machine and run reliably. That means paying attention to memory, disk, accelerator capacity, runtime backend, quantization, and preprocessing. The evidence is fairly strong on the pattern and its tradeoffs, but thin on universal sizing rules. It is best treated as an architecture decision, not just a packaging choice.",
+  "last_synthesized_at": "2026-07-10T12:45:47Z",
+  "practical_example": {
+    "basis": "source-grounded",
+    "example": "A support team wants an internal copilot that summarizes sensitive cases and helps agents draft replies. Instead of sending every prompt to a cloud API, they run a smaller open-weight model on internal hardware and expose it through a localhost API. The same setup can also be called from scripts for repetitive back-office tasks. This keeps proprietary text inside the environment, still works when the network is unavailable, and gives the team more control over cost. The tradeoff is that the team now owns model updates, runtime compatibility, and the checks needed to make sure preprocessing and the serving stack do not break output quality.",
+    "title": "Internal copilot on controlled infrastructure",
+    "why_it_helps": "It shows why local deployment matters operationally: it solves data-handling and resilience needs, but it also adds system ownership and troubleshooting work."
+  },
+  "practical_takeaway": "Choose local deployment when privacy, offline resilience, or cost predictability matter enough to justify owning the runtime, compatibility, and support burden. If you do not need those benefits, cloud APIs remain simpler.",
+  "slug": "local-model-deployment",
+  "synthesis_input_hash": "237b6d4d2299635a",
+  "synthesis_prompt_version": 1,
+  "synthesis_schema_version": 1,
+  "tensions": [
+    "Local deployment can reduce per-call inference cost after setup, but it does not remove hardware, maintenance, or support costs.",
+    "Consumer hardware can be enough for some models, but only when model size, quantization, and runtime are chosen carefully.",
+    "Hybrid setups are often attractive: keep routine work local and route harder tasks to the cloud, but this adds routing and system complexity.",
+    "Some sources frame local deployment as easier than before, but the same sources also show that backend bugs and runtime mismatches can make a capable model appear broken."
+  ],
+  "title": "Local Model Deployment",
+  "what_to_remember": [
+    "Local deployment means you control where inference runs, so you also control data handling.",
+    "The main constraints are hardware fit and runtime behavior, not just model access.",
+    "Offline use is a real benefit because the model can keep working after download.",
+    "A localhost API makes local models usable in apps and automation, not only in interactive chat.",
+    "Treat deployment as an operations choice. You inherit updates, monitoring, versioning, and failure handling."
+  ],
+  "workflow_variants": []
+}
