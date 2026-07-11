@@ -659,7 +659,7 @@
     },
     {
       "path": "indexes/knowledge-graph.md",
-      "sha256": "b0bf396d05f45ff07393a395505a63443262519e9c0044e062ec4fedc415ea32"
+      "sha256": "0f34f712d43e4169b54bc45bddd93b136de876706fe858e0f18d124bd52daffd"
     },
     {
       "path": "indexes/models-by-tag.md",
@@ -671,11 +671,11 @@
     },
     {
       "path": "indexes/sources-by-tag.md",
-      "sha256": "adca70117303833d03f3afaa209e6cefc051c17f1fd0e60bf7982db6d725a79b"
+      "sha256": "a40d943b54689285b4eecd9c4a7089c4ea82daca787174dd1bc984367e5e5ea7"
     },
     {
       "path": "indexes/system-status.md",
-      "sha256": "af35364e0455e6c637dd3105eca1ba71d9d66857a0ef178d919b7682f6326b10"
+      "sha256": "ecda58e3ab549b5822fdbf3dcb7062761865275eb054455da38549c6f0e78a56"
     },
     {
       "path": "indexes/tools-by-tag.md",
@@ -687,7 +687,7 @@
     },
     {
       "path": "indexes/trends-by-tag.md",
-      "sha256": "8e0ffa7ad0003dc577261e2ba3c51de1c131a4d65b6ae63c597c6f15de45fe82"
+      "sha256": "7eebb25388684b02d7268c93c9676ec9a9d229f1f16421cbb8670b3f5ff25a50"
     },
     {
       "path": "industry-trends/agent-evaluation-shifts-toward-readiness.md",
@@ -867,7 +867,7 @@
     },
     {
       "path": "industry-trends/coding-shifts-toward-supervised-agent-workflows.md",
-      "sha256": "36cbcbec941a6849afefbb94bef9dc922ed856b18103d5df49cf8cdbe6ee14cc"
+      "sha256": "51c03e107351d46a217f1629219e753c32ba3c4875623c4a3c885a1791521dd4"
     },
     {
       "path": "industry-trends/consumer-ai-adoption-broadens-beyond-early-adopters.md",
@@ -1095,7 +1095,7 @@
     },
     {
       "path": "industry-trends/support-automation-shifts-toward-agentic-workflow-completion.md",
-      "sha256": "1b3c27752b24182d7574e569f53926e019c8e3e555e564f62faa67188e8f3868"
+      "sha256": "27128ca81f6d5e5c0f1ea5ea2b78391fd9cd80c3928778b347ef6be7e944e0c8"
     },
     {
       "path": "industry-trends/text-generation-moves-beyond-left-to-right-decoding.md",
@@ -1695,7 +1695,7 @@
     },
     {
       "path": "signals/2026-04/ainews-tasteful-tokenmaxxing-01kpw4p15evjfpkqg4pmccnejm-traces-are-becoming-the-main-training-data-for-agent-improvement.md",
-      "sha256": "2dd5b22618e321aba91a9e01579afb751af3a00a0453260e4ed9bc103e898466"
+      "sha256": "ae76418bd8c220276508d69f58636115598ba05b4b352c2cc34c3eed7c3ffc52"
     },
     {
       "path": "signals/2026-04/ainews-the-inference-inflection-01kqe1hh67gdtzjtxh483x51s4-agent-products-are-moving-toward-persistent-harnessed-workflows.md",
@@ -2023,7 +2023,7 @@
     },
     {
       "path": "signals/2026-06/ainews-anthropic-claude-fable-5-mythos-but-safe-with-controversial-terms-01ktqtn-frontier-model-releases-are-becoming-policy-and-pricing-products-not-015a183cb1.md",
-      "sha256": "d61df38366e3389ac1196f4dd4fc46fbec6c5e147b161c26152e6e4d1ab48a75"
+      "sha256": "67599da32409696ee31c205c70a8fa6cc6adfafa1f84bcc057a234cdb1f683f4"
     },
     {
       "path": "signals/2026-06/ainews-anthropic-claude-fable-5-mythos-but-safe-with-controversial-terms-01ktqtn-silent-safety-interventions-create-an-auditability-problem-for-paid-71fdbf3e1e.md",
@@ -2355,7 +2355,7 @@
     },
     {
       "path": "sources/ainews-anthropic-claude-fable-5-mythos-but-safe-with-controversial-terms-01ktqtnf411bb0q84ebct31k6d.md",
-      "sha256": "3a3f7330b1b04085b2a04c3468b63e081e36eeee258d2ee232d8914a0cc0c469"
+      "sha256": "6c8bb6e01e0928b77e0d58755af9490f05c0fd270540e1b840b97b5c528e3cd8"
     },
     {
       "path": "sources/ainews-anthropic-claude-opus-4-7-literally-one-step-better-than-4-6-in-every-dimension-01kpchwt25etaergzgm5jmn879.md",
@@ -2503,7 +2503,7 @@
     },
     {
       "path": "sources/ainews-tasteful-tokenmaxxing-01kpw4p15evjfpkqg4pmccnejm.md",
-      "sha256": "83958688e3a50303a952ec5f644fa16a66e653e12bb03e68874014f80c4bc8c6"
+      "sha256": "b3421a0b2b38ade535b8ee8dd464a21011802c3d75c711fca8decfaec82388af"
     },
     {
       "path": "sources/ainews-the-end-of-finetuning-01krfm1m5y8h163awpkk32925m.md",
@@ -2691,7 +2691,7 @@
     },
     {
       "path": "sources/from-vibe-coding-to-spec-driven-development-01krkb186m11xe8rdxgc7wz89m.md",
-      "sha256": "8daeb348154efd8f8a349df1446438735109bb4aee2f5f784f2d9bd900e2c0a0"
+      "sha256": "a7f01f4c37dfc448978b6d112ba8626ef7c872eb921e9e6fb98a81ef5005e19d"
     },
     {
       "path": "sources/fw-gemini-flash-gets-pricey-ai-act-delays-agents-drive-online-traffic-01ksvvrjagwspvfp3kxzv4mme8.md",
@@ -2835,7 +2835,7 @@
     },
     {
       "path": "sources/how-to-make-the-case-for-giving-your-ai-agent-system-access-01ktv9jzh8ynayfwz0kx9wat67.md",
-      "sha256": "4428b52ce59860afc1cad67c1eb94fae4ac50f39a7d23c2f25ac22461869e08d"
+      "sha256": "71d9f3d5b240a3dc01418fe6aaf5f91de7b1501249d83649fbd14d266b0202f4"
     },
     {
       "path": "sources/how-to-run-an-open-source-llm-on-your-personal-computer-01kqkvebtemtbnrmc9yxr66trm.md",
@@ -3751,7 +3751,7 @@
     },
     {
       "path": "tools/fin.md",
-      "sha256": "d31445deb9b51f7415d1e5620609650173f1ccc840fea304e777cf842189ef89"
+      "sha256": "873101547894797c60a15a4ec72da78d8420713e9ad98d0c05bd6f50b47bab05"
     },
     {
       "path": "tools/final-cut-pro.md",
@@ -4583,7 +4583,7 @@
     },
     {
       "path": "topics/kv-cache-compression.md",
-      "sha256": "710f5688bf4c74b41027742a90668bd97972ca44c9ec12209dba1638c2162fb9"
+      "sha256": "0b1b11a4849667bbfca186094e82932fcb1e5a0beba087666e6ca50db3b7903d"
     },
     {
       "path": "topics/langgraph-message-reducers.md",
@@ -4611,7 +4611,7 @@
     },
     {
       "path": "topics/layered-local-and-cloud-inference.md",
-      "sha256": "de50830a88bdb4c15c2d96facef8d5cfaa5fc412b5e9f3c1fd30eb4544072443"
+      "sha256": "c6f44896837ce5d70335a422b38a461bb9884b42bc74395ecf716c55698ffce5"
     },
     {
       "path": "topics/lightweight-typing-in-note-apps.md",
@@ -4619,7 +4619,7 @@
     },
     {
       "path": "topics/llm-assisted-knowledge-compilation.md",
-      "sha256": "9d0ef65422a95232ebf6709711fe5dee4853445869bbce20ef15bf3b60a1a8b4"
+      "sha256": "d57b0947f31710c1506edf6909d3a4188816dca3e327b10824db987d423ad0b8"
     },
     {
       "path": "topics/llm-maintained-knowledge-bases.md",
@@ -4627,7 +4627,7 @@
     },
     {
       "path": "topics/llm-maintained-knowledge-compilation.md",
-      "sha256": "4eb29a5e0b492b91a050ea71e5d9ff7a735e5cb705d969992d41abb360f9e5c0"
+      "sha256": "91f94c03a440720621f82b8c7fc0c83617a434037dc20a34b6883e82e5a2f907"
     },
     {
       "path": "topics/llm-wiki.md",
@@ -4639,7 +4639,7 @@
     },
     {
       "path": "topics/local-pii-redaction.md",
-      "sha256": "cf28189ea41e7f6281a10e22a74e63109a929ce26af81a48277092457dff79b5"
+      "sha256": "9fe57ab7cbe20415019f81236f06bea0115b356ed9b44e737a9c4a50f0a79b43"
     },
     {
       "path": "topics/local-voice-api.md",
@@ -4707,7 +4707,7 @@
     },
     {
       "path": "topics/open-formats-as-ai-integration-boundaries.md",
-      "sha256": "5af00bf687c755c56d647959f3d8a824fffc74e29c714d08cc2b3f57310f3531"
+      "sha256": "1ad02632ad5581ed14ea7ee187390d10e5982a33680c341239da85df9fcde795"
     },
     {
       "path": "topics/open-model-ecosystems.md",
@@ -4715,7 +4715,7 @@
     },
     {
       "path": "topics/openai-compatible-local-endpoints.md",
-      "sha256": "038314eeb0747164cf525f052f81ca3ea5e3ad56a9044087f7633931c1807096"
+      "sha256": "af284c5fec1fd398d879420b3c3d055a7f838979b3c14d00eeea020cb68950b6"
     },
     {
       "path": "topics/ops-artifact-generation.md",
@@ -4727,7 +4727,7 @@
     },
     {
       "path": "topics/outcome-based-pricing-for-ai-agents.md",
-      "sha256": "2bc0c2d584f9178e001140845856d95882dce88fceb8681f656716e68f8abf65"
+      "sha256": "314db26631fd0c8a448abac0f47d59953220df4149304397987c00aec7749a52"
     },
     {
       "path": "topics/passive-context-capture.md",
@@ -4747,7 +4747,7 @@
     },
     {
       "path": "topics/personalized-conversational-ai.md",
-      "sha256": "2b660e87e2127b25d19503bd3284e1b31e3143bf0a45db6ed4ec7c386858a127"
+      "sha256": "178e587f25b872f20c828bfc085887a9f0896ff17a05ea17f54971acdb51083b"
     },
     {
       "path": "topics/practitioner-feedback-loops-for-agents.md",
@@ -4775,7 +4775,7 @@
     },
     {
       "path": "topics/progressive-disclosure-skill-design.md",
-      "sha256": "1cd82f40d5b2b307bdb01052f48dbef8d13bf4c4fe0f27f142f472ef34cfc74c"
+      "sha256": "722cbc3543481d26979941b6932a477b7010a26012aa141a1a9cc24cfe378c77"
     },
     {
       "path": "topics/project-scoped-memory-boundaries.md",
@@ -4799,7 +4799,7 @@
     },
     {
       "path": "topics/proprietary-evals.md",
-      "sha256": "bbf5f6f73ba4c0c683a3f023c75da48cd20df6a9ec568bfc85aecd5fd62f54fa"
+      "sha256": "c3d881a7bc2a67722abe518fddfab04649e5636e84a1a12fd84d84ac22ec3333"
     },
     {
       "path": "topics/provenance-tracking.md",
@@ -4823,15 +4823,15 @@
     },
     {
       "path": "topics/realtime-ai-evaluation.md",
-      "sha256": "c79258d153f0e4730dbf8d9407ee8ce4f9bed79e74bbd4fb32e55f90511439d6"
+      "sha256": "8f7ff1ff042c01384e359ad1b7feea677af10e15e282eb5c7ab1aab22bafa5a4"
     },
     {
       "path": "topics/realtime-ai.md",
-      "sha256": "980e730e65a22238e7b5fd4953b4ca720d8f7dbbcde21dd0e212fff2d97add26"
+      "sha256": "600ef9ec720764537622c34e7f3160c9f32936a90e8e0f9428b0cf9d6ccefc26"
     },
     {
       "path": "topics/realtime-multimodal-interaction.md",
-      "sha256": "8da32c17240f257b1a397eb2a47439e3317dad9fd35e3b31327ce48e854821de"
+      "sha256": "46ac9e06fe5440b55559dcd8512dc16f2941433faeaa45cc2d9e909716742907"
     },
     {
       "path": "topics/realtime-voice-integration-for-enterprise-workflows.md",
@@ -4867,7 +4867,7 @@
     },
     {
       "path": "topics/self-hosted-agent-execution.md",
-      "sha256": "352a377a3f5a22c6d16b99737f4e670ef74c00956a5f5009fbc636170453c9de"
+      "sha256": "be3f3f32d83a94f25d65ee61fbcccd5a8174281b439eb8e99a83605ed984a7ac"
     },
     {
       "path": "topics/shared-agent-across-lifecycle.md",
@@ -4879,7 +4879,7 @@
     },
     {
       "path": "topics/software-moat-compression.md",
-      "sha256": "e10cc2da6743db6edbacdb9584fb20cb6ca08a4cfd35b2f806b760101d69ce99"
+      "sha256": "19b5df58efd24efd2a92b6d4f74e93c2333396d861decb170330b0bcc70ffaf6"
     },
     {
       "path": "topics/sparse-n-grams.md",
@@ -4895,7 +4895,7 @@
     },
     {
       "path": "topics/structured-drafting-for-human-review.md",
-      "sha256": "44ddc4b2c897d73f6ec297a6187ff57ab1ae19ea2ecf6a53797b13cf92b37a97"
+      "sha256": "b5b5371b133d97318f7b611dc9dea2a0d4af9727883a08770eb3a11cbd039899"
     },
     {
       "path": "topics/structured-drafting-for-rereadable-notes.md",
@@ -4915,7 +4915,7 @@
     },
     {
       "path": "topics/support-automation-as-operating-model.md",
-      "sha256": "d7ca357054deb85f4b76d6844c86b6db2907a85f74863aa1b1e361e87084f767"
+      "sha256": "cd78e9418e168f0662f8a6dbbf1dc5383f3af0fdef73f78d40dc0d9d157f4f9d"
     },
     {
       "path": "topics/support-automation-operations.md",
@@ -4959,7 +4959,7 @@
     },
     {
       "path": "topics/tiered-access-for-sensitive-model-capabilities.md",
-      "sha256": "c94179ac9340099ed61e1b516ff54ae69281533b1fd9cbf85d37fa129c468cb3"
+      "sha256": "7d25c59e6f0d20c1801c4c5805554f212f9be80834a2bf321b02ec69f28dd152"
     },
     {
       "path": "topics/time-boxed-ai-writing-routines.md",
@@ -4967,15 +4967,15 @@
     },
     {
       "path": "topics/token-classification-for-redaction.md",
-      "sha256": "d283c0d2f57e363bcb47a9e87dedff412945111d55407a8b5a6965a274d03ed8"
+      "sha256": "e3ed3a6efb58fe9b73a8f2b648808e2ad4fa3e19ad6adc0efedcce264619f6d8"
     },
     {
       "path": "topics/token-efficient-agent-instructions.md",
-      "sha256": "0a335c32f2e880ba02813c5d118b9647e42e5d6b6985248784fe0e4009361bb1"
+      "sha256": "ddde5a0aa14b5f3a29f22c132d271e42dca60f29753b7d33ace11aafd0c18722"
     },
     {
       "path": "topics/tool-discipline-in-agent-loops.md",
-      "sha256": "e919feea7da94e3845f17ae15a61e626c1194fe4e66d446dc478c8418aae0aa0"
+      "sha256": "b276032f8205d73ba3472c63c4c02fdb1a215f65dd6ae0034e6d056ab31f8f78"
     },
     {
       "path": "topics/transcription-as-evaluation-bottleneck.md",
@@ -5003,7 +5003,7 @@
     },
     {
       "path": "topics/verifiable-ai-governance.md",
-      "sha256": "38760c1487ef4a3d1ea57c3fa0dd6bb30766f352bd5faa43087028ebd037a177"
+      "sha256": "afe4c8a294bf8110b6c564396f805cbbd288f0a784d7d194e801c909e2962b6a"
     },
     {
       "path": "topics/verification-loops-in-agentic-coding.md",
@@ -5015,11 +5015,11 @@
     },
     {
       "path": "topics/vertical-models.md",
-      "sha256": "60441abdced128f891cfde4159436136cae5da168b0d5156e403b20ead8ed142"
+      "sha256": "6e7df91547aad7a9fa060f2f8d8cf5937676e28b6bab7258d9999f4299288695"
     },
     {
       "path": "topics/visual-specifications-for-ai-systems.md",
-      "sha256": "88f57820db46f327881ef84cb6ffbc0c4be21f7458279a2bfac7ea29304a6f16"
+      "sha256": "98d9a7a1deda2474fd7bb3ad1b68b93211cc23ff81b822de0fdc514fd595beba"
     },
     {
       "path": "topics/voice-agents-shift-toward-workflow-completion.md",
@@ -5065,6 +5065,6 @@
   "signal_count": 160,
   "source_count": 360,
   "synthesis_cache_dir": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis",
-  "taxonomy_version": "b69edc6c3d3d",
+  "taxonomy_version": "c380707bf09a",
   "tool_version": "1"
 }

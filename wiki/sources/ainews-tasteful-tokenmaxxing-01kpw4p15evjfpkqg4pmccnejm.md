@@ -17,7 +17,7 @@ author: Latent Space
 publication: Latent
 published_date: '2026-04-23'
 assessed_as_of: '2026-04-23'
-ingested_at: '2026-06-06T21:41:43+00:00'
+ingested_at: '2026-07-11T12:09:14.764494+00:00'
 canonical_url: https://www.latent.space/p/ainews-tasteful-tokenmaxxing
 content_sha256: 4766fc0ce9aa86db202b4a32142f8269d72c244adb86ebe53a5a999e8004c153
 derived_signals:

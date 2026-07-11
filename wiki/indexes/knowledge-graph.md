@@ -6,7 +6,7 @@ category: diagnostics
 # Knowledge Graph Diagnostics
 
 - Tool version: `1`
-- Taxonomy version: `b69edc6c3d3d`
+- Taxonomy version: `c380707bf09a`
 - Sources: 360
 - Knowledge pages: 614
 - Signals: 160
@@ -301,7 +301,7 @@ category: diagnostics
 - [[industry-trends/chat-products-move-toward-persistent-workspaces|Chat Products Move Toward Persistent Workspaces]] — sources: 2, evidence: 14
 - [[industry-trends/coding-agents-diverge-into-workflow-specific-products|Coding Agents Diverge Into Workflow-Specific Products]] — sources: 2, evidence: 17
 - [[industry-trends/coding-models-shift-toward-agentic-execution|Coding Models Shift Toward Agentic Execution]] — sources: 2, evidence: 18
-- [[industry-trends/coding-shifts-toward-supervised-agent-workflows|Coding Shifts Toward Supervised Agent Workflows]] — sources: 1, evidence: 8
+- [[industry-trends/coding-shifts-toward-supervised-agent-workflows|Coding Shifts Toward Supervised Agent Workflows]] — sources: 1, evidence: 5
 - [[industry-trends/consumer-ai-adoption-broadens-beyond-early-adopters|Consumer AI Adoption Broadens Beyond Early Adopters]] — sources: 1, evidence: 8
 - [[industry-trends/consumer-ai-shifts-toward-distribution-led-products|Consumer AI Shifts Toward Distribution-Led Products]] — sources: 1, evidence: 8
 - [[industry-trends/efficiency-gains-become-product-capabilities|Efficiency Gains Become Product Capabilities]] — sources: 1, evidence: 9
@@ -399,7 +399,7 @@ category: diagnostics
 - [[tools/dockdoor|DockDoor]] — sources: 1, evidence: 11
 - [[tools/dropover|Dropover]] — sources: 1, evidence: 10
 - [[tools/e2b-mcp|E2B MCP]] — sources: 1, evidence: 11
-- [[tools/fin|Fin]] — sources: 2, evidence: 25
+- [[tools/fin|Fin]] — sources: 2, evidence: 18
 - [[tools/fin-api-platform|Fin API platform]] — sources: 1, evidence: 13
 - [[tools/fin-voice-2|Fin Voice 2]] — sources: 1, evidence: 10
 - [[tools/fin-for-ecommerce|Fin for Ecommerce]] — sources: 1, evidence: 14
@@ -607,13 +607,13 @@ No duplicate candidates captured.
 - local-first: 59
 - knowledge-systems: 55
 - runtime-architecture: 49
-- enterprise-workflows: 45
+- enterprise-workflows: 46
 - ai-economics: 44
 - ai-operationalization: 43
 - ai-governance: 42
 - context-engineering: 41
 - workflow-restructuring: 37
-- support-automation: 35
+- support-automation: 36
 - human-ai-workflows: 33
 - inference-systems: 31
 - agent-orchestration: 30

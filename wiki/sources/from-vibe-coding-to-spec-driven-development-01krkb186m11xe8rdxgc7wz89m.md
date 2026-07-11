@@ -18,7 +18,7 @@ author: Mariya Mansurova
 publication: Medium
 published_date: '2026-05-12'
 assessed_as_of: '2026-05-12'
-ingested_at: '2026-06-06T21:48:20+00:00'
+ingested_at: '2026-07-11T12:10:29.468598+00:00'
 canonical_url: https://towardsdatascience.com/from-vibe-coding-to-spec-driven-development/?utm_campaign=tds%20variable&utm_medium=email&_hsenc=p2ANqtz-8XSNnhczYTrUKaqr5mitq9_bP-M2TBvsqShnr08EjVRSOiYvpBpAtlloSlcgGHaMgUmJamtnSx7FcC1TvK9ndU3toMLA&_hsmi=418698396&utm_source=newsletter
 content_sha256: 6d98a82517d33ae94fcb209594db80c1dba0fc5d47533f2e2c78c8ce994b89ba
 derived_topics:

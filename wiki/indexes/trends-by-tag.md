@@ -229,6 +229,10 @@ category: index
 - [[industry-trends/voice-assistant-quality-shifts-toward-conversational-flow|Voice Assistant Quality Shifts Toward Conversational Flow]]
 - [[industry-trends/voice-agents-shift-toward-workflow-completion|Voice agents shift from speech interfaces to workflow completion]]
 
+## enterprise-workflows
+
+- [[industry-trends/support-automation-shifts-toward-agentic-workflow-completion|Support Automation Shifts Toward Workflow Completion]]
+
 ## execution-oriented-agents
 
 - [[industry-trends/agent-maintained-documentation-pipelines|AI Documentation Moves Toward Agent-Maintained Pipelines]]
@@ -424,6 +428,10 @@ category: index
 ## software-engineering
 
 - [[industry-trends/programming-language-choice-shifts-toward-agent-friendliness|Programming Language Choice Shifts Toward Agent-Friendliness]]
+
+## support-automation
+
+- [[industry-trends/support-automation-shifts-toward-agentic-workflow-completion|Support Automation Shifts Toward Workflow Completion]]
 
 ## tool-centric-agents
 

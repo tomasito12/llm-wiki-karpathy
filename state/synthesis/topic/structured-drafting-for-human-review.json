@@ -1,0 +1,73 @@
+{
+  "category": "topic",
+  "consensus": [
+    "Structured drafting is useful when the goal is a reviewable first draft, not a final autonomous decision.",
+    "The best fit is work with a known output shape, such as summaries, agendas, scorecards, follow-up notes, requirements, or risk registers.",
+    "Templates, explicit sections, identifiers, and traceability links reduce variance and make human review easier.",
+    "The human stays accountable for accuracy, fairness, policy compliance, and final approval.",
+    "The main gain is less time spent assembling and formatting information, which reduces the blank-page problem and rework."
+  ],
+  "context_card": {
+    "best_for_questions_about": [
+      "When to use AI to draft a first pass for human review",
+      "How templates and structure improve AI-assisted workflows",
+      "Why traceability matters in regulated or approval-heavy work",
+      "Where human-in-the-loop review is still required"
+    ],
+    "not_enough_for": [
+      "Fully autonomous decision-making",
+      "How to design a complete governance program from scratch",
+      "Quantitative ROI or performance benchmarks",
+      "Domain-specific legal, clinical, or compliance rules"
+    ],
+    "related_tags": [
+      "ai-engineering",
+      "ai-governance",
+      "auditability",
+      "enterprise-workflows",
+      "human-ai-workflows",
+      "process-design",
+      "workflow-design"
+    ],
+    "strongest_sources": [
+      "ChatGPT for managers",
+      "Why an AI Enterprise Architecture toolkit is trending on GitHub in 2026",
+      "AdventHealth advances whole-person care with OpenAI"
+    ],
+    "use_this_page_when": "Use this page when you need to turn messy notes or source material into a structured draft that a person will review, edit, and approve. It is most useful when the output must fit a standard format and survive in a regulated or multi-stakeholder workflow."
+  },
+  "entity_id": "topic:structured-drafting-for-human-review",
+  "evidence_quality": [
+    "High confidence across three sources, but all are descriptive and pattern-based rather than experimental.",
+    "The evidence is consistent on the core workflow: structure first, human review second.",
+    "The sources are recent and domain-adjacent, but they do not provide benchmark data or failure rates.",
+    "Evidence is strongest for document-heavy, approval-heavy work; it is thinner for open-ended creative or strategic tasks."
+  ],
+  "executive_synthesis": "This pattern is about using AI to produce a structured first draft that a person can review, correct, and approve. In practice, that means asking the model to fill a controlled document shape, not to invent the shape itself. The technical idea is structured drafting for human review: templates, explicit sections, traceability links, and review conventions turn freeform text into a reviewable artifact. That matters because reviewers can spend their time on judgment instead of formatting. The evidence is fairly strong and consistent across the sources, but it is descriptive rather than benchmarked. The main caveat is unchanged: the human remains responsible for correctness, fairness, and policy compliance, especially in sensitive or regulated workflows.",
+  "last_synthesized_at": "2026-07-11T09:35:44Z",
+  "practical_example": {
+    "basis": "source-grounded",
+    "example": "A physician advisor or manager starts with messy notes, chart details, or meeting context and asks the model for a draft in a fixed format: summary, key details, risks, rationale, and next steps. The model assembles the material into a coherent document that the human then checks, edits, and approves. The same pattern can be used for agendas, interview kits, onboarding plans, performance notes, risk registers, or policy drafts. The point is not to let the model decide. It is to reduce the time spent gathering, ordering, and formatting the information so the reviewer can focus on accuracy and judgment.",
+    "title": "Structured first draft for review",
+    "why_it_helps": "It shrinks the blank-page problem, reduces rework, and makes review faster because the output already matches the format people need."
+  },
+  "practical_takeaway": "Use AI to draft the artifact, not the decision. Give it a template, required sections, and next actions. Keep a human reviewer in charge, especially when traceability, accountability, or policy compliance matter.",
+  "slug": "structured-drafting-for-human-review",
+  "synthesis_input_hash": "8c480c3be4a4c146",
+  "synthesis_prompt_version": 1,
+  "synthesis_schema_version": 1,
+  "tensions": [
+    "The sources strongly favor structure and human review, but they do not define how much structure is enough in every workflow.",
+    "The sources emphasize traceability and approval, but they do not show tradeoffs such as extra setup time or user friction.",
+    "The pattern is presented as durable across domains, but the evidence is still mostly illustrative and source-based rather than experimental."
+  ],
+  "title": "Structured Drafting for Human Review",
+  "what_to_remember": [
+    "Structure matters more than raw generation when a human must review the output.",
+    "Templates reduce variance and make drafts easier to compare.",
+    "Use the model to fill a controlled document shape, not to invent the shape itself.",
+    "This is especially useful in regulated, compliance-sensitive, or multi-stakeholder workflows.",
+    "The human reviewer remains the final decision-maker."
+  ],
+  "workflow_variants": []
+}

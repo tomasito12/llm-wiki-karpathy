@@ -340,7 +340,7 @@
           "evidence_from_source": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_trends": {
             "final_list": null,
@@ -360,7 +360,7 @@
               "Cursor added Slack invocation for task kick-off and streaming updates."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -370,27 +370,27 @@
           "time_sensitivity": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_description": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "uncertainty_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -456,7 +456,7 @@
               "The pattern is converging: cloud-hosted agents, shared team context, approvals, and long-running execution rather than single-user chat."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "mentioned_entities": {
             "final_list": null,
@@ -466,32 +466,32 @@
               "Cursor"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_relevance": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "service_automation_relevance": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "signal_strength": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "signal_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "signal_type": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "suggested_destinations": {
             "final_list": null,
@@ -499,27 +499,27 @@
               "trends/"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "time_horizon": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "why_it_matters": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "wiki_worthiness": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -588,7 +588,7 @@
               "enterprise buyers want model flexibility and infrastructure that spans the full SDLC, not attachment to one lab."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "mentioned_entities": {
             "final_list": null,
@@ -604,32 +604,32 @@
               "Cognition"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_relevance": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "service_automation_relevance": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "signal_strength": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "signal_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "signal_type": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "suggested_destinations": {
             "final_list": null,
@@ -637,27 +637,27 @@
               "trends/"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "time_horizon": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "why_it_matters": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "wiki_worthiness": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -713,16 +713,16 @@
         "proposal_status": "approved",
         "sections": {
           "evidence_snippets": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "traces capture agent errors and inefficiencies, and that compute should be pointed at understanding traces to generate better evals, skills, and environments;",
               "ClementDelangue pushed for open traces as the missing data substrate for open agent training, while gneubig promoted ADP / Agent Data Protocol standardization."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "mentioned_entities": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "LangChain",
               "Clement Delangue",
@@ -730,60 +730,60 @@
               "ADP / Agent Data Protocol"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "operational_relevance": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "service_automation_relevance": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "signal_strength": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "signal_title": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "signal_type": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "suggested_destinations": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "trends/"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "summary": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "time_horizon": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "why_it_matters": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "wiki_worthiness": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           }
         },
         "tags": {
@@ -883,19 +883,21 @@
   },
   "review_analytics": {
     "batch_actions_used": [],
-    "evidence_type_counts": {},
+    "evidence_type_counts": {
+      "mixed": 4
+    },
     "fields_modified": 0,
-    "proposals_approved": 0,
+    "proposals_approved": 4,
     "proposals_deferred": 0,
     "proposals_modified": 0,
     "proposals_rejected": 0,
-    "proposals_total": 0,
-    "review_duration_seconds": null,
-    "review_finished_at": null,
-    "review_started_at": null
+    "proposals_total": 4,
+    "review_duration_seconds": 133.8,
+    "review_finished_at": "2026-07-11T12:09:14.764494+00:00",
+    "review_started_at": "2026-07-11T12:07:01+00:00"
   },
   "review_session": {
-    "last_saved_at": null,
+    "last_saved_at": "2026-07-11T12:09:14+00:00",
     "saved_by": null
   },
   "source": {

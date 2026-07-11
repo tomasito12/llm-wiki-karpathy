@@ -297,7 +297,7 @@
           "evidence_from_source": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_trends": {
             "final_list": null,
@@ -317,7 +317,7 @@
               "Anthropic estimated the affected frontier-development traffic at about 0.03%"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -327,27 +327,27 @@
           "time_sensitivity": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_description": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "uncertainty_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -414,7 +414,7 @@
               "\u201cCreating an unlogged confounder in research and engineering workflows\u201d"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "mentioned_entities": {
             "final_list": null,
@@ -425,32 +425,32 @@
               "Claude Opus 4.8"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_relevance": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "service_automation_relevance": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "signal_strength": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "signal_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "signal_type": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "suggested_destinations": {
             "final_list": null,
@@ -458,27 +458,27 @@
               "trends/"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "time_horizon": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "why_it_matters": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "wiki_worthiness": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -533,85 +533,83 @@
         "proposal_status": "approved",
         "sections": {
           "evidence_snippets": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "\u201cAPI pricing is also fantastic, at roughly 2x Opus.\u201d",
               "\u201cput Fable 5 into Pro, Max, Team, and seat-based Enterprise plans until June 22, then said it would require usage credits\u201d",
               "\u201cAnthropic later reset 5-hour and weekly rate limits across products after heavy demand\u201d"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "mentioned_entities": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "Anthropic",
               "Claude Fable 5",
               "Claude Mythos 5"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "operational_relevance": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "service_automation_relevance": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "signal_strength": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "signal_title": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "signal_type": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "suggested_destinations": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "trends/"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "summary": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "time_horizon": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "why_it_matters": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "wiki_worthiness": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           }
         },
         "tags": {
           "approved_new_tags": [],
           "final_tags": [
-            "ai-economics",
-            "enterprise-ai",
-            "runtime-centralization"
+            "ai-economics"
           ]
         }
       }
@@ -702,19 +700,21 @@
   },
   "review_analytics": {
     "batch_actions_used": [],
-    "evidence_type_counts": {},
+    "evidence_type_counts": {
+      "mixed": 3
+    },
     "fields_modified": 0,
-    "proposals_approved": 0,
+    "proposals_approved": 3,
     "proposals_deferred": 0,
     "proposals_modified": 0,
     "proposals_rejected": 0,
-    "proposals_total": 0,
-    "review_duration_seconds": null,
-    "review_finished_at": null,
-    "review_started_at": null
+    "proposals_total": 3,
+    "review_duration_seconds": 162.8,
+    "review_finished_at": "2026-07-11T12:06:51.798151+00:00",
+    "review_started_at": "2026-07-11T12:04:09+00:00"
   },
   "review_session": {
-    "last_saved_at": null,
+    "last_saved_at": "2026-07-11T12:06:52+00:00",
     "saved_by": null
   },
   "source": {

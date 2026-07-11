@@ -1,0 +1,343 @@
+{
+  "attempted": 5,
+  "called": 5,
+  "completed_entries": [
+    {
+      "action": "written",
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/topic/software-moat-compression.json",
+      "entity_id": "topic:software-moat-compression",
+      "error": "",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/topic/software-moat-compression.md",
+      "score": 65,
+      "state": "new",
+      "token_usage": {
+        "completion_tokens": 1435,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens": 3647,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 5082
+      }
+    },
+    {
+      "action": "written",
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/topic/openai-compatible-local-endpoints.json",
+      "entity_id": "topic:openai-compatible-local-endpoints",
+      "error": "",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/topic/openai-compatible-local-endpoints.md",
+      "score": 64,
+      "state": "new",
+      "token_usage": {
+        "completion_tokens": 1110,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens": 3637,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 4747
+      }
+    },
+    {
+      "action": "written",
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/topic/vertical-models.json",
+      "entity_id": "topic:vertical-models",
+      "error": "",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/topic/vertical-models.md",
+      "score": 64,
+      "state": "new",
+      "token_usage": {
+        "completion_tokens": 1052,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens": 3474,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 4526
+      }
+    },
+    {
+      "action": "written",
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/topic/realtime-ai.json",
+      "entity_id": "topic:realtime-ai",
+      "error": "",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/topic/realtime-ai.md",
+      "score": 49,
+      "state": "new",
+      "token_usage": {
+        "completion_tokens": 1033,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens": 3304,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 4337
+      }
+    },
+    {
+      "action": "written",
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/topic/realtime-multimodal-interaction.json",
+      "entity_id": "topic:realtime-multimodal-interaction",
+      "error": "",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/topic/realtime-multimodal-interaction.md",
+      "score": 49,
+      "state": "new",
+      "token_usage": {
+        "completion_tokens": 1092,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens": 3864,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 4956
+      }
+    }
+  ],
+  "created_at": "20260711T140308Z",
+  "dry_run": false,
+  "elapsed_seconds": 3649.271,
+  "failed_entries": [],
+  "failures": [],
+  "items": [
+    {
+      "action": "written",
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/topic/software-moat-compression.json",
+      "entity_id": "topic:software-moat-compression",
+      "error": "",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/topic/software-moat-compression.md",
+      "score": 65,
+      "state": "new",
+      "token_usage": {
+        "completion_tokens": 1435,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens": 3647,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 5082
+      }
+    },
+    {
+      "action": "written",
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/topic/openai-compatible-local-endpoints.json",
+      "entity_id": "topic:openai-compatible-local-endpoints",
+      "error": "",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/topic/openai-compatible-local-endpoints.md",
+      "score": 64,
+      "state": "new",
+      "token_usage": {
+        "completion_tokens": 1110,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens": 3637,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 4747
+      }
+    },
+    {
+      "action": "written",
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/topic/vertical-models.json",
+      "entity_id": "topic:vertical-models",
+      "error": "",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/topic/vertical-models.md",
+      "score": 64,
+      "state": "new",
+      "token_usage": {
+        "completion_tokens": 1052,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens": 3474,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 4526
+      }
+    },
+    {
+      "action": "written",
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/topic/realtime-ai.json",
+      "entity_id": "topic:realtime-ai",
+      "error": "",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/topic/realtime-ai.md",
+      "score": 49,
+      "state": "new",
+      "token_usage": {
+        "completion_tokens": 1033,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens": 3304,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 4337
+      }
+    },
+    {
+      "action": "written",
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/topic/realtime-multimodal-interaction.json",
+      "entity_id": "topic:realtime-multimodal-interaction",
+      "error": "",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/topic/realtime-multimodal-interaction.md",
+      "score": 49,
+      "state": "new",
+      "token_usage": {
+        "completion_tokens": 1092,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens": 3864,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 4956
+      }
+    }
+  ],
+  "model": "gpt-5.4-mini-2026-03-17",
+  "options": {
+    "between_calls": 900.0,
+    "category": "topic",
+    "continue_on_error": false,
+    "entity": null,
+    "include_single_source": false,
+    "limit": 20
+  },
+  "preview_count": 5,
+  "remaining_changed_count": 0,
+  "selected_entries": [
+    {
+      "category": "topic",
+      "entity_id": "topic:software-moat-compression",
+      "evidence_count": 15,
+      "notes": [
+        "role_relevant",
+        "topic"
+      ],
+      "rank": 1,
+      "score": 65,
+      "slug": "software-moat-compression",
+      "source_count": 2,
+      "state": "new",
+      "title": "Software Moat Compression"
+    },
+    {
+      "category": "topic",
+      "entity_id": "topic:openai-compatible-local-endpoints",
+      "evidence_count": 14,
+      "notes": [
+        "role_relevant",
+        "topic"
+      ],
+      "rank": 2,
+      "score": 64,
+      "slug": "openai-compatible-local-endpoints",
+      "source_count": 2,
+      "state": "new",
+      "title": "OpenAI-Compatible Local Endpoints"
+    },
+    {
+      "category": "topic",
+      "entity_id": "topic:vertical-models",
+      "evidence_count": 14,
+      "notes": [
+        "role_relevant",
+        "topic"
+      ],
+      "rank": 3,
+      "score": 64,
+      "slug": "vertical-models",
+      "source_count": 2,
+      "state": "new",
+      "title": "Vertical Models"
+    },
+    {
+      "category": "topic",
+      "entity_id": "topic:realtime-ai",
+      "evidence_count": 14,
+      "notes": [
+        "possible_duplicate",
+        "topic"
+      ],
+      "rank": 4,
+      "score": 49,
+      "slug": "realtime-ai",
+      "source_count": 2,
+      "state": "new",
+      "title": "Realtime AI"
+    },
+    {
+      "category": "topic",
+      "entity_id": "topic:realtime-multimodal-interaction",
+      "evidence_count": 14,
+      "notes": [
+        "possible_duplicate",
+        "topic"
+      ],
+      "rank": 5,
+      "score": 49,
+      "slug": "realtime-multimodal-interaction",
+      "source_count": 2,
+      "state": "new",
+      "title": "Realtime Multimodal Interaction"
+    }
+  ],
+  "skipped_entries": [],
+  "written": 5
+}

@@ -6,7 +6,9 @@ category: industry-trend
 tags:
 - ai-economics
 - enterprise-ai
+- enterprise-workflows
 - human-ai-collaboration
+- support-automation
 - workflow-restructuring
 first_seen: '2024-07-16'
 last_seen: '2026-06-11'

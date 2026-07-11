@@ -12,16 +12,16 @@ tags:
 first_seen: '2026-06-09'
 last_seen: '2026-06-11'
 source_count: 2
-evidence_count: 25
+evidence_count: 18
 source_ids:
 - extending-fin-as-the-most-open-agent-platform-01ktpp7k8sthayjgk3vd9ezxr6
 - how-to-make-the-case-for-giving-your-ai-agent-system-access-01ktv9jzh8ynayfwz0kx9wat67
 value_level: high
 confidence: 0.92
-synthesis_state: synthesized
-synthesis_stale: false
+synthesis_state: stale
+synthesis_stale: true
 synthesis_input_hash: 71baa47fc574ed34
-current_input_hash: 71baa47fc574ed34
+current_input_hash: 63a9d525159b10f3
 synthesis_schema_version: 1
 synthesis_prompt_version: 1
 last_synthesized_at: '2026-07-09T15:35:18Z'
@@ -32,6 +32,9 @@ types:
 ---
 
 # Fin
+
+> [!warning] Synthesis may be stale
+> New or changed evidence exists. The prose synthesis below was generated from an older evidence hash.
 
 ## Executive synthesis
 
@@ -83,11 +86,11 @@ Treat Fin as a support-automation overlay for existing helpdesk stacks, especial
 ## Evidence index
 
 - Sources: 2
-- Evidence items: 25
-- Current input hash: `71baa47fc574ed34`
+- Evidence items: 18
+- Current input hash: `63a9d525159b10f3`
 - Cached input hash: `71baa47fc574ed34`
 - Last synthesized: 2026-07-09T15:35:18Z
-- Synthesis status: `fresh`
+- Synthesis status: `stale`
 
 ## Related pages
 

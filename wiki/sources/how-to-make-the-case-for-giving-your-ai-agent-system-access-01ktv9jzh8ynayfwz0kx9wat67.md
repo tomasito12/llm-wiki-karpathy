@@ -8,6 +8,7 @@ tags:
 - ai-engineering
 - api-first
 - customer-support
+- enterprise-ai
 - enterprise-managed
 - enterprise-workflows
 - human-ai-workflows
@@ -21,7 +22,7 @@ author: Dawn Perrott
 publication: The Intercom Blog
 published_date: '2026-06-11'
 assessed_as_of: '2026-06-11'
-ingested_at: '2026-06-15T23:20:12+00:00'
+ingested_at: '2026-07-11T12:14:47.430239+00:00'
 canonical_url: https://www.intercom.com/blog/giving-your-ai-agent-system-access/
 content_sha256: 432ca2508209532f1f44f45a8cf5790206dbd1c7c10dd394ea175104afb6ce3f
 derived_how_to:

@@ -1,0 +1,90 @@
+{
+  "category": "topic",
+  "consensus": [
+    "Visual specifications are reference artifacts, such as screenshots or generated designs, that define what an AI system should build or match.",
+    "They reduce ambiguity in UI generation and other layout-heavy tasks because they carry structure, composition, spacing, and color cues that text prompts often leave implicit.",
+    "They are most useful when a downstream agent can inspect the rendered result or treat the image as a constraint-bearing spec, not just as a decorative output.",
+    "The pattern is especially relevant for UI mockups, diagrams, slides, infographics, documentation graphics, and similar reference-driven design work."
+  ],
+  "context_card": {
+    "best_for_questions_about": [
+      "Using screenshots or generated images as specs for UI generation",
+      "Making an agent compare rendered output against a visual target",
+      "When visual mismatch can break trust or usability",
+      "How image generation can support coding agents or design-to-code workflows"
+    ],
+    "not_enough_for": [
+      "General image generation quality benchmarks",
+      "Non-visual tasks that do not need a concrete reference target",
+      "Claims about universal reliability across all domains",
+      "Detailed implementation guidance for a specific toolchain"
+    ],
+    "related_tags": [
+      "agent-systems",
+      "multimodal-ai",
+      "runtime-architecture",
+      "ui-generation",
+      "verification-systems",
+      "visual-specifications"
+    ],
+    "strongest_sources": [
+      "[AINews] OpenAI launches GPT-Image-2",
+      "How to Make Claude Code Validate its own Work"
+    ],
+    "use_this_page_when": "Use this page when you need a visual target for an AI system, especially for UI or design work, and want to know why screenshots or generated images can improve implementation and verification."
+  },
+  "entity_id": "topic:visual-specifications-for-ai-systems",
+  "evidence_quality": [
+    "Evidence is consistent across two sources and points to the same workflow pattern.",
+    "The evidence is practical and operational, but it is narrow and mostly focused on UI and visual artifact workflows.",
+    "Confidence is stronger for reference-driven UI work than for broader claims about all multimodal tasks.",
+    "The sources describe a pattern, not a formal evaluation of accuracy gains or failure rates."
+  ],
+  "executive_synthesis": "Visual specifications help AI systems build or check things against a concrete visual target instead of relying on prose alone. In this pattern, a screenshot or generated image acts as a constraint-bearing spec for a downstream agent, often a code agent that implements or verifies the interface. The main mechanism is simple: the agent can inspect rendered output, compare layout, spacing, color, and composition, and iterate until the result matches the reference more closely. This is most useful for UI mockups, design-to-code work, diagrams, slides, and documentation graphics. The evidence is solid for the workflow pattern, but it is still narrow. It supports practical use, not broad claims that visual specs solve all multimodal tasks.",
+  "last_synthesized_at": "2026-07-11T12:24:50Z",
+  "practical_example": {
+    "basis": "source-grounded",
+    "example": "A product team wants a web page to match a designer\u2019s mockup. Instead of describing the layout in text, they give the agent a screenshot that shows the component arrangement, color scheme, and spacing. The agent builds the page, opens it in a browser, and compares the rendered result to the screenshot. If the heading size, spacing, or button placement is off, it revises the code and checks again. The screenshot is not the final output. It is the acceptance spec that tells the agent what \u201cdone\u201d should look like.",
+    "title": "Screenshot as the acceptance spec for a UI task",
+    "why_it_helps": "It turns visual intent into something the agent can inspect and correct against, which is more reliable than prose-only prompting for layout-heavy work."
+  },
+  "practical_takeaway": "Use a screenshot or generated visual when the goal is visual fidelity. Give the agent a way to inspect the rendered result. Treat the image as a spec, not decoration. This is a strong fit for interface work, but the evidence is narrower than for general-purpose agent planning.",
+  "slug": "visual-specifications-for-ai-systems",
+  "synthesis_input_hash": "c26e1e0dc0a43eff",
+  "synthesis_prompt_version": 1,
+  "synthesis_schema_version": 1,
+  "tensions": [
+    "The sources are aligned on the workflow, but they do not show measured gains or clear limits beyond practical caveats.",
+    "The pattern is presented as broadly useful for visual and layout-heavy work, but the evidence is strongest for UI generation and browser-based verification.",
+    "It is described as a way to reduce ambiguity, yet success still depends on the downstream system being able to inspect and act on the visual artifact."
+  ],
+  "title": "Visual Specifications for AI Systems",
+  "what_to_remember": [
+    "A visual spec is a reference artifact, usually a screenshot or image, that tells an AI system what the output should look like.",
+    "The value comes from making layout, structure, and design intent explicit.",
+    "Browser inspection or screenshot comparison closes the loop between the spec and the rendered result.",
+    "This pattern helps most where visual mismatch affects trust, usability, or implementation quality.",
+    "It is useful for build-and-verify workflows, not just for one-shot generation."
+  ],
+  "workflow_variants": [
+    {
+      "caveats": [
+        "This works best when the downstream system can inspect the rendered result.",
+        "It is less useful if the image is treated as decoration rather than a constraint.",
+        "The sources do not provide measured accuracy improvements."
+      ],
+      "sources": [
+        "[AINews] OpenAI launches GPT-Image-2",
+        "How to Make Claude Code Validate its own Work"
+      ],
+      "steps": [
+        "Create a visual artifact that captures the intended layout and style.",
+        "Pass the artifact to a code agent or implementation system.",
+        "Have the agent build the interface against that reference.",
+        "Inspect the rendered page and adjust until it matches more closely."
+      ],
+      "title": "Generate visual spec, then implement against it",
+      "use_when": "Use when the team is doing design-to-code or other layout-heavy interface work."
+    }
+  ]
+}

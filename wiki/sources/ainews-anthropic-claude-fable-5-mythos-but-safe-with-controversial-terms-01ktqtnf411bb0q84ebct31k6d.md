@@ -9,14 +9,13 @@ tags:
 - inspectability
 - model-behavior
 - policy-operationalization
-- runtime-centralization
 - verification-over-principles
 source_id: ainews-anthropic-claude-fable-5-mythos-but-safe-with-controversial-terms-01ktqtnf411bb0q84ebct31k6d
 author: AINews
 publication: Substack
 published_date: '2026-06-10'
 assessed_as_of: '2026-06-10'
-ingested_at: '2026-06-10T19:57:52+00:00'
+ingested_at: '2026-07-11T12:06:51.798151+00:00'
 canonical_url: mailto:reader-forwarded-email/ddbb99991d9db1ceb3295d66ef983a37
 content_sha256: 4abd23f56b3dbbd2605aa51fb37923135e7ba8b20e4eb66d2ea44bc0782d5023
 derived_signals:

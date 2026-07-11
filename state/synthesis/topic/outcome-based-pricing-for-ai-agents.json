@@ -1,0 +1,70 @@
+{
+  "category": "topic",
+  "consensus": [
+    "Outcome-based pricing ties payment to a measurable result, not to seats or raw usage.",
+    "The priced unit should be close to what the AI system actually controls, or attribution gets messy.",
+    "Intermediate outcomes are often easier to meter and defend than final business outcomes.",
+    "The pricing metric is part of product design, not just finance or packaging.",
+    "Buyer expectations should shape the model before price-point research starts."
+  ],
+  "context_card": {
+    "best_for_questions_about": [
+      "How outcome-based pricing works for AI agents",
+      "When to use value-based pricing instead of usage-based pricing",
+      "How to choose a pricing metric for support automation or other agent workflows",
+      "Why intermediate outcomes are often better billing units than final business results"
+    ],
+    "not_enough_for": [
+      "A universal pricing formula for all AI agents",
+      "Specific price points or revenue benchmarks",
+      "Legal, tax, or contract design guidance",
+      "A full pricing experiment plan for a new product"
+    ],
+    "related_tags": [
+      "ai-economics",
+      "ai-engineering",
+      "enterprise-ai",
+      "enterprise-workflows",
+      "support-automation"
+    ],
+    "strongest_sources": [
+      "How we develop pricing and packaging at Fin",
+      "Building outcome-based pricing for Fin for Sales"
+    ],
+    "use_this_page_when": "Use this page when you need a practical framing for pricing an AI agent around results, especially in enterprise workflows where the product can detect a clear outcome and the team needs a defensible billing metric."
+  },
+  "entity_id": "topic:outcome-based-pricing-for-ai-agents",
+  "evidence_quality": [
+    "Moderate evidence from 2 sources and 16 reviewed evidence items.",
+    "The evidence is strong on product/pricing principles, but thin on broad external validation.",
+    "Both sources are from the same company context, so the pattern is useful but not fully generalizable.",
+    "The evidence includes clear operational guidance, but not detailed experiments or comparative benchmarks."
+  ],
+  "executive_synthesis": "Outcome-based pricing is a way to charge for AI agents based on a result the system delivers, such as a verified task completion, instead of charging for usage or access. The technical idea is simple, but the product design is not: you need a metric that is close enough to the agent\u2019s real contribution to feel fair, yet simple enough to detect and bill reliably. The sources agree that the best billing unit is often an intermediate outcome rather than the final business result, because downstream human actions and external factors make attribution harder. They also treat the pricing metric as a strategic product choice, not a finance detail. Evidence is moderate, but it comes from two closely related company examples, so it is strongest as a practical pattern rather than a universal rule.",
+  "last_synthesized_at": "2026-07-11T10:51:38Z",
+  "practical_example": {
+    "basis": "source-grounded",
+    "example": "A support automation team wants to price an AI agent by the results it creates. Instead of charging for every message, it charges when the agent successfully resolves a customer issue that meets a defined success rule. The team picks an outcome the system can reliably detect, such as a completed resolution step, rather than the later business effect of higher retention or lower churn. That keeps billing tied to a clear result and reduces disputes about who caused the value. It also gives buyers a simple way to see whether the price matches what they receive.",
+    "title": "Pricing a support agent by resolved cases",
+    "why_it_helps": "It shows why outcome-based pricing is easier to defend when the system controls a clear, countable step in the workflow, not the final business outcome."
+  },
+  "practical_takeaway": "Start with the outcome the agent can truly control and detect, then make that billing boundary explicit. If the result is too final or too indirect, attribution disputes and misleading pricing signals become more likely.",
+  "slug": "outcome-based-pricing-for-ai-agents",
+  "synthesis_input_hash": "db325ff0308d199d",
+  "synthesis_prompt_version": 1,
+  "synthesis_schema_version": 1,
+  "tensions": [
+    "Outcome-based pricing is attractive because buyers prefer paying for results, but the closer you move to the final business outcome, the harder it is to attribute value cleanly.",
+    "A metric that feels commercially fair may still be a weak proxy if it is misdefined; the sources warn that this can distort later willingness-to-pay analysis.",
+    "The pattern works best when outcomes are clear and countable, but the evidence is less clear on how well it generalizes to ambiguous or multi-step workflows."
+  ],
+  "title": "Outcome-Based Pricing for AI Agents",
+  "what_to_remember": [
+    "Pay for results, not usage, when the agent can produce a clear measurable outcome.",
+    "Choose a metric the system mostly controls; otherwise attribution gets noisy.",
+    "Intermediate outcomes are often the best compromise between fairness and measurability.",
+    "The pricing metric shapes product perception and forecasting, so treat it as a product decision.",
+    "Buyer expectations should inform the model before you do detailed price-point research."
+  ],
+  "workflow_variants": []
+}

@@ -1144,6 +1144,7 @@ category: index
 - [[sources/how-enterprises-are-scaling-ai-from-curiosity-to-compounding-impact-01krb30w4035rre51qghcz3qsp|How Enterprises Are Scaling AI From Curiosity To Compounding Impact]]
 - [[sources/how-to-build-production-ready-ai-agents-mcp-cli-and-skills-the-right-tool-for-the-right-job-01kr4347xhzg1papsh9y4v36a2|How to Build Production-Ready AI Agents: MCP, CLI, and Skills — the Right Tool for the Right Job]]
 - [[sources/how-to-evaluate-a-rag-system-without-lying-to-yourself-01krbna9gsvkqeke8bm9cn4395|How to Evaluate a RAG System Without Lying to Yourself]]
+- [[sources/how-to-make-the-case-for-giving-your-ai-agent-system-access-01ktv9jzh8ynayfwz0kx9wat67|How to make the case for giving your AI Agent system access]]
 - [[sources/how-we-built-an-ai-second-brain-for-60k-knowledge-workers-01kqz014gcexykw32fheswwzd3|How We Built an AI Second Brain for 60K Knowledge Workers]]
 - [[sources/how-we-develop-pricing-and-packaging-at-fin-01ks2ns7k02qfhbcgkc41wqe3v|How we develop pricing and packaging at Fin]]
 - [[sources/how-we-turned-support-into-a-revenue-engine-at-intercom-01kr41vhmpc9qb8f13kzbza6ve|How we turned support into a revenue engine at Intercom]]
@@ -2361,7 +2362,6 @@ category: index
 
 ## runtime-centralization
 
-- [[sources/ainews-anthropic-claude-fable-5-mythos-but-safe-with-controversial-terms-01ktqtnf411bb0q84ebct31k6d|[AINews] Anthropic Claude Fable 5 — Mythos but Safe, with Controversial Terms]]
 - [[sources/ainews-anthropic-spacexai-s-300mw-5b-yr-deal-for-colossus-i-arr-growth-is-8000-annualized-01kr0gcs3j2p9zpxr8gz7n0n2j|[AINews] Anthropic-SpaceXai's 300MW/$5B/yr deal for Colossus I, ARR growth is 8000% annualized]]
 - [[sources/ainews-good-friday-01knem57ejmcktht5v8krq543j|[AINews] Good Friday]]
 - [[sources/ainews-google-i-o-2026-gemini-3-5-flash-omni-nanobanana-for-video-spark-background-agents-and-antigravit-01ks1q9kfz8jyg2t8sxed9j4bs|[AINews] Google I/O 2026: Gemini 3.5 Flash, Omni (NanoBanana for Video), Spark (background agents), and Antigravit…]]

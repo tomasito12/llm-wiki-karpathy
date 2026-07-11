@@ -1,0 +1,68 @@
+{
+  "category": "topic",
+  "consensus": [
+    "Live systems need benchmarks that reflect deployment conditions, not just clean-input accuracy.",
+    "For voice and multimodal assistants, evaluation should include latency, timing, and robustness to noisy interaction.",
+    "End-to-end task completion is a better primary signal than surface-level speech quality alone.",
+    "Deterministic checks and repeated trials make evaluation more operationally meaningful."
+  ],
+  "context_card": {
+    "best_for_questions_about": [
+      "What realtime AI evaluation should measure",
+      "Why surface-quality metrics are insufficient for live assistants",
+      "How to test voicebots under realistic conditions",
+      "How to make evaluation more reproducible and deployment-relevant"
+    ],
+    "not_enough_for": [
+      "A full benchmark design for a specific product",
+      "Comparative claims about which evaluation method performs best",
+      "Hard thresholds for latency, conversation length, or failure rates"
+    ],
+    "related_tags": [
+      "agent-systems",
+      "ai-evaluation",
+      "inference-systems",
+      "multimodal-ai",
+      "support-automation"
+    ],
+    "strongest_sources": [
+      "Announcing agentic performance benchmarking for Speech to Speech models on...",
+      "[AINews] Thinking Machines' Native Interaction Models - TML-Interaction-Small 276B-A12B - advances SOTA Realtime Voice and kills standard VAD"
+    ],
+    "use_this_page_when": "You need to decide how to evaluate a voice agent, support bot, or other live AI system before deployment."
+  },
+  "entity_id": "topic:realtime-ai-evaluation",
+  "evidence_quality": [
+    "Moderate confidence on the core pattern: both sources agree that realtime evaluation must reflect live conditions and task completion.",
+    "Weak breadth of evidence: only two reviewed source summaries are available, both from the same date.",
+    "Limited specificity: the sources describe useful metrics and test conditions, but do not provide a validated universal benchmark."
+  ],
+  "executive_synthesis": "Realtime AI evaluation is about checking whether a live system behaves well in the moment, not just whether its answers are correct. For voice agents, support automation, and other interactive systems, the key question is whether the model finishes the task, responds at the right time, and stays robust under noisy conditions such as background noise, packet loss, silence, interruption, and fast turn-taking. The reviewed sources agree that surface-quality scores are not enough. They also point to task-specific benchmarks, deterministic checks against expected actions and final state, and repeated trials as better ways to make results reproducible and operationally useful. The evidence is consistent but thin: it comes from two reviewed source summaries from the same date, so it is useful guidance rather than broad comparative proof.",
+  "last_synthesized_at": "2026-07-11T12:39:59Z",
+  "practical_example": {
+    "basis": "illustrative",
+    "example": "A team is preparing a customer support voicebot for live use. Instead of only scoring transcription or speech quality, they run scripted tasks that require the bot to understand a request, use a tool, and reach the correct final outcome. They replay the same cases under clean audio, background noise, interruptions, and packet loss. They also check whether the bot answers too early, too late, or misses a turn change. This shows whether the system is merely sounding good or actually completing work in a realistic call flow.",
+    "title": "Testing a support voicebot before rollout",
+    "why_it_helps": "This makes hidden failure modes visible before users encounter them. It also connects evaluation to outcomes the business cares about, such as completed cases and a less frustrating call experience."
+  },
+  "practical_takeaway": "If a model will speak, react, or act live, evaluate it on task success, timing, and noisy interaction conditions before rollout. Use clean-input scores only as a baseline, not as the go/no-go signal.",
+  "slug": "realtime-ai-evaluation",
+  "synthesis_input_hash": "0df79f0106dcd60d",
+  "synthesis_prompt_version": 1,
+  "synthesis_schema_version": 1,
+  "tensions": [
+    "The sources strongly favor task-specific, realistic benchmarks, but they do not define a single standard benchmark or metric set.",
+    "They emphasize conversation duration as operationally relevant, but do not give a threshold for what is acceptable.",
+    "The evidence supports the need for realism in evaluation, but it is narrow and mostly descriptive rather than comparative."
+  ],
+  "title": "Realtime AI Evaluation",
+  "what_to_remember": [
+    "Realtime evaluation is about timing as well as content.",
+    "End-to-end task success is more informative than isolated speech quality for voice agents.",
+    "Task-specific benchmarks are often needed because generic language tests miss temporal failures.",
+    "Noise, silence, interruption, and packet loss should be part of the test set if the system will run live.",
+    "Deterministic checks on expected actions and final state improve reproducibility.",
+    "Conversation duration matters because it affects both user experience and cost."
+  ],
+  "workflow_variants": []
+}

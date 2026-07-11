@@ -1,0 +1,70 @@
+{
+  "category": "topic",
+  "consensus": [
+    "Token classification for redaction treats the task as sequence labeling: each token gets a privacy or entity label, and contiguous labels are reconstructed into spans for masking or tagging.",
+    "It is a better fit than free-form generation when the output must be a clean span mask or other structured redaction boundary.",
+    "Bidirectional context and span decoding help produce coherent boundaries and disambiguate entities that are hard to classify from one token alone.",
+    "The pattern is useful in production workflows where the output must be inspectable, auditable, and easy to feed into logging, search, human review, or downstream redaction logic.",
+    "A fixed taxonomy can make evaluation and policy mapping easier, but it reduces flexibility across organizations and use cases."
+  ],
+  "context_card": {
+    "best_for_questions_about": [
+      "How token classification differs from generative redaction",
+      "When to use span masking instead of text rewriting",
+      "Why bidirectional context matters for redaction and entity detection",
+      "How to make redaction output easier to audit and operationalize",
+      "Where token classification fits in privacy, moderation, and extraction pipelines"
+    ],
+    "not_enough_for": [
+      "Choosing a full redaction policy across sensitive data categories",
+      "Evaluating model quality with concrete metrics or benchmarks",
+      "Designing organization-specific label taxonomies",
+      "Solving cases where human review, legal policy, or exception handling dominates the workflow"
+    ],
+    "related_tags": [
+      "ai-engineering",
+      "ai-evaluation",
+      "compliance-systems",
+      "runtime-systems"
+    ],
+    "strongest_sources": [
+      "Introducing OpenAI Privacy Filter",
+      "OpenAI Just Open-Sourced the One Thing Every Startup Should Have Built First"
+    ],
+    "use_this_page_when": "Use this page when you need a structured way to identify and mask sensitive spans in text, especially in enterprise workflows that need clean boundaries for audit, display, logging, or human review."
+  },
+  "entity_id": "topic:token-classification-for-redaction",
+  "evidence_quality": [
+    "Evidence is narrow but consistent across two reviewed sources.",
+    "The claims are descriptive and operational, not benchmark-based.",
+    "Confidence is high on the core pattern, but the evidence does not cover taxonomy design, accuracy tradeoffs, or failure modes in depth.",
+    "The sources are recent, so the operational relevance may be time-sensitive if tooling or product direction changes."
+  ],
+  "executive_synthesis": "Token classification for redaction is a structured way to mark sensitive text so it can be masked cleanly. Instead of generating rewritten prose, the model labels tokens as belonging to a sensitive span or not, and span decoding turns those labels into coherent redaction boundaries. That makes the output easier to audit and easier to plug into logging, search, human review, and other downstream pipelines. The approach is especially useful when you need deterministic spans rather than free-form text, such as redacting personal data, secrets, or account identifiers before a transcript is stored or shown to an operator. The evidence is consistent but narrow: two reviewed sources support the pattern, while questions about taxonomy, evaluation, and organization-specific policy remain open.",
+  "last_synthesized_at": "2026-07-11T11:06:47Z",
+  "practical_example": {
+    "basis": "source-grounded",
+    "example": "A support system receives a chat transcript that may include names, account numbers, or other private details. A token-classification redaction model labels the sensitive spans first, then span decoding groups those labels into clean masking units. The transcript can then be stored with the private parts removed or replaced, while the rest of the text stays readable for search, audit, or a later human reviewer. Because the system is producing spans rather than new prose, the result is easier to inspect and less likely to break downstream parsing steps.",
+    "title": "Redacting a support transcript before storage",
+    "why_it_helps": "This shows why span-based labeling is operationally useful: the redaction is structured, reviewable, and easier to route into compliance and support workflows without needing a second text-rewriting step."
+  },
+  "practical_takeaway": "Use token classification when the main job is to find and mask sensitive spans, not to rewrite content. It is a strong fit for compliance and runtime pipelines that need clean, auditable boundaries, but it should be paired with human review in high-risk cases and with a label taxonomy that matches your policy.",
+  "slug": "token-classification-for-redaction",
+  "synthesis_input_hash": "a67df8e227e5a19c",
+  "synthesis_prompt_version": 1,
+  "synthesis_schema_version": 1,
+  "tensions": [
+    "A fixed label taxonomy helps evaluation and policy mapping, but it can be too rigid when different teams need different privacy categories.",
+    "The pattern is easier to control than generation, but the sources still recommend human review for high-risk domains, which limits full automation.",
+    "Bidirectional context improves disambiguation, but the evidence does not spell out how much accuracy gain to expect in real deployments."
+  ],
+  "title": "Token Classification for Redaction",
+  "what_to_remember": [
+    "This is a sequence-labeling approach, not a text-generation approach.",
+    "The goal is clean, stable span boundaries that can be masked or preserved.",
+    "Span decoding and bidirectional context help avoid broken or fragmented redaction output.",
+    "It is most valuable where downstream systems need structured output for audit or automation.",
+    "Human review still matters when the privacy or compliance risk is high."
+  ],
+  "workflow_variants": []
+}

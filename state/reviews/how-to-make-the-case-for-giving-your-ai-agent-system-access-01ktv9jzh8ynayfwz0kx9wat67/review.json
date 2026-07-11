@@ -377,12 +377,12 @@
           "answer_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "caveats": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "implementation_steps": {
             "final_list": null,
@@ -396,7 +396,7 @@
               "Document the success metrics and expected impact before asking engineering for time."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "prerequisites": {
             "final_list": null,
@@ -407,12 +407,12 @@
               "Baseline analytics that show where the agent explains instead of resolves."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "question_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_howtos": {
             "final_list": null,
@@ -430,7 +430,7 @@
           "what_and_problem": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -489,7 +489,7 @@
           "evidence_from_source": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_trends": {
             "final_list": null,
@@ -508,7 +508,7 @@
               "It cites internal testing across four high-volume workflows over the last 12 months to May 2026."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -518,34 +518,38 @@
           "time_sensitivity": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_description": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "trend_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "uncertainty_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
-          "approved_new_tags": [],
+          "approved_new_tags": [
+            "support-automation",
+            "enterprise-workflows"
+          ],
           "final_tags": [
             "workflow-restructuring",
-            "ai-economics"
+            "ai-economics",
+            "enterprise-ai"
           ]
         }
       }
@@ -643,7 +647,6 @@
             "Fin can use Data Connectors to link workflows to backend systems, according to the article.",
             "Fin can be paired with human-in-the-loop steps when APIs are not ready, allowing teams to gather evidence before full integration."
           ],
-          "evidence_type": null,
           "integration_ecosystem": [
             "The article names CRM, billing platforms, and order management tools as the kinds of systems Fin should connect to for action-taking workflows.",
             "The source says Fin can use Data Connectors for integrations when backend access is being configured.",
@@ -681,7 +684,7 @@
         "proposal_status": "approved",
         "sections": {
           "core_capabilities": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "Fin can execute support Procedures that connect to backend systems and complete a customer request in one conversation.",
               "Fin can surface recommendations for integrations based on conversation volume, API requirements, and effort rating, which helps teams choose a first workflow.",
@@ -689,32 +692,32 @@
               "Fin can be paired with human-in-the-loop steps when APIs are not ready, allowing teams to gather evidence before full integration."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "integration_ecosystem": {
-            "final_list": null,
+            "final_list": [],
             "llm_list": [
               "The article names CRM, billing platforms, and order management tools as the kinds of systems Fin should connect to for action-taking workflows.",
               "The source says Fin can use Data Connectors for integrations when backend access is being configured.",
               "The article also mentions Operator as a way to draft the initial workflow from plain-language requirements."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "maturity_signals": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "name": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "operational_relevance": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "related_tools": {
             "final_list": null,
@@ -726,14 +729,14 @@
             "status": "pending"
           },
           "short_description": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "strengths": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -741,9 +744,9 @@
             "status": "pending"
           },
           "weaknesses_limitations": {
-            "final_text": null,
+            "final_text": "",
             "notes": null,
-            "status": "pending"
+            "status": "modified"
           }
         },
         "tags": {
@@ -754,6 +757,15 @@
             "api-first",
             "enterprise-managed"
           ]
+        },
+        "types": {
+          "approved_new_type": false,
+          "approved_types": [
+            "support-automation",
+            "cloud-saas"
+          ],
+          "proposed_new_type": null,
+          "reviewer_types_added": []
         }
       }
     ],
@@ -800,7 +812,7 @@
           "examples": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "key_points": {
             "final_list": null,
@@ -811,17 +823,17 @@
               "The access ladder helps align engineering, support, and security stakeholders."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "knowledge_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_insight": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_topics": {
             "final_list": null,
@@ -830,12 +842,12 @@
               "approval-based-agent-actions"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "relevance_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -845,12 +857,12 @@
           "topic_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "topic_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -905,7 +917,7 @@
           "examples": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "key_points": {
             "final_list": null,
@@ -916,17 +928,17 @@
               "Pre-triaged handoffs can still improve the human part of the workflow when full automation is not possible."
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "knowledge_summary": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "operational_insight": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "related_topics": {
             "final_list": null,
@@ -935,12 +947,12 @@
               "support-automation-as-operating-model"
             ],
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "relevance_note": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "supporting_snippet": {
             "final_text": null,
@@ -950,12 +962,12 @@
           "topic_slug": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           },
           "topic_title": {
             "final_text": null,
             "notes": null,
-            "status": "pending"
+            "status": "approved"
           }
         },
         "tags": {
@@ -972,19 +984,21 @@
   },
   "review_analytics": {
     "batch_actions_used": [],
-    "evidence_type_counts": {},
+    "evidence_type_counts": {
+      "mixed": 5
+    },
     "fields_modified": 0,
-    "proposals_approved": 0,
+    "proposals_approved": 5,
     "proposals_deferred": 0,
     "proposals_modified": 0,
     "proposals_rejected": 0,
-    "proposals_total": 0,
-    "review_duration_seconds": null,
-    "review_finished_at": null,
-    "review_started_at": null
+    "proposals_total": 5,
+    "review_duration_seconds": 239.4,
+    "review_finished_at": "2026-07-11T12:14:47.430239+00:00",
+    "review_started_at": "2026-07-11T12:10:48+00:00"
   },
   "review_session": {
-    "last_saved_at": null,
+    "last_saved_at": "2026-07-11T12:14:47+00:00",
     "saved_by": null
   },
   "source": {
