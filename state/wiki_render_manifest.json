@@ -4655,7 +4655,7 @@
     },
     {
       "path": "topics/manual-capture-friction.md",
-      "sha256": "e7a63a27e42002ca45c9aa13edb8a57c37890b52f1488d15b8fc7520a1ac9202"
+      "sha256": "3fbcc1604a3688da4e1ec4af77af4173783325f2cf3cefcc578a59f4f36fb1b6"
     },
     {
       "path": "topics/mcp-enabled-agent-voice-output.md",
@@ -4907,7 +4907,7 @@
     },
     {
       "path": "topics/structured-specification-for-agentic-development.md",
-      "sha256": "0deaa38d19d1fd22e8574307c5f10a08b880c4bff0d1d98f6d3b210185f11695"
+      "sha256": "72cc1717ca50e8713c6ac090435b5d1e34f82c3b4bcd6ac0389387a6c18e05d4"
     },
     {
       "path": "topics/super-app-agent-integration.md",
@@ -4999,7 +4999,7 @@
     },
     {
       "path": "topics/use-case-specific-local-model-selection.md",
-      "sha256": "57f8c26d8adab8cdf0c7fdbf23da62fe208b5b28236d44912046fc258b3692b8"
+      "sha256": "b6cab3193016b24c312eb82c81cb257ebc4d4508a000003d3ac89c75c63b29de"
     },
     {
       "path": "topics/verifiable-ai-governance.md",
@@ -5011,7 +5011,7 @@
     },
     {
       "path": "topics/verification-loops-in-ai-workflows.md",
-      "sha256": "003325dccf2b7ba20acf0167a0a95c32f10d60c5678167f2d0dd74f6e25432c9"
+      "sha256": "edef54bd80820f4d8190f3add020926a69bfbe338017691ba64b2dea838a944a"
     },
     {
       "path": "topics/vertical-models.md",
@@ -5039,7 +5039,7 @@
     },
     {
       "path": "topics/wiki-schema-governance.md",
-      "sha256": "37cda7e1843c671bc3856fdd2573da1f8bc0379a695f485125b50cd5e5dc2ac2"
+      "sha256": "a695f543dc351eee13e03689bc6957605453db44d6699c5f75de30d61cca1f24"
     },
     {
       "path": "topics/workflow-based-agent-evaluation.md",

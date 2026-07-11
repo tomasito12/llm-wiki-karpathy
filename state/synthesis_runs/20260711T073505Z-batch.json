@@ -1,0 +1,154 @@
+{
+  "attempted": 2,
+  "called": 2,
+  "completed_entries": [
+    {
+      "action": "written",
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/topic/wiki-schema-governance.json",
+      "entity_id": "topic:wiki-schema-governance",
+      "error": "",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/topic/wiki-schema-governance.md",
+      "score": 125,
+      "state": "new",
+      "token_usage": {
+        "completion_tokens": 1201,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens": 5994,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 7195
+      }
+    },
+    {
+      "action": "written",
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/topic/verification-loops-in-ai-workflows.json",
+      "entity_id": "topic:verification-loops-in-ai-workflows",
+      "error": "",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/topic/verification-loops-in-ai-workflows.md",
+      "score": 115,
+      "state": "new",
+      "token_usage": {
+        "completion_tokens": 1162,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens": 11712,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 12874
+      }
+    }
+  ],
+  "created_at": "20260711T073505Z",
+  "dry_run": false,
+  "elapsed_seconds": 21.131,
+  "failed_entries": [],
+  "failures": [],
+  "items": [
+    {
+      "action": "written",
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/topic/wiki-schema-governance.json",
+      "entity_id": "topic:wiki-schema-governance",
+      "error": "",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/topic/wiki-schema-governance.md",
+      "score": 125,
+      "state": "new",
+      "token_usage": {
+        "completion_tokens": 1201,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens": 5994,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 7195
+      }
+    },
+    {
+      "action": "written",
+      "cache_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis/topic/verification-loops-in-ai-workflows.json",
+      "entity_id": "topic:verification-loops-in-ai-workflows",
+      "error": "",
+      "preview_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/state/synthesis_previews/topic/verification-loops-in-ai-workflows.md",
+      "score": 115,
+      "state": "new",
+      "token_usage": {
+        "completion_tokens": 1162,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens": 11712,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 12874
+      }
+    }
+  ],
+  "model": "gpt-5.4-mini-2026-03-17",
+  "options": {
+    "between_calls": 0,
+    "category": null,
+    "continue_on_error": false,
+    "entity": null,
+    "include_single_source": false,
+    "limit": 2
+  },
+  "preview_count": 2,
+  "remaining_changed_count": 71,
+  "selected_entries": [
+    {
+      "category": "topic",
+      "entity_id": "topic:wiki-schema-governance",
+      "evidence_count": 32,
+      "notes": [
+        "role_relevant",
+        "topic"
+      ],
+      "rank": 1,
+      "score": 125,
+      "slug": "wiki-schema-governance",
+      "source_count": 4,
+      "state": "new",
+      "title": "Wiki Schema Governance"
+    },
+    {
+      "category": "topic",
+      "entity_id": "topic:verification-loops-in-ai-workflows",
+      "evidence_count": 77,
+      "notes": [
+        "role_relevant",
+        "topic"
+      ],
+      "rank": 2,
+      "score": 115,
+      "slug": "verification-loops-in-ai-workflows",
+      "source_count": 10,
+      "state": "new",
+      "title": "Verification Loops in AI Workflows"
+    }
+  ],
+  "skipped_entries": [],
+  "written": 2
+}

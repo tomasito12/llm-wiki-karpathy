@@ -1,0 +1,75 @@
+{
+  "category": "topic",
+  "consensus": [
+    "Schema governance is the practice of putting operating rules in a schema file, not just in prompts. The schema tells the model how the wiki or file workspace is organized and how it should behave.",
+    "The schema can define page types, naming rules, read order, update boundaries, ingest steps, query behavior, and lint checks. In these sources, linting is part of governance, not an optional cleanup step.",
+    "A clear schema makes agent behavior more consistent across sessions. It helps the model decide what to create versus update, and it gives humans a reviewable place to change rules.",
+    "This matters most in file-based or knowledge-base workflows where an LLM writes, updates, and checks many artifacts over time. It is useful for keeping consistency, reducing drift, and preventing accidental writes to source-of-truth folders."
+  ],
+  "context_card": {
+    "best_for_questions_about": [
+      "What wiki schema governance is",
+      "Why a schema file matters more than prompt-only instructions",
+      "How to keep an LLM-maintained knowledge base consistent over time",
+      "How page types, naming rules, and lint checks fit into agent workflows",
+      "When to use a schema as a shared operating contract between humans and the model"
+    ],
+    "not_enough_for": [
+      "A universal schema design pattern for all AI systems",
+      "Detailed implementation guidance for a specific vector store, CMS, or enterprise platform",
+      "Proof that one schema layout is better than another",
+      "Measured performance impact or ROI from schema governance"
+    ],
+    "related_tags": [
+      "agent-systems",
+      "ai-engineering",
+      "auditability",
+      "context-engineering",
+      "knowledge-systems",
+      "orchestration",
+      "workflow-automation"
+    ],
+    "strongest_sources": [
+      "llm-wiki \u00b7 GitHub",
+      "Give Your AI Unlimited Updated Context",
+      "I used Karpathy\u2019s LLM Wiki to build a knowledge base that maintains itself with AI",
+      "I Used Karpathy\u2019s LLM Wiki to Build a Research Brain That Updates Itself. Here\u2019s What Two Weeks Taught Me."
+    ],
+    "use_this_page_when": "Use this page when you need to design or review an AI-maintained wiki, knowledge base, or other file-based workflow and want the model to behave consistently, safely, and in a way humans can audit."
+  },
+  "entity_id": "topic:wiki-schema-governance",
+  "evidence_quality": [
+    "Moderate-to-strong support across four sources, with high agreement on the core pattern.",
+    "Evidence is mostly from practitioner write-ups and a project repo, not controlled studies.",
+    "The sources are consistent on function and operational value, but they do not compare alternative governance designs.",
+    "Time-sensitive wording appears in one source, so the pattern looks current as of the source dates but not proven timeless."
+  ],
+  "executive_synthesis": "Wiki schema governance is a practical way to keep an AI-maintained knowledge base predictable. The basic idea is to put the rules in a schema file, such as CLAUDE.md or AGENTS.md, so the model knows the page types, naming conventions, read order, update rules, and lint checks before it starts writing. In other words, the schema becomes the operating contract for the workspace. This is useful when the same agent must ingest sources, create or update pages, cross-link content, and check for inconsistencies over time. The main caveat is that a weak or unclear schema leads to inconsistent pages, so the schema itself needs refinement after real failure modes show up. The evidence is strong for the pattern\u2019s usefulness, but it comes mostly from practitioner reports and project documentation rather than controlled evaluation.",
+  "last_synthesized_at": "2026-07-11T07:34:55Z",
+  "practical_example": {
+    "basis": "source-grounded",
+    "example": "A team keeps a living knowledge base in markdown. At the root of the workspace, they place a schema file that tells the agent what page types exist, how files should be named, what to read first, what folders it must never edit, and how to check for broken links or stale pages. When a new source arrives, the agent uses the schema to decide whether to create a new page or update an existing one, then runs the lint checklist before saving. The same file also gives human editors one place to change the rules when the domain changes.",
+    "title": "A wiki that self-maintains with a schema file",
+    "why_it_helps": "This turns a loose collection of files into a controlled workflow. It reduces drift, makes edits reviewable, and keeps the agent from treating each session like a fresh prompt exercise."
+  },
+  "practical_takeaway": "If an AI agent writes or maintains files, put the operating rules next to the files and treat the schema as a contract. Start simple, make page types and write boundaries explicit, include lint checks, and revise the schema after a few real ingests expose failure modes.",
+  "slug": "wiki-schema-governance",
+  "synthesis_input_hash": "11b46ebcc944573d",
+  "synthesis_prompt_version": 1,
+  "synthesis_schema_version": 1,
+  "tensions": [
+    "The sources strongly support the need for explicit governance, but they do not agree on a single best schema format or level of detail.",
+    "One source frames the schema as a simple instruction file, while others describe it as a living control plane. That difference is mostly about scope, but it suggests the right level of formality depends on the system.",
+    "The sources recommend refining the schema after real use, which means early schemas are expected to be incomplete. There is no evidence here for how much structure is enough at the start."
+  ],
+  "title": "Wiki Schema Governance",
+  "what_to_remember": [
+    "The schema file is the shared rulebook for an AI-maintained wiki.",
+    "Governance should cover structure, behavior, and boundaries, not just formatting.",
+    "Read order matters. Load the active context before deep archives.",
+    "Linting is part of the workflow, not a separate cleanup task.",
+    "Clear rules help the model choose between creating new pages and updating existing ones.",
+    "The schema should evolve after real failure modes appear."
+  ],
+  "workflow_variants": []
+}
