@@ -137,6 +137,8 @@ def test_classify_uncommitted_paths_groups_artifact_classes(tmp_path: Path) -> N
     counts = classify_uncommitted_paths(repo_root, paths)
 
     assert counts["durable"] == 2
+    assert counts["synthesis_cache"] == 1
+    assert counts["render_outputs"] == 1
     assert counts["previews"] == 1
     assert counts["runs"] == 1
     assert counts["backups"] == 1
@@ -261,7 +263,7 @@ def test_build_recommendations_suggest_render_when_graph_missing() -> None:
             None,
             SynthesisPlanStatus(None, None, None, None, None),
         ),
-        artifacts=ArtifactStatus(0, 0, 0, 0, False, 0),
+        artifacts=ArtifactStatus(0, 0, 0, 0, 0, 0, False, 0),
         recommendations=[],
         warnings=[],
     )
@@ -269,6 +271,78 @@ def test_build_recommendations_suggest_render_when_graph_missing() -> None:
     recommendations = build_recommendations(status)
 
     assert recommendations[0] == "Run hatch run wiki-render to create graph state."
+
+
+def test_build_recommendations_suggest_render_dry_run_after_cache_changes() -> None:
+    """Unrendered synthesis cache changes should recommend a render dry-run."""
+    from src.wiki_ops.status import (
+        ArtifactStatus,
+        OpsStatus,
+        RenderStatus,
+        ReviewStatus,
+        SourceStatus,
+        SynthesisPlanStatus,
+        SynthesisStatus,
+    )
+
+    status = OpsStatus(
+        sources=SourceStatus(0, 0, 0, 0),
+        reviews=ReviewStatus(0, 0, 0, 0),
+        render=RenderStatus(True, True, True, 1, 1),
+        synthesis=SynthesisStatus(
+            1,
+            1,
+            0,
+            0,
+            0,
+            SynthesisPlanStatus(0, 0, 1, 0, 0),
+        ),
+        artifacts=ArtifactStatus(1, 1, 0, 0, 0, 0, False, 0),
+        recommendations=[],
+        warnings=[],
+    )
+
+    recommendations = build_recommendations(status)
+
+    assert (
+        recommendations[0]
+        == "Run hatch run wiki-render --dry-run after synthesis cache changes."
+    )
+    assert "No render needed." not in recommendations
+
+
+def test_build_recommendations_allows_no_render_after_render_outputs_changed() -> None:
+    """Cache changes with render output changes should not repeat the dry-run hint."""
+    from src.wiki_ops.status import (
+        ArtifactStatus,
+        OpsStatus,
+        RenderStatus,
+        ReviewStatus,
+        SourceStatus,
+        SynthesisPlanStatus,
+        SynthesisStatus,
+    )
+
+    status = OpsStatus(
+        sources=SourceStatus(0, 0, 0, 0),
+        reviews=ReviewStatus(0, 0, 0, 0),
+        render=RenderStatus(True, True, True, 1, 1),
+        synthesis=SynthesisStatus(
+            1,
+            1,
+            0,
+            0,
+            0,
+            SynthesisPlanStatus(0, 0, 1, 0, 0),
+        ),
+        artifacts=ArtifactStatus(2, 1, 1, 0, 0, 0, False, 0),
+        recommendations=[],
+        warnings=[],
+    )
+
+    recommendations = build_recommendations(status)
+
+    assert recommendations[0] == "No render needed."
 
 
 def test_build_recommendations_warn_about_uncommitted_other() -> None:
@@ -295,7 +369,7 @@ def test_build_recommendations_warn_about_uncommitted_other() -> None:
             0,
             SynthesisPlanStatus(0, 0, 0, 0, 0),
         ),
-        artifacts=ArtifactStatus(0, 0, 0, 0, False, 3),
+        artifacts=ArtifactStatus(0, 0, 0, 0, 0, 0, False, 3),
         recommendations=[],
         warnings=[],
     )
@@ -329,7 +403,7 @@ def test_build_recommendations_skip_temporary_message_when_other_uncommitted() -
             0,
             SynthesisPlanStatus(0, 0, 0, 0, 0),
         ),
-        artifacts=ArtifactStatus(0, 2, 0, 0, False, 1),
+        artifacts=ArtifactStatus(0, 0, 0, 2, 0, 0, False, 1),
         recommendations=[],
         warnings=[],
     )
@@ -366,7 +440,7 @@ def test_format_text_report_shows_other_and_backup_counts() -> None:
             None,
             SynthesisPlanStatus(None, None, None, None, None),
         ),
-        artifacts=ArtifactStatus(0, 1, 2, 3, True, 7),
+        artifacts=ArtifactStatus(0, 0, 0, 1, 2, 3, True, 7),
         recommendations=[],
         warnings=[],
     )

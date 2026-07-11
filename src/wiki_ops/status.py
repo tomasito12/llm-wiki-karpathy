@@ -88,6 +88,8 @@ class ArtifactStatus:
     """Git and local artifact classification."""
 
     uncommitted_durable: int
+    uncommitted_synthesis_cache: int
+    uncommitted_render_outputs: int
     uncommitted_previews: int
     uncommitted_runs: int
     uncommitted_backups: int
@@ -334,6 +336,8 @@ def collect_artifact_status(
     return (
         ArtifactStatus(
             uncommitted_durable=classified["durable"],
+            uncommitted_synthesis_cache=classified["synthesis_cache"],
+            uncommitted_render_outputs=classified["render_outputs"],
             uncommitted_previews=classified["previews"],
             uncommitted_runs=classified["runs"],
             uncommitted_backups=classified["backups"],
@@ -362,7 +366,15 @@ def parse_git_porcelain_paths(lines: list[str]) -> list[str]:
 
 def classify_uncommitted_paths(repo_root: Path, paths: list[str]) -> dict[str, int]:
     """Count uncommitted paths by durable, preview, run, backup, and other classes."""
-    counts = {"durable": 0, "previews": 0, "runs": 0, "backups": 0, "other": 0}
+    counts = {
+        "durable": 0,
+        "synthesis_cache": 0,
+        "render_outputs": 0,
+        "previews": 0,
+        "runs": 0,
+        "backups": 0,
+        "other": 0,
+    }
     root = repo_root.resolve()
     for raw_path in paths:
         path = (root / raw_path).resolve()
@@ -379,6 +391,10 @@ def classify_uncommitted_paths(repo_root: Path, paths: list[str]) -> dict[str, i
             counts["backups"] += 1
         elif _is_durable_path(relative):
             counts["durable"] += 1
+            if _is_synthesis_cache_path(relative):
+                counts["synthesis_cache"] += 1
+            if _is_render_output_path(relative):
+                counts["render_outputs"] += 1
         else:
             counts["other"] += 1
     return counts
@@ -391,6 +407,8 @@ def build_recommendations(status: OpsStatus) -> list[str]:
         recommendations.append("Fix synthesis cache errors before running wiki-render.")
     elif status.synthesis.stale:
         recommendations.append("Refresh stale synthesis entries before final render.")
+    elif _synthesis_cache_needs_render_check(status.artifacts):
+        recommendations.append("Run hatch run wiki-render --dry-run after synthesis cache changes.")
     elif status.render.graph_exists and status.render.manifest_exists:
         recommendations.append("No render needed.")
     else:
@@ -466,6 +484,8 @@ def format_text_report(status: OpsStatus) -> str:
             "",
             "Artifacts",
             f"- uncommitted durable files: {status.artifacts.uncommitted_durable}",
+            f"- uncommitted synthesis cache files: {status.artifacts.uncommitted_synthesis_cache}",
+            f"- uncommitted render output files: {status.artifacts.uncommitted_render_outputs}",
             f"- uncommitted preview files: {status.artifacts.uncommitted_previews}",
             f"- uncommitted run reports: {status.artifacts.uncommitted_runs}",
             f"- uncommitted backup files: {status.artifacts.uncommitted_backups}",
@@ -538,14 +558,29 @@ def _directory_has_entries(path: Path) -> bool:
 
 def _is_durable_path(relative_path: str) -> bool:
     """Return whether a repo-relative path is a durable artifact."""
+    return _is_render_output_path(relative_path) or _is_synthesis_cache_path(
+        relative_path
+    ) or _is_review_artifact_path(relative_path)
+
+
+def _is_render_output_path(relative_path: str) -> bool:
+    """Return whether a repo-relative path is generated render output."""
     if relative_path == "state/wiki_render_manifest.json":
         return True
     if relative_path == "state/wiki_render_graph.json":
         return True
     if relative_path.startswith("wiki/"):
         return True
-    if relative_path.startswith("state/synthesis/") and relative_path.endswith(".json"):
-        return True
+    return False
+
+
+def _is_synthesis_cache_path(relative_path: str) -> bool:
+    """Return whether a repo-relative path is a final synthesis cache entry."""
+    return relative_path.startswith("state/synthesis/") and relative_path.endswith(".json")
+
+
+def _is_review_artifact_path(relative_path: str) -> bool:
+    """Return whether a repo-relative path is a final review artifact."""
     return relative_path.startswith("state/reviews/") and relative_path.endswith("/review.json")
 
 
@@ -579,6 +614,11 @@ def _only_temporary_artifacts_uncommitted(artifacts: ArtifactStatus) -> bool:
         and not artifacts.uncommitted_durable
         and not artifacts.uncommitted_other
     )
+
+
+def _synthesis_cache_needs_render_check(artifacts: ArtifactStatus) -> bool:
+    """Return whether cache changes exist without matching render output changes."""
+    return artifacts.uncommitted_synthesis_cache > 0 and artifacts.uncommitted_render_outputs == 0
 
 
 def _changed_candidate_count(plan: SynthesisPlanStatus) -> int:
