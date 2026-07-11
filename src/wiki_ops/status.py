@@ -558,9 +558,11 @@ def _directory_has_entries(path: Path) -> bool:
 
 def _is_durable_path(relative_path: str) -> bool:
     """Return whether a repo-relative path is a durable artifact."""
-    return _is_render_output_path(relative_path) or _is_synthesis_cache_path(
-        relative_path
-    ) or _is_review_artifact_path(relative_path)
+    return (
+        _is_render_output_path(relative_path)
+        or _is_synthesis_cache_path(relative_path)
+        or _is_review_artifact_path(relative_path)
+    )
 
 
 def _is_render_output_path(relative_path: str) -> bool:

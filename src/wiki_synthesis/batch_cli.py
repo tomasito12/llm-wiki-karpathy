@@ -10,6 +10,12 @@ import sys
 from pathlib import Path
 
 from src.ingest_review.paths import load_repo_dotenv
+from src.wiki_paths.cli_helpers import (
+    add_paths_config_argument,
+    load_paths_for_cli,
+    resolve_cli_path,
+)
+from src.wiki_paths.config import WikiPathsConfigError
 from src.wiki_synthesis.batch import (
     DEFAULT_BATCH_LIMIT,
     format_batch_text,
@@ -23,33 +29,34 @@ LOGGER = logging.getLogger(__name__)
 
 def build_parser() -> argparse.ArgumentParser:
     """Build the wiki-synthesis-batch argument parser."""
-    root = load_repo_dotenv()
+    load_repo_dotenv()
     parser = argparse.ArgumentParser(
         prog="wiki-synthesis-batch",
         description="Execute a bounded batch of ranked Stage 2 synthesis candidates.",
     )
+    add_paths_config_argument(parser)
     parser.add_argument(
         "--graph-path",
         type=Path,
-        default=root / "state" / "wiki_render_graph.json",
+        default=None,
         help="Path to the wiki-render graph export.",
     )
     parser.add_argument(
         "--cache-dir",
         type=Path,
-        default=root / "state" / "synthesis",
+        default=None,
         help="Directory for Stage 2 synthesis cache entries.",
     )
     parser.add_argument(
         "--preview-dir",
         type=Path,
-        default=root / "state" / "synthesis_previews",
+        default=None,
         help="Directory for rendered review previews.",
     )
     parser.add_argument(
         "--report-dir",
         type=Path,
-        default=root / "state" / "synthesis_runs",
+        default=None,
         help="Directory for batch audit reports.",
     )
     parser.add_argument(
@@ -128,7 +135,16 @@ def main(argv: list[str] | None = None) -> int:
     if not args.dry_run and not os.environ.get("OPENAI_API_KEY"):
         LOGGER.error("OPENAI_API_KEY is not set. Add it to .env or export it.")
         return 2
-    graph = load_graph_export(args.graph_path.resolve())
+    try:
+        paths = load_paths_for_cli(args)
+    except WikiPathsConfigError as exc:
+        LOGGER.error("%s", exc)
+        return 2
+    graph_path = resolve_cli_path(args.graph_path, configured=paths.graph_path)
+    cache_dir = resolve_cli_path(args.cache_dir, configured=paths.synthesis_dir)
+    preview_dir = resolve_cli_path(args.preview_dir, configured=paths.preview_dir)
+    report_dir = resolve_cli_path(args.report_dir, configured=paths.run_dir)
+    graph = load_graph_export(graph_path)
     provider_factory = None if args.dry_run else _OpenAIProviderFactory()
     progress_lines: list[str] = []
 
@@ -139,9 +155,9 @@ def main(argv: list[str] | None = None) -> int:
 
     report = run_synthesis_batch(
         graph,
-        cache_dir=args.cache_dir.resolve(),
-        preview_dir=args.preview_dir.resolve(),
-        report_dir=args.report_dir.resolve(),
+        cache_dir=cache_dir,
+        preview_dir=preview_dir,
+        report_dir=report_dir,
         provider_factory=provider_factory,
         model=args.model,
         category=args.category,

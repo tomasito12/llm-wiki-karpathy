@@ -4,10 +4,17 @@ from __future__ import annotations
 
 import argparse
 import logging
+import sys
 from pathlib import Path
 
 from src.ingest_review.paths import repo_root
 from src.ingest_review.schema import ARTIFACT_SCHEMA_VERSION
+from src.wiki_paths.cli_helpers import (
+    add_paths_config_argument,
+    load_paths_for_cli,
+    resolve_cli_path,
+)
+from src.wiki_paths.config import WikiPathsConfigError
 from src.wiki_render import TOOL_VERSION
 from src.wiki_render.collect import collect_items
 from src.wiki_render.graph_export import write_graph_export
@@ -22,39 +29,39 @@ LOGGER = logging.getLogger(__name__)
 
 def build_parser() -> argparse.ArgumentParser:
     """Build the wiki-render argument parser."""
-    root = repo_root()
     parser = argparse.ArgumentParser(
         prog="wiki-render",
         description="Render Obsidian markdown from reviewed ingestion artifacts.",
     )
+    add_paths_config_argument(parser)
     parser.add_argument(
         "--reviews-dir",
         type=Path,
-        default=root / "state" / "reviews",
+        default=None,
         help="Directory containing <source_id>/review.json artifacts.",
     )
     parser.add_argument(
         "--out-dir",
         type=Path,
-        default=root / "wiki",
+        default=None,
         help="Wiki output directory.",
     )
     parser.add_argument(
         "--manifest-path",
         type=Path,
-        default=root / "state" / "wiki_render_manifest.json",
+        default=None,
         help="Advisory generation manifest path.",
     )
     parser.add_argument(
         "--graph-path",
         type=Path,
-        default=root / "state" / "wiki_render_graph.json",
+        default=None,
         help="Machine-readable graph export path.",
     )
     parser.add_argument(
         "--synthesis-cache-dir",
         type=Path,
-        default=root / "state" / "synthesis",
+        default=None,
         help="Optional Stage 2 synthesis cache directory.",
     )
     parser.add_argument(
@@ -70,13 +77,24 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
     """Run a full deterministic wiki regeneration."""
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
-    args = build_parser().parse_args()
+    args = build_parser().parse_args(argv)
     root = repo_root()
-    reviews_dir = args.reviews_dir.resolve()
-    wiki_dir = args.out_dir.resolve()
+    try:
+        paths = load_paths_for_cli(args)
+    except WikiPathsConfigError as exc:
+        LOGGER.error("%s", exc)
+        return 2
+    reviews_dir = resolve_cli_path(args.reviews_dir, configured=paths.reviews_dir)
+    wiki_dir = resolve_cli_path(args.out_dir, configured=paths.wiki_dir)
+    manifest_path = resolve_cli_path(args.manifest_path, configured=paths.manifest_path)
+    graph_path = resolve_cli_path(args.graph_path, configured=paths.graph_path)
+    synthesis_cache_dir = resolve_cli_path(
+        args.synthesis_cache_dir,
+        configured=paths.synthesis_dir,
+    )
     tax_version = taxonomy_version(root)
     artifacts = load_review_artifacts(reviews_dir)
     collected = collect_items(artifacts, wiki_dir)
@@ -85,17 +103,16 @@ def main() -> int:
         wiki_dir=wiki_dir,
         taxonomy_version=tax_version,
     )
-    synthesis_cache_dir = args.synthesis_cache_dir.resolve()
     rendered = render_graph(
         graph,
         wiki_dir=wiki_dir,
         synthesis_cache_dir=synthesis_cache_dir,
     )
-    write_graph_export(args.graph_path.resolve(), graph, dry_run=args.dry_run)
+    write_graph_export(graph_path, graph, dry_run=args.dry_run)
     report = write_rendered_files(
         wiki_dir=wiki_dir,
         files=rendered,
-        manifest_path=args.manifest_path.resolve(),
+        manifest_path=manifest_path,
         run_metadata={
             "tool_version": TOOL_VERSION,
             "artifact_schema_version": ARTIFACT_SCHEMA_VERSION,
@@ -105,8 +122,8 @@ def main() -> int:
             "signal_count": len(graph.signals),
             "interview_insight_count": len(graph.insights),
             "implementation_study_count": len(graph.implementation_studies),
-            "graph_export_path": str(args.graph_path),
-            "synthesis_cache_dir": str(args.synthesis_cache_dir),
+            "graph_export_path": str(graph_path),
+            "synthesis_cache_dir": str(synthesis_cache_dir),
         },
         dry_run=args.dry_run,
         prune=not args.no_prune,
@@ -128,4 +145,4 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    raise SystemExit(main(sys.argv[1:]))

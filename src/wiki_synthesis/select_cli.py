@@ -8,7 +8,12 @@ import logging
 import sys
 from pathlib import Path
 
-from src.ingest_review.paths import repo_root
+from src.wiki_paths.cli_helpers import (
+    add_paths_config_argument,
+    load_paths_for_cli,
+    resolve_cli_path,
+)
+from src.wiki_paths.config import WikiPathsConfigError
 from src.wiki_synthesis.planner import load_graph_export
 from src.wiki_synthesis.selection import (
     DEFAULT_SELECT_LIMIT,
@@ -22,21 +27,21 @@ LOGGER = logging.getLogger(__name__)
 
 def build_parser() -> argparse.ArgumentParser:
     """Build the wiki-synthesis-select argument parser."""
-    root = repo_root()
     parser = argparse.ArgumentParser(
         prog="wiki-synthesis-select",
         description="Rank changed Stage 2 synthesis candidates without LLM calls.",
     )
+    add_paths_config_argument(parser)
     parser.add_argument(
         "--graph-path",
         type=Path,
-        default=root / "state" / "wiki_render_graph.json",
+        default=None,
         help="Path to the wiki-render graph export.",
     )
     parser.add_argument(
         "--cache-dir",
         type=Path,
-        default=root / "state" / "synthesis",
+        default=None,
         help="Directory containing Stage 2 synthesis cache entries.",
     )
     parser.add_argument(
@@ -77,10 +82,17 @@ def main(argv: list[str] | None = None) -> int:
     """Select ranked Stage 2 synthesis candidates."""
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
     args = build_parser().parse_args(argv)
-    graph = load_graph_export(args.graph_path.resolve())
+    try:
+        paths = load_paths_for_cli(args)
+    except WikiPathsConfigError as exc:
+        LOGGER.error("%s", exc)
+        return 2
+    graph_path = resolve_cli_path(args.graph_path, configured=paths.graph_path)
+    cache_dir = resolve_cli_path(args.cache_dir, configured=paths.synthesis_dir)
+    graph = load_graph_export(graph_path)
     result = select_synthesis_candidates(
         graph,
-        cache_dir=args.cache_dir.resolve(),
+        cache_dir=cache_dir,
         category=args.category,
         entity=args.entity,
         include_single_source=args.include_single_source,
