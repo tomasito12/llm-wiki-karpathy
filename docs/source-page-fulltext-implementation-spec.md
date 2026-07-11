@@ -5,6 +5,11 @@ Last updated: 2026-07-11
 This specification is the recommended next implementation slice after central
 path configuration.
 
+It assumes the central path configuration slice may already exist on the target
+branch. If it exists, this implementation must use it. If it does not exist yet,
+the code should stay compatible with the current repo-local defaults and be easy
+to wire into the central path layer later.
+
 It is intended for Cursor or another implementation agent that has no prior chat
 context.
 
@@ -105,6 +110,68 @@ module instead of introducing another path system.
 If path configuration has not yet been merged, keep the implementation
 compatible with current defaults and avoid hard coupling to an unfinished API.
 
+## Relationship to Central Path Configuration
+
+The path configuration slice introduces a central module similar to:
+
+```text
+src/wiki_paths/
+  config.py
+  cli_helpers.py
+```
+
+with resolved fields such as:
+
+```python
+paths.raw_dir
+paths.reviews_dir
+paths.synthesis_dir
+paths.graph_path
+paths.manifest_path
+paths.preview_dir
+paths.run_dir
+paths.backup_dir
+paths.wiki_dir
+paths.source_pages_dir
+paths.source_index_path
+paths.indexes_dir
+```
+
+For this full-source-text slice:
+
+- use `paths.raw_dir` as the canonical location of raw Readwise Markdown
+- use `paths.wiki_dir` as the canonical generated wiki output root
+- keep the generated source page path as `sources/<source_id>.md` under
+  `paths.wiki_dir`
+- do not introduce a second source hierarchy such as `sources/full/`
+- do not add another config file or another path resolution layer
+
+Important compatibility note:
+
+Some earlier planning specs included `source_pages_dir = "{vault_root}/sources/full"`.
+That field is not the target for this slice. The current product decision is to
+extend the existing generated source pages at `sources/<source_id>.md`.
+
+If `source_pages_dir` is already present in `WikiPaths`, either:
+
+- leave it unused for this slice, or
+- treat it only as a future/team-export path, not as the private generated
+  source page location.
+
+Do not change existing Obsidian links from:
+
+```md
+[[sources/<source_id>|Source Title]]
+```
+
+to:
+
+```md
+[[sources/full/<source_id>|Source Title]]
+```
+
+unless a later explicit migration decision changes the source-page model.
+
 ## Current Relevant Code
 
 Existing renderer:
@@ -169,7 +236,7 @@ Do not hand-roll an HTML parser.
 
 The renderer must be able to find raw Markdown files.
 
-### Preferred after Path Config
+### Required after Path Config
 
 If central path configuration exists, renderer inputs should include:
 
@@ -183,6 +250,26 @@ The source full text loader should resolve:
 ```text
 raw_dir / f"{source.source_id}.md"
 ```
+
+The `wiki-render` CLI should resolve paths through the central helper, then pass
+the resolved `raw_dir` into the render pipeline.
+
+Expected flow:
+
+```python
+paths = load_paths_for_cli(args)
+reviews_dir = resolve_cli_path(args.reviews_dir, configured=paths.reviews_dir)
+wiki_dir = resolve_cli_path(args.out_dir, configured=paths.wiki_dir)
+raw_dir = resolve_cli_path(args.raw_dir, configured=paths.raw_dir)
+```
+
+If `wiki-render` does not yet expose `--raw-dir`, add it in this slice.
+
+Precedence must match the path configuration contract:
+
+1. explicit CLI flag such as `--raw-dir`
+2. `--paths-config` / `LLM_WIKI_PATHS_CONFIG` value
+3. repo-local default `raw/readwise`
 
 ### Compatibility Fallback
 
@@ -215,6 +302,11 @@ def render_source_page(source: SourceRecord, *, context: RenderContext) -> Rende
 ```
 
 Use whichever style best fits the existing code after the path-config slice.
+
+If the path-config slice has already migrated `wiki-render`, prefer adding
+`raw_dir: Path` explicitly to the render pipeline over reading global config
+inside lower-level render functions. Rendering helpers should stay easy to test:
+they should receive the resolved paths they need.
 
 ## Frontmatter Additions
 
@@ -402,6 +494,11 @@ If path config has landed:
 
 9. Renderer respects configured `raw_dir`.
 10. Default repo-local raw path still works without config.
+11. Explicit `wiki-render --raw-dir <path>` overrides configured `raw_dir`.
+12. Configured `wiki_dir` still produces source pages at
+    `sources/<source_id>.md`, not `sources/full/<source_id>.md`.
+13. `wiki-render --paths-config <file> --dry-run` can read raw Markdown from an
+    external knowledge root without writing files.
 
 ## Suggested Acceptance Tests
 
@@ -466,6 +563,24 @@ source_text_mode = "full"
 
 Do not build multiple modes in this slice unless it stays small.
 
+If central path configuration has landed, update `wiki-render` rather than
+adding a separate command. Expected examples:
+
+```bash
+hatch run wiki-render --dry-run
+hatch run wiki-render --paths-config config/wiki_paths.toml --dry-run
+hatch run wiki-render --paths-config config/wiki_paths.toml
+```
+
+Optional explicit raw override:
+
+```bash
+hatch run wiki-render --raw-dir /path/to/raw/readwise --dry-run
+```
+
+Do not require users to pass `--raw-dir` in normal operation when `raw_dir` is
+already available through the path config.
+
 ## Failure Behavior
 
 Missing raw Markdown should not fail the entire render.
@@ -505,9 +620,13 @@ The implementation is complete when:
 - generated `wiki/sources/<source_id>.md` pages include full raw source text
 - existing source links from knowledge pages still work
 - missing raw files are handled gracefully
+- central path configuration is used when available
+- `paths.raw_dir` controls where full source Markdown is read from
+- `paths.wiki_dir` controls where generated source pages are written
+- configured source pages still render to `sources/<source_id>.md`
 - tests cover available and missing source text
+- tests cover configured `raw_dir` and default repo-local raw paths
 - no new source-page duplicate hierarchy is introduced
 - no new Hatch command is added
 - targeted wiki-render tests pass
 - lint/type checks pass
-
