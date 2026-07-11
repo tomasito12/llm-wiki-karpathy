@@ -92,6 +92,12 @@ wiki-synthesis-doctor = [
 wiki-synthesis-plan = [
   "python -m src.wiki_synthesis {args}",
 ]
+wiki-synthesis-select = [
+  "python -m src.wiki_synthesis.select_cli {args}",
+]
+wiki-synthesis-batch = [
+  "python -m src.wiki_synthesis.batch_cli {args}",
+]
 wiki-synthesis-prompt = [
   "python -m src.wiki_synthesis.prompt_cli {args}",
 ]

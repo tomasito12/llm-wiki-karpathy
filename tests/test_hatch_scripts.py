@@ -20,6 +20,8 @@ def test_hatch_scripts_include_local_clis() -> None:
     ]
     assert scripts["wiki-synthesis-doctor"] == ["python -m src.wiki_synthesis.doctor_cli {args}"]
     assert scripts["wiki-synthesis-plan"] == ["python -m src.wiki_synthesis {args}"]
+    assert scripts["wiki-synthesis-select"] == ["python -m src.wiki_synthesis.select_cli {args}"]
+    assert scripts["wiki-synthesis-batch"] == ["python -m src.wiki_synthesis.batch_cli {args}"]
     assert scripts["wiki-synthesis-prompt"] == ["python -m src.wiki_synthesis.prompt_cli {args}"]
     assert scripts["wiki-synthesis-run"] == ["python -m src.wiki_synthesis.run_cli {args}"]
     assert scripts["wiki-synthesis-review"] == ["python -m src.wiki_synthesis.review_cli {args}"]

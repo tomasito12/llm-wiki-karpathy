@@ -102,6 +102,16 @@ Generated wiki layout rules live in [`src/wiki_contract/`](wiki_contract/). Both
   - `--include-single-source` — include candidate/thin single-source pages.
   - `--json` — print machine-readable output.
 
+## Wiki synthesis selection and batch automation
+
+- Run `hatch run wiki-synthesis-select --limit 20` to inspect ranked changed synthesis candidates.
+- This command is read-only and makes no LLM calls.
+- Run `hatch run wiki-synthesis-batch --dry-run --limit 10` before real automation.
+- Real batch execution requires `--yes`.
+- Use `--between-calls 300` for slow nightly-style runs.
+- The batch command writes synthesis cache files, previews, and an audit report, but does not run `wiki-render`.
+- After a real batch, run `hatch run wiki-synthesis-cache-lint` and `hatch run wiki-render --dry-run`.
+
 ## Wiki synthesis workflow (Stage 2 primary command)
 
 - Run: `hatch run wiki-synthesis-workflow --dry-run --entity glossary:fine-tuning`
