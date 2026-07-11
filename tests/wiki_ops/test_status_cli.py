@@ -69,6 +69,105 @@ def test_status_cli_explicit_path_overrides_repo_root_default(tmp_path: Path, ca
     assert payload["sources"]["paired"] == 1
 
 
+def test_status_cli_paths_json_outputs_resolved_paths(tmp_path: Path, capsys) -> None:
+    """The CLI should print resolved path configuration with --paths-json."""
+    _bootstrap_repo(tmp_path)
+
+    exit_code = status_cli.main(["--repo-root", str(tmp_path), "--paths-json"])
+    payload = json.loads(capsys.readouterr().out)
+
+    assert exit_code == 0
+    assert payload["raw_dir"].endswith("raw/readwise")
+    assert payload["wiki_dir"].endswith("wiki")
+
+
+def test_status_cli_paths_config_overrides_defaults(tmp_path: Path, capsys) -> None:
+    """Config file paths should apply when --paths-config is passed."""
+    repo_root = tmp_path / "repo"
+    external_raw = tmp_path / "external-raw"
+    external_raw.mkdir()
+    (external_raw / "source.html").write_text("<html></html>", encoding="utf-8")
+    (external_raw / "source.md").write_text("body", encoding="utf-8")
+    config_path = tmp_path / "wiki_paths.toml"
+    config_path.write_text(
+        f"""
+[paths]
+raw_dir = "{external_raw}"
+""".strip(),
+        encoding="utf-8",
+    )
+    (repo_root / "state" / "reviews").mkdir(parents=True)
+    (repo_root / "wiki").mkdir()
+
+    status_cli.main(
+        [
+            "--repo-root",
+            str(repo_root),
+            "--paths-config",
+            str(config_path),
+            "--json",
+        ]
+    )
+    payload = json.loads(capsys.readouterr().out)
+
+    assert payload["sources"]["raw_html"] == 1
+    assert payload["sources"]["paired"] == 1
+
+
+def test_status_cli_explicit_path_overrides_paths_config(tmp_path: Path, capsys) -> None:
+    """Explicit CLI flags should override config file values."""
+    repo_root = tmp_path / "repo"
+    config_raw = tmp_path / "config-raw"
+    cli_raw = tmp_path / "cli-raw"
+    for directory in (config_raw, cli_raw):
+        directory.mkdir()
+        (directory / "source.html").write_text("<html></html>", encoding="utf-8")
+        (directory / "source.md").write_text("body", encoding="utf-8")
+    config_path = tmp_path / "wiki_paths.toml"
+    config_path.write_text(
+        f"""
+[paths]
+raw_dir = "{config_raw}"
+""".strip(),
+        encoding="utf-8",
+    )
+    (repo_root / "state" / "reviews").mkdir(parents=True)
+    (repo_root / "wiki").mkdir()
+
+    status_cli.main(
+        [
+            "--repo-root",
+            str(repo_root),
+            "--paths-config",
+            str(config_path),
+            "--raw-dir",
+            str(cli_raw),
+            "--json",
+        ]
+    )
+    payload = json.loads(capsys.readouterr().out)
+
+    assert payload["sources"]["raw_html"] == 1
+
+
+def test_status_cli_missing_paths_config_returns_error(tmp_path: Path, caplog) -> None:
+    """An explicit missing config file should fail with a clear error."""
+    _bootstrap_repo(tmp_path)
+    missing = tmp_path / "missing.toml"
+
+    exit_code = status_cli.main(
+        [
+            "--repo-root",
+            str(tmp_path),
+            "--paths-config",
+            str(missing),
+        ]
+    )
+
+    assert exit_code == 2
+    assert "Path config file not found" in caplog.text
+
+
 def test_status_cli_text_output_contains_header(tmp_path: Path, capsys) -> None:
     """The CLI text report should include the status header."""
     _bootstrap_repo(tmp_path)

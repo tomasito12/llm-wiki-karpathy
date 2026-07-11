@@ -5,9 +5,15 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+import sys
 from pathlib import Path
 
-from src.ingest_review.paths import repo_root
+from src.wiki_paths.cli_helpers import (
+    add_paths_config_argument,
+    load_paths_for_cli,
+    resolve_cli_path,
+)
+from src.wiki_paths.config import WikiPathsConfigError
 from src.wiki_synthesis.cache_lint import CacheLintReport, lint_synthesis_cache
 from src.wiki_synthesis.planner import load_graph_export
 
@@ -16,21 +22,21 @@ LOGGER = logging.getLogger(__name__)
 
 def build_parser() -> argparse.ArgumentParser:
     """Build the wiki-synthesis-cache-lint argument parser."""
-    root = repo_root()
     parser = argparse.ArgumentParser(
         prog="wiki-synthesis-cache-lint",
         description="Validate Stage 2 synthesis cache entries against the current graph.",
     )
+    add_paths_config_argument(parser)
     parser.add_argument(
         "--graph-path",
         type=Path,
-        default=root / "state" / "wiki_render_graph.json",
+        default=None,
         help="Path to the wiki-render graph export.",
     )
     parser.add_argument(
         "--cache-dir",
         type=Path,
-        default=root / "state" / "synthesis",
+        default=None,
         help="Directory containing Stage 2 synthesis cache entries.",
     )
     parser.add_argument(
@@ -56,14 +62,21 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
     """Lint Stage 2 synthesis cache entries."""
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
-    args = build_parser().parse_args()
-    graph = load_graph_export(args.graph_path.resolve())
+    args = build_parser().parse_args(argv)
+    try:
+        paths = load_paths_for_cli(args)
+    except WikiPathsConfigError as exc:
+        LOGGER.error("%s", exc)
+        return 2
+    graph_path = resolve_cli_path(args.graph_path, configured=paths.graph_path)
+    cache_dir = resolve_cli_path(args.cache_dir, configured=paths.synthesis_dir)
+    graph = load_graph_export(graph_path)
     report = lint_synthesis_cache(
         graph,
-        cache_dir=args.cache_dir.resolve(),
+        cache_dir=cache_dir,
         category=args.category,
         entity=args.entity,
         include_missing=args.include_missing,
@@ -97,4 +110,4 @@ def _print_text_report(report: CacheLintReport) -> None:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    raise SystemExit(main(sys.argv[1:]))

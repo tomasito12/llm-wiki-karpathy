@@ -305,8 +305,7 @@ def test_build_recommendations_suggest_render_dry_run_after_cache_changes() -> N
     recommendations = build_recommendations(status)
 
     assert (
-        recommendations[0]
-        == "Run hatch run wiki-render --dry-run after synthesis cache changes."
+        recommendations[0] == "Run hatch run wiki-render --dry-run after synthesis cache changes."
     )
     assert "No render needed." not in recommendations
 

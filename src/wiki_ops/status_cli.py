@@ -12,9 +12,14 @@ from src.ingest_review.paths import repo_root
 from src.wiki_ops.status import (
     OpsStatusConfig,
     collect_ops_status,
-    default_config,
     format_text_report,
 )
+from src.wiki_paths.cli_helpers import (
+    add_paths_config_argument,
+    load_paths_for_cli,
+    resolve_cli_path,
+)
+from src.wiki_paths.config import WikiPathsConfigError
 
 LOGGER = logging.getLogger(__name__)
 
@@ -25,6 +30,7 @@ def build_parser() -> argparse.ArgumentParser:
         prog="wiki-ops-status",
         description="Summarize wiki source, review, render, synthesis, and artifact state.",
     )
+    add_paths_config_argument(parser)
     parser.add_argument(
         "--repo-root",
         type=Path,
@@ -90,39 +96,48 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Print the status report as JSON.",
     )
+    parser.add_argument(
+        "--paths-json",
+        action="store_true",
+        help="Print resolved wiki path configuration as JSON and exit.",
+    )
     return parser
 
 
 def config_from_args(args: argparse.Namespace) -> OpsStatusConfig:
     """Build status config from parsed CLI arguments."""
     repo = (args.repo_root or repo_root()).resolve()
-    defaults = default_config(repo)
+    paths = load_paths_for_cli(args, repo_root_override=repo)
     return OpsStatusConfig(
         repo_root=repo,
-        raw_dir=_resolve_path_arg(args.raw_dir, defaults.raw_dir),
-        reviews_dir=_resolve_path_arg(args.reviews_dir, defaults.reviews_dir),
-        wiki_dir=_resolve_path_arg(args.wiki_dir, defaults.wiki_dir),
-        graph_path=_resolve_path_arg(args.graph_path, defaults.graph_path),
-        manifest_path=_resolve_path_arg(args.manifest_path, defaults.manifest_path),
-        synthesis_cache_dir=_resolve_path_arg(
+        raw_dir=resolve_cli_path(args.raw_dir, configured=paths.raw_dir),
+        reviews_dir=resolve_cli_path(args.reviews_dir, configured=paths.reviews_dir),
+        wiki_dir=resolve_cli_path(args.wiki_dir, configured=paths.wiki_dir),
+        graph_path=resolve_cli_path(args.graph_path, configured=paths.graph_path),
+        manifest_path=resolve_cli_path(args.manifest_path, configured=paths.manifest_path),
+        synthesis_cache_dir=resolve_cli_path(
             args.synthesis_cache_dir,
-            defaults.synthesis_cache_dir,
+            configured=paths.synthesis_dir,
         ),
-        preview_dir=_resolve_path_arg(args.preview_dir, defaults.preview_dir),
-        run_dir=_resolve_path_arg(args.run_dir, defaults.run_dir),
-        backup_dir=_resolve_path_arg(args.backup_dir, defaults.backup_dir),
+        preview_dir=resolve_cli_path(args.preview_dir, configured=paths.preview_dir),
+        run_dir=resolve_cli_path(args.run_dir, configured=paths.run_dir),
+        backup_dir=resolve_cli_path(args.backup_dir, configured=paths.backup_dir),
     )
-
-
-def _resolve_path_arg(explicit: Path | None, default: Path) -> Path:
-    """Return an explicit CLI path or the default derived from repo root."""
-    return explicit.resolve() if explicit is not None else default.resolve()
 
 
 def main(argv: list[str] | None = None) -> int:
     """Collect and print wiki operations status."""
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
     args = build_parser().parse_args(argv)
+    repo = (args.repo_root or repo_root()).resolve()
+    try:
+        paths = load_paths_for_cli(args, repo_root_override=repo)
+    except WikiPathsConfigError as exc:
+        LOGGER.error("%s", exc)
+        return 2
+    if args.paths_json:
+        print(json.dumps(paths.to_dict(), indent=2, sort_keys=True))
+        return 0
     config = config_from_args(args)
     status = collect_ops_status(config)
     if args.json:
