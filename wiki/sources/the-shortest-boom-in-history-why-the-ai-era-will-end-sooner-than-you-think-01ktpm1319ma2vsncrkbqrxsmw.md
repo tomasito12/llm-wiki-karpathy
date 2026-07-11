@@ -18,6 +18,9 @@ assessed_as_of: '2026-05-23'
 ingested_at: '2026-06-16T01:35:44+00:00'
 canonical_url: https://medium.com/design-bootcamp/the-shortest-boom-in-history-why-the-ai-era-will-end-sooner-than-you-think-7053ff14a493
 content_sha256: 4e3f7df372c4a6ab15984ee3055e59899a66e414222c1420c2aa1239f3d41365
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/ai-governance-as-product-surface.md
 - topics/ai-products-shift-from-models-to-systems.md
@@ -64,3 +67,21 @@ The main tension is that the article predicts the end of the AI era while simult
 - Canonical URL: https://medium.com/design-bootcamp/the-shortest-boom-in-history-why-the-ai-era-will-end-sooner-than-you-think-7053ff14a493
 - Raw markdown: `raw/readwise/the-shortest-boom-in-history-why-the-ai-era-will-end-sooner-than-you-think-01ktpm1319ma2vsncrkbqrxsmw.md`
 - Raw HTML: `raw/readwise/the-shortest-boom-in-history-why-the-ai-era-will-end-sooner-than-you-think-01ktpm1319ma2vsncrkbqrxsmw.html`
+
+## Full source text
+
+---
+readwise_id: "01ktpm1319ma2vsncrkbqrxsmw"
+title: "The shortest boom in history: why the “AI Era” will end sooner than you think."
+author: "Aashray Iyer"
+publication: "Medium"
+source_url: "https://medium.com/design-bootcamp/the-shortest-boom-in-history-why-the-ai-era-will-end-sooner-than-you-think-7053ff14a493"
+category: "article"
+location: "archive"
+published_date: "2026-05-23"
+saved_at: "2026-06-09T16:39:09.097000+00:00"
+updated_at: "2026-06-11T05:20:51.249115+00:00"
+tags: ["processed"]
+---
+
+The AI revolution is happening very fast and may end as a distinct era sooner than we expect. AI will become a normal part of daily life, like electricity or the internet. The future focus will be on using AI wisely and making technology human-friendly, not on creating smarter AI.

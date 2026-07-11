@@ -17,6 +17,9 @@ assessed_as_of: '2026-04-01'
 ingested_at: '2026-06-06T21:56:28+00:00'
 canonical_url: https://medium.com/@justtalkingtech/i-tried-every-second-brain-app-the-concept-is-the-problem-not-the-tools-5015de4c8812
 content_sha256: 979cde15fed85cbb49d4dce260f59bc85f4437fa26f8b1bbe306dab9e162c83a
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/apple-notes.md
 derived_topics:
@@ -67,3 +70,22 @@ The article’s central claim is persuasive but still mostly based on frustratio
 - Canonical URL: https://medium.com/@justtalkingtech/i-tried-every-second-brain-app-the-concept-is-the-problem-not-the-tools-5015de4c8812
 - Raw markdown: `raw/readwise/i-tried-every-second-brain-app-the-concept-is-the-problem-not-the-tools-01kqz05cbff09t9k3w39ea9n7q.md`
 - Raw HTML: `raw/readwise/i-tried-every-second-brain-app-the-concept-is-the-problem-not-the-tools-01kqz05cbff09t9k3w39ea9n7q.html`
+
+## Full source text
+
+---
+readwise_id: 01kqz05cbff09t9k3w39ea9n7q
+title: I Tried Every “Second Brain” App. The Concept Is the Problem, Not the Tools.
+author: Nadia Okafor
+source_url: https://medium.com/@justtalkingtech/i-tried-every-second-brain-app-the-concept-is-the-problem-not-the-tools-5015de4c8812
+category: article
+location: archive
+published_date: '2026-04-01'
+saved_at: '2026-05-06T15:58:02.606000+00:00'
+updated_at: '2026-05-06T17:33:35.682639+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+The author tried six popular "second brain" apps but found they all failed because they require you to stop and write notes during busy work. The real problem is not the tools but the concept, which demands effort when you have the least time. Simple tools like Apple Notes work better because they ask for less attention.

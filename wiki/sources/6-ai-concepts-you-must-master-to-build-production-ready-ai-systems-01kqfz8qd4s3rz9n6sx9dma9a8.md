@@ -17,6 +17,9 @@ assessed_as_of: '2026-04-29'
 ingested_at: '2026-06-07T19:50:15.397694+00:00'
 canonical_url: https://medium.com/towards-artificial-intelligence/you-cant-build-ai-systems-without-understanding-these-6-concepts-first-bf20b8469f0d
 content_sha256: eed3da87515e828af52ffc6266690f7443f349021a2dee47540443649e7e3dd1
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/context-engineering.md
 - topics/retrieval-systems.md
@@ -63,3 +66,22 @@ The article makes some strong-sounding simplifications, especially the claim tha
 - Canonical URL: https://medium.com/towards-artificial-intelligence/you-cant-build-ai-systems-without-understanding-these-6-concepts-first-bf20b8469f0d
 - Raw markdown: `raw/readwise/6-ai-concepts-you-must-master-to-build-production-ready-ai-systems-01kqfz8qd4s3rz9n6sx9dma9a8.md`
 - Raw HTML: `raw/readwise/6-ai-concepts-you-must-master-to-build-production-ready-ai-systems-01kqfz8qd4s3rz9n6sx9dma9a8.html`
+
+## Full source text
+
+---
+readwise_id: 01kqfz8qd4s3rz9n6sx9dma9a8
+title: 6 AI Concepts You Must Master to Build Production-Ready AI Systems
+author: Divy Yadav
+source_url: https://medium.com/towards-artificial-intelligence/you-cant-build-ai-systems-without-understanding-these-6-concepts-first-bf20b8469f0d
+category: article
+location: archive
+published_date: '2026-04-29'
+saved_at: '2026-04-30T19:53:47.171000+00:00'
+updated_at: '2026-05-02T14:22:24.029118+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+Every AI system is built from six key concepts: tokens, embeddings, retrieval-augmented generation (RAG), agents, evaluations, and context engineering. Understanding these ideas helps engineers diagnose problems and build reliable AI that works well in production. Context engineering is especially important because it controls what information the AI sees and ensures consistent, useful results.

@@ -15,6 +15,9 @@ assessed_as_of: '2026-04-26'
 ingested_at: '2026-05-21T14:36:33.129731+00:00'
 canonical_url: https://medium.com/towards-deep-learning/openai-just-open-sourced-the-one-thing-every-startup-should-have-built-first-5792ed30c519
 content_sha256: 15b20839b101cddd5ac5426c258aafdb30d67df6e0f34c21c8c17ff38845e56a
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/bioes-tagging.md
 derived_how_to:
@@ -73,3 +76,22 @@ The piece is persuasive, but its strongest claims lean on OpenAI’s own benchma
 - Canonical URL: https://medium.com/towards-deep-learning/openai-just-open-sourced-the-one-thing-every-startup-should-have-built-first-5792ed30c519
 - Raw markdown: `raw/readwise/openai-just-open-sourced-the-one-thing-every-startup-should-have-built-first-01kqn8asyw9tae3fncffmy92cc.md`
 - Raw HTML: `raw/readwise/openai-just-open-sourced-the-one-thing-every-startup-should-have-built-first-01kqn8asyw9tae3fncffmy92cc.html`
+
+## Full source text
+
+---
+readwise_id: 01kqn8asyw9tae3fncffmy92cc
+title: OpenAI Just Open-Sourced the One Thing Every Startup Should Have Built First
+author: Sumit Pandey
+source_url: https://medium.com/towards-deep-learning/openai-just-open-sourced-the-one-thing-every-startup-should-have-built-first-5792ed30c519
+category: article
+location: archive
+published_date: '2026-04-26'
+saved_at: '2026-05-02T21:08:24.668000+00:00'
+updated_at: '2026-05-03T12:46:22.429920+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+OpenAI released Privacy Filter, a small open-source model that masks personal data locally before it reaches cloud APIs. This helps startups comply with privacy laws like GDPR by preventing sensitive info from being sent to third parties. It runs on laptops, is easy to fine-tune, and is free to use under Apache 2.0 license.

@@ -16,6 +16,9 @@ assessed_as_of: '2026-05-04'
 ingested_at: '2026-06-06T15:52:35.509202+00:00'
 canonical_url: https://medium.com/@markchen69/llm-wiki-is-not-a-magic-knowledge-machine-192b50a76a9f
 content_sha256: dc23d1708d5076c4cee782081e987154d65b745aa812e808eb0f350c2e255cba
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/agent-maintained-knowledge-bases.md
 - topics/bounded-corpus-synthesis.md
@@ -62,3 +65,22 @@ The article is strongest when it rejects the ‘magic second brain’ framing; t
 - Canonical URL: https://medium.com/@markchen69/llm-wiki-is-not-a-magic-knowledge-machine-192b50a76a9f
 - Raw markdown: `raw/readwise/llm-wiki-is-not-a-magic-knowledge-machine-01kr3260161c3pjnj82vv448g4.md`
 - Raw HTML: `raw/readwise/llm-wiki-is-not-a-magic-knowledge-machine-01kr3260161c3pjnj82vv448g4.html`
+
+## Full source text
+
+---
+readwise_id: 01kr3260161c3pjnj82vv448g4
+title: LLM Wiki Is Not a Magic Knowledge Machine
+author: Mark Chen
+source_url: https://medium.com/@markchen69/llm-wiki-is-not-a-magic-knowledge-machine-192b50a76a9f
+category: article
+location: archive
+published_date: '2026-05-04'
+saved_at: '2026-05-08T05:50:17.637000+00:00'
+updated_at: '2026-05-08T06:16:33.808577+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+LLM Wiki helps AI handle the boring maintenance work of organizing knowledge while humans make important decisions. It works best for focused, related topics, not as a catch-all personal brain. The key idea is that AI supports ongoing upkeep, but humans stay in charge of what matters.

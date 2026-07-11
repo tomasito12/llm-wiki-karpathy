@@ -16,6 +16,9 @@ assessed_as_of: '2026-04-24'
 ingested_at: '2026-06-02T20:34:10.508650+00:00'
 canonical_url: https://medium.com/write-a-catalyst/the-3-claude-prompts-worth-stealing-today-44cbee166a5b
 content_sha256: fd68902107641806f2ae16c87d05d99c7739633c133cfdee54957a3924a8c8d5
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/context-engineering.md
 - topics/prompts-as-workflows.md
@@ -58,3 +61,22 @@ The article’s strongest claim is that better prompts are really better briefs,
 - Canonical URL: https://medium.com/write-a-catalyst/the-3-claude-prompts-worth-stealing-today-44cbee166a5b
 - Raw markdown: `raw/readwise/the-3-claude-prompts-worth-stealing-today-01kqkybgz2w3786bcejsy8qacb.md`
 - Raw HTML: `raw/readwise/the-3-claude-prompts-worth-stealing-today-01kqkybgz2w3786bcejsy8qacb.html`
+
+## Full source text
+
+---
+readwise_id: 01kqkybgz2w3786bcejsy8qacb
+title: The 3 Claude Prompts Worth Stealing Today
+author: Gabriel Isaac
+source_url: https://medium.com/write-a-catalyst/the-3-claude-prompts-worth-stealing-today-44cbee166a5b
+category: article
+location: archive
+published_date: '2026-04-24'
+saved_at: '2026-05-02T08:54:47.435000+00:00'
+updated_at: '2026-05-02T14:21:38.750614+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+These prompts are simple, but they reveal a smarter way to learn, build, and monetize AI.

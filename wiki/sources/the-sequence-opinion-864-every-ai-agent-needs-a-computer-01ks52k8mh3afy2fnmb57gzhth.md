@@ -14,6 +14,9 @@ assessed_as_of: '2026-05-21'
 ingested_at: '2026-06-08T19:44:13.016998+00:00'
 canonical_url: https://thesequence.substack.com/p/the-sequence-opinion-864-every-ai
 content_sha256: 473872b1eb74d8b2026159c7a5516103a9b71fc66d72acf4ac1c818cc5c54d58
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/agent-runtime-architecture.md
 - topics/self-hosted-agent-execution.md
@@ -60,3 +63,21 @@ The article presents a strong architectural thesis, but it is still a thesis. It
 - Canonical URL: https://thesequence.substack.com/p/the-sequence-opinion-864-every-ai
 - Raw markdown: `raw/readwise/the-sequence-opinion-864-every-ai-agent-needs-a-computer-01ks52k8mh3afy2fnmb57gzhth.md`
 - Raw HTML: `raw/readwise/the-sequence-opinion-864-every-ai-agent-needs-a-computer-01ks52k8mh3afy2fnmb57gzhth.html`
+
+## Full source text
+
+---
+readwise_id: "01ks52k8mh3afy2fnmb57gzhth"
+title: "The Sequence Opinion #864: Every AI Agent Needs a Computer"
+author: "Jesus Rodriguez"
+publication: "substack.com"
+source_url: "https://thesequence.substack.com/p/the-sequence-opinion-864-every-ai"
+category: "rss"
+location: "archive"
+published_date: "2026-05-21"
+saved_at: "2026-05-21T10:51:40.122000+00:00"
+updated_at: "2026-06-01T09:13:00.110661+00:00"
+tags: ["processed"]
+---
+
+The future of AI agents depends on giving them access to real computers, not just better models. AI needs a safe, programmable space to write code, run commands, and interact with the environment. This approach lets AI act like a worker, not just a brain in a jar.

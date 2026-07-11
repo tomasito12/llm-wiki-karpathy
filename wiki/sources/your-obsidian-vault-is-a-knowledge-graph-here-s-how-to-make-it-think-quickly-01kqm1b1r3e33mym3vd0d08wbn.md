@@ -25,6 +25,9 @@ assessed_as_of: '2026-04-14'
 ingested_at: '2026-06-08T19:32:56.550336+00:00'
 canonical_url: https://medium.com/graph-praxis/your-obsidian-vault-is-a-knowledge-graph-heres-how-to-make-it-think-quickly-1487614a7682
 content_sha256: befe38869bd1be1bbeadb52a69e9f9a6ae1c289e8b5a2ca4df647e285aaffd6f
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/claude-skills-setup.md
 derived_tools:
@@ -79,3 +82,22 @@ The article sometimes treats a personal workflow as broadly transferable, but mo
 - Canonical URL: https://medium.com/graph-praxis/your-obsidian-vault-is-a-knowledge-graph-heres-how-to-make-it-think-quickly-1487614a7682
 - Raw markdown: `raw/readwise/your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn.md`
 - Raw HTML: `raw/readwise/your-obsidian-vault-is-a-knowledge-graph-here-s-how-to-make-it-think-quickly-01kqm1b1r3e33mym3vd0d08wbn.html`
+
+## Full source text
+
+---
+readwise_id: 01kqm1b1r3e33mym3vd0d08wbn
+title: Your Obsidian Vault Is a Knowledge Graph. Here’s How to Make It Think (quickly).
+author: Alexander Shereshevsky
+source_url: https://medium.com/graph-praxis/your-obsidian-vault-is-a-knowledge-graph-heres-how-to-make-it-think-quickly-1487614a7682
+category: article
+location: archive
+published_date: '2026-04-14'
+saved_at: '2026-05-02T09:46:58.178000+00:00'
+updated_at: '2026-05-02T14:21:28.041741+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+Following the yes LLM Wiki / no LLM Wiki debate, I want to share my experience from the last five years of building a second brain in…

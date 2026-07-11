@@ -20,6 +20,9 @@ assessed_as_of: '2025-11-15'
 ingested_at: '2026-06-09T16:53:39.011022+00:00'
 canonical_url: https://medium.com/@yezi.li_jla/behind-the-scene-of-conversational-ai-agent-ae6fb6e5f57c
 content_sha256: c5f9cdf70e839fb22ef42d058abbe9d0cee364054c12721a7ff3128a4cb8519e
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/agent-workflow-vs-workflow-orchestration.md
 - topics/rag-as-grounded-retrieval.md
@@ -66,3 +69,22 @@ The post simplifies agents into three traits, which is useful pedagogically but 
 - Canonical URL: https://medium.com/@yezi.li_jla/behind-the-scene-of-conversational-ai-agent-ae6fb6e5f57c
 - Raw markdown: `raw/readwise/behind-the-scene-of-conversational-ai-agent-01kqh0spkgqy5bvsgb7w50yb4h.md`
 - Raw HTML: `raw/readwise/behind-the-scene-of-conversational-ai-agent-01kqh0spkgqy5bvsgb7w50yb4h.html`
+
+## Full source text
+
+---
+readwise_id: 01kqh0spkgqy5bvsgb7w50yb4h
+title: Behind the scene of conversational ai agent
+author: Yezi Li
+source_url: https://medium.com/@yezi.li_jla/behind-the-scene-of-conversational-ai-agent-ae6fb6e5f57c
+category: article
+location: archive
+published_date: '2025-11-15'
+saved_at: '2026-05-01T05:39:46.416000+00:00'
+updated_at: '2026-05-02T14:21:59.695152+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+In this post we are going to look at some hot concepts in building an ai assistant or an ai agent and decode the underlying factors of a…

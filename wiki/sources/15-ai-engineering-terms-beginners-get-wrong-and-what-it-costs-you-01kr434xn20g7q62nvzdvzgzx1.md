@@ -19,6 +19,9 @@ assessed_as_of: '2026-04-21'
 ingested_at: '2026-06-06T14:27:27.445074+00:00'
 canonical_url: https://medium.com/ai-engineering-simplified/15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-70ffd002a4c0
 content_sha256: a6c7e7341202e481995a65103df53eea9c90a836513e622edc95de6038e2ca1c
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/ai-orchestration-over-model-tuning.md
 - topics/context-engineering.md
@@ -65,3 +68,22 @@ The strongest tension in the piece is its repeated insistence that simple soluti
 - Canonical URL: https://medium.com/ai-engineering-simplified/15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-70ffd002a4c0
 - Raw markdown: `raw/readwise/15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-01kr434xn20g7q62nvzdvzgzx1.md`
 - Raw HTML: `raw/readwise/15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-01kr434xn20g7q62nvzdvzgzx1.html`
+
+## Full source text
+
+---
+readwise_id: 01kr434xn20g7q62nvzdvzgzx1
+title: 15 AI Engineering Terms — Beginners Get Wrong (And What It Costs You)
+author: Divy Yadav
+source_url: https://medium.com/ai-engineering-simplified/15-ai-engineering-terms-beginners-get-wrong-and-what-it-costs-you-70ffd002a4c0
+category: article
+location: archive
+published_date: '2026-04-21'
+saved_at: '2026-05-08T15:26:25.442000+00:00'
+updated_at: '2026-05-08T15:30:29.322196+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+Many AI engineering mistakes come from misunderstanding basic concepts like how language models use tokens and context. Simple, clear prompts and proper data retrieval often solve problems better than fine-tuning or complex systems. Focus on building simple, well-evaluated systems before adding complexity to avoid costly errors.

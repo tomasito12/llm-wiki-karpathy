@@ -16,6 +16,9 @@ assessed_as_of: '2026-03-23'
 ingested_at: '2026-06-06T21:46:11+00:00'
 canonical_url: https://cursor.com/blog/fast-regex-search
 content_sha256: f7f4c98667411e9d05ed90e4b31d71bee26f773acfc9499e3aa0807a43f9bed3
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/regex-search-indexing.md
 - topics/sparse-n-grams.md
@@ -62,3 +65,22 @@ The article is strongest when describing known indexing ideas and Cursor’s imp
 - Canonical URL: https://cursor.com/blog/fast-regex-search
 - Raw markdown: `raw/readwise/fast-regex-search-indexing-text-for-agent-tools-01kr1qhvcq7gpqprnhvmvc1bbz.md`
 - Raw HTML: `raw/readwise/fast-regex-search-indexing-text-for-agent-tools-01kr1qhvcq7gpqprnhvmvc1bbz.html`
+
+## Full source text
+
+---
+readwise_id: 01kr1qhvcq7gpqprnhvmvc1bbz
+title: 'Fast regex search: indexing text for agent tools'
+author: Cursor Blog
+source_url: https://cursor.com/blog/fast-regex-search
+category: rss
+location: archive
+published_date: '2026-03-23'
+saved_at: '2026-05-07T17:25:08.335000+00:00'
+updated_at: '2026-05-08T09:54:02.649822+00:00'
+tags:
+- processed
+publication: Cursor
+---
+
+This text explains how indexing with trigrams helps speed up regular expression searches in code. It shows that building these indexes on users' machines makes searches faster and more current. The goal is to avoid scanning all files by quickly finding likely matches.

@@ -22,6 +22,9 @@ assessed_as_of: '2026-02-22'
 ingested_at: '2026-06-08T20:14:40.903085+00:00'
 canonical_url: https://medium.com/@pankaj_pandey/the-best-rag-architectures-for-ai-agents-every-developer-must-know-434c97cf1645
 content_sha256: fdf7182842c362b81906f259d6d4057b53e9a3ac1fdfb7c84214b6a08ecd6359
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/langgraph.md
 derived_topics:
@@ -72,3 +75,22 @@ The strongest claim is that the old retrieve-then-generate pipeline is â€œdead,â
 - Canonical URL: https://medium.com/@pankaj_pandey/the-best-rag-architectures-for-ai-agents-every-developer-must-know-434c97cf1645
 - Raw markdown: `raw/readwise/the-best-rag-architectures-for-ai-agents-every-developer-must-know-01kqkzctgpjxtkpzxn009b6tgj.md`
 - Raw HTML: `raw/readwise/the-best-rag-architectures-for-ai-agents-every-developer-must-know-01kqkzctgpjxtkpzxn009b6tgj.html`
+
+## Full source text
+
+---
+readwise_id: 01kqkzctgpjxtkpzxn009b6tgj
+title: The Best RAG Architectures for AI Agents Every Developer Must Know
+author: Pankaj
+source_url: https://medium.com/@pankaj_pandey/the-best-rag-architectures-for-ai-agents-every-developer-must-know-434c97cf1645
+category: article
+location: archive
+published_date: '2026-02-22'
+saved_at: '2026-05-02T09:12:59.158000+00:00'
+updated_at: '2026-05-02T14:21:32.027015+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+Most RAG tutorials are still teaching old patterns, here is what the industry actually shifted to, with code we can run.

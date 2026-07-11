@@ -15,6 +15,9 @@ assessed_as_of: '2026-03-10'
 ingested_at: '2026-06-05T16:37:56.622044+00:00'
 canonical_url: https://medium.com/the-mac-alchemist/1password-vs-apple-passwords-the-only-comparison-you-need-before-your-next-renewal-a9b4aa19c81e
 content_sha256: 3c72ebf7c838f96b1983cff6a038d449b0e90b4cce16b7b9cbe320c65c63ae0a
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/1password.md
 derived_pages:
@@ -54,3 +57,21 @@ The article’s strongest claims are persuasive at the user-experience level, bu
 - Canonical URL: https://medium.com/the-mac-alchemist/1password-vs-apple-passwords-the-only-comparison-you-need-before-your-next-renewal-a9b4aa19c81e
 - Raw markdown: `raw/readwise/1password-vs-apple-passwords-the-only-comparison-you-need-before-your-next-renewal-01krjqv65fws03dx3ga13t0mzc.md`
 - Raw HTML: `raw/readwise/1password-vs-apple-passwords-the-only-comparison-you-need-before-your-next-renewal-01krjqv65fws03dx3ga13t0mzc.html`
+
+## Full source text
+
+---
+readwise_id: "01krjqv65fws03dx3ga13t0mzc"
+title: "1Password vs Apple Passwords: The Only Comparison You Need Before Your Next Renewal"
+author: "Nihal Shah"
+publication: "Medium"
+source_url: "https://medium.com/the-mac-alchemist/1password-vs-apple-passwords-the-only-comparison-you-need-before-your-next-renewal-a9b4aa19c81e"
+category: "article"
+location: "archive"
+published_date: "2026-03-10"
+saved_at: "2026-05-14T07:57:28.623000+00:00"
+updated_at: "2026-05-16T21:15:41.890143+00:00"
+tags: ["processed"]
+---
+
+1Password is a powerful, cross-platform password manager with many features, but it costs money and may be more than some need. Apple Passwords is free and works well for simple password needs within Apple devices but lacks advanced features and broad compatibility. The author plans to keep 1Password until 2027 and hopes Apple Passwords improves enough to make switching easier.

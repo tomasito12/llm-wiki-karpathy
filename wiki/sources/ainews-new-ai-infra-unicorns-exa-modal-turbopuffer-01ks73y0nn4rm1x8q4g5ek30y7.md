@@ -18,6 +18,9 @@ assessed_as_of: '2026-05-22'
 ingested_at: '2026-06-09T16:50:04.930969+00:00'
 canonical_url: mailto:reader-forwarded-email/564e1345c8c55bc25641782459460c13
 content_sha256: 93598e5ac5b8ee23a77ae504dc2791a4e78bd6143f8c4109ae68abb014f5aacf
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-05/ainews-new-ai-infra-unicorns-exa-modal-turbopuffer-01ks73y0nn4rm1x8q4g5ek30y7-agent-products-are-moving-from-chat-surfaces-to-persistent-cross-device-operators.md
 - signals/2026-05/ainews-new-ai-infra-unicorns-exa-modal-turbopuffer-01ks73y0nn4rm1x8q4g5ek30y7-harness-design-remains-a-first-order-source-of-agent-gains.md
@@ -64,3 +67,21 @@ The roundup repeatedly highlights impressive numbers, but some of them come from
 - Canonical URL: mailto:reader-forwarded-email/564e1345c8c55bc25641782459460c13
 - Raw markdown: `raw/readwise/ainews-new-ai-infra-unicorns-exa-modal-turbopuffer-01ks73y0nn4rm1x8q4g5ek30y7.md`
 - Raw HTML: `raw/readwise/ainews-new-ai-infra-unicorns-exa-modal-turbopuffer-01ks73y0nn4rm1x8q4g5ek30y7.html`
+
+## Full source text
+
+---
+readwise_id: "01ks73y0nn4rm1x8q4g5ek30y7"
+title: "[AINews] New AI Infra unicorns: Exa, Modal, TurboPuffer"
+author: "AINews"
+publication: "Substack"
+source_url: "mailto:reader-forwarded-email/564e1345c8c55bc25641782459460c13"
+category: "email"
+location: "archive"
+published_date: "2026-05-22"
+saved_at: "2026-05-22T05:53:32.853000+00:00"
+updated_at: "2026-05-25T09:55:45.436412+00:00"
+tags: ["processed"]
+---
+
+Three AI infrastructure companies, Turbopuffer, Exa, and Modal, have raised large funds and reached high valuations. New research advances include faster AI training methods and better coding tools. The AI compute market is growing fast, with big investments in hardware and cloud services.

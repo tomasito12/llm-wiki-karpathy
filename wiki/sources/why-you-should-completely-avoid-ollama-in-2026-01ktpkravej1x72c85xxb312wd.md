@@ -19,6 +19,9 @@ assessed_as_of: '2026-05-23'
 ingested_at: '2026-06-16T15:22:27+00:00'
 canonical_url: https://blog.gopenai.com/why-you-should-completely-avoid-ollama-in-2026-6135d9e8591e
 content_sha256: 6feb141f6d465d94fbe5b7e716aa7841f5d56efb0186848e847da22af5f2d5e6
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/ollama.md
 derived_topics:
@@ -69,3 +72,21 @@ The article is persuasive but strongly one-sided. It treats benchmark gaps and i
 - Canonical URL: https://blog.gopenai.com/why-you-should-completely-avoid-ollama-in-2026-6135d9e8591e
 - Raw markdown: `raw/readwise/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd.md`
 - Raw HTML: `raw/readwise/why-you-should-completely-avoid-ollama-in-2026-01ktpkravej1x72c85xxb312wd.html`
+
+## Full source text
+
+---
+readwise_id: "01ktpkravej1x72c85xxb312wd"
+title: "Why You Should Completely Avoid Ollama in 2026"
+author: "Andrew Zhu"
+publication: "Medium"
+source_url: "https://blog.gopenai.com/why-you-should-completely-avoid-ollama-in-2026-6135d9e8591e"
+category: "article"
+location: "archive"
+published_date: "2026-05-23"
+saved_at: "2026-06-09T16:34:22.190000+00:00"
+updated_at: "2026-06-15T18:28:12.771034+00:00"
+tags: ["processed"]
+---
+
+Ollama was once a simple tool for running local AI models but is now slower and less reliable than alternatives like llama.cpp. It locked users into proprietary formats, broke trust by hiding credits, and pushed an unreliable cloud service. Better, faster, and more open-source-friendly options exist, so you should switch away from Ollama in 2026.

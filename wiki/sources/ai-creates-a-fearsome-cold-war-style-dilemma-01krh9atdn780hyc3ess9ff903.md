@@ -17,6 +17,9 @@ assessed_as_of: '2026-05-09'
 ingested_at: '2026-05-25T15:43:25.726569+00:00'
 canonical_url: https://www.economist.com/china/2026/05/07/ai-creates-a-fearsome-cold-war-style-dilemma
 content_sha256: 1ade4b441bbaa731742d6758f0ec78b2e767fcd94879a3744f7444ff76875e50
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/frontier-models-as-national-infrastructure.md
 - topics/geopolitics-of-ai-safety.md
@@ -66,3 +69,21 @@ The article presents cooperation as rational, but its own evidence shows why eac
 - Canonical URL: https://www.economist.com/china/2026/05/07/ai-creates-a-fearsome-cold-war-style-dilemma
 - Raw markdown: `raw/readwise/ai-creates-a-fearsome-cold-war-style-dilemma-01krh9atdn780hyc3ess9ff903.md`
 - Raw HTML: `raw/readwise/ai-creates-a-fearsome-cold-war-style-dilemma-01krh9atdn780hyc3ess9ff903.html`
+
+## Full source text
+
+---
+readwise_id: "01krh9atdn780hyc3ess9ff903"
+title: "AI creates a fearsome cold-war-style dilemma"
+author: "The Economist"
+publication: "Economist"
+source_url: "https://www.economist.com/china/2026/05/07/ai-creates-a-fearsome-cold-war-style-dilemma"
+category: "article"
+location: "archive"
+published_date: "2026-05-09"
+saved_at: "2026-05-13T18:24:37.812000+00:00"
+updated_at: "2026-05-16T21:51:50.286650+00:00"
+tags: ["processed"]
+---
+
+America and China both see artificial intelligence as very important but also risky, like the atomic bomb was during the Cold War. They want to work together on AI safety but do not fully trust each other. Talks and cooperation are slow because both worry about losing their advantage.

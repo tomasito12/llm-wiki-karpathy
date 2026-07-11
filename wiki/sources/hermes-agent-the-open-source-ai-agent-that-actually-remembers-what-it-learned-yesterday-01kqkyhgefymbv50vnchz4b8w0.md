@@ -25,6 +25,9 @@ assessed_as_of: '2026-04-14'
 ingested_at: '2026-06-06T15:43:00.698391+00:00'
 canonical_url: https://medium.com/@creativeaininja/hermes-agent-the-open-source-ai-agent-that-actually-remembers-what-it-learned-yesterday-278441cd1870
 content_sha256: 8cda6ea59f00fa80c259353b48cbfa6fef8b53838b223a9a0175c99b2e2ffd73
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/hermes-agent.md
 derived_topics:
@@ -75,3 +78,23 @@ The article’s strongest claims lean on vendor-reported numbers and product nar
 - Canonical URL: https://medium.com/@creativeaininja/hermes-agent-the-open-source-ai-agent-that-actually-remembers-what-it-learned-yesterday-278441cd1870
 - Raw markdown: `raw/readwise/hermes-agent-the-open-source-ai-agent-that-actually-remembers-what-it-learned-yesterday-01kqkyhgefymbv50vnchz4b8w0.md`
 - Raw HTML: `raw/readwise/hermes-agent-the-open-source-ai-agent-that-actually-remembers-what-it-learned-yesterday-01kqkyhgefymbv50vnchz4b8w0.html`
+
+## Full source text
+
+---
+readwise_id: 01kqkyhgefymbv50vnchz4b8w0
+title: 'Hermes Agent: The Open-Source AI Agent That Actually Remembers What It Learned
+  Yesterday'
+author: Kristopher Dunham
+source_url: https://medium.com/@creativeaininja/hermes-agent-the-open-source-ai-agent-that-actually-remembers-what-it-learned-yesterday-278441cd1870
+category: article
+location: archive
+published_date: '2026-04-14'
+saved_at: '2026-05-02T08:58:03.189000+00:00'
+updated_at: '2026-05-02T14:21:37.881620+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+Every AI agent you’ve used has the same problem. You teach it something on Monday. By Tuesday, it’s forgotten everything. You’re back to…

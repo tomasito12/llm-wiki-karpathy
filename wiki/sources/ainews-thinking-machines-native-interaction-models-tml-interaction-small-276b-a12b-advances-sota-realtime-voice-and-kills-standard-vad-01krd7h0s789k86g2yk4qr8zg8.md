@@ -20,6 +20,9 @@ assessed_as_of: '2026-05-12'
 ingested_at: '2026-05-17T15:41:25.055301+00:00'
 canonical_url: https://www.latent.space/p/ainews-thinking-machines-native-interaction
 content_sha256: 186b323609845dea64edef817bcd1d8d868d02e7b4feb0a02fdee2f602783d92
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/continuous-time-interaction.md
 - glossary/mixture-of-experts.md
@@ -90,3 +93,21 @@ The piece pushes against the familiar chatbot framing, but the evidence is still
 - Canonical URL: https://www.latent.space/p/ainews-thinking-machines-native-interaction
 - Raw markdown: `raw/readwise/ainews-thinking-machines-native-interaction-models-tml-interaction-small-276b-a12b-advances-sota-realtime-voice-and-kills-standard-vad-01krd7h0s789k86g2yk4qr8zg8.md`
 - Raw HTML: `raw/readwise/ainews-thinking-machines-native-interaction-models-tml-interaction-small-276b-a12b-advances-sota-realtime-voice-and-kills-standard-vad-01krd7h0s789k86g2yk4qr8zg8.html`
+
+## Full source text
+
+---
+readwise_id: "01krd7h0s789k86g2yk4qr8zg8"
+title: "[AINews] Thinking Machines' Native Interaction Models - TML-Interaction-Small 276B-A12B - advances SOTA Realtime Voice and kills standard VAD"
+author: "Latent Space"
+publication: "latent.space"
+source_url: "https://www.latent.space/p/ainews-thinking-machines-native-interaction"
+category: "rss"
+location: "archive"
+published_date: "2026-05-12"
+saved_at: "2026-05-12T04:36:03.055000+00:00"
+updated_at: "2026-05-13T21:28:28.511162+00:00"
+tags: ["processed"]
+---
+
+well done, Team Thinky.

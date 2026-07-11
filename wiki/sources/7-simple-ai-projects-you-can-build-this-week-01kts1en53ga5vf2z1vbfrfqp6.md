@@ -23,6 +23,9 @@ assessed_as_of: '2026-05-18'
 ingested_at: '2026-06-17T15:48:19.966878+00:00'
 canonical_url: https://blog.howtoprofitai.com/ai-projects-you-can-build-this-week-ae701ebbf485
 content_sha256: d404faf60330f1c6ea3ac220b6f36acbeba0bce985e8a56a4282ea08ce55e2a0
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/competitor-change-monitoring.md
 - how-to/content-repurposing-pipeline.md
@@ -80,3 +83,21 @@ The article presents these automations as weekend-friendly and broadly accessibl
 - Canonical URL: https://blog.howtoprofitai.com/ai-projects-you-can-build-this-week-ae701ebbf485
 - Raw markdown: `raw/readwise/7-simple-ai-projects-you-can-build-this-week-01kts1en53ga5vf2z1vbfrfqp6.md`
 - Raw HTML: `raw/readwise/7-simple-ai-projects-you-can-build-this-week-01kts1en53ga5vf2z1vbfrfqp6.html`
+
+## Full source text
+
+---
+readwise_id: "01kts1en53ga5vf2z1vbfrfqp6"
+title: "7 Simple AI Projects You Can Build This Week"
+author: "Marcellinus Prevailer"
+publication: "How To Profit AI"
+source_url: "https://blog.howtoprofitai.com/ai-projects-you-can-build-this-week-ae701ebbf485"
+category: "article"
+location: "archive"
+published_date: "2026-05-18"
+saved_at: "2026-06-10T15:12:13.986000+00:00"
+updated_at: "2026-06-15T15:11:13.616002+00:00"
+tags: ["processed"]
+---
+
+No code needed. Just AI.

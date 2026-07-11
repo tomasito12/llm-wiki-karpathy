@@ -28,6 +28,9 @@ assessed_as_of: '2026-04-09'
 ingested_at: '2026-06-05T15:22:46.897461+00:00'
 canonical_url: https://medium.com/ai-in-plain-english/i-ran-gemma-4-locally-heres-what-nobody-s-telling-you-806dcd485925
 content_sha256: 94547502d3d09863956c6655bf00a6830b9f20ae47966b616a812f11d9bee520
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/hallucinations.md
 - glossary/mixture-of-experts.md
@@ -93,3 +96,22 @@ The article leans on a strong narrative that defaults are misleading and tuned l
 - Canonical URL: https://medium.com/ai-in-plain-english/i-ran-gemma-4-locally-heres-what-nobody-s-telling-you-806dcd485925
 - Raw markdown: `raw/readwise/i-ran-gemma-4-locally-here-s-what-nobody-s-telling-you-01kqfzwx5z81csjrvzvv6xgq9x.md`
 - Raw HTML: `raw/readwise/i-ran-gemma-4-locally-here-s-what-nobody-s-telling-you-01kqfzwx5z81csjrvzvv6xgq9x.html`
+
+## Full source text
+
+---
+readwise_id: 01kqfzwx5z81csjrvzvv6xgq9x
+title: I Ran Gemma 4 Locally. Here’s What Nobody’s Telling You.
+author: Kuldeepsinh Jadeja
+source_url: https://medium.com/ai-in-plain-english/i-ran-gemma-4-locally-heres-what-nobody-s-telling-you-806dcd485925
+category: article
+location: archive
+published_date: '2026-04-09'
+saved_at: '2026-04-30T20:04:48.447000+00:00'
+updated_at: '2026-05-02T14:22:16.390827+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+Gemma 4 is a powerful AI model that can run on affordable, everyday GPUs like the RTX 3090. It works best when carefully configured, not with default settings. This breakthrough means more people can use high-quality AI locally, without relying on the cloud.

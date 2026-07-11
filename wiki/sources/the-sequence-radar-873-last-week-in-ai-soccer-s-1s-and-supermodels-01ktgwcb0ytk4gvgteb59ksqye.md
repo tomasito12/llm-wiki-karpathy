@@ -17,6 +17,9 @@ assessed_as_of: '2026-06-07'
 ingested_at: '2026-06-10T16:25:49+00:00'
 canonical_url: https://thesequence.substack.com/p/the-sequence-radar-873-last-week
 content_sha256: 25656628c6e0b9bf45e021f9266a7eb41dcdc26398a013271fa1b84e18ffa64d
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-06/the-sequence-radar-873-last-week-in-ai-soccer-s-1s-and-supermodels-01ktgwcb0ytk4gvgteb59ksqye-evaluation-suites-are-moving-toward-live-adversarial-environments.md
 derived_trends:
@@ -60,3 +63,21 @@ The roundup presents several speculative or early claims with strong narrative f
 - Canonical URL: https://thesequence.substack.com/p/the-sequence-radar-873-last-week
 - Raw markdown: `raw/readwise/the-sequence-radar-873-last-week-in-ai-soccer-s-1s-and-supermodels-01ktgwcb0ytk4gvgteb59ksqye.md`
 - Raw HTML: `raw/readwise/the-sequence-radar-873-last-week-in-ai-soccer-s-1s-and-supermodels-01ktgwcb0ytk4gvgteb59ksqye.html`
+
+## Full source text
+
+---
+readwise_id: "01ktgwcb0ytk4gvgteb59ksqye"
+title: "The Sequence Radar #873: Last Week in AI: Soccer, S-1s, and Supermodels"
+author: "Jesus Rodriguez"
+publication: "substack.com"
+source_url: "https://thesequence.substack.com/p/the-sequence-radar-873-last-week"
+category: "rss"
+location: "archive"
+published_date: "2026-06-07"
+saved_at: "2026-06-07T11:09:36.742000+00:00"
+updated_at: "2026-06-07T19:39:22.446224+00:00"
+tags: ["processed"]
+---
+
+A new AI soccer tournament tests models in teamwork and strategy, moving beyond simple question-answering tasks. Big companies like Microsoft, NVIDIA, and Anthropic are advancing AI with new models, funding, and plans to go public. Researchers are also exploring how AI can improve memory and learning, making models smarter and more adaptable.

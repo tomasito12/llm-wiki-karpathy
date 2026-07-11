@@ -17,6 +17,9 @@ assessed_as_of: '2026-05-20'
 ingested_at: '2026-06-06T21:54:12+00:00'
 canonical_url: https://www.intercom.com/blog/how-we-develop-pricing-and-packaging-at-fin/
 content_sha256: f30229317ec2e489f865b6a0f366e77142fddcb624705a89c1de6f5626159b42
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/outcome-based-pricing-for-ai-agents.md
 - topics/pricing-model-validation-for-ai-products.md
@@ -63,3 +66,21 @@ The article argues for a rigorous process, but also says the full process is fol
 - Canonical URL: https://www.intercom.com/blog/how-we-develop-pricing-and-packaging-at-fin/
 - Raw markdown: `raw/readwise/how-we-develop-pricing-and-packaging-at-fin-01ks2ns7k02qfhbcgkc41wqe3v.md`
 - Raw HTML: `raw/readwise/how-we-develop-pricing-and-packaging-at-fin-01ks2ns7k02qfhbcgkc41wqe3v.html`
+
+## Full source text
+
+---
+readwise_id: "01ks2ns7k02qfhbcgkc41wqe3v"
+title: "How we develop pricing and packaging at Fin"
+author: "Sophie Woods"
+publication: "The Intercom Blog"
+source_url: "https://www.intercom.com/blog/how-we-develop-pricing-and-packaging-at-fin/"
+category: "rss"
+location: "archive"
+published_date: "2026-05-20"
+saved_at: "2026-05-20T12:29:15.305000+00:00"
+updated_at: "2026-06-01T09:59:51.449760+00:00"
+tags: ["processed"]
+---
+
+At Fin, pricing and packaging must balance the needs and wants of our customers and our broader vision. Here's how we do it.

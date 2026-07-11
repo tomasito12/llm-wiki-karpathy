@@ -10,6 +10,9 @@ assessed_as_of: '2026-04-08'
 ingested_at: '2026-06-05T18:46:19.815635+00:00'
 canonical_url: https://thesequence.substack.com/p/the-sequence-ai-of-the-week-839-gemma
 content_sha256: a69044cfa2d64d19879038c80d512fbecb3ad9942679c3f77fd5f1817854bd84
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # The Sequence AI of the Week #839: Gemma 4 and the Compression of Intelligence
@@ -45,3 +48,22 @@ The prose is strongly promotional in tone and relies on metaphorical language su
 - Canonical URL: https://thesequence.substack.com/p/the-sequence-ai-of-the-week-839-gemma
 - Raw markdown: `raw/readwise/the-sequence-ai-of-the-week-839-gemma-4-and-the-compression-of-intelligence-01knpcfs8756awtb886gx6qrpb.md`
 - Raw HTML: `raw/readwise/the-sequence-ai-of-the-week-839-gemma-4-and-the-compression-of-intelligence-01knpcfs8756awtb886gx6qrpb.html`
+
+## Full source text
+
+---
+readwise_id: 01knpcfs8756awtb886gx6qrpb
+title: 'The Sequence AI of the Week #839: Gemma 4 and the Compression of Intelligence'
+author: Jesus Rodriguez
+source_url: https://thesequence.substack.com/p/the-sequence-ai-of-the-week-839-gemma
+category: rss
+location: archive
+published_date: '2026-04-08'
+saved_at: '2026-04-08T11:08:49.872000+00:00'
+updated_at: '2026-05-08T13:19:19.256045+00:00'
+tags:
+- processed
+publication: Substack
+---
+
+AI often starts with big, slow systems that are hard to use. Over time, these systems become smaller, faster, and easier to deploy. Gemma 4 is a new AI from Google that works like a smart engine inside many devices, not just a chatbot.

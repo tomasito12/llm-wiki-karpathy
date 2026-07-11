@@ -18,6 +18,9 @@ assessed_as_of: '2026-06-05'
 ingested_at: '2026-06-16T16:25:09.060312+00:00'
 canonical_url: https://youtube.com/watch/?v=rRa9td4oe7k
 content_sha256: b11009e9d0c68900341b74b9f22c219810357d7d9186cf11581dcb57536b131b
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/file-native-ai-workspace.md
 derived_models:
@@ -71,3 +74,21 @@ The video argues for portability and anti-lock-in, but it still relies on a vend
 - Canonical URL: https://youtube.com/watch/?v=rRa9td4oe7k
 - Raw markdown: `raw/readwise/how-i-use-obsidian-claude-cowork-to-run-my-life-01kv4tcedck5ftexd9hqeptc7c.md`
 - Raw HTML: `raw/readwise/how-i-use-obsidian-claude-cowork-to-run-my-life-01kv4tcedck5ftexd9hqeptc7c.html`
+
+## Full source text
+
+---
+readwise_id: "01kv4tcedck5ftexd9hqeptc7c"
+title: "How I Use Obsidian + Claude Cowork to Run My Life"
+author: "Linking Your Thinking with Nick Milo"
+publication: "YouTube"
+source_url: "https://youtube.com/watch/?v=rRa9td4oe7k"
+category: "video"
+location: "archive"
+published_date: "2026-06-05"
+saved_at: "2026-06-15T04:59:34.700000+00:00"
+updated_at: "2026-06-15T15:03:01.647081+00:00"
+tags: ["processed"]
+---
+
+Nick Milo uses Obsidian to store and link his ideas in a simple folder system called the ideaverse. He connects this with Claude Co-work, an AI tool that reads his notes and helps manage tasks and daily briefs. This setup keeps his ideas safe and flexible, letting him switch AI tools without losing control.

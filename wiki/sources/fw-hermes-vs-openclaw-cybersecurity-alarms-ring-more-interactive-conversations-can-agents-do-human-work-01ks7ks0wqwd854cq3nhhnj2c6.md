@@ -21,6 +21,9 @@ assessed_as_of: '2026-05-22'
 ingested_at: '2026-06-06T15:34:28.126294+00:00'
 canonical_url: mailto:reader-forwarded-email/b6eb5411cebb62548193883be6a3574b
 content_sha256: 3e89a7a3221c11cde0819e58747ecb3739de26d4faa44f3a20d8be947df47930
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-05/fw-hermes-vs-openclaw-cybersecurity-alarms-ring-more-interactive-conversations-c-agent-memory-and-self-generated-skills-are-becoming-a-differentiator-eab85074c0.md
 - signals/2026-05/fw-hermes-vs-openclaw-cybersecurity-alarms-ring-more-interactive-conversations-c-llms-are-becoming-a-practical-force-multiplier-for-cyber-offense-and-0344e351ee.md
@@ -70,3 +73,21 @@ The roundup sometimes treats capability demos and benchmark wins as evidence of 
 - Canonical URL: mailto:reader-forwarded-email/b6eb5411cebb62548193883be6a3574b
 - Raw markdown: `raw/readwise/fw-hermes-vs-openclaw-cybersecurity-alarms-ring-more-interactive-conversations-can-agents-do-human-work-01ks7ks0wqwd854cq3nhhnj2c6.md`
 - Raw HTML: `raw/readwise/fw-hermes-vs-openclaw-cybersecurity-alarms-ring-more-interactive-conversations-can-agents-do-human-work-01ks7ks0wqwd854cq3nhhnj2c6.html`
+
+## Full source text
+
+---
+readwise_id: "01ks7ks0wqwd854cq3nhhnj2c6"
+title: "Fw: Hermes vs. OpenClaw, Cybersecurity Alarms Ring, More-Interactive Conversations, Can Agents Do Human Work?"
+author: "Thomas Plischke"
+publication: "WEB.DE News"
+source_url: "mailto:reader-forwarded-email/b6eb5411cebb62548193883be6a3574b"
+category: "email"
+location: "archive"
+published_date: "2026-05-22"
+saved_at: "2026-05-22T10:30:26.456000+00:00"
+updated_at: "2026-05-25T09:50:40.236529+00:00"
+tags: ["processed"]
+---
+
+Hermes Agent is a new open-source AI that learns skills automatically and remembers user preferences better than OpenClaw. Thinking Machines Lab created a fast, interactive voice model that excels in conversation but still trails the smartest AI in reasoning. Researchers are mapping AI benchmarks to real jobs to see how agents can help many kinds of work beyond coding.

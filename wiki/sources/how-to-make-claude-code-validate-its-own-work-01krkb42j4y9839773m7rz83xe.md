@@ -28,6 +28,9 @@ assessed_as_of: '2026-05-05'
 ingested_at: '2026-06-02T20:21:28.458586+00:00'
 canonical_url: https://towardsdatascience.com/how-to-make-claude-code-validate-its-own-work/?utm_campaign=tds%20variable&utm_medium=email&_hsenc=p2ANqtz-983i5IEFCGSE-P3c2Jm_8BItpnyWH-44FiF0Jaq6ncB_r2wi2b8socrX_9XHnImlvp31VqD0tsty1czZcJ4NV54cmKLQ&_hsmi=418698396&utm_source=newsletter
 content_sha256: 5eacc8d04a25802f212a38676f70d13b2732869de087b065a211721005fd4da5
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/self-verification-for-agent-workflows.md
 derived_tools:
@@ -82,3 +85,21 @@ The article treats self-verification as broadly beneficial, but that can oversim
 - Canonical URL: https://towardsdatascience.com/how-to-make-claude-code-validate-its-own-work/?utm_campaign=tds%20variable&utm_medium=email&_hsenc=p2ANqtz-983i5IEFCGSE-P3c2Jm_8BItpnyWH-44FiF0Jaq6ncB_r2wi2b8socrX_9XHnImlvp31VqD0tsty1czZcJ4NV54cmKLQ&_hsmi=418698396&utm_source=newsletter
 - Raw markdown: `raw/readwise/how-to-make-claude-code-validate-its-own-work-01krkb42j4y9839773m7rz83xe.md`
 - Raw HTML: `raw/readwise/how-to-make-claude-code-validate-its-own-work-01krkb42j4y9839773m7rz83xe.html`
+
+## Full source text
+
+---
+readwise_id: "01krkb42j4y9839773m7rz83xe"
+title: "How to Make Claude Code Validate its own Work"
+author: "Eivind Kjosbakken"
+publication: "Medium"
+source_url: "https://towardsdatascience.com/how-to-make-claude-code-validate-its-own-work/?utm_campaign=tds%20variable&utm_medium=email&_hsenc=p2ANqtz-983i5IEFCGSE-P3c2Jm_8BItpnyWH-44FiF0Jaq6ncB_r2wi2b8socrX_9XHnImlvp31VqD0tsty1czZcJ4NV54cmKLQ&_hsmi=418698396&utm_source=newsletter"
+category: "article"
+location: "archive"
+published_date: "2026-05-05"
+saved_at: "2026-05-14T13:34:22.787000+00:00"
+updated_at: "2026-05-16T13:07:37.341519+00:00"
+tags: ["processed"]
+---
+
+Claude Code works better when it checks its own work. This helps it fix mistakes and finish tasks faster. The author shows examples of using this to improve coding and web design.

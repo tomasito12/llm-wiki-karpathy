@@ -17,6 +17,9 @@ assessed_as_of: '2026-04-16'
 ingested_at: '2026-05-19T16:30:04.935004+00:00'
 canonical_url: https://medium.com/no-time/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-8337d9233582
 content_sha256: 38f1c9e0fee36fb8865e78ce3e9a7a881152ffb135b8ddd188e966d21451babc
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_models:
 - foundation-models/gemini-3-pro.md
 - foundation-models/opus-4-6.md
@@ -73,3 +76,23 @@ The article is balanced, but some claims are still thinly evidenced. The quoted 
 - Canonical URL: https://medium.com/no-time/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-8337d9233582
 - Raw markdown: `raw/readwise/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-01kqkzbbr47x5jcmdm2wy72k03.md`
 - Raw HTML: `raw/readwise/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-01kqkzbbr47x5jcmdm2wy72k03.html`
+
+## Full source text
+
+---
+readwise_id: 01kqkzbbr47x5jcmdm2wy72k03
+title: 'Antigravity vs Claude Code: Which AI Coding Assistant Should You Actually
+  Use?'
+author: Pranit naik
+source_url: https://medium.com/no-time/antigravity-vs-claude-code-which-ai-coding-assistant-should-you-actually-use-8337d9233582
+category: article
+location: archive
+published_date: '2026-04-16'
+saved_at: '2026-05-02T09:12:11.268000+00:00'
+updated_at: '2026-05-02T14:21:32.504402+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+Google’s Free AI IDE vs Anthropic’s $20/Month Tool

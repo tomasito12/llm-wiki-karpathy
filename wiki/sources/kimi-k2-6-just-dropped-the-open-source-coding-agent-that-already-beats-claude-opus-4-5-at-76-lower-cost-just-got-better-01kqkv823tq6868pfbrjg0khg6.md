@@ -16,6 +16,9 @@ assessed_as_of: '2026-04-20'
 ingested_at: '2026-05-17T13:07:05.468303+00:00'
 canonical_url: https://levelup.gitconnected.com/kimi-k2-6-just-dropped-the-open-source-coding-agent-that-already-beats-claude-opus-4-5-2127bcf65122
 content_sha256: 40f0db39c1b446f82f6ad56a33dc56efdbf26dd01688a90f80e287367abed044
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/mixture-of-experts.md
 - glossary/parallel-agent-reinforcement-learning.md
@@ -76,3 +79,23 @@ The piece is persuasive but promotional in tone, so several claims deserve cauti
 - Canonical URL: https://levelup.gitconnected.com/kimi-k2-6-just-dropped-the-open-source-coding-agent-that-already-beats-claude-opus-4-5-2127bcf65122
 - Raw markdown: `raw/readwise/kimi-k2-6-just-dropped-the-open-source-coding-agent-that-already-beats-claude-opus-4-5-at-76-lower-cost-just-got-better-01kqkv823tq6868pfbrjg0khg6.md`
 - Raw HTML: `raw/readwise/kimi-k2-6-just-dropped-the-open-source-coding-agent-that-already-beats-claude-opus-4-5-at-76-lower-cost-just-got-better-01kqkv823tq6868pfbrjg0khg6.html`
+
+## Full source text
+
+---
+readwise_id: 01kqkv823tq6868pfbrjg0khg6
+title: Kimi K2.6 Just Dropped — The Open-Source Coding Agent That Already Beats Claude
+  Opus 4.5 at 76% Lower Cost Just Got Better
+author: Chew Loong Nian - AI ENGINEER
+source_url: https://levelup.gitconnected.com/kimi-k2-6-just-dropped-the-open-source-coding-agent-that-already-beats-claude-opus-4-5-2127bcf65122
+category: article
+location: archive
+published_date: '2026-04-20'
+saved_at: '2026-05-02T08:00:28.794000+00:00'
+updated_at: '2026-05-02T14:21:53.337337+00:00'
+tags:
+- processed
+publication: Gitconnected
+---
+
+Moonshot AI released Kimi K2.6, an open-source coding agent that beats Claude Opus 4.5 with 76% lower cost and better multi-step reasoning. Kimi uses a unique Agent Swarm to run many specialized sub-agents in parallel, making it faster and cheaper for complex coding tasks. Although Kimi lacks some IDE features, it is ideal for automated coding pipelines and is gaining strong community support.

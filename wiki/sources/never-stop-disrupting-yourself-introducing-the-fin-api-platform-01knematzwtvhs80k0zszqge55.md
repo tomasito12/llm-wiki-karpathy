@@ -24,6 +24,9 @@ assessed_as_of: '2026-04-02'
 ingested_at: '2026-06-06T22:01:29+00:00'
 canonical_url: https://www.intercom.com/blog/introducing-the-fin-api-platform/
 content_sha256: 483a67db74a14d70cb856d404243322fcfede347030ce11e0cef50a15e4b15d8
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_models:
 - foundation-models/apex-1-0.md
 derived_tools:
@@ -78,3 +81,22 @@ The article argues that differentiated AI models will matter more as software be
 - Canonical URL: https://www.intercom.com/blog/introducing-the-fin-api-platform/
 - Raw markdown: `raw/readwise/never-stop-disrupting-yourself-introducing-the-fin-api-platform-01knematzwtvhs80k0zszqge55.md`
 - Raw HTML: `raw/readwise/never-stop-disrupting-yourself-introducing-the-fin-api-platform-01knematzwtvhs80k0zszqge55.html`
+
+## Full source text
+
+---
+readwise_id: 01knematzwtvhs80k0zszqge55
+title: Never stop disrupting yourself; introducing the Fin API platform
+author: Eoghan McCabe
+source_url: https://www.intercom.com/blog/introducing-the-fin-api-platform/
+category: rss
+location: archive
+published_date: '2026-04-02'
+saved_at: '2026-04-05T10:52:00.964000+00:00'
+updated_at: '2026-05-08T13:23:19.611060+00:00'
+tags:
+- processed
+publication: Intercom
+---
+
+Intercom has launched the Fin API platform to let companies build powerful customer service agents using their advanced AI models. This platform offers flexible options for most businesses, custom integrations, and specialized agents with their new Apex model. The company believes that AI-driven agents will reshape software, and they want to lead this change by sharing their technology widely.

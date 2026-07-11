@@ -14,6 +14,9 @@ assessed_as_of: '2026-04-11'
 ingested_at: '2026-05-22T18:19:59.278527+00:00'
 canonical_url: https://medium.com/tech-and-ai-guild/how-claude-code-and-obsidian-broke-personal-knowledge-management-d00dc8ae88d3
 content_sha256: 3fdd5f02bc7a26967d150e3b03605e3497baeb8ead6f17cd4669d498db3a3f95
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/claude-code.md
 derived_topics:
@@ -60,3 +63,22 @@ The article claims the maintenance burden becomes zero, but that is a strong sta
 - Canonical URL: https://medium.com/tech-and-ai-guild/how-claude-code-and-obsidian-broke-personal-knowledge-management-d00dc8ae88d3
 - Raw markdown: `raw/readwise/how-claude-code-and-obsidian-broke-personal-knowledge-management-01kqky9zvey7e9mbv4tfscr37y.md`
 - Raw HTML: `raw/readwise/how-claude-code-and-obsidian-broke-personal-knowledge-management-01kqky9zvey7e9mbv4tfscr37y.html`
+
+## Full source text
+
+---
+readwise_id: 01kqky9zvey7e9mbv4tfscr37y
+title: How Claude Code and Obsidian Broke Personal Knowledge Management
+author: Shashwat
+source_url: https://medium.com/tech-and-ai-guild/how-claude-code-and-obsidian-broke-personal-knowledge-management-d00dc8ae88d3
+category: article
+location: archive
+published_date: '2026-04-11'
+saved_at: '2026-05-02T08:53:57.221000+00:00'
+updated_at: '2026-05-02T14:21:39.642166+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+Deploying your Second Brain without too much effort

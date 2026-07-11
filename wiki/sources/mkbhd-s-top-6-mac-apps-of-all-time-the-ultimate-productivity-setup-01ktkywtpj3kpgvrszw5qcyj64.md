@@ -20,6 +20,9 @@ assessed_as_of: '2026-05-28'
 ingested_at: '2026-06-10T16:04:57+00:00'
 canonical_url: https://medium.com/@ryanshrott/mkbhds-top-6-mac-apps-of-all-time-the-ultimate-productivity-setup-565bd7a060d7
 content_sha256: 14c2ddb8a39510440f6087359f89f0394e53ce6d9137accd26d767e980c9b511
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/arc-browser.md
 - tools/cleanshot-x.md
@@ -74,3 +77,21 @@ The piece leans heavily on promotional language and celebrity association, so it
 - Canonical URL: https://medium.com/@ryanshrott/mkbhds-top-6-mac-apps-of-all-time-the-ultimate-productivity-setup-565bd7a060d7
 - Raw markdown: `raw/readwise/mkbhd-s-top-6-mac-apps-of-all-time-the-ultimate-productivity-setup-01ktkywtpj3kpgvrszw5qcyj64.md`
 - Raw HTML: `raw/readwise/mkbhd-s-top-6-mac-apps-of-all-time-the-ultimate-productivity-setup-01ktkywtpj3kpgvrszw5qcyj64.html`
+
+## Full source text
+
+---
+readwise_id: "01ktkywtpj3kpgvrszw5qcyj64"
+title: "MKBHD’s Top 6 Mac Apps of All Time: The Ultimate Productivity Setup"
+author: "Ryan Shrott"
+publication: "Medium"
+source_url: "https://medium.com/@ryanshrott/mkbhds-top-6-mac-apps-of-all-time-the-ultimate-productivity-setup-565bd7a060d7"
+category: "article"
+location: "archive"
+published_date: "2026-05-28"
+saved_at: "2026-06-08T15:51:20.529000+00:00"
+updated_at: "2026-06-09T12:30:11.078099+00:00"
+tags: ["processed"]
+---
+
+Marques Brownlee uses six key Mac apps to boost his productivity and creativity. These apps include Raycast for quick actions, DictaFlow for smart voice typing, and Final Cut Pro for video editing. Together, they create a powerful and efficient Mac workspace.

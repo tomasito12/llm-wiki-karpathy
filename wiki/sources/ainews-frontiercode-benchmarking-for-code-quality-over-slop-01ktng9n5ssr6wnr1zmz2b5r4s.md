@@ -10,6 +10,9 @@ assessed_as_of: '2026-06-09'
 ingested_at: '2026-06-10T14:38:00+00:00'
 canonical_url: mailto:reader-forwarded-email/98e2f8be286023f9a92d1b669dce76ee
 content_sha256: 9f8232885dbbc0ad3fd1a7a256c8f59ee17959a4cb326c469bee75061bd014b5
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # [AINews] FrontierCode: Benchmarking for Code Quality over Slop
@@ -45,3 +48,21 @@ The roundup criticizes the illusion of solved coding, but it also relies on a si
 - Canonical URL: mailto:reader-forwarded-email/98e2f8be286023f9a92d1b669dce76ee
 - Raw markdown: `raw/readwise/ainews-frontiercode-benchmarking-for-code-quality-over-slop-01ktng9n5ssr6wnr1zmz2b5r4s.md`
 - Raw HTML: `raw/readwise/ainews-frontiercode-benchmarking-for-code-quality-over-slop-01ktng9n5ssr6wnr1zmz2b5r4s.html`
+
+## Full source text
+
+---
+readwise_id: "01ktng9n5ssr6wnr1zmz2b5r4s"
+title: "[AINews] FrontierCode: Benchmarking for Code Quality over Slop"
+author: "AINews"
+publication: "Substack"
+source_url: "mailto:reader-forwarded-email/98e2f8be286023f9a92d1b669dce76ee"
+category: "email"
+location: "archive"
+published_date: "2026-06-09"
+saved_at: "2026-06-09T06:14:41.082000+00:00"
+updated_at: "2026-06-09T12:27:57.533047+00:00"
+tags: ["processed"]
+---
+
+FrontierCode is a new benchmark that tests if AI-written code is truly mergeable, not just passing tests. The best model scored only 13% on the hardest tasks, showing coding AI is less solved than expected. The AI field is shifting toward clearer goals, better verification, and real-world evaluation for coding agents.

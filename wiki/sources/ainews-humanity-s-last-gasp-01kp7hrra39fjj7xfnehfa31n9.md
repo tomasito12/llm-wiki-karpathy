@@ -15,6 +15,9 @@ assessed_as_of: '2026-04-15'
 ingested_at: '2026-05-21T18:07:57.616008+00:00'
 canonical_url: https://www.latent.space/p/ainews-humanitys-last-gasp
 content_sha256: 4059a29f7935eb29f9a328ac5a3555e2d43e8b0ee540b433d33ae1f6b52547d6
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-04/ainews-humanity-s-last-gasp-01kp7hrra39fjj7xfnehfa31n9-3d-generation-shifting-toward-editable-production-assets.md
 - signals/2026-04/ainews-humanity-s-last-gasp-01kp7hrra39fjj7xfnehfa31n9-agent-infrastructure-shifting-toward-production-concerns.md
@@ -69,3 +72,22 @@ The piece mixes strong operational observations with some big-picture claims tha
 - Canonical URL: https://www.latent.space/p/ainews-humanitys-last-gasp
 - Raw markdown: `raw/readwise/ainews-humanity-s-last-gasp-01kp7hrra39fjj7xfnehfa31n9.md`
 - Raw HTML: `raw/readwise/ainews-humanity-s-last-gasp-01kp7hrra39fjj7xfnehfa31n9.html`
+
+## Full source text
+
+---
+readwise_id: 01kp7hrra39fjj7xfnehfa31n9
+title: '[AINews] Humanity''s Last Gasp'
+author: Latent Space
+source_url: https://www.latent.space/p/ainews-humanitys-last-gasp
+category: rss
+location: archive
+published_date: '2026-04-15'
+saved_at: '2026-04-15T03:08:12.044000+00:00'
+updated_at: '2026-05-07T12:15:41.805130+00:00'
+tags:
+- processed
+publication: Latent
+---
+
+Many people are working harder than ever despite AI tools doing more tasks. New AI models and agents are improving in robotics, 3D generation, and software optimization. The focus is shifting to making AI systems more reliable, scalable, and useful in real-world applications.

@@ -22,6 +22,9 @@ assessed_as_of: '2026-05-17'
 ingested_at: '2026-06-08T15:27:21+00:00'
 canonical_url: https://thesequence.substack.com/p/the-sequence-radar-861-last-week
 content_sha256: 8eea54a366baea68c5ed0b28b812f154ab6f00b885329962c33d56dcdcf74298
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-05/the-sequence-radar-861-last-week-in-ai-ipos-interactive-models-and-recursive-dre-ai-infrastructure-remains-a-physical-capital-bottleneck-bfcd82771a.md
 - signals/2026-05/the-sequence-radar-861-last-week-in-ai-ipos-interactive-models-and-recursive-dre-automating-research-loops-is-emerging-as-a-product-category-b45addc80d.md
@@ -71,3 +74,21 @@ The roundup is enthusiastic about agency and recursive improvement, but its stro
 - Canonical URL: https://thesequence.substack.com/p/the-sequence-radar-861-last-week
 - Raw markdown: `raw/readwise/the-sequence-radar-861-last-week-in-ai-ipos-interactive-models-and-recursive-dreams-01krttfdzf801rjfeteqjnv2zd.md`
 - Raw HTML: `raw/readwise/the-sequence-radar-861-last-week-in-ai-ipos-interactive-models-and-recursive-dreams-01krttfdzf801rjfeteqjnv2zd.html`
+
+## Full source text
+
+---
+readwise_id: "01krttfdzf801rjfeteqjnv2zd"
+title: "The Sequence Radar #861: Last Week in AI: IPOs, Interactive Models, and Recursive Dreams"
+author: "Jesus Rodriguez"
+publication: "substack.com"
+source_url: "https://thesequence.substack.com/p/the-sequence-radar-861-last-week"
+category: "rss"
+location: "archive"
+published_date: "2026-05-17"
+saved_at: "2026-05-17T11:17:21.591000+00:00"
+updated_at: "2026-06-01T11:43:20.422097+00:00"
+tags: ["processed"]
+---
+
+Cerebras monster IPO, three new innovative frontier AI labs

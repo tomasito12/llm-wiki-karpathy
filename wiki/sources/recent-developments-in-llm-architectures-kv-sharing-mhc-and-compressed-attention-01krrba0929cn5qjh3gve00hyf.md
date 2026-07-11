@@ -25,6 +25,9 @@ assessed_as_of: '2026-05-16'
 ingested_at: '2026-07-08T19:19:35.391508+00:00'
 canonical_url: mailto:reader-forwarded-email/a09d7102abdeca1fa212460c4d634316
 content_sha256: b57264e580959de00b9013873628b37d85abac870916779158b804dc0ccb9c85
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/grouped-query-attention.md
 - glossary/kv-cache.md
@@ -82,3 +85,21 @@ The article is optimistic about these techniques, but several of them are clearl
 - Canonical URL: mailto:reader-forwarded-email/a09d7102abdeca1fa212460c4d634316
 - Raw markdown: `raw/readwise/recent-developments-in-llm-architectures-kv-sharing-mhc-and-compressed-attention-01krrba0929cn5qjh3gve00hyf.md`
 - Raw HTML: `raw/readwise/recent-developments-in-llm-architectures-kv-sharing-mhc-and-compressed-attention-01krrba0929cn5qjh3gve00hyf.html`
+
+## Full source text
+
+---
+readwise_id: "01krrba0929cn5qjh3gve00hyf"
+title: "Recent Developments in LLM Architectures: KV Sharing, mHC, and Compressed Attention"
+author: "Sebastian Raschka, PhD from Ahead of AI"
+publication: "Substack"
+source_url: "mailto:reader-forwarded-email/a09d7102abdeca1fa212460c4d634316"
+category: "email"
+location: "archive"
+published_date: "2026-05-16"
+saved_at: "2026-05-16T12:13:49.218000+00:00"
+updated_at: "2026-05-27T09:56:54.589614+00:00"
+tags: ["processed"]
+---
+
+New LLM architectures focus on making long-context processing more efficient by reducing memory and computation costs. Techniques like KV sharing, compressed attention, and attention budgeting help models handle more tokens with less resource use. These targeted changes improve performance without major redesigns of the transformer block.

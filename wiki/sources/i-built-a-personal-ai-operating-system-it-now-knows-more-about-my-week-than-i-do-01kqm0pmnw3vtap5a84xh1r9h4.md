@@ -25,6 +25,9 @@ assessed_as_of: '2026-04-12'
 ingested_at: '2026-07-10T11:51:13.914631+00:00'
 canonical_url: https://medium.com/towards-artificial-intelligence/i-built-a-personal-ai-operating-system-it-now-knows-more-about-my-week-than-i-do-bddad36f8934
 content_sha256: a703465d127ea5f0bdf67a9780245cf626a1c86fda58475c62d9edd028f7e85a
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_models:
 - foundation-models/qwen3-30b-a3b.md
 derived_tools:
@@ -79,3 +82,23 @@ The piece presents Cerisa as more useful than a collection of normal productivit
 - Canonical URL: https://medium.com/towards-artificial-intelligence/i-built-a-personal-ai-operating-system-it-now-knows-more-about-my-week-than-i-do-bddad36f8934
 - Raw markdown: `raw/readwise/i-built-a-personal-ai-operating-system-it-now-knows-more-about-my-week-than-i-do-01kqm0pmnw3vtap5a84xh1r9h4.md`
 - Raw HTML: `raw/readwise/i-built-a-personal-ai-operating-system-it-now-knows-more-about-my-week-than-i-do-01kqm0pmnw3vtap5a84xh1r9h4.html`
+
+## Full source text
+
+---
+readwise_id: 01kqm0pmnw3vtap5a84xh1r9h4
+title: I Built a Personal AI Operating System. It Now Knows More About My Week Than
+  I Do.
+author: Alex E
+source_url: https://medium.com/towards-artificial-intelligence/i-built-a-personal-ai-operating-system-it-now-knows-more-about-my-week-than-i-do-bddad36f8934
+category: article
+location: archive
+published_date: '2026-04-12'
+saved_at: '2026-05-02T09:35:49.436000+00:00'
+updated_at: '2026-05-02T14:21:29.131746+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+The story of how three half-finished projects became one slightly unhinged personal assistant called Cerisa.

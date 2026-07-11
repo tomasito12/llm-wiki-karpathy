@@ -17,6 +17,9 @@ assessed_as_of: '2026-04-10'
 ingested_at: '2026-06-08T19:49:12.418645+00:00'
 canonical_url: https://openai.com/academy/projects
 content_sha256: 7dbffc8f29e2486fb7277bb67a90d1a6b477985fb2307eb2ae6cd328a1c3d769
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/chatgpt-projects-setup.md
 derived_topics:
@@ -67,3 +70,22 @@ The piece presents projects as a clean answer to scattered context, but that cla
 - Canonical URL: https://openai.com/academy/projects
 - Raw markdown: `raw/readwise/using-projects-in-chatgpt-01knw8fhqktagvstg6j6xzk4xq.md`
 - Raw HTML: `raw/readwise/using-projects-in-chatgpt-01knw8fhqktagvstg6j6xzk4xq.html`
+
+## Full source text
+
+---
+readwise_id: 01knw8fhqktagvstg6j6xzk4xq
+title: Using projects in ChatGPT
+author: OpenAI Blog
+source_url: https://openai.com/academy/projects
+category: rss
+location: archive
+published_date: '2026-04-10'
+saved_at: '2026-04-10T17:53:23.459000+00:00'
+updated_at: '2026-05-08T11:40:01.075927+00:00'
+tags:
+- processed
+publication: OpenAI
+---
+
+Projects in ChatGPT help you keep related chats, files, and instructions together in one place. They are useful for ongoing work or shared collaboration, so you don’t have to repeat context. Some plans let you share projects and control access for teamwork and better organization.

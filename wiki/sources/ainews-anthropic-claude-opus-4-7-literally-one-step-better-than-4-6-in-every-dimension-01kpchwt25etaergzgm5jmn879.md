@@ -19,6 +19,9 @@ assessed_as_of: '2026-04-17'
 ingested_at: '2026-06-07T07:35:37.902221+00:00'
 canonical_url: https://www.latent.space/p/ainews-anthropic-claude-opus-47-literally
 content_sha256: b02221acf8f2b1a0893b2cea36fe7a78169c9b04492b84bb0ed795cd0df13378
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-04/ainews-anthropic-claude-opus-4-7-literally-one-step-better-than-4-6-in-every-dim-high-resolution-vision-is-becoming-an-enabling-feature-for-computer-976ecc5135.md
 - signals/2026-04/ainews-anthropic-claude-opus-4-7-literally-one-step-better-than-4-6-in-every-dim-tokenization-changes-can-turn-flat-list-pricing-into-variable-effect-5e74f16af4.md
@@ -65,3 +68,23 @@ The roundup surfaces a real tension between Anthropic’s “better in every dim
 - Canonical URL: https://www.latent.space/p/ainews-anthropic-claude-opus-47-literally
 - Raw markdown: `raw/readwise/ainews-anthropic-claude-opus-4-7-literally-one-step-better-than-4-6-in-every-dimension-01kpchwt25etaergzgm5jmn879.md`
 - Raw HTML: `raw/readwise/ainews-anthropic-claude-opus-4-7-literally-one-step-better-than-4-6-in-every-dimension-01kpchwt25etaergzgm5jmn879.html`
+
+## Full source text
+
+---
+readwise_id: 01kpchwt25etaergzgm5jmn879
+title: '[AINews] Anthropic Claude Opus 4.7 - literally one step better than 4.6 in
+  every dimension'
+author: Latent Space
+source_url: https://www.latent.space/p/ainews-anthropic-claude-opus-47-literally
+category: rss
+location: archive
+published_date: '2026-04-17'
+saved_at: '2026-04-17T01:46:37.070000+00:00'
+updated_at: '2026-05-07T13:43:03.926128+00:00'
+tags:
+- processed
+publication: Latent
+---
+
+Anthropic released Claude Opus 4.7, which is better than version 4.6 in many ways, especially for long tasks, coding, and vision with higher image resolution. It shows strong benchmark improvements but has some tradeoffs like higher token use and mixed results on document tasks. Users praise its smarter behavior and autonomy but also note some issues with reasoning controls and costs.

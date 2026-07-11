@@ -16,6 +16,9 @@ assessed_as_of: '2026-04-22'
 ingested_at: '2026-05-19T16:45:24.997153+00:00'
 canonical_url: https://openai.com/index/speeding-up-agentic-workflows-with-websockets
 content_sha256: 22ff41f5494efcd56a88ce6aa193fc291f60d4f93b74bf150fa6f236caca1570
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/agentic-workflow-latency-optimization.md
 - topics/persistent-connection-response-state-reuse.md
@@ -62,3 +65,22 @@ The main claim is plausible, but the article leans on OpenAI-reported improvemen
 - Canonical URL: https://openai.com/index/speeding-up-agentic-workflows-with-websockets
 - Raw markdown: `raw/readwise/speeding-up-agentic-workflows-with-websockets-in-the-responses-api-01kpv0wxjnsv9gk1qw36wa3z1x.md`
 - Raw HTML: `raw/readwise/speeding-up-agentic-workflows-with-websockets-in-the-responses-api-01kpv0wxjnsv9gk1qw36wa3z1x.html`
+
+## Full source text
+
+---
+readwise_id: 01kpv0wxjnsv9gk1qw36wa3z1x
+title: Speeding up agentic workflows with WebSockets in the Responses API
+author: OpenAI Blog
+source_url: https://openai.com/index/speeding-up-agentic-workflows-with-websockets
+category: rss
+location: archive
+published_date: '2026-04-22'
+saved_at: '2026-04-22T16:38:11.357000+00:00'
+updated_at: '2026-05-07T17:20:38.187786+00:00'
+tags:
+- processed
+publication: OpenAI
+---
+
+OpenAI improved the Responses API by using WebSockets to create a persistent connection, making agent workflows 40% faster. This change reduced repeated work and cut down waiting time when running complex coding tasks with Codex. As a result, users now experience much faster response speeds, reaching up to 1,000 tokens per second.

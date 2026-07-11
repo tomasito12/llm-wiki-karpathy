@@ -17,6 +17,9 @@ assessed_as_of: '2026-04-18'
 ingested_at: '2026-05-18T15:08:59.824598+00:00'
 canonical_url: https://www.latent.space/p/ainews-the-two-sides-of-openclaw
 content_sha256: 2d8a7a309d5179c4cd155f72c4f17fc30339d03316b8a48b566635968a02caf4
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-04/ainews-the-two-sides-of-openclaw-01kpfp8ck7csr72kp8wdxgb2k3-computer-use-agents-becoming-a-practical-product-surface.md
 - signals/2026-04/ainews-the-two-sides-of-openclaw-01kpfp8ck7csr72kp8wdxgb2k3-design-and-prototyping-surfaces-are-becoming-model-driven-products.md
@@ -72,3 +75,22 @@ The roundup highlights a tension between benchmark results and user experience: 
 - Canonical URL: https://www.latent.space/p/ainews-the-two-sides-of-openclaw
 - Raw markdown: `raw/readwise/ainews-the-two-sides-of-openclaw-01kpfp8ck7csr72kp8wdxgb2k3.md`
 - Raw HTML: `raw/readwise/ainews-the-two-sides-of-openclaw-01kpfp8ck7csr72kp8wdxgb2k3.html`
+
+## Full source text
+
+---
+readwise_id: 01kpfp8ck7csr72kp8wdxgb2k3
+title: '[AINews] The Two Sides of OpenClaw'
+author: Latent Space
+source_url: https://www.latent.space/p/ainews-the-two-sides-of-openclaw
+category: rss
+location: archive
+published_date: '2026-04-18'
+saved_at: '2026-04-18T07:00:34.095000+00:00'
+updated_at: '2026-05-07T13:44:19.781182+00:00'
+tags:
+- processed
+publication: Latent
+---
+
+OpenClaw’s story shows both inspiring success and serious security challenges as the fastest growing open source project. Anthropic released Claude Design and Opus 4.7, improving AI design tools and model efficiency with mixed early feedback. Advances in AI agents, local inference, and applied health research highlight rapid progress across technology and science.

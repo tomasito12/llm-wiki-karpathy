@@ -17,6 +17,9 @@ assessed_as_of: '2026-05-08'
 ingested_at: '2026-05-17T20:26:15.822145+00:00'
 canonical_url: https://medium.com/@creativeaininja/this-open-source-app-turns-your-documents-into-a-self-building-wiki-b3b5778903dd
 content_sha256: 72014f4130e7df977067f6cd01b9a8ff406a5d6b78acf33631b59fd1659daf5a
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/knowledge-management.md
 - glossary/retrieval-augmented-generation.md
@@ -70,3 +73,21 @@ The article is enthusiastic about the wiki paradigm, but it relies heavily on a 
 - Canonical URL: https://medium.com/@creativeaininja/this-open-source-app-turns-your-documents-into-a-self-building-wiki-b3b5778903dd
 - Raw markdown: `raw/readwise/this-open-source-app-turns-your-documents-into-a-self-building-wiki-01krh1c36qjjqw53cwe4hw1s5g.md`
 - Raw HTML: `raw/readwise/this-open-source-app-turns-your-documents-into-a-self-building-wiki-01krh1c36qjjqw53cwe4hw1s5g.html`
+
+## Full source text
+
+---
+readwise_id: "01krh1c36qjjqw53cwe4hw1s5g"
+title: "This Open-Source App Turns Your Documents Into a Self-Building Wiki"
+author: "Kristopher Dunham"
+publication: "Medium"
+source_url: "https://medium.com/@creativeaininja/this-open-source-app-turns-your-documents-into-a-self-building-wiki-b3b5778903dd"
+category: "article"
+location: "archive"
+published_date: "2026-05-08"
+saved_at: "2026-05-13T16:05:30.967000+00:00"
+updated_at: "2026-05-13T17:13:28.996784+00:00"
+tags: ["processed"]
+---
+
+The nashsu/llm_wiki app helps AI build a smart, connected wiki from your documents instead of just searching them. It reads, links, and updates information to create a knowledge base that grows over time. This approach turns AI into a long-term research partner, not just a tool for quick answers.

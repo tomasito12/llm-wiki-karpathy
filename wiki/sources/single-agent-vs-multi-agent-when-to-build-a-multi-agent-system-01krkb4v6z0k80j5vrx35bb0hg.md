@@ -19,6 +19,9 @@ assessed_as_of: '2026-05-04'
 ingested_at: '2026-06-08T15:33:59.628065+00:00'
 canonical_url: https://towardsdatascience.com/single-agent-vs-multi-agent-when-to-build-a-multi-agent-system/?utm_campaign=tds%20variable&utm_medium=email&_hsenc=p2ANqtz--AiGaiDpU9FLZjFPT04opDJ1pJumLXiL4DXmaLqcjhumd7iX-3NSfDNxL3smSmLS-FFKfaUE2Jkz7BMAloZnmPk_GNMw&_hsmi=418698396&utm_source=newsletter
 content_sha256: 8105ed3253fcc7baffc0dddc3ab968645ab5501ad8fc954f19d94542ea4e2b13
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/multi-agent-system-design.md
 derived_topics:
@@ -65,3 +68,21 @@ The article’s main claim—that multi-agent systems are preferable when tasks 
 - Canonical URL: https://towardsdatascience.com/single-agent-vs-multi-agent-when-to-build-a-multi-agent-system/?utm_campaign=tds%20variable&utm_medium=email&_hsenc=p2ANqtz--AiGaiDpU9FLZjFPT04opDJ1pJumLXiL4DXmaLqcjhumd7iX-3NSfDNxL3smSmLS-FFKfaUE2Jkz7BMAloZnmPk_GNMw&_hsmi=418698396&utm_source=newsletter
 - Raw markdown: `raw/readwise/single-agent-vs-multi-agent-when-to-build-a-multi-agent-system-01krkb4v6z0k80j5vrx35bb0hg.md`
 - Raw HTML: `raw/readwise/single-agent-vs-multi-agent-when-to-build-a-multi-agent-system-01krkb4v6z0k80j5vrx35bb0hg.html`
+
+## Full source text
+
+---
+readwise_id: "01krkb4v6z0k80j5vrx35bb0hg"
+title: "Single Agent vs Multi-Agent: When to Build a Multi-Agent System"
+author: "Ayoola Olafenwa"
+publication: "Medium"
+source_url: "https://towardsdatascience.com/single-agent-vs-multi-agent-when-to-build-a-multi-agent-system/?utm_campaign=tds%20variable&utm_medium=email&_hsenc=p2ANqtz--AiGaiDpU9FLZjFPT04opDJ1pJumLXiL4DXmaLqcjhumd7iX-3NSfDNxL3smSmLS-FFKfaUE2Jkz7BMAloZnmPk_GNMw&_hsmi=418698396&utm_source=newsletter"
+category: "article"
+location: "archive"
+published_date: "2026-05-04"
+saved_at: "2026-05-14T13:34:48.031000+00:00"
+updated_at: "2026-05-21T12:34:52.803279+00:00"
+tags: ["processed"]
+---
+
+A single AI agent is good for simple tasks, while multi-agent systems work better for complex jobs that need teamwork and special roles. Multi-agent systems have a central coordinator that manages specialized agents for different steps like writing, testing, or verifying. This design helps handle complicated workflows by dividing tasks and using memory and tools efficiently.

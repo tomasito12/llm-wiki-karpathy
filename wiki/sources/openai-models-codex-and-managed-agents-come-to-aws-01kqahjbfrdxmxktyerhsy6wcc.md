@@ -10,6 +10,9 @@ assessed_as_of: '2026-04-28'
 ingested_at: '2026-06-05T15:18:39.126148+00:00'
 canonical_url: https://openai.com/index/openai-on-aws
 content_sha256: c00778d37ce38bc6689e5d185dc6c38e384dbcb93690b9207342ac56ff9ffe02
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # OpenAI models, Codex, and Managed Agents come to AWS
@@ -45,3 +48,22 @@ The article implies a smoother enterprise path, but that is a packaging claim, n
 - Canonical URL: https://openai.com/index/openai-on-aws
 - Raw markdown: `raw/readwise/openai-models-codex-and-managed-agents-come-to-aws-01kqahjbfrdxmxktyerhsy6wcc.md`
 - Raw HTML: `raw/readwise/openai-models-codex-and-managed-agents-come-to-aws-01kqahjbfrdxmxktyerhsy6wcc.html`
+
+## Full source text
+
+---
+readwise_id: 01kqahjbfrdxmxktyerhsy6wcc
+title: OpenAI models, Codex, and Managed Agents come to AWS
+author: OpenAI Blog
+source_url: https://openai.com/index/openai-on-aws
+category: rss
+location: archive
+published_date: '2026-04-28'
+saved_at: '2026-04-28T17:18:07.424000+00:00'
+updated_at: '2026-05-02T14:23:37.338224+00:00'
+tags:
+- processed
+publication: OpenAI
+---
+
+OpenAI and AWS are partnering to bring OpenAI models, Codex, and Managed Agents to AWS environments. This lets companies use advanced AI tools securely within their existing systems. The new services help businesses build and deploy AI faster and more easily.

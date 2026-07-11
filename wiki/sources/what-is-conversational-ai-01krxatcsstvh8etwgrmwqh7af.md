@@ -24,6 +24,9 @@ assessed_as_of: '2026-03-25'
 ingested_at: '2026-06-08T19:10:51.121208+00:00'
 canonical_url: https://www.cognigy.com/conversational-ai
 content_sha256: 2752f77fb3cab38bb49c86e63a69989a362a7c88fa12e09612dae04d3e415788
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/cognigy-ai.md
 derived_topics:
@@ -74,3 +77,21 @@ The article mixes several terms—conversational AI, AI agents, generative AI, a
 - Canonical URL: https://www.cognigy.com/conversational-ai
 - Raw markdown: `raw/readwise/what-is-conversational-ai-01krxatcsstvh8etwgrmwqh7af.md`
 - Raw HTML: `raw/readwise/what-is-conversational-ai-01krxatcsstvh8etwgrmwqh7af.html`
+
+## Full source text
+
+---
+readwise_id: "01krxatcsstvh8etwgrmwqh7af"
+title: "What Is Conversational AI?"
+author: "NiCE Cognigy"
+publication: "cognigy.com"
+source_url: "https://www.cognigy.com/conversational-ai"
+category: "article"
+location: "archive"
+published_date: "2026-03-25"
+saved_at: "2026-05-18T10:41:29.913000+00:00"
+updated_at: "2026-05-20T15:33:46.004849+00:00"
+tags: ["processed"]
+---
+
+Conversational AI helps businesses automate customer interactions using natural, human-like conversations. It improves efficiency by handling simple tasks and freeing human agents for complex work. This technology boosts customer satisfaction and supports 24/7 service across many channels.

@@ -16,6 +16,9 @@ assessed_as_of: '2026-04-28'
 ingested_at: '2026-06-09T17:33:45.227472+00:00'
 canonical_url: https://medium.com/@NMitchem/if-ai-writes-your-code-why-use-python-bf8c4ba1a055
 content_sha256: f213ce4dee1ebf58bd05bd0d078aabb18eb597302467a8b6da983dcfcfc88e8f
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/agentic-coding-workflows.md
 - topics/systems-language-feedback-loops.md
@@ -62,3 +65,21 @@ The essay compresses a complex decision into a broad claim that agents make hard
 - Canonical URL: https://medium.com/@NMitchem/if-ai-writes-your-code-why-use-python-bf8c4ba1a055
 - Raw markdown: `raw/readwise/if-ai-writes-your-code-why-use-python-01krbncwpakyz5n828c0p8fnfg.md`
 - Raw HTML: `raw/readwise/if-ai-writes-your-code-why-use-python-01krbncwpakyz5n828c0p8fnfg.html`
+
+## Full source text
+
+---
+readwise_id: "01krbncwpakyz5n828c0p8fnfg"
+title: "If AI Writes Your Code, Why Use Python?"
+author: "Noah Mitchem"
+publication: "Medium"
+source_url: "https://medium.com/@NMitchem/if-ai-writes-your-code-why-use-python-bf8c4ba1a055"
+category: "article"
+location: "archive"
+published_date: "2026-04-28"
+saved_at: "2026-05-11T14:00:01.994000+00:00"
+updated_at: "2026-05-12T14:41:15.131478+00:00"
+tags: ["processed"]
+---
+
+AI now writes complex code in fast languages like Rust and Go better than humans. This change makes Python less necessary since AI can build performant systems quickly. The future favors languages that work well with AI, not just ones easy for humans.

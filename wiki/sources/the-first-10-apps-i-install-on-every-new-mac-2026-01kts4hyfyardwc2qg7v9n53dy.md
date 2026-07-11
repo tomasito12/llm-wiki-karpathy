@@ -23,6 +23,9 @@ assessed_as_of: '2026-05-17'
 ingested_at: '2026-07-09T19:44:52.195828+00:00'
 canonical_url: https://jess-writes-about-tech.medium.com/the-first-10-apps-i-install-on-every-new-mac-2026-20ee15bc92c4
 content_sha256: de68b352654a451a4078f292ead2109bf02b6b501a95c9c7c6310e76934d6d8e
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/1password.md
 - tools/claude-desktop.md
@@ -89,3 +92,21 @@ The article is candid about subjectivity, but it still leans on personal comfort
 - Canonical URL: https://jess-writes-about-tech.medium.com/the-first-10-apps-i-install-on-every-new-mac-2026-20ee15bc92c4
 - Raw markdown: `raw/readwise/the-first-10-apps-i-install-on-every-new-mac-2026-01kts4hyfyardwc2qg7v9n53dy.md`
 - Raw HTML: `raw/readwise/the-first-10-apps-i-install-on-every-new-mac-2026-01kts4hyfyardwc2qg7v9n53dy.html`
+
+## Full source text
+
+---
+readwise_id: "01kts4hyfyardwc2qg7v9n53dy"
+title: "The First 10 Apps I Install on Every New Mac (2026)"
+author: "Jessica Lin"
+publication: "Medium"
+source_url: "https://jess-writes-about-tech.medium.com/the-first-10-apps-i-install-on-every-new-mac-2026-20ee15bc92c4"
+category: "article"
+location: "archive"
+published_date: "2026-05-17"
+saved_at: "2026-06-10T16:06:27.581000+00:00"
+updated_at: "2026-06-11T05:12:53.650810+00:00"
+tags: ["processed"]
+---
+
+Forget the gap-fillers. These are the apps I actually do my job in. Ten apps, in install order, with real prices and what I’d cut.

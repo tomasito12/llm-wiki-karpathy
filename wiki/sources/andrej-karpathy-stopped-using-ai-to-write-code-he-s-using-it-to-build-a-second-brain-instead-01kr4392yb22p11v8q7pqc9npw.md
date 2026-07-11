@@ -17,6 +17,9 @@ assessed_as_of: '2026-04-05'
 ingested_at: '2026-05-18T15:36:54.489985+00:00'
 canonical_url: https://medium.com/neuralnotions/andrej-karpathy-stopped-using-ai-to-write-code-hes-using-it-to-build-a-second-brain-instead-cddceadc5df5
 content_sha256: bf1c17bfe85df4cfcd1f23d4a8f15b9d2b2ca5eb603c0e1d5721cc42bd647085
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/knowledge-management.md
 - glossary/retrieval-augmented-generation.md
@@ -67,3 +70,23 @@ The piece pushes back against retrieval-augmented generation, but the critique i
 - Canonical URL: https://medium.com/neuralnotions/andrej-karpathy-stopped-using-ai-to-write-code-hes-using-it-to-build-a-second-brain-instead-cddceadc5df5
 - Raw markdown: `raw/readwise/andrej-karpathy-stopped-using-ai-to-write-code-he-s-using-it-to-build-a-second-brain-instead-01kr4392yb22p11v8q7pqc9npw.md`
 - Raw HTML: `raw/readwise/andrej-karpathy-stopped-using-ai-to-write-code-he-s-using-it-to-build-a-second-brain-instead-01kr4392yb22p11v8q7pqc9npw.html`
+
+## Full source text
+
+---
+readwise_id: 01kr4392yb22p11v8q7pqc9npw
+title: Andrej Karpathy Stopped Using AI to Write Code. He’s Using It to Build a Second
+  Brain Instead
+author: Nikhil
+source_url: https://medium.com/neuralnotions/andrej-karpathy-stopped-using-ai-to-write-code-hes-using-it-to-build-a-second-brain-instead-cddceadc5df5
+category: article
+location: archive
+published_date: '2026-04-05'
+saved_at: '2026-05-08T15:28:41.931000+00:00'
+updated_at: '2026-05-08T15:29:56.666230+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+Andrej Karpathy uses AI to build and maintain a personal research wiki from raw documents. The AI reads new materials, writes summaries, links ideas, and updates the wiki automatically. This system helps answer complex questions by organizing knowledge clearly and grows smarter over time.

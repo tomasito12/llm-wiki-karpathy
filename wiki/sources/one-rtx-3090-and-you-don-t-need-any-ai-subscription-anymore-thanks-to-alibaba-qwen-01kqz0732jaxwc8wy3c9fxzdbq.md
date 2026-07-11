@@ -25,6 +25,9 @@ assessed_as_of: '2026-04-23'
 ingested_at: '2026-06-05T13:47:44.074594+00:00'
 canonical_url: https://medium.com/@kakadaaryan10/one-rtx-3090-and-you-dont-need-any-ai-subscription-anymore-thanks-to-alibaba-qwen-0f03b383d3eb
 content_sha256: fb52bec5772a40b41451cd5cf919ceac525dcbf00db62792a8e22e7b89c80203
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_models:
 - foundation-models/qwen3-6-27b.md
 derived_topics:
@@ -75,3 +78,23 @@ The piece is confident in a way that outpaces its evidence. Saying this is the �
 - Canonical URL: https://medium.com/@kakadaaryan10/one-rtx-3090-and-you-dont-need-any-ai-subscription-anymore-thanks-to-alibaba-qwen-0f03b383d3eb
 - Raw markdown: `raw/readwise/one-rtx-3090-and-you-don-t-need-any-ai-subscription-anymore-thanks-to-alibaba-qwen-01kqz0732jaxwc8wy3c9fxzdbq.md`
 - Raw HTML: `raw/readwise/one-rtx-3090-and-you-don-t-need-any-ai-subscription-anymore-thanks-to-alibaba-qwen-01kqz0732jaxwc8wy3c9fxzdbq.html`
+
+## Full source text
+
+---
+readwise_id: 01kqz0732jaxwc8wy3c9fxzdbq
+title: One RTX 3090 and you don’t need any AI subscription anymore. Thanks to Alibaba
+  Qwen.
+author: Aaryan Kakad
+source_url: https://medium.com/@kakadaaryan10/one-rtx-3090-and-you-dont-need-any-ai-subscription-anymore-thanks-to-alibaba-qwen-0f03b383d3eb
+category: article
+location: archive
+published_date: '2026-04-23'
+saved_at: '2026-05-06T15:58:58.642000+00:00'
+updated_at: '2026-05-06T17:32:36.295957+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+Alibaba released Qwen3.6–27B, a powerful AI model that runs on a single RTX 3090 GPU and beats top proprietary models in vision and reasoning. It uses a dense architecture for consistent, deep understanding of text and images together. This open-source model is free to use, private, and works well for many AI tasks without subscriptions or cloud services.

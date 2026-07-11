@@ -17,6 +17,9 @@ assessed_as_of: '2026-01-16'
 ingested_at: '2026-05-22T16:32:30.857372+00:00'
 canonical_url: https://medium.com/@kurtis-redux/obsidians-official-skills-are-here-it-s-time-to-let-ai-plug-into-your-local-vault-6c149aae84f6
 content_sha256: b8496b7080f3fae326ac6eec7f0bc45f309494c875300db79fb69529b6cd6c5d
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/json-canvas.md
 - glossary/model-context-protocol.md
@@ -78,3 +81,23 @@ The piece argues for openness while still leaning on Anthropic-defined Skills an
 - Canonical URL: https://medium.com/@kurtis-redux/obsidians-official-skills-are-here-it-s-time-to-let-ai-plug-into-your-local-vault-6c149aae84f6
 - Raw markdown: `raw/readwise/obsidian-s-official-skills-are-here-it-s-time-to-let-ai-plug-into-your-local-vault-01kqfzks8n4e91tn6m1vs562sk.md`
 - Raw HTML: `raw/readwise/obsidian-s-official-skills-are-here-it-s-time-to-let-ai-plug-into-your-local-vault-01kqfzks8n4e91tn6m1vs562sk.html`
+
+## Full source text
+
+---
+readwise_id: 01kqfzks8n4e91tn6m1vs562sk
+title: Obsidian’s Official Skills Are Here! It’s time to let AI plug into your local
+  Vault.
+author: Kurtis Redux
+source_url: https://medium.com/@kurtis-redux/obsidians-official-skills-are-here-it-s-time-to-let-ai-plug-into-your-local-vault-6c149aae84f6
+category: article
+location: archive
+published_date: '2026-01-16'
+saved_at: '2026-04-30T19:59:49.525000+00:00'
+updated_at: '2026-05-02T14:22:23.572864+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+Obsidian released open-source “Skills” that teach AI how to use its unique file types correctly. These Skills keep data local and use open formats, fitting into Obsidian’s toolchain approach. This lets users choose their AI platform while keeping control and avoiding bloated apps.

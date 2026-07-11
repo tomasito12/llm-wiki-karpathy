@@ -32,6 +32,9 @@ assessed_as_of: '2026-05-07'
 ingested_at: '2026-07-08T19:24:41.648721+00:00'
 canonical_url: https://openai.com/index/parloa
 content_sha256: 47798c1c4fcee5e24e977003b5adc364e0287387f9071a4a912713714f8f9068
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_implementation_studies:
 - implementation-studies/2026-05/parloa-builds-service-agents-customers-want-to-talk-to-01kr11qtpam16gysk8yxpsbspy-parloa-s-enterprise-voice-agent-platform.md
 derived_models:
@@ -86,3 +89,22 @@ The article argues that model choice and evaluation discipline are enough to mak
 - Canonical URL: https://openai.com/index/parloa
 - Raw markdown: `raw/readwise/parloa-builds-service-agents-customers-want-to-talk-to-01kr11qtpam16gysk8yxpsbspy.md`
 - Raw HTML: `raw/readwise/parloa-builds-service-agents-customers-want-to-talk-to-01kr11qtpam16gysk8yxpsbspy.html`
+
+## Full source text
+
+---
+readwise_id: 01kr11qtpam16gysk8yxpsbspy
+title: Parloa builds service agents customers want to talk to
+author: OpenAI Blog
+source_url: https://openai.com/index/parloa
+category: rss
+location: archive
+published_date: '2026-05-07'
+saved_at: '2026-05-07T11:04:01.554000+00:00'
+updated_at: '2026-05-07T12:04:42.380628+00:00'
+tags:
+- processed
+publication: OpenAI
+---
+
+Parloa builds AI voice agents that help companies automate customer service using advanced OpenAI models. Their platform lets non-technical teams design, test, and manage these agents easily with natural language. This approach improves speed, reliability, and customer satisfaction across many industries worldwide.

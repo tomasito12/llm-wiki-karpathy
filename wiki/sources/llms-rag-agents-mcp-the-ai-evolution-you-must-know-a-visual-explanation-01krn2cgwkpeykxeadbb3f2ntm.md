@@ -17,6 +17,9 @@ assessed_as_of: '2026-05-11'
 ingested_at: '2026-06-02T20:31:55.438482+00:00'
 canonical_url: https://pub.towardsai.net/llms-rag-agents-mcp-the-ai-evolution-you-must-know-a-visual-explanation-9ee07e421587
 content_sha256: 0c099d7270a495261faebfd81f2f572b6b3ba69acc5aa04c77d962ed7f0b3c49
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/context-engineering.md
 - topics/layered-ai-architecture.md
@@ -63,3 +66,21 @@ The article is strong on architecture storytelling but lighter on evidence, so s
 - Canonical URL: https://pub.towardsai.net/llms-rag-agents-mcp-the-ai-evolution-you-must-know-a-visual-explanation-9ee07e421587
 - Raw markdown: `raw/readwise/llms-rag-agents-mcp-the-ai-evolution-you-must-know-a-visual-explanation-01krn2cgwkpeykxeadbb3f2ntm.md`
 - Raw HTML: `raw/readwise/llms-rag-agents-mcp-the-ai-evolution-you-must-know-a-visual-explanation-01krn2cgwkpeykxeadbb3f2ntm.html`
+
+## Full source text
+
+---
+readwise_id: "01krn2cgwkpeykxeadbb3f2ntm"
+title: "LLMs, RAG, Agents, MCP: The AI Evolution You Must Know (A Visual Explanation)"
+author: "Divy Yadav"
+publication: "Medium"
+source_url: "https://pub.towardsai.net/llms-rag-agents-mcp-the-ai-evolution-you-must-know-a-visual-explanation-9ee07e421587"
+category: "article"
+location: "archive"
+published_date: "2026-05-11"
+saved_at: "2026-05-15T05:40:11.283000+00:00"
+updated_at: "2026-05-16T20:57:38.458195+00:00"
+tags: ["processed"]
+---
+
+AI has evolved from simple chatbots to complex systems that plan, act, and connect with many tools. The new Model Context Protocol (MCP) standardizes how AI links with data and software, making integrations easier. Today, success in AI comes from building smart systems around models, not just better models themselves.

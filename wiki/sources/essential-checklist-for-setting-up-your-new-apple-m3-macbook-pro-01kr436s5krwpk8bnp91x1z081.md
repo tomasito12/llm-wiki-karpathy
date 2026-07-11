@@ -10,6 +10,9 @@ assessed_as_of: '2024-02-10'
 ingested_at: '2026-06-06T21:45:49+00:00'
 canonical_url: https://medium.com/data-science/essential-checklist-for-setting-up-your-new-apple-m3-macbook-pro-306e94e974b4
 content_sha256: aae66b032b472cc3a974cc53162bf2bee6be284462bab095235c3af138e51a15
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # Essential Checklist for Setting up Your New Apple M3 MacBook Pro
@@ -45,3 +48,22 @@ The main tension is between the article’s practical tone and the limited evide
 - Canonical URL: https://medium.com/data-science/essential-checklist-for-setting-up-your-new-apple-m3-macbook-pro-306e94e974b4
 - Raw markdown: `raw/readwise/essential-checklist-for-setting-up-your-new-apple-m3-macbook-pro-01kr436s5krwpk8bnp91x1z081.md`
 - Raw HTML: `raw/readwise/essential-checklist-for-setting-up-your-new-apple-m3-macbook-pro-01kr436s5krwpk8bnp91x1z081.html`
+
+## Full source text
+
+---
+readwise_id: 01kr436s5krwpk8bnp91x1z081
+title: Essential Checklist for Setting up Your New Apple M3 MacBook Pro
+author: Wen Yang
+source_url: https://medium.com/data-science/essential-checklist-for-setting-up-your-new-apple-m3-macbook-pro-306e94e974b4
+category: article
+location: archive
+published_date: '2024-02-10'
+saved_at: '2026-05-08T15:27:26.387000+00:00'
+updated_at: '2026-05-08T15:30:05.339694+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+The author shares steps to set up a new Apple M3 MacBook Pro for work, including migrating bookmarks, customizing the terminal, and installing AWS CLI. The guide covers installing tools like Homebrew, iTerm2, Oh My Zsh, and PowerLevel10K for a better developer experience. It also explains how to transfer SSH keys and configure AWS profiles for smooth project access.

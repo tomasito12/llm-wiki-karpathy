@@ -17,6 +17,9 @@ assessed_as_of: '2026-03-25'
 ingested_at: '2026-06-05T14:40:58.205031+00:00'
 canonical_url: https://medium.com/data-science-collective/how-to-build-claude-skills-2-0-better-than-99-of-people-af4927dd5335
 content_sha256: 5b84df04b1199a31d3b22aa978a936ec9931686f1476f7b9ce65d0ecf05c5f26
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/claude-skills-setup.md
 derived_tools:
@@ -67,3 +70,22 @@ The article presents Skills as a major upgrade, but the evidence is mostly first
 - Canonical URL: https://medium.com/data-science-collective/how-to-build-claude-skills-2-0-better-than-99-of-people-af4927dd5335
 - Raw markdown: `raw/readwise/how-to-build-claude-skills-2-0-better-than-99-of-people-01kqfzngwjk9z6mbkcj9yx6tfn.md`
 - Raw HTML: `raw/readwise/how-to-build-claude-skills-2-0-better-than-99-of-people-01kqfzngwjk9z6mbkcj9yx6tfn.html`
+
+## Full source text
+
+---
+readwise_id: 01kqfzngwjk9z6mbkcj9yx6tfn
+title: How to build Claude Skills 2.0 Better than 99% of People
+author: Gao Dalie
+source_url: https://medium.com/data-science-collective/how-to-build-claude-skills-2-0-better-than-99-of-people-af4927dd5335
+category: article
+location: archive
+published_date: '2026-03-25'
+saved_at: '2026-04-30T20:00:46.482000+00:00'
+updated_at: '2026-05-02T14:22:17.292170+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+Claude Skills are sets of clear, reusable instructions that help Claude perform specific tasks better. They save time by automating routine work and improving Claude’s decision-making. Anyone using Claude can create or install Skills to get consistent and efficient results.

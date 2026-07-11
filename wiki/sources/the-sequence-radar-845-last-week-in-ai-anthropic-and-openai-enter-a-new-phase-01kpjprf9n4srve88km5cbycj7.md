@@ -11,6 +11,9 @@ assessed_as_of: '2026-04-19'
 ingested_at: '2026-06-08T19:41:36.551923+00:00'
 canonical_url: https://thesequence.substack.com/p/the-sequence-radar-845-last-week
 content_sha256: ec064866e8962e44cf6d4bfc8981266be64056964bec5b9fe637a602ad82c7c7
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # The Sequence Radar #845: Last Week in AI: Anthropic and OpenAI Enter a New Phase
@@ -46,3 +49,23 @@ The editorial argues that AI is fragmenting into distinct product forms, but the
 - Canonical URL: https://thesequence.substack.com/p/the-sequence-radar-845-last-week
 - Raw markdown: `raw/readwise/the-sequence-radar-845-last-week-in-ai-anthropic-and-openai-enter-a-new-phase-01kpjprf9n4srve88km5cbycj7.md`
 - Raw HTML: `raw/readwise/the-sequence-radar-845-last-week-in-ai-anthropic-and-openai-enter-a-new-phase-01kpjprf9n4srve88km5cbycj7.html`
+
+## Full source text
+
+---
+readwise_id: 01kpjprf9n4srve88km5cbycj7
+title: 'The Sequence Radar #845: Last Week in AI: Anthropic and OpenAI Enter a New
+  Phase'
+author: Jesus Rodriguez
+source_url: https://thesequence.substack.com/p/the-sequence-radar-845-last-week
+category: rss
+location: archive
+published_date: '2026-04-19'
+saved_at: '2026-04-19T11:07:04.446000+00:00'
+updated_at: '2026-05-07T13:43:56.928554+00:00'
+tags:
+- processed
+publication: Substack
+---
+
+Major releases by the two fierce competitors

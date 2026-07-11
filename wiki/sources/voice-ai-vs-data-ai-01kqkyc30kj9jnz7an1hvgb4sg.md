@@ -21,6 +21,9 @@ assessed_as_of: '2026-04-21'
 ingested_at: '2026-06-06T16:03:41.576877+00:00'
 canonical_url: https://medium.com/@neilaisme/voice-ai-vs-data-ai-5511684c940d
 content_sha256: 15bd04beedf911a5afef1b0c9d0ad2182f3c7c155ca38eb664bedb8139e08f33
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/latency-as-a-conversation-constraint.md
 - topics/voice-prompting-for-conversational-systems.md
@@ -67,3 +70,22 @@ The piece simplifies voice prompting into a clean five-part contrast with data p
 - Canonical URL: https://medium.com/@neilaisme/voice-ai-vs-data-ai-5511684c940d
 - Raw markdown: `raw/readwise/voice-ai-vs-data-ai-01kqkyc30kj9jnz7an1hvgb4sg.md`
 - Raw HTML: `raw/readwise/voice-ai-vs-data-ai-01kqkyc30kj9jnz7an1hvgb4sg.html`
+
+## Full source text
+
+---
+readwise_id: 01kqkyc30kj9jnz7an1hvgb4sg
+title: Voice AI vs Data AI
+author: neilaisme
+source_url: https://medium.com/@neilaisme/voice-ai-vs-data-ai-5511684c940d
+category: article
+location: archive
+published_date: '2026-04-21'
+saved_at: '2026-05-02T08:55:06.095000+00:00'
+updated_at: '2026-05-02T14:21:38.331999+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+In my journey as an AI PM, I thought I already understand the art of the prompt. I knew how to talk to Claude to get clean JSON from messy…

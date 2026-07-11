@@ -24,6 +24,9 @@ assessed_as_of: '2026-04-17'
 ingested_at: '2026-07-08T19:03:24.348553+00:00'
 canonical_url: https://pub.towardsai.net/8-llm-cost-optimization-techniques-how-to-cut-api-spend-by-up-to-70-visually-explained-edf7339d0c9a
 content_sha256: 7e589cffab7fa8acc9cb2f3d1a2ffe0eb7e21ca1ce8e7f809504d6a56ebb0a56
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/llm-cost-observability.md
 - how-to/model-distillation.md
@@ -81,3 +84,21 @@ The article occasionally compresses a complicated space into neat rules, such as
 - Canonical URL: https://pub.towardsai.net/8-llm-cost-optimization-techniques-how-to-cut-api-spend-by-up-to-70-visually-explained-edf7339d0c9a
 - Raw markdown: `raw/readwise/8-llm-cost-optimization-techniques-how-to-cut-api-spend-by-up-to-70-visually-explained-01ktkyv6hm99qdvw30jt2405q9.md`
 - Raw HTML: `raw/readwise/8-llm-cost-optimization-techniques-how-to-cut-api-spend-by-up-to-70-visually-explained-01ktkyv6hm99qdvw30jt2405q9.html`
+
+## Full source text
+
+---
+readwise_id: "01ktkyv6hm99qdvw30jt2405q9"
+title: "8 LLM Cost Optimization Techniques: How to Cut API Spend by Up to 70% (Visually Explained)"
+author: "Divy Yadav"
+publication: "Medium"
+source_url: "https://pub.towardsai.net/8-llm-cost-optimization-techniques-how-to-cut-api-spend-by-up-to-70-visually-explained-edf7339d0c9a"
+category: "article"
+location: "archive"
+published_date: "2026-04-17"
+saved_at: "2026-06-08T15:50:27.124000+00:00"
+updated_at: "2026-06-11T19:43:16.486131+00:00"
+tags: ["processed"]
+---
+
+Large language model (LLM) API costs are high because they charge based on input and output tokens, with expensive repeated calls and long prompts driving up bills. The article explains eight practical techniques like caching, token reduction, model routing, and distillation that can cut costs by up to 90%. Most savings come from sending fewer tokens and smartly reusing results, not just picking cheaper models.

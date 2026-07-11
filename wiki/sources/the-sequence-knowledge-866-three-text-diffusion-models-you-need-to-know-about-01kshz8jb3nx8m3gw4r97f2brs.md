@@ -19,6 +19,9 @@ assessed_as_of: '2026-05-26'
 ingested_at: '2026-06-09T15:46:31.400209+00:00'
 canonical_url: https://thesequence.substack.com/p/the-sequence-knowledge-866-three
 content_sha256: 72df246855da38768c3531ff231c9a61d28d11be609a99efd4ae90da6da4320d
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_models:
 - foundation-models/mercury.md
 derived_topics:
@@ -69,3 +72,21 @@ The piece makes a strong architectural contrast between diffusion and next-token
 - Canonical URL: https://thesequence.substack.com/p/the-sequence-knowledge-866-three
 - Raw markdown: `raw/readwise/the-sequence-knowledge-866-three-text-diffusion-models-you-need-to-know-about-01kshz8jb3nx8m3gw4r97f2brs.md`
 - Raw HTML: `raw/readwise/the-sequence-knowledge-866-three-text-diffusion-models-you-need-to-know-about-01kshz8jb3nx8m3gw4r97f2brs.html`
+
+## Full source text
+
+---
+readwise_id: "01kshz8jb3nx8m3gw4r97f2brs"
+title: "The Sequence Knowledge #866: Three Text Diffusion Models You Need To Know About"
+author: "Jesus Rodriguez"
+publication: "substack.com"
+source_url: "https://thesequence.substack.com/p/the-sequence-knowledge-866-three"
+category: "rss"
+location: "archive"
+published_date: "2026-05-26"
+saved_at: "2026-05-26T11:03:31.500000+00:00"
+updated_at: "2026-05-27T10:12:17.051106+00:00"
+tags: ["processed"]
+---
+
+LlaDa, Gemini Diffusion and Mercury rule the space.

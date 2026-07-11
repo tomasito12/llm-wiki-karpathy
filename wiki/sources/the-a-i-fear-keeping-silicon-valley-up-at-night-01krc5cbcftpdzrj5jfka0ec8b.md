@@ -13,6 +13,9 @@ assessed_as_of: '2026-04-30'
 ingested_at: '2026-05-18T14:57:44.472341+00:00'
 canonical_url: https://nytimes.com/2026/04/30/opinion/ai-labor-work-force-silicon-valley.html/
 content_sha256: 18845027cc3460bff7383c99fcffcc82f7622ad9527147328fe9a4b3e98d6b02
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/benchmark.md
 - glossary/economic-value-benchmark.md
@@ -59,3 +62,21 @@ The essay presents a strong warning about labor displacement while also noting t
 - Canonical URL: https://nytimes.com/2026/04/30/opinion/ai-labor-work-force-silicon-valley.html/
 - Raw markdown: `raw/readwise/the-a-i-fear-keeping-silicon-valley-up-at-night-01krc5cbcftpdzrj5jfka0ec8b.md`
 - Raw HTML: `raw/readwise/the-a-i-fear-keeping-silicon-valley-up-at-night-01krc5cbcftpdzrj5jfka0ec8b.html`
+
+## Full source text
+
+---
+readwise_id: "01krc5cbcftpdzrj5jfka0ec8b"
+title: "The A.I. Fear Keeping Silicon Valley Up at Night"
+author: "Jasmine Sun"
+publication: "New York Times"
+source_url: "https://nytimes.com/2026/04/30/opinion/ai-labor-work-force-silicon-valley.html/"
+category: "article"
+location: "archive"
+published_date: "2026-04-30"
+saved_at: "2026-05-11T18:39:21.487000+00:00"
+updated_at: "2026-05-12T12:07:07.336080+00:00"
+tags: ["processed"]
+---
+
+Silicon Valley fears that advanced A.I. will take many jobs, leaving most people unemployed and stuck in poverty. This could increase inequality and concentrate wealth in big companies and the government. Experts say we must act now with policies to support workers before the job losses become widespread.

@@ -19,6 +19,9 @@ assessed_as_of: '2026-06-03'
 ingested_at: '2026-06-06T21:47:06+00:00'
 canonical_url: mailto:reader-forwarded-email/e0fd71d86b1a89cabc30ff2f82ef1efd
 content_sha256: 8b9e6705d79051869c7713bd4e8fa13bd3fbadb8580c8161f2f3ca09ba9d7b02
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-06/fod-154-enterprise-ai-middlemen-who-survives-the-agent-era-01kt6d62s1x57c248n6geeycc3-agent-capability-is-outpacing-organizational-absorption.md
 - signals/2026-06/fod-154-enterprise-ai-middlemen-who-survives-the-agent-era-01kt6d62s1x57c248n6geeycc3-enterprise-ai-moat-shifts-from-packaged-applications-to-trust-layers.md
@@ -68,3 +71,21 @@ The essay argues that middlemen do not disappear; they move closer to intent. Th
 - Canonical URL: mailto:reader-forwarded-email/e0fd71d86b1a89cabc30ff2f82ef1efd
 - Raw markdown: `raw/readwise/fod-154-enterprise-ai-middlemen-who-survives-the-agent-era-01kt6d62s1x57c248n6geeycc3.md`
 - Raw HTML: `raw/readwise/fod-154-enterprise-ai-middlemen-who-survives-the-agent-era-01kt6d62s1x57c248n6geeycc3.html`
+
+## Full source text
+
+---
+readwise_id: "01kt6d62s1x57c248n6geeycc3"
+title: "FOD#154: Enterprise AI Middlemen: Who Survives the Agent Era?"
+author: "🔳 Turing Post"
+publication: "beehiiv.com"
+source_url: "mailto:reader-forwarded-email/e0fd71d86b1a89cabc30ff2f82ef1efd"
+category: "email"
+location: "archive"
+published_date: "2026-06-03"
+saved_at: "2026-06-03T09:31:41.729000+00:00"
+updated_at: "2026-06-03T12:40:22.318882+00:00"
+tags: ["processed"]
+---
+
+Big tech companies like Snowflake, Microsoft, and Databricks are competing to become the key layer that connects AI tools with real business work. AI agents are improving fast, but companies struggle to use them effectively and need trusted data management. The future may reduce some middlemen, but for now, enterprise AI complexity keeps these software layers important.

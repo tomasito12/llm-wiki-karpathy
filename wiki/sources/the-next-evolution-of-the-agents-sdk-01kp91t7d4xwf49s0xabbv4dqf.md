@@ -28,6 +28,9 @@ assessed_as_of: '2026-04-15'
 ingested_at: '2026-06-05T13:42:50.863395+00:00'
 canonical_url: https://openai.com/index/the-next-evolution-of-the-agents-sdk
 content_sha256: a1dec27fe608f8dd6d36e37c449eee81094271f4cd3e8de8755b20435328ae32
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_models:
 - foundation-models/gpt-5-4.md
 derived_tools:
@@ -82,3 +85,22 @@ The article makes strong claims about production viability and improved reliabil
 - Canonical URL: https://openai.com/index/the-next-evolution-of-the-agents-sdk
 - Raw markdown: `raw/readwise/the-next-evolution-of-the-agents-sdk-01kp91t7d4xwf49s0xabbv4dqf.md`
 - Raw HTML: `raw/readwise/the-next-evolution-of-the-agents-sdk-01kp91t7d4xwf49s0xabbv4dqf.html`
+
+## Full source text
+
+---
+readwise_id: 01kp91t7d4xwf49s0xabbv4dqf
+title: The next evolution of the Agents SDK
+author: OpenAI Blog
+source_url: https://openai.com/index/the-next-evolution-of-the-agents-sdk
+category: rss
+location: archive
+published_date: '2026-04-15'
+saved_at: '2026-04-15T17:07:51.917000+00:00'
+updated_at: '2026-05-08T10:47:53.860220+00:00'
+tags:
+- processed
+publication: OpenAI
+---
+
+The updated Agents SDK helps developers build smarter agents that can work safely with files, tools, and long tasks in controlled environments. It offers a flexible, secure harness and native sandbox support for easy, scalable deployment. This makes it simpler to create powerful agents that fit different needs and run reliably in real-world settings.

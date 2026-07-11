@@ -21,6 +21,9 @@ assessed_as_of: '2026-05-07'
 ingested_at: '2026-06-01T16:21:50.096887+00:00'
 canonical_url: https://medium.com/@chentschel/building-realtime-voice-agents-in-2026-3eec38e96fb1
 content_sha256: 04dbb2d36e53feb55cad0950263ee2e95eb83a8789cd00e3f5ddb074585855c9
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_models:
 - foundation-models/gpt-realtime-1-5.md
 derived_tools:
@@ -75,3 +78,21 @@ The article’s strongest oversimplification is the suggestion that the model si
 - Canonical URL: https://medium.com/@chentschel/building-realtime-voice-agents-in-2026-3eec38e96fb1
 - Raw markdown: `raw/readwise/building-realtime-voice-agents-in-2026-01krbnc59jhd4hcxphw9zz42zp.md`
 - Raw HTML: `raw/readwise/building-realtime-voice-agents-in-2026-01krbnc59jhd4hcxphw9zz42zp.html`
+
+## Full source text
+
+---
+readwise_id: "01krbnc59jhd4hcxphw9zz42zp"
+title: "Building Realtime Voice Agents in 2026"
+author: "Christian Hentschel"
+publication: "Medium"
+source_url: "https://medium.com/@chentschel/building-realtime-voice-agents-in-2026-3eec38e96fb1"
+category: "article"
+location: "archive"
+published_date: "2026-05-07"
+saved_at: "2026-05-11T13:59:38.034000+00:00"
+updated_at: "2026-05-12T15:02:13.139877+00:00"
+tags: ["processed"]
+---
+
+In 2026, building realtime voice agents relies on combining advanced AI models with traditional telephony systems like SIP trunks and media pipelines. The AI handles conversation, but most work is in integrating tools, managing calls, and ensuring reliable connections. Using services like Twilio simplifies this, letting developers focus on smart call handling rather than low-level infrastructure.

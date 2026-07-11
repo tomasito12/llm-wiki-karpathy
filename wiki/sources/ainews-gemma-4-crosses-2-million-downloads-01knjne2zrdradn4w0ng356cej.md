@@ -22,6 +22,9 @@ assessed_as_of: '2026-04-07'
 ingested_at: '2026-06-16T16:26:54.993609+00:00'
 canonical_url: https://www.latent.space/p/ainews-gemma-4-crosses-2-million
 content_sha256: 252f8a806b5fa517de0b241fffb24dfcc583e54885a91c18a65ea8d11eb64f5f
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-04/ainews-gemma-4-crosses-2-million-downloads-01knjne2zrdradn4w0ng356cej-agent-frameworks-are-competing-on-persistent-memory-and-self-improvement-loops.md
 - signals/2026-04/ainews-gemma-4-crosses-2-million-downloads-01knjne2zrdradn4w0ng356cej-local-first-open-models-are-becoming-a-deployment-differentiator.md
@@ -71,3 +74,22 @@ Some of the strongest claims are also the most promotional. The article repeats 
 - Canonical URL: https://www.latent.space/p/ainews-gemma-4-crosses-2-million
 - Raw markdown: `raw/readwise/ainews-gemma-4-crosses-2-million-downloads-01knjne2zrdradn4w0ng356cej.md`
 - Raw HTML: `raw/readwise/ainews-gemma-4-crosses-2-million-downloads-01knjne2zrdradn4w0ng356cej.html`
+
+## Full source text
+
+---
+readwise_id: 01knjne2zrdradn4w0ng356cej
+title: '[AINews] Gemma 4 crosses 2 million downloads'
+author: Latent Space
+source_url: https://www.latent.space/p/ainews-gemma-4-crosses-2-million
+category: rss
+location: archive
+published_date: '2026-04-07'
+saved_at: '2026-04-07T00:28:13.761000+00:00'
+updated_at: '2026-05-08T13:20:34.015185+00:00'
+tags:
+- processed
+publication: Latent
+---
+
+Gemma 4 has surpassed 2 million downloads and is popular for running AI models locally on devices like Apple Silicon. This shift reduces reliance on paid chat subscriptions and cloud services. Meanwhile, AI research focuses on smarter agents, efficient training, and large-scale compute challenges faced by top companies.

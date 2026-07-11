@@ -25,6 +25,9 @@ assessed_as_of: '2026-04-27'
 ingested_at: '2026-06-07T20:03:33.363308+00:00'
 canonical_url: https://every.to/guides/ai-product-management-guide/
 content_sha256: ca0cdaaaf27474f4d5a7aaadd0b39a9cd6134d9c78aa47dd64b92cca117c3730
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/claude-code.md
 derived_topics:
@@ -75,3 +78,21 @@ The article presents agentic PM work as a replacement for tickets and much of th
 - Canonical URL: https://every.to/guides/ai-product-management-guide/
 - Raw markdown: `raw/readwise/a-guide-to-agent-native-product-management-every-01krc5a85g6t1qh1y38nt7yzmn.md`
 - Raw HTML: `raw/readwise/a-guide-to-agent-native-product-management-every-01krc5a85g6t1qh1y38nt7yzmn.html`
+
+## Full source text
+
+---
+readwise_id: "01krc5a85g6t1qh1y38nt7yzmn"
+title: "A Guide to Agent-native Product Management - Every"
+author: "Marcus Moretti"
+publication: "every.to"
+source_url: "https://every.to/guides/ai-product-management-guide/"
+category: "article"
+location: "archive"
+published_date: "2026-04-27"
+saved_at: "2026-05-11T18:38:12.656000+00:00"
+updated_at: "2026-05-12T08:37:20.894875+00:00"
+tags: ["processed"]
+---
+
+AI tools now handle routine product management tasks quickly, freeing managers to focus on strategy and design. The guide explains using AI agents to create strategy documents and track product health through metrics. This new approach helps teams learn faster and improve products more effectively.

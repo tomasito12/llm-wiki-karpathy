@@ -17,6 +17,9 @@ assessed_as_of: '2026-04-21'
 ingested_at: '2026-07-08T19:14:37.321412+00:00'
 canonical_url: https://www.latent.space/p/ainews-moonshot-kimi-k26-the-worlds
 content_sha256: 47c63eb786b16c11bbf238663dbf6295e4ab9fd19ac756b269e2b97a704b37c3
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-04/ainews-moonshot-kimi-k2-6-the-world-s-leading-open-model-refreshes-to-catch-up-t-agent-reliability-is-shifting-toward-harness-design-cc3a9ae5cc.md
 derived_trends:
@@ -60,3 +63,23 @@ The roundup mixes strong engineering detail with a lot of launch-era optimism, s
 - Canonical URL: https://www.latent.space/p/ainews-moonshot-kimi-k26-the-worlds
 - Raw markdown: `raw/readwise/ainews-moonshot-kimi-k2-6-the-world-s-leading-open-model-refreshes-to-catch-up-to-opus-4-6-ahead-of-deepseek-v4-01kpppts0y51zhjfp0jktzemen.md`
 - Raw HTML: `raw/readwise/ainews-moonshot-kimi-k2-6-the-world-s-leading-open-model-refreshes-to-catch-up-to-opus-4-6-ahead-of-deepseek-v4-01kpppts0y51zhjfp0jktzemen.html`
+
+## Full source text
+
+---
+readwise_id: 01kpppts0y51zhjfp0jktzemen
+title: '[AINews] Moonshot Kimi K2.6: the world''s leading Open Model refreshes to
+  catch up to Opus 4.6 (ahead of DeepSeek v4?)'
+author: Latent.Space
+source_url: https://www.latent.space/p/ainews-moonshot-kimi-k26-the-worlds
+category: rss
+location: archive
+published_date: '2026-04-21'
+saved_at: '2026-04-21T00:25:17.670000+00:00'
+updated_at: '2026-05-07T17:25:49.933363+00:00'
+tags:
+- processed
+publication: Latent
+---
+
+Moonshot released Kimi K2.6, a powerful open AI model leading Chinese labs in 2026 with strong coding and agent capabilities. Alibaba previewed Qwen3.6-Max, showing stable long-reasoning and improved real-world knowledge. The AI ecosystem is advancing with new memory, multi-agent systems, and improved benchmarks, highlighting growing competition and innovation.

@@ -16,6 +16,9 @@ assessed_as_of: '2026-04-04'
 ingested_at: '2026-06-06T21:59:40+00:00'
 canonical_url: https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f
 content_sha256: 7d48dfb5f3743090e986bc2fb81342aa6c63bfa5bc3a9d8cb0725ea587adf2a1
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/llm-maintained-knowledge-bases.md
 - topics/wiki-schema-governance.md
@@ -62,3 +65,22 @@ The central claim—that LLMs can make wiki maintenance cheap enough to solve th
 - Canonical URL: https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f
 - Raw markdown: `raw/readwise/llm-wiki-github-01kqh081eg75gw49db3mqd9cpq.md`
 - Raw HTML: `raw/readwise/llm-wiki-github-01kqh081eg75gw49db3mqd9cpq.html`
+
+## Full source text
+
+---
+readwise_id: 01kqh081eg75gw49db3mqd9cpq
+title: llm-wiki · GitHub
+author: '262588213843476'
+source_url: https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f
+category: article
+location: archive
+published_date: '2026-04-04'
+saved_at: '2026-05-01T05:30:07.696000+00:00'
+updated_at: '2026-05-02T14:22:00.264220+00:00'
+tags:
+- processed
+publication: Github
+---
+
+The llm-wiki is a personal knowledge base where an AI reads and summarizes new sources into a growing, linked wiki. This wiki updates itself with new information and keeps everything consistent over time. You guide the AI by adding sources and asking questions, while it does the hard work of organizing and synthesizing knowledge.

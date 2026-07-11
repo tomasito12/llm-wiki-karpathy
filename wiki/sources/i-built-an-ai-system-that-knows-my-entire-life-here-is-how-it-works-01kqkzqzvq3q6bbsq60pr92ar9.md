@@ -17,6 +17,9 @@ assessed_as_of: '2026-04-01'
 ingested_at: '2026-06-17T15:55:59.613509+00:00'
 canonical_url: https://medium.com/datadriveninvestor/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-4597c1fc44a6
 content_sha256: 5bb5813d992108aaa878610ac3fd70c2908f6410e2e4f1b9664e8e85d7f6947f
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/agentic-personal-knowledge-management.md
 - topics/persistent-agent-memory-architecture.md
@@ -63,3 +66,22 @@ The article presents a highly customized, labor-intensive system as evidence tha
 - Canonical URL: https://medium.com/datadriveninvestor/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-4597c1fc44a6
 - Raw markdown: `raw/readwise/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-01kqkzqzvq3q6bbsq60pr92ar9.md`
 - Raw HTML: `raw/readwise/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-01kqkzqzvq3q6bbsq60pr92ar9.html`
+
+## Full source text
+
+---
+readwise_id: 01kqkzqzvq3q6bbsq60pr92ar9
+title: I Built an AI System That Knows My Entire Life. Here Is How It Works.
+author: Paco Cantero
+source_url: https://medium.com/datadriveninvestor/i-built-an-ai-system-that-knows-my-entire-life-here-is-how-it-works-4597c1fc44a6
+category: article
+location: archive
+published_date: '2026-04-01'
+saved_at: '2026-05-02T09:19:05.079000+00:00'
+updated_at: '2026-05-02T14:21:32.027015+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+Inside the personal intelligence system I built to run 4 companies without losing a single thought.

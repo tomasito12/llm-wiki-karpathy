@@ -28,6 +28,9 @@ assessed_as_of: '2026-04-14'
 ingested_at: '2026-06-06T15:39:17.347374+00:00'
 canonical_url: https://medium.com/@deyves.senger/i-stopped-taking-notes-and-built-a-second-brain-that-maintains-itself-80075b7643fb
 content_sha256: 1b24419ba22f795c8e88497bf1a782732916a8f307513ee0ae262ab9c12048d3
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/claude-code.md
 - tools/obsidian.md
@@ -81,3 +84,21 @@ The article frames the system as self-maintaining, but the first few ingestions 
 - Canonical URL: https://medium.com/@deyves.senger/i-stopped-taking-notes-and-built-a-second-brain-that-maintains-itself-80075b7643fb
 - Raw markdown: `raw/readwise/i-stopped-taking-notes-and-built-a-second-brain-that-maintains-itself-01krbncmhejhh6y608gm2pz2gb.md`
 - Raw HTML: `raw/readwise/i-stopped-taking-notes-and-built-a-second-brain-that-maintains-itself-01krbncmhejhh6y608gm2pz2gb.html`
+
+## Full source text
+
+---
+readwise_id: "01krbncmhejhh6y608gm2pz2gb"
+title: "I Stopped Taking Notes and Built a Second Brain That Maintains Itself"
+author: "Deyves Senger"
+publication: "Medium"
+source_url: "https://medium.com/@deyves.senger/i-stopped-taking-notes-and-built-a-second-brain-that-maintains-itself-80075b7643fb"
+category: "article"
+location: "archive"
+published_date: "2026-04-14"
+saved_at: "2026-05-11T13:59:53.646000+00:00"
+updated_at: "2026-05-12T14:46:15.744890+00:00"
+tags: ["processed"]
+---
+
+The author built a personal knowledge system using AI that reads and organizes information automatically, saving time and effort. This system keeps notes updated and connected without manual maintenance. It helps focus on thinking and learning instead of filing and formatting.

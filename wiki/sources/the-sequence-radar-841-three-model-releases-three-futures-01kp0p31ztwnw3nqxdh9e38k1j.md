@@ -23,6 +23,9 @@ assessed_as_of: '2026-04-12'
 ingested_at: '2026-06-08T20:10:33.613079+00:00'
 canonical_url: https://thesequence.substack.com/p/the-sequence-radar-841-three-model
 content_sha256: ccff82c676a78e95bf817950faa02a7bada35dc64326ad035c3e31c864df42af
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-04/the-sequence-radar-841-three-model-releases-three-futures-01kp0p31ztwnw3nqxdh9e3-high-risk-frontier-models-are-moving-to-gated-release-and-institutio-f48910d4bd.md
 - signals/2026-04/the-sequence-radar-841-three-model-releases-three-futures-01kp0p31ztwnw3nqxdh9e38k1j-consumer-model-strategy-is-shifting-toward-embedded-distribution-layers.md
@@ -72,3 +75,22 @@ The editorial is persuasive but somewhat rhetorical, especially when it maps eac
 - Canonical URL: https://thesequence.substack.com/p/the-sequence-radar-841-three-model
 - Raw markdown: `raw/readwise/the-sequence-radar-841-three-model-releases-three-futures-01kp0p31ztwnw3nqxdh9e38k1j.md`
 - Raw HTML: `raw/readwise/the-sequence-radar-841-three-model-releases-three-futures-01kp0p31ztwnw3nqxdh9e38k1j.html`
+
+## Full source text
+
+---
+readwise_id: 01kp0p31ztwnw3nqxdh9e38k1j
+title: 'The Sequence Radar #841: Three Model Releases, Three Futures'
+author: Jesus Rodriguez
+source_url: https://thesequence.substack.com/p/the-sequence-radar-841-three-model
+category: rss
+location: archive
+published_date: '2026-04-12'
+saved_at: '2026-04-12T11:09:02.914000+00:00'
+updated_at: '2026-05-07T13:42:14.269870+00:00'
+tags:
+- processed
+publication: Substack
+---
+
+Three new AI models show different futures: Anthropic’s Claude focuses on security, Meta’s Muse Spark aims to be an always-on tool for users, and Z.AI’s GLM-5.1 works on long, complex tasks. These launches mark a shift from smart chatbots to specialized, embedded AI systems with unique roles. The AI market is diversifying, with models designed for safety, everyday use, or sustained work.

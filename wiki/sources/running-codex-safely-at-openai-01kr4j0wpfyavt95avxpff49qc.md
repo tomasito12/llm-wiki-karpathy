@@ -28,6 +28,9 @@ assessed_as_of: '2026-05-08'
 ingested_at: '2026-06-06T15:15:49.839348+00:00'
 canonical_url: https://openai.com/index/running-codex-safely
 content_sha256: b0af740d415bfda7519022492a55e3ee610eafe37052f9dcc06d867f68defc11
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/codex.md
 derived_topics:
@@ -78,3 +81,21 @@ The post assumes that more policy layers and telemetry will straightforwardly im
 - Canonical URL: https://openai.com/index/running-codex-safely
 - Raw markdown: `raw/readwise/running-codex-safely-at-openai-01kr4j0wpfyavt95avxpff49qc.md`
 - Raw HTML: `raw/readwise/running-codex-safely-at-openai-01kr4j0wpfyavt95avxpff49qc.html`
+
+## Full source text
+
+---
+readwise_id: "01kr4j0wpfyavt95avxpff49qc"
+title: "Running Codex safely at OpenAI"
+author: "OpenAI Blog"
+publication: "openai.com"
+source_url: "https://openai.com/index/running-codex-safely"
+category: "rss"
+location: "archive"
+published_date: "2026-05-08"
+saved_at: "2026-05-08T19:46:19.032000+00:00"
+updated_at: "2026-05-09T14:23:04.684725+00:00"
+tags: ["processed"]
+---
+
+OpenAI runs Codex with strict controls to keep it safe and productive in coding tasks. It uses sandboxing, approval rules, and limited network access to manage Codex actions. Detailed logs help security teams understand and audit Codex’s behavior in real time.

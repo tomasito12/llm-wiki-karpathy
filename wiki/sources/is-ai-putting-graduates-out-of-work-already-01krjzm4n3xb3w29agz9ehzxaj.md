@@ -12,6 +12,9 @@ assessed_as_of: '2026-05-13'
 ingested_at: '2026-06-05T16:10:37.292359+00:00'
 canonical_url: https://www.economist.com/finance-and-economics/2026/05/13/is-ai-putting-graduates-out-of-work-already
 content_sha256: f6d440361fa4b23e04da7e84b79677ec758819bd21528f131c429a3ddbf4cab2
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_trends:
 - industry-trends/entry-level-technical-hiring-softens-under-ai-pressure.md
 derived_pages:
@@ -51,3 +54,21 @@ The article pushes back on the simple claim that AI is already destroying gradua
 - Canonical URL: https://www.economist.com/finance-and-economics/2026/05/13/is-ai-putting-graduates-out-of-work-already
 - Raw markdown: `raw/readwise/is-ai-putting-graduates-out-of-work-already-01krjzm4n3xb3w29agz9ehzxaj.md`
 - Raw HTML: `raw/readwise/is-ai-putting-graduates-out-of-work-already-01krjzm4n3xb3w29agz9ehzxaj.html`
+
+## Full source text
+
+---
+readwise_id: "01krjzm4n3xb3w29agz9ehzxaj"
+title: "Is AI putting graduates out of work already?"
+author: "The Economist"
+publication: "Economist"
+source_url: "https://www.economist.com/finance-and-economics/2026/05/13/is-ai-putting-graduates-out-of-work-already"
+category: "article"
+location: "archive"
+published_date: "2026-05-13"
+saved_at: "2026-05-14T10:13:26.307000+00:00"
+updated_at: "2026-05-16T13:05:22.875911+00:00"
+tags: ["processed"]
+---
+
+AI is making it harder for recent graduates, especially in computer science, to find full-time jobs. Many students are worried and some are even switching away from coding subjects. The job market for new graduates has worsened since AI tools like ChatGPT became popular.

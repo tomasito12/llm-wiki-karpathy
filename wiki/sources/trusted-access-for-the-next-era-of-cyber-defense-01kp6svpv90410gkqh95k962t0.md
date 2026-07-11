@@ -16,6 +16,9 @@ assessed_as_of: '2026-04-14'
 ingested_at: '2026-05-18T20:18:03.595366+00:00'
 canonical_url: https://openai.com/index/scaling-trusted-access-for-cyber-defense
 content_sha256: a54e3f3894b915d6ccdc9ec9e544223ccbfab3b7ff5ead3ffd4d3e233ac21fb2
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/passkey.md
 derived_models:
@@ -74,3 +77,22 @@ The piece argues for broad access plus tighter verification, but it does not res
 - Canonical URL: https://openai.com/index/scaling-trusted-access-for-cyber-defense
 - Raw markdown: `raw/readwise/trusted-access-for-the-next-era-of-cyber-defense-01kp6svpv90410gkqh95k962t0.md`
 - Raw HTML: `raw/readwise/trusted-access-for-the-next-era-of-cyber-defense-01kp6svpv90410gkqh95k962t0.html`
+
+## Full source text
+
+---
+readwise_id: 01kp6svpv90410gkqh95k962t0
+title: Trusted access for the next era of cyber defense
+author: OpenAI Blog
+source_url: https://openai.com/index/scaling-trusted-access-for-cyber-defense
+category: rss
+location: archive
+published_date: '2026-04-14'
+saved_at: '2026-04-14T20:10:23.026000+00:00'
+updated_at: '2026-05-08T11:22:35.574064+00:00'
+tags:
+- processed
+publication: OpenAI
+---
+
+OpenAI is expanding its Trusted Access for Cyber program to help more defenders use advanced AI models safely. They created GPT-5.4-Cyber, a special AI tool designed to improve cybersecurity defenses. This program requires verified users and aims to make software safer by supporting trustworthy security work.

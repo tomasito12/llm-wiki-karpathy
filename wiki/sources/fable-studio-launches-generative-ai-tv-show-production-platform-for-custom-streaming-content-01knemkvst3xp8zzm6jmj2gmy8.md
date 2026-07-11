@@ -11,6 +11,9 @@ assessed_as_of: '2024-06-04'
 ingested_at: '2026-05-17T20:14:26.381545+00:00'
 canonical_url: https://voicebot.ai/2024/06/04/fable-studio-launches-generative-ai-tv-show-production-platform-for-custom-streaming-content/
 content_sha256: 145194a7d6f8cc62a027859d7c6bb79895b105fbfca3ed02e333179094034de6
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # Fable Studio Launches Generative AI TV Show Production Platform for Custom Streaming Content
@@ -46,3 +49,21 @@ The announcement relies heavily on aspirational language such as a ‘Netflix of
 - Canonical URL: https://voicebot.ai/2024/06/04/fable-studio-launches-generative-ai-tv-show-production-platform-for-custom-streaming-content/
 - Raw markdown: `raw/readwise/fable-studio-launches-generative-ai-tv-show-production-platform-for-custom-streaming-content-01knemkvst3xp8zzm6jmj2gmy8.md`
 - Raw HTML: `raw/readwise/fable-studio-launches-generative-ai-tv-show-production-platform-for-custom-streaming-content-01knemkvst3xp8zzm6jmj2gmy8.html`
+
+## Full source text
+
+---
+readwise_id: "01knemkvst3xp8zzm6jmj2gmy8"
+title: "Fable Studio Launches Generative AI TV Show Production Platform for Custom Streaming Content"
+author: "Eric Hal Schwartz"
+publication: "Voicebot.ai"
+source_url: "https://voicebot.ai/2024/06/04/fable-studio-launches-generative-ai-tv-show-production-platform-for-custom-streaming-content/"
+category: "rss"
+location: "archive"
+published_date: "2024-06-04"
+saved_at: "2026-04-05T10:56:47.706000+00:00"
+updated_at: "2026-05-16T16:22:04.683101+00:00"
+tags: ["processed"]
+---
+
+Fable Studio launched a new platform called Showrunner for creating custom animated TV episodes using generative AI technology. Users can turn text prompts into animated shows with control over dialogue, characters, and scenes. The platform includes AI-generated shows in various genres, and users can sign up for free to create episodes and potentially earn rewards.

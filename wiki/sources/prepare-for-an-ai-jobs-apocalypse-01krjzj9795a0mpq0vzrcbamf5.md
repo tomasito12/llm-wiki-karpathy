@@ -15,6 +15,9 @@ assessed_as_of: '2026-05-14'
 ingested_at: '2026-06-06T22:03:52+00:00'
 canonical_url: https://www.economist.com/leaders/2026/05/14/prepare-for-an-ai-jobs-apocalypse
 content_sha256: 6451e00d6fc0a0ead1aaef54a8caa1f047a2bdd1dee93f6b05ac5b1f8d7d7e74
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/ai-jobs-risks-and-safety-nets.md
 - topics/ai-redistribution-and-rent-capture.md
@@ -61,3 +64,21 @@ The article warns against slowing AI, yet some of its own remedies—profit levi
 - Canonical URL: https://www.economist.com/leaders/2026/05/14/prepare-for-an-ai-jobs-apocalypse
 - Raw markdown: `raw/readwise/prepare-for-an-ai-jobs-apocalypse-01krjzj9795a0mpq0vzrcbamf5.md`
 - Raw HTML: `raw/readwise/prepare-for-an-ai-jobs-apocalypse-01krjzj9795a0mpq0vzrcbamf5.html`
+
+## Full source text
+
+---
+readwise_id: "01krjzj9795a0mpq0vzrcbamf5"
+title: "Prepare for an AI jobs apocalypse"
+author: "The Economist"
+publication: "Economist"
+source_url: "https://www.economist.com/leaders/2026/05/14/prepare-for-an-ai-jobs-apocalypse"
+category: "article"
+location: "archive"
+published_date: "2026-05-14"
+saved_at: "2026-05-14T10:12:25.448000+00:00"
+updated_at: "2026-05-14T19:50:28.264768+00:00"
+tags: ["processed"]
+---
+
+AI is improving fast and could soon disrupt many jobs, causing social and economic challenges. Governments should prepare by creating safety nets, reforming taxes, and helping workers adjust. Acting early is important to avoid unrest and make sure AI benefits everyone.

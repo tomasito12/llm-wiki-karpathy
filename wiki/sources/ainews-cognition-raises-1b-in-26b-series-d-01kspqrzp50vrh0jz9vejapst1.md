@@ -20,6 +20,9 @@ assessed_as_of: '2026-05-28'
 ingested_at: '2026-06-09T16:48:07.096560+00:00'
 canonical_url: mailto:reader-forwarded-email/36e28030404112d4c18c3a9fde72b780
 content_sha256: 52186a5510ca76c862a5de3cacd1a3096ecb8a3a8dc152856f56a94c0e0aac67
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-05/ainews-cognition-raises-1b-in-26b-series-d-01kspqrzp50vrh0jz9vejapst1-enterprise-coding-agents-are-being-sold-as-governed-systems.md
 - signals/2026-05/ainews-cognition-raises-1b-in-26b-series-d-01kspqrzp50vrh0jz9vejapst1-inference-cost-is-being-reduced-by-architecture-not-just-hardware.md
@@ -66,3 +69,21 @@ The roundup often presents strong claims from vendors or builders without matchi
 - Canonical URL: mailto:reader-forwarded-email/36e28030404112d4c18c3a9fde72b780
 - Raw markdown: `raw/readwise/ainews-cognition-raises-1b-in-26b-series-d-01kspqrzp50vrh0jz9vejapst1.md`
 - Raw HTML: `raw/readwise/ainews-cognition-raises-1b-in-26b-series-d-01kspqrzp50vrh0jz9vejapst1.html`
+
+## Full source text
+
+---
+readwise_id: "01kspqrzp50vrh0jz9vejapst1"
+title: "[AINews] Cognition raises $1B in $26B Series D"
+author: "AINews"
+publication: "Substack"
+source_url: "mailto:reader-forwarded-email/36e28030404112d4c18c3a9fde72b780"
+category: "email"
+location: "archive"
+published_date: "2026-05-28"
+saved_at: "2026-05-28T07:28:56.005000+00:00"
+updated_at: "2026-05-31T11:33:21.960777+00:00"
+tags: ["processed"]
+---
+
+Cognition raised over $1 billion, reaching a $26 billion valuation, showing strong growth in coding agent businesses. Advances in AI focus on better attention, memory, and agent engineering, not just hardware improvements. New models and tools improve efficiency, long-context handling, and real-world task performance.

@@ -10,6 +10,9 @@ assessed_as_of: '2026-05-26'
 ingested_at: '2026-06-16T16:13:25.907467+00:00'
 canonical_url: https://medium.com/@simpleandkind788/6-mistakes-quietly-killing-your-macbook-40aa562661f9
 content_sha256: 7468025e8a072ac37a969665c1aec7809c1fdc1264be65608ebffbad6803e8f1
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # 6 Mistakes Quietly Killing Your MacBook
@@ -45,3 +48,21 @@ The article is persuasive in tone but mostly relies on common-sense claims and p
 - Canonical URL: https://medium.com/@simpleandkind788/6-mistakes-quietly-killing-your-macbook-40aa562661f9
 - Raw markdown: `raw/readwise/6-mistakes-quietly-killing-your-macbook-01ktkyw1nm2151tafd34k6b9f8.md`
 - Raw HTML: `raw/readwise/6-mistakes-quietly-killing-your-macbook-01ktkyw1nm2151tafd34k6b9f8.html`
+
+## Full source text
+
+---
+readwise_id: "01ktkyw1nm2151tafd34k6b9f8"
+title: "6 Mistakes Quietly Killing Your MacBook"
+author: "Zeeshan Saghir"
+publication: "Medium"
+source_url: "https://medium.com/@simpleandkind788/6-mistakes-quietly-killing-your-macbook-40aa562661f9"
+category: "article"
+location: "archive"
+published_date: "2026-05-26"
+saved_at: "2026-06-08T15:50:54.900000+00:00"
+updated_at: "2026-06-09T15:16:27.550846+00:00"
+tags: ["processed"]
+---
+
+Taking good care of your MacBook with simple habits can make it last much longer. Avoid heat by not using it on soft surfaces, don't keep it plugged in all the time, and update your software regularly. Also, keep storage free, use good accessories, clean it gently, and protect the screen to prevent slow damage.

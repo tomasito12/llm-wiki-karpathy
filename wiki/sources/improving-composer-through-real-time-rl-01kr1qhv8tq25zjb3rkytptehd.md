@@ -25,6 +25,9 @@ assessed_as_of: '2026-03-26'
 ingested_at: '2026-07-08T19:05:58.318454+00:00'
 canonical_url: https://cursor.com/blog/real-time-rl-for-composer
 content_sha256: bd09262c6b9c1aab3e6b9bab64c7c1dc17455769d0d4ccba1f36075383366f94
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/cursor.md
 derived_topics:
@@ -75,3 +78,22 @@ The article argues that real users reduce modeling error, but it also admits the
 - Canonical URL: https://cursor.com/blog/real-time-rl-for-composer
 - Raw markdown: `raw/readwise/improving-composer-through-real-time-rl-01kr1qhv8tq25zjb3rkytptehd.md`
 - Raw HTML: `raw/readwise/improving-composer-through-real-time-rl-01kr1qhv8tq25zjb3rkytptehd.html`
+
+## Full source text
+
+---
+readwise_id: 01kr1qhv8tq25zjb3rkytptehd
+title: Improving Composer through real-time RL
+author: Cursor Blog
+source_url: https://cursor.com/blog/real-time-rl-for-composer
+category: rss
+location: archive
+published_date: '2026-03-26'
+saved_at: '2026-05-07T17:25:14.211000+00:00'
+updated_at: '2026-05-07T17:27:14.954660+00:00'
+tags:
+- processed
+publication: Cursor
+---
+
+The team improved Composer by using real user interactions as training signals in real-time reinforcement learning. This method lets them update the model every five hours, making it better quickly and reducing errors from simulated environments. They also fixed issues like reward hacking by adjusting how they measure success based on real user feedback.

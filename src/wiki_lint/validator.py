@@ -15,6 +15,7 @@ from src.wiki_contract.categories import (
 from src.wiki_contract.frontmatter import required_fields_for
 from src.wiki_contract.headings import (
     EVIDENCE_SECTION_HEADING,
+    SOURCE_FULL_TEXT_HEADING,
     SYNTHESIS_EVIDENCE_INDEX_HEADING,
     required_h2_headings_for,
 )
@@ -108,6 +109,36 @@ def extract_headings(body: str, *, level: int = 2) -> list[str]:
     ]
 
 
+def extract_managed_h2_headings(body: str, *, stop_after: str) -> list[str]:
+    """Return level-2 headings from the managed prefix ending at ``stop_after``.
+
+    Headings that appear after the ``stop_after`` section heading are ignored so
+    embedded raw source Markdown can contain its own ``##`` headings.
+    """
+    headings: list[str] = []
+    for match in HEADING_RE.finditer(body):
+        if len(match.group(1)) != 2:
+            continue
+        heading = match.group(2).strip()
+        headings.append(heading)
+        if heading == stop_after:
+            break
+    return headings
+
+
+def managed_source_lint_body(
+    body: str,
+    *,
+    stop_before: str = SOURCE_FULL_TEXT_HEADING,
+) -> str:
+    """Return the managed source-page body prefix before embedded raw text."""
+    pattern = rf"^##\s+{re.escape(stop_before)}\s*$"
+    match = re.search(pattern, body, re.MULTILINE)
+    if match is None:
+        return body
+    return body[: match.start()]
+
+
 def extract_wikilinks(body: str) -> list[str]:
     """Return wikilink targets from markdown body."""
     return [match.group(1).strip() for match in WIKILINK_RE.finditer(body)]
@@ -187,7 +218,13 @@ def _validate_headings(page: WikiPage) -> list[WikiLintIssue]:
     expected = required_h2_headings_for(category)
     if expected is None:
         return []
-    actual = extract_headings(page.body)
+    if category == "source":
+        actual = extract_managed_h2_headings(
+            page.body,
+            stop_after=SOURCE_FULL_TEXT_HEADING,
+        )
+    else:
+        actual = extract_headings(page.body)
     if actual != list(expected):
         return [
             WikiLintIssue(
@@ -244,8 +281,11 @@ def _required_evidence_heading(page: WikiPage) -> str:
 
 def validate_wikilinks(page: WikiPage, pages: dict[str, WikiPage]) -> list[WikiLintIssue]:
     """Validate that wikilink targets resolve to markdown files where appropriate."""
+    body = page.body
+    if page.category == "source":
+        body = managed_source_lint_body(body)
     issues: list[WikiLintIssue] = []
-    for target in extract_wikilinks(page.body):
+    for target in extract_wikilinks(body):
         normalized = normalize_wikilink_target(target)
         if normalized is None:
             continue

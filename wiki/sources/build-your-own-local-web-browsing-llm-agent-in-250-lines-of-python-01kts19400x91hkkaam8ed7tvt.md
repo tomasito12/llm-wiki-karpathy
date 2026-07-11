@@ -25,6 +25,9 @@ assessed_as_of: '2026-05-23'
 ingested_at: '2026-06-15T21:45:39+00:00'
 canonical_url: https://generativeai.pub/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-1437f21e781d
 content_sha256: f7c36d1803f6ef7d88ce45ee249788dd695496a23a309d27134b381c768fe52b
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/search-then-fetch-browser-agent.md
 derived_models:
@@ -79,3 +82,21 @@ The article’s strongest claims are practical, but some are still based on smal
 - Canonical URL: https://generativeai.pub/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-1437f21e781d
 - Raw markdown: `raw/readwise/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-01kts19400x91hkkaam8ed7tvt.md`
 - Raw HTML: `raw/readwise/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-01kts19400x91hkkaam8ed7tvt.html`
+
+## Full source text
+
+---
+readwise_id: "01kts19400x91hkkaam8ed7tvt"
+title: "Build Your Own Local Web Browsing LLM Agent in 250 Lines of Python"
+author: "Jes Fink-Jensen"
+publication: "Medium"
+source_url: "https://generativeai.pub/build-your-own-local-web-browsing-llm-agent-in-250-lines-of-python-1437f21e781d"
+category: "article"
+location: "archive"
+published_date: "2026-05-23"
+saved_at: "2026-06-10T15:09:11.570000+00:00"
+updated_at: "2026-06-15T15:17:22.411674+00:00"
+tags: ["processed"]
+---
+
+Camofox-browser, MCP, and Ollama wired together — with server-side structured extraction and search-plus-browse composition.

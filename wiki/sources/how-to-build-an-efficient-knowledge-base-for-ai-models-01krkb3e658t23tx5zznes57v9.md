@@ -16,6 +16,9 @@ assessed_as_of: '2026-05-04'
 ingested_at: '2026-06-05T13:56:42.853620+00:00'
 canonical_url: https://towardsdatascience.com/how-to-build-an-efficient-knowledge-base-for-ai-models/?utm_campaign=tds%20variable&utm_medium=email&_hsenc=p2ANqtz-9yQGeOrwhLrM91iSbX-cy1jR5vGAIFTOvPt7wLLy7ngW_ACr7Hg86b3deCwBBCceWP-F-AqXqE-9DaWLsVa8Zp236Tzw&_hsmi=418698396&utm_source=newsletter
 content_sha256: abca2ed425a9619fbb7298e8cf0e4f21fead4079891f50114eb898f69edcfbf3
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/knowledge-base-ingestion-pipeline.md
 derived_topics:
@@ -62,3 +65,21 @@ The article says more data is not better, yet it also recommends adding AI-gener
 - Canonical URL: https://towardsdatascience.com/how-to-build-an-efficient-knowledge-base-for-ai-models/?utm_campaign=tds%20variable&utm_medium=email&_hsenc=p2ANqtz-9yQGeOrwhLrM91iSbX-cy1jR5vGAIFTOvPt7wLLy7ngW_ACr7Hg86b3deCwBBCceWP-F-AqXqE-9DaWLsVa8Zp236Tzw&_hsmi=418698396&utm_source=newsletter
 - Raw markdown: `raw/readwise/how-to-build-an-efficient-knowledge-base-for-ai-models-01krkb3e658t23tx5zznes57v9.md`
 - Raw HTML: `raw/readwise/how-to-build-an-efficient-knowledge-base-for-ai-models-01krkb3e658t23tx5zznes57v9.html`
+
+## Full source text
+
+---
+readwise_id: "01krkb3e658t23tx5zznes57v9"
+title: "How to Build an Efficient Knowledge Base for AI Models"
+author: "Nidhin Karunakaran Ponon"
+publication: "Medium"
+source_url: "https://towardsdatascience.com/how-to-build-an-efficient-knowledge-base-for-ai-models/?utm_campaign=tds%20variable&utm_medium=email&_hsenc=p2ANqtz-9yQGeOrwhLrM91iSbX-cy1jR5vGAIFTOvPt7wLLy7ngW_ACr7Hg86b3deCwBBCceWP-F-AqXqE-9DaWLsVa8Zp236Tzw&_hsmi=418698396&utm_source=newsletter"
+category: "article"
+location: "archive"
+published_date: "2026-05-04"
+saved_at: "2026-05-14T13:34:01.925000+00:00"
+updated_at: "2026-05-16T21:14:23.643187+00:00"
+tags: ["processed"]
+---
+
+Building a good knowledge base for AI is a step-by-step process that needs regular updates. Using organized and verified data helps AI find answers faster and more accurately. Keeping the knowledge base clear and current makes AI work better over time.

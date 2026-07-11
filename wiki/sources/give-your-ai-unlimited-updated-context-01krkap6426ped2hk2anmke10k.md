@@ -21,6 +21,9 @@ assessed_as_of: '2026-05-07'
 ingested_at: '2026-06-06T21:50:16+00:00'
 canonical_url: https://towardsdatascience.com/give-your-ai-unlimited-updated-context/?utm_campaign=tds%20variable&utm_medium=email&_hsenc=p2ANqtz-_HR7GrgDZ2Ta283ZVUraKxDqiYr-uW2FkEhG-sdQvdVXCm9ghUhV5DYBqCjqQEZ8SvO9wA_8X-qenwl7NXorUHkQlCig&_hsmi=418698396&utm_source=newsletter
 content_sha256: 66173af6c9637bac33660876d904d6ecc5e1580beeaf73f2268183c7f0d6a2d6
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/model-context-protocol.md
 derived_how_to:
@@ -75,3 +78,21 @@ The article’s strongest claim is that LLMs will maintain cross-references and 
 - Canonical URL: https://towardsdatascience.com/give-your-ai-unlimited-updated-context/?utm_campaign=tds%20variable&utm_medium=email&_hsenc=p2ANqtz-_HR7GrgDZ2Ta283ZVUraKxDqiYr-uW2FkEhG-sdQvdVXCm9ghUhV5DYBqCjqQEZ8SvO9wA_8X-qenwl7NXorUHkQlCig&_hsmi=418698396&utm_source=newsletter
 - Raw markdown: `raw/readwise/give-your-ai-unlimited-updated-context-01krkap6426ped2hk2anmke10k.md`
 - Raw HTML: `raw/readwise/give-your-ai-unlimited-updated-context-01krkap6426ped2hk2anmke10k.html`
+
+## Full source text
+
+---
+readwise_id: "01krkap6426ped2hk2anmke10k"
+title: "Give Your AI Unlimited Updated Context"
+author: "Sara Nobrega"
+publication: "Medium"
+source_url: "https://towardsdatascience.com/give-your-ai-unlimited-updated-context/?utm_campaign=tds%20variable&utm_medium=email&_hsenc=p2ANqtz-_HR7GrgDZ2Ta283ZVUraKxDqiYr-uW2FkEhG-sdQvdVXCm9ghUhV5DYBqCjqQEZ8SvO9wA_8X-qenwl7NXorUHkQlCig&_hsmi=418698396&utm_source=newsletter"
+category: "article"
+location: "archive"
+published_date: "2026-05-07"
+saved_at: "2026-05-14T13:26:47.681000+00:00"
+updated_at: "2026-05-18T12:18:04.340765+00:00"
+tags: ["processed"]
+---
+
+The article explains how to build a personal AI-powered wiki that grows richer with each update. It keeps knowledge organized in files and uses automation to stay current without rewriting from scratch. This system helps AI give better answers by reading your own curated context, not starting fresh every time.

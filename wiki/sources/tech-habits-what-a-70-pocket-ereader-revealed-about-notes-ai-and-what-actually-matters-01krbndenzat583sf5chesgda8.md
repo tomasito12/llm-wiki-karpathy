@@ -18,6 +18,9 @@ assessed_as_of: '2026-04-20'
 ingested_at: '2026-06-09T17:50:56+00:00'
 canonical_url: https://medium.com/@geetduggal/tech-habits-what-a-70-pocket-ereader-revealed-about-notes-ai-and-what-actually-matters-6ca65ac8908f
 content_sha256: 1d2c001ce3dea70b8f7721050a5dc7fb5ce30a254bc3fa1a33bd2cbf527fed53
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/manual-capture-friction.md
 - topics/structured-drafting-for-rereadable-notes.md
@@ -64,3 +67,21 @@ The essay treats AI-generated summaries as potentially hollow, but that judgment
 - Canonical URL: https://medium.com/@geetduggal/tech-habits-what-a-70-pocket-ereader-revealed-about-notes-ai-and-what-actually-matters-6ca65ac8908f
 - Raw markdown: `raw/readwise/tech-habits-what-a-70-pocket-ereader-revealed-about-notes-ai-and-what-actually-matters-01krbndenzat583sf5chesgda8.md`
 - Raw HTML: `raw/readwise/tech-habits-what-a-70-pocket-ereader-revealed-about-notes-ai-and-what-actually-matters-01krbndenzat583sf5chesgda8.html`
+
+## Full source text
+
+---
+readwise_id: "01krbndenzat583sf5chesgda8"
+title: "Tech Habits: What a $70 Pocket eReader Revealed About Notes, AI, and What Actually Matters"
+author: "Geet Duggal"
+publication: "Medium"
+source_url: "https://medium.com/@geetduggal/tech-habits-what-a-70-pocket-ereader-revealed-about-notes-ai-and-what-actually-matters-6ca65ac8908f"
+category: "article"
+location: "archive"
+published_date: "2026-04-20"
+saved_at: "2026-05-11T14:00:20.415000+00:00"
+updated_at: "2026-05-12T14:36:10.544258+00:00"
+tags: ["processed"]
+---
+
+A simple $70 eReader helped the author realize that only carefully chosen, meaningful writing deserves undistracted attention. The device’s friction forces thoughtful selection, making the reader value what truly matters. This clarity is more important than fancy tech or AI summaries.

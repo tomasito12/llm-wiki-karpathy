@@ -19,6 +19,9 @@ assessed_as_of: '2026-05-01'
 ingested_at: '2026-06-07T20:39:45.055354+00:00'
 canonical_url: mailto:reader-forwarded-email/3e9240d094814941466d9ad21ac971bc
 content_sha256: 56ca82fb9bba31b077f6b28a9b6e8632bbfbb4d04d83297a7d40a8561c8a3e9c
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-05/ainews-agents-for-everything-else-codex-for-knowledge-work-claude-for-creative-w-computer-use-agents-are-expanding-beyond-coding-into-general-office-fc9cf754d4.md
 - signals/2026-05/ainews-agents-for-everything-else-codex-for-knowledge-work-claude-for-creative-w-security-review-is-becoming-a-product-category-for-model-vendors-f8332c5e29.md
@@ -65,3 +68,22 @@ The roundup sometimes leans on product framing that is stronger than the underly
 - Canonical URL: mailto:reader-forwarded-email/3e9240d094814941466d9ad21ac971bc
 - Raw markdown: `raw/readwise/ainews-agents-for-everything-else-codex-for-knowledge-work-claude-for-creative-work-01kqgydfks1e2sg9hpxm9ystfc.md`
 - Raw HTML: `raw/readwise/ainews-agents-for-everything-else-codex-for-knowledge-work-claude-for-creative-work-01kqgydfks1e2sg9hpxm9ystfc.html`
+
+## Full source text
+
+---
+readwise_id: "01kqgydfks1e2sg9hpxm9ystfc"
+title: "[AINews] Agents for Everything Else: Codex for Knowledge Work, Claude for
+ Creative Work"
+author: "AINews"
+publication: "Substack"
+source_url: "mailto:reader-forwarded-email/3e9240d094814941466d9ad21ac971bc"
+category: "email"
+location: "archive"
+published_date: "2026-05-01"
+saved_at: "2026-05-01T04:58:08.890000+00:00"
+updated_at: "2026-05-26T06:44:19.539257+00:00"
+tags: ["processed"]
+---
+
+OpenAI's Codex is now designed for all computer tasks, not just coding, with faster performance and better app integration. Anthropic launched Claude Security for code review and added support for many creative tools. New AI models focus on efficiency, security, and teamwork among agents to improve real-world use.

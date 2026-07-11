@@ -16,6 +16,9 @@ assessed_as_of: '2026-04-09'
 ingested_at: '2026-06-05T19:19:12.970613+00:00'
 canonical_url: https://neo4j.com/blog/agentic-ai/knowledge-layer/
 content_sha256: 4f8574befa34560683df51160ecf2dd1d6526706ee3f71d33a20276046223fed
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/graph-grounding-for-ai.md
 - topics/knowledge-layer-architecture.md
@@ -62,3 +65,22 @@ The article presents the knowledge layer as the key difference between useful an
 - Canonical URL: https://neo4j.com/blog/agentic-ai/knowledge-layer/
 - Raw markdown: `raw/readwise/from-data-to-intelligence-why-every-enterprise-needs-an-ai-knowledge-layer-01kqgzxa66k90amgsd20rggc19.md`
 - Raw HTML: `raw/readwise/from-data-to-intelligence-why-every-enterprise-needs-an-ai-knowledge-layer-01kqgzxa66k90amgsd20rggc19.html`
+
+## Full source text
+
+---
+readwise_id: 01kqgzxa66k90amgsd20rggc19
+title: 'From Data to Intelligence: Why Every Enterprise Needs an AI Knowledge Layer'
+author: Alyssa Di Pasqualucci
+source_url: https://neo4j.com/blog/agentic-ai/knowledge-layer/
+category: article
+location: archive
+published_date: '2026-04-09'
+saved_at: '2026-05-01T05:24:16.196000+00:00'
+updated_at: '2026-05-02T14:22:06.342379+00:00'
+tags:
+- processed
+publication: Neo4J
+---
+
+The knowledge layer maps and resolves data so AI can accurately answer questions, make better decisions, and be explainable.

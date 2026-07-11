@@ -24,6 +24,9 @@ assessed_as_of: '2026-04-05'
 ingested_at: '2026-06-08T19:27:33.882494+00:00'
 canonical_url: https://thesequence.substack.com/p/the-sequence-radar-837-last-week
 content_sha256: bed5a8b3eb322ccebca32d0b49c724a7cb60c7495b578027ed8c0c9124bd8cb8
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-04/the-sequence-radar-837-last-week-in-ai-from-model-releases-to-market-structure-0-first-party-multimodal-interfaces-are-becoming-a-platform-strategy-d983875b29.md
 - signals/2026-04/the-sequence-radar-837-last-week-in-ai-from-model-releases-to-market-structure-0-frontier-ai-advantage-is-increasingly-capital-and-deployment-constra-d3566c1c3d.md
@@ -79,3 +82,22 @@ The editorial language is more confident than the evidence base in the roundup, 
 - Canonical URL: https://thesequence.substack.com/p/the-sequence-radar-837-last-week
 - Raw markdown: `raw/readwise/the-sequence-radar-837-last-week-in-ai-from-model-releases-to-market-structure-01knenmsmq683r0kk1nx30hfz6.md`
 - Raw HTML: `raw/readwise/the-sequence-radar-837-last-week-in-ai-from-model-releases-to-market-structure-01knenmsmq683r0kk1nx30hfz6.html`
+
+## Full source text
+
+---
+readwise_id: 01knenmsmq683r0kk1nx30hfz6
+title: 'The Sequence Radar #837: Last Week in AI: From Model Releases to Market Structure'
+author: Jesus Rodriguez
+source_url: https://thesequence.substack.com/p/the-sequence-radar-837-last-week
+category: rss
+location: archive
+published_date: '2026-04-05'
+saved_at: '2026-04-05T11:14:55.840000+00:00'
+updated_at: '2026-05-08T13:21:25.060316+00:00'
+tags:
+- processed
+publication: Substack
+---
+
+AI is shifting from flashy demos to becoming a critical infrastructure powered by funding, deployment, and scale. Major players like OpenAI, Microsoft, and Google focus on control, openness, and usability of AI models. New research and funding show AI's growth into practical tools and systems, not just products.

@@ -18,6 +18,9 @@ assessed_as_of: '2026-04-22'
 ingested_at: '2026-05-19T19:21:13.723897+00:00'
 canonical_url: https://www.latent.space/p/ainews-openai-launches-gpt-image
 content_sha256: 88d62220f9f624e412639d5a2adc90f05a3d074043cf0f4185b4bc440af8bb86
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_models:
 - foundation-models/gpt-image-2.md
 derived_signals:
@@ -84,3 +87,22 @@ The roundup is enthusiastic, but much of the evidence is still launch messaging,
 - Canonical URL: https://www.latent.space/p/ainews-openai-launches-gpt-image
 - Raw markdown: `raw/readwise/ainews-openai-launches-gpt-image-2-01kps9gb2r0nk49023ns9pmqb7.md`
 - Raw HTML: `raw/readwise/ainews-openai-launches-gpt-image-2-01kps9gb2r0nk49023ns9pmqb7.html`
+
+## Full source text
+
+---
+readwise_id: 01kps9gb2r0nk49023ns9pmqb7
+title: '[AINews] OpenAI launches GPT-Image-2'
+author: Latent Space
+source_url: https://www.latent.space/p/ainews-openai-launches-gpt-image
+category: rss
+location: archive
+published_date: '2026-04-22'
+saved_at: '2026-04-22T00:30:07.521000+00:00'
+updated_at: '2026-05-07T12:12:29.354209+00:00'
+tags:
+- processed
+publication: Latent
+---
+
+OpenAI has launched GPT-Image-2, a new AI model with improved image and coding abilities. The open-source model Kimi K2.6 shows strong performance and challenges proprietary models in coding and task automation. Users expect local AI models like Kimi to become more affordable and competitive with big commercial models soon.

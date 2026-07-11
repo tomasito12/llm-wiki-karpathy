@@ -17,6 +17,9 @@ assessed_as_of: '2026-05-14'
 ingested_at: '2026-07-08T19:09:52.006632+00:00'
 canonical_url: https://thesequence.substack.com/p/the-sequence-opinion-860-every-companys
 content_sha256: 980acfaf5c98e12a12e74406a33a6b9d372b941bd2cfe1069065f9ec4f64c800
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/maintenance-aware-ai-evaluation.md
 - topics/proprietary-evals.md
@@ -63,3 +66,21 @@ The central thesis is compelling but somewhat abstract: calling evals a 'fourth 
 - Canonical URL: https://thesequence.substack.com/p/the-sequence-opinion-860-every-companys
 - Raw markdown: `raw/readwise/the-sequence-opinion-860-every-company-s-last-exam-some-reflection-about-practical-ai-evals-01krk3ceraty1xnrx1py5545xh.md`
 - Raw HTML: `raw/readwise/the-sequence-opinion-860-every-company-s-last-exam-some-reflection-about-practical-ai-evals-01krk3ceraty1xnrx1py5545xh.html`
+
+## Full source text
+
+---
+readwise_id: "01krk3ceraty1xnrx1py5545xh"
+title: "The Sequence Opinion #860: Every Company’s Last eXam: Some Reflection About Practical AI Evals"
+author: "Jesus Rodriguez"
+publication: "substack.com"
+source_url: "https://thesequence.substack.com/p/the-sequence-opinion-860-every-companys"
+category: "rss"
+location: "archive"
+published_date: "2026-05-14"
+saved_at: "2026-05-14T11:19:05.811000+00:00"
+updated_at: "2026-05-15T05:10:51.176554+00:00"
+tags: ["processed"]
+---
+
+Some ideas about how companies should think about evaluations.

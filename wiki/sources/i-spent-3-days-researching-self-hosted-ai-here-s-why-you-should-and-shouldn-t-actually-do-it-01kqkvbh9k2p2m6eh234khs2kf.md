@@ -15,6 +15,9 @@ assessed_as_of: '2026-04-22'
 ingested_at: '2026-05-17T20:14:00.484459+00:00'
 canonical_url: https://medium.com/ai-threads/i-spent-3-days-researching-self-hosted-ai-heres-why-you-should-and-shouldn-t-actually-do-it-e62ad7fcd9f1
 content_sha256: 58090456da210f868ba774d1046321a6a45589a58daed012769a4b1697b83e38
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/fine-tuning.md
 - glossary/mixture-of-experts.md
@@ -73,3 +76,23 @@ The piece is skeptical of self-hosting hype, but it still leans on optimistic cl
 - Canonical URL: https://medium.com/ai-threads/i-spent-3-days-researching-self-hosted-ai-heres-why-you-should-and-shouldn-t-actually-do-it-e62ad7fcd9f1
 - Raw markdown: `raw/readwise/i-spent-3-days-researching-self-hosted-ai-here-s-why-you-should-and-shouldn-t-actually-do-it-01kqkvbh9k2p2m6eh234khs2kf.md`
 - Raw HTML: `raw/readwise/i-spent-3-days-researching-self-hosted-ai-here-s-why-you-should-and-shouldn-t-actually-do-it-01kqkvbh9k2p2m6eh234khs2kf.html`
+
+## Full source text
+
+---
+readwise_id: 01kqkvbh9k2p2m6eh234khs2kf
+title: I Spent 3 Days Researching Self-Hosted AI. Here’s Why You Should (And Shouldn’t)
+  Actually Do It
+author: Is It Vritra - SDE I
+source_url: https://medium.com/ai-threads/i-spent-3-days-researching-self-hosted-ai-heres-why-you-should-and-shouldn-t-actually-do-it-e62ad7fcd9f1
+category: article
+location: archive
+published_date: '2026-04-22'
+saved_at: '2026-05-02T08:02:21.997000+00:00'
+updated_at: '2026-05-02T14:21:47.478316+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+Self-hosting AI can save money and protect privacy for heavy users with sensitive data, but it requires significant time, effort, and technical skill. Cloud AI offers better performance for complex tasks and is cheaper for casual users. If you use AI a lot or need privacy, self-hosting makes sense; otherwise, stick with the cloud.

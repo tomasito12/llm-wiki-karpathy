@@ -26,6 +26,9 @@ assessed_as_of: '2026-05-02'
 ingested_at: '2026-06-05T15:54:08.462156+00:00'
 canonical_url: https://medium.com/@shahsoumil519/graphify-vs-caveman-two-clever-tools-that-make-your-ai-coding-assistant-way-smarter-c6cd91378c59
 content_sha256: 8715b197db1faf67f7511fd06de8b146d966d25efc754d99abf4478c3d0db8b1
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/caveman.md
 - tools/graphify.md
@@ -75,3 +78,23 @@ The article’s strongest claims are largely promotional and supported by limite
 - Canonical URL: https://medium.com/@shahsoumil519/graphify-vs-caveman-two-clever-tools-that-make-your-ai-coding-assistant-way-smarter-c6cd91378c59
 - Raw markdown: `raw/readwise/graphify-vs-caveman-two-clever-tools-that-make-your-ai-coding-assistant-way-smarter-01kqn87bkxvnntqtgjzhgemy5s.md`
 - Raw HTML: `raw/readwise/graphify-vs-caveman-two-clever-tools-that-make-your-ai-coding-assistant-way-smarter-01kqn87bkxvnntqtgjzhgemy5s.html`
+
+## Full source text
+
+---
+readwise_id: 01kqn87bkxvnntqtgjzhgemy5s
+title: 'Graphify vs. Caveman: Two Clever Tools That Make Your AI Coding Assistant
+  Way Smarter'
+author: Soumil Shah
+source_url: https://medium.com/@shahsoumil519/graphify-vs-caveman-two-clever-tools-that-make-your-ai-coding-assistant-way-smarter-c6cd91378c59
+category: article
+location: archive
+published_date: '2026-05-02'
+saved_at: '2026-05-02T21:06:31.677000+00:00'
+updated_at: '2026-05-03T12:43:01.142290+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+Graphify builds a smart map of your entire codebase to help AI understand it better. Caveman makes AI responses short and to the point by cutting extra words. Together, they save time and tokens when working with AI coding assistants.

@@ -26,6 +26,9 @@ assessed_as_of: '2026-04-24'
 ingested_at: '2026-06-08T15:26:20.868467+00:00'
 canonical_url: https://medium.com/@davidroliver/recall-2-0-an-ai-second-brain-for-people-who-need-one-but-dont-want-to-build-one-6f54a62a0350
 content_sha256: 6f5394eaeba27bfa64d63c0c2c6006906c776f4aeaa9b80b43d66ba32f4a91b5
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/recall-2-0.md
 derived_topics:
@@ -76,3 +79,23 @@ The article’s strongest claims are aspirational and product-led rather than ev
 - Canonical URL: https://medium.com/@davidroliver/recall-2-0-an-ai-second-brain-for-people-who-need-one-but-dont-want-to-build-one-6f54a62a0350
 - Raw markdown: `raw/readwise/recall-2-0-an-ai-second-brain-for-people-who-need-one-but-don-t-want-to-build-one-01kqz01mwjpdmw10d64fwahpq9.md`
 - Raw HTML: `raw/readwise/recall-2-0-an-ai-second-brain-for-people-who-need-one-but-don-t-want-to-build-one-01kqz01mwjpdmw10d64fwahpq9.html`
+
+## Full source text
+
+---
+readwise_id: 01kqz01mwjpdmw10d64fwahpq9
+title: 'Recall 2.0: An AI Second Brain for People Who Need One But Don’t Want to Build
+  One'
+author: David R Oliver
+source_url: https://medium.com/@davidroliver/recall-2-0-an-ai-second-brain-for-people-who-need-one-but-dont-want-to-build-one-6f54a62a0350
+category: article
+location: archive
+published_date: '2026-04-24'
+saved_at: '2026-05-06T15:56:00.274000+00:00'
+updated_at: '2026-05-06T17:38:13.032081+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+Recall 2.0 is an AI tool that helps you remember and connect ideas from what you read and save. It turns your saved articles, videos, and notes into a visual map and lets you chat with your knowledge. This tool is great for learners and readers who want to keep and use their own information without extra work.

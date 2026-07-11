@@ -18,6 +18,9 @@ assessed_as_of: '2026-05-15'
 ingested_at: '2026-07-09T19:18:18.456416+00:00'
 canonical_url: https://ai.plainenglish.io/the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-709e240150d3
 content_sha256: 368002cd12dc60dc44f25a1d096080ff875dadc10b93225c53820323708db15a
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/agentic-personal-knowledge-management.md
 derived_tools:
@@ -71,3 +74,21 @@ The article presents a strong automation story, but the evidence is primarily an
 - Canonical URL: https://ai.plainenglish.io/the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-709e240150d3
 - Raw markdown: `raw/readwise/the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3.md`
 - Raw HTML: `raw/readwise/the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-01kts1g673akhhbb8me1vjfhj3.html`
+
+## Full source text
+
+---
+readwise_id: "01kts1g673akhhbb8me1vjfhj3"
+title: "The Automated Obsidian Intelligence Vault That Gets Smarter Every Day"
+author: "Shashwat"
+publication: "Medium"
+source_url: "https://ai.plainenglish.io/the-automated-obsidian-intelligence-vault-that-gets-smarter-every-day-709e240150d3"
+category: "article"
+location: "archive"
+published_date: "2026-05-15"
+saved_at: "2026-06-10T15:13:04.227000+00:00"
+updated_at: "2026-06-15T15:10:16.951659+00:00"
+tags: ["processed"]
+---
+
+Stop Building Dead Archives

@@ -20,6 +20,9 @@ assessed_as_of: '2026-04-23'
 ingested_at: '2026-07-11T12:09:14.764494+00:00'
 canonical_url: https://www.latent.space/p/ainews-tasteful-tokenmaxxing
 content_sha256: 4766fc0ce9aa86db202b4a32142f8269d72c244adb86ebe53a5a999e8004c153
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-04/ainews-tasteful-tokenmaxxing-01kpw4p15evjfpkqg4pmccnejm-enterprise-agents-are-becoming-a-packaged-workflow-surface.md
 - signals/2026-04/ainews-tasteful-tokenmaxxing-01kpw4p15evjfpkqg4pmccnejm-harness-quality-is-becoming-a-primary-determinant-of-agent-performance.md
@@ -69,3 +72,22 @@ The roundup is enthusiastic about several releases, but many of the strongest cl
 - Canonical URL: https://www.latent.space/p/ainews-tasteful-tokenmaxxing
 - Raw markdown: `raw/readwise/ainews-tasteful-tokenmaxxing-01kpw4p15evjfpkqg4pmccnejm.md`
 - Raw HTML: `raw/readwise/ainews-tasteful-tokenmaxxing-01kpw4p15evjfpkqg4pmccnejm.html`
+
+## Full source text
+
+---
+readwise_id: 01kpw4p15evjfpkqg4pmccnejm
+title: '[AINews] Tasteful Tokenmaxxing'
+author: Latent Space
+source_url: https://www.latent.space/p/ainews-tasteful-tokenmaxxing
+category: rss
+location: archive
+published_date: '2026-04-23'
+saved_at: '2026-04-23T03:03:34.391000+00:00'
+updated_at: '2026-05-07T12:08:02.035680+00:00'
+tags:
+- processed
+publication: Latent
+---
+
+Google unveiled powerful new TPUs and AI tools at Cloud Next, boosting training and inference capabilities. Alibaba released Qwen3.6-27B, a strong open-source coding model that outperforms larger predecessors. AI development is focusing on shared workspace agents, better model integration, and improved post-training methods for efficiency and accuracy.

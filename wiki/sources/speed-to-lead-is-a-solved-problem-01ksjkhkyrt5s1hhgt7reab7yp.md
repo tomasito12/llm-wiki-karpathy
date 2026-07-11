@@ -18,6 +18,9 @@ assessed_as_of: '2026-05-25'
 ingested_at: '2026-06-06T14:07:05.852528+00:00'
 canonical_url: https://www.intercom.com/blog/speed-to-lead-is-a-solved-problem/
 content_sha256: d4c3270e8228bc99de3b2b009d177bdd55183bd7a0e2e5c7434bb8fea12cf290
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/agent-led-inbound-qualification.md
 - topics/sales-metrics-for-agent-frontlines.md
@@ -64,3 +67,21 @@ The piece makes a strong claim that speed-to-lead is "solved," but that depends 
 - Canonical URL: https://www.intercom.com/blog/speed-to-lead-is-a-solved-problem/
 - Raw markdown: `raw/readwise/speed-to-lead-is-a-solved-problem-01ksjkhkyrt5s1hhgt7reab7yp.md`
 - Raw HTML: `raw/readwise/speed-to-lead-is-a-solved-problem-01ksjkhkyrt5s1hhgt7reab7yp.html`
+
+## Full source text
+
+---
+readwise_id: "01ksjkhkyrt5s1hhgt7reab7yp"
+title: "Speed-to-lead is a solved problem"
+author: "Ciaran Nolan"
+publication: "The Intercom Blog"
+source_url: "https://www.intercom.com/blog/speed-to-lead-is-a-solved-problem/"
+category: "rss"
+location: "archive"
+published_date: "2026-05-25"
+saved_at: "2026-05-26T16:57:59.584000+00:00"
+updated_at: "2026-05-31T12:33:19.094160+00:00"
+tags: ["processed"]
+---
+
+Speed-to-lead made sense when the lag was unavoidable. An AI Agent removes it. Here’s what that means for how you build, staff, and measure your sales org.

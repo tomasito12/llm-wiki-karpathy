@@ -16,6 +16,9 @@ assessed_as_of: '2026-06-03'
 ingested_at: '2026-07-08T19:21:01.648422+00:00'
 canonical_url: https://www.latent.space/p/axiom
 content_sha256: 23f41c24d741279f27cc4a8c0362ddda1f94f592ae9c602cab5b827639e2ac18
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_interview_insights:
 - interview-insights/2026-06/scaling-past-informal-ai-carina-hong-axiom-math-01kt7fvv1fxx82p8qqktgdd1qa-formal-artifacts-can-compound-because-they-are-reusable-training-data.md
 - interview-insights/2026-06/scaling-past-informal-ai-carina-hong-axiom-math-01kt7fvv1fxx82p8qqktgdd1qa-specification-quality-is-the-real-bottleneck-in-verified-ai.md
@@ -61,3 +64,21 @@ The transcript leans heavily on a strong thesis — that verified generation is 
 - Canonical URL: https://www.latent.space/p/axiom
 - Raw markdown: `raw/readwise/scaling-past-informal-ai-carina-hong-axiom-math-01kt7fvv1fxx82p8qqktgdd1qa.md`
 - Raw HTML: `raw/readwise/scaling-past-informal-ai-carina-hong-axiom-math-01kt7fvv1fxx82p8qqktgdd1qa.html`
+
+## Full source text
+
+---
+readwise_id: "01kt7fvv1fxx82p8qqktgdd1qa"
+title: "🔬Scaling Past Informal AI - Carina Hong, Axiom Math"
+author: "RJ Honicky"
+publication: "latent.space"
+source_url: "https://www.latent.space/p/axiom"
+category: "podcast"
+location: "archive"
+published_date: "2026-06-03"
+saved_at: "2026-06-03T19:37:43.287000+00:00"
+updated_at: "2026-06-03T20:57:05.313833+00:00"
+tags: ["processed"]
+---
+
+Axiom, a startup, created an AI that solved all Putnam math problems using verified formal proofs, showing a new way to scale AI intelligence. Verified AI means building on solid, proven foundations, which helps AI learn more efficiently and reliably than informal methods. Carina Hong, Axiom’s CEO, believes that verified generation is essential for achieving true artificial general intelligence (AGI).

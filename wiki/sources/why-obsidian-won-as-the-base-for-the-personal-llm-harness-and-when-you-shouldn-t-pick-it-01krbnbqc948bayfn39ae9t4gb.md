@@ -27,6 +27,9 @@ assessed_as_of: '2026-05-02'
 ingested_at: '2026-06-08T15:56:10.375259+00:00'
 canonical_url: https://medium.com/@roanmonteiro/why-obsidian-won-as-the-base-for-the-personal-llm-harness-and-when-you-shouldnt-pick-it-9790271e5313
 content_sha256: db91abb95370e2b71ce21c5a3b4dce707e6a8cb2b715601708280e9908c43a0f
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/atlassian-rovo.md
 - tools/notion-3-0.md
@@ -83,3 +86,21 @@ The strongest claim — that Obsidian “won” as the base for the pattern — 
 - Canonical URL: https://medium.com/@roanmonteiro/why-obsidian-won-as-the-base-for-the-personal-llm-harness-and-when-you-shouldnt-pick-it-9790271e5313
 - Raw markdown: `raw/readwise/why-obsidian-won-as-the-base-for-the-personal-llm-harness-and-when-you-shouldn-t-pick-it-01krbnbqc948bayfn39ae9t4gb.md`
 - Raw HTML: `raw/readwise/why-obsidian-won-as-the-base-for-the-personal-llm-harness-and-when-you-shouldn-t-pick-it-01krbnbqc948bayfn39ae9t4gb.html`
+
+## Full source text
+
+---
+readwise_id: "01krbnbqc948bayfn39ae9t4gb"
+title: "Why Obsidian Won as the Base for the Personal LLM Harness (and When You Shouldn’t Pick It)"
+author: "Roan Brasil Monteiro"
+publication: "Medium"
+source_url: "https://medium.com/@roanmonteiro/why-obsidian-won-as-the-base-for-the-personal-llm-harness-and-when-you-shouldnt-pick-it-9790271e5313"
+category: "article"
+location: "archive"
+published_date: "2026-05-02"
+saved_at: "2026-05-11T13:59:23.785000+00:00"
+updated_at: "2026-05-12T15:03:33.652633+00:00"
+tags: ["processed"]
+---
+
+Obsidian won as the base for personal LLM knowledge systems because it separates storage, format, UI, and agent layers, allowing easy AI access to files. Notion and Confluence are better for teams needing real-time collaboration and polished interfaces but limit AI integration or are costly. For individual developers wanting deep, autonomous AI workflows, Obsidian’s open design and community support make it the best choice.

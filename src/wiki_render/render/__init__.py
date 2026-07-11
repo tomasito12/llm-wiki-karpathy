@@ -20,12 +20,22 @@ def render_graph(
     graph: KnowledgeGraph,
     *,
     wiki_dir: Path,
+    raw_dir: Path,
+    repo_root: Path | None = None,
     synthesis_cache_dir: Path | None = None,
 ) -> list[RenderedFile]:
     """Render the full graph to markdown files."""
     files: list[RenderedFile] = []
     related_page_index = _related_page_index(graph.knowledge_pages)
-    files.extend(render_source_page(source, wiki_dir=wiki_dir) for source in graph.sources)
+    files.extend(
+        render_source_page(
+            source,
+            wiki_dir=wiki_dir,
+            raw_dir=raw_dir,
+            repo_root=repo_root,
+        )
+        for source in graph.sources
+    )
     files.extend(
         render_knowledge_page(
             page,

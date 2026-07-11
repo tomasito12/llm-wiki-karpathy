@@ -23,6 +23,9 @@ assessed_as_of: '2026-05-20'
 ingested_at: '2026-06-16T00:43:12+00:00'
 canonical_url: https://medium.com/macoclock/setting-up-mac-for-development-may-2026-b6b456efd823
 content_sha256: af2c802ed20d079f294942e9c09a19fa861e3d038bd8e0e5bc4ed620947532a6
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/claude-code.md
 derived_topics:
@@ -73,3 +76,21 @@ The piece implies that terminal-native agents have displaced IDE-first coding to
 - Canonical URL: https://medium.com/macoclock/setting-up-mac-for-development-may-2026-b6b456efd823
 - Raw markdown: `raw/readwise/setting-up-mac-for-development-may-2026-01ktpm1xqjsx1ra42yp56bera0.md`
 - Raw HTML: `raw/readwise/setting-up-mac-for-development-may-2026-01ktpm1xqjsx1ra42yp56bera0.html`
+
+## Full source text
+
+---
+readwise_id: "01ktpm1xqjsx1ra42yp56bera0"
+title: "Setting Up Mac for Development [May 2026]"
+author: "Aman Kumar"
+publication: "Medium"
+source_url: "https://medium.com/macoclock/setting-up-mac-for-development-may-2026-b6b456efd823"
+category: "article"
+location: "archive"
+published_date: "2026-05-20"
+saved_at: "2026-06-09T16:39:36.433000+00:00"
+updated_at: "2026-06-11T05:17:05.633844+00:00"
+tags: ["processed"]
+---
+
+Aman Kumar shares his updated toolkit for setting up a Mac for development in 2026, focusing on fast tools like Homebrew, zsh, and fnm. He highlights AI coding tools, especially Claude Code, for efficient project work with multiple agents. The setup also includes daily apps, CLI tools, shell shortcuts, and system tweaks to boost productivity.

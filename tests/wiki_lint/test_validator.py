@@ -57,6 +57,10 @@ None.
 ## Source metadata
 
 - Canonical URL: https://example.com
+
+## Full source text
+
+Fixture source text.
 """,
     )
     write(
@@ -163,9 +167,239 @@ None.
 ## Source metadata
 
 None.
+
+## Full source text
+
+None.
 """,
     )
     assert validate_wiki(wiki) == []
+
+
+def test_source_page_allows_h2_headings_in_embedded_raw_text(tmp_path: Path) -> None:
+    """Raw source text after ## Full source text may contain its own level-2 headings."""
+    wiki = tmp_path / "wiki"
+    write(
+        wiki / "sources" / "source-a.md",
+        """---
+title: Source A
+category: source
+source_id: source-a
+tags:
+  - ai-engineering
+derived_topics:
+  - topics/local-models.md
+derived_pages:
+  - topics/local-models.md
+---
+
+# Source A
+
+Summary.
+
+## Key insights
+
+- Insight one.
+
+## Derived knowledge pages
+
+- [[topics/local-models]]
+
+## Why it matters
+
+It matters.
+
+## Limitations / open questions
+
+Limits.
+
+## Contradictions / unverified claims
+
+None.
+
+## Source metadata
+
+- Canonical URL: https://example.com
+
+## Full source text
+
+# Original Article Title
+
+## Section inside raw export
+
+Raw paragraph under an article heading.
+
+## Another raw section
+
+More original article content.
+""",
+    )
+    write(
+        wiki / "topics" / "local-models.md",
+        """---
+title: Local Models
+category: topic
+slug: local-models
+entity_id: topic:local-models
+synthesis_state: stage1-placeholder
+source_count: 1
+source_ids:
+  - source-a
+tags:
+  - infrastructure
+---
+
+# Local Models
+
+## Current understanding
+
+Lead.
+
+## Evidence / supporting sources
+
+### Source A (2026-01-02)
+
+- Claim (`evidence-id` · supporting · field; [[sources/source-a|Source A]])
+
+## Sources
+
+- [[sources/source-a|Source A]]
+""",
+    )
+    assert validate_wiki(wiki) == []
+
+
+def test_source_page_ignores_wikilinks_in_embedded_raw_text(tmp_path: Path) -> None:
+    """Wikilink validation should ignore links inside embedded raw source text."""
+    wiki = tmp_path / "wiki"
+    write(
+        wiki / "sources" / "source-a.md",
+        """---
+title: Source A
+category: source
+source_id: source-a
+tags:
+  - ai-engineering
+derived_topics:
+  - topics/local-models.md
+derived_pages:
+  - topics/local-models.md
+---
+
+# Source A
+
+Summary.
+
+## Key insights
+
+- Insight one.
+
+## Derived knowledge pages
+
+- [[topics/local-models]]
+
+## Why it matters
+
+It matters.
+
+## Limitations / open questions
+
+Limits.
+
+## Contradictions / unverified claims
+
+None.
+
+## Source metadata
+
+- Canonical URL: https://example.com
+
+## Full source text
+
+See also [[some/unmanaged/raw-page]] for context.
+""",
+    )
+    write(
+        wiki / "topics" / "local-models.md",
+        """---
+title: Local Models
+category: topic
+slug: local-models
+entity_id: topic:local-models
+synthesis_state: stage1-placeholder
+source_count: 1
+source_ids:
+  - source-a
+tags:
+  - infrastructure
+---
+
+# Local Models
+
+## Current understanding
+
+Lead.
+
+## Evidence / supporting sources
+
+### Source A (2026-01-02)
+
+- Claim (`evidence-id` · supporting · field; [[sources/source-a|Source A]])
+
+## Sources
+
+- [[sources/source-a|Source A]]
+""",
+    )
+    assert validate_wiki(wiki) == []
+
+
+def test_source_page_still_flags_broken_wikilinks_in_managed_body(tmp_path: Path) -> None:
+    """Broken wikilinks in managed source sections should still fail validation."""
+    wiki = tmp_path / "wiki"
+    write(
+        wiki / "sources" / "source-a.md",
+        """---
+title: Source A
+category: source
+source_id: source-a
+tags:
+  - ai-engineering
+---
+
+# Source A
+
+## Key insights
+
+None.
+
+## Derived knowledge pages
+
+- [[topics/does-not-exist]]
+
+## Why it matters
+
+It matters.
+
+## Limitations / open questions
+
+None.
+
+## Contradictions / unverified claims
+
+None.
+
+## Source metadata
+
+None.
+
+## Full source text
+
+Raw body.
+""",
+    )
+    issues = validate_wiki(wiki)
+    assert any("broken wikilink" in issue.message for issue in issues)
 
 
 def test_missing_category_reports_issue(tmp_path: Path) -> None:

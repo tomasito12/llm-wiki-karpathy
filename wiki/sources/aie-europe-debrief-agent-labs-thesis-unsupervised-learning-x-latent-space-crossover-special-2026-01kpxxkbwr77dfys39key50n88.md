@@ -26,6 +26,9 @@ assessed_as_of: '2026-04-23'
 ingested_at: '2026-06-07T20:37:35.242751+00:00'
 canonical_url: https://www.latent.space/p/unsupervised-learning-2026
 content_sha256: a83074aec4aa35b0c8d13de7fd5a21b109d3a8266435684d8c0f24e61d71e75a
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_interview_insights:
 - interview-insights/2026-04/aie-europe-debrief-agent-labs-thesis-unsupervised-learning-x-latent-space-crosso-inference-speed-can-unlock-new-product-behavior-not-just-lower-cost-cee551c36f.md
 - interview-insights/2026-04/aie-europe-debrief-agent-labs-thesis-unsupervised-learning-x-latent-space-crosso-memory-and-personalization-may-become-a-stronger-product-moat-than-f-f4bbfb4300.md
@@ -77,3 +80,23 @@ Several claims are explicitly forward-looking and should be treated as hypothese
 - Canonical URL: https://www.latent.space/p/unsupervised-learning-2026
 - Raw markdown: `raw/readwise/aie-europe-debrief-agent-labs-thesis-unsupervised-learning-x-latent-space-crossover-special-2026-01kpxxkbwr77dfys39key50n88.md`
 - Raw HTML: `raw/readwise/aie-europe-debrief-agent-labs-thesis-unsupervised-learning-x-latent-space-crossover-special-2026-01kpxxkbwr77dfys39key50n88.html`
+
+## Full source text
+
+---
+readwise_id: 01kpxxkbwr77dfys39key50n88
+title: 'AIE Europe Debrief + Agent Labs Thesis: Unsupervised Learning x Latent Space
+  Crossover Special (2026)'
+author: Latent Space
+source_url: https://www.latent.space/p/unsupervised-learning-2026
+category: podcast
+location: archive
+published_date: '2026-04-23'
+saved_at: '2026-04-23T19:38:15.904000+00:00'
+updated_at: '2026-05-04T20:39:29.616779+00:00'
+tags:
+- processed
+publication: Latent
+---
+
+The AI coding market in 2026 is rapidly evolving with fierce competition between big labs and startups. Open models and custom AI teams are key trends shaping product innovation and infrastructure. The future will likely see AI agents transforming software development and reshaping industry dynamics.

@@ -19,6 +19,9 @@ assessed_as_of: '2025-12-31'
 ingested_at: '2026-06-01T16:39:05.781105+00:00'
 canonical_url: https://medium.com/@nachiket4jan/creating-a-stateless-chatbot-in-langgraph-62a7f6fb753d
 content_sha256: b53ad6524f859a5dda35064d60f4a5b57233073009d00ebbb0646faca02d2554
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/stateless-chatbot.md
 derived_tools:
@@ -69,3 +72,22 @@ The article calls the bot stateless, but the presence of a Messages field and ad
 - Canonical URL: https://medium.com/@nachiket4jan/creating-a-stateless-chatbot-in-langgraph-62a7f6fb753d
 - Raw markdown: `raw/readwise/creating-a-stateless-chatbot-in-langgraph-01kqm094n15r71mj5g1xbsk1nj.md`
 - Raw HTML: `raw/readwise/creating-a-stateless-chatbot-in-langgraph-01kqm094n15r71mj5g1xbsk1nj.html`
+
+## Full source text
+
+---
+readwise_id: 01kqm094n15r71mj5g1xbsk1nj
+title: Creating a Stateless Chatbot in LangGraph
+author: Nachiket Mehendale
+source_url: https://medium.com/@nachiket4jan/creating-a-stateless-chatbot-in-langgraph-62a7f6fb753d
+category: article
+location: archive
+published_date: '2025-12-31'
+saved_at: '2026-05-02T09:28:27.041000+00:00'
+updated_at: '2026-05-02T14:21:30.968330+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+This is a basic chatbot application using LangGraph. Stateless means the chatbot does not retain any conversation history.

@@ -25,6 +25,9 @@ assessed_as_of: '2026-05-20'
 ingested_at: '2026-06-06T22:04:37+00:00'
 canonical_url: mailto:reader-forwarded-email/c0a1ebef80b6a42a471afd8b645dcf8b
 content_sha256: 79c2e589b26237d031dd73f183dfd85ee6e8aeb0408b5c6e051224370d7a4f04
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_interview_insights:
 - interview-insights/2026-05/railway-the-agent-native-cloud-jake-cooper-01ks3rzdab018xpv32xt3fg4c7-agent-facing-clis-should-expose-many-handles-while-humans-get-an-overview-layer.md
 - interview-insights/2026-05/railway-the-agent-native-cloud-jake-cooper-01ks3rzdab018xpv32xt3fg4c7-agents-need-production-like-cloning-not-just-staging.md
@@ -76,3 +79,21 @@ Some claims are deliberately provocative and should be read as thesis, not fact,
 - Canonical URL: mailto:reader-forwarded-email/c0a1ebef80b6a42a471afd8b645dcf8b
 - Raw markdown: `raw/readwise/railway-the-agent-native-cloud-jake-cooper-01ks3rzdab018xpv32xt3fg4c7.md`
 - Raw HTML: `raw/readwise/railway-the-agent-native-cloud-jake-cooper-01ks3rzdab018xpv32xt3fg4c7.html`
+
+## Full source text
+
+---
+readwise_id: "01ks3rzdab018xpv32xt3fg4c7"
+title: "Railway: The Agent-Native Cloud — Jake Cooper"
+author: "Latent.Space"
+publication: "Substack"
+source_url: "mailto:reader-forwarded-email/c0a1ebef80b6a42a471afd8b645dcf8b"
+category: "email"
+location: "archive"
+published_date: "2026-05-20"
+saved_at: "2026-05-20T22:44:20.940000+00:00"
+updated_at: "2026-05-27T09:58:36.359015+00:00"
+tags: ["processed"]
+---
+
+Railway is building a new kind of cloud using its own metal data centers to support fast, large-scale agent software. Jake Cooper explains that agents need powerful infrastructure like versioning, observability, and orchestration at much bigger scales than humans do. The company grew quickly by focusing on reliability, efficient cloud economics, and tools that help developers move faster and safer.

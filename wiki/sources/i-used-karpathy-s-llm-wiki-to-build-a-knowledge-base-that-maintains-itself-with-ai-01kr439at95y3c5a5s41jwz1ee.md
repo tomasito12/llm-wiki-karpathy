@@ -24,6 +24,9 @@ assessed_as_of: '2026-04-07'
 ingested_at: '2026-06-05T16:14:58.183540+00:00'
 canonical_url: https://medium.com/@k.balu124/i-used-karpathys-llm-wiki-to-build-a-knowledge-base-that-maintains-itself-with-ai-df968e4f5ea0
 content_sha256: a1753308e8a9d5685e362ccc66c76732eecf30d770caf1eee5bc4dc4fffb902c
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/cursor.md
 - tools/obsidian.md
@@ -77,3 +80,23 @@ The article presents AI as handling wiki maintenance nearly for free, but that i
 - Canonical URL: https://medium.com/@k.balu124/i-used-karpathys-llm-wiki-to-build-a-knowledge-base-that-maintains-itself-with-ai-df968e4f5ea0
 - Raw markdown: `raw/readwise/i-used-karpathy-s-llm-wiki-to-build-a-knowledge-base-that-maintains-itself-with-ai-01kr439at95y3c5a5s41jwz1ee.md`
 - Raw HTML: `raw/readwise/i-used-karpathy-s-llm-wiki-to-build-a-knowledge-base-that-maintains-itself-with-ai-01kr439at95y3c5a5s41jwz1ee.html`
+
+## Full source text
+
+---
+readwise_id: 01kr439at95y3c5a5s41jwz1ee
+title: I used Karpathy’s LLM Wiki to build a knowledge base that maintains itself
+  with AI
+author: Balu Kosuri
+source_url: https://medium.com/@k.balu124/i-used-karpathys-llm-wiki-to-build-a-knowledge-base-that-maintains-itself-with-ai-df968e4f5ea0
+category: article
+location: archive
+published_date: '2026-04-07'
+saved_at: '2026-05-08T15:28:49.993000+00:00'
+updated_at: '2026-05-08T15:29:46.104098+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+Balu Kosuri used Andrej Karpathy’s idea to build an AI-powered wiki that organizes and updates itself from any documents you add. The AI reads new files, creates linked wiki pages, and keeps the knowledge base consistent without manual writing. This system helps technical writers easily find and maintain information, making wiki upkeep almost effortless.

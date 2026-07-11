@@ -15,6 +15,9 @@ assessed_as_of: '2026-04-14'
 ingested_at: '2026-05-17T15:47:56.559997+00:00'
 canonical_url: https://www.intercom.com/blog/the-hardest-percentages/
 content_sha256: 2b8825662751478bf1e9499facd90d34620adf2f5fdb999589417070e5ec19cb
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/procedural-support-automation.md
 derived_topics:
@@ -61,3 +64,22 @@ The article criticizes bespoke services-heavy setups, but it also acknowledges o
 - Canonical URL: https://www.intercom.com/blog/the-hardest-percentages/
 - Raw markdown: `raw/readwise/the-hardest-percentages-01kp69pz8s9dp41q7ps3z6xftt.md`
 - Raw HTML: `raw/readwise/the-hardest-percentages-01kp69pz8s9dp41q7ps3z6xftt.html`
+
+## Full source text
+
+---
+readwise_id: 01kp69pz8s9dp41q7ps3z6xftt
+title: The hardest percentages
+author: Pratik Bothra
+source_url: https://www.intercom.com/blog/the-hardest-percentages/
+category: rss
+location: archive
+published_date: '2026-04-14'
+saved_at: '2026-04-14T15:28:10.594000+00:00'
+updated_at: '2026-05-02T22:07:13.513811+00:00'
+tags:
+- processed
+publication: Intercom
+---
+
+Complex customer support queries take much more time and impact customer satisfaction the most. Fin Procedures automates these multi-step tasks, letting teams manage and improve workflows without relying on engineers. This product is live, scalable, and helps companies handle tough cases faster while boosting customer trust.

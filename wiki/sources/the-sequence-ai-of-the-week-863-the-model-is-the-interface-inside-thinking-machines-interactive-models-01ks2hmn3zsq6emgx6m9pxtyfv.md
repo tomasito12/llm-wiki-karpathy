@@ -11,6 +11,9 @@ assessed_as_of: '2026-05-20'
 ingested_at: '2026-06-09T18:32:43+00:00'
 canonical_url: https://thesequence.substack.com/p/the-sequence-ai-of-the-week-863-the
 content_sha256: 0a1138920907be3965c5d864bf01bd8af2af548cc3b58cd0decc22b0058cd186
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # The Sequence AI of the Week #863: The Model is the Interface: Inside Thinking Machines' Interactive Models
@@ -46,3 +49,21 @@ The piece leans on a strong conceptual claim—collaboration is temporal—witho
 - Canonical URL: https://thesequence.substack.com/p/the-sequence-ai-of-the-week-863-the
 - Raw markdown: `raw/readwise/the-sequence-ai-of-the-week-863-the-model-is-the-interface-inside-thinking-machines-interactive-models-01ks2hmn3zsq6emgx6m9pxtyfv.md`
 - Raw HTML: `raw/readwise/the-sequence-ai-of-the-week-863-the-model-is-the-interface-inside-thinking-machines-interactive-models-01ks2hmn3zsq6emgx6m9pxtyfv.html`
+
+## Full source text
+
+---
+readwise_id: "01ks2hmn3zsq6emgx6m9pxtyfv"
+title: "The Sequence AI of the Week #863: The Model is the Interface: Inside Thinking Machines' Interactive Models"
+author: "Jesus Rodriguez"
+publication: "substack.com"
+source_url: "https://thesequence.substack.com/p/the-sequence-ai-of-the-week-863-the"
+category: "rss"
+location: "archive"
+published_date: "2026-05-20"
+saved_at: "2026-05-20T11:16:51.016000+00:00"
+updated_at: "2026-05-20T20:49:28.296599+00:00"
+tags: ["processed"]
+---
+
+Thinking Machines’ interactive models turn real-time conversation, vision, audio, and tool use into one continuous learned system.

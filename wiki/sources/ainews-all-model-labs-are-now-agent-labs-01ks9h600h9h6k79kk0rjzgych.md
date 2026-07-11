@@ -19,6 +19,9 @@ assessed_as_of: '2026-05-23'
 ingested_at: '2026-06-07T20:46:10.064239+00:00'
 canonical_url: mailto:reader-forwarded-email/b5a7afe463dcbce007f5c6f23e1a447e
 content_sha256: 4ee12ab88594e67d2dbc4644ddf326deaeeb0fbd0702c443ad9059fedb1233de
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-05/ainews-all-model-labs-are-now-agent-labs-01ks9h600h9h6k79kk0rjzgych-inference-pricing-is-being-used-as-a-product-and-ecosystem-weapon.md
 - signals/2026-05/ainews-all-model-labs-are-now-agent-labs-01ks9h600h9h6k79kk0rjzgych-model-labs-are-packaging-agents-and-harnesses-as-the-product-surface.md
@@ -68,3 +71,21 @@ The headline idea that ‘all model labs are now agent labs’ is more a rhetori
 - Canonical URL: mailto:reader-forwarded-email/b5a7afe463dcbce007f5c6f23e1a447e
 - Raw markdown: `raw/readwise/ainews-all-model-labs-are-now-agent-labs-01ks9h600h9h6k79kk0rjzgych.md`
 - Raw HTML: `raw/readwise/ainews-all-model-labs-are-now-agent-labs-01ks9h600h9h6k79kk0rjzgych.html`
+
+## Full source text
+
+---
+readwise_id: "01ks9h600h9h6k79kk0rjzgych"
+title: "[AINews] All Model Labs are now Agent Labs"
+author: "AINews"
+publication: "Substack"
+source_url: "mailto:reader-forwarded-email/b5a7afe463dcbce007f5c6f23e1a447e"
+category: "email"
+location: "archive"
+published_date: "2026-05-23"
+saved_at: "2026-05-23T04:23:34.674000+00:00"
+updated_at: "2026-05-25T09:49:48.552541+00:00"
+tags: ["processed"]
+---
+
+All model labs are shifting focus to building AI agents that combine models with tools and workflows. DeepSeek and others are lowering AI costs while improving performance, changing the market. New protocols, research, and products show AI moving beyond just models to integrated, agent-based systems.

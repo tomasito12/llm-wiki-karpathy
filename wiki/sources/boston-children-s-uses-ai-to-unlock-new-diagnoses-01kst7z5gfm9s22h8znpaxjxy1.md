@@ -20,6 +20,9 @@ assessed_as_of: '2026-05-29'
 ingested_at: '2026-06-06T15:46:25.422645+00:00'
 canonical_url: https://openai.com/index/boston-childrens-hospital
 content_sha256: 1bb4cae20a5ec7a7cde7994e837a017e1b3b4ce9d71d44c78a094906a774dfcd
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_implementation_studies:
 - implementation-studies/2026-05/boston-children-s-uses-ai-to-unlock-new-diagnoses-01kst7z5gfm9s22h8znpaxjxy1-boston-children-s-ai-infrastructure-rollout.md
 derived_topics:
@@ -70,3 +73,21 @@ The article presents a polished success narrative, so the main skepticism is evi
 - Canonical URL: https://openai.com/index/boston-childrens-hospital
 - Raw markdown: `raw/readwise/boston-children-s-uses-ai-to-unlock-new-diagnoses-01kst7z5gfm9s22h8znpaxjxy1.md`
 - Raw HTML: `raw/readwise/boston-children-s-uses-ai-to-unlock-new-diagnoses-01kst7z5gfm9s22h8znpaxjxy1.html`
+
+## Full source text
+
+---
+readwise_id: "01kst7z5gfm9s22h8znpaxjxy1"
+title: "Boston Children’s uses AI to unlock new diagnoses"
+author: "OpenAI Blog"
+publication: "openai.com"
+source_url: "https://openai.com/index/boston-childrens-hospital"
+category: "rss"
+location: "archive"
+published_date: "2026-05-29"
+saved_at: "2026-05-29T16:09:36.087000+00:00"
+updated_at: "2026-05-31T12:24:51.612781+00:00"
+tags: ["processed"]
+---
+
+Boston Children’s Hospital uses AI to improve care, save time, and diagnose rare diseases. AI helps staff work faster and find answers that were once impossible. This technology is now a key part of how the hospital treats patients and supports research.

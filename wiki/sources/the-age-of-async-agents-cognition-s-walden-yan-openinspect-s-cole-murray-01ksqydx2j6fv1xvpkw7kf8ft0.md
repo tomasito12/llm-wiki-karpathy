@@ -28,6 +28,9 @@ assessed_as_of: '2026-05-28'
 ingested_at: '2026-06-08T16:05:24.247284+00:00'
 canonical_url: mailto:reader-forwarded-email/d53a8f7261a10010333d3ba1b2a93b6c
 content_sha256: 1eb1a0a6096e6ec832946467f729965bf10f9d33f7c0d2a0a197532e1dbea25d
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_interview_insights:
 - interview-insights/2026-05/the-age-of-async-agents-cognition-s-walden-yan-openinspect-s-cole-murray-01ksqyd-agent-products-sell-infrastructure-and-adoption-help-not-just-model-147dd19db2.md
 - interview-insights/2026-05/the-age-of-async-agents-cognition-s-walden-yan-openinspect-s-cole-murray-01ksqyd-background-agents-are-becoming-practical-only-when-models-can-go-fro-b56a7c6dd7.md
@@ -79,3 +82,21 @@ The episode is enthusiastic about background agents, but it also undercuts some 
 - Canonical URL: mailto:reader-forwarded-email/d53a8f7261a10010333d3ba1b2a93b6c
 - Raw markdown: `raw/readwise/the-age-of-async-agents-cognition-s-walden-yan-openinspect-s-cole-murray-01ksqydx2j6fv1xvpkw7kf8ft0.md`
 - Raw HTML: `raw/readwise/the-age-of-async-agents-cognition-s-walden-yan-openinspect-s-cole-murray-01ksqydx2j6fv1xvpkw7kf8ft0.html`
+
+## Full source text
+
+---
+readwise_id: "01ksqydx2j6fv1xvpkw7kf8ft0"
+title: "The Age of Async Agents — Cognition's Walden Yan & OpenInspect's Cole Murray"
+author: "Latent.Space"
+publication: "Substack"
+source_url: "mailto:reader-forwarded-email/d53a8f7261a10010333d3ba1b2a93b6c"
+category: "email"
+location: "archive"
+published_date: "2026-05-28"
+saved_at: "2026-05-28T18:44:27.346000+00:00"
+updated_at: "2026-05-31T11:24:07.057764+00:00"
+tags: ["processed"]
+---
+
+Background agents are new AI tools that work quietly in the background to help with coding and reviews. Devin, a popular system, grew fast in 2025 and now handles most code changes automatically. Experts say these agents will change how software is built, making coding more autonomous and efficient.

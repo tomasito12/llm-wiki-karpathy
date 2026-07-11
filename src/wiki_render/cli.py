@@ -22,6 +22,11 @@ from src.wiki_render.loader import load_review_artifacts
 from src.wiki_render.merge import build_knowledge_graph
 from src.wiki_render.render import render_graph
 from src.wiki_render.resolve import taxonomy_version
+from src.wiki_render.source_text import (
+    DEFAULT_MIN_SOURCE_TEXT_AVAILABLE_RATIO,
+    evaluate_source_text_coverage,
+    summarize_source_text_coverage,
+)
 from src.wiki_render.writer import write_rendered_files
 
 LOGGER = logging.getLogger(__name__)
@@ -65,6 +70,12 @@ def build_parser() -> argparse.ArgumentParser:
         help="Optional Stage 2 synthesis cache directory.",
     )
     parser.add_argument(
+        "--raw-dir",
+        type=Path,
+        default=None,
+        help="Directory containing raw Readwise Markdown exports.",
+    )
+    parser.add_argument(
         "--dry-run",
         action="store_true",
         help="Compute and report planned writes without changing files.",
@@ -73,6 +84,14 @@ def build_parser() -> argparse.ArgumentParser:
         "--no-prune",
         action="store_true",
         help="Skip stale generated-file deletion.",
+    )
+    parser.add_argument(
+        "--require-source-text",
+        action="store_true",
+        help=(
+            "Fail when too few source pages include full raw text "
+            f"(below {DEFAULT_MIN_SOURCE_TEXT_AVAILABLE_RATIO:.0%} coverage)."
+        ),
     )
     return parser
 
@@ -95,6 +114,12 @@ def main(argv: list[str] | None = None) -> int:
         args.synthesis_cache_dir,
         configured=paths.synthesis_dir,
     )
+    raw_dir = resolve_cli_path(args.raw_dir, configured=paths.raw_dir)
+    if not raw_dir.is_dir():
+        LOGGER.warning(
+            "raw-dir is not a directory: %s — source full text will likely be unavailable",
+            raw_dir,
+        )
     tax_version = taxonomy_version(root)
     artifacts = load_review_artifacts(reviews_dir)
     collected = collect_items(artifacts, wiki_dir)
@@ -106,8 +131,17 @@ def main(argv: list[str] | None = None) -> int:
     rendered = render_graph(
         graph,
         wiki_dir=wiki_dir,
+        raw_dir=raw_dir,
+        repo_root=root,
         synthesis_cache_dir=synthesis_cache_dir,
     )
+    coverage = summarize_source_text_coverage(rendered)
+    coverage_warning = evaluate_source_text_coverage(coverage)
+    if coverage_warning:
+        if args.require_source_text:
+            LOGGER.error(coverage_warning)
+            return 2
+        LOGGER.warning(coverage_warning)
     write_graph_export(graph_path, graph, dry_run=args.dry_run)
     report = write_rendered_files(
         wiki_dir=wiki_dir,
@@ -139,6 +173,14 @@ def main(argv: list[str] | None = None) -> int:
         report.pruned,
         args.dry_run,
     )
+    if coverage.total:
+        LOGGER.info(
+            "source full text coverage available=%d missing=%d total=%d ratio=%.1f%%",
+            coverage.available,
+            coverage.missing,
+            coverage.total,
+            coverage.available_ratio * 100,
+        )
     if report.skipped_prune and not args.no_prune:
         LOGGER.warning("Prune skipped because no previous manifest was available")
     return 0

@@ -16,6 +16,9 @@ assessed_as_of: '2026-05-15'
 ingested_at: '2026-06-05T13:52:59.230398+00:00'
 canonical_url: mailto:reader-forwarded-email/3c4c243446b079d533922aea6a3c42a2
 content_sha256: 38c64bc892eac2b94e7e88eb37859a125e22b4ae65c9a936a64eaba87d2104e0
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-05/china-thwarts-meta-s-agentic-ambition-u-s-evaluates-upcoming-models-ai-diagnoses-frontier-model-release-is-moving-toward-pre-deployment-government-re-a325f1a237.md
 derived_trends:
@@ -59,3 +62,21 @@ The roundup sometimes presents benchmark gains and policy moves with more confid
 - Canonical URL: mailto:reader-forwarded-email/3c4c243446b079d533922aea6a3c42a2
 - Raw markdown: `raw/readwise/china-thwarts-meta-s-agentic-ambition-u-s-evaluates-upcoming-models-ai-diagnoses-mammograms-01krnmj9nxkrgc17jsk3pjsytd.md`
 - Raw HTML: `raw/readwise/china-thwarts-meta-s-agentic-ambition-u-s-evaluates-upcoming-models-ai-diagnoses-mammograms-01krnmj9nxkrgc17jsk3pjsytd.html`
+
+## Full source text
+
+---
+readwise_id: "01krnmj9nxkrgc17jsk3pjsytd"
+title: "China Thwarts Meta’s Agentic Ambition, U.S. Evaluates Upcoming Models, AI Diagnoses Mammograms"
+author: "The Batch @ DeepLearning.AI"
+publication: "GILL, an Innovative Approach to Multimodal Model Training"
+source_url: "mailto:reader-forwarded-email/3c4c243446b079d533922aea6a3c42a2"
+category: "email"
+location: "archive"
+published_date: "2026-05-15"
+saved_at: "2026-05-15T10:57:54.878000+00:00"
+updated_at: "2026-05-15T14:49:55.783830+00:00"
+tags: ["processed"]
+---
+
+The U.S. government will now review advanced AI models before release to manage risks to national security. Meta’s AI plans in China were blocked, affecting foreign investment and startups. Google’s AI can help detect breast cancer more accurately and may assist doctors as a second evaluator.

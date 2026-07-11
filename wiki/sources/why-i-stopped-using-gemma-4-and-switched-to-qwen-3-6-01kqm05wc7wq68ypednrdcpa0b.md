@@ -27,6 +27,9 @@ assessed_as_of: '2026-04-25'
 ingested_at: '2026-06-08T16:07:57.013069+00:00'
 canonical_url: https://medium.com/towards-deep-learning/why-i-stopped-using-gemma-4-and-switched-to-qwen-3-6-5a3c56d2b2b3
 content_sha256: 07875aa4f8280480cc54a97d2e72984f001df1ad2bfaae717097563dbfdd3823
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_models:
 - foundation-models/qwen-3-6-35b-a3b.md
 derived_topics:
@@ -80,3 +83,22 @@ The strongest tension is between the author’s broad language about open-source
 - Canonical URL: https://medium.com/towards-deep-learning/why-i-stopped-using-gemma-4-and-switched-to-qwen-3-6-5a3c56d2b2b3
 - Raw markdown: `raw/readwise/why-i-stopped-using-gemma-4-and-switched-to-qwen-3-6-01kqm05wc7wq68ypednrdcpa0b.md`
 - Raw HTML: `raw/readwise/why-i-stopped-using-gemma-4-and-switched-to-qwen-3-6-01kqm05wc7wq68ypednrdcpa0b.html`
+
+## Full source text
+
+---
+readwise_id: 01kqm05wc7wq68ypednrdcpa0b
+title: Why I Stopped Using Gemma 4 and Switched to Qwen 3.6
+author: Sumit Pandey
+source_url: https://medium.com/towards-deep-learning/why-i-stopped-using-gemma-4-and-switched-to-qwen-3-6-5a3c56d2b2b3
+category: article
+location: archive
+published_date: '2026-04-25'
+saved_at: '2026-05-02T09:26:40.263000+00:00'
+updated_at: '2026-05-02T14:21:31.501735+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+Why Qwen’s new Mixture of Experts model is the first open-source LLM that actually handles agentic coding workflows

@@ -18,6 +18,9 @@ assessed_as_of: '2025-12-03'
 ingested_at: '2026-05-18T15:44:57.617024+00:00'
 canonical_url: https://medium.com/@aiwithakashgoyal/beyond-simple-extraction-how-production-grade-ontologies-transform-graphrag-from-prototype-to-333742fa41a6
 content_sha256: 0075d9fd82ac08756d3dbfcb76a6a33a6e3a7ec953bb72e6b9fc6bdbe01cb69c
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/ontology.md
 derived_implementation_studies:
@@ -72,3 +75,22 @@ The tone is assertive, but most of the performance claims are presented without 
 - Canonical URL: https://medium.com/@aiwithakashgoyal/beyond-simple-extraction-how-production-grade-ontologies-transform-graphrag-from-prototype-to-333742fa41a6
 - Raw markdown: `raw/readwise/ontology-driven-graphrag-a-framework-for-zero-noise-knowledge-extraction-01kqkvd7bwfhpbgqtw20czkk22.md`
 - Raw HTML: `raw/readwise/ontology-driven-graphrag-a-framework-for-zero-noise-knowledge-extraction-01kqkvd7bwfhpbgqtw20czkk22.html`
+
+## Full source text
+
+---
+readwise_id: 01kqkvd7bwfhpbgqtw20czkk22
+title: 'Ontology-Driven GraphRAG: A Framework for Zero-Noise Knowledge Extraction'
+author: Akash Goyal
+source_url: https://medium.com/@aiwithakashgoyal/beyond-simple-extraction-how-production-grade-ontologies-transform-graphrag-from-prototype-to-333742fa41a6
+category: article
+location: archive
+published_date: '2025-12-03'
+saved_at: '2026-05-02T08:03:17.173000+00:00'
+updated_at: '2026-05-02T14:21:47.026785+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+The author created an ontology-driven system that cleans and organizes medical data from clinical reports into a reliable knowledge graph. The system uses strict rules, tracks data origin, and evolves automatically to improve accuracy and coverage. This approach makes complex medical information easy to query, understand, and trust.

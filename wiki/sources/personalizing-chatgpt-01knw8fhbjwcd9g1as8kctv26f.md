@@ -18,6 +18,9 @@ assessed_as_of: '2026-04-10'
 ingested_at: '2026-07-09T19:20:40.651977+00:00'
 canonical_url: https://openai.com/academy/personalization
 content_sha256: 6b1f3671442592ed0cb9b967065a6d77c737d5418ae176ca904db74ff4a135c9
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/behavioral-instruction-layers-for-agents.md
 - topics/personalized-conversational-ai.md
@@ -64,3 +67,22 @@ The article presents personalization as a straightforward path to better respons
 - Canonical URL: https://openai.com/academy/personalization
 - Raw markdown: `raw/readwise/personalizing-chatgpt-01knw8fhbjwcd9g1as8kctv26f.md`
 - Raw HTML: `raw/readwise/personalizing-chatgpt-01knw8fhbjwcd9g1as8kctv26f.html`
+
+## Full source text
+
+---
+readwise_id: 01knw8fhbjwcd9g1as8kctv26f
+title: Personalizing ChatGPT
+author: OpenAI Blog
+source_url: https://openai.com/academy/personalization
+category: rss
+location: archive
+published_date: '2026-04-10'
+saved_at: '2026-04-10T17:53:41.074000+00:00'
+updated_at: '2026-05-07T13:39:51.128000+00:00'
+tags:
+- processed
+publication: OpenAI
+---
+
+ChatGPT can be personalized using custom instructions and memory to better fit your needs. Custom instructions set your preferences, like tone and role, for all chats. Memory helps ChatGPT remember important details to give more useful and consistent responses over time.

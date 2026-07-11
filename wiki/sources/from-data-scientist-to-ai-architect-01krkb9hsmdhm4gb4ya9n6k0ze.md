@@ -16,6 +16,9 @@ assessed_as_of: '2026-05-08'
 ingested_at: '2026-05-22T16:35:40.912827+00:00'
 canonical_url: https://towardsdatascience.com/from-data-scientist-to-ai-architect/?utm_campaign=tds%20variable&utm_medium=email&_hsenc=p2ANqtz-8g0VUj9pjjDcRDTmw_HSK0yhyG_l2viG_3vFtUGcPe2uvvccx1JW9ooV0TswwFEuXGpjEdU-cUY_TD1ZbDQ2-bCFz24w&_hsmi=418698396&utm_source=newsletter
 content_sha256: 416dfd41525ed2e392dc42ea03a1a592fc0372fc2ada87d76e0510b14bdf80b0
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/ai-architect-role.md
 - topics/ai-orchestration-over-model-tuning.md
@@ -62,3 +65,21 @@ The article’s strongest rhetorical move is to contrast “old” model-centric
 - Canonical URL: https://towardsdatascience.com/from-data-scientist-to-ai-architect/?utm_campaign=tds%20variable&utm_medium=email&_hsenc=p2ANqtz-8g0VUj9pjjDcRDTmw_HSK0yhyG_l2viG_3vFtUGcPe2uvvccx1JW9ooV0TswwFEuXGpjEdU-cUY_TD1ZbDQ2-bCFz24w&_hsmi=418698396&utm_source=newsletter
 - Raw markdown: `raw/readwise/from-data-scientist-to-ai-architect-01krkb9hsmdhm4gb4ya9n6k0ze.md`
 - Raw HTML: `raw/readwise/from-data-scientist-to-ai-architect-01krkb9hsmdhm4gb4ya9n6k0ze.html`
+
+## Full source text
+
+---
+readwise_id: "01krkb9hsmdhm4gb4ya9n6k0ze"
+title: "From Data Scientist to AI Architect"
+author: "Sara A. Metwalli"
+publication: "Medium"
+source_url: "https://towardsdatascience.com/from-data-scientist-to-ai-architect/?utm_campaign=tds%20variable&utm_medium=email&_hsenc=p2ANqtz-8g0VUj9pjjDcRDTmw_HSK0yhyG_l2viG_3vFtUGcPe2uvvccx1JW9ooV0TswwFEuXGpjEdU-cUY_TD1ZbDQ2-bCFz24w&_hsmi=418698396&utm_source=newsletter"
+category: "article"
+location: "archive"
+published_date: "2026-05-08"
+saved_at: "2026-05-14T13:37:22.227000+00:00"
+updated_at: "2026-05-16T21:01:37.516877+00:00"
+tags: ["processed"]
+---
+
+Data science has shifted from building models to designing systems that connect ready-made AI components. Today, success depends on managing data flow, integration, and infrastructure, not just tuning models. To keep up, data scientists must learn backend skills and focus on solving real-world problems, not just improving accuracy.

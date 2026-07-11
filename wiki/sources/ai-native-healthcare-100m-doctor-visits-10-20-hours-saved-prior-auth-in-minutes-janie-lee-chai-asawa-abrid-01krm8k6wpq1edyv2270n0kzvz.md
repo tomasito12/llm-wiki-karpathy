@@ -26,6 +26,9 @@ assessed_as_of: '2026-05-14'
 ingested_at: '2026-06-07T20:33:58.487017+00:00'
 canonical_url: mailto:reader-forwarded-email/ac11ef47e1ad8597853aa99150f2d70c
 content_sha256: deded3d4c4adbf989d10c3e57211364711c0b4896e844ac2dcc3a414f7762096
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_interview_insights:
 - interview-insights/2026-05/ai-native-healthcare-100m-doctor-visits-10-20-hours-saved-prior-auth-in-minutes-clinical-ai-needs-context-engineering-not-just-better-models-dbb5dd52fe.md
 - interview-insights/2026-05/ai-native-healthcare-100m-doctor-visits-10-20-hours-saved-prior-auth-in-minutes-high-stakes-ai-requires-specialty-specific-evals-and-progressive-roll-4488a4e910.md
@@ -77,3 +80,21 @@ Some claims are ambitious relative to the evidence shown. The article suggests t
 - Canonical URL: mailto:reader-forwarded-email/ac11ef47e1ad8597853aa99150f2d70c
 - Raw markdown: `raw/readwise/ai-native-healthcare-100m-doctor-visits-10-20-hours-saved-prior-auth-in-minutes-janie-lee-chai-asawa-abrid-01krm8k6wpq1edyv2270n0kzvz.md`
 - Raw HTML: `raw/readwise/ai-native-healthcare-100m-doctor-visits-10-20-hours-saved-prior-auth-in-minutes-janie-lee-chai-asawa-abrid-01krm8k6wpq1edyv2270n0kzvz.html`
+
+## Full source text
+
+---
+readwise_id: "01krm8k6wpq1edyv2270n0kzvz"
+title: "AI-Native Healthcare: 100M Doctor Visits, 10–20 Hours Saved, Prior Auth in Minutes — Janie Lee & Chai Asawa, Abrid…"
+author: "Latent.Space"
+publication: "Substack"
+source_url: "mailto:reader-forwarded-email/ac11ef47e1ad8597853aa99150f2d70c"
+category: "email"
+location: "archive"
+published_date: "2026-05-14"
+saved_at: "2026-05-14T22:09:27.447000+00:00"
+updated_at: "2026-05-27T09:57:45.827970+00:00"
+tags: ["processed"]
+---
+
+Abridge uses AI to help doctors by listening to patient visits and creating useful summaries, saving clinicians 10–20 hours a week. Their system supports over 100 million medical conversations with deep integration into health records and real-time alerts. This AI-driven approach improves care, speeds up prior authorizations, and tackles tough healthcare challenges safely and efficiently.

@@ -20,6 +20,9 @@ assessed_as_of: '2026-04-27'
 ingested_at: '2026-06-06T22:02:58+00:00'
 canonical_url: https://www.latent.space/p/appliedintuition
 content_sha256: 3600dcad25c21c74130d9749bb230fd0219247cb296e1ebf00801791ff1f5fd1
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_interview_insights:
 - interview-insights/2026-04/physical-ai-that-moves-the-world-qasar-younis-peter-ludwig-applied-intuition-01k-autonomy-evaluation-is-shifting-from-binary-tests-to-statistical-rel-18b100a511.md
 - interview-insights/2026-04/physical-ai-that-moves-the-world-qasar-younis-peter-ludwig-applied-intuition-01k-physical-ai-bottlenecks-are-deployment-and-verification-not-just-mod-a54b13c12d.md
@@ -68,3 +71,22 @@ Several claims are directionally plausible but remain mostly asserted by the fou
 - Canonical URL: https://www.latent.space/p/appliedintuition
 - Raw markdown: `raw/readwise/physical-ai-that-moves-the-world-qasar-younis-peter-ludwig-applied-intuition-01kq8k1ew34e8nxkp12gv0bxxv.md`
 - Raw HTML: `raw/readwise/physical-ai-that-moves-the-world-qasar-younis-peter-ludwig-applied-intuition-01kq8k1ew34e8nxkp12gv0bxxv.html`
+
+## Full source text
+
+---
+readwise_id: 01kq8k1ew34e8nxkp12gv0bxxv
+title: Physical AI that Moves the World — Qasar Younis & Peter Ludwig, Applied Intuition
+author: Latent Space
+source_url: https://www.latent.space/p/appliedintuition
+category: podcast
+location: archive
+published_date: '2026-04-27'
+saved_at: '2026-04-27T23:05:22.124000+00:00'
+updated_at: '2026-05-02T20:44:36.940339+00:00'
+tags:
+- processed
+publication: Latent
+---
+
+Applied Intuition puts the AI in mining rigs, drones, trucks, warships and physical vehicles in the most adversarial environments imaginable. We dive in with their CEO and CTO as they emerge.

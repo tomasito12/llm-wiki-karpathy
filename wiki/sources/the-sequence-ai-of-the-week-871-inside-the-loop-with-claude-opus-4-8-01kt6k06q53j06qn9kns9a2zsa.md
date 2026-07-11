@@ -20,6 +20,9 @@ assessed_as_of: '2026-06-03'
 ingested_at: '2026-06-06T15:11:19.540492+00:00'
 canonical_url: https://thesequence.substack.com/p/the-sequence-ai-of-the-week-871-inside
 content_sha256: 11a7870f9fcf41e625e1daf462c4d47c650e36d2bd13c042458cfe5a94c5d458
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_models:
 - foundation-models/claude-opus-4-8.md
 derived_topics:
@@ -70,3 +73,21 @@ The piece pushes back on the instinct to dismiss a tenth-point version bump as a
 - Canonical URL: https://thesequence.substack.com/p/the-sequence-ai-of-the-week-871-inside
 - Raw markdown: `raw/readwise/the-sequence-ai-of-the-week-871-inside-the-loop-with-claude-opus-4-8-01kt6k06q53j06qn9kns9a2zsa.md`
 - Raw HTML: `raw/readwise/the-sequence-ai-of-the-week-871-inside-the-loop-with-claude-opus-4-8-01kt6k06q53j06qn9kns9a2zsa.html`
+
+## Full source text
+
+---
+readwise_id: "01kt6k06q53j06qn9kns9a2zsa"
+title: "The Sequence AI of the Week #871: Inside the Loop with Claude Opus 4.8"
+author: "Jesus Rodriguez"
+publication: "substack.com"
+source_url: "https://thesequence.substack.com/p/the-sequence-ai-of-the-week-871-inside"
+category: "rss"
+location: "archive"
+published_date: "2026-06-03"
+saved_at: "2026-06-03T11:13:17.613000+00:00"
+updated_at: "2026-06-03T12:42:11.840992+00:00"
+tags: ["processed"]
+---
+
+Might seem like a minor release. But it really isn't.

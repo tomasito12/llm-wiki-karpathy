@@ -23,6 +23,9 @@ assessed_as_of: '2026-04-30'
 ingested_at: '2026-06-09T17:40:29+00:00'
 canonical_url: https://medium.com/@wasowski.jarek/spec-driven-development-three-maturity-levels-every-ai-team-should-know-648c93cf1e1d
 content_sha256: b7d8284f3e77495ab5441e1dba3757aab42451844aa4a1fdca329379f6d2ac7d
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/living-specification.md
 - glossary/specification-drift.md
@@ -84,3 +87,22 @@ The piece argues that specs should be living contracts, but many of its examples
 - Canonical URL: https://medium.com/@wasowski.jarek/spec-driven-development-three-maturity-levels-every-ai-team-should-know-648c93cf1e1d
 - Raw markdown: `raw/readwise/spec-driven-development-three-maturity-levels-every-ai-team-should-know-01kr432t128r5x0bvxwskbtd1w.md`
 - Raw HTML: `raw/readwise/spec-driven-development-three-maturity-levels-every-ai-team-should-know-01kr432t128r5x0bvxwskbtd1w.html`
+
+## Full source text
+
+---
+readwise_id: 01kr432t128r5x0bvxwskbtd1w
+title: Spec Driven Development — Three Maturity Levels Every AI Team Should Know
+author: Jarosław Wasowski
+source_url: https://medium.com/@wasowski.jarek/spec-driven-development-three-maturity-levels-every-ai-team-should-know-648c93cf1e1d
+category: article
+location: archive
+published_date: '2026-04-30'
+saved_at: '2026-05-08T15:25:16.193000+00:00'
+updated_at: '2026-05-08T15:31:12.433805+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+Spec Driven Development (SDD) is a method where specifications guide AI code creation and evolve with the code to prevent errors. It has three levels: starting with basic specs, then living specs that update with code, and finally specs as the main source with automatic code generation. This approach helps keep AI agents aligned with developer intent and improves code quality over time.

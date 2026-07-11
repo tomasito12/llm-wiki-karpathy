@@ -21,6 +21,9 @@ assessed_as_of: '2026-05-13'
 ingested_at: '2026-06-06T21:42:14+00:00'
 canonical_url: https://www.latent.space/p/ainews-the-end-of-finetuning
 content_sha256: 8b128c12169564c98d7f38ef1ec8ec08384937ee4a08a090773acb82512853c5
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-05/ainews-the-end-of-finetuning-01krfm1m5y8h163awpkk32925m-agent-runtimes-are-becoming-durable-execution-systems.md
 - signals/2026-05/ainews-the-end-of-finetuning-01krfm1m5y8h163awpkk32925m-dedicated-inference-infrastructure-is-becoming-a-product-boundary.md
@@ -73,3 +76,21 @@ The article’s headline framing of the “end of finetuning” is overstated re
 - Canonical URL: https://www.latent.space/p/ainews-the-end-of-finetuning
 - Raw markdown: `raw/readwise/ainews-the-end-of-finetuning-01krfm1m5y8h163awpkk32925m.md`
 - Raw HTML: `raw/readwise/ainews-the-end-of-finetuning-01krfm1m5y8h163awpkk32925m.html`
+
+## Full source text
+
+---
+readwise_id: "01krfm1m5y8h163awpkk32925m"
+title: "[AINews] The End of Finetuning"
+author: "Latent Space"
+publication: "latent.space"
+source_url: "https://www.latent.space/p/ainews-the-end-of-finetuning"
+category: "rss"
+location: "archive"
+published_date: "2026-05-13"
+saved_at: "2026-05-13T02:53:18.983000+00:00"
+updated_at: "2026-05-13T13:46:34.683582+00:00"
+tags: ["processed"]
+---
+
+a quiet day lets us reflect on whither finetuning

@@ -19,6 +19,9 @@ assessed_as_of: '2026-05-29'
 ingested_at: '2026-06-09T15:55:26.921267+00:00'
 canonical_url: https://openai.com/index/strengthening-societal-resilience-with-rosalind-biodefense
 content_sha256: 9036344a6383e892f15acecd3aa7ba7e1cfa91675ea8e8840bddcead1322c643
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_models:
 - foundation-models/gpt-rosalind.md
 derived_topics:
@@ -69,3 +72,21 @@ The piece makes ambitious claims about improving preparedness and resilience, bu
 - Canonical URL: https://openai.com/index/strengthening-societal-resilience-with-rosalind-biodefense
 - Raw markdown: `raw/readwise/strengthening-societal-resilience-with-rosalind-biodefense-openai-01kssnct9yf4qe7sfryvn72dsn.md`
 - Raw HTML: `raw/readwise/strengthening-societal-resilience-with-rosalind-biodefense-openai-01kssnct9yf4qe7sfryvn72dsn.html`
+
+## Full source text
+
+---
+readwise_id: "01kssnct9yf4qe7sfryvn72dsn"
+title: "Strengthening societal resilience with Rosalind Biodefense | OpenAI"
+author: "OpenAI"
+publication: "openai.com"
+source_url: "https://openai.com/index/strengthening-societal-resilience-with-rosalind-biodefense"
+category: "rss"
+location: "archive"
+published_date: "2026-05-29"
+saved_at: "2026-05-29T10:45:00.423000+00:00"
+updated_at: "2026-05-31T12:26:35.504247+00:00"
+tags: ["processed"]
+---
+
+OpenAI launches Rosalind Biodefense, expanding trusted access to GPT-Rosalind for vetted developers and U.S. government partners advancing biodefense, public health, and pandemic preparedness through frontier AI.

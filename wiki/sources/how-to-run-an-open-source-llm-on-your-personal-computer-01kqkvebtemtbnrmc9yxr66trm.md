@@ -14,6 +14,9 @@ assessed_as_of: '2025-11-11'
 ingested_at: '2026-05-25T15:30:45.137182+00:00'
 canonical_url: https://medium.com/data-science-collective/how-to-run-an-open-source-llm-on-your-personal-computer-bc6cca454282
 content_sha256: 9b01193b68109b679dba20b51e04bb059fad849fb66708a8e3a873919e714037
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/local-model-setup.md
 derived_tools:
@@ -61,3 +64,22 @@ The piece presents local model use as simple, but the practical threshold still 
 - Canonical URL: https://medium.com/data-science-collective/how-to-run-an-open-source-llm-on-your-personal-computer-bc6cca454282
 - Raw markdown: `raw/readwise/how-to-run-an-open-source-llm-on-your-personal-computer-01kqkvebtemtbnrmc9yxr66trm.md`
 - Raw HTML: `raw/readwise/how-to-run-an-open-source-llm-on-your-personal-computer-01kqkvebtemtbnrmc9yxr66trm.html`
+
+## Full source text
+
+---
+readwise_id: 01kqkvebtemtbnrmc9yxr66trm
+title: How To Run an Open-Source LLM on Your Personal Computer
+author: Manish Shivanandhan
+source_url: https://medium.com/data-science-collective/how-to-run-an-open-source-llm-on-your-personal-computer-bc6cca454282
+category: article
+location: archive
+published_date: '2025-11-11'
+saved_at: '2026-05-02T08:03:54.597000+00:00'
+updated_at: '2026-05-02T14:21:41.818381+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+You can now run open-source large language models (LLMs) like Llama or Gemma directly on your Windows PC without needing the cloud. Tools like Ollama make it easy to install and use these models through a simple app or command line. Running LLMs locally gives you privacy, control, and works even offline.

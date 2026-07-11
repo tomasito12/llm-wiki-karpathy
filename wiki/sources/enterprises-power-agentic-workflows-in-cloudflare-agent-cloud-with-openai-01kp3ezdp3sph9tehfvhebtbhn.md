@@ -10,6 +10,9 @@ assessed_as_of: '2026-04-13'
 ingested_at: '2026-06-06T21:45:34+00:00'
 canonical_url: https://openai.com/index/cloudflare-openai-agent-cloud
 content_sha256: a12065a98f979dc666433b639bc09c10b3b75bc9a0e1fda74da2d52fead842bc
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # Enterprises power agentic workflows in Cloudflare Agent Cloud with OpenAI
@@ -45,3 +48,22 @@ The announcement leans on broad language such as 'real work,' 'production-ready,
 - Canonical URL: https://openai.com/index/cloudflare-openai-agent-cloud
 - Raw markdown: `raw/readwise/enterprises-power-agentic-workflows-in-cloudflare-agent-cloud-with-openai-01kp3ezdp3sph9tehfvhebtbhn.md`
 - Raw HTML: `raw/readwise/enterprises-power-agentic-workflows-in-cloudflare-agent-cloud-with-openai-01kp3ezdp3sph9tehfvhebtbhn.html`
+
+## Full source text
+
+---
+readwise_id: 01kp3ezdp3sph9tehfvhebtbhn
+title: Enterprises power agentic workflows in Cloudflare Agent Cloud with OpenAI
+author: OpenAI Blog
+source_url: https://openai.com/index/cloudflare-openai-agent-cloud
+category: rss
+location: archive
+published_date: '2026-04-13'
+saved_at: '2026-04-13T13:02:27.083000+00:00'
+updated_at: '2026-05-07T13:41:41.419108+00:00'
+tags:
+- processed
+publication: OpenAI
+---
+
+Cloudflare Agent Cloud now lets millions of businesses use OpenAI’s advanced models like GPT-5.4 to build smart AI agents. These agents can handle real tasks such as customer support, system updates, and report generation quickly and securely. This partnership makes it easier for developers to create fast, scalable AI applications for enterprises worldwide.

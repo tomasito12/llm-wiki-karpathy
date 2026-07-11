@@ -19,6 +19,9 @@ assessed_as_of: '2026-05-10'
 ingested_at: '2026-06-08T18:45:38.295402+00:00'
 canonical_url: https://thesequence.substack.com/p/the-sequence-radar-857-last-week
 content_sha256: c49ea4a59c43a14e0e35d3e83ff6080746e4d0ccb52d273a505bd159e0cbb80e
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-05/the-sequence-radar-857-last-week-in-ai-inside-the-machine-outside-the-text-box-0-long-context-claims-are-pressuring-retrieval-and-orchestration-desig-b86fa40550.md
 - signals/2026-05/the-sequence-radar-857-last-week-in-ai-inside-the-machine-outside-the-text-box-0-voice-agents-are-becoming-workflow-systems-not-just-speech-interface-c549702717.md
@@ -65,3 +68,21 @@ The roundup leans into a few large claims that deserve skepticism, especially th
 - Canonical URL: https://thesequence.substack.com/p/the-sequence-radar-857-last-week
 - Raw markdown: `raw/readwise/the-sequence-radar-857-last-week-in-ai-inside-the-machine-outside-the-text-box-01kr8st5etzxtx29bs2wc1447d.md`
 - Raw HTML: `raw/readwise/the-sequence-radar-857-last-week-in-ai-inside-the-machine-outside-the-text-box-01kr8st5etzxtx29bs2wc1447d.html`
+
+## Full source text
+
+---
+readwise_id: "01kr8st5etzxtx29bs2wc1447d"
+title: "The Sequence Radar #857: Last Week in AI: Inside the Machine, Outside the Text Box"
+author: "Jesus Rodriguez"
+publication: "substack.com"
+source_url: "https://thesequence.substack.com/p/the-sequence-radar-857-last-week"
+category: "rss"
+location: "archive"
+published_date: "2026-05-10"
+saved_at: "2026-05-10T11:19:24.962000+00:00"
+updated_at: "2026-05-10T13:42:10.378269+00:00"
+tags: ["processed"]
+---
+
+Some groundbreaking research from Anthropic, OpenAI’s new voice models and major valuation shifts in Chinese AI labs.

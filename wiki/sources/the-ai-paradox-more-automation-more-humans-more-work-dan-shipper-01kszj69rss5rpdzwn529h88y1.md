@@ -23,6 +23,9 @@ assessed_as_of: '2026-05-24'
 ingested_at: '2026-06-06T20:51:15.908637+00:00'
 canonical_url: https://youtube.com/watch/?v=4D3hDmGhFhA
 content_sha256: 5c672e39509e6f8c43513f6874db2815a169aac670f336a296ebe35b8a32ac87
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_interview_insights:
 - interview-insights/2026-05/the-ai-paradox-more-automation-more-humans-more-work-dan-shipper-01kszj69rss5rpd-ai-increases-human-workload-through-supervision-and-exception-handli-87df9fd92c.md
 - interview-insights/2026-05/the-ai-paradox-more-automation-more-humans-more-work-dan-shipper-01kszj69rss5rpd-pms-and-full-stack-designers-gain-leverage-when-execution-gets-cheap-cddd7df5ce.md
@@ -74,3 +77,21 @@ The conversation repeatedly claims agents need a human, yet it also predicts wid
 - Canonical URL: https://youtube.com/watch/?v=4D3hDmGhFhA
 - Raw markdown: `raw/readwise/the-ai-paradox-more-automation-more-humans-more-work-dan-shipper-01kszj69rss5rpdzwn529h88y1.md`
 - Raw HTML: `raw/readwise/the-ai-paradox-more-automation-more-humans-more-work-dan-shipper-01kszj69rss5rpdzwn529h88y1.html`
+
+## Full source text
+
+---
+readwise_id: "01kszj69rss5rpdzwn529h88y1"
+title: "The AI paradox: More automation, more humans, more work | Dan Shipper"
+author: "Lenny's Podcast"
+publication: "YouTube"
+source_url: "https://youtube.com/watch/?v=4D3hDmGhFhA"
+category: "video"
+location: "archive"
+published_date: "2026-05-24"
+saved_at: "2026-05-31T17:44:30.745000+00:00"
+updated_at: "2026-06-01T06:48:56.345624+00:00"
+tags: ["processed"]
+---
+
+AI is changing how we work by letting people use smart agents to help with tasks. These agents still need humans to guide and manage them carefully. Instead of losing jobs, new roles are created where people oversee and improve AI work.

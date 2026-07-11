@@ -15,6 +15,9 @@ assessed_as_of: '2026-04-19'
 ingested_at: '2026-05-22T18:23:52.315022+00:00'
 canonical_url: https://pub.towardsai.net/i-used-karpathys-llm-wiki-to-build-a-research-brain-that-updates-itself-ff02dda47335
 content_sha256: f404b854921821e384331b6a340188de422bd1544de00c5a9689327e0aa689eb
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/claude-code.md
 - tools/obsidian.md
@@ -68,3 +71,23 @@ The write-up is enthusiastic, but the claims are mostly anecdotal and self-repor
 - Canonical URL: https://pub.towardsai.net/i-used-karpathys-llm-wiki-to-build-a-research-brain-that-updates-itself-ff02dda47335
 - Raw markdown: `raw/readwise/i-used-karpathy-s-llm-wiki-to-build-a-research-brain-that-updates-itself-here-s-what-two-weeks-taught-me-01kqkv78qyrcbmcnbttz4ae769.md`
 - Raw HTML: `raw/readwise/i-used-karpathy-s-llm-wiki-to-build-a-research-brain-that-updates-itself-here-s-what-two-weeks-taught-me-01kqkv78qyrcbmcnbttz4ae769.html`
+
+## Full source text
+
+---
+readwise_id: 01kqkv78qyrcbmcnbttz4ae769
+title: I Used Karpathy’s LLM Wiki to Build a Research Brain That Updates Itself. Here’s
+  What Two Weeks Taught Me.
+author: Adi Insights
+source_url: https://pub.towardsai.net/i-used-karpathys-llm-wiki-to-build-a-research-brain-that-updates-itself-ff02dda47335
+category: article
+location: archive
+published_date: '2026-04-19'
+saved_at: '2026-05-02T08:00:02.813000+00:00'
+updated_at: '2026-05-02T14:21:53.337337+00:00'
+tags:
+- processed
+publication: Towardsai
+---
+
+Adapting Karpathy’s LLM Wiki, the author created a self-updating knowledge base that reads and summarizes sources automatically. The system organizes information into a cross-referenced wiki maintained by an LLM, removing manual effort. After two weeks, the wiki grew to 87 pages, making research easier and more connected.

@@ -19,6 +19,9 @@ assessed_as_of: '2026-05-11'
 ingested_at: '2026-06-02T20:14:17.775286+00:00'
 canonical_url: https://openai.com/business/guides-and-resources/how-enterprises-are-scaling-ai
 content_sha256: d3be12f4b8fcab724a59b7f449cf5d3182ef30d5c3568a100f434a1967752fb6
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/governance-as-enabler-for-enterprise-ai.md
 - topics/hybrid-human-ai-workflows-for-expert-review.md
@@ -65,3 +68,21 @@ The article’s main tension is that it presents broad leadership lessons from a
 - Canonical URL: https://openai.com/business/guides-and-resources/how-enterprises-are-scaling-ai
 - Raw markdown: `raw/readwise/how-enterprises-are-scaling-ai-01krarcpxqyaw1peg33barp2xa.md`
 - Raw HTML: `raw/readwise/how-enterprises-are-scaling-ai-01krarcpxqyaw1peg33barp2xa.html`
+
+## Full source text
+
+---
+readwise_id: "01krarcpxqyaw1peg33barp2xa"
+title: "How enterprises are scaling AI"
+author: "OpenAI Blog"
+publication: "openai.com"
+source_url: "https://openai.com/business/guides-and-resources/how-enterprises-are-scaling-ai"
+category: "rss"
+location: "archive"
+published_date: "2026-05-11"
+saved_at: "2026-05-11T05:33:04.384000+00:00"
+updated_at: "2026-05-11T08:39:03.066605+00:00"
+tags: ["processed"]
+---
+
+Enterprises succeed with AI by building trust and encouraging safe experimentation, not just by deploying tools quickly. They focus on strong governance, clear quality standards, and combining AI with human judgment. Leaders should embed AI into workflows with oversight to ensure lasting impact.

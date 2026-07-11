@@ -15,6 +15,9 @@ assessed_as_of: '2026-04-25'
 ingested_at: '2026-05-25T16:11:03.968334+00:00'
 canonical_url: https://medium.com/data-science-collective/i-spent-6-months-tuning-claude-code-heres-the-exact-setup-that-finally-worked-b41c67628478
 content_sha256: e0aabc6398b173855b43e8782533aa2399a16e533e5b0dcba26ec44a1a1da959
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/claude-code.md
 derived_topics:
@@ -65,3 +68,22 @@ The article is persuasive but occasionally overconfident in numerical claims tha
 - Canonical URL: https://medium.com/data-science-collective/i-spent-6-months-tuning-claude-code-heres-the-exact-setup-that-finally-worked-b41c67628478
 - Raw markdown: `raw/readwise/i-spent-6-months-tuning-claude-code-here-s-the-exact-setup-that-finally-worked-01kr4358p7t4vfwjd4r6xqdmkj.md`
 - Raw HTML: `raw/readwise/i-spent-6-months-tuning-claude-code-here-s-the-exact-setup-that-finally-worked-01kr4358p7t4vfwjd4r6xqdmkj.html`
+
+## Full source text
+
+---
+readwise_id: 01kr4358p7t4vfwjd4r6xqdmkj
+title: I Spent 6 Months Tuning Claude Code. Here’s the Exact Setup That Finally Worked.
+author: Anubhav
+source_url: https://medium.com/data-science-collective/i-spent-6-months-tuning-claude-code-heres-the-exact-setup-that-finally-worked-b41c67628478
+category: article
+location: archive
+published_date: '2026-04-25'
+saved_at: '2026-05-08T15:26:36.133000+00:00'
+updated_at: '2026-05-08T15:30:22.447310+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+The author spent six months tuning Claude Code to create a precise setup for code review, evaluation, and pull request automation. They built a layered system with clear rules, specialized agents, and parallel worktrees to handle tasks efficiently and safely. The final setup runs nightly evaluations and drafts fixes automatically, improving developer productivity and code quality.

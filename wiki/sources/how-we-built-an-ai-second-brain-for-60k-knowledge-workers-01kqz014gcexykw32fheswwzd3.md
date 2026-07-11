@@ -22,6 +22,9 @@ assessed_as_of: '2026-04-29'
 ingested_at: '2026-06-09T16:55:26.814439+00:00'
 canonical_url: https://medium.com/@AnalyticsAtMeta/how-we-built-an-ai-second-brain-for-60k-knowledge-workers-78c507dd795b
 content_sha256: c834765a1e19b644c16a2fbddf7ad5c414b196a6f1921b7cb8358b7fecf132a7
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_implementation_studies:
 - implementation-studies/2026-04/how-we-built-an-ai-second-brain-for-60k-knowledge-workers-01kqz014gcexykw32fheswwzd3-meta-s-ai-second-brain-rollout.md
 derived_tools:
@@ -76,3 +79,22 @@ The article frames persistent context and workspace structure as broadly effecti
 - Canonical URL: https://medium.com/@AnalyticsAtMeta/how-we-built-an-ai-second-brain-for-60k-knowledge-workers-78c507dd795b
 - Raw markdown: `raw/readwise/how-we-built-an-ai-second-brain-for-60k-knowledge-workers-01kqz014gcexykw32fheswwzd3.md`
 - Raw HTML: `raw/readwise/how-we-built-an-ai-second-brain-for-60k-knowledge-workers-01kqz014gcexykw32fheswwzd3.html`
+
+## Full source text
+
+---
+readwise_id: 01kqz014gcexykw32fheswwzd3
+title: How We Built an AI Second Brain for 60K Knowledge Workers
+author: Analytics at Meta
+source_url: https://medium.com/@AnalyticsAtMeta/how-we-built-an-ai-second-brain-for-60k-knowledge-workers-78c507dd795b
+category: article
+location: archive
+published_date: '2026-04-29'
+saved_at: '2026-05-06T15:55:43.500000+00:00'
+updated_at: '2026-05-06T17:38:21.957838+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+Meta built an AI Second Brain to help workers organize and access their scattered information across tools. It uses a smart folder system and skills to track projects, read notes, and assist with tasks. This tool grew quickly to over 60,000 users by making work easier and letting employees create their own helpful workflows.

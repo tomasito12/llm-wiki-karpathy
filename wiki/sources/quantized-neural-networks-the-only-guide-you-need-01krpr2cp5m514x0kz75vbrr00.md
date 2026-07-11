@@ -17,6 +17,9 @@ assessed_as_of: '2026-04-17'
 ingested_at: '2026-06-01T16:05:55.952710+00:00'
 canonical_url: https://mlechner.substack.com/p/quantized-neural-networks-the-only?utm_source=multiple-personal-recommendations-email&utm_medium=email&triedRedirect=true
 content_sha256: 90ab19d1e894d49a8192841850faffd2ba1302bedff6324824332308fa7d1a5c
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/kv-cache-compression.md
 derived_trends:
@@ -60,3 +63,21 @@ The article is strongest when it explains trade-offs, but some of its hardware-f
 - Canonical URL: https://mlechner.substack.com/p/quantized-neural-networks-the-only?utm_source=multiple-personal-recommendations-email&utm_medium=email&triedRedirect=true
 - Raw markdown: `raw/readwise/quantized-neural-networks-the-only-guide-you-need-01krpr2cp5m514x0kz75vbrr00.md`
 - Raw HTML: `raw/readwise/quantized-neural-networks-the-only-guide-you-need-01krpr2cp5m514x0kz75vbrr00.html`
+
+## Full source text
+
+---
+readwise_id: "01krpr2cp5m514x0kz75vbrr00"
+title: "Quantized Neural Networks: The Only Guide You Need"
+author: "Mathias Lechner"
+publication: "Substack"
+source_url: "https://mlechner.substack.com/p/quantized-neural-networks-the-only?utm_source=multiple-personal-recommendations-email&utm_medium=email&triedRedirect=true"
+category: "article"
+location: "archive"
+published_date: "2026-04-17"
+saved_at: "2026-05-15T21:18:22.405000+00:00"
+updated_at: "2026-05-16T21:25:27.506474+00:00"
+tags: ["processed"]
+---
+
+Quantized neural networks use lower-precision numbers to make models smaller and faster, especially on devices without floating-point hardware. Quantizing weights is easier and less damaging than quantizing activations, which needs careful methods like quantization-aware training. New techniques enable very low-bit quantization, helping run large models efficiently on limited hardware.

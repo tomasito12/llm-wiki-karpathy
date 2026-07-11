@@ -10,6 +10,9 @@ assessed_as_of: '2026-05-18'
 ingested_at: '2026-06-16T15:43:03+00:00'
 canonical_url: https://medium.com/@jankammerath/you-cant-regulate-programming-how-the-eu-ai-act-may-kill-software-9914ab61df00
 content_sha256: 94b1dc11c938fca0bd395abd92dcdebe144074b4df6b5a7f0a0bde631e31e2ec
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # You Can’t Regulate Programming: How the EU AI Act May Kill Software
@@ -45,3 +48,21 @@ The article’s rhetoric often exceeds its evidence. It repeatedly treats broad 
 - Canonical URL: https://medium.com/@jankammerath/you-cant-regulate-programming-how-the-eu-ai-act-may-kill-software-9914ab61df00
 - Raw markdown: `raw/readwise/you-can-t-regulate-programming-how-the-eu-ai-act-may-kill-software-01ktpkt6181ebx0pkpc1rppkmn.md`
 - Raw HTML: `raw/readwise/you-can-t-regulate-programming-how-the-eu-ai-act-may-kill-software-01ktpkt6181ebx0pkpc1rppkmn.html`
+
+## Full source text
+
+---
+readwise_id: "01ktpkt6181ebx0pkpc1rppkmn"
+title: "You Can’t Regulate Programming: How the EU AI Act May Kill Software"
+author: "Jan Kammerath"
+publication: "Medium"
+source_url: "https://medium.com/@jankammerath/you-cant-regulate-programming-how-the-eu-ai-act-may-kill-software-9914ab61df00"
+category: "article"
+location: "archive"
+published_date: "2026-05-18"
+saved_at: "2026-06-09T16:35:22.791000+00:00"
+updated_at: "2026-06-15T18:28:02.859893+00:00"
+tags: ["processed"]
+---
+
+The EU AI Act tries to regulate all software by defining broad categories of AI systems. This creates heavy rules and paperwork that hurt developers and small businesses. Many experts believe the law is unclear, costly, and may harm Europe's tech competitiveness.

@@ -26,6 +26,9 @@ assessed_as_of: '2026-04-20'
 ingested_at: '2026-07-09T19:30:09.966124+00:00'
 canonical_url: https://medium.com/@michael.hannecke/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-2449067b8b67
 content_sha256: 7ed1d5f17c02c7433d06a5e33ff0e6bdce685c40f08d53e1f1c03c7d7a99a8e5
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/kv-cache.md
 - glossary/mixture-of-experts.md
@@ -89,3 +92,21 @@ The strongest skepticism is aimed at benchmark interpretation: the article argue
 - Canonical URL: https://medium.com/@michael.hannecke/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-2449067b8b67
 - Raw markdown: `raw/readwise/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj.md`
 - Raw HTML: `raw/readwise/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-01kts1hztetv71p5zgssn119fj.html`
+
+## Full source text
+
+---
+readwise_id: "01kts1hztetv71p5zgssn119fj"
+title: "Choosing an On-Device LLM Runtime on Apple Silicon: A Decision Framework Beyond Benchmarks"
+author: "Michael Hannecke"
+publication: "Medium"
+source_url: "https://medium.com/@michael.hannecke/choosing-an-on-device-llm-runtime-on-apple-silicon-a-decision-framework-beyond-benchmarks-2449067b8b67"
+category: "article"
+location: "archive"
+published_date: "2026-04-20"
+saved_at: "2026-06-10T15:14:03.213000+00:00"
+updated_at: "2026-06-14T13:15:11.773993+00:00"
+tags: ["processed"]
+---
+
+Why token-per-second rankings lead enterprise architects to the wrong runtime, and what to evaluate instead.

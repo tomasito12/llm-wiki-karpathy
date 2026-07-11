@@ -16,6 +16,9 @@ assessed_as_of: '2026-05-05'
 ingested_at: '2026-06-08T16:02:07.657561+00:00'
 canonical_url: https://jamesshore.com/v2/blog/2026/you-need-ai-that-reduces-your-maintenance-costs/
 content_sha256: d08640536b64b720e19eb4410950c2f3394e4d05aaad86c8905d18f6fe4d3232
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/maintenance-aware-ai-evaluation.md
 - topics/production-debt-in-ai-systems.md
@@ -62,3 +65,21 @@ The piece is persuasive as a cautionary model, but it overstates certainty by pr
 - Canonical URL: https://jamesshore.com/v2/blog/2026/you-need-ai-that-reduces-your-maintenance-costs/
 - Raw markdown: `raw/readwise/you-need-ai-that-reduces-maintenance-costs-01krv8d7xrmg4v2th7v6p8f0aj.md`
 - Raw HTML: `raw/readwise/you-need-ai-that-reduces-maintenance-costs-01krv8d7xrmg4v2th7v6p8f0aj.html`
+
+## Full source text
+
+---
+readwise_id: "01krv8d7xrmg4v2th7v6p8f0aj"
+title: "You Need AI That Reduces Maintenance Costs"
+author: "jamesshore.com"
+publication: "Jamesshore"
+source_url: "https://jamesshore.com/v2/blog/2026/you-need-ai-that-reduces-your-maintenance-costs/"
+category: "article"
+location: "archive"
+published_date: "2026-05-05"
+saved_at: "2026-05-17T15:20:52.921000+00:00"
+updated_at: "2026-05-18T14:31:32.556946+00:00"
+tags: ["processed"]
+---
+
+Using AI to write code can speed up work, but only if it also lowers maintenance costs by the same amount. If maintenance costs stay the same or increase, the productivity gains disappear quickly and cause long-term problems. To truly benefit from AI, focus on reducing maintenance effort, not just writing code faster.

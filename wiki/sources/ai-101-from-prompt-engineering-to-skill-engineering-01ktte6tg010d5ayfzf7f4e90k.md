@@ -10,6 +10,9 @@ assessed_as_of: '2026-06-10'
 ingested_at: '2026-07-09T19:26:45.810831+00:00'
 canonical_url: mailto:reader-forwarded-email/70f24580d6ed828ee99c5a74037b283f
 content_sha256: 256b96476836d576beda85a85268b1a42e6e042a37edc31fb16bafe133c66f16
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # AI 101: From Prompt Engineering to Skill Engineering
@@ -45,3 +48,21 @@ The article’s main conceptual split between prompts, context, and skills is he
 - Canonical URL: mailto:reader-forwarded-email/70f24580d6ed828ee99c5a74037b283f
 - Raw markdown: `raw/readwise/ai-101-from-prompt-engineering-to-skill-engineering-01ktte6tg010d5ayfzf7f4e90k.md`
 - Raw HTML: `raw/readwise/ai-101-from-prompt-engineering-to-skill-engineering-01ktte6tg010d5ayfzf7f4e90k.html`
+
+## Full source text
+
+---
+readwise_id: "01ktte6tg010d5ayfzf7f4e90k"
+title: "AI 101: From Prompt Engineering to Skill Engineering"
+author: "🔳 Turing Post"
+publication: "beehiiv.com"
+source_url: "mailto:reader-forwarded-email/70f24580d6ed828ee99c5a74037b283f"
+category: "email"
+location: "archive"
+published_date: "2026-06-10"
+saved_at: "2026-06-11T04:14:23.232000+00:00"
+updated_at: "2026-06-11T11:13:48.621805+00:00"
+tags: ["processed"]
+---
+
+AI agents work better with reusable skills that guide how they solve tasks across situations. Skill engineering is a new approach that builds, improves, and manages these skills systematically. Methods like SkillOpt, SkillOps, and SkillMOO help train and optimize skills for smarter AI agents.

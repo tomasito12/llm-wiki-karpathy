@@ -24,6 +24,9 @@ assessed_as_of: '2026-05-03'
 ingested_at: '2026-06-06T21:44:31+00:00'
 canonical_url: https://medium.com/@roanmonteiro/building-a-complete-personal-harness-llm-wiki-developers-second-brain-in-obsidian-d7b61c7398ff
 content_sha256: 47327d506449ee70f44e8ebc42fb8217068bb9bf9c4a0dccd411a6da3c4ab849
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/agent-maintained-knowledge-bases.md
 derived_tools:
@@ -81,3 +84,21 @@ The article is confident that separation plus skills and commands yields a robus
 - Canonical URL: https://medium.com/@roanmonteiro/building-a-complete-personal-harness-llm-wiki-developers-second-brain-in-obsidian-d7b61c7398ff
 - Raw markdown: `raw/readwise/building-a-complete-personal-harness-llm-wiki-developer-s-second-brain-in-obsidian-01krbnant10607tp88nmdzn55s.md`
 - Raw HTML: `raw/readwise/building-a-complete-personal-harness-llm-wiki-developer-s-second-brain-in-obsidian-01krbnant10607tp88nmdzn55s.html`
+
+## Full source text
+
+---
+readwise_id: "01krbnant10607tp88nmdzn55s"
+title: "Building a Complete Personal Harness: LLM Wiki + Developer’s Second Brain in Obsidian"
+author: "Roan Brasil Monteiro"
+publication: "Medium"
+source_url: "https://medium.com/@roanmonteiro/building-a-complete-personal-harness-llm-wiki-developers-second-brain-in-obsidian-d7b61c7398ff"
+category: "article"
+location: "archive"
+published_date: "2026-05-03"
+saved_at: "2026-05-11T13:58:49.409000+00:00"
+updated_at: "2026-06-03T17:53:26.194215+00:00"
+tags: ["processed"]
+---
+
+This article shows how to build a personal knowledge system in Obsidian using an LLM to organize and link information automatically. It divides notes into three zones: raw sources, a wiki maintained by the AI, and developer work files for decisions and projects. Custom skills and commands help manage and update the vault, creating a collaborative and structured knowledge base.

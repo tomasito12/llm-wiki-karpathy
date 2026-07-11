@@ -19,6 +19,9 @@ assessed_as_of: '2026-04-13'
 ingested_at: '2026-07-10T11:54:07.422887+00:00'
 canonical_url: https://www.intercom.com/blog/from-swarms-to-product-turning-customer-signals-into-scalable-features/
 content_sha256: 76e89e57453dbdb5620a44f97fb32594293b83b5ab59888a4d0689d68aea1192
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/customer-signal-productization-pipeline.md
 - topics/internal-proofing-before-productization.md
@@ -65,3 +68,22 @@ The article’s strongest claim is that the best signal comes from the least sca
 - Canonical URL: https://www.intercom.com/blog/from-swarms-to-product-turning-customer-signals-into-scalable-features/
 - Raw markdown: `raw/readwise/from-swarms-to-product-turning-customer-signals-into-scalable-features-01kp4e6k2cznqad07kyn0zadbh.md`
 - Raw HTML: `raw/readwise/from-swarms-to-product-turning-customer-signals-into-scalable-features-01kp4e6k2cznqad07kyn0zadbh.html`
+
+## Full source text
+
+---
+readwise_id: 01kp4e6k2cznqad07kyn0zadbh
+title: 'From swarms to product: Turning customer signals into scalable features'
+author: Kevin O'Brien
+source_url: https://www.intercom.com/blog/from-swarms-to-product-turning-customer-signals-into-scalable-features/
+category: rss
+location: archive
+published_date: '2026-04-13'
+saved_at: '2026-04-13T22:08:07.828000+00:00'
+updated_at: '2026-05-07T13:40:42.620392+00:00'
+tags:
+- processed
+publication: Intercom
+---
+
+Intercom uses small expert teams called swarms to learn deeply from individual customers and improve their product. They then turn these learnings into tools in Cockpit, helping many customers without extra hands-on work. Finally, the best ideas become built-in product features that benefit all users at scale.

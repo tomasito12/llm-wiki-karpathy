@@ -16,6 +16,9 @@ assessed_as_of: '2026-04-14'
 ingested_at: '2026-06-01T16:14:56.697570+00:00'
 canonical_url: https://www.latent.space/p/ainews-top-local-models-list-april
 content_sha256: 55b14fcd949487755b7222a023b8f14995bbea5fc5d0451efa05c2f2427df1e2
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_models:
 - foundation-models/qwen-3-5.md
 derived_topics:
@@ -59,3 +62,22 @@ The roundup is explicitly preference-based, so its strongest claims rest on comm
 - Canonical URL: https://www.latent.space/p/ainews-top-local-models-list-april
 - Raw markdown: `raw/readwise/ainews-top-local-models-list-april-2026-01kp5k4ws1bqvbw5tcpbt5bh4p.md`
 - Raw HTML: `raw/readwise/ainews-top-local-models-list-april-2026-01kp5k4ws1bqvbw5tcpbt5bh4p.html`
+
+## Full source text
+
+---
+readwise_id: 01kp5k4ws1bqvbw5tcpbt5bh4p
+title: '[AINews] Top Local Models List - April 2026'
+author: Latent Space
+source_url: https://www.latent.space/p/ainews-top-local-models-list-april
+category: rss
+location: archive
+published_date: '2026-04-14'
+saved_at: '2026-04-14T08:53:49.546000+00:00'
+updated_at: '2026-05-02T22:08:39.778002+00:00'
+tags:
+- processed
+publication: Latent
+---
+
+The local AI community recommends several top models for different uses, with Qwen 3.5 being the most popular overall. Other notable models include Gemma 4 for smaller setups and MiniMax M2.5 for tool-heavy tasks. For coding, Qwen3-Coder-Next is the clear favorite.

@@ -21,6 +21,9 @@ assessed_as_of: '2026-04-10'
 ingested_at: '2026-06-06T21:13:03.125144+00:00'
 canonical_url: https://openai.com/academy/managers
 content_sha256: d7e6bd2cb7ebe3be45d0e62ca54aeae64b05018fb72073d8e23bb482b09220a0
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/manager-drafting-workflows.md
 derived_topics:
@@ -71,3 +74,22 @@ The article is clear that ChatGPT should not replace judgment, yet many examples
 - Canonical URL: https://openai.com/academy/managers
 - Raw markdown: `raw/readwise/chatgpt-for-managers-01knw8fhh2be0n54htaj508ef1.md`
 - Raw HTML: `raw/readwise/chatgpt-for-managers-01knw8fhh2be0n54htaj508ef1.html`
+
+## Full source text
+
+---
+readwise_id: 01knw8fhh2be0n54htaj508ef1
+title: ChatGPT for managers
+author: OpenAI Blog
+source_url: https://openai.com/academy/managers
+category: rss
+location: archive
+published_date: '2026-04-10'
+saved_at: '2026-04-10T17:53:32.250000+00:00'
+updated_at: '2026-05-07T17:39:41.577232+00:00'
+tags:
+- processed
+publication: OpenAI
+---
+
+ChatGPT helps managers save time by creating clear plans, agendas, and feedback for common tasks. It supports strategy, team development, communication, meetings, and decision-making. Using ChatGPT makes management work more consistent and organized.

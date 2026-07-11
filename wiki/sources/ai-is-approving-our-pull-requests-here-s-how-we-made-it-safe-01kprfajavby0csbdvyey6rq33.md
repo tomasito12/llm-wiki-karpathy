@@ -17,6 +17,9 @@ assessed_as_of: '2026-04-21'
 ingested_at: '2026-06-07T20:21:22.030115+00:00'
 canonical_url: https://www.intercom.com/blog/ai-is-approving-our-pull-requests-heres-how-we-made-it-safe/
 content_sha256: 8422f754cd0c194bccb64256dc95d44ed87e252e0e8798c779188ff501275768
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_implementation_studies:
 - implementation-studies/2026-04/ai-is-approving-our-pull-requests-here-s-how-we-made-it-safe-01kprfajavby0csbdvyey6rq33-intercom-s-ai-approved-pull-request-pipeline.md
 derived_topics:
@@ -67,3 +70,22 @@ The piece argues that human review is an imperfect heuristic, yet it still relie
 - Canonical URL: https://www.intercom.com/blog/ai-is-approving-our-pull-requests-heres-how-we-made-it-safe/
 - Raw markdown: `raw/readwise/ai-is-approving-our-pull-requests-here-s-how-we-made-it-safe-01kprfajavby0csbdvyey6rq33.md`
 - Raw HTML: `raw/readwise/ai-is-approving-our-pull-requests-here-s-how-we-made-it-safe-01kprfajavby0csbdvyey6rq33.html`
+
+## Full source text
+
+---
+readwise_id: 01kprfajavby0csbdvyey6rq33
+title: 'AI is approving our pull requests: Here’s how we made it safe'
+author: Kesha Mykhailov
+source_url: https://www.intercom.com/blog/ai-is-approving-our-pull-requests-heres-how-we-made-it-safe/
+category: rss
+location: archive
+published_date: '2026-04-21'
+saved_at: '2026-04-21T16:52:35.363000+00:00'
+updated_at: '2026-05-07T17:20:49.979279+00:00'
+tags:
+- processed
+publication: Intercom
+---
+
+Intercom uses AI to review and approve many pull requests, making shipping faster and safer. Their AI system checks code deeply and enforces small, manageable changes that reduce errors. Data shows AI-approved code has fewer problems than human-reviewed code, proving that speed and safety can grow together.

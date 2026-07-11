@@ -13,6 +13,9 @@ assessed_as_of: '2026-04-14'
 ingested_at: '2026-05-17T12:24:13.695305+00:00'
 canonical_url: https://medium.com/@travisnicholson/100-chatgpt-prompts-that-actually-produce-better-ai-content-1806d7d76d6c
 content_sha256: c18d93599dfae0f2c9cbca0ee15646ec63c24a9a1776c510bdeafad9d21eba77
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/prompt-engineering.md
 derived_pages:
@@ -52,3 +55,22 @@ The article strongly suggests that prompting skill is the main determinant of ou
 - Canonical URL: https://medium.com/@travisnicholson/100-chatgpt-prompts-that-actually-produce-better-ai-content-1806d7d76d6c
 - Raw markdown: `raw/readwise/100-chatgpt-prompts-that-actually-produce-better-ai-content-01kr4333x2f7d61k5w8cqftehd.md`
 - Raw HTML: `raw/readwise/100-chatgpt-prompts-that-actually-produce-better-ai-content-01kr4333x2f7d61k5w8cqftehd.html`
+
+## Full source text
+
+---
+readwise_id: 01kr4333x2f7d61k5w8cqftehd
+title: 100 ChatGPT Prompts That Actually Produce Better AI Content
+author: Travis Nicholson
+source_url: https://medium.com/@travisnicholson/100-chatgpt-prompts-that-actually-produce-better-ai-content-1806d7d76d6c
+category: article
+location: archive
+published_date: '2026-04-14'
+saved_at: '2026-05-08T15:25:26.306000+00:00'
+updated_at: '2026-05-08T15:31:04.785094+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+This article lists 100 ChatGPT prompts that help create better AI content. The prompts cover writing, brainstorming, research, social media, proposals, and creative work. They guide users to make clearer, more engaging, and well-structured content.

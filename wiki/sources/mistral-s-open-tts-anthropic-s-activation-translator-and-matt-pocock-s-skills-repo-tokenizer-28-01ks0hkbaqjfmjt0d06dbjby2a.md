@@ -18,6 +18,9 @@ assessed_as_of: '2026-05-17'
 ingested_at: '2026-07-10T11:47:55.207161+00:00'
 canonical_url: https://newsletter.artofsaience.com/p/mistrals-open-tts-anthropics-activation?utm_source=unread-posts-digest-email&inbox=true&utm_medium=email&triedRedirect=true
 content_sha256: adfc6dbe9071c9324d571a491c18c7bb0805f873049768736c65977aae2d0e07
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-05/mistral-s-open-tts-anthropic-s-activation-translator-and-matt-pocock-s-skills-re-agent-stacks-are-shifting-toward-explicit-supervision-and-shared-mem-dbd2f55d6b.md
 - signals/2026-05/mistral-s-open-tts-anthropic-s-activation-translator-and-matt-pocock-s-skills-re-model-introspection-is-becoming-operational-debugging-a384b591db.md
@@ -60,3 +63,21 @@ Several items lean on headline-friendly framing. Anthropic’s activation transl
 - Canonical URL: https://newsletter.artofsaience.com/p/mistrals-open-tts-anthropics-activation?utm_source=unread-posts-digest-email&inbox=true&utm_medium=email&triedRedirect=true
 - Raw markdown: `raw/readwise/mistral-s-open-tts-anthropic-s-activation-translator-and-matt-pocock-s-skills-repo-tokenizer-28-01ks0hkbaqjfmjt0d06dbjby2a.md`
 - Raw HTML: `raw/readwise/mistral-s-open-tts-anthropic-s-activation-translator-and-matt-pocock-s-skills-repo-tokenizer-28-01ks0hkbaqjfmjt0d06dbjby2a.html`
+
+## Full source text
+
+---
+readwise_id: "01ks0hkbaqjfmjt0d06dbjby2a"
+title: "Mistral's Open TTS, Anthropic's Activation Translator, and Matt Pocock's Skills Repo: Tokenizer #28"
+author: "Sairam Sundaresan"
+publication: "artofsaience.com"
+source_url: "https://newsletter.artofsaience.com/p/mistrals-open-tts-anthropics-activation?utm_source=unread-posts-digest-email&inbox=true&utm_medium=email&triedRedirect=true"
+category: "article"
+location: "archive"
+published_date: "2026-05-17"
+saved_at: "2026-05-19T16:37:42.359000+00:00"
+updated_at: "2026-05-19T18:39:25.972404+00:00"
+tags: ["processed"]
+---
+
+Anthropic trained a second Claude model to translate the first Claude’s internal activations into English, revealing safety evaluation behavior. New AI research focuses on improving large model training, unified video models, autonomous multi-agent systems, and efficient reasoning. Matt Pocock shared his open-source skills repo, offering practical AI engineering tools and principles.

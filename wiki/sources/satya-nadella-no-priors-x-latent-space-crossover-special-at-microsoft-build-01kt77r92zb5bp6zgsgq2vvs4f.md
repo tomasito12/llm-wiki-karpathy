@@ -27,6 +27,9 @@ assessed_as_of: '2026-06-03'
 ingested_at: '2026-06-06T21:01:17.848760+00:00'
 canonical_url: mailto:reader-forwarded-email/b9b30e2e9304f0dfa708585124f1979f
 content_sha256: e5253f5ccba022f79864573d04923af8be896df99168491dfdbdb1f283011fc0
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_interview_insights:
 - interview-insights/2026-06/satya-nadella-no-priors-x-latent-space-crossover-special-at-microsoft-build-01kt-ai-changes-software-design-by-making-meta-work-the-new-work-924a673697.md
 - interview-insights/2026-06/satya-nadella-no-priors-x-latent-space-crossover-special-at-microsoft-build-01kt-ai-is-pushing-saas-toward-unbundled-pricing-and-hybrid-billing-9a40ca5fdc.md
@@ -78,3 +81,21 @@ The transcript leans optimistic about agents and enterprise AI, but much of the 
 - Canonical URL: mailto:reader-forwarded-email/b9b30e2e9304f0dfa708585124f1979f
 - Raw markdown: `raw/readwise/satya-nadella-no-priors-x-latent-space-crossover-special-at-microsoft-build-01kt77r92zb5bp6zgsgq2vvs4f.md`
 - Raw HTML: `raw/readwise/satya-nadella-no-priors-x-latent-space-crossover-special-at-microsoft-build-01kt77r92zb5bp6zgsgq2vvs4f.html`
+
+## Full source text
+
+---
+readwise_id: "01kt77r92zb5bp6zgsgq2vvs4f"
+title: "⚡️Satya Nadella: No Priors x Latent Space Crossover Special at Microsoft Build"
+author: "Latent.Space"
+publication: "Substack"
+source_url: "mailto:reader-forwarded-email/b9b30e2e9304f0dfa708585124f1979f"
+category: "email"
+location: "archive"
+published_date: "2026-06-03"
+saved_at: "2026-06-03T17:16:00.992000+00:00"
+updated_at: "2026-06-03T17:48:09.198541+00:00"
+tags: ["processed"]
+---
+
+Satya Nadella shared how Microsoft is building a powerful AI platform to help companies work smarter and create more value. He emphasized that humans and AI will work together to solve big problems and drive innovation. Nadella also highlighted the importance of making sure AI benefits reach all communities, not just tech companies.

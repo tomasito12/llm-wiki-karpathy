@@ -18,6 +18,9 @@ assessed_as_of: '2026-04-08'
 ingested_at: '2026-05-25T15:58:53.211887+00:00'
 canonical_url: https://www.latent.space/p/ainews-anthropic-30b-arr-project
 content_sha256: 8b51554d1263168b2e990e46a7f57452a41bb9c51ebf69e03cc55435f5857bc1
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-04/ainews-anthropic-30b-arr-project-glasswing-and-claude-mythos-preview-first-model-cyber-capability-becomes-a-deployment-risk-boundary-dc863e7bcb.md
 - signals/2026-04/ainews-anthropic-30b-arr-project-glasswing-and-claude-mythos-preview-first-model-restricted-frontier-access-for-cyber-capable-models-f03faecacb.md
@@ -71,3 +74,23 @@ The article repeatedly blends confirmed facts with rumor, inference, and competi
 - Canonical URL: https://www.latent.space/p/ainews-anthropic-30b-arr-project
 - Raw markdown: `raw/readwise/ainews-anthropic-30b-arr-project-glasswing-and-claude-mythos-preview-first-model-too-dangerous-to-release-since-gpt-2-01knn7z1vx40hn25cmn64k2ngd.md`
 - Raw HTML: `raw/readwise/ainews-anthropic-30b-arr-project-glasswing-and-claude-mythos-preview-first-model-too-dangerous-to-release-since-gpt-2-01knn7z1vx40hn25cmn64k2ngd.html`
+
+## Full source text
+
+---
+readwise_id: 01knn7z1vx40hn25cmn64k2ngd
+title: '[AINews] Anthropic @ $30B ARR, Project GlassWing and Claude Mythos Preview
+  — first model too dangerous to release since GPT-2'
+author: Latent Space
+source_url: https://www.latent.space/p/ainews-anthropic-30b-arr-project
+category: rss
+location: archive
+published_date: '2026-04-08'
+saved_at: '2026-04-08T00:30:32.901000+00:00'
+updated_at: '2026-05-08T13:19:34.059918+00:00'
+tags:
+- processed
+publication: Latent
+---
+
+Anthropic announced a huge revenue jump to $30 billion ARR and revealed Claude Mythos, a powerful AI model too risky for public release. Claude Mythos can find many serious software vulnerabilities, outperforming even top experts. Anthropic is sharing this model only with select partners through Project Glasswing to improve cybersecurity.

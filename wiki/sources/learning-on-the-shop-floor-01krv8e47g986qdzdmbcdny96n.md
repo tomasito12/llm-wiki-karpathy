@@ -10,6 +10,9 @@ assessed_as_of: '2026-05-09'
 ingested_at: '2026-06-06T21:59:18+00:00'
 canonical_url: https://x.com/tobi/status/2053121182044451016/?rw_tt_thread=True
 content_sha256: 8ca8f630d83aa0b7cf8a45a7bf215fa0bf8212d8fc2cb1af6982622ca1a00c5c
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # Learning on the Shop floor
@@ -45,3 +48,21 @@ The post makes a strong case for public visibility, but it is still partly a nar
 - Canonical URL: https://x.com/tobi/status/2053121182044451016/?rw_tt_thread=True
 - Raw markdown: `raw/readwise/learning-on-the-shop-floor-01krv8e47g986qdzdmbcdny96n.md`
 - Raw HTML: `raw/readwise/learning-on-the-shop-floor-01krv8e47g986qdzdmbcdny96n.html`
+
+## Full source text
+
+---
+readwise_id: "01krv8e47g986qdzdmbcdny96n"
+title: "Learning on the Shop floor"
+author: "tobi lutke"
+publication: "X (formerly Twitter)"
+source_url: "https://x.com/tobi/status/2053121182044451016/?rw_tt_thread=True"
+category: "tweet"
+location: "archive"
+published_date: "2026-05-09"
+saved_at: "2026-05-17T15:21:21.904000+00:00"
+updated_at: "2026-05-18T14:31:29.292501+00:00"
+tags: ["processed"]
+---
+
+Tobi Lutke shares how Shopify built an AI agent called River that helps employees work and learn together publicly on Slack. River’s open and shared use creates a teaching workshop where everyone watches, learns, and improves from each other’s work. This approach speeds up the company by making knowledge visible and spreading skills, not replacing people but making everyone an apprentice.

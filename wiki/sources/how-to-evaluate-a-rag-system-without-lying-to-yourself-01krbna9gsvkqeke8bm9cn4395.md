@@ -19,6 +19,9 @@ assessed_as_of: '2026-05-07'
 ingested_at: '2026-06-06T21:53:08+00:00'
 canonical_url: https://medium.com/@fresnelgroup.global/how-to-evaluate-a-rag-system-without-lying-to-yourself-daad661664cb
 content_sha256: 3a928f86716a76a2d2a2945904f181699360f178fe39d42c6abcc56691207150
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/evaluation-of-a-rag-system.md
 derived_topics:
@@ -65,3 +68,21 @@ The piece is strongest when it stays concrete, but it sometimes compresses diffi
 - Canonical URL: https://medium.com/@fresnelgroup.global/how-to-evaluate-a-rag-system-without-lying-to-yourself-daad661664cb
 - Raw markdown: `raw/readwise/how-to-evaluate-a-rag-system-without-lying-to-yourself-01krbna9gsvkqeke8bm9cn4395.md`
 - Raw HTML: `raw/readwise/how-to-evaluate-a-rag-system-without-lying-to-yourself-01krbna9gsvkqeke8bm9cn4395.html`
+
+## Full source text
+
+---
+readwise_id: "01krbna9gsvkqeke8bm9cn4395"
+title: "How to Evaluate a RAG System Without Lying to Yourself"
+author: "Fresnel"
+publication: "Medium"
+source_url: "https://medium.com/@fresnelgroup.global/how-to-evaluate-a-rag-system-without-lying-to-yourself-daad661664cb"
+category: "article"
+location: "archive"
+published_date: "2026-05-07"
+saved_at: "2026-05-11T13:58:36.825000+00:00"
+updated_at: "2026-05-16T13:13:53.210762+00:00"
+tags: ["processed"]
+---
+
+Evaluating a RAG system means checking many parts, like retrieval, ranking, and generation quality, not just final answers. Good tests start with good datasets and measure if the system finds and uses the right evidence. Production systems must balance accuracy, speed, cost, and user trust while handling tricky data and queries.

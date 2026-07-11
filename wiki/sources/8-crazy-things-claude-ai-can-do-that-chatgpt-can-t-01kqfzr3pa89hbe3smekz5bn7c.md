@@ -10,6 +10,9 @@ assessed_as_of: '2026-04-18'
 ingested_at: '2026-06-07T19:55:04.517933+00:00'
 canonical_url: https://medium.com/no-time/8-crazy-things-claude-ai-can-do-that-chatgpt-cant-ef383eeb16f4
 content_sha256: e873a7db7c408b995dba743f79f49fd9eb1204033f5b6b2cb1d6e498186f899f
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # 8 Crazy Things Claude AI Can Do (That ChatGPT Can’t)
@@ -45,3 +48,22 @@ A number of claims read like vendor marketing rather than validated comparison. 
 - Canonical URL: https://medium.com/no-time/8-crazy-things-claude-ai-can-do-that-chatgpt-cant-ef383eeb16f4
 - Raw markdown: `raw/readwise/8-crazy-things-claude-ai-can-do-that-chatgpt-can-t-01kqfzr3pa89hbe3smekz5bn7c.md`
 - Raw HTML: `raw/readwise/8-crazy-things-claude-ai-can-do-that-chatgpt-can-t-01kqfzr3pa89hbe3smekz5bn7c.html`
+
+## Full source text
+
+---
+readwise_id: 01kqfzr3pa89hbe3smekz5bn7c
+title: 8 Crazy Things Claude AI Can Do (That ChatGPT Can’t)
+author: Pranit naik
+source_url: https://medium.com/no-time/8-crazy-things-claude-ai-can-do-that-chatgpt-cant-ef383eeb16f4
+category: article
+location: archive
+published_date: '2026-04-18'
+saved_at: '2026-04-30T20:02:11.274000+00:00'
+updated_at: '2026-05-02T14:22:16.851130+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+Claude AI can handle large documents, build live interactive apps, and integrates directly with Slack, which ChatGPT cannot do. It also creates ready-to-use design prototypes and shows step-by-step reasoning for complex problems. These features make Claude better for teamwork, deep analysis, and real-time coding.

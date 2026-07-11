@@ -11,6 +11,9 @@ assessed_as_of: '2026-05-27'
 ingested_at: '2026-06-06T21:38:31+00:00'
 canonical_url: https://www.latent.space/p/ainews-new-ai-infra-decacorns-fireworks
 content_sha256: c33e1208a0e4e9b7e58cc1e59163f5c9456ce5c645f7e1c168335e2bb7088339
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # [AINews] New AI Infra decacorns: Fireworks, Baseten (with OpenRouter on the way)
@@ -46,3 +49,21 @@ The roundup leans heavily on funding and engagement as proxies for significance,
 - Canonical URL: https://www.latent.space/p/ainews-new-ai-infra-decacorns-fireworks
 - Raw markdown: `raw/readwise/ainews-new-ai-infra-decacorns-fireworks-baseten-with-openrouter-on-the-way-01kskrtd56c1fgw54vw8gae184.md`
 - Raw HTML: `raw/readwise/ainews-new-ai-infra-decacorns-fireworks-baseten-with-openrouter-on-the-way-01kskrtd56c1fgw54vw8gae184.html`
+
+## Full source text
+
+---
+readwise_id: "01kskrtd56c1fgw54vw8gae184"
+title: "[AINews] New AI Infra decacorns: Fireworks, Baseten (with OpenRouter on the way)"
+author: "Latent Space"
+publication: "latent.space"
+source_url: "https://www.latent.space/p/ainews-new-ai-infra-decacorns-fireworks"
+category: "rss"
+location: "archive"
+published_date: "2026-05-27"
+saved_at: "2026-05-27T03:49:24.847000+00:00"
+updated_at: "2026-05-27T10:11:05.690875+00:00"
+tags: ["processed"]
+---
+
+it's funding news, but it's good news.

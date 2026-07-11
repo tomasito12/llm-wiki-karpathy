@@ -19,6 +19,9 @@ assessed_as_of: '2026-04-07'
 ingested_at: '2026-06-05T16:17:02.989387+00:00'
 canonical_url: https://www.latent.space/p/harness-eng
 content_sha256: ccef8a231ac0f42e08a2c8753a60adb2f0ccc0e9e00c7643ed630023dcb748c7
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_interview_insights:
 - interview-insights/2026-04/extreme-harness-engineering-1m-loc-1b-toks-day-0-human-code-0-human-review-ryan-fast-build-loops-and-agent-legible-repos-matter-more-than-human-frien-4b4f024150.md
 - interview-insights/2026-04/extreme-harness-engineering-1m-loc-1b-toks-day-0-human-code-0-human-review-ryan-harness-engineering-treats-human-attention-as-the-scarce-resource-4bd55e8f88.md
@@ -61,3 +64,23 @@ The strongest claims are also the hardest to validate. Saying human review is no
 - Canonical URL: https://www.latent.space/p/harness-eng
 - Raw markdown: `raw/readwise/extreme-harness-engineering-1m-loc-1b-toks-day-0-human-code-0-human-review-ryan-lopopolo-openai-frontier-symphony-01knmf4r6yqgf92rpgng02z3wy.md`
 - Raw HTML: `raw/readwise/extreme-harness-engineering-1m-loc-1b-toks-day-0-human-code-0-human-review-ryan-lopopolo-openai-frontier-symphony-01knmf4r6yqgf92rpgng02z3wy.html`
+
+## Full source text
+
+---
+readwise_id: 01knmf4r6yqgf92rpgng02z3wy
+title: 'Extreme Harness Engineering: 1M LOC, 1B toks/day, 0% human code, 0% human
+  review — Ryan Lopopolo, OpenAI Frontier & Symphony'
+author: Latent Space
+source_url: https://www.latent.space/p/harness-eng
+category: podcast
+location: archive
+published_date: '2026-04-07'
+saved_at: '2026-04-07T17:16:45.223000+00:00'
+updated_at: '2026-05-08T13:19:57.398705+00:00'
+tags:
+- processed
+publication: Latent
+---
+
+OpenAI's team built a huge automated coding system with no human code or review, making software faster and more reliable. They use AI agents to handle tasks like code writing, testing, and merging, letting humans focus on complex problems. This approach boosts productivity and trust by treating AI as a helpful teammate in software development.

@@ -25,6 +25,9 @@ assessed_as_of: '2026-05-27'
 ingested_at: '2026-06-06T21:44:59+00:00'
 canonical_url: https://openai.com/index/building-self-improving-tax-agents-with-codex
 content_sha256: ee8cc3323d4e535e9970fc4b11cab8ba553edff1eb2171426cd3a59efa1b3129
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_implementation_studies:
 - implementation-studies/2026-05/building-self-improving-tax-agents-with-codex-01ksmwb7m6qzb7ehpmfm5z83md-tax-ai-self-improvement-loop-for-crete-accountants.md
 derived_topics:
@@ -75,3 +78,21 @@ The piece is persuasive about the loop design, but it is also promotional and wr
 - Canonical URL: https://openai.com/index/building-self-improving-tax-agents-with-codex
 - Raw markdown: `raw/readwise/building-self-improving-tax-agents-with-codex-01ksmwb7m6qzb7ehpmfm5z83md.md`
 - Raw HTML: `raw/readwise/building-self-improving-tax-agents-with-codex-01ksmwb7m6qzb7ehpmfm5z83md.html`
+
+## Full source text
+
+---
+readwise_id: "01ksmwb7m6qzb7ehpmfm5z83md"
+title: "Building self-improving tax agents with Codex"
+author: "OpenAI Blog"
+publication: "openai.com"
+source_url: "https://openai.com/index/building-self-improving-tax-agents-with-codex"
+category: "rss"
+location: "archive"
+published_date: "2026-05-27"
+saved_at: "2026-05-27T14:10:16.398000+00:00"
+updated_at: "2026-05-31T12:37:43.224630+00:00"
+tags: ["processed"]
+---
+
+See how OpenAI, Thrive, and Crete built a self-improving tax agent with Codex, automating filings, improving accuracy, and accelerating workflows.

@@ -23,6 +23,9 @@ assessed_as_of: '2026-06-05'
 ingested_at: '2026-06-06T21:39:16+00:00'
 canonical_url: mailto:reader-forwarded-email/222e83dd7aac0b1ca96b7375efb65def
 content_sha256: 9cb2a5dc47f5916143ab5a171341b9278f24049fbb411b2f8a48b2cf1184aef9
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-06/ainews-not-much-happened-today-01ktb8kxqz1915aaav17340cgh-agent-systems-are-becoming-measured-by-live-workflow-outcomes-not-static-demos.md
 - signals/2026-06/ainews-not-much-happened-today-01ktb8kxqz1915aaav17340cgh-open-long-context-models-are-being-shipped-with-day-one-serving-ecosystems.md
@@ -69,3 +72,21 @@ The strongest skepticism is around the RSI framing: “AI accelerating AI develo
 - Canonical URL: mailto:reader-forwarded-email/222e83dd7aac0b1ca96b7375efb65def
 - Raw markdown: `raw/readwise/ainews-not-much-happened-today-01ktb8kxqz1915aaav17340cgh.md`
 - Raw HTML: `raw/readwise/ainews-not-much-happened-today-01ktb8kxqz1915aaav17340cgh.html`
+
+## Full source text
+
+---
+readwise_id: "01ktb8kxqz1915aaav17340cgh"
+title: "[AINews] not much happened today"
+author: "AINews"
+publication: "Substack"
+source_url: "mailto:reader-forwarded-email/222e83dd7aac0b1ca96b7375efb65def"
+category: "email"
+location: "archive"
+published_date: "2026-06-05"
+saved_at: "2026-06-05T06:48:04.608000+00:00"
+updated_at: "2026-06-05T09:10:33.450208+00:00"
+tags: ["processed"]
+---
+
+A new AI model combines advanced architectures and scales low-precision training to 20 trillion tokens, achieving strong benchmarks and wide deployment. Anthropic reports its AI, Claude, now writes most of its code and speeds up development, showing early signs of AI improving AI. Meanwhile, Google released Gemma 4 12B, a versatile multimodal model, competing well with others on coding and language tasks.

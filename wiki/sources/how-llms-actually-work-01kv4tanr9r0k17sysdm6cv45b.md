@@ -19,6 +19,9 @@ assessed_as_of: '2026-06-01'
 ingested_at: '2026-06-15T23:09:44+00:00'
 canonical_url: https://0xkato.xyz/how-llms-actually-work/
 content_sha256: 46ba907bdd8d1e81067793887d0801beab0e2be96b161de34f551d49af5cb268
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/grouped-query-attention.md
 - glossary/kv-cache.md
@@ -73,3 +76,21 @@ The article simplifies several mechanisms for teaching purposes, especially atte
 - Canonical URL: https://0xkato.xyz/how-llms-actually-work/
 - Raw markdown: `raw/readwise/how-llms-actually-work-01kv4tanr9r0k17sysdm6cv45b.md`
 - Raw HTML: `raw/readwise/how-llms-actually-work-01kv4tanr9r0k17sysdm6cv45b.html`
+
+## Full source text
+
+---
+readwise_id: "01kv4tanr9r0k17sysdm6cv45b"
+title: "How LLMs Actually Work"
+author: "0xkato"
+publication: "0Xkato"
+source_url: "https://0xkato.xyz/how-llms-actually-work/"
+category: "article"
+location: "archive"
+published_date: "2026-06-01"
+saved_at: "2026-06-15T04:58:36.679000+00:00"
+updated_at: "2026-06-15T15:06:09.555225+00:00"
+tags: ["processed"]
+---
+
+Large language models turn text into numbers called tokens, then use math to understand and predict the next token. They use attention to let tokens share information and feed-forward networks to process each token deeply. The model learns by adjusting its internal numbers to predict text well, using a fixed structure called the transformer architecture.

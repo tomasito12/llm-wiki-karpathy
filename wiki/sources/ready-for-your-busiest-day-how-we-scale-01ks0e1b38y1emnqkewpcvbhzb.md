@@ -19,6 +19,9 @@ assessed_as_of: '2026-05-19'
 ingested_at: '2026-06-06T22:05:07+00:00'
 canonical_url: https://www.intercom.com/blog/ready-for-your-busiest-day-how-we-scale/
 content_sha256: c6470ba336339401880db68dbc794957bcaf2923502a07f57e052ff6ec0d773e
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_implementation_studies:
 - implementation-studies/2026-05/ready-for-your-busiest-day-how-we-scale-01ks0e1b38y1emnqkewpcvbhzb-fin-platform-scaling-and-reliability-architecture.md
 derived_topics:
@@ -69,3 +72,21 @@ The article correctly notes that big throughput numbers age quickly, but it stil
 - Canonical URL: https://www.intercom.com/blog/ready-for-your-busiest-day-how-we-scale/
 - Raw markdown: `raw/readwise/ready-for-your-busiest-day-how-we-scale-01ks0e1b38y1emnqkewpcvbhzb.md`
 - Raw HTML: `raw/readwise/ready-for-your-busiest-day-how-we-scale-01ks0e1b38y1emnqkewpcvbhzb.html`
+
+## Full source text
+
+---
+readwise_id: "01ks0e1b38y1emnqkewpcvbhzb"
+title: "Ready for your busiest day: How we scale"
+author: "Ryan Sherlock"
+publication: "The Intercom Blog"
+source_url: "https://www.intercom.com/blog/ready-for-your-busiest-day-how-we-scale/"
+category: "rss"
+location: "archive"
+published_date: "2026-05-19"
+saved_at: "2026-05-19T15:35:23.568000+00:00"
+updated_at: "2026-06-01T10:06:27.656515+00:00"
+tags: ["processed"]
+---
+
+Every system has limits. Competence is knowing where they are, measuring them, and moving them before customers reach them. Here's how we do this at Fin.

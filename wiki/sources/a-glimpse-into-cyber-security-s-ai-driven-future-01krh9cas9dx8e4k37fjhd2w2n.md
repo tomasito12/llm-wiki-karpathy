@@ -10,6 +10,9 @@ assessed_as_of: '2026-04-29'
 ingested_at: '2026-06-05T16:03:18.621287+00:00'
 canonical_url: https://www.economist.com/science-and-technology/2026/04/29/a-glimpse-into-cyber-securitys-ai-driven-future
 content_sha256: 0f209f9f3f907646a6d21ce94c634e8ac81021ed8a318cc78c6e56833c309c7e
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # A glimpse into cyber-security’s AI-driven future
@@ -45,3 +48,21 @@ The article presents AI as both a defensive advantage and a source of turbulence
 - Canonical URL: https://www.economist.com/science-and-technology/2026/04/29/a-glimpse-into-cyber-securitys-ai-driven-future
 - Raw markdown: `raw/readwise/a-glimpse-into-cyber-security-s-ai-driven-future-01krh9cas9dx8e4k37fjhd2w2n.md`
 - Raw HTML: `raw/readwise/a-glimpse-into-cyber-security-s-ai-driven-future-01krh9cas9dx8e4k37fjhd2w2n.html`
+
+## Full source text
+
+---
+readwise_id: "01krh9cas9dx8e4k37fjhd2w2n"
+title: "A glimpse into cyber-security’s AI-driven future"
+author: "The Economist"
+publication: "Economist"
+source_url: "https://www.economist.com/science-and-technology/2026/04/29/a-glimpse-into-cyber-securitys-ai-driven-future"
+category: "article"
+location: "archive"
+published_date: "2026-04-29"
+saved_at: "2026-05-13T18:25:27.337000+00:00"
+updated_at: "2026-05-15T04:26:42.547639+00:00"
+tags: ["processed"]
+---
+
+The Black Hat Asia conference shows how AI is changing cyber-security by helping defend networks against thousands of hackers. AI tools can spot unusual activity and find hidden dangers faster than before. Experts warn that cyber-attacks will grow more intense, but AI will also help protect us better in the future.

@@ -24,6 +24,9 @@ assessed_as_of: '2026-04-19'
 ingested_at: '2026-06-08T15:40:23.151892+00:00'
 canonical_url: https://medium.com/arckit/why-an-enterprise-architecture-toolkit-is-trending-on-github-in-2026-30b21f1d0ef9
 content_sha256: 282260feb3715f12a4a8756b73dbf5e4fea2d7b2bdd8c0b366455f20078d8f95
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/arckit.md
 derived_topics:
@@ -74,3 +77,22 @@ The article frames GitHub trending as meaningful, but it also correctly notes th
 - Canonical URL: https://medium.com/arckit/why-an-enterprise-architecture-toolkit-is-trending-on-github-in-2026-30b21f1d0ef9
 - Raw markdown: `raw/readwise/why-an-ai-enterprise-architecture-toolkit-is-trending-on-github-in-2026-01kqfgqa7je4vz36s8nywev6j5.md`
 - Raw HTML: `raw/readwise/why-an-ai-enterprise-architecture-toolkit-is-trending-on-github-in-2026-01kqfgqa7je4vz36s8nywev6j5.html`
+
+## Full source text
+
+---
+readwise_id: 01kqfgqa7je4vz36s8nywev6j5
+title: Why an AI Enterprise Architecture toolkit is trending on GitHub in 2026
+author: Mark Craddock
+source_url: https://medium.com/arckit/why-an-enterprise-architecture-toolkit-is-trending-on-github-in-2026-30b21f1d0ef9
+category: article
+location: archive
+published_date: '2026-04-19'
+saved_at: '2026-04-30T15:39:36.562000+00:00'
+updated_at: '2026-05-02T14:27:32.263132+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+ArcKit is an AI toolkit that helps architects create clear, traceable documents for enterprise projects. It became popular because it supports governance and rules, especially in government tech. This shows AI tools are starting to focus on planning and decision-making, not just coding.

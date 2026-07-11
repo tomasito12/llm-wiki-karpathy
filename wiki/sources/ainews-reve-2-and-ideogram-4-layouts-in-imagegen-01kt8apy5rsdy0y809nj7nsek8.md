@@ -20,6 +20,9 @@ assessed_as_of: '2026-06-04'
 ingested_at: '2026-06-06T21:40:24+00:00'
 canonical_url: mailto:reader-forwarded-email/ffa7935610736bb9e3c2ce73847b0f75
 content_sha256: ddd63aa6b9ee2831bdf6b3d2534fdb9e33d59b3d9dc2d7fb620ade425a78bd1d
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-06/ainews-reve-2-and-ideogram-4-layouts-in-imagegen-01kt8apy5rsdy0y809nj7nsek8-agent-systems-are-being-rebuilt-as-execution-layers-rather-than-wrappers.md
 - signals/2026-06/ainews-reve-2-and-ideogram-4-layouts-in-imagegen-01kt8apy5rsdy0y809nj7nsek8-image-generation-is-learning-layout-as-a-first-class-capability.md
@@ -69,3 +72,21 @@ The roundup itself contains tension: it celebrates open and local models while a
 - Canonical URL: mailto:reader-forwarded-email/ffa7935610736bb9e3c2ce73847b0f75
 - Raw markdown: `raw/readwise/ainews-reve-2-and-ideogram-4-layouts-in-imagegen-01kt8apy5rsdy0y809nj7nsek8.md`
 - Raw HTML: `raw/readwise/ainews-reve-2-and-ideogram-4-layouts-in-imagegen-01kt8apy5rsdy0y809nj7nsek8.html`
+
+## Full source text
+
+---
+readwise_id: "01kt8apy5rsdy0y809nj7nsek8"
+title: "[AINews] Reve 2 and Ideogram 4: Layouts in Imagegen"
+author: "AINews"
+publication: "Substack"
+source_url: "mailto:reader-forwarded-email/ffa7935610736bb9e3c2ce73847b0f75"
+category: "email"
+location: "archive"
+published_date: "2026-06-04"
+saved_at: "2026-06-04T03:26:57.208000+00:00"
+updated_at: "2026-06-04T19:16:59.251092+00:00"
+tags: ["processed"]
+---
+
+Reve 2 and Ideogram 4 show big progress in image layout and open models, with Ideogram 4 now the top open image model. Microsoft released MAI-Thinking-1, a transparent generalist AI model, and announced efficient AI tools for enterprise use. The AI field is shifting toward local AI, multi-agent systems, and cost-effective hybrid open-frontier strategies.

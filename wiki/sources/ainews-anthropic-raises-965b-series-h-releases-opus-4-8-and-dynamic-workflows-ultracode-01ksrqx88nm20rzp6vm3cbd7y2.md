@@ -21,6 +21,9 @@ assessed_as_of: '2026-05-29'
 ingested_at: '2026-06-08T15:29:16.010634+00:00'
 canonical_url: mailto:reader-forwarded-email/1200827ddea793c6c74840a6d3f48013
 content_sha256: d5ff21527d46529dd1712e717ee0817750f585a3b80750d0c66156608595ca29
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-05/ainews-anthropic-raises-965b-series-h-releases-opus-4-8-and-dynamic-workflows-ul-behavioral-quality-becomes-a-product-differentiator-for-frontier-mod-ba55a8e702.md
 - signals/2026-05/ainews-anthropic-raises-965b-series-h-releases-opus-4-8-and-dynamic-workflows-ul-dynamic-workflow-orchestration-becomes-a-first-class-coding-feature-92c2c771e0.md
@@ -70,3 +73,21 @@ There is a clear tension between bullish launch messaging and more cautious thir
 - Canonical URL: mailto:reader-forwarded-email/1200827ddea793c6c74840a6d3f48013
 - Raw markdown: `raw/readwise/ainews-anthropic-raises-965b-series-h-releases-opus-4-8-and-dynamic-workflows-ultracode-01ksrqx88nm20rzp6vm3cbd7y2.md`
 - Raw HTML: `raw/readwise/ainews-anthropic-raises-965b-series-h-releases-opus-4-8-and-dynamic-workflows-ultracode-01ksrqx88nm20rzp6vm3cbd7y2.html`
+
+## Full source text
+
+---
+readwise_id: "01ksrqx88nm20rzp6vm3cbd7y2"
+title: "[AINews] Anthropic raises $965B Series H, releases Opus 4.8 and Dynamic Workflows/ultracode"
+author: "AINews"
+publication: "Substack"
+source_url: "mailto:reader-forwarded-email/1200827ddea793c6c74840a6d3f48013"
+category: "email"
+location: "archive"
+published_date: "2026-05-29"
+saved_at: "2026-05-29T02:09:44.725000+00:00"
+updated_at: "2026-05-31T09:11:26.735209+00:00"
+tags: ["processed"]
+---
+
+Anthropic raised $65 billion in Series H funding at a $965 billion valuation and launched Claude Opus 4.8, improving its AI's judgment and honesty. They introduced Dynamic Workflows, allowing many AI subagents to work in parallel on large tasks, though it can be costly and complex. The company plans to release even smarter models soon, focusing on safety and large-scale AI use.

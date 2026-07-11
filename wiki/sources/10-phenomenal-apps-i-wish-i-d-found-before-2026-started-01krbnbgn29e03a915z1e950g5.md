@@ -15,6 +15,9 @@ assessed_as_of: '2026-01-08'
 ingested_at: '2026-06-06T15:02:27.747130+00:00'
 canonical_url: https://medium.com/macoclock/10-phenomenal-apps-i-wish-id-found-before-2026-started-90049ebe97fa
 content_sha256: 66811ddabb382283f375ebe720efbb43a424568273f6d551677e567c39e018e9
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/altstore.md
 - tools/boring-notch.md
@@ -81,3 +84,21 @@ The roundup presents strong praise for each app without much counterevidence, so
 - Canonical URL: https://medium.com/macoclock/10-phenomenal-apps-i-wish-id-found-before-2026-started-90049ebe97fa
 - Raw markdown: `raw/readwise/10-phenomenal-apps-i-wish-i-d-found-before-2026-started-01krbnbgn29e03a915z1e950g5.md`
 - Raw HTML: `raw/readwise/10-phenomenal-apps-i-wish-i-d-found-before-2026-started-01krbnbgn29e03a915z1e950g5.html`
+
+## Full source text
+
+---
+readwise_id: "01krbnbgn29e03a915z1e950g5"
+title: "10 Phenomenal Apps I Wish I’d Found Before 2026 Started"
+author: "Clark"
+publication: "Medium"
+source_url: "https://medium.com/macoclock/10-phenomenal-apps-i-wish-id-found-before-2026-started-90049ebe97fa"
+category: "article"
+location: "archive"
+published_date: "2026-01-08"
+saved_at: "2026-05-11T13:59:16.898000+00:00"
+updated_at: "2026-05-12T15:05:53.798677+00:00"
+tags: ["processed"]
+---
+
+The article shares 10 great apps that improve iPhone and Mac experiences in 2026. These apps help with tasks like managing files, adding reminders quickly, and customizing the interface. The author also recommends a useful Apple Shortcut for logging expenses easily.

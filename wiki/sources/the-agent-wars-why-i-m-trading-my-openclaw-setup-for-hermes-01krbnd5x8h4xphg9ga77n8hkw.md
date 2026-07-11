@@ -23,6 +23,9 @@ assessed_as_of: '2026-04-21'
 ingested_at: '2026-06-06T20:30:49.959868+00:00'
 canonical_url: https://medium.com/generative-ai/the-agent-wars-why-im-trading-my-openclaw-setup-for-hermes-4b9635bf4112
 content_sha256: 060898d0380ea4e40e6fc80074bbd6b22b5924132ff927c2246c543df2feea28
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/hermes-agent.md
 derived_topics:
@@ -73,3 +76,21 @@ The article leans on a clean contrast between “breadth” and “depth,” but
 - Canonical URL: https://medium.com/generative-ai/the-agent-wars-why-im-trading-my-openclaw-setup-for-hermes-4b9635bf4112
 - Raw markdown: `raw/readwise/the-agent-wars-why-i-m-trading-my-openclaw-setup-for-hermes-01krbnd5x8h4xphg9ga77n8hkw.md`
 - Raw HTML: `raw/readwise/the-agent-wars-why-i-m-trading-my-openclaw-setup-for-hermes-01krbnd5x8h4xphg9ga77n8hkw.html`
+
+## Full source text
+
+---
+readwise_id: "01krbnd5x8h4xphg9ga77n8hkw"
+title: "The Agent Wars: Why I’m Trading my OpenClaw Setup for Hermes"
+author: "Will Cheung"
+publication: "Medium"
+source_url: "https://medium.com/generative-ai/the-agent-wars-why-im-trading-my-openclaw-setup-for-hermes-4b9635bf4112"
+category: "article"
+location: "archive"
+published_date: "2026-04-21"
+saved_at: "2026-05-11T14:00:11.432000+00:00"
+updated_at: "2026-05-12T14:41:02.436207+00:00"
+tags: ["processed"]
+---
+
+Will Cheung switched from OpenClaw to Hermes Agent because Hermes remembers better and learns from tasks automatically. OpenClaw is good for complex multi-agent work, but it gets slow and forgetful over time. Hermes is simpler, more efficient, and improves itself with each use.

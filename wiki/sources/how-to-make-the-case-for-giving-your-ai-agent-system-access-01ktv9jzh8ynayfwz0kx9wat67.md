@@ -25,6 +25,9 @@ assessed_as_of: '2026-06-11'
 ingested_at: '2026-07-11T12:14:47.430239+00:00'
 canonical_url: https://www.intercom.com/blog/giving-your-ai-agent-system-access/
 content_sha256: 432ca2508209532f1f44f45a8cf5790206dbd1c7c10dd394ea175104afb6ce3f
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/agent-integration-scoping.md
 derived_tools:
@@ -79,3 +82,21 @@ The piece is persuasive, but some of the stronger claims lean on internal exampl
 - Canonical URL: https://www.intercom.com/blog/giving-your-ai-agent-system-access/
 - Raw markdown: `raw/readwise/how-to-make-the-case-for-giving-your-ai-agent-system-access-01ktv9jzh8ynayfwz0kx9wat67.md`
 - Raw HTML: `raw/readwise/how-to-make-the-case-for-giving-your-ai-agent-system-access-01ktv9jzh8ynayfwz0kx9wat67.html`
+
+## Full source text
+
+---
+readwise_id: "01ktv9jzh8ynayfwz0kx9wat67"
+title: "How to make the case for giving your AI Agent system access"
+author: "Dawn Perrott"
+publication: "The Intercom Blog"
+source_url: "https://www.intercom.com/blog/giving-your-ai-agent-system-access/"
+category: "rss"
+location: "archive"
+published_date: "2026-06-11"
+saved_at: "2026-06-11T12:12:50.161000+00:00"
+updated_at: "2026-06-11T21:16:56.562788+00:00"
+tags: ["processed"]
+---
+
+Without access to your backend systems, your AI Agent can answer questions, but it can’t take action. A customer asks to change their payment plan, they get a clear explanation, but a support rep still has…

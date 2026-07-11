@@ -10,6 +10,9 @@ assessed_as_of: '2026-05-06'
 ingested_at: '2026-06-05T15:17:42.770220+00:00'
 canonical_url: https://openai.com/index/introducing-b2b-signals
 content_sha256: c31bb9def187507a9d5da01a2617d621d107a0d55099989d1a0888a637c5bcc4
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # How frontier enterprises are building an AI advantage
@@ -45,3 +48,22 @@ The article’s main tension is that it presents a precise-sounding usage hierar
 - Canonical URL: https://openai.com/index/introducing-b2b-signals
 - Raw markdown: `raw/readwise/how-frontier-enterprises-are-building-an-ai-advantage-01kqyx957j2tv7mr8b4762vqbw.md`
 - Raw HTML: `raw/readwise/how-frontier-enterprises-are-building-an-ai-advantage-01kqyx957j2tv7mr8b4762vqbw.html`
+
+## Full source text
+
+---
+readwise_id: 01kqyx957j2tv7mr8b4762vqbw
+title: How frontier enterprises are building an AI advantage
+author: OpenAI Blog
+source_url: https://openai.com/index/introducing-b2b-signals
+category: rss
+location: archive
+published_date: '2026-05-06'
+saved_at: '2026-05-06T15:07:37.659000+00:00'
+updated_at: '2026-05-07T08:22:47.192586+00:00'
+tags:
+- processed
+publication: OpenAI
+---
+
+Frontier companies use AI more deeply and for complex tasks, gaining a growing advantage over typical firms. They rely on advanced tools like Codex and AI agents to delegate work and improve productivity. To catch up, organizations should focus on measuring AI use, building governance, and enabling employees to integrate AI into their workflows.

@@ -12,6 +12,9 @@ assessed_as_of: '2025-12-19'
 ingested_at: '2026-06-07T19:48:17.823229+00:00'
 canonical_url: https://medium.com/@simpleandkind788/14-mac-mistakes-new-mac-users-always-make-e746fe636cd0
 content_sha256: 2647dd30eca3761ce46a0274d2188c202325ec2c5101b462660cbf06bf7cd6c1
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/keep-macos-updated.md
 - how-to/keep-sufficient-free-storage.md
@@ -84,3 +87,21 @@ The article leans on strong universal claims where the evidence is mostly anecdo
 - Canonical URL: https://medium.com/@simpleandkind788/14-mac-mistakes-new-mac-users-always-make-e746fe636cd0
 - Raw markdown: `raw/readwise/14-mac-mistakes-newbies-always-make-01krjpq1apcbx05yj5117wd7bx.md`
 - Raw HTML: `raw/readwise/14-mac-mistakes-newbies-always-make-01krjpq1apcbx05yj5117wd7bx.html`
+
+## Full source text
+
+---
+readwise_id: "01krjpq1apcbx05yj5117wd7bx"
+title: "14 Mac Mistakes Newbies Always Make"
+author: "Zeeshan Saghir"
+publication: "Medium"
+source_url: "https://medium.com/@simpleandkind788/14-mac-mistakes-new-mac-users-always-make-e746fe636cd0"
+category: "article"
+location: "archive"
+published_date: "2025-12-19"
+saved_at: "2026-05-14T07:37:44.022000+00:00"
+updated_at: "2026-05-18T12:14:29.974284+00:00"
+tags: ["processed"]
+---
+
+Many new Mac users treat macOS like Windows, causing frustration and slow performance. Key mistakes include closing apps incorrectly, unnecessary antivirus installation, and poor file management. To enjoy a smooth Mac experience, learn its unique features, use built-in tools, and update the system regularly.

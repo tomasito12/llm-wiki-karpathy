@@ -19,6 +19,9 @@ assessed_as_of: '2026-05-28'
 ingested_at: '2026-06-17T15:54:02.846021+00:00'
 canonical_url: https://x.com/addyosmani/status/2059844244907696186/?rw_tt_thread=True
 content_sha256: 564c021f3c26d82b4d89ab858e6ea5908f0a83317f1c67a3df9e7899541ac368
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/amdahl-s-law.md
 - glossary/harness.md
@@ -69,3 +72,21 @@ The essay’s main tension is that it borrows hard systems language while offeri
 - Canonical URL: https://x.com/addyosmani/status/2059844244907696186/?rw_tt_thread=True
 - Raw markdown: `raw/readwise/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y.md`
 - Raw HTML: `raw/readwise/the-orchestration-tax-01ktjzc8r76ht9hhzs4xpejf7y.html`
+
+## Full source text
+
+---
+readwise_id: "01ktjzc8r76ht9hhzs4xpejf7y"
+title: "The Orchestration Tax"
+author: "Addy Osmani"
+publication: "X (formerly Twitter)"
+source_url: "https://x.com/addyosmani/status/2059844244907696186/?rw_tt_thread=True"
+category: "tweet"
+location: "archive"
+published_date: "2026-05-28"
+saved_at: "2026-06-08T06:40:32.005000+00:00"
+updated_at: "2026-06-15T11:18:51.518748+00:00"
+tags: ["processed"]
+---
+
+Starting many AI agents is easy, but only one person can review and merge their work, creating a bottleneck called the "orchestration tax." This tax causes fatigue and limits productivity because human attention cannot be parallelized like machines. To work well with AI agents, you must manage your attention carefully, treating it as a scarce resource and designing workflows around it.

@@ -23,6 +23,9 @@ assessed_as_of: '2026-06-02'
 ingested_at: '2026-06-06T21:49:49+00:00'
 canonical_url: mailto:reader-forwarded-email/8ac3dd17be23477a809af85d0d4e501f
 content_sha256: 32a5899bb7537f43e9c5c1ae40b3ebb8ff9bc153c1218d3dd920eea8a25e12d2
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_interview_insights:
 - interview-insights/2026-06/github-s-plan-for-agents-kyle-daigle-github-01kt4kwzq4a71h2reayscy0w2x-agentic-coding-shifts-the-bottleneck-from-code-generation-to-context-and-orchestration.md
 - interview-insights/2026-06/github-s-plan-for-agents-kyle-daigle-github-01kt4kwzq4a71h2reayscy0w2x-copilot-is-being-repositioned-from-autocomplete-to-an-agent-runtime.md
@@ -74,3 +77,21 @@ Several claims are aspirational and should be treated cautiously. The idea of am
 - Canonical URL: mailto:reader-forwarded-email/8ac3dd17be23477a809af85d0d4e501f
 - Raw markdown: `raw/readwise/github-s-plan-for-agents-kyle-daigle-github-01kt4kwzq4a71h2reayscy0w2x.md`
 - Raw HTML: `raw/readwise/github-s-plan-for-agents-kyle-daigle-github-01kt4kwzq4a71h2reayscy0w2x.html`
+
+## Full source text
+
+---
+readwise_id: "01kt4kwzq4a71h2reayscy0w2x"
+title: "GitHub's plan for Agents — Kyle Daigle, GitHub"
+author: "Latent.Space"
+publication: "Substack"
+source_url: "mailto:reader-forwarded-email/8ac3dd17be23477a809af85d0d4e501f"
+category: "email"
+location: "archive"
+published_date: "2026-06-02"
+saved_at: "2026-06-02T16:50:34.852000+00:00"
+updated_at: "2026-06-03T16:45:41.968835+00:00"
+tags: ["processed"]
+---
+
+GitHub is changing how software is made by using AI to help developers and teams work better. The company is growing fast and improving its systems to handle new challenges from this growth. Their goal is to create tools that understand each developer's needs and make coding easier and smarter.

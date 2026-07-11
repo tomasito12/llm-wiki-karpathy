@@ -21,6 +21,9 @@ assessed_as_of: '2026-01-26'
 ingested_at: '2026-06-05T19:25:04.961807+00:00'
 canonical_url: https://readwise-assets.s3.amazonaws.com/media/wisereads/articles/the-complete-guide-to-building/1277.pdf
 content_sha256: f20941b7275f952865d1c553f9e0d7c6835993dd6a1c3a156c293bd6a42b2216
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/claude-skills-setup.md
 derived_topics:
@@ -71,3 +74,21 @@ The article is internally consistent, but some claims are more promotional than 
 - Canonical URL: https://readwise-assets.s3.amazonaws.com/media/wisereads/articles/the-complete-guide-to-building/1277.pdf
 - Raw markdown: `raw/readwise/the-complete-guide-to-building-skills-for-claude-01krv8epdjta6664ek10fvp7tz.md`
 - Raw HTML: `raw/readwise/the-complete-guide-to-building-skills-for-claude-01krv8epdjta6664ek10fvp7tz.html`
+
+## Full source text
+
+---
+readwise_id: "01krv8epdjta6664ek10fvp7tz"
+title: "The Complete Guide To Building Skills For Claude"
+author: "Claude"
+publication: "anthropic.com"
+source_url: "https://readwise-assets.s3.amazonaws.com/media/wisereads/articles/the-complete-guide-to-building/1277.pdf"
+category: "pdf"
+location: "archive"
+published_date: "2026-01-26"
+saved_at: "2026-05-17T15:21:40.530000+00:00"
+updated_at: "2026-05-26T11:05:12.657817+00:00"
+tags: ["processed"]
+---
+
+This guide explains how to create skills that teach Claude to perform specific tasks and workflows reliably. It covers planning, building, testing, and sharing skills to improve consistency and reduce errors. Using skills helps users work smarter by embedding best practices and automating complex processes.

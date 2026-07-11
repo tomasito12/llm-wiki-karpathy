@@ -27,6 +27,9 @@ assessed_as_of: '2026-03-25'
 ingested_at: '2026-06-06T20:34:06.597694+00:00'
 canonical_url: https://cursor.com/blog/self-hosted-cloud-agents
 content_sha256: dd53202c73a767622a2704117f3166faeee72fe49ac62126b38ebc71352d68d4
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_models:
 - foundation-models/composer-2.md
 derived_tools:
@@ -81,3 +84,22 @@ The piece frames self-hosting as simplifying enterprise adoption, but it still d
 - Canonical URL: https://cursor.com/blog/self-hosted-cloud-agents
 - Raw markdown: `raw/readwise/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy.md`
 - Raw HTML: `raw/readwise/run-cloud-agents-in-your-own-infrastructure-01kr1qhvaw58dz13633c041cmy.html`
+
+## Full source text
+
+---
+readwise_id: 01kr1qhvaw58dz13633c041cmy
+title: Run cloud agents in your own infrastructure
+author: Cursor Blog
+source_url: https://cursor.com/blog/self-hosted-cloud-agents
+category: rss
+location: archive
+published_date: '2026-03-25'
+saved_at: '2026-05-07T17:25:11.276000+00:00'
+updated_at: '2026-05-07T17:28:53.727168+00:00'
+tags:
+- processed
+publication: Cursor
+---
+
+Cursor now offers self-hosted cloud agents that run code and tools securely within your own network. These agents work in isolated environments and handle tasks like coding, testing, and building without exposing your data outside. This solution helps teams keep control over their security while using powerful cloud agent features.

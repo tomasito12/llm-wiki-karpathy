@@ -11,6 +11,9 @@ assessed_as_of: '2026-06-02'
 ingested_at: '2026-06-09T15:38:30.047511+00:00'
 canonical_url: https://thesequence.substack.com/p/the-sequence-knowledge-870-liquid
 content_sha256: 971787a74c5e395e8238db2c976b75019cb7859e2a75b1d9824a0a254681d32a
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # The Sequence Knowledge #870: Liquid Models and the Search for a Post-Transformer Architecture
@@ -46,3 +49,21 @@ The piece is directionally plausible but mostly speculative in the excerpt shown
 - Canonical URL: https://thesequence.substack.com/p/the-sequence-knowledge-870-liquid
 - Raw markdown: `raw/readwise/the-sequence-knowledge-870-liquid-models-and-the-search-for-a-post-transformer-architecture-01kt40mmp6jfk5e6rygkxsxh9d.md`
 - Raw HTML: `raw/readwise/the-sequence-knowledge-870-liquid-models-and-the-search-for-a-post-transformer-architecture-01kt40mmp6jfk5e6rygkxsxh9d.html`
+
+## Full source text
+
+---
+readwise_id: "01kt40mmp6jfk5e6rygkxsxh9d"
+title: "The Sequence Knowledge #870: Liquid Models and the Search for a Post-Transformer Architecture"
+author: "Jesus Rodriguez"
+publication: "substack.com"
+source_url: "https://thesequence.substack.com/p/the-sequence-knowledge-870-liquid"
+category: "rss"
+location: "archive"
+published_date: "2026-06-02"
+saved_at: "2026-06-02T11:13:55.471000+00:00"
+updated_at: "2026-06-02T16:50:05.666839+00:00"
+tags: ["processed"]
+---
+
+Inside one of the msot promising non-transformer architectures.

@@ -10,6 +10,9 @@ assessed_as_of: '2026-04-25'
 ingested_at: '2026-06-06T15:09:53.598387+00:00'
 canonical_url: https://www.economist.com/united-states/2026/04/23/artificial-intelligence-is-creeping-into-american-lawmaking
 content_sha256: 422fc835c730c5fe41a1ee330ba1cf6cfefa359a9092d4925389cee87b352673
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # Artificial intelligence is creeping into American lawmaking
@@ -45,3 +48,21 @@ The article’s productivity claims are plausible but mostly self-reported by th
 - Canonical URL: https://www.economist.com/united-states/2026/04/23/artificial-intelligence-is-creeping-into-american-lawmaking
 - Raw markdown: `raw/readwise/artificial-intelligence-is-creeping-into-american-lawmaking-01krh9d62z8fvggw0kt132x4xk.md`
 - Raw HTML: `raw/readwise/artificial-intelligence-is-creeping-into-american-lawmaking-01krh9d62z8fvggw0kt132x4xk.html`
+
+## Full source text
+
+---
+readwise_id: "01krh9d62z8fvggw0kt132x4xk"
+title: "Artificial intelligence is creeping into American lawmaking"
+author: "The Economist"
+publication: "Economist"
+source_url: "https://www.economist.com/united-states/2026/04/23/artificial-intelligence-is-creeping-into-american-lawmaking"
+category: "article"
+location: "archive"
+published_date: "2026-04-25"
+saved_at: "2026-05-13T18:25:55.295000+00:00"
+updated_at: "2026-05-13T18:29:25.243383+00:00"
+tags: ["processed"]
+---
+
+Many state lawmakers in the US are using AI tools to help with research and drafting bills. AI saves time and helps catch mistakes, but it can also make errors and cause lawmakers to rely too much on it. Some worry this might reduce independent thinking and the quality of laws.

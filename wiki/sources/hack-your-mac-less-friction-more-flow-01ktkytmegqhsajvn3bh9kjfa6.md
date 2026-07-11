@@ -10,6 +10,9 @@ assessed_as_of: '2026-02-26'
 ingested_at: '2026-07-10T11:44:01.145123+00:00'
 canonical_url: https://medium.com/@simpleandkind788/hack-your-mac-less-friction-more-flow-c98b1e147b42
 content_sha256: bb8c86122114debbfb07c1001db026ee66971545849f2a3070e50835834cffb6
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # Hack Your Mac: Less Friction, More Flow
@@ -45,3 +48,21 @@ The article presents subjective friction reduction as if it were broadly applica
 - Canonical URL: https://medium.com/@simpleandkind788/hack-your-mac-less-friction-more-flow-c98b1e147b42
 - Raw markdown: `raw/readwise/hack-your-mac-less-friction-more-flow-01ktkytmegqhsajvn3bh9kjfa6.md`
 - Raw HTML: `raw/readwise/hack-your-mac-less-friction-more-flow-01ktkytmegqhsajvn3bh9kjfa6.html`
+
+## Full source text
+
+---
+readwise_id: "01ktkytmegqhsajvn3bh9kjfa6"
+title: "Hack Your Mac: Less Friction, More Flow"
+author: "Zeeshan Saghir"
+publication: "Medium"
+source_url: "https://medium.com/@simpleandkind788/hack-your-mac-less-friction-more-flow-c98b1e147b42"
+category: "article"
+location: "archive"
+published_date: "2026-02-26"
+saved_at: "2026-06-08T15:50:08.592000+00:00"
+updated_at: "2026-06-15T11:23:30.720723+00:00"
+tags: ["processed"]
+---
+
+The author improved their Mac workflow by reducing small interruptions that break focus, like app switching and copying. They used tools like Raycast, Paste, and voice typing to keep their work smooth and fast. This made work feel easier, not just more productive, by removing friction instead of adding more effort.

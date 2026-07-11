@@ -17,6 +17,9 @@ assessed_as_of: '2026-05-04'
 ingested_at: '2026-06-06T21:43:00+00:00'
 canonical_url: mailto:reader-forwarded-email/5f1be73a4abbd0e0b5c85b1a06904a3c
 content_sha256: 337cdc75f8f9c66b43e13009e048597f98a94279be9ac85963e04510ceb7e6a8
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-05/ainews-the-other-vs-the-utility-01kqtnckkesv17zt6wt55fjfx0-agent-generated-data-is-becoming-a-training-and-evaluation-lever.md
 - signals/2026-05/ainews-the-other-vs-the-utility-01kqtnckkesv17zt6wt55fjfx0-context-pipelines-are-becoming-the-product-boundary-for-agents.md
@@ -66,3 +69,20 @@ The piece juxtaposes strong claims about harness importance with benchmark wins 
 - Canonical URL: mailto:reader-forwarded-email/5f1be73a4abbd0e0b5c85b1a06904a3c
 - Raw markdown: `raw/readwise/ainews-the-other-vs-the-utility-01kqtnckkesv17zt6wt55fjfx0.md`
 - Raw HTML: `raw/readwise/ainews-the-other-vs-the-utility-01kqtnckkesv17zt6wt55fjfx0.html`
+
+## Full source text
+
+---
+readwise_id: "01kqtnckkesv17zt6wt55fjfx0"
+title: "[AINews] The Other vs The Utility"
+author: "AINews"
+source_url: "mailto:reader-forwarded-email/5f1be73a4abbd0e0b5c85b1a06904a3c"
+category: "email"
+location: "archive"
+published_date: "2026-05-04"
+saved_at: "2026-05-04T23:32:47.343000+00:00"
+updated_at: "2026-05-06T12:35:15.338881+00:00"
+tags: ["processed"]
+---
+
+Congrats to Sierra, raising ~$1B at a $15B valuation — normally a headline story but we already covered their $10B round and CEO Bret Taylor on the pod — they crossed 100M ARR in November and 150M in Feb, so presumably they are at or above the 200M mark (a nice 75x current multiple, whew - 50x if you give them credit thru EOY).

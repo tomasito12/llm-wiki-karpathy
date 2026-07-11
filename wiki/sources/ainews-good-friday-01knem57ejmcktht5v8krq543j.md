@@ -16,6 +16,9 @@ assessed_as_of: '2026-04-03'
 ingested_at: '2026-05-18T19:53:22.516582+00:00'
 canonical_url: https://www.latent.space/p/ainews-good-friday
 content_sha256: 4b81adbb0e66f57a8d94a3356356f524b01b28c7c9b47b08ffe2c452e87a4239
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-04/ainews-good-friday-01knem57ejmcktht5v8krq543j-harness-quality-is-becoming-a-primary-determinant-of-agent-performance.md
 - signals/2026-04/ainews-good-friday-01knem57ejmcktht5v8krq543j-local-fallback-models-are-becoming-a-practical-hedge-against-hosted-friction.md
@@ -67,3 +70,22 @@ There is a recurring tension between enthusiastic launch narratives and evidence
 - Canonical URL: https://www.latent.space/p/ainews-good-friday
 - Raw markdown: `raw/readwise/ainews-good-friday-01knem57ejmcktht5v8krq543j.md`
 - Raw HTML: `raw/readwise/ainews-good-friday-01knem57ejmcktht5v8krq543j.html`
+
+## Full source text
+
+---
+readwise_id: 01knem57ejmcktht5v8krq543j
+title: '[AINews] Good Friday'
+author: Latent Space
+source_url: https://www.latent.space/p/ainews-good-friday
+category: rss
+location: archive
+published_date: '2026-04-03'
+saved_at: '2026-04-05T10:48:57.114000+00:00'
+updated_at: '2026-05-08T11:42:50.584502+00:00'
+tags:
+- processed
+publication: Latent
+---
+
+Google DeepMind released Gemma 4, an open multimodal AI model family with strong local and server performance. The AI community quickly supported the models and the Hermes Agent harness, boosting practical use and memory tools. Users praise Gemma 4's speed and capabilities but note high hardware demands for larger versions.

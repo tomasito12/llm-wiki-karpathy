@@ -17,6 +17,9 @@ assessed_as_of: '2026-05-07'
 ingested_at: '2026-06-06T21:58:04+00:00'
 canonical_url: https://www.economist.com/podcasts/2026/05/07/is-the-ai-genie-stuck-in-a-bottleneck
 content_sha256: 1ce55cf8ee2dfec41e865582d15db6e10875e9dba35cc2516fd4db2e59345526
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_interview_insights:
 - interview-insights/2026-05/is-the-ai-genie-stuck-in-a-bottleneck-01krh99zx488hj2nr4mm8bd3h1-ai-demand-is-constrained-by-physical-supply-chains-not-just-model-quality.md
 - interview-insights/2026-05/is-the-ai-genie-stuck-in-a-bottleneck-01krh99zx488hj2nr4mm8bd3h1-inference-pricing-can-fall-while-access-rationing-becomes-more-important.md
@@ -62,3 +65,21 @@ There is a clear tension between the episode’s headline framing of a looming b
 - Canonical URL: https://www.economist.com/podcasts/2026/05/07/is-the-ai-genie-stuck-in-a-bottleneck
 - Raw markdown: `raw/readwise/is-the-ai-genie-stuck-in-a-bottleneck-01krh99zx488hj2nr4mm8bd3h1.md`
 - Raw HTML: `raw/readwise/is-the-ai-genie-stuck-in-a-bottleneck-01krh99zx488hj2nr4mm8bd3h1.html`
+
+## Full source text
+
+---
+readwise_id: "01krh99zx488hj2nr4mm8bd3h1"
+title: "Is the AI genie stuck in a bottleneck?"
+author: "The Economist"
+publication: "Economist"
+source_url: "https://www.economist.com/podcasts/2026/05/07/is-the-ai-genie-stuck-in-a-bottleneck"
+category: "article"
+location: "archive"
+published_date: "2026-05-07"
+saved_at: "2026-05-13T18:24:10.659000+00:00"
+updated_at: "2026-05-18T10:06:14.290223+00:00"
+tags: ["processed"]
+---
+
+Big tech companies are spending huge amounts to build AI data centres but face shortages of chips and energy. Local communities often resist new data centres because of their high energy use and pollution. The AI boom is real, but supply chain and infrastructure limits are slowing growth.

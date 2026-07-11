@@ -23,6 +23,9 @@ assessed_as_of: '2026-06-04'
 ingested_at: '2026-07-08T19:17:03.181542+00:00'
 canonical_url: mailto:reader-forwarded-email/bd8174d29a1995fca022eb7cd4726c84
 content_sha256: 4c6814a1f4d3bb9663de49b248e9c31a4de9ad5dfdcb07e191fa131a5a2b58a3
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_interview_insights:
 - interview-insights/2026-06/reality-the-final-eval-lukas-petersson-and-axel-backlund-of-andon-labs-01kta5x2q-embodied-and-commercial-evals-need-a-split-between-low-level-control-7cc710517b.md
 - interview-insights/2026-06/reality-the-final-eval-lukas-petersson-and-axel-backlund-of-andon-labs-01kta5x2q-money-denominated-evals-expose-agent-behavior-that-benchmark-scores-eefe905077.md
@@ -74,3 +77,21 @@ Several claims are suggestive rather than proven, especially the idea that a mod
 - Canonical URL: mailto:reader-forwarded-email/bd8174d29a1995fca022eb7cd4726c84
 - Raw markdown: `raw/readwise/reality-the-final-eval-lukas-petersson-and-axel-backlund-of-andon-labs-01kta5x2q1019991cgcmsykb83.md`
 - Raw HTML: `raw/readwise/reality-the-final-eval-lukas-petersson-and-axel-backlund-of-andon-labs-01kta5x2q1019991cgcmsykb83.html`
+
+## Full source text
+
+---
+readwise_id: "01kta5x2q1019991cgcmsykb83"
+title: "Reality: The Final Eval — Lukas Petersson and Axel Backlund of Andon Labs"
+author: "Latent.Space"
+publication: "Substack"
+source_url: "mailto:reader-forwarded-email/bd8174d29a1995fca022eb7cd4726c84"
+category: "email"
+location: "archive"
+published_date: "2026-06-04"
+saved_at: "2026-06-04T20:41:24.449000+00:00"
+updated_at: "2026-06-05T05:38:03.546906+00:00"
+tags: ["processed"]
+---
+
+Andon Labs studies how AI agents run simple businesses like vending machines over time. They create tests to see how AI handles real-world tasks and problems. Their goal is to build safe and realistic AI systems that work well outside the lab.

@@ -10,6 +10,9 @@ assessed_as_of: '2026-06-05'
 ingested_at: '2026-06-10T15:54:23+00:00'
 canonical_url: mailto:reader-forwarded-email/3107648da5d9329777735fff747a47ba
 content_sha256: a642f2b05f78f55c0d4c7d4cc8679eac53f6a5aa242e4b418708625270387e11
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # How to Stop Shipping Low-Quality RL Environments (with Examples)
@@ -45,3 +48,21 @@ The article’s strongest claims are plausible but mostly asserted from practiti
 - Canonical URL: mailto:reader-forwarded-email/3107648da5d9329777735fff747a47ba
 - Raw markdown: `raw/readwise/how-to-stop-shipping-low-quality-rl-environments-with-examples-01ktcj1239z92gaxmh0xyvfg97.md`
 - Raw HTML: `raw/readwise/how-to-stop-shipping-low-quality-rl-environments-with-examples-01ktcj1239z92gaxmh0xyvfg97.html`
+
+## Full source text
+
+---
+readwise_id: "01ktcj1239z92gaxmh0xyvfg97"
+title: "How to Stop Shipping Low-Quality RL Environments (with Examples)"
+author: "Latent.Space"
+publication: "Substack"
+source_url: "mailto:reader-forwarded-email/3107648da5d9329777735fff747a47ba"
+category: "email"
+location: "archive"
+published_date: "2026-06-05"
+saved_at: "2026-06-05T18:51:46.666000+00:00"
+updated_at: "2026-06-08T11:38:48.415599+00:00"
+tags: ["processed"]
+---
+
+Broken or low-quality RL environments produce bad data that harms model training. Common issues include stale caches, misleading rewards, and non-representative mock data. To improve results, treat RL environment development like building reliable production software.

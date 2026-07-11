@@ -20,6 +20,9 @@ assessed_as_of: '2026-05-07'
 ingested_at: '2026-05-26T21:57:59.751597+00:00'
 canonical_url: https://openai.com/index/gpt-5-5-with-trusted-access-for-cyber
 content_sha256: ed764e5d325daf49ced08b979986cb30424b938fd469b1f47b66d9a11ba786ed
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_models:
 - foundation-models/gpt-5-5-cyber.md
 - foundation-models/gpt-5-5.md
@@ -73,3 +76,22 @@ The main tension is that the article markets a more permissive cyber model while
 - Canonical URL: https://openai.com/index/gpt-5-5-with-trusted-access-for-cyber
 - Raw markdown: `raw/readwise/scaling-trusted-access-for-cyber-with-gpt-5-5-and-gpt-5-5-cyber-01kr27359qcdmbzw8af82znqzf.md`
 - Raw HTML: `raw/readwise/scaling-trusted-access-for-cyber-with-gpt-5-5-and-gpt-5-5-cyber-01kr27359qcdmbzw8af82znqzf.html`
+
+## Full source text
+
+---
+readwise_id: 01kr27359qcdmbzw8af82znqzf
+title: Scaling Trusted Access for Cyber with GPT-5.5 and GPT-5.5-Cyber
+author: OpenAI Blog
+source_url: https://openai.com/index/gpt-5-5-with-trusted-access-for-cyber
+category: rss
+location: archive
+published_date: '2026-05-07'
+saved_at: '2026-05-07T21:56:50.175000+00:00'
+updated_at: '2026-05-08T09:59:10.202159+00:00'
+tags:
+- processed
+publication: OpenAI
+---
+
+OpenAI released GPT-5.5 and GPT-5.5-Cyber to help cyber defenders protect critical systems safely. These models provide different access levels with strong safeguards to support security tasks like vulnerability analysis and malware detection. The goal is to speed up defense work while preventing misuse and enabling responsible cybersecurity research.

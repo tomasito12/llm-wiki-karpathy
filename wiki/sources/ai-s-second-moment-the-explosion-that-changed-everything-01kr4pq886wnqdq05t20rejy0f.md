@@ -22,6 +22,9 @@ assessed_as_of: '2026-03-18'
 ingested_at: '2026-06-06T20:36:08.105367+00:00'
 canonical_url: https://medium.com/@drdavidwbell/ais-second-moment-the-explosion-that-changed-everything-3e67e979dc4c
 content_sha256: 47a54c8c2d247ff79191c367c815057be0bcb2b753e88b1048a1a0abef65fc9c
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/agentic-coding-workflows.md
 - topics/verification-loops-in-ai-workflows.md
@@ -68,3 +71,21 @@ The piece is confident and rhetorically forceful, but some of its strongest lang
 - Canonical URL: https://medium.com/@drdavidwbell/ais-second-moment-the-explosion-that-changed-everything-3e67e979dc4c
 - Raw markdown: `raw/readwise/ai-s-second-moment-the-explosion-that-changed-everything-01kr4pq886wnqdq05t20rejy0f.md`
 - Raw HTML: `raw/readwise/ai-s-second-moment-the-explosion-that-changed-everything-01kr4pq886wnqdq05t20rejy0f.html`
+
+## Full source text
+
+---
+readwise_id: "01kr4pq886wnqdq05t20rejy0f"
+title: "AI’s Second Moment: The Explosion That Changed Everything"
+author: "Drdavidwbell"
+publication: "Medium"
+source_url: "https://medium.com/@drdavidwbell/ais-second-moment-the-explosion-that-changed-everything-3e67e979dc4c"
+category: "article"
+location: "archive"
+published_date: "2026-03-18"
+saved_at: "2026-05-08T21:08:29.062000+00:00"
+updated_at: "2026-05-09T19:51:46.131072+00:00"
+tags: ["processed"]
+---
+
+- 10 min read

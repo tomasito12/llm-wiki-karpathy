@@ -19,6 +19,9 @@ assessed_as_of: '2026-05-18'
 ingested_at: '2026-06-16T01:04:05+00:00'
 canonical_url: https://medium.com/gitconnected/the-eu-banned-an-entire-ai-product-category-yesterday-most-builders-missed-it-8419d57bc487
 content_sha256: a2fb671f5b719804d9a45441dc162a5ae1df2f67a93afb77039104c60cafd902
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/eu-ai-act-three-clock-compliance.md
 - topics/synthetic-content-provenance.md
@@ -65,3 +68,21 @@ The article is persuasive but somewhat alarm-forward, and it blends enacted obli
 - Canonical URL: https://medium.com/gitconnected/the-eu-banned-an-entire-ai-product-category-yesterday-most-builders-missed-it-8419d57bc487
 - Raw markdown: `raw/readwise/the-eu-banned-an-entire-ai-product-category-yesterday-most-builders-missed-it-01ktpg6qdsggfve2y5bp9zk5kq.md`
 - Raw HTML: `raw/readwise/the-eu-banned-an-entire-ai-product-category-yesterday-most-builders-missed-it-01ktpg6qdsggfve2y5bp9zk5kq.html`
+
+## Full source text
+
+---
+readwise_id: "01ktpg6qdsggfve2y5bp9zk5kq"
+title: "The EU Banned an Entire AI Product Category Yesterday. Most Builders Missed It."
+author: "MohamedAbdelmenem"
+publication: "Medium"
+source_url: "https://medium.com/gitconnected/the-eu-banned-an-entire-ai-product-category-yesterday-most-builders-missed-it-8419d57bc487"
+category: "article"
+location: "archive"
+published_date: "2026-05-18"
+saved_at: "2026-06-09T15:32:19.513000+00:00"
+updated_at: "2026-06-15T19:31:32.310037+00:00"
+tags: ["processed"]
+---
+
+The EU AI Act sets three different deadlines for AI rules, with a key ban on "nudifier" apps and watermarking starting December 2, 2026. Many builders missed that the strictest rules and highest fines begin soon, not later. Teams must act fast to comply or face heavy penalties by the end of 2026.

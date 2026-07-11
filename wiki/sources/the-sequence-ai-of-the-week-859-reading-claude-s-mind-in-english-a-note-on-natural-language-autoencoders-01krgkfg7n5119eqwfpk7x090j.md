@@ -11,6 +11,9 @@ assessed_as_of: '2026-05-13'
 ingested_at: '2026-06-09T15:52:24.248868+00:00'
 canonical_url: https://thesequence.substack.com/p/the-sequence-ai-of-the-week-859-reading
 content_sha256: 22b844e01b7e56859d8cdc21cd378f6827ceef312314fe3d5ffb61940411cbd6
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # The Sequence AI of the Week #859: Reading Claude’s Mind in English: A Note on Natural Language Autoencoders
@@ -46,3 +49,21 @@ The phrase that the activation “talks back” is catchy, but it may overstate 
 - Canonical URL: https://thesequence.substack.com/p/the-sequence-ai-of-the-week-859-reading
 - Raw markdown: `raw/readwise/the-sequence-ai-of-the-week-859-reading-claude-s-mind-in-english-a-note-on-natural-language-autoencoders-01krgkfg7n5119eqwfpk7x090j.md`
 - Raw HTML: `raw/readwise/the-sequence-ai-of-the-week-859-reading-claude-s-mind-in-english-a-note-on-natural-language-autoencoders-01krgkfg7n5119eqwfpk7x090j.html`
+
+## Full source text
+
+---
+readwise_id: "01krgkfg7n5119eqwfpk7x090j"
+title: "The Sequence AI of the Week #859: Reading Claude’s Mind in English: A Note on Natural Language Autoencoders"
+author: "Jesus Rodriguez"
+publication: "substack.com"
+source_url: "https://thesequence.substack.com/p/the-sequence-ai-of-the-week-859-reading"
+category: "rss"
+location: "archive"
+published_date: "2026-05-13"
+saved_at: "2026-05-13T12:02:39.549000+00:00"
+updated_at: "2026-05-13T13:26:50.700553+00:00"
+tags: ["processed"]
+---
+
+Anthropic's fascinating new papers for the future of AI interpretability.

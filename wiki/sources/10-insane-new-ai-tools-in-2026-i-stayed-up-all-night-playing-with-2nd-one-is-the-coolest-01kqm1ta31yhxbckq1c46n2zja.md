@@ -11,6 +11,9 @@ assessed_as_of: '2026-04-25'
 ingested_at: '2026-05-18T15:27:10.524914+00:00'
 canonical_url: https://medium.com/@KanikaBK/10-insane-new-ai-tools-in-2026-i-stayed-up-all-night-playing-with-2nd-one-is-the-coolest-e11d6542f643
 content_sha256: e3ca58393aa0f8f33130480757950ef071209b96af18bb525928b2b737d47970
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_models:
 - foundation-models/deepseek-v4.md
 - foundation-models/kimi-k2-5.md
@@ -75,3 +78,23 @@ The strongest claims are promotion-heavy and not always backed by detailed measu
 - Canonical URL: https://medium.com/@KanikaBK/10-insane-new-ai-tools-in-2026-i-stayed-up-all-night-playing-with-2nd-one-is-the-coolest-e11d6542f643
 - Raw markdown: `raw/readwise/10-insane-new-ai-tools-in-2026-i-stayed-up-all-night-playing-with-2nd-one-is-the-coolest-01kqm1ta31yhxbckq1c46n2zja.md`
 - Raw HTML: `raw/readwise/10-insane-new-ai-tools-in-2026-i-stayed-up-all-night-playing-with-2nd-one-is-the-coolest-01kqm1ta31yhxbckq1c46n2zja.html`
+
+## Full source text
+
+---
+readwise_id: 01kqm1ta31yhxbckq1c46n2zja
+title: '10 insane new AI tools in 2026 I stayed up all night playing with: 2nd one
+  is the coolest'
+author: Kanika B K
+source_url: https://medium.com/@KanikaBK/10-insane-new-ai-tools-in-2026-i-stayed-up-all-night-playing-with-2nd-one-is-the-coolest-e11d6542f643
+category: article
+location: archive
+published_date: '2026-04-25'
+saved_at: '2026-05-02T09:55:18.241000+00:00'
+updated_at: '2026-05-02T14:21:22.973669+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+I have a slightly obsessive habit. :D

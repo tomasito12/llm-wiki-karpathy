@@ -19,6 +19,9 @@ assessed_as_of: '2026-04-24'
 ingested_at: '2026-06-07T20:10:14.499746+00:00'
 canonical_url: https://medium.com/@tahirbalarabe2/ai-agent-skills-explained-simply-4010f6d9db92
 content_sha256: f3f703e240214535094055c5af4f293c78a18eb7c573b65c1c7fb718ce91b707
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/procedural-knowledge-for-agents.md
 - topics/progressive-disclosure-skill-design.md
@@ -65,3 +68,21 @@ The article simplifies the comparison space a bit: MCP, RAG, fine-tuning, prompt
 - Canonical URL: https://medium.com/@tahirbalarabe2/ai-agent-skills-explained-simply-4010f6d9db92
 - Raw markdown: `raw/readwise/ai-agent-skills-explained-simply-01kr43s6p07ryvwqmstm9thx41.md`
 - Raw HTML: `raw/readwise/ai-agent-skills-explained-simply-01kr43s6p07ryvwqmstm9thx41.html`
+
+## Full source text
+
+---
+readwise_id: "01kr43s6p07ryvwqmstm9thx41"
+title: "AI Agent Skills Explained Simply"
+author: "Tahir"
+publication: "Medium"
+source_url: "https://medium.com/@tahirbalarabe2/ai-agent-skills-explained-simply-4010f6d9db92"
+category: "article"
+location: "archive"
+published_date: "2026-04-24"
+saved_at: "2026-05-08T15:37:30.048000+00:00"
+updated_at: "2026-05-08T16:22:41.301160+00:00"
+tags: ["processed"]
+---
+
+AI agent skills teach AI how to do tasks step-by-step using simple markdown files called skill.md. These skills load only when needed, making AI efficient and capable of following complex workflows. This open standard is used by major AI platforms to add practical, procedural knowledge to language models.

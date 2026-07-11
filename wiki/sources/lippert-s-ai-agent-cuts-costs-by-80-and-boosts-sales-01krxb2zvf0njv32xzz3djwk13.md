@@ -18,6 +18,9 @@ publication: cognigy.com
 ingested_at: '2026-06-06T14:52:46.694948+00:00'
 canonical_url: https://www.cognigy.com/en/case-study/lippert
 content_sha256: cefb2b8ea91092da1dbeea6657a40b3b0f659528b01a54c69377009a45e1f529
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_implementation_studies:
 - implementation-studies/unknown/lippert-s-ai-agent-cuts-costs-by-80-and-boosts-sales-01krxb2zvf0njv32xzz3djwk13-lippert-s-cognigy-support-automation-rollout.md
 derived_tools:
@@ -72,3 +75,20 @@ The strongest claims are promotional and come from a vendor case study, so they 
 - Canonical URL: https://www.cognigy.com/en/case-study/lippert
 - Raw markdown: `raw/readwise/lippert-s-ai-agent-cuts-costs-by-80-and-boosts-sales-01krxb2zvf0njv32xzz3djwk13.md`
 - Raw HTML: `raw/readwise/lippert-s-ai-agent-cuts-costs-by-80-and-boosts-sales-01krxb2zvf0njv32xzz3djwk13.html`
+
+## Full source text
+
+---
+readwise_id: "01krxb2zvf0njv32xzz3djwk13"
+title: "Lippert's AI Agent Cuts Costs by 80% and Boosts Sales"
+author: "NiCE Cognigy"
+publication: "cognigy.com"
+source_url: "https://www.cognigy.com/en/case-study/lippert"
+category: "article"
+location: "archive"
+saved_at: "2026-05-18T10:46:11.567000+00:00"
+updated_at: "2026-05-21T11:16:39.597755+00:00"
+tags: ["processed"]
+---
+
+Lippert used Cognigy's AI Agents to handle complex customer support and cut costs by 80%. This AI solution also made their online store more efficient and increased sales. They plan to expand AI use to improve customer service even more.

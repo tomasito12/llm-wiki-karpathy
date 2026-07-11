@@ -24,6 +24,9 @@ assessed_as_of: '2026-06-04'
 ingested_at: '2026-06-06T22:03:31+00:00'
 canonical_url: https://www.intercom.com/blog/playing-a-different-game/
 content_sha256: d2b9bfcbced37d41d0fdf9b7a1d6c37a69ceb70d8f240343d560c91bd6a2cdae
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_models:
 - foundation-models/apex-flash.md
 derived_tools:
@@ -78,3 +81,21 @@ The article contrasts its live demo with competitors’ “fabricated demos,” 
 - Canonical URL: https://www.intercom.com/blog/playing-a-different-game/
 - Raw markdown: `raw/readwise/playing-a-different-game-01kt9zfvk8krrb2yv7mb50hywx.md`
 - Raw HTML: `raw/readwise/playing-a-different-game-01kt9zfvk8krrb2yv7mb50hywx.html`
+
+## Full source text
+
+---
+readwise_id: "01kt9zfvk8krrb2yv7mb50hywx"
+title: "Playing a different game"
+author: "Eoghan McCabe"
+publication: "The Intercom Blog"
+source_url: "https://www.intercom.com/blog/playing-a-different-game/"
+category: "rss"
+location: "archive"
+published_date: "2026-06-04"
+saved_at: "2026-06-04T18:49:16.720000+00:00"
+updated_at: "2026-06-05T06:52:17.090936+00:00"
+tags: ["processed"]
+---
+
+Announcing Fin Voice 2, a major upgrade to Fin Voice with over 20 new features, and our first product built on Apex Flash.

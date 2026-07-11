@@ -18,6 +18,9 @@ assessed_as_of: '2025-11-07'
 ingested_at: '2026-06-06T16:25:43.414843+00:00'
 canonical_url: https://medium.com/@alessandro-negro/grounding-llms-the-knowledge-graph-foundation-every-ai-project-needs-1eef81e866ec
 content_sha256: 9b364a73f46bdc8eabb4478577542e496360f2404337a797c29b99ab5ee77842
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/graph-grounding-for-ai.md
 - topics/human-in-the-loop-advisor-systems.md
@@ -64,3 +67,22 @@ The article treats the Schwartz case as evidence for a broader architectural con
 - Canonical URL: https://medium.com/@alessandro-negro/grounding-llms-the-knowledge-graph-foundation-every-ai-project-needs-1eef81e866ec
 - Raw markdown: `raw/readwise/grounding-llms-the-knowledge-graph-foundation-every-ai-project-needs-01kqh0vjnrvxfjbkwye8cmrtyv.md`
 - Raw HTML: `raw/readwise/grounding-llms-the-knowledge-graph-foundation-every-ai-project-needs-01kqh0vjnrvxfjbkwye8cmrtyv.html`
+
+## Full source text
+
+---
+readwise_id: 01kqh0vjnrvxfjbkwye8cmrtyv
+title: 'Grounding LLMs: The Knowledge Graph foundation every AI project needs'
+author: Alessandro Negro
+source_url: https://medium.com/@alessandro-negro/grounding-llms-the-knowledge-graph-foundation-every-ai-project-needs-1eef81e866ec
+category: article
+location: archive
+published_date: '2025-11-07'
+saved_at: '2026-05-01T06:32:06.423000+00:00'
+updated_at: '2026-05-02T14:21:59.695152+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+“Mr. Schwartz, I’ve reviewed your opposition brief,” Federal Judge P. Kevin Castel began, his tone measured but pointed. “You cite six…

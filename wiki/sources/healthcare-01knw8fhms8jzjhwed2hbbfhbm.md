@@ -10,6 +10,9 @@ assessed_as_of: '2026-04-10'
 ingested_at: '2026-05-17T12:17:00.148066+00:00'
 canonical_url: https://openai.com/academy/healthcare
 content_sha256: c914cbd79af2f951be8f5b9d0e4b2037a3e78c8ff3a2ce836b57ffb329c69dd0
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # Healthcare
@@ -45,3 +48,22 @@ The page implies clinical usefulness through examples, but examples alone are we
 - Canonical URL: https://openai.com/academy/healthcare
 - Raw markdown: `raw/readwise/healthcare-01knw8fhms8jzjhwed2hbbfhbm.md`
 - Raw HTML: `raw/readwise/healthcare-01knw8fhms8jzjhwed2hbbfhbm.html`
+
+## Full source text
+
+---
+readwise_id: 01knw8fhms8jzjhwed2hbbfhbm
+title: Healthcare
+author: OpenAI Blog
+source_url: https://openai.com/academy/healthcare
+category: rss
+location: archive
+published_date: '2026-04-10'
+saved_at: '2026-04-10T17:53:26.369000+00:00'
+updated_at: '2026-05-07T17:40:24.131894+00:00'
+tags:
+- processed
+publication: OpenAI
+---
+
+This page shows how AI can help doctors with tasks like diagnosis, documentation, and patient counseling. ChatGPT for Healthcare offers secure, HIPAA-compliant support using trusted medical information. It provides prompts and templates to guide clinical workflows and improve patient care.

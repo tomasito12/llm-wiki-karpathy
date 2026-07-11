@@ -18,6 +18,9 @@ assessed_as_of: '2026-04-14'
 ingested_at: '2026-05-17T19:43:04.187305+00:00'
 canonical_url: https://thesequence.substack.com/p/the-sequence-knowledge-842-everything
 content_sha256: f82855adfc6fec4d6e58a2199b14385f3ee8ef8db6162248366236681282a4ef
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/sim-to-real.md
 - glossary/world-model.md
@@ -64,3 +67,22 @@ The strongest statements in the essay are directional rather than evidenced, esp
 - Canonical URL: https://thesequence.substack.com/p/the-sequence-knowledge-842-everything
 - Raw markdown: `raw/readwise/the-sequence-knowledge-842-everything-you-need-to-know-about-world-models-01kp5qd0xgkfcps3m19v7ggdvg.md`
 - Raw HTML: `raw/readwise/the-sequence-knowledge-842-everything-you-need-to-know-about-world-models-01kp5qd0xgkfcps3m19v7ggdvg.html`
+
+## Full source text
+
+---
+readwise_id: 01kp5qd0xgkfcps3m19v7ggdvg
+title: 'The Sequence Knowledge #842: Everything You Need to Know About World Models'
+author: Jesus Rodriguez
+source_url: https://thesequence.substack.com/p/the-sequence-knowledge-842-everything
+category: rss
+location: archive
+published_date: '2026-04-14'
+saved_at: '2026-04-14T10:08:10.232000+00:00'
+updated_at: '2026-05-07T13:40:29.482454+00:00'
+tags:
+- processed
+publication: Substack
+---
+
+World models teach AI to understand and predict how the physical world works, not just generate text. This helps AI safely simulate actions and learn in realistic environments before acting in real life. The future of AI lies in combining space, time, and cause to build smarter, more capable systems beyond language prediction.

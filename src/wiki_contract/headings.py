@@ -9,7 +9,9 @@ SOURCE_H2_HEADINGS: tuple[str, ...] = (
     "Limitations / open questions",
     "Contradictions / unverified claims",
     "Source metadata",
+    "Full source text",
 )
+SOURCE_FULL_TEXT_HEADING = SOURCE_H2_HEADINGS[-1]
 
 EVIDENCE_SECTION_HEADING = "Evidence / supporting sources"
 SYNTHESIS_EVIDENCE_INDEX_HEADING = "Evidence index"

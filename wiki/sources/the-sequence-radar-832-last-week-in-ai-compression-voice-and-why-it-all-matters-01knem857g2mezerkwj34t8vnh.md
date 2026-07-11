@@ -24,6 +24,9 @@ assessed_as_of: '2026-03-29'
 ingested_at: '2026-05-19T19:29:40.756916+00:00'
 canonical_url: https://thesequence.substack.com/p/the-sequence-radar-832-last-week
 content_sha256: cee597b444f59432256c5d0f7da9313febd5f97d2e584869a7d2b6a410193561
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_models:
 - foundation-models/gemini-3-1-flash-live.md
 - foundation-models/voxtral-tts.md
@@ -93,3 +96,23 @@ The piece leans hard on efficiency narratives, but efficiency claims do not auto
 - Canonical URL: https://thesequence.substack.com/p/the-sequence-radar-832-last-week
 - Raw markdown: `raw/readwise/the-sequence-radar-832-last-week-in-ai-compression-voice-and-why-it-all-matters-01knem857g2mezerkwj34t8vnh.md`
 - Raw HTML: `raw/readwise/the-sequence-radar-832-last-week-in-ai-compression-voice-and-why-it-all-matters-01knem857g2mezerkwj34t8vnh.html`
+
+## Full source text
+
+---
+readwise_id: 01knem857g2mezerkwj34t8vnh
+title: 'The Sequence Radar #832: Last Week in AI: Compression, Voice, and Why It All
+  Matters'
+author: Jesus Rodriguez
+source_url: https://thesequence.substack.com/p/the-sequence-radar-832-last-week
+category: rss
+location: archive
+published_date: '2026-03-29'
+saved_at: '2026-04-05T10:50:21.145000+00:00'
+updated_at: '2026-05-08T11:40:53.114071+00:00'
+tags:
+- processed
+publication: Substack
+---
+
+This week in AI focused on improving efficiency, not new capabilities. Google’s TurboQuant greatly reduces memory use in large models, and new voice models from Google and Mistral offer faster, smarter audio processing. These advances make AI cheaper and faster, helping it reach more people and uses.

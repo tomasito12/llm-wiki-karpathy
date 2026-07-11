@@ -17,6 +17,9 @@ assessed_as_of: '2026-04-17'
 ingested_at: '2026-06-07T19:54:47.416059+00:00'
 canonical_url: https://medium.com/@hii_mohit/7-mac-apps-that-actually-made-me-more-productive-f30203d29dcc
 content_sha256: 53e6cedf61e2797405c1e5831e54bdf0373b6b9f532642871deb4ff4abf7012f
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/idlemac.md
 - tools/klokki-slim.md
@@ -74,3 +77,21 @@ The author’s enthusiasm is strong, but most claims are lightweight and based o
 - Canonical URL: https://medium.com/@hii_mohit/7-mac-apps-that-actually-made-me-more-productive-f30203d29dcc
 - Raw markdown: `raw/readwise/7-mac-apps-that-actually-made-me-more-productive-01krbnbx7z8x55zbvz49qc4k5a.md`
 - Raw HTML: `raw/readwise/7-mac-apps-that-actually-made-me-more-productive-01krbnbx7z8x55zbvz49qc4k5a.html`
+
+## Full source text
+
+---
+readwise_id: "01krbnbx7z8x55zbvz49qc4k5a"
+title: "7 Mac Apps That Actually Made Me More Productive"
+author: "Mohit Vaswani"
+publication: "Medium"
+source_url: "https://medium.com/@hii_mohit/7-mac-apps-that-actually-made-me-more-productive-f30203d29dcc"
+category: "article"
+location: "archive"
+published_date: "2026-04-17"
+saved_at: "2026-05-11T13:59:29.790000+00:00"
+updated_at: "2026-05-12T15:03:17.703012+00:00"
+tags: ["processed"]
+---
+
+The author shares seven Mac apps that truly boost productivity by solving everyday problems simply and effectively. These apps help with staying focused, transcribing audio, tracking time, managing clips, taking quick notes, keeping the Mac awake, and organizing browser links. Using them daily has made work smoother and less distracting.

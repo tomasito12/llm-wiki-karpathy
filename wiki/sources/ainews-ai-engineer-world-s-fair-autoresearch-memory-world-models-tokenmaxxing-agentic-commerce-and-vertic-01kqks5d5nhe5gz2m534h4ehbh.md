@@ -20,6 +20,9 @@ assessed_as_of: '2026-05-02'
 ingested_at: '2026-06-07T20:43:11.360387+00:00'
 canonical_url: mailto:reader-forwarded-email/5ecd282cf6904eebcab81182c054d897
 content_sha256: dcbf468acab5ae52da4c3865e107370910641b077f5d9c70544f35273064eec1
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-05/ainews-ai-engineer-world-s-fair-autoresearch-memory-world-models-tokenmaxxing-ag-agent-harness-design-is-becoming-the-product-boundary-ec10bb1164.md
 - signals/2026-05/ainews-ai-engineer-world-s-fair-autoresearch-memory-world-models-tokenmaxxing-ag-inference-time-retrieval-is-becoming-a-distinct-design-problem-130efe52c8.md
@@ -69,3 +72,20 @@ The piece repeatedly contrasts model capability with harness quality, which is u
 - Canonical URL: mailto:reader-forwarded-email/5ecd282cf6904eebcab81182c054d897
 - Raw markdown: `raw/readwise/ainews-ai-engineer-world-s-fair-autoresearch-memory-world-models-tokenmaxxing-agentic-commerce-and-vertic-01kqks5d5nhe5gz2m534h4ehbh.md`
 - Raw HTML: `raw/readwise/ainews-ai-engineer-world-s-fair-autoresearch-memory-world-models-tokenmaxxing-agentic-commerce-and-vertic-01kqks5d5nhe5gz2m534h4ehbh.html`
+
+## Full source text
+
+---
+readwise_id: "01kqks5d5nhe5gz2m534h4ehbh"
+title: "[AINews] AI Engineer World's Fair — Autoresearch, Memory, World Models, Tokenmaxxing, Agentic Commerce, and Vertic…"
+author: "AINews"
+source_url: "mailto:reader-forwarded-email/5ecd282cf6904eebcab81182c054d897"
+category: "email"
+location: "archive"
+published_date: "2026-05-02"
+saved_at: "2026-05-02T07:24:04.662000+00:00"
+updated_at: "2026-05-02T14:21:54.339561+00:00"
+tags: ["processed"]
+---
+
+New AI models like DeepSeek V4 Pro and Qwen 3.5 show strong progress in coding, vision, and efficiency. OpenAI's Codex leads in product speed and user experience, while debates continue on model size versus practical performance. Researchers also focus on better training data and new tools for understanding AI behavior and improving real-world applications.

@@ -14,6 +14,9 @@ assessed_as_of: '2026-04-30'
 ingested_at: '2026-05-17T19:56:50.694355+00:00'
 canonical_url: https://openai.com/index/advanced-account-security
 content_sha256: 3175a04d1468980f246a2031d419f3dc996519a83160e4cff0f245046bb9d0d7
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/fido-compliant-security-key.md
 - glossary/passkey.md
@@ -64,3 +67,22 @@ The strongest protections also create the hardest recovery path, which is a real
 - Canonical URL: https://openai.com/index/advanced-account-security
 - Raw markdown: `raw/readwise/introducing-advanced-account-security-01kqfng9s8j91b758trfdhqjyy.md`
 - Raw HTML: `raw/readwise/introducing-advanced-account-security-01kqfng9s8j91b758trfdhqjyy.html`
+
+## Full source text
+
+---
+readwise_id: 01kqfng9s8j91b758trfdhqjyy
+title: Introducing Advanced Account Security
+author: OpenAI Blog
+source_url: https://openai.com/index/advanced-account-security
+category: rss
+location: archive
+published_date: '2026-04-30'
+saved_at: '2026-04-30T17:03:06.609000+00:00'
+updated_at: '2026-05-02T20:43:13.899550+00:00'
+tags:
+- processed
+publication: OpenAI
+---
+
+OpenAI has launched Advanced Account Security to better protect ChatGPT and Codex accounts from hacking. It uses strong sign-in methods like physical security keys and disables less secure recovery options. Users can opt in now to keep their accounts safer and more private.

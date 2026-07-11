@@ -11,6 +11,9 @@ assessed_as_of: '2026-06-04'
 ingested_at: '2026-06-08T20:08:02.806670+00:00'
 canonical_url: https://thesequence.substack.com/p/the-sequence-opinion-872-the-cake
 content_sha256: 33595f1d657dd526dd09e22b439bedf3954eac16b6a53969064e1983096efaf4
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # The Sequence Opinion #872: The Cake Is a Battlefield: Who Really Controls the AI Stack
@@ -45,3 +48,21 @@ The argument is rhetorically strong but lightly evidenced. Jensen Huang’s diag
 - Canonical URL: https://thesequence.substack.com/p/the-sequence-opinion-872-the-cake
 - Raw markdown: `raw/readwise/the-sequence-opinion-872-the-cake-is-a-battlefield-who-really-controls-the-ai-stack-01kt95p63r51rfyja4z4rxckgw.md`
 - Raw HTML: `raw/readwise/the-sequence-opinion-872-the-cake-is-a-battlefield-who-really-controls-the-ai-stack-01kt95p63r51rfyja4z4rxckgw.html`
+
+## Full source text
+
+---
+readwise_id: "01kt95p63r51rfyja4z4rxckgw"
+title: "The Sequence Opinion #872: The Cake Is a Battlefield: Who Really Controls the AI Stack"
+author: "Jesus Rodriguez"
+publication: "substack.com"
+source_url: "https://thesequence.substack.com/p/the-sequence-opinion-872-the-cake"
+category: "rss"
+location: "archive"
+published_date: "2026-06-04"
+saved_at: "2026-06-04T11:18:21.120000+00:00"
+updated_at: "2026-06-04T19:19:11.016554+00:00"
+tags: ["processed"]
+---
+
+Full stacks vs layer specialists. That's the AI race.

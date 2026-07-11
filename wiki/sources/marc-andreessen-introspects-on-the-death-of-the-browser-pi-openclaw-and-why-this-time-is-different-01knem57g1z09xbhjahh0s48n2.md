@@ -24,6 +24,9 @@ assessed_as_of: '2026-04-03'
 ingested_at: '2026-06-05T16:01:07.659117+00:00'
 canonical_url: https://www.latent.space/p/pmarca
 content_sha256: 862a64e5af0e487be97bc0b77314162293674dcac1986bd86a4349e8602b0481
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_interview_insights:
 - interview-insights/2026-04/marc-andreessen-introspects-on-the-death-of-the-browser-pi-openclaw-and-why-this-agent-architecture-can-be-built-from-unix-primitives-plus-stateful-f-57fa3855c6.md
 - interview-insights/2026-04/marc-andreessen-introspects-on-the-death-of-the-browser-pi-openclaw-and-why-this-ai-progress-should-be-evaluated-as-separate-capability-milestones-no-08a839b63c.md
@@ -75,3 +78,23 @@ A recurring tension is that Andreessen treats capability progress as near-inevit
 - Canonical URL: https://www.latent.space/p/pmarca
 - Raw markdown: `raw/readwise/marc-andreessen-introspects-on-the-death-of-the-browser-pi-openclaw-and-why-this-time-is-different-01knem57g1z09xbhjahh0s48n2.md`
 - Raw HTML: `raw/readwise/marc-andreessen-introspects-on-the-death-of-the-browser-pi-openclaw-and-why-this-time-is-different-01knem57g1z09xbhjahh0s48n2.html`
+
+## Full source text
+
+---
+readwise_id: 01knem57g1z09xbhjahh0s48n2
+title: Marc Andreessen introspects on The Death of the Browser, Pi + OpenClaw, and
+  Why "This Time Is Different"
+author: Latent Space
+source_url: https://www.latent.space/p/pmarca
+category: podcast
+location: archive
+published_date: '2026-04-03'
+saved_at: '2026-04-05T10:48:54.162000+00:00'
+updated_at: '2026-05-08T11:44:26.576777+00:00'
+tags:
+- processed
+publication: Latent
+---
+
+Marc Andreessen believes AI technology is advancing rapidly and will keep improving in powerful ways. He thinks the future will be complex, with many companies helping AI reach real people. In ten years, programming as we know it may change a lot, focusing more on understanding AI-made code.

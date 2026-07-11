@@ -20,6 +20,9 @@ assessed_as_of: '2026-05-07'
 ingested_at: '2026-06-02T20:10:11.148408+00:00'
 canonical_url: https://www.intercom.com/blog/announcing-fin-for-ecommerce/
 content_sha256: 77b327ca85bb337e268d1810308b25b94e0bb6a37ca04462d8cd5504139060ed
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_models:
 - foundation-models/apex-1-0.md
 derived_tools:
@@ -74,3 +77,22 @@ The launch leans heavily on polished retail metaphors and broad promises, but it
 - Canonical URL: https://www.intercom.com/blog/announcing-fin-for-ecommerce/
 - Raw markdown: `raw/readwise/announcing-fin-for-ecommerce-fin-s-next-role-as-a-customer-agent-01kr1qh2ychqe0q9z5c57325mp.md`
 - Raw HTML: `raw/readwise/announcing-fin-for-ecommerce-fin-s-next-role-as-a-customer-agent-01kr1qh2ychqe0q9z5c57325mp.html`
+
+## Full source text
+
+---
+readwise_id: 01kr1qh2ychqe0q9z5c57325mp
+title: 'Announcing Fin for Ecommerce: Fin’s next role as a Customer Agent'
+author: Robert Davitt
+source_url: https://www.intercom.com/blog/announcing-fin-for-ecommerce/
+category: rss
+location: archive
+published_date: '2026-05-07'
+saved_at: '2026-05-07T17:24:49.300000+00:00'
+updated_at: '2026-05-08T10:12:24.388459+00:00'
+tags:
+- processed
+publication: Intercom
+---
+
+Fin for Ecommerce guides shoppers from browsing to checkout, delivering a new level of customer experience.

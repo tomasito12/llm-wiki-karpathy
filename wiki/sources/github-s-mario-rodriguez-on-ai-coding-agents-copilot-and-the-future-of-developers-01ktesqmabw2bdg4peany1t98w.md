@@ -22,6 +22,9 @@ assessed_as_of: '2026-06-06'
 ingested_at: '2026-06-10T15:19:50+00:00'
 canonical_url: mailto:reader-forwarded-email/e4c94be71d73e6c37c00a3af7fa0fa66
 content_sha256: 5c73b0fa11be270796e320d97e9fa1aef2324f0710606c496fffc9973f4e116e
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_interview_insights:
 - interview-insights/2026-06/github-s-mario-rodriguez-on-ai-coding-agents-copilot-and-the-future-of-developer-agent-heavy-developer-platforms-need-bidirectional-ui-and-agent-faci-3de5df8911.md
 - interview-insights/2026-06/github-s-mario-rodriguez-on-ai-coding-agents-copilot-and-the-future-of-developer-copilot-is-framed-as-a-co-pilot-model-with-the-human-remaining-centr-f5c50d9d54.md
@@ -73,3 +76,21 @@ Rodriguez’s view that creation matters more than parallelization is persuasive
 - Canonical URL: mailto:reader-forwarded-email/e4c94be71d73e6c37c00a3af7fa0fa66
 - Raw markdown: `raw/readwise/github-s-mario-rodriguez-on-ai-coding-agents-copilot-and-the-future-of-developers-01ktesqmabw2bdg4peany1t98w.md`
 - Raw HTML: `raw/readwise/github-s-mario-rodriguez-on-ai-coding-agents-copilot-and-the-future-of-developers-01ktesqmabw2bdg4peany1t98w.html`
+
+## Full source text
+
+---
+readwise_id: "01ktesqmabw2bdg4peany1t98w"
+title: "🎙️GitHub’s Mario Rodriguez on AI Coding Agents, Copilot, and the Future of Developers"
+author: "🔳 Turing Post"
+publication: "beehiiv.com"
+source_url: "mailto:reader-forwarded-email/e4c94be71d73e6c37c00a3af7fa0fa66"
+category: "email"
+location: "archive"
+published_date: "2026-06-06"
+saved_at: "2026-06-06T15:44:55.116000+00:00"
+updated_at: "2026-06-08T11:36:40.052833+00:00"
+tags: ["processed"]
+---
+
+GitHub is changing how people build software by using AI agents that can do more tasks on their own. This helps more people become creators, from beginners to experts, by making coding easier and more creative. The future of GitHub is a shared experience where humans and AI work together to build better software.

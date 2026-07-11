@@ -18,6 +18,9 @@ assessed_as_of: '2026-05-27'
 ingested_at: '2026-06-05T19:36:07.115124+00:00'
 canonical_url: https://thesequence.substack.com/p/the-sequence-ai-of-the-week-867-thinking
 content_sha256: b0e6fed2589ee75913eaf52480e49888333dde90a53853a7542c81267b441fa8
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/chain-of-thought-as-externalized-depth.md
 - topics/latent-reasoning-architectures.md
@@ -64,3 +67,21 @@ The argument strongly contrasts internal reasoning with chain-of-thought, but th
 - Canonical URL: https://thesequence.substack.com/p/the-sequence-ai-of-the-week-867-thinking
 - Raw markdown: `raw/readwise/the-sequence-ai-of-the-week-867-thinking-in-latents-why-sapient-s-hrm-text-is-a-quiet-rebuke-to-chain-of-thought-01ksmjcfkpncwjvnnrtg06p87d.md`
 - Raw HTML: `raw/readwise/the-sequence-ai-of-the-week-867-thinking-in-latents-why-sapient-s-hrm-text-is-a-quiet-rebuke-to-chain-of-thought-01ksmjcfkpncwjvnnrtg06p87d.html`
+
+## Full source text
+
+---
+readwise_id: "01ksmjcfkpncwjvnnrtg06p87d"
+title: "The Sequence AI of the Week #867: Thinking in Latents: Why Sapient's HRM-Text Is a Quiet Rebuke to Chain-of-Thought"
+author: "Jesus Rodriguez"
+publication: "substack.com"
+source_url: "https://thesequence.substack.com/p/the-sequence-ai-of-the-week-867-thinking"
+category: "rss"
+location: "archive"
+published_date: "2026-05-27"
+saved_at: "2026-05-27T11:16:11.583000+00:00"
+updated_at: "2026-05-27T15:24:11.877954+00:00"
+tags: ["processed"]
+---
+
+Modern large language models use Chain-of-Thought (CoT) to mimic reasoning by writing out steps in text form. Sapient Intelligence’s HRM-Text model improves this by doing reasoning internally in latent space, not through text tokens. This approach aims to give models true depth and better problem-solving without needing bigger size or more training.

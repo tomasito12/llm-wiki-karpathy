@@ -10,6 +10,9 @@ assessed_as_of: '2026-04-30'
 ingested_at: '2026-05-19T19:11:01.360001+00:00'
 canonical_url: https://www.economist.com/business/2026/04/30/ai-and-the-danger-of-cognitive-surrender
 content_sha256: e76f149f53331f0d4a524ae6470c430c8103c239caa535b1b0b0b1d73d5a4869
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # AI and the danger of cognitive surrender
@@ -44,3 +47,21 @@ The piece is careful, but the framing of "cognitive surrender" may overstate a g
 - Canonical URL: https://www.economist.com/business/2026/04/30/ai-and-the-danger-of-cognitive-surrender
 - Raw markdown: `raw/readwise/ai-and-the-danger-of-cognitive-surrender-01krh9befsnqjcqx2prdsxmy1d.md`
 - Raw HTML: `raw/readwise/ai-and-the-danger-of-cognitive-surrender-01krh9befsnqjcqx2prdsxmy1d.html`
+
+## Full source text
+
+---
+readwise_id: "01krh9befsnqjcqx2prdsxmy1d"
+title: "AI and the danger of cognitive surrender"
+author: "The Economist"
+publication: "Economist"
+source_url: "https://www.economist.com/business/2026/04/30/ai-and-the-danger-of-cognitive-surrender"
+category: "article"
+location: "archive"
+published_date: "2026-04-30"
+saved_at: "2026-05-13T18:24:58.361000+00:00"
+updated_at: "2026-05-13T18:30:30.344467+00:00"
+tags: ["processed"]
+---
+
+AI can help people solve problems faster but may also cause them to stop thinking carefully. When AI makes mistakes, people who rely on it often do worse than those who think on their own. Managers should encourage workers to think critically and limit overuse of AI to avoid "cognitive surrender."

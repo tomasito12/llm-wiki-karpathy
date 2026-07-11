@@ -11,6 +11,9 @@ assessed_as_of: '2026-04-22'
 ingested_at: '2026-06-05T16:07:23.887786+00:00'
 canonical_url: https://thesequence.substack.com/p/the-sequence-ai-of-the-week-847-everything
 content_sha256: 8ce22731d8ad5da3e639f76d922d926d79c548c9a1adf62e63175700df7e5351
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # The Sequence AI of the Week #847: Everything You Need to Know About Claude Opus 4.7
@@ -46,3 +49,23 @@ The author’s framing that the release is mostly about the contract between dev
 - Canonical URL: https://thesequence.substack.com/p/the-sequence-ai-of-the-week-847-everything
 - Raw markdown: `raw/readwise/the-sequence-ai-of-the-week-847-everything-you-need-to-know-about-claude-opus-4-7-01kpteczbrm3736wyth0w10nfk.md`
 - Raw HTML: `raw/readwise/the-sequence-ai-of-the-week-847-everything-you-need-to-know-about-claude-opus-4-7-01kpteczbrm3736wyth0w10nfk.html`
+
+## Full source text
+
+---
+readwise_id: 01kpteczbrm3736wyth0w10nfk
+title: 'The Sequence AI of the Week #847: Everything You Need to Know About Claude
+  Opus 4.7'
+author: Jesus Rodriguez
+source_url: https://thesequence.substack.com/p/the-sequence-ai-of-the-week-847-everything
+category: rss
+location: archive
+published_date: '2026-04-22'
+saved_at: '2026-04-22T11:14:54.529000+00:00'
+updated_at: '2026-05-08T10:47:50.274376+00:00'
+tags:
+- processed
+publication: Substack
+---
+
+A technical view into Anthropic's latest model.

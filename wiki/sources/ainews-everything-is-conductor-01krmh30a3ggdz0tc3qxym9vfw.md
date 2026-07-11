@@ -20,6 +20,9 @@ assessed_as_of: '2026-05-15'
 ingested_at: '2026-06-06T21:17:42.209482+00:00'
 canonical_url: https://www.latent.space/p/ainews-everything-is-conductor
 content_sha256: 4fb4bb5521ec2ec5817e4462cc00454e4aca29d1c26b8f9956524967498fbfdb
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-05/ainews-everything-is-conductor-01krmh30a3ggdz0tc3qxym9vfw-agent-first-coding-ux-is-moving-into-mobile-and-desktop-workflow-control.md
 - signals/2026-05/ainews-everything-is-conductor-01krmh30a3ggdz0tc3qxym9vfw-subscription-backed-agent-harnesses-are-fragile-platform-dependencies.md
@@ -72,3 +75,21 @@ The roundup mixes strong product signals with hype-heavy demos, so several claim
 - Canonical URL: https://www.latent.space/p/ainews-everything-is-conductor
 - Raw markdown: `raw/readwise/ainews-everything-is-conductor-01krmh30a3ggdz0tc3qxym9vfw.md`
 - Raw HTML: `raw/readwise/ainews-everything-is-conductor-01krmh30a3ggdz0tc3qxym9vfw.html`
+
+## Full source text
+
+---
+readwise_id: "01krmh30a3ggdz0tc3qxym9vfw"
+title: "[AINews] Everything is Conductor"
+author: "Latent Space"
+publication: "latent.space"
+source_url: "https://www.latent.space/p/ainews-everything-is-conductor"
+category: "rss"
+location: "archive"
+published_date: "2026-05-15"
+saved_at: "2026-05-15T00:37:50.604000+00:00"
+updated_at: "2026-06-01T11:47:48.646964+00:00"
+tags: ["processed"]
+---
+
+an ultra quiet day lets us highlight a smaller trend.

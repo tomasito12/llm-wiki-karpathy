@@ -10,6 +10,9 @@ assessed_as_of: '2026-05-09'
 ingested_at: '2026-06-08T15:52:43.377651+00:00'
 canonical_url: https://towardsdatascience.com/the-must-know-topics-for-an-llm-engineer/?utm_campaign=tds%20variable&utm_medium=email&_hsenc=p2ANqtz-_Ji2VTd6jpjD9dPmepWYg3hXxQWOP9sOMgVlvWrjG6cNHVTAuznibK5gdq7nPwxWuVQPxmqf-owV7IThY7B01UlBKyCg&_hsmi=420897310&utm_source=newsletter
 content_sha256: b03989e0eddb0534a49d4e997e0d57ddda6a11a60d1e483e3cee2186bc7d9528
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # The Must-Know Topics for an LLM Engineer
@@ -45,3 +48,21 @@ The piece occasionally compresses complex areas into simple rules, which is fine
 - Canonical URL: https://towardsdatascience.com/the-must-know-topics-for-an-llm-engineer/?utm_campaign=tds%20variable&utm_medium=email&_hsenc=p2ANqtz-_Ji2VTd6jpjD9dPmepWYg3hXxQWOP9sOMgVlvWrjG6cNHVTAuznibK5gdq7nPwxWuVQPxmqf-owV7IThY7B01UlBKyCg&_hsmi=420897310&utm_source=newsletter
 - Raw markdown: `raw/readwise/the-must-know-topics-for-an-llm-engineer-01kt148b3g2c0z4q4ykbxxxxqg.md`
 - Raw HTML: `raw/readwise/the-must-know-topics-for-an-llm-engineer-01kt148b3g2c0z4q4ykbxxxxqg.html`
+
+## Full source text
+
+---
+readwise_id: "01kt148b3g2c0z4q4ykbxxxxqg"
+title: "The Must-Know Topics for an LLM Engineer"
+author: "Aliaksei Mikhailiuk"
+publication: "Medium"
+source_url: "https://towardsdatascience.com/the-must-know-topics-for-an-llm-engineer/?utm_campaign=tds%20variable&utm_medium=email&_hsenc=p2ANqtz-_Ji2VTd6jpjD9dPmepWYg3hXxQWOP9sOMgVlvWrjG6cNHVTAuznibK5gdq7nPwxWuVQPxmqf-owV7IThY7B01UlBKyCg&_hsmi=420897310&utm_source=newsletter"
+category: "article"
+location: "archive"
+published_date: "2026-05-09"
+saved_at: "2026-06-01T08:19:26.446000+00:00"
+updated_at: "2026-06-03T17:50:23.886815+00:00"
+tags: ["processed"]
+---
+
+Large Language Models (LLMs) work by breaking text into tokens, learning patterns through training, and predicting the next token to generate language. They improve with techniques like fine-tuning, instruction training, and feedback to align with human preferences and reduce errors. Challenges include managing long contexts, speeding up inference, and evaluating performance beyond simple metrics.

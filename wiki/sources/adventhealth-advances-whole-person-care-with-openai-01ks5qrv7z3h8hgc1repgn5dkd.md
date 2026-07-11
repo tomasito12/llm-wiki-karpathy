@@ -20,6 +20,9 @@ assessed_as_of: '2026-05-21'
 ingested_at: '2026-06-06T15:30:26.649316+00:00'
 canonical_url: https://openai.com/index/adventhealth
 content_sha256: 2cbdf4dbb29b01f5ab8504bf0a66846ef96c6447fa94e33cc2e414b2386c8f20
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_implementation_studies:
 - implementation-studies/2026-05/adventhealth-advances-whole-person-care-with-openai-01ks5qrv7z3h8hgc1repgn5dkd-adventhealth-s-chatgpt-for-healthcare-rollout.md
 derived_topics:
@@ -70,3 +73,21 @@ The article is persuasive on workflow compression, but it remains a vendor case 
 - Canonical URL: https://openai.com/index/adventhealth
 - Raw markdown: `raw/readwise/adventhealth-advances-whole-person-care-with-openai-01ks5qrv7z3h8hgc1repgn5dkd.md`
 - Raw HTML: `raw/readwise/adventhealth-advances-whole-person-care-with-openai-01ks5qrv7z3h8hgc1repgn5dkd.html`
+
+## Full source text
+
+---
+readwise_id: "01ks5qrv7z3h8hgc1repgn5dkd"
+title: "AdventHealth advances whole-person care with OpenAI"
+author: "OpenAI Blog"
+publication: "openai.com"
+source_url: "https://openai.com/index/adventhealth"
+category: "rss"
+location: "archive"
+published_date: "2026-05-21"
+saved_at: "2026-05-21T17:01:43.111000+00:00"
+updated_at: "2026-06-01T09:14:08.375874+00:00"
+tags: ["processed"]
+---
+
+AdventHealth is using ChatGPT for Healthcare to streamline workflows, reduce administrative burden, and return more time to patient care.

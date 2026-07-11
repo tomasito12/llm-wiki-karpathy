@@ -21,6 +21,9 @@ assessed_as_of: '2026-06-10'
 ingested_at: '2026-06-15T22:27:59+00:00'
 canonical_url: https://openai.com/index/lseg
 content_sha256: f4e61881c6c8fa63ac348f122e5e483b33b24a0c979d07d7ab3617252ac117b3
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_implementation_studies:
 - implementation-studies/2026-06/from-data-to-decisions-how-lseg-is-scaling-trusted-ai-01ktrc9qnkbwsc52asg7w7a8xs-lseg-s-openai-rollout-for-financial-data-workflows.md
 derived_topics:
@@ -71,3 +74,21 @@ The article presents faster release cycles as evidence of AI impact, but release
 - Canonical URL: https://openai.com/index/lseg
 - Raw markdown: `raw/readwise/from-data-to-decisions-how-lseg-is-scaling-trusted-ai-01ktrc9qnkbwsc52asg7w7a8xs.md`
 - Raw HTML: `raw/readwise/from-data-to-decisions-how-lseg-is-scaling-trusted-ai-01ktrc9qnkbwsc52asg7w7a8xs.html`
+
+## Full source text
+
+---
+readwise_id: "01ktrc9qnkbwsc52asg7w7a8xs"
+title: "From data to decisions: how LSEG is scaling trusted AI"
+author: "OpenAI Blog"
+publication: "openai.com"
+source_url: "https://openai.com/index/lseg"
+category: "rss"
+location: "archive"
+published_date: "2026-06-10"
+saved_at: "2026-06-10T09:02:29.627000+00:00"
+updated_at: "2026-06-12T10:04:41.342455+00:00"
+tags: ["processed"]
+---
+
+See how LSEG uses OpenAI to scale trusted AI across its global business, accelerating insights, shrinking release cycles, and empowering 4,000 employees.

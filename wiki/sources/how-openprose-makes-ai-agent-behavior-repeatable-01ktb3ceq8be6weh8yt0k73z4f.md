@@ -21,6 +21,9 @@ assessed_as_of: '2026-06-04'
 ingested_at: '2026-07-08T19:13:05.946511+00:00'
 canonical_url: mailto:reader-forwarded-email/d88f9f10debc1f9107f3620bdb9f5f1e
 content_sha256: dbbfcb0a426b4718f16e0598156cd252fd2350e2a6e89300eaf6cb1b7ba5c4b5
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/openprose.md
 derived_topics:
@@ -71,3 +74,21 @@ The piece leans hard on the idea that OpenProse is different from frameworks, bu
 - Canonical URL: mailto:reader-forwarded-email/d88f9f10debc1f9107f3620bdb9f5f1e
 - Raw markdown: `raw/readwise/how-openprose-makes-ai-agent-behavior-repeatable-01ktb3ceq8be6weh8yt0k73z4f.md`
 - Raw HTML: `raw/readwise/how-openprose-makes-ai-agent-behavior-repeatable-01ktb3ceq8be6weh8yt0k73z4f.html`
+
+## Full source text
+
+---
+readwise_id: "01ktb3ceq8be6weh8yt0k73z4f"
+title: "How OpenProse Makes AI Agent Behavior Repeatable"
+author: "🔳 Turing Post"
+publication: "beehiiv.com"
+source_url: "mailto:reader-forwarded-email/d88f9f10debc1f9107f3620bdb9f5f1e"
+category: "email"
+location: "archive"
+published_date: "2026-06-04"
+saved_at: "2026-06-05T05:16:36.969000+00:00"
+updated_at: "2026-06-06T07:29:00.148244+00:00"
+tags: ["processed"]
+---
+
+OpenProse is a new programming language that turns AI agent chat sessions into clear, reusable programs written in plain English. It helps make AI workflows reliable and easy to review by acting as a contract between humans and AI models. OpenProse works with many AI tools and lets users save, edit, and run repeatable agent tasks without extra servers.

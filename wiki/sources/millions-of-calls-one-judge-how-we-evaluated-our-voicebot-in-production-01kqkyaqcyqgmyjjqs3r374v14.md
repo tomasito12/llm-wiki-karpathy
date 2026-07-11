@@ -22,6 +22,9 @@ assessed_as_of: '2026-04-30'
 ingested_at: '2026-06-05T17:13:29.831310+00:00'
 canonical_url: https://medium.com/artefact-engineering-and-data-science/millions-of-calls-one-judge-how-we-evaluated-our-voicebot-in-production-8c00f6ea6654
 content_sha256: e105aed5beb92ccc955b3a2332cb2f4f097dba150b663c03447261ee8a728f6a
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_implementation_studies:
 - implementation-studies/2026-04/millions-of-calls-one-judge-how-we-evaluated-our-voicebot-in-production-01kqkyaqcyqgmyjjqs3r374v14-voicebot-evaluation-at-telecom-scale.md
 derived_topics:
@@ -72,3 +75,22 @@ The article argues that binary judges and AND/OR aggregation are better than a s
 - Canonical URL: https://medium.com/artefact-engineering-and-data-science/millions-of-calls-one-judge-how-we-evaluated-our-voicebot-in-production-8c00f6ea6654
 - Raw markdown: `raw/readwise/millions-of-calls-one-judge-how-we-evaluated-our-voicebot-in-production-01kqkyaqcyqgmyjjqs3r374v14.md`
 - Raw HTML: `raw/readwise/millions-of-calls-one-judge-how-we-evaluated-our-voicebot-in-production-01kqkyaqcyqgmyjjqs3r374v14.html`
+
+## Full source text
+
+---
+readwise_id: 01kqkyaqcyqgmyjjqs3r374v14
+title: 'Millions of Calls, One Judge: How We Evaluated Our Voicebot in Production'
+author: Théo Belen-Halimi
+source_url: https://medium.com/artefact-engineering-and-data-science/millions-of-calls-one-judge-how-we-evaluated-our-voicebot-in-production-8c00f6ea6654
+category: article
+location: archive
+published_date: '2026-04-30'
+saved_at: '2026-05-02T08:54:21.120000+00:00'
+updated_at: '2026-05-02T14:21:39.642166+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+Lessons learned from running LLM-as-a-Judge at scale for a French telecom leader

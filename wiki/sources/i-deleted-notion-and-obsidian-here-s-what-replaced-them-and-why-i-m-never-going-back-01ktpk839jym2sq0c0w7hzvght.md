@@ -22,6 +22,9 @@ assessed_as_of: '2026-05-12'
 ingested_at: '2026-06-15T23:30:39+00:00'
 canonical_url: https://medium.com/write-a-catalyst/i-deleted-notion-and-obsidian-heres-what-replaced-them-and-why-i-m-never-going-back-27a7d8545606
 content_sha256: 8263dab301343cb84d98cc4b185a5797bd3bef8ebeb3dd2b68b66e76867310fb
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/gemini-canvas.md
 - tools/notebooklm.md
@@ -75,3 +78,21 @@ The article treats Notion and Obsidian as if their flexibility is mainly a liabi
 - Canonical URL: https://medium.com/write-a-catalyst/i-deleted-notion-and-obsidian-heres-what-replaced-them-and-why-i-m-never-going-back-27a7d8545606
 - Raw markdown: `raw/readwise/i-deleted-notion-and-obsidian-here-s-what-replaced-them-and-why-i-m-never-going-back-01ktpk839jym2sq0c0w7hzvght.md`
 - Raw HTML: `raw/readwise/i-deleted-notion-and-obsidian-here-s-what-replaced-them-and-why-i-m-never-going-back-01ktpk839jym2sq0c0w7hzvght.html`
+
+## Full source text
+
+---
+readwise_id: "01ktpk839jym2sq0c0w7hzvght"
+title: "I Deleted Notion and Obsidian. Here’s What Replaced Them — and Why I’m Never Going Back."
+author: "Suraj Jha"
+publication: "Medium"
+source_url: "https://medium.com/write-a-catalyst/i-deleted-notion-and-obsidian-heres-what-replaced-them-and-why-i-m-never-going-back-27a7d8545606"
+category: "article"
+location: "archive"
+published_date: "2026-05-12"
+saved_at: "2026-06-09T16:25:30.162000+00:00"
+updated_at: "2026-06-15T18:28:28.816548+00:00"
+tags: ["processed"]
+---
+
+The author stopped using Notion and Obsidian because they took too much time to organize and maintain. Instead, they use NotebookLM and Gemini, which make it easy to get information without extra setup. This new system saves time and helps the author focus on using their notes, not building them.

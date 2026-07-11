@@ -19,6 +19,9 @@ assessed_as_of: '2026-04-25'
 ingested_at: '2026-06-06T21:56:04+00:00'
 canonical_url: https://medium.com/write-a-catalyst/i-spent-6-months-finding-free-alternatives-to-every-app-i-was-paying-for-heres-what-i-found-2b59cfce0e29
 content_sha256: 14092e38931f279c576cfc84229f75ce414a42a3bb380e06f8562d0f4d01891b
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/cal-com.md
 - tools/obsidian.md
@@ -64,3 +67,21 @@ The piece is persuasive, but it leans on convenience and personal satisfaction m
 - Canonical URL: https://medium.com/write-a-catalyst/i-spent-6-months-finding-free-alternatives-to-every-app-i-was-paying-for-heres-what-i-found-2b59cfce0e29
 - Raw markdown: `raw/readwise/i-spent-6-months-finding-free-alternatives-to-every-app-i-was-paying-for-here-s-what-i-found-01krbnb35btre38t9474xsay5q.md`
 - Raw HTML: `raw/readwise/i-spent-6-months-finding-free-alternatives-to-every-app-i-was-paying-for-here-s-what-i-found-01krbnb35btre38t9474xsay5q.html`
+
+## Full source text
+
+---
+readwise_id: "01krbnb35btre38t9474xsay5q"
+title: "I Spent 6 Months Finding Free Alternatives to Every App I Was Paying For. Here’s What I Found."
+author: "Ajay Kumar Bakkashetti"
+publication: "Medium"
+source_url: "https://medium.com/write-a-catalyst/i-spent-6-months-finding-free-alternatives-to-every-app-i-was-paying-for-heres-what-i-found-2b59cfce0e29"
+category: "article"
+location: "archive"
+published_date: "2026-04-25"
+saved_at: "2026-05-11T13:59:03.083000+00:00"
+updated_at: "2026-05-12T17:35:19.397063+00:00"
+tags: ["processed"]
+---
+
+The author spent six months finding free alternatives to all paid apps he used and discovered many work just as well or better. He replaced expensive tools like Evernote, Adobe Photoshop, and Calendly with free options, saving about $2,400 a year. His workflow became simpler and more efficient without losing quality.

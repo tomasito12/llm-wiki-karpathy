@@ -20,6 +20,9 @@ assessed_as_of: '2026-05-09'
 ingested_at: '2026-06-07T20:49:14.001844+00:00'
 canonical_url: mailto:reader-forwarded-email/a85004770d39fc40b4cec82a5d319c74
 content_sha256: 106287c37b255c7adcac433d6426446b2fc2e49e9afa45052f5d58495f29f4c2
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-05/ainews-anthropic-growing-10x-year-while-everyone-else-is-laying-off-10-of-their-agent-reliability-is-moving-toward-orchestration-and-supervision-658a2e672d.md
 - signals/2026-05/ainews-anthropic-growing-10x-year-while-everyone-else-is-laying-off-10-of-their-frontier-vendors-are-packaging-models-as-workflow-systems-095e0b9d69.md
@@ -72,3 +75,22 @@ The piece juxtaposes very fast AI-company growth with layoffs at other firms, bu
 - Canonical URL: mailto:reader-forwarded-email/a85004770d39fc40b4cec82a5d319c74
 - Raw markdown: `raw/readwise/ainews-anthropic-growing-10x-year-while-everyone-else-is-laying-off-10-of-their-workforce-01kr54j9e03ke0ch42wnnr60mx.md`
 - Raw HTML: `raw/readwise/ainews-anthropic-growing-10x-year-while-everyone-else-is-laying-off-10-of-their-workforce-01kr54j9e03ke0ch42wnnr60mx.html`
+
+## Full source text
+
+---
+readwise_id: "01kr54j9e03ke0ch42wnnr60mx"
+title: "[AINews] Anthropic growing 10x/year while everyone else is laying off >10% of
+ their workforce"
+author: "AINews"
+publication: "Substack"
+source_url: "mailto:reader-forwarded-email/a85004770d39fc40b4cec82a5d319c74"
+category: "email"
+location: "archive"
+published_date: "2026-05-09"
+saved_at: "2026-05-09T01:10:26.496000+00:00"
+updated_at: "2026-05-23T12:33:04.585029+00:00"
+tags: ["processed"]
+---
+
+While you could debate ARR revenue recognition, it is hard to deny very real reports of secondary market and traditional media reporting that Anthropic, after their “miracle Q1” of 80x annualized growth and one month jump of $15B ARR, is now being valued at $1-1.

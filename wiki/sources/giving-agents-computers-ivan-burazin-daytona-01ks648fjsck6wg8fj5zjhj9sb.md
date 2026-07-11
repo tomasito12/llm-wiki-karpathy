@@ -27,6 +27,9 @@ assessed_as_of: '2026-05-21'
 ingested_at: '2026-06-05T20:03:22.630168+00:00'
 canonical_url: mailto:reader-forwarded-email/4376b12461831122fa971a2dbfd2f2cb
 content_sha256: 2c241735b4efa8f912e4bd56d8658d4cb044a00edad2fd013013a5cf81db1d33
+source_text_available: false
+source_text_mode: missing
+source_text_source: none
 derived_interview_insights:
 - interview-insights/2026-05/giving-agents-computers-ivan-burazin-daytona-01ks648fjsck6wg8fj5zjhj9sb-agents-need-a-computer-shaped-runtime-not-just-code-execution.md
 - interview-insights/2026-05/giving-agents-computers-ivan-burazin-daytona-01ks648fjsck6wg8fj5zjhj9sb-cli-access-can-outperform-api-only-integrations-for-agent-workflows.md
@@ -78,3 +81,7 @@ The strongest claims are also the least independently testable: market leadershi
 - Canonical URL: mailto:reader-forwarded-email/4376b12461831122fa971a2dbfd2f2cb
 - Raw markdown: `raw/readwise/giving-agents-computers-ivan-burazin-daytona-01ks648fjsck6wg8fj5zjhj9sb.md`
 - Raw HTML: `raw/readwise/giving-agents-computers-ivan-burazin-daytona-01ks648fjsck6wg8fj5zjhj9sb.html`
+
+## Full source text
+
+Full source text is not available locally. Raw metadata is listed above.

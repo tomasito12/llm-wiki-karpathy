@@ -13,6 +13,9 @@ assessed_as_of: '2026-04-29'
 ingested_at: '2026-05-22T16:38:44.812110+00:00'
 canonical_url: https://medium.com/@markchen69/i-found-a-full-llm-wiki-app-so-i-built-the-smaller-thing-i-actually-needed-62c629b3c8d2
 content_sha256: 243ebbdfcd5bdcb9f33524fe4621338bd0a9496383f11641af48e05111cb5a6d
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/llm-wiki.md
 - topics/two-step-document-ingest.md
@@ -55,3 +58,22 @@ The piece is honest that the full app is impressive, but it also makes a gentle 
 - Canonical URL: https://medium.com/@markchen69/i-found-a-full-llm-wiki-app-so-i-built-the-smaller-thing-i-actually-needed-62c629b3c8d2
 - Raw markdown: `raw/readwise/i-found-a-full-llm-wiki-app-so-i-built-the-smaller-thing-i-actually-needed-01kqz036fj7zddpk9fppjf11va.md`
 - Raw HTML: `raw/readwise/i-found-a-full-llm-wiki-app-so-i-built-the-smaller-thing-i-actually-needed-01kqz036fj7zddpk9fppjf11va.html`
+
+## Full source text
+
+---
+readwise_id: 01kqz036fj7zddpk9fppjf11va
+title: I Found a Full LLM Wiki App. So I Built the Smaller Thing I Actually Needed.
+author: Mark Chen
+source_url: https://medium.com/@markchen69/i-found-a-full-llm-wiki-app-so-i-built-the-smaller-thing-i-actually-needed-62c629b3c8d2
+category: article
+location: archive
+published_date: '2026-04-29'
+saved_at: '2026-05-06T15:56:51.058000+00:00'
+updated_at: '2026-05-06T17:35:43.071596+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+Mark Chen built a simple tool to keep his personal knowledge base organized using ideas from a bigger LLM Wiki app. He focused on clear purpose, careful two-step processing, and human review to improve the wiki. The key lesson is to start small and build a system that fits your real needs and grows over time.

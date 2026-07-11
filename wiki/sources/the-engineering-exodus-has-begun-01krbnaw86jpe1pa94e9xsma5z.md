@@ -13,6 +13,9 @@ assessed_as_of: '2026-05-03'
 ingested_at: '2026-05-19T19:23:59.233701+00:00'
 canonical_url: https://medium.com/ai-in-plain-english/the-engineering-exodus-has-begun-9e66c441791a
 content_sha256: fa8d6c1d473ed8a3f1984d9a554380e70dd711dd8eaa94eecb4a42792096e69d
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_trends:
 - industry-trends/software-differentiation-shifts-from-engineering-to-distribution.md
 derived_pages:
@@ -52,3 +55,21 @@ The article makes a strong strategic leap from one company's reported coding mix
 - Canonical URL: https://medium.com/ai-in-plain-english/the-engineering-exodus-has-begun-9e66c441791a
 - Raw markdown: `raw/readwise/the-engineering-exodus-has-begun-01krbnaw86jpe1pa94e9xsma5z.md`
 - Raw HTML: `raw/readwise/the-engineering-exodus-has-begun-01krbnaw86jpe1pa94e9xsma5z.html`
+
+## Full source text
+
+---
+readwise_id: "01krbnaw86jpe1pa94e9xsma5z"
+title: "The Engineering Exodus Has Begun"
+author: "Faisal haque"
+publication: "Medium"
+source_url: "https://medium.com/ai-in-plain-english/the-engineering-exodus-has-begun-9e66c441791a"
+category: "article"
+location: "archive"
+published_date: "2026-05-03"
+saved_at: "2026-05-11T13:58:56.006000+00:00"
+updated_at: "2026-05-12T17:09:32.071963+00:00"
+tags: ["processed"]
+---
+
+Snap’s CEO says most new code at his company is now written by AI, making software development faster and cheaper. Because coding is easier, companies will spend more on marketing and getting attention instead of engineering. Engineers who use AI well and understand business and storytelling will be the most valuable.

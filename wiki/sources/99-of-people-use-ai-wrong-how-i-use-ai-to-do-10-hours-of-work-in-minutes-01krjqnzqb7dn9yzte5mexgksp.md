@@ -18,6 +18,9 @@ assessed_as_of: '2026-04-10'
 ingested_at: '2026-06-07T20:00:54.788253+00:00'
 canonical_url: https://medium.com/@nitinfab/99-of-people-use-ai-wrong-how-i-use-ai-to-do-10-hours-of-work-in-minutes-a1adb52f0252
 content_sha256: 8b3ddcd46846a79a12b155b8d83e6d6ce862a42ad0ca564e2acbe04cd67794a8
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/copilot-tasks.md
 - tools/gamma.md
@@ -69,3 +72,21 @@ The strongest claims are promotional and sometimes overstated, especially the id
 - Canonical URL: https://medium.com/@nitinfab/99-of-people-use-ai-wrong-how-i-use-ai-to-do-10-hours-of-work-in-minutes-a1adb52f0252
 - Raw markdown: `raw/readwise/99-of-people-use-ai-wrong-how-i-use-ai-to-do-10-hours-of-work-in-minutes-01krjqnzqb7dn9yzte5mexgksp.md`
 - Raw HTML: `raw/readwise/99-of-people-use-ai-wrong-how-i-use-ai-to-do-10-hours-of-work-in-minutes-01krjqnzqb7dn9yzte5mexgksp.html`
+
+## Full source text
+
+---
+readwise_id: "01krjqnzqb7dn9yzte5mexgksp"
+title: "99% of People Use AI Wrong — How I Use AI to Do 10+ Hours of Work in Minutes"
+author: "Nitin Sharma"
+publication: "Medium"
+source_url: "https://medium.com/@nitinfab/99-of-people-use-ai-wrong-how-i-use-ai-to-do-10-hours-of-work-in-minutes-a1adb52f0252"
+category: "article"
+location: "archive"
+published_date: "2026-04-10"
+saved_at: "2026-05-14T07:54:38.187000+00:00"
+updated_at: "2026-05-16T21:18:25.937336+00:00"
+tags: ["processed"]
+---
+
+Most people use AI for simple tasks, but a few use it to automate complex work and save hours. Tools like Claude, Copilot Tasks, and custom agents help automate workflows and create interactive content quickly. Using these advanced AI methods can give you a big advantage and save a lot of time.

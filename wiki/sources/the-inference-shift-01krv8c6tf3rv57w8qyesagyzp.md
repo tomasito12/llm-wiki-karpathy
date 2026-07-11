@@ -21,6 +21,9 @@ assessed_as_of: '2026-05-11'
 ingested_at: '2026-06-09T18:01:21+00:00'
 canonical_url: https://stratechery.com/2026/the-inference-shift/
 content_sha256: 0cfb821429b85e50f2f8cf8218815030a6115570cdb9a6bf07a66d77ce41a17e
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/agent-memory-architecture.md
 - topics/answer-inference-vs-agentic-inference.md
@@ -67,3 +70,21 @@ The most speculative step is the forecast that agentic inference will become the
 - Canonical URL: https://stratechery.com/2026/the-inference-shift/
 - Raw markdown: `raw/readwise/the-inference-shift-01krv8c6tf3rv57w8qyesagyzp.md`
 - Raw HTML: `raw/readwise/the-inference-shift-01krv8c6tf3rv57w8qyesagyzp.html`
+
+## Full source text
+
+---
+readwise_id: "01krv8c6tf3rv57w8qyesagyzp"
+title: "The Inference Shift"
+author: "Ben Thompson"
+publication: "Stratechery by Ben Thompson"
+source_url: "https://stratechery.com/2026/the-inference-shift/"
+category: "article"
+location: "archive"
+published_date: "2026-05-11"
+saved_at: "2026-05-17T15:20:19.023000+00:00"
+updated_at: "2026-05-20T20:35:26.174218+00:00"
+tags: ["processed"]
+---
+
+AI is driving big changes in computer chips, moving from fast GPUs to new designs focused on memory and task handling. Cerebras chips are great for quick answers but not for large memory tasks needed by smart agents. In the future, computers will rely less on speed and more on large, cost-effective memory to work independently and efficiently.

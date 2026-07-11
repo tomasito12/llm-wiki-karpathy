@@ -10,6 +10,9 @@ assessed_as_of: '2026-05-02'
 ingested_at: '2026-06-06T21:53:18+00:00'
 canonical_url: https://medium.com/@lennart.dde/how-to-turn-obsidian-into-notion-using-just-3-plugins-012d5ed45a8a
 content_sha256: be09c7de3f12b2aafe0a5c3639e518d593b0cfd3b7c98d91d43fc73b6bc428f2
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # How to Turn Obsidian Into Notion Using Just 3 Plugins
@@ -45,3 +48,22 @@ The article’s strongest claim is that Obsidian can behave like Notion if you a
 - Canonical URL: https://medium.com/@lennart.dde/how-to-turn-obsidian-into-notion-using-just-3-plugins-012d5ed45a8a
 - Raw markdown: `raw/readwise/how-to-turn-obsidian-into-notion-using-just-3-plugins-01kqz043jpzb1gwc542w6zfsne.md`
 - Raw HTML: `raw/readwise/how-to-turn-obsidian-into-notion-using-just-3-plugins-01kqz043jpzb1gwc542w6zfsne.html`
+
+## Full source text
+
+---
+readwise_id: 01kqz043jpzb1gwc542w6zfsne
+title: How to Turn Obsidian Into Notion Using Just 3 Plugins
+author: Len
+source_url: https://medium.com/@lennart.dde/how-to-turn-obsidian-into-notion-using-just-3-plugins-012d5ed45a8a
+category: article
+location: archive
+published_date: '2026-05-02'
+saved_at: '2026-05-06T15:57:20.854000+00:00'
+updated_at: '2026-05-06T17:34:29.478521+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+You can make Obsidian work like Notion using just three plugins: Make.md for workspace, Datacore for databases, and Kanban for tasks. This setup gives you speed, control, and flexibility by turning notes into a system. The key is to keep metadata simple and connect these plugins for smooth organization and execution.

@@ -10,6 +10,9 @@ assessed_as_of: '2026-05-22'
 ingested_at: '2026-06-08T19:29:51.390651+00:00'
 canonical_url: https://www.intercom.com/blog/what-matters-when-evaluating-ai-agents-for-customer-service/
 content_sha256: b1449993a5378a35fd6e6e8ac3406a582f73f80366222944320a789d934dac95
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # What really matters when evaluating AI Agents for customer service?
@@ -45,3 +48,21 @@ The strongest claim is that performance alone is insufficient, which is plausibl
 - Canonical URL: https://www.intercom.com/blog/what-matters-when-evaluating-ai-agents-for-customer-service/
 - Raw markdown: `raw/readwise/what-really-matters-when-evaluating-ai-agents-for-customer-service-01ks89tke8b3dsrzc527zcqr3w.md`
 - Raw HTML: `raw/readwise/what-really-matters-when-evaluating-ai-agents-for-customer-service-01ks89tke8b3dsrzc527zcqr3w.html`
+
+## Full source text
+
+---
+readwise_id: "01ks89tke8b3dsrzc527zcqr3w"
+title: "What really matters when evaluating AI Agents for customer service?"
+author: "Declan Ivory"
+publication: "The Intercom Blog"
+source_url: "https://www.intercom.com/blog/what-matters-when-evaluating-ai-agents-for-customer-service/"
+category: "rss"
+location: "archive"
+published_date: "2026-05-22"
+saved_at: "2026-05-22T16:55:43.888000+00:00"
+updated_at: "2026-06-01T09:11:11.478725+00:00"
+tags: ["processed"]
+---
+
+Performance is only one factor in determining if an AI Agent is the right fit. Here's what else to consider.

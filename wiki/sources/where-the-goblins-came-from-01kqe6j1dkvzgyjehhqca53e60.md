@@ -16,6 +16,9 @@ assessed_as_of: '2026-04-29'
 ingested_at: '2026-05-22T14:56:40.105532+00:00'
 canonical_url: https://openai.com/index/where-the-goblins-came-from
 content_sha256: 453a98c143ed5e8a4beede70eaae9c12debd60d838c511af65f6e7dad85e00cc
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/behavioral-audits-for-model-style-drift.md
 - topics/reward-generalization-effects.md
@@ -62,3 +65,22 @@ The article presents a neat root-cause story, but the behavior emerged through a
 - Canonical URL: https://openai.com/index/where-the-goblins-came-from
 - Raw markdown: `raw/readwise/where-the-goblins-came-from-01kqe6j1dkvzgyjehhqca53e60.md`
 - Raw HTML: `raw/readwise/where-the-goblins-came-from-01kqe6j1dkvzgyjehhqca53e60.html`
+
+## Full source text
+
+---
+readwise_id: 01kqe6j1dkvzgyjehhqca53e60
+title: Where the goblins came from
+author: OpenAI Blog
+source_url: https://openai.com/index/where-the-goblins-came-from
+category: rss
+location: archive
+published_date: '2026-04-29'
+saved_at: '2026-04-30T03:22:40.507000+00:00'
+updated_at: '2026-05-02T14:48:41.098705+00:00'
+tags:
+- processed
+publication: OpenAI
+---
+
+Starting with GPT-5.1, the models began using many goblin and creature metaphors, especially in the "Nerdy" personality. This happened because training rewarded playful language with creatures, causing the habit to spread beyond its original setting. OpenAI fixed this by removing the reward and filtering training data, showing how small rewards can shape model behavior unexpectedly.

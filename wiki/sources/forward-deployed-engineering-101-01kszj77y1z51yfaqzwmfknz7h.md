@@ -20,6 +20,9 @@ assessed_as_of: '2026-05-20'
 ingested_at: '2026-06-06T21:47:32+00:00'
 canonical_url: https://x.com/vasuman/status/2057177266984226892/?rw_tt_thread=True
 content_sha256: 5c9e1ca30ce6ed14d2446b43403b055e9d7e334f41ebf660b1e9a7c6b926bf97
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/agent-evaluation-design.md
 derived_topics:
@@ -70,3 +73,21 @@ The article presents FDE as the 'most in-demand role in tech right now,' but pro
 - Canonical URL: https://x.com/vasuman/status/2057177266984226892/?rw_tt_thread=True
 - Raw markdown: `raw/readwise/forward-deployed-engineering-101-01kszj77y1z51yfaqzwmfknz7h.md`
 - Raw HTML: `raw/readwise/forward-deployed-engineering-101-01kszj77y1z51yfaqzwmfknz7h.html`
+
+## Full source text
+
+---
+readwise_id: "01kszj77y1z51yfaqzwmfknz7h"
+title: "Forward Deployed Engineering 101"
+author: "vas"
+publication: "X (formerly Twitter)"
+source_url: "https://x.com/vasuman/status/2057177266984226892/?rw_tt_thread=True"
+category: "tweet"
+location: "archive"
+published_date: "2026-05-20"
+saved_at: "2026-05-31T17:45:01.629000+00:00"
+updated_at: "2026-06-01T06:48:31.352903+00:00"
+tags: ["processed"]
+---
+
+Forward Deployed Engineers (FDEs) help AI companies build custom tools by working closely with clients to solve real problems. Their job has three parts: auditing workflows, evaluating AI agents, and deploying solutions that save time and money. Good communication and clear business goals are key to making AI work and gaining trust.

@@ -12,6 +12,9 @@ assessed_as_of: '2026-04-04'
 ingested_at: '2026-06-05T16:34:56.702963+00:00'
 canonical_url: https://medium.com/macoclock/18-years-on-a-macbook-3-principles-i-use-every-single-day-ea82231fdcdc
 content_sha256: 066ab64c53b77e8e3061150b33a62e476f55247df8e8d077ce5c44d02716ac51
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/keyboard-first-mac-workflow.md
 - how-to/keyboard-window-management.md
@@ -57,3 +60,21 @@ The article presents familiar shortcuts as if their value is underappreciated, b
 - Canonical URL: https://medium.com/macoclock/18-years-on-a-macbook-3-principles-i-use-every-single-day-ea82231fdcdc
 - Raw markdown: `raw/readwise/18-years-on-a-macbook-3-principles-i-use-every-single-day-01krjr3g54djdpkrgtx2b56dtj.md`
 - Raw HTML: `raw/readwise/18-years-on-a-macbook-3-principles-i-use-every-single-day-01krjr3g54djdpkrgtx2b56dtj.html`
+
+## Full source text
+
+---
+readwise_id: "01krjr3g54djdpkrgtx2b56dtj"
+title: "18 Years on a MacBook: 3 Principles I Use Every Single Day"
+author: "Georg Plankl"
+publication: "Medium"
+source_url: "https://medium.com/macoclock/18-years-on-a-macbook-3-principles-i-use-every-single-day-ea82231fdcdc"
+category: "article"
+location: "archive"
+published_date: "2026-04-04"
+saved_at: "2026-05-14T08:02:00.996000+00:00"
+updated_at: "2026-05-16T13:04:52.855587+00:00"
+tags: ["processed"]
+---
+
+Georg Plankl shares three simple habits that make working on a Mac faster and easier. He advises using the keyboard instead of the mouse, keeping windows organized, and mastering Spotlight to quickly open apps and files. These habits save time and improve productivity every day.

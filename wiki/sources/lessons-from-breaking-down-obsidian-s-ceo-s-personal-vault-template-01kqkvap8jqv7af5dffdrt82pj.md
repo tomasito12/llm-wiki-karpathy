@@ -10,6 +10,9 @@ assessed_as_of: '2026-04-16'
 ingested_at: '2026-06-05T15:38:14.278465+00:00'
 canonical_url: https://medium.com/obsidian-observer/lessons-from-breaking-down-obsidians-ceo-s-personal-vault-template-cf90d90ff40f
 content_sha256: b8730a7aa8a65a1ef3e11aa0fde65e46305dbef31db87336fdb4227e4bddf439
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # Lessons From Breaking Down Obsidian’s CEO’s Personal Vault Template
@@ -45,3 +48,22 @@ The article implicitly assumes that a first-principles, metadata-heavy system wi
 - Canonical URL: https://medium.com/obsidian-observer/lessons-from-breaking-down-obsidians-ceo-s-personal-vault-template-cf90d90ff40f
 - Raw markdown: `raw/readwise/lessons-from-breaking-down-obsidian-s-ceo-s-personal-vault-template-01kqkvap8jqv7af5dffdrt82pj.md`
 - Raw HTML: `raw/readwise/lessons-from-breaking-down-obsidian-s-ceo-s-personal-vault-template-01kqkvap8jqv7af5dffdrt82pj.html`
+
+## Full source text
+
+---
+readwise_id: 01kqkvap8jqv7af5dffdrt82pj
+title: Lessons From Breaking Down Obsidian’s CEO’s Personal Vault Template
+author: Theo Stowell
+source_url: https://medium.com/obsidian-observer/lessons-from-breaking-down-obsidians-ceo-s-personal-vault-template-cf90d90ff40f
+category: article
+location: archive
+published_date: '2026-04-16'
+saved_at: '2026-05-02T08:01:54.441000+00:00'
+updated_at: '2026-05-02T14:21:47.983631+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+Steph Ango’s Obsidian vault uses many templates and properties instead of folders to organize notes. This system is powerful but complex and may not suit everyone. It’s best to start simple and build your own method that fits your needs.

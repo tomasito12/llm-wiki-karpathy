@@ -17,6 +17,9 @@ assessed_as_of: '2026-04-29'
 ingested_at: '2026-06-06T16:23:10.598496+00:00'
 canonical_url: https://www.latent.space/p/ainews-not-much-happened-today
 content_sha256: 662495c6b77491f50abeff34a5be974269023735745b4de664a82790a78a7062
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-04/ainews-not-much-happened-today-01kqbexsf1mp7vyh00tfyv531y-agent-platforms-are-being-redefined-around-durable-execution-and-resumability.md
 - signals/2026-04/ainews-not-much-happened-today-01kqbexsf1mp7vyh00tfyv531y-serving-efficiency-is-becoming-a-first-class-product-feature.md
@@ -63,3 +66,22 @@ The piece is candid that some launches may be hype, especially around new model 
 - Canonical URL: https://www.latent.space/p/ainews-not-much-happened-today
 - Raw markdown: `raw/readwise/ainews-not-much-happened-today-01kqbexsf1mp7vyh00tfyv531y.md`
 - Raw HTML: `raw/readwise/ainews-not-much-happened-today-01kqbexsf1mp7vyh00tfyv531y.html`
+
+## Full source text
+
+---
+readwise_id: 01kqbexsf1mp7vyh00tfyv531y
+title: '[AINews] not much happened today'
+author: Latent Space
+source_url: https://www.latent.space/p/ainews-not-much-happened-today
+category: rss
+location: archive
+published_date: '2026-04-29'
+saved_at: '2026-04-29T01:51:10.889000+00:00'
+updated_at: '2026-05-02T14:23:58.405203+00:00'
+tags:
+- processed
+publication: Latent
+---
+
+Today’s AI news was quiet with few major updates or breakthroughs. New models from Poolside and NVIDIA were released, but their long-term impact is still uncertain. Advances in AI agents, local tools, and benchmarking show ongoing progress in making AI more practical and reliable.

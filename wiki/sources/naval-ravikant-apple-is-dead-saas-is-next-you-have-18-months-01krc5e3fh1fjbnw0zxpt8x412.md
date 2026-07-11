@@ -13,6 +13,9 @@ assessed_as_of: '2026-04-29'
 ingested_at: '2026-05-17T20:32:46.461988+00:00'
 canonical_url: https://x.com/mustufa4socials/status/2049518414377480218/?rw_tt_thread=True
 content_sha256: efa168c9fd20dacc2f4dcb0748ec8354c3ff5ad97b3d34d17ee50128748275f6
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/software-moat-compression.md
 derived_trends:
@@ -56,3 +59,21 @@ The article treats “pure software is uninvestable” as a general verdict, but
 - Canonical URL: https://x.com/mustufa4socials/status/2049518414377480218/?rw_tt_thread=True
 - Raw markdown: `raw/readwise/naval-ravikant-apple-is-dead-saas-is-next-you-have-18-months-01krc5e3fh1fjbnw0zxpt8x412.md`
 - Raw HTML: `raw/readwise/naval-ravikant-apple-is-dead-saas-is-next-you-have-18-months-01krc5e3fh1fjbnw0zxpt8x412.html`
+
+## Full source text
+
+---
+readwise_id: "01krc5e3fh1fjbnw0zxpt8x412"
+title: "Naval Ravikant: Apple is dead, SaaS is next, you have 18 months"
+author: "Mustufa Khan"
+publication: "X (formerly Twitter)"
+source_url: "https://x.com/mustufa4socials/status/2049518414377480218/?rw_tt_thread=True"
+category: "tweet"
+location: "archive"
+published_date: "2026-04-29"
+saved_at: "2026-05-11T18:40:18.929000+00:00"
+updated_at: "2026-05-11T18:57:15.478539+00:00"
+tags: ["processed"]
+---
+
+Apple's success is ending because AI will change how people use software and devices. Most pure software companies will lose value unless they build unique advantages like strong networks or hardware. Founders have 18 months to adapt or risk failure, while solo creators using AI have new chances to succeed.

@@ -16,6 +16,9 @@ assessed_as_of: '2026-05-12'
 ingested_at: '2026-06-06T21:52:19+00:00'
 canonical_url: https://www.interconnects.ai/p/how-open-model-ecosystems-compound?utm_source=substack&utm_campaign=post_embed&utm_medium=web
 content_sha256: 25e9a780fb36062a0efbd0f2c70772323d76a7bcf3c784733169015c2af527e3
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/development-cost-amortization.md
 - topics/open-model-ecosystems.md
@@ -62,3 +65,21 @@ The article’s analogy to open-source software is helpful, but AI is not OSS: m
 - Canonical URL: https://www.interconnects.ai/p/how-open-model-ecosystems-compound?utm_source=substack&utm_campaign=post_embed&utm_medium=web
 - Raw markdown: `raw/readwise/how-open-model-ecosystems-compound-01ks0nbcbbhrcx4npr4xjm5ctz.md`
 - Raw HTML: `raw/readwise/how-open-model-ecosystems-compound-01ks0nbcbbhrcx4npr4xjm5ctz.html`
+
+## Full source text
+
+---
+readwise_id: "01ks0nbcbbhrcx4npr4xjm5ctz"
+title: "How open model ecosystems compound"
+author: "Nathan Lambert"
+publication: "interconnects.ai"
+source_url: "https://www.interconnects.ai/p/how-open-model-ecosystems-compound?utm_source=substack&utm_campaign=post_embed&utm_medium=web"
+category: "article"
+location: "archive"
+published_date: "2026-05-12"
+saved_at: "2026-05-19T17:43:15.564000+00:00"
+updated_at: "2026-05-20T15:06:06.372720+00:00"
+tags: ["processed"]
+---
+
+Most of the work to build advanced AI models happens during research and development, not just training the final model. China's open AI ecosystem shares knowledge widely, cutting costs and speeding progress for all labs. This open approach may help labs compete better and build stronger AI over time.

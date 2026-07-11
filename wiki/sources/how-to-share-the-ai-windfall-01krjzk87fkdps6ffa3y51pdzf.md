@@ -15,6 +15,9 @@ assessed_as_of: '2026-05-14'
 ingested_at: '2026-06-05T14:04:21.498149+00:00'
 canonical_url: https://www.economist.com/finance-and-economics/2026/05/14/how-to-share-the-ai-windfall
 content_sha256: a826b71c047eae870aa54381e0aebac94f996974b397816684490acc96946ab9
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/ai-redistribution-through-taxation-and-ownership.md
 - topics/tax-base-shift-from-labor-to-capital.md
@@ -61,3 +64,21 @@ The strongest claims are conditional and speculative: the article says 'if' AI d
 - Canonical URL: https://www.economist.com/finance-and-economics/2026/05/14/how-to-share-the-ai-windfall
 - Raw markdown: `raw/readwise/how-to-share-the-ai-windfall-01krjzk87fkdps6ffa3y51pdzf.md`
 - Raw HTML: `raw/readwise/how-to-share-the-ai-windfall-01krjzk87fkdps6ffa3y51pdzf.html`
+
+## Full source text
+
+---
+readwise_id: "01krjzk87fkdps6ffa3y51pdzf"
+title: "How to share the AI windfall"
+author: "The Economist"
+publication: "Economist"
+source_url: "https://www.economist.com/finance-and-economics/2026/05/14/how-to-share-the-ai-windfall"
+category: "article"
+location: "archive"
+published_date: "2026-05-14"
+saved_at: "2026-05-14T10:12:57.199000+00:00"
+updated_at: "2026-05-15T04:24:59.434222+00:00"
+tags: ["processed"]
+---
+
+AI may reduce jobs and shrink the taxes collected from workers, creating challenges for governments. To share AI wealth fairly, new taxes on capital or consumption could help, or workers might gain direct stakes in AI companies. While many solutions exist, it is uncertain if politicians will act to spread AI's benefits.

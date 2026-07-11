@@ -10,6 +10,9 @@ assessed_as_of: '2026-05-30'
 ingested_at: '2026-06-06T14:23:22.565867+00:00'
 canonical_url: mailto:reader-forwarded-email/2da5ce2f01a232af4ccea08fc9c22197
 content_sha256: 3d0df48f30dbd9979541bf8b9eb7886f247912697a55a678e2bd35aed021a4d2
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # [AINews] Founders and Forward Deployed Engineers
@@ -45,3 +48,21 @@ The piece contains a lot of product and research excitement, but the evidence is
 - Canonical URL: mailto:reader-forwarded-email/2da5ce2f01a232af4ccea08fc9c22197
 - Raw markdown: `raw/readwise/ainews-founders-and-forward-deployed-engineers-01ksv9r20gcn5b1t2hh2ahxpj3.md`
 - Raw HTML: `raw/readwise/ainews-founders-and-forward-deployed-engineers-01ksv9r20gcn5b1t2hh2ahxpj3.html`
+
+## Full source text
+
+---
+readwise_id: "01ksv9r20gcn5b1t2hh2ahxpj3"
+title: "[AINews] Founders and Forward Deployed Engineers"
+author: "AINews"
+publication: "Substack"
+source_url: "mailto:reader-forwarded-email/2da5ce2f01a232af4ccea08fc9c22197"
+category: "email"
+location: "archive"
+published_date: "2026-05-30"
+saved_at: "2026-05-30T01:59:57.713000+00:00"
+updated_at: "2026-05-31T09:02:37.515104+00:00"
+tags: ["processed"]
+---
+
+AINews highlights new AI programs for Forward Deployed Engineers and startup founders. It reviews recent AI model updates, focusing on improvements and challenges in tools, open models, and agent systems. The article also covers advances in local AI performance and expanding product features from Google and OpenAI.

@@ -19,6 +19,9 @@ assessed_as_of: '2026-04-16'
 ingested_at: '2026-06-06T21:40:56+00:00'
 canonical_url: https://www.latent.space/p/ainews-rip-pull-requests-2005-2026
 content_sha256: ae4a5f7156ed334de63fc852085084064e0de43901e375581ea369b1d75b4551
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-04/ainews-rip-pull-requests-2005-2026-01kpagqv8ysqr6n4axvvh6xpcz-agent-runtimes-are-becoming-the-product-boundary.md
 - signals/2026-04/ainews-rip-pull-requests-2005-2026-01kpagqv8ysqr6n4axvvh6xpcz-agentic-coding-is-moving-away-from-pr-centric-review.md
@@ -65,3 +68,22 @@ The strongest rhetorical claim is that pull requests, code review, and even Git 
 - Canonical URL: https://www.latent.space/p/ainews-rip-pull-requests-2005-2026
 - Raw markdown: `raw/readwise/ainews-rip-pull-requests-2005-2026-01kpagqv8ysqr6n4axvvh6xpcz.md`
 - Raw HTML: `raw/readwise/ainews-rip-pull-requests-2005-2026-01kpagqv8ysqr6n4axvvh6xpcz.html`
+
+## Full source text
+
+---
+readwise_id: 01kpagqv8ysqr6n4axvvh6xpcz
+title: '[AINews] RIP Pull Requests (2005-2026)'
+author: Latent.Space
+source_url: https://www.latent.space/p/ainews-rip-pull-requests-2005-2026
+category: rss
+location: archive
+published_date: '2026-04-16'
+saved_at: '2026-04-16T06:47:57.030000+00:00'
+updated_at: '2026-05-07T13:44:44.473809+00:00'
+tags:
+- processed
+publication: Latent
+---
+
+Pull Requests, a key part of coding collaboration since 2005, may become obsolete due to advances in AI and new workflows. Companies like OpenAI and Cloudflare are building AI agents that automate tasks with durable memory and sandboxed execution. Meanwhile, major AI breakthroughs include better models for speech, math proofs, and long-term agent coordination, signaling big changes in software development.

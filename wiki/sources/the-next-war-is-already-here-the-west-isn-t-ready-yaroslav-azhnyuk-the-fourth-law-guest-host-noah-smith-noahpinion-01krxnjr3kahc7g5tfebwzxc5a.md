@@ -19,6 +19,9 @@ assessed_as_of: '2026-05-18'
 ingested_at: '2026-06-08T18:47:50.933445+00:00'
 canonical_url: https://www.latent.space/p/the-fourth-law
 content_sha256: e7f76d5f12b17152eaa20e45a427527501d029f727ee96f6e7c19256fa877378
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_interview_insights:
 - interview-insights/2026-05/the-next-war-is-already-here-the-west-isn-t-ready-yaroslav-azhnyuk-the-fourth-la-autonomy-needs-system-level-economics-not-just-model-quality-23a19d2a7c.md
 - interview-insights/2026-05/the-next-war-is-already-here-the-west-isn-t-ready-yaroslav-azhnyuk-the-fourth-la-drone-autonomy-is-a-layered-capability-not-a-single-feature-e14d6878cb.md
@@ -61,3 +64,21 @@ Some claims are intentionally provocative and should be read as argument, not se
 - Canonical URL: https://www.latent.space/p/the-fourth-law
 - Raw markdown: `raw/readwise/the-next-war-is-already-here-the-west-isn-t-ready-yaroslav-azhnyuk-the-fourth-law-guest-host-noah-smith-noahpinion-01krxnjr3kahc7g5tfebwzxc5a.md`
 - Raw HTML: `raw/readwise/the-next-war-is-already-here-the-west-isn-t-ready-yaroslav-azhnyuk-the-fourth-law-guest-host-noah-smith-noahpinion-01krxnjr3kahc7g5tfebwzxc5a.html`
+
+## Full source text
+
+---
+readwise_id: "01krxnjr3kahc7g5tfebwzxc5a"
+title: "The Next War Is Already Here. The West Isn't Ready. — Yaroslav Azhnyuk, The Fourth Law & Guest Host Noah Smith, Noahpinion"
+author: "Latent.Space"
+publication: "Latent"
+source_url: "https://www.latent.space/p/the-fourth-law"
+category: "podcast"
+location: "archive"
+published_date: "2026-05-18"
+saved_at: "2026-05-18T13:49:30.684000+00:00"
+updated_at: "2026-06-01T11:37:13.927070+00:00"
+tags: ["processed"]
+---
+
+Ukrainian drone founder Yaroslav Azhnyuk went from pet cameras to AI-guided weapons. He and guest host Noah Smith make the case that the West is asleep at the wheel.

@@ -10,6 +10,9 @@ assessed_as_of: '2026-05-14'
 ingested_at: '2026-06-05T13:23:33.122052+00:00'
 canonical_url: https://www.economist.com/finance-and-economics/2026/05/14/the-jobs-apocalypse-a-very-short-history
 content_sha256: a9575bc3d8abb64a1cf1a6637f02773a2674ef0da0354612de44a5e57c3bd1d2
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # The jobs apocalypse: a (very) short history
@@ -45,3 +48,21 @@ The article pushes back against dramatic claims from AI executives, but it does 
 - Canonical URL: https://www.economist.com/finance-and-economics/2026/05/14/the-jobs-apocalypse-a-very-short-history
 - Raw markdown: `raw/readwise/the-jobs-apocalypse-a-very-short-history-01krjzjwe4z62pzh3m46gfsjks.md`
 - Raw HTML: `raw/readwise/the-jobs-apocalypse-a-very-short-history-01krjzjwe4z62pzh3m46gfsjks.html`
+
+## Full source text
+
+---
+readwise_id: "01krjzjwe4z62pzh3m46gfsjks"
+title: "The jobs apocalypse: a (very) short history"
+author: "The Economist"
+publication: "Economist"
+source_url: "https://www.economist.com/finance-and-economics/2026/05/14/the-jobs-apocalypse-a-very-short-history"
+category: "article"
+location: "archive"
+published_date: "2026-05-14"
+saved_at: "2026-05-14T10:12:45.123000+00:00"
+updated_at: "2026-05-14T19:50:35.751479+00:00"
+tags: ["processed"]
+---
+
+Many people fear that AI will cause massive job losses, but history shows technology usually creates new jobs over time. Past innovations like the Industrial Revolution caused changes but did not lead to long-term unemployment or unfair pay. If AI causes big job losses, it will be clear during a recession when the economy adjusts and shifts to more productive work.

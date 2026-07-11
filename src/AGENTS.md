@@ -79,9 +79,13 @@ Generated wiki layout rules live in [`src/wiki_contract/`](wiki_contract/). Both
 ## Wiki render (generated Obsidian vault)
 
 - Run: `hatch run wiki-render`
-- Options: `--dry-run`, `--no-prune`, `--reviews-dir`, `--out-dir`, `--manifest-path`, `--graph-path`, `--synthesis-cache-dir`
+- Options: `--dry-run`, `--no-prune`, `--paths-config`, `--reviews-dir`, `--out-dir`, `--manifest-path`, `--graph-path`, `--synthesis-cache-dir`, `--raw-dir`, `--require-source-text`
 - **Canonical input:** `state/reviews/*/review.json`
+- **Raw source input:** `raw/readwise/<source_id>.md` (or configured `paths.raw_dir` via `--paths-config` / `LLM_WIKI_PATHS_CONFIG`; override with `--raw-dir`)
 - **Output:** full regeneration of managed folders under `wiki/` (see [`wiki/AGENTS.md`](../wiki/AGENTS.md))
+- Generated source pages at `wiki/sources/<source_id>.md` include a `## Full source text` section with embedded raw Markdown when the export exists locally
+- Full source text is **private/local vault content** by default — not automatically safe for team or public export without an explicit source-mode decision
+- Use `--require-source-text` to fail when fewer than half of source pages would include full raw text (guards against empty/misconfigured `raw_dir`)
 - **Audit artifacts:** `state/wiki_render_manifest.json` (advisory file list + hashes), `state/wiki_render_graph.json` (Stage 2 graph export)
 - The renderer may read existing Stage 2 cache entries from `state/synthesis/<category>/<slug>.json`; it never creates cache entries and never makes LLM calls. Fresh cache entries render synthesized Obsidian pages, stale cache entries render with a visible warning, and missing/invalid cache entries fall back to Stage 1.
 - After review changes, rerun `wiki-render` — do not hand-edit generated pages.

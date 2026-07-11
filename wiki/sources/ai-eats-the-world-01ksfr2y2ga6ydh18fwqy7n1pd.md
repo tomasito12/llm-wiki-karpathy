@@ -16,6 +16,9 @@ assessed_as_of: '2026-05-21'
 ingested_at: '2026-06-07T20:13:35.865480+00:00'
 canonical_url: https://readwise-assets.s3.amazonaws.com/media/wisereads/articles/ai-eats-the-world/1285.pdf
 content_sha256: 29fe53a64b35df3a8da5c581cfb7b1a37333a3f459fe029c1a00843a740a406d
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/compute-supply-and-capex-in-ai.md
 - topics/models-as-commodity-components.md
@@ -62,3 +65,21 @@ The argument is persuasive as a framing device, but some of the strongest conclu
 - Canonical URL: https://readwise-assets.s3.amazonaws.com/media/wisereads/articles/ai-eats-the-world/1285.pdf
 - Raw markdown: `raw/readwise/ai-eats-the-world-01ksfr2y2ga6ydh18fwqy7n1pd.md`
 - Raw HTML: `raw/readwise/ai-eats-the-world-01ksfr2y2ga6ydh18fwqy7n1pd.html`
+
+## Full source text
+
+---
+readwise_id: "01ksfr2y2ga6ydh18fwqy7n1pd"
+title: "AI Eats The World"
+author: "Benedict Evans"
+publication: "readwise-upload-pdf"
+source_url: "https://readwise-assets.s3.amazonaws.com/media/wisereads/articles/ai-eats-the-world/1285.pdf"
+category: "pdf"
+location: "archive"
+published_date: "2026-05-21"
+saved_at: "2026-05-25T14:19:41.008000+00:00"
+updated_at: "2026-05-26T08:45:08.061869+00:00"
+tags: ["processed"]
+---
+
+AI is transforming technology with huge investments and rapid growth in computing power and data centers. This shift will automate many boring tasks and change industries by lowering costs and enabling new innovations. While demand for AI grows fast, companies face challenges in scaling and finding lasting value.

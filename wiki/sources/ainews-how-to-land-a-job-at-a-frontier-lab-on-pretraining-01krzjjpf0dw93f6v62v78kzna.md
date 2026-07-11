@@ -19,6 +19,9 @@ assessed_as_of: '2026-05-19'
 ingested_at: '2026-06-06T15:40:49.456296+00:00'
 canonical_url: mailto:reader-forwarded-email/9d0fe7ce2c9cfb963537e4fac4cdde92
 content_sha256: fe574e51e6081a14e34aef0ac611b5d93cb196c42f3f6d11cffabc656e2660f2
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-05/ainews-how-to-land-a-job-at-a-frontier-lab-on-pretraining-01krzjjpf0dw93f6v62v78-agent-products-are-converging-on-persistent-supervision-and-backgrou-6c02955c21.md
 derived_trends:
@@ -62,3 +65,21 @@ There is a mild tension between the strong hiring advice for low-level kernel wo
 - Canonical URL: mailto:reader-forwarded-email/9d0fe7ce2c9cfb963537e4fac4cdde92
 - Raw markdown: `raw/readwise/ainews-how-to-land-a-job-at-a-frontier-lab-on-pretraining-01krzjjpf0dw93f6v62v78kzna.md`
 - Raw HTML: `raw/readwise/ainews-how-to-land-a-job-at-a-frontier-lab-on-pretraining-01krzjjpf0dw93f6v62v78kzna.html`
+
+## Full source text
+
+---
+readwise_id: "01krzjjpf0dw93f6v62v78kzna"
+title: "[AINews] How to land a job at a frontier lab (on Pretraining)"
+author: "AINews"
+publication: "Substack"
+source_url: "mailto:reader-forwarded-email/9d0fe7ce2c9cfb963537e4fac4cdde92"
+category: "email"
+location: "archive"
+published_date: "2026-05-19"
+saved_at: "2026-05-19T07:35:35.136000+00:00"
+updated_at: "2026-05-19T09:27:41.684711+00:00"
+tags: ["processed"]
+---
+
+Vlad Feinberg highlights that mastering performance work on large language models is key to joining top AI labs. New agent tools focus on automation, verification, and practical deployment rather than just clever prompts. Recent AI advances include stronger coding models, better local inference, and research on smarter training and agent evaluation.

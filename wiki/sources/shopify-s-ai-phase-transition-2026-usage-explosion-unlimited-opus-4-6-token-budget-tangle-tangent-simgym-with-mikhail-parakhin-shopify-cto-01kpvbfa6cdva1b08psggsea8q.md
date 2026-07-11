@@ -27,6 +27,9 @@ assessed_as_of: '2026-04-22'
 ingested_at: '2026-06-09T15:51:15.790211+00:00'
 canonical_url: https://www.latent.space/p/shopify
 content_sha256: 65a622c580241a1f3d513e30f923e374727b8864cde84afb2cc6b0ad8af6ba4a
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_interview_insights:
 - interview-insights/2026-04/shopify-s-ai-phase-transition-2026-usage-explosion-unlimited-opus-4-6-token-budg-agentic-coding-bottlenecks-move-from-generation-to-review-and-deploy-414eb17541.md
 - interview-insights/2026-04/shopify-s-ai-phase-transition-2026-usage-explosion-unlimited-opus-4-6-token-budg-auto-research-works-best-for-measurable-bounded-optimization-loops-aec552a147.md
@@ -78,3 +81,23 @@ The transcript is enthusiastic about token budgets, auto-research, and customer 
 - Canonical URL: https://www.latent.space/p/shopify
 - Raw markdown: `raw/readwise/shopify-s-ai-phase-transition-2026-usage-explosion-unlimited-opus-4-6-token-budget-tangle-tangent-simgym-with-mikhail-parakhin-shopify-cto-01kpvbfa6cdva1b08psggsea8q.md`
 - Raw HTML: `raw/readwise/shopify-s-ai-phase-transition-2026-usage-explosion-unlimited-opus-4-6-token-budget-tangle-tangent-simgym-with-mikhail-parakhin-shopify-cto-01kpvbfa6cdva1b08psggsea8q.html`
+
+## Full source text
+
+---
+readwise_id: 01kpvbfa6cdva1b08psggsea8q
+title: 'Shopify’s AI Phase Transition: 2026 Usage Explosion, Unlimited Opus-4.6 Token
+  Budget, Tangle, Tangent, SimGym — with Mikhail Parakhin, Shopify CTO'
+author: Latent Space
+source_url: https://www.latent.space/p/shopify
+category: podcast
+location: archive
+published_date: '2026-04-22'
+saved_at: '2026-04-22T19:42:59.861000+00:00'
+updated_at: '2026-05-07T12:10:12.337156+00:00'
+tags:
+- processed
+publication: Latent
+---
+
+Shopify is rapidly growing its use of AI tools internally to improve work and innovation. They provide unlimited access to AI resources and focus on automated research to boost results. Their AI efforts help make better decisions and improve e-commerce experiences for many users.

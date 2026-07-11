@@ -24,6 +24,9 @@ assessed_as_of: '2026-06-09'
 ingested_at: '2026-06-15T22:17:32+00:00'
 canonical_url: https://www.intercom.com/blog/extending-fin-as-the-most-open-agent-platform/
 content_sha256: d6e9738db2452dbfbf6fb07ff73e34a9b768086fb3c057950a350884bf58c0f6
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_models:
 - foundation-models/apex-1-0.md
 derived_tools:
@@ -78,3 +81,21 @@ The strongest claims are self-authored by the vendor, so they should be read as 
 - Canonical URL: https://www.intercom.com/blog/extending-fin-as-the-most-open-agent-platform/
 - Raw markdown: `raw/readwise/extending-fin-as-the-most-open-agent-platform-01ktpp7k8sthayjgk3vd9ezxr6.md`
 - Raw HTML: `raw/readwise/extending-fin-as-the-most-open-agent-platform-01ktpp7k8sthayjgk3vd9ezxr6.html`
+
+## Full source text
+
+---
+readwise_id: "01ktpp7k8sthayjgk3vd9ezxr6"
+title: "Extending Fin as the most open Agent platform"
+author: "Paul Adams"
+publication: "The Intercom Blog"
+source_url: "https://www.intercom.com/blog/extending-fin-as-the-most-open-agent-platform/"
+category: "rss"
+location: "archive"
+published_date: "2026-06-09"
+saved_at: "2026-06-09T17:17:36.481000+00:00"
+updated_at: "2026-06-12T10:05:24.114406+00:00"
+tags: ["processed"]
+---
+
+Fin can be used as a Service Agent on top of HubSpot and Freshworks, meaning you can use the world’s best Agent without migrating off your helpdesk.

@@ -23,6 +23,9 @@ assessed_as_of: '2026-04-06'
 ingested_at: '2026-06-05T13:33:04.412271+00:00'
 canonical_url: https://medium.com/@evoailabs/why-andrej-karpathys-llm-wiki-is-the-future-of-personal-knowledge-7ac398383772
 content_sha256: 394c6707733b831fa940f72abb03db1a9aaa8df3e16bb407b9bd69a041c82bb2
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/ontology.md
 - glossary/retrieval-augmented-generation.md
@@ -80,3 +83,22 @@ The piece is persuasive but partly speculative: it assumes an LLM can reliably m
 - Canonical URL: https://medium.com/@evoailabs/why-andrej-karpathys-llm-wiki-is-the-future-of-personal-knowledge-7ac398383772
 - Raw markdown: `raw/readwise/why-andrej-karpathy-s-llm-wiki-is-the-future-of-personal-knowledge-01kqm0rf7jxk8010thyjvag0j8.md`
 - Raw HTML: `raw/readwise/why-andrej-karpathy-s-llm-wiki-is-the-future-of-personal-knowledge-01kqm0rf7jxk8010thyjvag0j8.html`
+
+## Full source text
+
+---
+readwise_id: 01kqm0rf7jxk8010thyjvag0j8
+title: Why Andrej Karpathy’s “LLM Wiki” is the Future of Personal Knowledge
+author: evoailabs
+source_url: https://medium.com/@evoailabs/why-andrej-karpathys-llm-wiki-is-the-future-of-personal-knowledge-7ac398383772
+category: article
+location: archive
+published_date: '2026-04-06'
+saved_at: '2026-05-02T09:36:49.394000+00:00'
+updated_at: '2026-05-02T14:21:28.691084+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+How to stop rediscovering information from scratch and let AI automatically compile, maintain, and compound your second brain.

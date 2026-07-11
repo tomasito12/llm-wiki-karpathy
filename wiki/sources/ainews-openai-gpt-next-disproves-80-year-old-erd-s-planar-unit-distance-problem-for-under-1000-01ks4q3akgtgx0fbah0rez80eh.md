@@ -11,6 +11,9 @@ assessed_as_of: '2026-05-21'
 ingested_at: '2026-06-06T21:39:57+00:00'
 canonical_url: mailto:reader-forwarded-email/e62d9c0816df33c5c139473686318ef4
 content_sha256: 4d2b475de68e7a3ee2a8c69556187ebb0b07188975ae0375bdb9cf3827cd96ff
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # [AINews] OpenAI GPT-next disproves 80 year old Erdős planar unit distance problem for under $1000
@@ -46,3 +49,21 @@ The strongest claim in the roundup is also the most easily overstated: a disproo
 - Canonical URL: mailto:reader-forwarded-email/e62d9c0816df33c5c139473686318ef4
 - Raw markdown: `raw/readwise/ainews-openai-gpt-next-disproves-80-year-old-erd-s-planar-unit-distance-problem-for-under-1000-01ks4q3akgtgx0fbah0rez80eh.md`
 - Raw HTML: `raw/readwise/ainews-openai-gpt-next-disproves-80-year-old-erd-s-planar-unit-distance-problem-for-under-1000-01ks4q3akgtgx0fbah0rez80eh.html`
+
+## Full source text
+
+---
+readwise_id: "01ks4q3akgtgx0fbah0rez80eh"
+title: "[AINews] OpenAI GPT-next disproves 80 year old Erdős planar unit distance problem for under $1000"
+author: "AINews"
+publication: "Substack"
+source_url: "mailto:reader-forwarded-email/e62d9c0816df33c5c139473686318ef4"
+category: "email"
+location: "archive"
+published_date: "2026-05-21"
+saved_at: "2026-05-21T07:30:46.512000+00:00"
+updated_at: "2026-05-21T11:15:15.047988+00:00"
+tags: ["processed"]
+---
+
+OpenAI's new general-purpose GPT model disproved an 80-year-old math problem, showing strong reasoning abilities beyond specialized tools. Cohere released its powerful Command A+ model under an open license, focusing on efficiency and broad use. Meanwhile, AI benchmarking revealed challenges for advanced agents in complex tasks, highlighting ongoing limits in system-level reasoning.

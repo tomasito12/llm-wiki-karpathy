@@ -27,6 +27,9 @@ assessed_as_of: '2026-03-19'
 ingested_at: '2026-06-05T16:19:33.221079+00:00'
 canonical_url: https://cursor.com/blog/composer-2
 content_sha256: ddfa2acf0c1b63d7cd5141bdb821d8cfd2cc0ab0fd118c61042cdcd78dd61f53
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_models:
 - foundation-models/composer-2.md
 derived_tools:
@@ -81,3 +84,22 @@ The piece is strong on benchmark-driven persuasion and light on independent vali
 - Canonical URL: https://cursor.com/blog/composer-2
 - Raw markdown: `raw/readwise/introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1.md`
 - Raw HTML: `raw/readwise/introducing-composer-2-01kr1qhvfpdcttev7248ae0ba1.html`
+
+## Full source text
+
+---
+readwise_id: 01kr1qhvfpdcttev7248ae0ba1
+title: Introducing Composer 2
+author: Cursor Blog
+source_url: https://cursor.com/blog/composer-2
+category: rss
+location: archive
+published_date: '2026-03-19'
+saved_at: '2026-05-07T17:25:05.430000+00:00'
+updated_at: '2026-05-08T09:54:22.374449+00:00'
+tags:
+- processed
+publication: Cursor
+---
+
+Composer 2 is a new, powerful coding model available on Cursor with improved quality and efficiency. It costs $0.50 per million input tokens and $2.50 per million output tokens, with a faster, slightly more expensive option also offered. Composer 2 performs very well on coding benchmarks and can handle complex tasks requiring many steps.

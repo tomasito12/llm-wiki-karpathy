@@ -21,6 +21,9 @@ assessed_as_of: '2026-05-20'
 ingested_at: '2026-06-06T21:36:53+00:00'
 canonical_url: mailto:reader-forwarded-email/2145b1949dfd250e11a0e67b4b30d0b7
 content_sha256: f5173b5537983e3f4692a82a4dac39a03fd49819caa18a9dcd8c05ceb69d2601
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-05/ainews-google-i-o-2026-gemini-3-5-flash-omni-nanobanana-for-video-spark-backgrou-fast-agent-models-are-being-sold-as-workflow-engines-not-just-cheape-ae8db93336.md
 - signals/2026-05/ainews-google-i-o-2026-gemini-3-5-flash-omni-nanobanana-for-video-spark-backgrou-generated-ui-and-simulations-are-becoming-a-search-product-primitive-219c7b6756.md
@@ -67,3 +70,21 @@ The article surfaces a real tension between capability and naming: several comme
 - Canonical URL: mailto:reader-forwarded-email/2145b1949dfd250e11a0e67b4b30d0b7
 - Raw markdown: `raw/readwise/ainews-google-i-o-2026-gemini-3-5-flash-omni-nanobanana-for-video-spark-background-agents-and-antigravit-01ks1q9kfz8jyg2t8sxed9j4bs.md`
 - Raw HTML: `raw/readwise/ainews-google-i-o-2026-gemini-3-5-flash-omni-nanobanana-for-video-spark-background-agents-and-antigravit-01ks1q9kfz8jyg2t8sxed9j4bs.html`
+
+## Full source text
+
+---
+readwise_id: "01ks1q9kfz8jyg2t8sxed9j4bs"
+title: "[AINews] Google I/O 2026: Gemini 3.5 Flash, Omni (NanoBanana for Video), Spark (background agents), and Antigravit…"
+author: "AINews"
+publication: "Substack"
+source_url: "mailto:reader-forwarded-email/2145b1949dfd250e11a0e67b4b30d0b7"
+category: "email"
+location: "archive"
+published_date: "2026-05-20"
+saved_at: "2026-05-20T03:36:28.927000+00:00"
+updated_at: "2026-05-20T12:33:50.308233+00:00"
+tags: ["processed"]
+---
+
+Google announced Gemini 3.5 Flash, a fast AI model for coding and agents, and Gemini Omni for creating and editing videos using AI. They also introduced Antigravity, a system that runs many AI agents working together on complex tasks. These updates focus on speed, multimodal AI, and deep integration into products like Search and Workspace.

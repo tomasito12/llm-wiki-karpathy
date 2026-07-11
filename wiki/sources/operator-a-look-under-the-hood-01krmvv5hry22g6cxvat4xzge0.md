@@ -26,6 +26,9 @@ assessed_as_of: '2026-05-15'
 ingested_at: '2026-06-05T19:58:23.842570+00:00'
 canonical_url: https://www.intercom.com/blog/operator-a-look-under-the-hood/
 content_sha256: 6c4fa2a0b9d1748e7207ff895defb35d81e833b38da2308e501f9a22ee7f34f3
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/operator.md
 derived_topics:
@@ -76,3 +79,21 @@ The piece dismisses the idea that a prompted model plus APIs is enough, which is
 - Canonical URL: https://www.intercom.com/blog/operator-a-look-under-the-hood/
 - Raw markdown: `raw/readwise/operator-a-look-under-the-hood-01krmvv5hry22g6cxvat4xzge0.md`
 - Raw HTML: `raw/readwise/operator-a-look-under-the-hood-01krmvv5hry22g6cxvat4xzge0.html`
+
+## Full source text
+
+---
+readwise_id: "01krmvv5hry22g6cxvat4xzge0"
+title: "Operator: A look under the hood"
+author: "Jack Ryan"
+publication: "The Intercom Blog"
+source_url: "https://www.intercom.com/blog/operator-a-look-under-the-hood/"
+category: "rss"
+location: "archive"
+published_date: "2026-05-15"
+saved_at: "2026-05-15T03:45:48.160000+00:00"
+updated_at: "2026-06-03T09:12:21.439745+00:00"
+tags: ["processed"]
+---
+
+Operator is a powerful Agent that helps you manage, optimize, and continuously improve your AI-first support organization. Here's more insight into how we built it.

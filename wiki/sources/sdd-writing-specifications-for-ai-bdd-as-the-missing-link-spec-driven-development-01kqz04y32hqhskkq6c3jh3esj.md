@@ -24,6 +24,9 @@ assessed_as_of: '2026-04-30'
 ingested_at: '2026-06-09T17:29:54+00:00'
 canonical_url: https://medium.com/@wasowski.jarek/sdd-writing-specifications-for-ai-bdd-as-the-missing-link-spec-driven-development-ad1b540b7f75
 content_sha256: 1fcd928736309d07f12c6140d01c07922172ed52093fa5a3af8b4554457a0d00
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/behavior-driven-development.md
 - glossary/gherkin.md
@@ -81,3 +84,22 @@ The article’s strongest claim is that BDD is the missing language for AI-era s
 - Canonical URL: https://medium.com/@wasowski.jarek/sdd-writing-specifications-for-ai-bdd-as-the-missing-link-spec-driven-development-ad1b540b7f75
 - Raw markdown: `raw/readwise/sdd-writing-specifications-for-ai-bdd-as-the-missing-link-spec-driven-development-01kqz04y32hqhskkq6c3jh3esj.md`
 - Raw HTML: `raw/readwise/sdd-writing-specifications-for-ai-bdd-as-the-missing-link-spec-driven-development-01kqz04y32hqhskkq6c3jh3esj.html`
+
+## Full source text
+
+---
+readwise_id: 01kqz04y32hqhskkq6c3jh3esj
+title: 'SDD Writing Specifications for AI: BDD as the Missing Link — Spec-Driven Development'
+author: Jarosław Wasowski
+source_url: https://medium.com/@wasowski.jarek/sdd-writing-specifications-for-ai-bdd-as-the-missing-link-spec-driven-development-ad1b540b7f75
+category: article
+location: archive
+published_date: '2026-04-30'
+saved_at: '2026-05-06T15:57:48.002000+00:00'
+updated_at: '2026-05-06T17:34:03.238445+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+In 2026, engineers write specifications, not code, and traditional documents fail for AI-driven development. Behavior-Driven Development (BDD) uses simple scenarios to clearly describe behavior for both humans and AI. A quick weekly meeting called Three Amigos helps teams create specs that save time and improve software quality.

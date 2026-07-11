@@ -20,6 +20,9 @@ assessed_as_of: '2026-04-28'
 ingested_at: '2026-06-07T20:26:03.659481+00:00'
 canonical_url: https://www.intercom.com/blog/the-sales-growth-without-headcount-problem/
 content_sha256: b8a7393a2d165506c88a0d4edf414d1a2792dba61dcdb1ba7d84342b6ef52568
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/agent-led-inbound-qualification.md
 - topics/ai-program-ownership.md
@@ -66,3 +69,22 @@ The strongest claim is that AI breaks the link between pipeline growth and headc
 - Canonical URL: https://www.intercom.com/blog/the-sales-growth-without-headcount-problem/
 - Raw markdown: `raw/readwise/ai-is-the-answer-to-the-sales-growth-without-headcount-problem-01kqb3yajezs0eewf37aspfcqf.md`
 - Raw HTML: `raw/readwise/ai-is-the-answer-to-the-sales-growth-without-headcount-problem-01kqb3yajezs0eewf37aspfcqf.html`
+
+## Full source text
+
+---
+readwise_id: 01kqb3yajezs0eewf37aspfcqf
+title: AI is the answer to the sales growth-without-headcount problem
+author: Pascaline Albin
+source_url: https://www.intercom.com/blog/the-sales-growth-without-headcount-problem/
+category: rss
+location: archive
+published_date: '2026-04-28'
+saved_at: '2026-04-28T22:39:14.071000+00:00'
+updated_at: '2026-05-02T20:44:09.664571+00:00'
+tags:
+- processed
+publication: Intercom
+---
+
+AI can create new sales pipeline without needing more salespeople. It works alongside human teams, handling early conversations so reps focus on deeper relationships. Success comes from dedicating someone to manage and improve the AI sales process.

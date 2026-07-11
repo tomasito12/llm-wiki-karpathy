@@ -10,6 +10,9 @@ assessed_as_of: '2026-06-03'
 ingested_at: '2026-06-16T00:22:34+00:00'
 canonical_url: https://medium.com/towards-deep-learning/pewdiepie-released-his-trillion-dollar-ai-project-for-free-442573dedd43
 content_sha256: ccbf90a955a2aeff473bcd57032a5bd806120176602c20e3250a691c8471a65e
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # PewDiePie Released His “Trillion-Dollar” AI Project for Free
@@ -45,3 +48,21 @@ The strongest tension in the article is between the marketing frame of “free C
 - Canonical URL: https://medium.com/towards-deep-learning/pewdiepie-released-his-trillion-dollar-ai-project-for-free-442573dedd43
 - Raw markdown: `raw/readwise/pewdiepie-released-his-trillion-dollar-ai-project-for-free-01ktpg789t4ma9vmfc1h1dh8gd.md`
 - Raw HTML: `raw/readwise/pewdiepie-released-his-trillion-dollar-ai-project-for-free-01ktpg789t4ma9vmfc1h1dh8gd.html`
+
+## Full source text
+
+---
+readwise_id: "01ktpg789t4ma9vmfc1h1dh8gd"
+title: "PewDiePie Released His “Trillion-Dollar” AI Project for Free"
+author: "Sumit Pandey"
+publication: "Medium"
+source_url: "https://medium.com/towards-deep-learning/pewdiepie-released-his-trillion-dollar-ai-project-for-free-442573dedd43"
+category: "article"
+location: "archive"
+published_date: "2026-06-03"
+saved_at: "2026-06-09T15:32:36.793000+00:00"
+updated_at: "2026-06-15T11:19:44.422302+00:00"
+tags: ["processed"]
+---
+
+PewDiePie released Odysseus, a free AI program that runs on your own computer without sending data to big companies. This software lets users keep their conversations private and avoid monthly fees, but it needs a powerful PC to work well. His goal is to give people control over AI and challenge big tech firms who charge for cloud AI services.

@@ -19,6 +19,9 @@ assessed_as_of: '2026-05-07'
 ingested_at: '2026-06-09T16:14:26.320618+00:00'
 canonical_url: mailto:reader-forwarded-email/1ef69bbbc96c07f13900232e6f99d923
 content_sha256: 728ea313449af79819b153fe6a49caef4ff1735b473edf76bdd319f78930f46d
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-05/ainews-anthropic-spacexai-s-300mw-5b-yr-deal-for-colossus-i-arr-growth-is-8000-a-agent-products-are-moving-toward-packaged-harness-features-not-just-0e6250e77a.md
 - signals/2026-05/ainews-anthropic-spacexai-s-300mw-5b-yr-deal-for-colossus-i-arr-growth-is-8000-a-inference-capacity-is-becoming-a-primary-product-constraint-for-fron-9515cc456e.md
@@ -65,3 +68,22 @@ The article repeatedly gestures at strategic significance, but some of the more 
 - Canonical URL: mailto:reader-forwarded-email/1ef69bbbc96c07f13900232e6f99d923
 - Raw markdown: `raw/readwise/ainews-anthropic-spacexai-s-300mw-5b-yr-deal-for-colossus-i-arr-growth-is-8000-annualized-01kr0gcs3j2p9zpxr8gz7n0n2j.md`
 - Raw HTML: `raw/readwise/ainews-anthropic-spacexai-s-300mw-5b-yr-deal-for-colossus-i-arr-growth-is-8000-annualized-01kr0gcs3j2p9zpxr8gz7n0n2j.html`
+
+## Full source text
+
+---
+readwise_id: "01kr0gcs3j2p9zpxr8gz7n0n2j"
+title: "[AINews] Anthropic-SpaceXai's 300MW/$5B/yr deal for Colossus I, ARR growth is
+ 8000% annualized"
+author: "AINews"
+publication: "Substack"
+source_url: "mailto:reader-forwarded-email/1ef69bbbc96c07f13900232e6f99d923"
+category: "email"
+location: "archive"
+published_date: "2026-05-07"
+saved_at: "2026-05-07T06:00:56.690000+00:00"
+updated_at: "2026-05-24T06:41:36.870849+00:00"
+tags: ["processed"]
+---
+
+Anthropic made a big deal with SpaceX to get more computing power for its Claude AI, boosting usage limits right away. This partnership helps Anthropic handle more users and improve features like managed agents and memory. People are watching if this growth and safety focus will help Anthropic compete with OpenAI and others.

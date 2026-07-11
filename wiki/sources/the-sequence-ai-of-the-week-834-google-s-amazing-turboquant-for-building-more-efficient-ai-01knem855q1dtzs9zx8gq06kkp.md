@@ -11,6 +11,9 @@ assessed_as_of: '2026-04-01'
 ingested_at: '2026-06-06T15:13:03.857176+00:00'
 canonical_url: https://thesequence.substack.com/p/the-sequence-ai-of-the-week-googles
 content_sha256: b8acb20b2947b0637573638ff9a1872384811d67ff62bb30e97bd4f2536ddfab
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # The Sequence AI of the Week #834: Google's AMAZING TurboQuant for Building More Efficient AI
@@ -46,3 +49,23 @@ The article’s language is strong relative to its evidence: it makes a broad ec
 - Canonical URL: https://thesequence.substack.com/p/the-sequence-ai-of-the-week-googles
 - Raw markdown: `raw/readwise/the-sequence-ai-of-the-week-834-google-s-amazing-turboquant-for-building-more-efficient-ai-01knem855q1dtzs9zx8gq06kkp.md`
 - Raw HTML: `raw/readwise/the-sequence-ai-of-the-week-834-google-s-amazing-turboquant-for-building-more-efficient-ai-01knem855q1dtzs9zx8gq06kkp.html`
+
+## Full source text
+
+---
+readwise_id: 01knem855q1dtzs9zx8gq06kkp
+title: 'The Sequence AI of the Week #834: Google''s AMAZING TurboQuant for Building
+  More Efficient AI'
+author: Jesus Rodriguez
+source_url: https://thesequence.substack.com/p/the-sequence-ai-of-the-week-googles
+category: rss
+location: archive
+published_date: '2026-04-01'
+saved_at: '2026-04-05T10:50:27.088000+00:00'
+updated_at: '2026-05-08T15:06:51.124357+00:00'
+tags:
+- processed
+publication: Substack
+---
+
+Google's TurboQuant improves AI efficiency by focusing on smart vector compression. It treats quantization as a key problem, not an afterthought. This approach helps save memory and changes how AI systems work.

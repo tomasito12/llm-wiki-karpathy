@@ -18,6 +18,9 @@ assessed_as_of: '2026-05-14'
 ingested_at: '2026-06-02T20:39:29.924023+00:00'
 canonical_url: mailto:reader-forwarded-email/bb3e9f063110dadcafd9afebc895c0d5
 content_sha256: 14e63180ce501b43e8d3b769bd617488574d71cf6e1342332d1f1536f431f420
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-05/ainews-codex-rises-claude-meters-programmatic-usage-01krja3234nq8fb9ard3rqhrns-agent-products-are-converging-on-durable-execution-and-inspectable-state.md
 derived_trends:
@@ -61,3 +64,21 @@ The roundup itself warns against reading too much into day-to-day swings, and th
 - Canonical URL: mailto:reader-forwarded-email/bb3e9f063110dadcafd9afebc895c0d5
 - Raw markdown: `raw/readwise/ainews-codex-rises-claude-meters-programmatic-usage-01krja3234nq8fb9ard3rqhrns.md`
 - Raw HTML: `raw/readwise/ainews-codex-rises-claude-meters-programmatic-usage-01krja3234nq8fb9ard3rqhrns.html`
+
+## Full source text
+
+---
+readwise_id: "01krja3234nq8fb9ard3rqhrns"
+title: "[AINews] Codex Rises, Claude Meters Programmatic Usage"
+author: "AINews"
+publication: "Substack"
+source_url: "mailto:reader-forwarded-email/bb3e9f063110dadcafd9afebc895c0d5"
+category: "email"
+location: "archive"
+published_date: "2026-05-14"
+saved_at: "2026-05-14T03:57:06.532000+00:00"
+updated_at: "2026-05-15T05:09:55.860228+00:00"
+tags: ["processed"]
+---
+
+Codex is gaining popularity among AI engineers due to good performance and generous usage limits, while Anthropic’s Claude faces mixed reactions over pricing changes. Major AI platforms like LangChain, Notion, and Cursor are improving tools for building and managing coding agents with better execution and state handling. Competition between Anthropic and OpenAI is shifting to pricing strategies and enterprise features, as both push for broader adoption in coding and AI automation.

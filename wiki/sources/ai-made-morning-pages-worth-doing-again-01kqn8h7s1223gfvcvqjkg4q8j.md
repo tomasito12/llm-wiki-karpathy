@@ -16,6 +16,9 @@ assessed_as_of: '2026-04-29'
 ingested_at: '2026-06-07T20:29:00.829666+00:00'
 canonical_url: https://medium.com/the-coach-life/i-fell-in-love-with-morning-pages-again-because-of-ai-48a7c76af7a1
 content_sha256: 9f1f2627731bc2c14b8f18ec16384ec4c563e5c72fa0866b85dfe72abf3cff58
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/ai-assisted-structured-writing-workflows.md
 - topics/time-boxed-ai-writing-routines.md
@@ -62,3 +65,22 @@ The article leans on a tension it does not fully resolve: AI is presented as bot
 - Canonical URL: https://medium.com/the-coach-life/i-fell-in-love-with-morning-pages-again-because-of-ai-48a7c76af7a1
 - Raw markdown: `raw/readwise/ai-made-morning-pages-worth-doing-again-01kqn8h7s1223gfvcvqjkg4q8j.md`
 - Raw HTML: `raw/readwise/ai-made-morning-pages-worth-doing-again-01kqn8h7s1223gfvcvqjkg4q8j.html`
+
+## Full source text
+
+---
+readwise_id: 01kqn8h7s1223gfvcvqjkg4q8j
+title: AI made morning pages worth doing again.
+author: Tony Stubblebine
+source_url: https://medium.com/the-coach-life/i-fell-in-love-with-morning-pages-again-because-of-ai-48a7c76af7a1
+category: article
+location: archive
+published_date: '2026-04-29'
+saved_at: '2026-05-02T21:11:55.424000+00:00'
+updated_at: '2026-05-03T12:42:34.061099+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+The author uses AI to make morning pages quicker and more helpful. AI turns messy thoughts into clear to-do lists and keeps focus during writing. This new way makes writing easier and boosts both mental clarity and productivity.

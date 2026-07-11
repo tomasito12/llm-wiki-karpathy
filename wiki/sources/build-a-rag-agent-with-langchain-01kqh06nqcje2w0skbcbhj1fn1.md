@@ -15,6 +15,9 @@ publication: Langchain
 ingested_at: '2026-06-06T21:43:58+00:00'
 canonical_url: https://docs.langchain.com/oss/python/langchain/rag
 content_sha256: d0de89e58c39ad43ea38affc88080295b5daf3e557a36dba94c3b9ee23d85537
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/two-step-document-ingestion.md
 derived_topics:
@@ -61,3 +64,21 @@ The tutorial presents the agent and two-step chain as straightforward options, b
 - Canonical URL: https://docs.langchain.com/oss/python/langchain/rag
 - Raw markdown: `raw/readwise/build-a-rag-agent-with-langchain-01kqh06nqcje2w0skbcbhj1fn1.md`
 - Raw HTML: `raw/readwise/build-a-rag-agent-with-langchain-01kqh06nqcje2w0skbcbhj1fn1.html`
+
+## Full source text
+
+---
+readwise_id: 01kqh06nqcje2w0skbcbhj1fn1
+title: Build a RAG agent with LangChain
+author: Docs by LangChain
+source_url: https://docs.langchain.com/oss/python/langchain/rag
+category: article
+location: archive
+saved_at: '2026-05-01T05:29:22.924000+00:00'
+updated_at: '2026-05-02T14:22:05.882073+00:00'
+tags:
+- processed
+publication: Langchain
+---
+
+One of the most powerful applications enabled by LLMs is sophisticated question-answering (Q&A) chatbots. These are applications that can answer questions about specific source information.

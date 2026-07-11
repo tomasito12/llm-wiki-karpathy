@@ -20,6 +20,9 @@ publication: cognigy.com
 ingested_at: '2026-06-06T21:45:24+00:00'
 canonical_url: https://www.cognigy.com/en/case-study/eon
 content_sha256: a3a13af241fc4aa7f52531aa486835b9db45a75dcd9ee2a2d76ca63d269c5906
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/cognigy-ai.md
 derived_topics:
@@ -70,3 +73,20 @@ The piece presents modularity, customization, and multi-channel orchestration as
 - Canonical URL: https://www.cognigy.com/en/case-study/eon
 - Raw markdown: `raw/readwise/e-on-s-ai-agents-provide-best-in-class-service-01krxb2edwbr7tb7hadmsrnbye.md`
 - Raw HTML: `raw/readwise/e-on-s-ai-agents-provide-best-in-class-service-01krxb2edwbr7tb7hadmsrnbye.html`
+
+## Full source text
+
+---
+readwise_id: "01krxb2edwbr7tb7hadmsrnbye"
+title: "E.ON's AI Agents Provide Best-in-Class Service"
+author: "NiCE Cognigy"
+publication: "cognigy.com"
+source_url: "https://www.cognigy.com/en/case-study/eon"
+category: "article"
+location: "archive"
+saved_at: "2026-05-18T10:45:53.724000+00:00"
+updated_at: "2026-05-21T11:18:18.112330+00:00"
+tags: ["processed"]
+---
+
+E.ON uses Cognigy.AI to provide 24/7 customer service through AI-powered chat and phone agents. This technology helps automate tasks, reduce costs, and improve service quality. Their AI solutions gather data to continuously enhance customer experiences across all channels.

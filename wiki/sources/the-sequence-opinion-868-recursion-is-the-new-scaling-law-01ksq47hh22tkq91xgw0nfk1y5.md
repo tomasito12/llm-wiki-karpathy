@@ -10,6 +10,9 @@ assessed_as_of: '2026-05-28'
 ingested_at: '2026-06-08T19:42:27.214087+00:00'
 canonical_url: https://thesequence.substack.com/p/the-sequence-opinion-868-recursion
 content_sha256: 178451304d5ddc856c7b8ccbb410d32a78c32b83d3a2a71b0cb9fd02e3f7a392
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # The Sequence Opinion #868: Recursion Is the New Scaling Law
@@ -45,3 +48,21 @@ The argument is provocative but thinly evidenced in the provided text. It contra
 - Canonical URL: https://thesequence.substack.com/p/the-sequence-opinion-868-recursion
 - Raw markdown: `raw/readwise/the-sequence-opinion-868-recursion-is-the-new-scaling-law-01ksq47hh22tkq91xgw0nfk1y5.md`
 - Raw HTML: `raw/readwise/the-sequence-opinion-868-recursion-is-the-new-scaling-law-01ksq47hh22tkq91xgw0nfk1y5.html`
+
+## Full source text
+
+---
+readwise_id: "01ksq47hh22tkq91xgw0nfk1y5"
+title: "The Sequence Opinion #868: Recursion Is the New Scaling Law"
+author: "Jesus Rodriguez"
+publication: "substack.com"
+source_url: "https://thesequence.substack.com/p/the-sequence-opinion-868-recursion"
+category: "rss"
+location: "archive"
+published_date: "2026-05-28"
+saved_at: "2026-05-28T11:06:32.939000+00:00"
+updated_at: "2026-05-31T12:29:35.645094+00:00"
+tags: ["processed"]
+---
+
+The technique pushing breakthroughs in agentic computing.

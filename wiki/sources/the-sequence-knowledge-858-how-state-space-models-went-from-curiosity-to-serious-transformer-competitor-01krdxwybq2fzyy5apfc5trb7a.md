@@ -11,6 +11,9 @@ assessed_as_of: '2026-05-12'
 ingested_at: '2026-06-09T15:47:29.733849+00:00'
 canonical_url: https://thesequence.substack.com/p/the-sequence-knowledge-858-how-state
 content_sha256: be960849f02eb9bf7d6a63b902a27374e6da9f671d7bb2b82916af2c6d81d022
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # The Sequence Knowledge #858: How State Space Models Went from Curiosity to Serious Transformer Competitor
@@ -46,3 +49,21 @@ The text makes a strong performance-comparison claim — that state space models
 - Canonical URL: https://thesequence.substack.com/p/the-sequence-knowledge-858-how-state
 - Raw markdown: `raw/readwise/the-sequence-knowledge-858-how-state-space-models-went-from-curiosity-to-serious-transformer-competitor-01krdxwybq2fzyy5apfc5trb7a.md`
 - Raw HTML: `raw/readwise/the-sequence-knowledge-858-how-state-space-models-went-from-curiosity-to-serious-transformer-competitor-01krdxwybq2fzyy5apfc5trb7a.html`
+
+## Full source text
+
+---
+readwise_id: "01krdxwybq2fzyy5apfc5trb7a"
+title: "The Sequence Knowledge #858: How State Space Models Went from Curiosity to Serious Transformer Competitor"
+author: "Jesus Rodriguez"
+publication: "substack.com"
+source_url: "https://thesequence.substack.com/p/the-sequence-knowledge-858-how-state"
+category: "rss"
+location: "archive"
+published_date: "2026-05-12"
+saved_at: "2026-05-12T11:07:02.464000+00:00"
+updated_at: "2026-05-12T15:30:06.780952+00:00"
+tags: ["processed"]
+---
+
+Inside the core ideas, potential and challenges of SSMs

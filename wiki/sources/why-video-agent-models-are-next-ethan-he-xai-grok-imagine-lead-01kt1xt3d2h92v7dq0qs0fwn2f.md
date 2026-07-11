@@ -27,6 +27,9 @@ assessed_as_of: '2026-06-01'
 ingested_at: '2026-06-08T15:59:16.029933+00:00'
 canonical_url: https://www.latent.space/p/video-agents
 content_sha256: af60e6c837141119d1035ecf56d68674c8441c664df2891e39fb64f739c5f7fc
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_interview_insights:
 - interview-insights/2026-06/why-video-agent-models-are-next-ethan-he-xai-grok-imagine-lead-01kt1xt3d2h92v7dq-context-selection-will-matter-more-than-brute-force-context-length-f-296c7c6585.md
 - interview-insights/2026-06/why-video-agent-models-are-next-ethan-he-xai-grok-imagine-lead-01kt1xt3d2h92v7dq-video-agents-are-a-practical-near-term-bridge-from-generation-to-int-90a93d6e76.md
@@ -78,3 +81,21 @@ Some of the framing is intentionally provocative. The claim that video-model int
 - Canonical URL: https://www.latent.space/p/video-agents
 - Raw markdown: `raw/readwise/why-video-agent-models-are-next-ethan-he-xai-grok-imagine-lead-01kt1xt3d2h92v7dq0qs0fwn2f.md`
 - Raw HTML: `raw/readwise/why-video-agent-models-are-next-ethan-he-xai-grok-imagine-lead-01kt1xt3d2h92v7dq0qs0fwn2f.html`
+
+## Full source text
+
+---
+readwise_id: "01kt1xt3d2h92v7dq0qs0fwn2f"
+title: "Why Video Agent models are next — Ethan He, xAI Grok Imagine Lead"
+author: "Latent Space"
+publication: "latent.space"
+source_url: "https://www.latent.space/p/video-agents"
+category: "podcast"
+location: "archive"
+published_date: "2026-06-01"
+saved_at: "2026-06-01T15:45:59.786000+00:00"
+updated_at: "2026-06-03T12:47:13.373054+00:00"
+tags: ["processed"]
+---
+
+Inside xAI: Building Grok Imagine in 3 Months, Videogen vs World Models, and why Grok Imagine is so underrated. For the first time, we do a deep dive with the guy who led it!

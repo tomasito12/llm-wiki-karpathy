@@ -22,6 +22,9 @@ assessed_as_of: '2026-06-02'
 ingested_at: '2026-06-08T19:37:55.532616+00:00'
 canonical_url: https://openai.com/index/travelers
 content_sha256: 1ea50b1b4e33a0eabb4c1bc7e2932410345cecdc9ba29d2af4068ee8bb5a3fed
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_implementation_studies:
 - implementation-studies/2026-06/travelers-deploys-ai-powered-claims-countrywide-with-openai-01kt4dsxth67ejb2f632ta4ry6-travelers-ai-claim-assistant-rollout.md
 derived_topics:
@@ -69,3 +72,21 @@ The strongest claims come from OpenAI’s own blog and a customer quote, so the 
 - Canonical URL: https://openai.com/index/travelers
 - Raw markdown: `raw/readwise/travelers-deploys-ai-powered-claims-countrywide-with-openai-01kt4dsxth67ejb2f632ta4ry6.md`
 - Raw HTML: `raw/readwise/travelers-deploys-ai-powered-claims-countrywide-with-openai-01kt4dsxth67ejb2f632ta4ry6.html`
+
+## Full source text
+
+---
+readwise_id: "01kt4dsxth67ejb2f632ta4ry6"
+title: "Travelers deploys AI-powered claims countrywide with OpenAI"
+author: "OpenAI Blog"
+publication: "openai.com"
+source_url: "https://openai.com/index/travelers"
+category: "rss"
+location: "archive"
+published_date: "2026-06-02"
+saved_at: "2026-06-02T15:04:00.154000+00:00"
+updated_at: "2026-06-02T16:47:22.072395+00:00"
+tags: ["processed"]
+---
+
+Travelers uses an AI Claim Assistant powered by OpenAI to help customers file auto damage claims quickly. The AI tool guides customers through the process and is available 24/7, even during busy times. Now, 85–90% of customers complete claims using this AI, improving service and letting staff handle complex cases.

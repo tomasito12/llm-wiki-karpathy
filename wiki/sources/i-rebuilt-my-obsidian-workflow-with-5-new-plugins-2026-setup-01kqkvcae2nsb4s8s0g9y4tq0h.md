@@ -12,6 +12,9 @@ assessed_as_of: '2026-04-18'
 ingested_at: '2026-05-25T15:56:51.591750+00:00'
 canonical_url: https://medium.com/@lennart.dde/i-rebuilt-my-obsidian-workflow-with-5-new-plugins-2026-setup-463f85509e3b
 content_sha256: 0c4bf6ac70870f8c28ce0a2ded632556e8ab2e60136990ee344156c04143ba6c
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/calendar.md
 - tools/linter.md
@@ -70,3 +73,22 @@ The article pushes a familiar productivity idea: the right system can remove fri
 - Canonical URL: https://medium.com/@lennart.dde/i-rebuilt-my-obsidian-workflow-with-5-new-plugins-2026-setup-463f85509e3b
 - Raw markdown: `raw/readwise/i-rebuilt-my-obsidian-workflow-with-5-new-plugins-2026-setup-01kqkvcae2nsb4s8s0g9y4tq0h.md`
 - Raw HTML: `raw/readwise/i-rebuilt-my-obsidian-workflow-with-5-new-plugins-2026-setup-01kqkvcae2nsb4s8s0g9y4tq0h.html`
+
+## Full source text
+
+---
+readwise_id: 01kqkvcae2nsb4s8s0g9y4tq0h
+title: I Rebuilt My Obsidian Workflow With 5 New Plugins (2026 Setup)
+author: Len
+source_url: https://medium.com/@lennart.dde/i-rebuilt-my-obsidian-workflow-with-5-new-plugins-2026-setup-463f85509e3b
+category: article
+location: archive
+published_date: '2026-04-18'
+saved_at: '2026-05-02T08:02:47.599000+00:00'
+updated_at: '2026-05-02T14:21:47.026785+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+The author fixed a messy note system by using five key plugins in Obsidian to make work easier. These tools help organize, search, format, add notes quickly, and track time. Now, the system works smoothly, so the author can focus more on research and less on managing files.

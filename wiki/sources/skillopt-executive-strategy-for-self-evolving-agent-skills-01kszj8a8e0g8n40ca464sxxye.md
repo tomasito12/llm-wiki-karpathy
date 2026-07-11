@@ -17,6 +17,9 @@ publication: arXiv.org
 ingested_at: '2026-06-08T19:47:13.504428+00:00'
 canonical_url: https://readwise-assets.s3.amazonaws.com/media/wisereads/articles/skillopt-executive-strategy-fo/1293.pdf
 content_sha256: d9b29c1c7fbbcf12e94d278d6b69f13d319e9ad798066fccf71a61ffc6ddcfd5
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/agent-skill-optimization.md
 - topics/bounded-text-updates-with-validation-gates.md
@@ -59,3 +62,20 @@ The strongest claims are empirical and bounded to the reported benchmarks; the p
 - Canonical URL: https://readwise-assets.s3.amazonaws.com/media/wisereads/articles/skillopt-executive-strategy-fo/1293.pdf
 - Raw markdown: `raw/readwise/skillopt-executive-strategy-for-self-evolving-agent-skills-01kszj8a8e0g8n40ca464sxxye.md`
 - Raw HTML: `raw/readwise/skillopt-executive-strategy-for-self-evolving-agent-skills-01kszj8a8e0g8n40ca464sxxye.html`
+
+## Full source text
+
+---
+readwise_id: "01kszj8a8e0g8n40ca464sxxye"
+title: "Skillopt: Executive Strategy For Self-Evolving Agent Skills"
+author: "Yifan Yang, Ziyang Gong, Weiquan Huang, Qihao Yang, Ziwei Zhou, Zisu Huang, Yan Li, Xuemei Gao, Qi Dai, Bei Liu, Kai Qiu, Yuqing Yang, Dongdong Chen, Xue Yang, Chong Luo"
+publication: "arXiv.org"
+source_url: "https://readwise-assets.s3.amazonaws.com/media/wisereads/articles/skillopt-executive-strategy-fo/1293.pdf"
+category: "pdf"
+location: "archive"
+saved_at: "2026-05-31T17:45:36.781000+00:00"
+updated_at: "2026-06-01T06:45:20.118634+00:00"
+tags: ["processed"]
+---
+
+SkillOpt: Executive Strategy for Self-Evolving Agent Skills Yifan Yang1 , ∗ , ‡ Ziyang Gong2 , ∗ Weiquan Huang3 , ∗ Qihao Yang2 , ∗ Ziwei Zhou4 , ∗ Zisu Huang4 , ∗ Yan Li 2 Xuemei Gao 1 Qi Dai 1 Bei Liu 1 Kai Qiu 1 Yuqing Yang 1 Dongdong Chen 1 Xue Yang2 , ‡ Chong Luo 1 1 Microsoft 2 Shanghai Jiao Tong University 3 Tongji University 4 Fudan University Agent skills today are hand-crafted, generated one-shot, or evolved through loosely controlled self-revision—none of which behaves like a deep-learning optimizer for the skill, and none of which reliably improves over its starting point under feedback. We argue the skill should instead be trained as the external state of a frozen agent, with the same discipline that makes weight-space optimization reproducible. SkillOpt is, to our knowledge, the first systematic controllable text-space optimizer for agent skills: a separate optimizer model turns scored rollouts into bounded add/delete/replace edits on a single skill document, and an edit is accepted only when it strictly improves a held-out validation score. A textual learning-rate budget, rejected-edit buffer, and epoch-wise slow/meta update make skill training stable while adding zero inference-time model calls at deployment. Across six benchmarks, seven target models, and three execution harnesses (direct chat, Codex, Claude Code), SkillOpt is best or tied on all 52 evaluated (model, benchmark, harness) cells and beats every per-cell competitor among human, one-shot LLM, Trace2Skill, TextGrad, GEPA, and EvoSkill skills. On GPT–5.5 it lifts the average no-skill accuracy by + 23 . 5 points in direct chat, by +24 . 8 inside the Codex agentic loop, and by +19 . 1 inside Claude Code. Transfer experiments further show that optimized skill artifacts retain value when moved across model scales, between Codex and Claude Code execution environments, and to a nearby math benchmark without further optimization. Code: https://aka.ms/SkillOpt Correspondence: yifanyang@microsoft.com, yangxue2019-sjtu@sjtu.edu.cn ∗ Equal contribution. ‡ Corresponding authors. 1 Introduction Frontier language models are increasingly deployed as agents, from single-prompt callers to multistep execution harnesses with tools, files, and verifiers [1–4]. In such settings, domain adaptation is no longer only about model weights or prompts: it also requires improving the procedures by which the agent gathers evidence, calls tools, follows domain conventions, and formats outputs [5, 6]. Agent skills provide a natural interface for this procedural adaptation [7, 8]: a skill is a portable natural-language artifact that packages procedures, domain heuristics, tool policies, output constraints, and failure modes, letting a frozen agent adapt through external text. If the recurring object of adaptation is the agent's procedure, the skill document itself should be trainable. Yet weight adaptation is often unavailable for closed frontier models and expensive Figure 1 Overview of SkillOpt. The target model executes tasks with a current skill, an additional frontier optimizer model converts trajectories into bounded add/delete/replace skill edits, and a held-out gate accepts only edits that improve validation performance. Accepted edits are exported as a reusable skill artifact, while rejected edits become negative feedback for later updates. for open ones, while manually written or one-shot skills are brittle under a target domain or harness. Recent systems convert execution experience into reusable textual artifacts—distilling trajectory lessons, refining skill folders via failure analysis, building domain-specific skill libraries, or optimizing prompts from trajectory feedback [9–13]—but leave open a more basic question: if skills are the adaptation layer, how should they be optimized? Our key idea is to treat skill editing as a controllable domain-adaptation process, with the skill document as the external state, an additional frontier model as the optimizer, and trainin…

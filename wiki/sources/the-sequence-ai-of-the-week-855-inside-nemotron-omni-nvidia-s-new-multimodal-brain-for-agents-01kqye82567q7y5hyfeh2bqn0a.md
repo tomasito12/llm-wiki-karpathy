@@ -11,6 +11,9 @@ assessed_as_of: '2026-05-06'
 ingested_at: '2026-06-08T18:42:43.767075+00:00'
 canonical_url: https://thesequence.substack.com/p/the-sequence-opinion-855-inside-nemotron
 content_sha256: 8ae3d03654cc3ae5998cd8ba005ffc6608ac526455695c8aca35e8a8847e2fcb
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # The Sequence AI of the Week #855: Inside Nemotron Omni: NVIDIA’s New Multimodal Brain for Agents
@@ -46,3 +49,23 @@ The article’s main argument is plausible, but it relies on an intuitive claim 
 - Canonical URL: https://thesequence.substack.com/p/the-sequence-opinion-855-inside-nemotron
 - Raw markdown: `raw/readwise/the-sequence-ai-of-the-week-855-inside-nemotron-omni-nvidia-s-new-multimodal-brain-for-agents-01kqye82567q7y5hyfeh2bqn0a.md`
 - Raw HTML: `raw/readwise/the-sequence-ai-of-the-week-855-inside-nemotron-omni-nvidia-s-new-multimodal-brain-for-agents-01kqye82567q7y5hyfeh2bqn0a.html`
+
+## Full source text
+
+---
+readwise_id: 01kqye82567q7y5hyfeh2bqn0a
+title: 'The Sequence AI of the Week #855: Inside Nemotron Omni: NVIDIA’s New Multimodal
+  Brain for Agents'
+author: Jesus Rodriguez
+source_url: https://thesequence.substack.com/p/the-sequence-opinion-855-inside-nemotron
+category: rss
+location: archive
+published_date: '2026-05-06'
+saved_at: '2026-05-06T10:44:53.103000+00:00'
+updated_at: '2026-05-06T12:42:08.992238+00:00'
+tags:
+- processed
+publication: Substack
+---
+
+The new member of the Nemotron family is an incredibly impressive release.

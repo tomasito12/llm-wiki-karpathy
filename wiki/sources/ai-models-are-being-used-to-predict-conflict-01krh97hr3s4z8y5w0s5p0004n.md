@@ -15,6 +15,9 @@ assessed_as_of: '2026-05-13'
 ingested_at: '2026-06-07T20:31:35.124790+00:00'
 canonical_url: https://www.economist.com/science-and-technology/2026/05/13/ai-models-are-being-used-to-predict-conflict
 content_sha256: 6f23edb97c642a8ee81b6dceba6ee062e199422f385943c53939d84da9cdd5a9
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/conflict-forecasting-models.md
 - topics/forecasting-with-noisy-public-signals.md
@@ -61,3 +64,21 @@ The piece is enthusiastic about newer models, but the evidence remains uneven: s
 - Canonical URL: https://www.economist.com/science-and-technology/2026/05/13/ai-models-are-being-used-to-predict-conflict
 - Raw markdown: `raw/readwise/ai-models-are-being-used-to-predict-conflict-01krh97hr3s4z8y5w0s5p0004n.md`
 - Raw HTML: `raw/readwise/ai-models-are-being-used-to-predict-conflict-01krh97hr3s4z8y5w0s5p0004n.html`
+
+## Full source text
+
+---
+readwise_id: "01krh97hr3s4z8y5w0s5p0004n"
+title: "AI models are being used to predict conflict"
+author: "The Economist"
+publication: "Economist"
+source_url: "https://www.economist.com/science-and-technology/2026/05/13/ai-models-are-being-used-to-predict-conflict"
+category: "article"
+location: "archive"
+published_date: "2026-05-13"
+saved_at: "2026-05-13T18:22:50.627000+00:00"
+updated_at: "2026-05-18T16:00:30.774666+00:00"
+tags: ["processed"]
+---
+
+AI models are being used to predict conflicts by analyzing data like past violence, social media, and satellite images. These models help forecast unrest and displacement but can struggle to predict new conflicts accurately. Experts remain cautious because data gaps and disinformation can reduce the models’ reliability.

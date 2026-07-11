@@ -16,6 +16,9 @@ assessed_as_of: '2026-04-03'
 ingested_at: '2026-06-06T21:36:22+00:00'
 canonical_url: https://www.latent.space/p/ainews-gemma-4-the-best-small-multimodal
 content_sha256: 1942b527216176dbc579d8676201aa073823d92381a36e4f016bfa13a6458224
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-04/ainews-gemma-4-the-best-small-multimodal-open-models-dramatically-better-than-ge-open-weight-multimodal-models-are-becoming-practical-on-consumer-har-ca5212ff73.md
 derived_trends:
@@ -59,3 +62,23 @@ There is some tension between the launch framing and the more cautious commentar
 - Canonical URL: https://www.latent.space/p/ainews-gemma-4-the-best-small-multimodal
 - Raw markdown: `raw/readwise/ainews-gemma-4-the-best-small-multimodal-open-models-dramatically-better-than-gemma-3-in-every-way-01knem57hfame0pzsphs0m5kx4.md`
 - Raw HTML: `raw/readwise/ainews-gemma-4-the-best-small-multimodal-open-models-dramatically-better-than-gemma-3-in-every-way-01knem57hfame0pzsphs0m5kx4.html`
+
+## Full source text
+
+---
+readwise_id: 01knem57hfame0pzsphs0m5kx4
+title: '[AINews] Gemma 4: The best small Multimodal Open Models, dramatically better
+  than Gemma 3 in every way'
+author: Latent Space
+source_url: https://www.latent.space/p/ainews-gemma-4-the-best-small-multimodal
+category: rss
+location: archive
+published_date: '2026-04-03'
+saved_at: '2026-04-05T10:48:51.207000+00:00'
+updated_at: '2026-05-06T12:37:51.778056+00:00'
+tags:
+- processed
+publication: Latent
+---
+
+Google DeepMind released Gemma 4, a powerful open multimodal model family that runs on phones and laptops with improved licensing and much better performance than Gemma 3. Gemma 4 supports text, images, and video, excels at reasoning, and is efficient despite its smaller size compared to other top models. Its success comes from better training and data, not big architectural changes, making it ideal for local AI agents and edge deployment.

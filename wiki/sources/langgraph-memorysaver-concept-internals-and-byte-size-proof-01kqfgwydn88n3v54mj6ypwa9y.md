@@ -10,6 +10,9 @@ assessed_as_of: '2026-03-26'
 ingested_at: '2026-06-06T21:59:06+00:00'
 canonical_url: https://medium.com/data-and-beyond/langgraph-memorysaver-concept-internals-and-byte-size-proof-f079e7a9ae09
 content_sha256: ec4343032280b85613e84628bd02812bda895634f9e60d6d758587ea5b572115
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # LangGraph MemorySaver — Concept, Internals and Byte Size Proof
@@ -45,3 +48,22 @@ The strongest claim is that repeated before/after sizes prove MemorySaver never 
 - Canonical URL: https://medium.com/data-and-beyond/langgraph-memorysaver-concept-internals-and-byte-size-proof-f079e7a9ae09
 - Raw markdown: `raw/readwise/langgraph-memorysaver-concept-internals-and-byte-size-proof-01kqfgwydn88n3v54mj6ypwa9y.md`
 - Raw HTML: `raw/readwise/langgraph-memorysaver-concept-internals-and-byte-size-proof-01kqfgwydn88n3v54mj6ypwa9y.html`
+
+## Full source text
+
+---
+readwise_id: 01kqfgwydn88n3v54mj6ypwa9y
+title: LangGraph MemorySaver — Concept, Internals and Byte Size Proof
+author: Nachiket Mehendale
+source_url: https://medium.com/data-and-beyond/langgraph-memorysaver-concept-internals-and-byte-size-proof-f079e7a9ae09
+category: article
+location: archive
+published_date: '2026-03-26'
+saved_at: '2026-04-30T15:42:41.077000+00:00'
+updated_at: '2026-05-02T14:24:32.362626+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+MemorySaver is a tool that keeps the entire chat conversation in RAM during an active session. It stores all messages and context without deleting anything between prompts, making memory cumulative and persistent. However, if the program restarts or the page refreshes, all stored data is lost.

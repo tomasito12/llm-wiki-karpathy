@@ -18,6 +18,9 @@ publication: GitHub
 ingested_at: '2026-06-06T21:49:12+00:00'
 canonical_url: https://github.com/garrytan/gbrain
 content_sha256: 060b7ab7e478e8c9642e9dda45c068035435a284947577c6450ac5d7064bb31e
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/gbrain.md
 derived_topics:
@@ -68,3 +71,21 @@ The page frames the system as making an agent 'smarter over time,' but the evide
 - Canonical URL: https://github.com/garrytan/gbrain
 - Raw markdown: `raw/readwise/github-garrytan-gbrain-garry-s-opinionated-openclaw-brain-github-01kqh0a0ndw29gjtjmft53j486.md`
 - Raw HTML: `raw/readwise/github-garrytan-gbrain-garry-s-opinionated-openclaw-brain-github-01kqh0a0ndw29gjtjmft53j486.html`
+
+## Full source text
+
+---
+readwise_id: 01kqh0a0ndw29gjtjmft53j486
+title: 'GitHub - garrytan/gbrain: Garry''s Opinionated OpenClaw Brain · GitHub'
+author: https://github.com/garrytan/
+source_url: https://github.com/garrytan/gbrain
+category: article
+location: archive
+saved_at: '2026-05-01T05:31:12.429000+00:00'
+updated_at: '2026-05-02T14:22:00.264220+00:00'
+tags:
+- processed
+publication: GitHub
+---
+
+GBrain is a tool that helps AI agents organize and search through large collections of markdown files using advanced search techniques. It keeps knowledge updated by reading new information, linking related ideas, and storing everything in a searchable database. Users can interact with GBrain via a command-line interface or integrate it with AI agents to create a smart, personal knowledge system.

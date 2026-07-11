@@ -22,6 +22,9 @@ assessed_as_of: '2026-04-25'
 ingested_at: '2026-06-06T21:55:41+00:00'
 canonical_url: https://medium.com/@codysandahl/i-finally-have-my-dream-local-ai-stack-and-it-runs-on-amd-c9f4935788f9
 content_sha256: 83b6d2a619f01dabc292a78fb681165648def211051fdc41a69a0064ed07c27c
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_models:
 - foundation-models/gemma-4.md
 derived_tools:
@@ -76,3 +79,22 @@ The piece makes a strong product recommendation for Lemonade over Ollama on AMD,
 - Canonical URL: https://medium.com/@codysandahl/i-finally-have-my-dream-local-ai-stack-and-it-runs-on-amd-c9f4935788f9
 - Raw markdown: `raw/readwise/i-finally-have-my-dream-local-ai-stack-and-it-runs-on-amd-01kqz00ky4865ndwsss3xegt6m.md`
 - Raw HTML: `raw/readwise/i-finally-have-my-dream-local-ai-stack-and-it-runs-on-amd-01kqz00ky4865ndwsss3xegt6m.html`
+
+## Full source text
+
+---
+readwise_id: 01kqz00ky4865ndwsss3xegt6m
+title: I Finally Have My Dream Local AI Stack (and it runs on AMD)
+author: Cody Sandahl
+source_url: https://medium.com/@codysandahl/i-finally-have-my-dream-local-ai-stack-and-it-runs-on-amd-c9f4935788f9
+category: article
+location: archive
+published_date: '2026-04-25'
+saved_at: '2026-05-06T15:55:26.532000+00:00'
+updated_at: '2026-05-06T17:37:48.470907+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+The author built a powerful local AI system using AMD hardware and open-source tools, avoiding costly cloud fees. This setup runs large models smoothly on a single machine with strong privacy and remote access. The key is using Lemonade Server for local AI and LiteLLM for occasional cloud needs, making local AI practical and reliable.

@@ -18,6 +18,9 @@ assessed_as_of: '2026-05-14'
 ingested_at: '2026-06-06T15:19:28.192391+00:00'
 canonical_url: https://baldurbjarnason.com/2026/the-old-world-of-tech-is-dying/
 content_sha256: 90f490eaf119eb6346c8052f6dee8d8b9988f4a2440674df8a08f43765d18370
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/software-control-strategies.md
 - topics/technopoly-and-tech-hegemony.md
@@ -64,3 +67,21 @@ Several claims are deliberately sweeping and should be treated cautiously. The a
 - Canonical URL: https://baldurbjarnason.com/2026/the-old-world-of-tech-is-dying/
 - Raw markdown: `raw/readwise/the-old-world-of-tech-is-dying-and-the-new-cannot-be-born-01ksfr03gjx8v4kc722654j2ff.md`
 - Raw HTML: `raw/readwise/the-old-world-of-tech-is-dying-and-the-new-cannot-be-born-01ksfr03gjx8v4kc722654j2ff.html`
+
+## Full source text
+
+---
+readwise_id: "01ksfr03gjx8v4kc722654j2ff"
+title: "The old world of tech is dying and the new cannot be born"
+author: "baldurbjarnason.com"
+publication: "Baldurbjarnason"
+source_url: "https://baldurbjarnason.com/2026/the-old-world-of-tech-is-dying/"
+category: "article"
+location: "archive"
+published_date: "2026-05-14"
+saved_at: "2026-05-25T14:18:19.390000+00:00"
+updated_at: "2026-05-26T08:30:05.131737+00:00"
+tags: ["processed"]
+---
+
+The old US-led global tech system is losing power and control. New challenges from countries like China and crises like Hormuz are breaking this system. The future of tech is uncertain, with risks of collapse or change ahead.

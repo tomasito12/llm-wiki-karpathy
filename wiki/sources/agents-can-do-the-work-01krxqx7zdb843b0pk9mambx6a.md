@@ -17,6 +17,9 @@ assessed_as_of: '2026-05-18'
 ingested_at: '2026-06-06T16:27:47.558732+00:00'
 canonical_url: https://www.intercom.com/blog/agents-can-do-the-work/
 content_sha256: e9403fecb39c537519c6f32710e910d1e2af7f2d161b6e40cb36fc9cafbec0aa
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/ai-workflow-restructuring.md
 - topics/organizational-ai-readiness.md
@@ -63,3 +66,21 @@ The article pushes back on the common belief that model capability is the main b
 - Canonical URL: https://www.intercom.com/blog/agents-can-do-the-work/
 - Raw markdown: `raw/readwise/agents-can-do-the-work-01krxqx7zdb843b0pk9mambx6a.md`
 - Raw HTML: `raw/readwise/agents-can-do-the-work-01krxqx7zdb843b0pk9mambx6a.html`
+
+## Full source text
+
+---
+readwise_id: "01krxqx7zdb843b0pk9mambx6a"
+title: "Agents can do the work"
+author: "Jennifer Murphy"
+publication: "The Intercom Blog"
+source_url: "https://www.intercom.com/blog/agents-can-do-the-work/"
+category: "rss"
+location: "archive"
+published_date: "2026-05-18"
+saved_at: "2026-05-18T14:30:11.766000+00:00"
+updated_at: "2026-06-03T06:40:05.330035+00:00"
+tags: ["processed"]
+---
+
+Agents today are more capable than ever. When businesses struggle to deploy them, it's a reflection of organizational readiness.

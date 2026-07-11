@@ -19,6 +19,9 @@ assessed_as_of: '2026-05-08'
 ingested_at: '2026-06-05T16:06:37.259897+00:00'
 canonical_url: https://www.intercom.com/blog/how-we-turned-support-into-a-revenue-engine-at-intercom/
 content_sha256: f413ec6733e83e4ca9014377c3efd7246ccebc621c9c0e9cfce2caf25485b87f
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_implementation_studies:
 - implementation-studies/2026-05/how-we-turned-support-into-a-revenue-engine-at-intercom-01kr41vhmpc9qb8f13kzbza6ve-intercom-s-consultative-support-transformation.md
 derived_topics:
@@ -69,3 +72,22 @@ The headline implies a support function becoming a revenue engine, but the evide
 - Canonical URL: https://www.intercom.com/blog/how-we-turned-support-into-a-revenue-engine-at-intercom/
 - Raw markdown: `raw/readwise/how-we-turned-support-into-a-revenue-engine-at-intercom-01kr41vhmpc9qb8f13kzbza6ve.md`
 - Raw HTML: `raw/readwise/how-we-turned-support-into-a-revenue-engine-at-intercom-01kr41vhmpc9qb8f13kzbza6ve.html`
+
+## Full source text
+
+---
+readwise_id: 01kr41vhmpc9qb8f13kzbza6ve
+title: How we turned support into a revenue engine at Intercom
+author: Franka Martinovic
+source_url: https://www.intercom.com/blog/how-we-turned-support-into-a-revenue-engine-at-intercom/
+category: rss
+location: archive
+published_date: '2026-05-08'
+saved_at: '2026-05-08T15:03:46.655000+00:00'
+updated_at: '2026-05-08T15:11:11.892974+00:00'
+tags:
+- processed
+publication: Intercom
+---
+
+We used freed-up capacity from Fin to spin up a consultative support function, which has changed the way we operate and driven meaningful business results.

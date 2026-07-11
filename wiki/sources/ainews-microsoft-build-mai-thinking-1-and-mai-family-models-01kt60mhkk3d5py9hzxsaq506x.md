@@ -15,6 +15,9 @@ assessed_as_of: '2026-06-03'
 ingested_at: '2026-06-06T14:03:52.376421+00:00'
 canonical_url: mailto:reader-forwarded-email/9e47db253deff80411a69bddb82691f8
 content_sha256: a4f3388cb333dab260fca9ab325bd14adc0e6666c7148f2e3a4c4157543b289d
+source_text_available: false
+source_text_mode: missing
+source_text_source: none
 derived_signals:
 - signals/2026-06/ainews-microsoft-build-mai-thinking-1-and-mai-family-models-01kt60mhkk3d5py9hzxsaq506x-microsoft-is-packaging-agents-as-an-end-to-end-platform-stack.md
 derived_trends:
@@ -58,3 +61,7 @@ There is visible tension in the source around parameter accounting and compute e
 - Canonical URL: mailto:reader-forwarded-email/9e47db253deff80411a69bddb82691f8
 - Raw markdown: `raw/readwise/ainews-microsoft-build-mai-thinking-1-and-mai-family-models-01kt60mhkk3d5py9hzxsaq506x.md`
 - Raw HTML: `raw/readwise/ainews-microsoft-build-mai-thinking-1-and-mai-family-models-01kt60mhkk3d5py9hzxsaq506x.html`
+
+## Full source text
+
+Full source text is not available locally. Raw metadata is listed above.

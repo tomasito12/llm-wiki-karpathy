@@ -10,6 +10,9 @@ assessed_as_of: '2026-05-27'
 ingested_at: '2026-06-05T19:51:47.065778+00:00'
 canonical_url: mailto:reader-forwarded-email/77ab5655d0a61b5a16d6d9f6a252a695
 content_sha256: 2ddfd9de1eb8e3319d15180cafe53d841a5582b48826c45d424972b081f80924
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # 🔬ESMFold2: The Bitter Lesson is Coming for Proteins - Alex Rives, BioHub
@@ -45,3 +48,21 @@ The article’s rhetoric leans hard on the ‘Bitter Lesson’ and ‘world mode
 - Canonical URL: mailto:reader-forwarded-email/77ab5655d0a61b5a16d6d9f6a252a695
 - Raw markdown: `raw/readwise/esmfold2-the-bitter-lesson-is-coming-for-proteins-alex-rives-biohub-01ksn8the62x1rdy5sz97gc2rj.md`
 - Raw HTML: `raw/readwise/esmfold2-the-bitter-lesson-is-coming-for-proteins-alex-rives-biohub-01ksn8the62x1rdy5sz97gc2rj.html`
+
+## Full source text
+
+---
+readwise_id: "01ksn8the62x1rdy5sz97gc2rj"
+title: "🔬ESMFold2: The Bitter Lesson is Coming for Proteins - Alex Rives, BioHub"
+author: "Latent.Space"
+publication: "Substack"
+source_url: "mailto:reader-forwarded-email/77ab5655d0a61b5a16d6d9f6a252a695"
+category: "email"
+location: "archive"
+published_date: "2026-05-27"
+saved_at: "2026-05-27T17:48:23.878000+00:00"
+updated_at: "2026-05-31T11:36:02.973872+00:00"
+tags: ["processed"]
+---
+
+ESMFold2 is a new AI model that predicts protein structures by learning from billions of protein sequences without relying on traditional methods. It works well for complex proteins like antibodies, where older models struggle. This approach helps scientists design new proteins and understand biology better, moving towards programmable biology.

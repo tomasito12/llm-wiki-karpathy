@@ -20,6 +20,9 @@ assessed_as_of: '2026-06-08'
 ingested_at: '2026-06-16T15:32:50+00:00'
 canonical_url: https://x.com/mvanhorn/status/2063865685558903149/?rw_tt_thread=True
 content_sha256: f05f670c97a1ddde04125a7e5b0eeb62ac7a3f69dc94d008c3e400c85bf3375c
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/agentic-coding-workflows.md
 - topics/verification-loops-in-ai-workflows.md
@@ -66,3 +69,21 @@ The article pushes back on the idea that loops are “just cron,” but the boun
 - Canonical URL: https://x.com/mvanhorn/status/2063865685558903149/?rw_tt_thread=True
 - Raw markdown: `raw/readwise/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9.md`
 - Raw HTML: `raw/readwise/wtf-is-a-loop-peter-steinberger-vs-boris-cherny-01kv4td5axnc0n0j86fd9vgxm9.html`
+
+## Full source text
+
+---
+readwise_id: "01kv4td5axnc0n0j86fd9vgxm9"
+title: "WTF Is a Loop? Peter Steinberger vs. Boris Cherny"
+author: "Matt Van Horn"
+publication: "X (formerly Twitter)"
+source_url: "https://x.com/mvanhorn/status/2063865685558903149/?rw_tt_thread=True"
+category: "tweet"
+location: "archive"
+published_date: "2026-06-08"
+saved_at: "2026-06-15T04:59:58.173000+00:00"
+updated_at: "2026-06-15T11:06:04.267923+00:00"
+tags: ["processed"]
+---
+
+A loop is a small program that prompts an AI agent, checks its work, and repeats until done. The real challenge is making loops reliable and stopping them from running forever. Loops are now the costly part of AI coding, not writing the code itself.

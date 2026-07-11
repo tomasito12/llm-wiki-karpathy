@@ -17,6 +17,9 @@ assessed_as_of: '2026-05-05'
 ingested_at: '2026-05-19T16:21:37.425795+00:00'
 canonical_url: https://openai.com/index/gpt-5-5-instant
 content_sha256: c393d8b4183bff41925b0b06fb1d3a4179e26071a520c661b334b01e722de1d6
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/hallucinations.md
 derived_models:
@@ -71,3 +74,22 @@ The article highlights a clean narrative of better accuracy, tighter answers, an
 - Canonical URL: https://openai.com/index/gpt-5-5-instant
 - Raw markdown: `raw/readwise/gpt-5-5-instant-smarter-clearer-and-more-personalized-01kqwq48t17nzsnykvwspqt7s1.md`
 - Raw HTML: `raw/readwise/gpt-5-5-instant-smarter-clearer-and-more-personalized-01kqwq48t17nzsnykvwspqt7s1.html`
+
+## Full source text
+
+---
+readwise_id: 01kqwq48t17nzsnykvwspqt7s1
+title: 'GPT-5.5 Instant: smarter, clearer, and more personalized'
+author: OpenAI Blog
+source_url: https://openai.com/index/gpt-5-5-instant
+category: rss
+location: archive
+published_date: '2026-05-05'
+saved_at: '2026-05-05T18:41:34.161000+00:00'
+updated_at: '2026-05-07T04:39:55.567452+00:00'
+tags:
+- processed
+publication: OpenAI
+---
+
+GPT-5.5 Instant is a smarter and clearer update to ChatGPT that gives more accurate and personalized answers. It uses less words and better remembers your past chats to help you faster. This new version is now the default for everyone and improves everyday tasks like math, science, and photo analysis.

@@ -16,6 +16,9 @@ assessed_as_of: '2026-04-29'
 ingested_at: '2026-05-18T15:49:13.762205+00:00'
 canonical_url: https://medium.com/@msakhatsky/you-probably-dont-need-a-graph-database-for-your-knowledge-graph-7178054fe3d3
 content_sha256: e3cdcfef2324d31f72ba98d96bb0622672bcc02067eaec6d59cfce4664bc7904
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/datalog.md
 - glossary/ontology.md
@@ -69,3 +72,22 @@ The piece usefully challenges a common default, but it may overgeneralize from o
 - Canonical URL: https://medium.com/@msakhatsky/you-probably-dont-need-a-graph-database-for-your-knowledge-graph-7178054fe3d3
 - Raw markdown: `raw/readwise/you-probably-don-t-need-a-graph-database-for-your-knowledge-graph-01kqz02qzddjehycrjafswxv5r.md`
 - Raw HTML: `raw/readwise/you-probably-don-t-need-a-graph-database-for-your-knowledge-graph-01kqz02qzddjehycrjafswxv5r.html`
+
+## Full source text
+
+---
+readwise_id: 01kqz02qzddjehycrjafswxv5r
+title: You Probably Don’t Need a Graph Database for Your Knowledge Graph
+author: Michael Sakhatsky
+source_url: https://medium.com/@msakhatsky/you-probably-dont-need-a-graph-database-for-your-knowledge-graph-7178054fe3d3
+category: article
+location: archive
+published_date: '2026-04-29'
+saved_at: '2026-05-06T15:56:36.205000+00:00'
+updated_at: '2026-05-06T17:36:01.289820+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+Graph databases are good but often not the best choice for storing company knowledge. Many teams do better using rule engines and logic programming like Datalog, which are simpler and faster. Before choosing a graph database, consider other tools that fit your needs and skills better.

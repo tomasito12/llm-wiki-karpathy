@@ -23,6 +23,9 @@ assessed_as_of: '2026-04-02'
 ingested_at: '2026-06-09T18:43:16+00:00'
 canonical_url: https://thesequence.substack.com/p/the-sequence-chat-835-illia-polosukhin
 content_sha256: 6cdf5b8efa350054631607e809e2b3546833e8e5b4709cc41114284e6c7495c5
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_interview_insights:
 - interview-insights/2026-04/the-sequence-chat-835-illia-polosukhin-on-near-ai-authoring-the-transformer-pape-confidential-inference-is-the-first-useful-entry-point-for-private-a-dbafcb53c8.md
 - interview-insights/2026-04/the-sequence-chat-835-illia-polosukhin-on-near-ai-authoring-the-transformer-pape-intents-are-a-declarative-interface-for-cross-chain-and-agent-commer-f767db47a9.md
@@ -74,3 +77,23 @@ Several claims are strong opinions presented without empirical backing, especial
 - Canonical URL: https://thesequence.substack.com/p/the-sequence-chat-835-illia-polosukhin
 - Raw markdown: `raw/readwise/the-sequence-chat-835-illia-polosukhin-on-near-ai-authoring-the-transformer-paper-and-decentralized-and-private-ai-01knem854rccyz9jt3tmexffg8.md`
 - Raw HTML: `raw/readwise/the-sequence-chat-835-illia-polosukhin-on-near-ai-authoring-the-transformer-paper-and-decentralized-and-private-ai-01knem854rccyz9jt3tmexffg8.html`
+
+## Full source text
+
+---
+readwise_id: 01knem854rccyz9jt3tmexffg8
+title: 'The Sequence Chat #835: Illia Polosukhin on NEAR AI, Authoring the Transformer
+  Paper and Decentralized and Private AI'
+author: Jesus Rodriguez
+source_url: https://thesequence.substack.com/p/the-sequence-chat-835-illia-polosukhin
+category: rss
+location: archive
+published_date: '2026-04-02'
+saved_at: '2026-04-05T10:50:30.057000+00:00'
+updated_at: '2026-05-08T15:06:13.871283+00:00'
+tags:
+- processed
+publication: Substack
+---
+
+Illia Polosukhin, coauthor of the transformer paper, is building a decentralized and private AI ecosystem with NEAR AI. He believes future AI will use smaller, specialized models running locally and coordinating peer-to-peer, focusing on privacy and user control. Polosukhin predicts AI agents will handle most commerce, using blockchain for secure financial transactions and privacy.

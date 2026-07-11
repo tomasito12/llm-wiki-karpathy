@@ -20,6 +20,9 @@ assessed_as_of: '2026-04-02'
 ingested_at: '2026-06-05T17:15:45.331869+00:00'
 canonical_url: https://www.latent.space/p/moonlake
 content_sha256: 35c93ec28e55f49ca8ffdfb6a61c9861e29bfcdddb76f5bc76f7dd4e72ea6f1b
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_interview_insights:
 - interview-insights/2026-04/moonlake-causal-world-models-should-be-multimodal-interactive-and-efficient-with-action-conditioned-world-models-beat-passive-video-prediction-for-in-36d92abd30.md
 - interview-insights/2026-04/moonlake-causal-world-models-should-be-multimodal-interactive-and-efficient-with-game-engines-are-useful-because-they-expose-actions-state-physics-an-fa1c8f90b1.md
@@ -65,3 +68,23 @@ The conversation is explicitly opinionated, and several claims are more philosop
 - Canonical URL: https://www.latent.space/p/moonlake
 - Raw markdown: `raw/readwise/moonlake-causal-world-models-should-be-multimodal-interactive-and-efficient-with-chris-manning-and-fan-yun-sun-01knem57jh58hr3vntwm29vvc7.md`
 - Raw HTML: `raw/readwise/moonlake-causal-world-models-should-be-multimodal-interactive-and-efficient-with-chris-manning-and-fan-yun-sun-01knem57jh58hr3vntwm29vvc7.html`
+
+## Full source text
+
+---
+readwise_id: 01knem57jh58hr3vntwm29vvc7
+title: 'Moonlake: Causal World Models should be Multimodal, Interactive, and Efficient
+  — with Chris Manning and Fan-yun Sun'
+author: Latent Space
+source_url: https://www.latent.space/p/moonlake
+category: podcast
+location: archive
+published_date: '2026-04-02'
+saved_at: '2026-04-05T10:48:48.241000+00:00'
+updated_at: '2026-05-08T11:46:10.492465+00:00'
+tags:
+- processed
+publication: Latent
+---
+
+Moonlake focuses on building world models that are multimodal, interactive, and efficient for real-time use. These models combine vision, language, and audio to create consistent, controllable, and immersive virtual worlds. The goal is to enable long-term planning and human intent through programmable and adaptable simulations.

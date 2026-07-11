@@ -23,6 +23,9 @@ publication: Anthropic
 ingested_at: '2026-06-16T15:11:54+00:00'
 canonical_url: https://www.anthropic.com/institute/recursive-self-improvement
 content_sha256: 6d0cfcc0c825e523a536d7b80f3fba5efd67dfae494cdea55f4014b7a1612786
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/amdahl-s-law.md
 - glossary/recursive-self-improvement.md
@@ -80,3 +83,20 @@ The article is strongest where it reports specific measurements and weakest wher
 - Canonical URL: https://www.anthropic.com/institute/recursive-self-improvement
 - Raw markdown: `raw/readwise/when-ai-builds-itself-01kv4t9e77krbk1p0jwvt7pkyp.md`
 - Raw HTML: `raw/readwise/when-ai-builds-itself-01kv4t9e77krbk1p0jwvt7pkyp.html`
+
+## Full source text
+
+---
+readwise_id: "01kv4t9e77krbk1p0jwvt7pkyp"
+title: "When AI builds itself"
+author: "anthropic.com"
+publication: "Anthropic"
+source_url: "https://www.anthropic.com/institute/recursive-self-improvement"
+category: "article"
+location: "archive"
+saved_at: "2026-06-15T04:57:56.199000+00:00"
+updated_at: "2026-06-15T15:07:43.136008+00:00"
+tags: ["processed"]
+---
+
+Anthropic uses AI to help build better AI, making their work much faster and more efficient. AI systems like Claude can do complex tasks quickly and improve over time, sometimes matching or surpassing humans. In the future, AI might design and build itself with humans mainly overseeing the process.

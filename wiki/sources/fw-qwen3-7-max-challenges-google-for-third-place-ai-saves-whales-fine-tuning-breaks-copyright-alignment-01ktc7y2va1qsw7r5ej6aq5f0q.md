@@ -21,6 +21,9 @@ assessed_as_of: '2026-06-05'
 ingested_at: '2026-06-10T15:09:18+00:00'
 canonical_url: mailto:reader-forwarded-email/b59de32f6b5ead637c13f8f9bc363cad
 content_sha256: c514d7cd9ae93666f9d99ec50236e124d0bf3e364a59838de4cfdcef227589eb
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-06/fw-qwen3-7-max-challenges-google-for-third-place-ai-saves-whales-fine-tuning-bre-fine-tuning-can-reactivate-memorized-training-text-6b64d2923f.md
 - signals/2026-06/fw-qwen3-7-max-challenges-google-for-third-place-ai-saves-whales-fine-tuning-bre-human-in-the-loop-thermal-sensing-is-making-whale-avoidance-operatio-48277942aa.md
@@ -70,3 +73,21 @@ The roundup mixes hard benchmark claims with vendor statements, internal tests, 
 - Canonical URL: mailto:reader-forwarded-email/b59de32f6b5ead637c13f8f9bc363cad
 - Raw markdown: `raw/readwise/fw-qwen3-7-max-challenges-google-for-third-place-ai-saves-whales-fine-tuning-breaks-copyright-alignment-01ktc7y2va1qsw7r5ej6aq5f0q.md`
 - Raw HTML: `raw/readwise/fw-qwen3-7-max-challenges-google-for-third-place-ai-saves-whales-fine-tuning-breaks-copyright-alignment-01ktc7y2va1qsw7r5ej6aq5f0q.html`
+
+## Full source text
+
+---
+readwise_id: "01ktc7y2va1qsw7r5ej6aq5f0q"
+title: "Fw: Qwen3.7-Max Challenges Google for Third Place, AI Saves Whales, Fine-Tuning Breaks Copyright Alignment"
+author: "Thomas Plischke"
+publication: "WEB.DE News"
+source_url: "mailto:reader-forwarded-email/b59de32f6b5ead637c13f8f9bc363cad"
+category: "email"
+location: "archive"
+published_date: "2026-06-05"
+saved_at: "2026-06-05T15:55:23.371000+00:00"
+updated_at: "2026-06-06T07:33:33.727899+00:00"
+tags: ["processed"]
+---
+
+Alibaba's new AI model, Qwen3.7-Max, ranks among the top language models and excels in reasoning and accuracy. A gray market in China allows low-cost access to restricted U.S. AI models, raising legal and security concerns. Fine-tuning AI can cause models to reproduce copyrighted text, highlighting challenges in balancing innovation and copyright law.

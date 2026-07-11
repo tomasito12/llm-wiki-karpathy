@@ -20,6 +20,9 @@ assessed_as_of: '2026-06-02'
 ingested_at: '2026-06-06T21:39:46+00:00'
 canonical_url: mailto:reader-forwarded-email/c069f164fcfceab8a0f5829fef12280f
 content_sha256: 467347c9dfb2100a6c58ff0fa4b804ea7e99e6a85d7dbd826a70fed64b24b5a6
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-06/ainews-nvidia-cosmos-3-nemotron-3-ultra-and-rtx-spark-01kt363pc5f8s2fhketwp5jdkp-local-ai-hardware-is-being-sold-as-an-integrated-end-user-system.md
 - signals/2026-06/ainews-nvidia-cosmos-3-nemotron-3-ultra-and-rtx-spark-01kt363pc5f8s2fhketwp5jdkp-managed-sandboxes-are-becoming-a-baseline-for-agent-deployment.md
@@ -72,3 +75,21 @@ The roundup mixes strong technical claims with substantial promotional framing, 
 - Canonical URL: mailto:reader-forwarded-email/c069f164fcfceab8a0f5829fef12280f
 - Raw markdown: `raw/readwise/ainews-nvidia-cosmos-3-nemotron-3-ultra-and-rtx-spark-01kt363pc5f8s2fhketwp5jdkp.md`
 - Raw HTML: `raw/readwise/ainews-nvidia-cosmos-3-nemotron-3-ultra-and-rtx-spark-01kt363pc5f8s2fhketwp5jdkp.html`
+
+## Full source text
+
+---
+readwise_id: "01kt363pc5f8s2fhketwp5jdkp"
+title: "[AINews] NVIDIA Cosmos 3, Nemotron 3 Ultra, and RTX Spark"
+author: "AINews"
+publication: "Substack"
+source_url: "mailto:reader-forwarded-email/c069f164fcfceab8a0f5829fef12280f"
+category: "email"
+location: "archive"
+published_date: "2026-06-02"
+saved_at: "2026-06-02T03:30:20.165000+00:00"
+updated_at: "2026-06-03T16:45:10.676385+00:00"
+tags: ["processed"]
+---
+
+NVIDIA launched Cosmos 3, a new open model that combines language, images, video, audio, and actions in one system. They also introduced Nemotron 3 Ultra, a very large and fast open-weight AI model with 550 billion parameters. Additionally, NVIDIA previewed the RTX Spark, a powerful personal computer chip designed for AI tasks.

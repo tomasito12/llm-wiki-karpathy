@@ -10,6 +10,9 @@ assessed_as_of: '2026-05-06'
 ingested_at: '2026-06-07T19:56:26.419643+00:00'
 canonical_url: https://medium.com/ai-in-plain-english/95-of-devs-are-using-ai-agents-completely-wrong-a-hermes-guide-905df737a49d
 content_sha256: 423c3805ab914510c37f6b44c518e4aec30331894740dbbca8d36206dd6c27ae
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # 95% of Devs Are Using AI Agents Completely Wrong: A Hermes Guide
@@ -45,3 +48,21 @@ Several claims are rhetorically strong without independent evidence, especially 
 - Canonical URL: https://medium.com/ai-in-plain-english/95-of-devs-are-using-ai-agents-completely-wrong-a-hermes-guide-905df737a49d
 - Raw markdown: `raw/readwise/95-of-devs-are-using-ai-agents-completely-wrong-a-hermes-guide-01krbnbbbpznzgbeefqnzapsz3.md`
 - Raw HTML: `raw/readwise/95-of-devs-are-using-ai-agents-completely-wrong-a-hermes-guide-01krbnbbbpznzgbeefqnzapsz3.html`
+
+## Full source text
+
+---
+readwise_id: "01krbnbbbpznzgbeefqnzapsz3"
+title: "95% of Devs Are Using AI Agents Completely Wrong: A Hermes Guide"
+author: "Shashwat"
+publication: "Medium"
+source_url: "https://medium.com/ai-in-plain-english/95-of-devs-are-using-ai-agents-completely-wrong-a-hermes-guide-905df737a49d"
+category: "article"
+location: "archive"
+published_date: "2026-05-06"
+saved_at: "2026-05-11T13:59:11.478000+00:00"
+updated_at: "2026-05-21T12:25:00.539133+00:00"
+tags: ["processed"]
+---
+
+Most developers misuse AI agents like Hermes by not using its advanced features that save time and boost productivity. Hermes offers persistent memory, session branching, multi-platform access, and automation tools that make coding smoother and faster. To get the best results, users must learn and apply these powerful capabilities instead of just typing prompts and closing the tab.

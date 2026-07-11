@@ -18,6 +18,9 @@ assessed_as_of: '2026-04-10'
 ingested_at: '2026-06-05T20:05:50.875872+00:00'
 canonical_url: https://openai.com/academy/operations
 content_sha256: 8ccd6f6f3feb295c83fdbbc09dd3e72e8dc4f083f86348be2acb3c3c55908e97
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/contextual-operations-summarization.md
 - topics/ops-artifact-generation.md
@@ -64,3 +67,22 @@ The piece frames ChatGPT as an always-on chief of staff, which is a useful metap
 - Canonical URL: https://openai.com/academy/operations
 - Raw markdown: `raw/readwise/chatgpt-for-operations-teams-01knw8fhapv0s142tzby3ay37b.md`
 - Raw HTML: `raw/readwise/chatgpt-for-operations-teams-01knw8fhapv0s142tzby3ay37b.html`
+
+## Full source text
+
+---
+readwise_id: 01knw8fhapv0s142tzby3ay37b
+title: ChatGPT for operations teams
+author: OpenAI Blog
+source_url: https://openai.com/academy/operations
+category: rss
+location: archive
+published_date: '2026-04-10'
+saved_at: '2026-04-10T17:53:44.046000+00:00'
+updated_at: '2026-05-04T20:43:45.981299+00:00'
+tags:
+- processed
+publication: OpenAI
+---
+
+ChatGPT helps operations teams by turning scattered information into clear summaries and useful documents. It supports tasks like updates, plans, decision flows, and incident management to improve coordination. This leads to faster work, better communication, and consistent processes.

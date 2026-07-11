@@ -21,6 +21,9 @@ assessed_as_of: '2026-04-20'
 ingested_at: '2026-06-15T22:38:26+00:00'
 canonical_url: https://rehoyt.medium.com/gemini-notebook-meets-notebooklm-7ab2d123998f
 content_sha256: 1bc87353be3a16cf7cd2b24124aa601880ed6c28234d6bb9bb7e00659d924988
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/notebooklm.md
 derived_topics:
@@ -71,3 +74,21 @@ The article contrasts a heavy CLI/wiki workflow with a frictionless Google workf
 - Canonical URL: https://rehoyt.medium.com/gemini-notebook-meets-notebooklm-7ab2d123998f
 - Raw markdown: `raw/readwise/gemini-notebook-meets-notebooklm-01kts4esadxc3j0bjn932ng6mr.md`
 - Raw HTML: `raw/readwise/gemini-notebook-meets-notebooklm-01kts4esadxc3j0bjn932ng6mr.html`
+
+## Full source text
+
+---
+readwise_id: "01kts4esadxc3j0bjn932ng6mr"
+title: "Gemini Notebook Meets NotebookLM"
+author: "Robert (Bob) Hoyt MD FACP"
+publication: "Medium"
+source_url: "https://rehoyt.medium.com/gemini-notebook-meets-notebooklm-7ab2d123998f"
+category: "article"
+location: "archive"
+published_date: "2026-04-20"
+saved_at: "2026-06-10T16:04:43.981000+00:00"
+updated_at: "2026-06-11T13:40:21.347559+00:00"
+tags: ["processed"]
+---
+
+Now your library has memory and a subject matter expert

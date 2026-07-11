@@ -16,6 +16,9 @@ assessed_as_of: '2026-05-09'
 ingested_at: '2026-05-22T15:31:26.737288+00:00'
 canonical_url: https://medium.com/@pankaj_pandey/voicebox-the-open-source-voice-studio-that-just-made-two-paid-saas-tools-optional-06886c8d3392
 content_sha256: abc57512318d6c909b547c535d5bca2f6d8ea515a345705152723cf7dc9c969d
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/local-voice-api.md
 - topics/mcp-enabled-agent-voice-output.md
@@ -62,3 +65,21 @@ The article makes a strong local-first case, but it also concedes that some mode
 - Canonical URL: https://medium.com/@pankaj_pandey/voicebox-the-open-source-voice-studio-that-just-made-two-paid-saas-tools-optional-06886c8d3392
 - Raw markdown: `raw/readwise/voicebox-the-open-source-voice-studio-that-just-made-two-paid-saas-tools-optional-01krbnaenbma855qtcwygg10ya.md`
 - Raw HTML: `raw/readwise/voicebox-the-open-source-voice-studio-that-just-made-two-paid-saas-tools-optional-01krbnaenbma855qtcwygg10ya.html`
+
+## Full source text
+
+---
+readwise_id: "01krbnaenbma855qtcwygg10ya"
+title: "Voicebox: The Open-Source Voice Studio That Just Made Two Paid SaaS Tools Optional"
+author: "Pankaj"
+publication: "Medium"
+source_url: "https://medium.com/@pankaj_pandey/voicebox-the-open-source-voice-studio-that-just-made-two-paid-saas-tools-optional-06886c8d3392"
+category: "article"
+location: "archive"
+published_date: "2026-05-09"
+saved_at: "2026-05-11T13:58:42.091000+00:00"
+updated_at: "2026-05-12T17:38:46.685083+00:00"
+tags: ["processed"]
+---
+
+Voicebox is a free, open-source app that lets you clone voices and dictate text locally without using the cloud. It replaces paid services like ElevenLabs and WisprFlow by running entirely on your machine with no fees. Developers can easily integrate it to give coding agents a voice and customize speech through a local API.

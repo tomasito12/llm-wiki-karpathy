@@ -28,6 +28,9 @@ assessed_as_of: '2026-04-13'
 ingested_at: '2026-06-17T15:49:51+00:00'
 canonical_url: https://readwise-assets.s3.amazonaws.com/media/wisereads/articles/technology-radar/1269.pdf
 content_sha256: 362236f459a24a64133a8ef6a4f139aa0e52133c6620ff76b58d5d30404e1256
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/model-context-protocol.md
 - glossary/passkey.md
@@ -85,3 +88,21 @@ The piece is careful, but there is still a tension between its enthusiasm for fa
 - Canonical URL: https://readwise-assets.s3.amazonaws.com/media/wisereads/articles/technology-radar/1269.pdf
 - Raw markdown: `raw/readwise/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w.md`
 - Raw HTML: `raw/readwise/technology-radar-01krc5f8a8a6x35ke2kdjn5d9w.html`
+
+## Full source text
+
+---
+readwise_id: "01krc5f8a8a6x35ke2kdjn5d9w"
+title: "Technology Radar"
+author: "Thoughtworks"
+publication: "Amazonaws"
+source_url: "https://readwise-assets.s3.amazonaws.com/media/wisereads/articles/technology-radar/1269.pdf"
+category: "pdf"
+location: "archive"
+published_date: "2026-04-13"
+saved_at: "2026-05-11T18:40:56.649000+00:00"
+updated_at: "2026-06-03T18:04:35.577888+00:00"
+tags: ["processed"]
+---
+
+AI coding agents help developers by automating tasks and improving workflows through tools like Agent Skills and spec-driven development. Teams use reference applications and standardized environments to keep AI assistance consistent and reliable across projects. Despite productivity gains, careful testing and human review remain essential to avoid errors and technical debt.

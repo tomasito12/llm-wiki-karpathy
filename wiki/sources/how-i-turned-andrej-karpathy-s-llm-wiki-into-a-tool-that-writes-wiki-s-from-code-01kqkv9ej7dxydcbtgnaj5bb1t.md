@@ -15,6 +15,9 @@ assessed_as_of: '2026-04-17'
 ingested_at: '2026-05-22T16:24:01.156554+00:00'
 canonical_url: https://medium.com/@k.balu124/how-i-turned-andrej-karpathys-llm-wiki-into-a-tool-that-writes-wiki-s-from-code-cfb7f73afa52
 content_sha256: 6347fd613475869e22dd07440cacb1922edd49b41b060eb0754972ee55ce5b00
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/commit-driven-documentation-sync.md
 derived_topics:
@@ -65,3 +68,23 @@ The strongest claims are moderated by the author’s own caveats: the system red
 - Canonical URL: https://medium.com/@k.balu124/how-i-turned-andrej-karpathys-llm-wiki-into-a-tool-that-writes-wiki-s-from-code-cfb7f73afa52
 - Raw markdown: `raw/readwise/how-i-turned-andrej-karpathy-s-llm-wiki-into-a-tool-that-writes-wiki-s-from-code-01kqkv9ej7dxydcbtgnaj5bb1t.md`
 - Raw HTML: `raw/readwise/how-i-turned-andrej-karpathy-s-llm-wiki-into-a-tool-that-writes-wiki-s-from-code-01kqkv9ej7dxydcbtgnaj5bb1t.html`
+
+## Full source text
+
+---
+readwise_id: 01kqkv9ej7dxydcbtgnaj5bb1t
+title: How I turned Andrej Karpathy’s LLM Wiki into a tool that writes wiki’s from
+  code
+author: Balu Kosuri
+source_url: https://medium.com/@k.balu124/how-i-turned-andrej-karpathys-llm-wiki-into-a-tool-that-writes-wiki-s-from-code-cfb7f73afa52
+category: article
+location: archive
+published_date: '2026-04-17'
+saved_at: '2026-05-02T08:01:12.970000+00:00'
+updated_at: '2026-05-02T14:21:47.983631+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+Balu Kosuri adapted Andrej Karpathy’s LLM Wiki to create automated documentation from code repositories. Every git commit updates the wiki, keeping docs in sync with code changes. This tool drafts internal docs to help developers but needs human review for polished, user-ready manuals.

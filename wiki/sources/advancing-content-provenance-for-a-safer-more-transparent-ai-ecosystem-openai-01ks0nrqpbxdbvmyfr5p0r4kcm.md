@@ -16,6 +16,9 @@ assessed_as_of: '2026-05-19'
 ingested_at: '2026-06-07T20:05:17.342588+00:00'
 canonical_url: https://openai.com/index/advancing-content-provenance
 content_sha256: 5fd7e199e96b83e3046fa46de3dc6bfa55d54d26aa6c70e59ab54d2c72d3b879
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/provenance-tracking.md
 - topics/verification-loops-in-ai-workflows.md
@@ -62,3 +65,21 @@ The piece acknowledges a real tension: metadata is useful but fragile, and water
 - Canonical URL: https://openai.com/index/advancing-content-provenance
 - Raw markdown: `raw/readwise/advancing-content-provenance-for-a-safer-more-transparent-ai-ecosystem-openai-01ks0nrqpbxdbvmyfr5p0r4kcm.md`
 - Raw HTML: `raw/readwise/advancing-content-provenance-for-a-safer-more-transparent-ai-ecosystem-openai-01ks0nrqpbxdbvmyfr5p0r4kcm.html`
+
+## Full source text
+
+---
+readwise_id: "01ks0nrqpbxdbvmyfr5p0r4kcm"
+title: "Advancing content provenance for a safer, more transparent AI ecosystem | OpenAI"
+author: "OpenAI"
+publication: "openai.com"
+source_url: "https://openai.com/index/advancing-content-provenance"
+category: "rss"
+location: "archive"
+published_date: "2026-05-19"
+saved_at: "2026-05-19T17:50:30.163000+00:00"
+updated_at: "2026-05-20T20:40:42.966927+00:00"
+tags: ["processed"]
+---
+
+OpenAI is improving ways to show where AI-generated images come from using metadata and invisible watermarks. They partnered with Google to add durable watermarks that survive edits and created a tool for people to verify if images were made by OpenAI’s AI. This helps make AI content more trustworthy and easier to identify online.

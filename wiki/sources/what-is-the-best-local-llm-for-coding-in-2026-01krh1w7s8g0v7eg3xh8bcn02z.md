@@ -29,6 +29,9 @@ assessed_as_of: '2026-05-11'
 ingested_at: '2026-06-05T18:43:13.160500+00:00'
 canonical_url: https://medium.com/data-science-collective/what-is-the-best-local-llm-for-coding-in-2026-8dab3619ff89
 content_sha256: 2645307bca77f1dc30d79bd9b53945a79d1ccc0140c7403816924b8154b85f47
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/local-coding-model-setup.md
 derived_models:
@@ -87,3 +90,21 @@ The article’s strongest claim is that benchmark rank matters less than fit, wh
 - Canonical URL: https://medium.com/data-science-collective/what-is-the-best-local-llm-for-coding-in-2026-8dab3619ff89
 - Raw markdown: `raw/readwise/what-is-the-best-local-llm-for-coding-in-2026-01krh1w7s8g0v7eg3xh8bcn02z.md`
 - Raw HTML: `raw/readwise/what-is-the-best-local-llm-for-coding-in-2026-01krh1w7s8g0v7eg3xh8bcn02z.html`
+
+## Full source text
+
+---
+readwise_id: "01krh1w7s8g0v7eg3xh8bcn02z"
+title: "What Is the Best Local LLM for Coding in 2026?"
+author: "Anubhav"
+publication: "Medium"
+source_url: "https://medium.com/data-science-collective/what-is-the-best-local-llm-for-coding-in-2026-8dab3619ff89"
+category: "article"
+location: "archive"
+published_date: "2026-05-11"
+saved_at: "2026-05-13T16:14:19.944000+00:00"
+updated_at: "2026-05-13T17:13:42.762485+00:00"
+tags: ["processed"]
+---
+
+Choosing the best local coding model depends on your hardware, workflow, and memory limits—not just benchmarks. Smaller models work better on low RAM, while bigger models need powerful GPUs and lots of memory for smooth coding. Test your setup to find a model that fits your machine and helps you code faster.

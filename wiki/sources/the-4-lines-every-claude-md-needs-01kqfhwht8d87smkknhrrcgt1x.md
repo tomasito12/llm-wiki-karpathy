@@ -20,6 +20,9 @@ assessed_as_of: '2026-04-27'
 ingested_at: '2026-06-06T20:38:13.716302+00:00'
 canonical_url: https://medium.com/gitconnected/the-4-lines-every-claude-md-needs-2717a46866f6
 content_sha256: b02ea187433b8f642b227866310d4a6c4fe9f695678d29361ad2bb0807fe277f
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/behavioral-instruction-layers-for-agents.md
 - topics/verification-loops-in-ai-workflows.md
@@ -66,3 +69,22 @@ The article contrasts minimal behavioral principles with bloated rule files, but
 - Canonical URL: https://medium.com/gitconnected/the-4-lines-every-claude-md-needs-2717a46866f6
 - Raw markdown: `raw/readwise/the-4-lines-every-claude-md-needs-01kqfhwht8d87smkknhrrcgt1x.md`
 - Raw HTML: `raw/readwise/the-4-lines-every-claude-md-needs-01kqfhwht8d87smkknhrrcgt1x.html`
+
+## Full source text
+
+---
+readwise_id: 01kqfhwht8d87smkknhrrcgt1x
+title: The 4 Lines Every CLAUDE.md Needs
+author: Yanli Liu
+source_url: https://medium.com/gitconnected/the-4-lines-every-claude-md-needs-2717a46866f6
+category: article
+location: archive
+published_date: '2026-04-27'
+saved_at: '2026-04-30T15:59:56.744000+00:00'
+updated_at: '2026-05-02T14:24:59.317042+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+Anthropic's Claude AI improved coding by following four simple behavioral rules from Karpathy's insights. These rules help the AI think carefully, avoid unnecessary changes, and know when a task is done. Clear behavior guidelines matter more than many complex rules for better AI coding results.

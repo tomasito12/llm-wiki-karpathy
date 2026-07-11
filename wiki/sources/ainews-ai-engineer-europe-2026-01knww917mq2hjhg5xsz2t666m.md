@@ -15,6 +15,9 @@ assessed_as_of: '2026-04-10'
 ingested_at: '2026-06-07T20:41:21.160873+00:00'
 canonical_url: https://www.latent.space/p/ainews-ai-engineer-europe-2026
 content_sha256: e83527a8069713903b7b1cc01736bd000fce4f54a5f7fa374e98de279a03a8d5
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-04/ainews-ai-engineer-europe-2026-01knww917mq2hjhg5xsz2t666m-open-models-are-gaining-share-in-coding-and-agent-workflows.md
 derived_trends:
@@ -58,3 +61,22 @@ The roundup celebrates several "big" results, but some are clearly fragile: benc
 - Canonical URL: https://www.latent.space/p/ainews-ai-engineer-europe-2026
 - Raw markdown: `raw/readwise/ainews-ai-engineer-europe-2026-01knww917mq2hjhg5xsz2t666m.md`
 - Raw HTML: `raw/readwise/ainews-ai-engineer-europe-2026-01knww917mq2hjhg5xsz2t666m.html`
+
+## Full source text
+
+---
+readwise_id: 01knww917mq2hjhg5xsz2t666m
+title: '[AINews] AI Engineer Europe 2026'
+author: Latent Space
+source_url: https://www.latent.space/p/ainews-ai-engineer-europe-2026
+category: rss
+location: archive
+published_date: '2026-04-10'
+saved_at: '2026-04-10T23:40:12.477000+00:00'
+updated_at: '2026-05-08T11:29:10.650253+00:00'
+tags:
+- processed
+publication: Latent
+---
+
+A major AI event in Europe featured many talks, workshops, and new developments in AI models and tools. Open models like GLM-5.1 and agent frameworks such as Hermes are gaining strong momentum and improving coding workflows. Researchers focus on better benchmarks, memory systems, and inference optimization to advance AI capabilities and reliability.

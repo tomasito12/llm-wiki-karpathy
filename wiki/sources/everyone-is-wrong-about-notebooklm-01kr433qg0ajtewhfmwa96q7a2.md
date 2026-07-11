@@ -17,6 +17,9 @@ assessed_as_of: '2025-11-17'
 ingested_at: '2026-05-17T13:18:48.838481+00:00'
 canonical_url: https://medium.com/@stunspot/everyone-is-wrong-about-notebooklm-802770aa12f7
 content_sha256: 0ff8d25769674d78dda0ff812d73f4443f307f9bf23d8b4d27ac45706a223713
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/closed-resource-information-trust.md
 - glossary/retrieval-augmented-generation.md
@@ -70,3 +73,22 @@ The piece rejects the chatbot framing, but some of the described value still dep
 - Canonical URL: https://medium.com/@stunspot/everyone-is-wrong-about-notebooklm-802770aa12f7
 - Raw markdown: `raw/readwise/everyone-is-wrong-about-notebooklm-01kr433qg0ajtewhfmwa96q7a2.md`
 - Raw HTML: `raw/readwise/everyone-is-wrong-about-notebooklm-01kr433qg0ajtewhfmwa96q7a2.html`
+
+## Full source text
+
+---
+readwise_id: 01kr433qg0ajtewhfmwa96q7a2
+title: 💠🌐 Everyone Is Wrong About NotebookLM
+author: stunspot
+source_url: https://medium.com/@stunspot/everyone-is-wrong-about-notebooklm-802770aa12f7
+category: article
+location: archive
+published_date: '2025-11-17'
+saved_at: '2026-05-08T15:25:46.367000+00:00'
+updated_at: '2026-05-08T15:30:57.049206+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+NotebookLM is not a chatbot but a closed, source-grounded reasoning tool that only answers from the documents you give it. It forces users to curate and architect their information, making source selection more important than clever prompts. That design makes it highly reliable for research, legal work, world-building, and company knowledge where traceable citations matter.

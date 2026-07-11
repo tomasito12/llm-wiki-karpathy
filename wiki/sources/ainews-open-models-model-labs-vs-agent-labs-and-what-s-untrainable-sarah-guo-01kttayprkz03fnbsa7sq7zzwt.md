@@ -16,6 +16,9 @@ assessed_as_of: '2026-06-11'
 ingested_at: '2026-06-15T21:24:53+00:00'
 canonical_url: mailto:reader-forwarded-email/2cccd3ec00015c790ae0aac90362f620
 content_sha256: c0b2f9609213e5a2da9a06673e224b61137c129984abfd3aae7b304d7e0ef1e1
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-06/ainews-open-models-model-labs-vs-agent-labs-and-what-s-untrainable-sarah-guo-01kttayprkz03fnbsa7sq7zzwt-stable-api-names-do-not-guarantee-stable-model-behavior.md
 derived_trends:
@@ -59,3 +62,21 @@ There is a clear tension between strong model capability and weak product trust 
 - Canonical URL: mailto:reader-forwarded-email/2cccd3ec00015c790ae0aac90362f620
 - Raw markdown: `raw/readwise/ainews-open-models-model-labs-vs-agent-labs-and-what-s-untrainable-sarah-guo-01kttayprkz03fnbsa7sq7zzwt.md`
 - Raw HTML: `raw/readwise/ainews-open-models-model-labs-vs-agent-labs-and-what-s-untrainable-sarah-guo-01kttayprkz03fnbsa7sq7zzwt.html`
+
+## Full source text
+
+---
+readwise_id: "01kttayprkz03fnbsa7sq7zzwt"
+title: "[AINews] Open Models, Model Labs vs Agent Labs, and What's Untrainable — Sarah Guo"
+author: "AINews"
+publication: "Substack"
+source_url: "mailto:reader-forwarded-email/2cccd3ec00015c790ae0aac90362f620"
+category: "email"
+location: "archive"
+published_date: "2026-06-11"
+saved_at: "2026-06-11T03:17:31.540000+00:00"
+updated_at: "2026-06-11T13:30:08.908800+00:00"
+tags: ["processed"]
+---
+
+Open AI models like Anthropic’s Fable 5 show strong performance but face trust and adoption challenges due to data policies and opacity. Google released DiffusionGemma, a fast open-source text model using diffusion techniques for research and local use. New tools and benchmarks focus on real-world agent tasks, improving memory, control, and evaluation in AI systems.

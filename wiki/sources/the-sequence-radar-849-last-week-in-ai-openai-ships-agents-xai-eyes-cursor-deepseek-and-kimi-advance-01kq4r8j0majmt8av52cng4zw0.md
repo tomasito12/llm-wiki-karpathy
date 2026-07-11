@@ -19,6 +19,9 @@ assessed_as_of: '2026-04-26'
 ingested_at: '2026-05-17T12:55:27.677852+00:00'
 canonical_url: https://thesequence.substack.com/p/the-sequence-radar-849-last-week
 content_sha256: 885c878c078e2ad8b7a7beb399cf64f0364cbde7893e47928d432e5d455b79a7
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_models:
 - foundation-models/deepseek-v4.md
 - foundation-models/gpt-5-5.md
@@ -91,3 +94,23 @@ The editorial thesis is strong, but some of the language is bigger than the evid
 - Canonical URL: https://thesequence.substack.com/p/the-sequence-radar-849-last-week
 - Raw markdown: `raw/readwise/the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deepseek-and-kimi-advance-01kq4r8j0majmt8av52cng4zw0.md`
 - Raw HTML: `raw/readwise/the-sequence-radar-849-last-week-in-ai-openai-ships-agents-xai-eyes-cursor-deepseek-and-kimi-advance-01kq4r8j0majmt8av52cng4zw0.html`
+
+## Full source text
+
+---
+readwise_id: 01kq4r8j0majmt8av52cng4zw0
+title: 'The Sequence Radar #849: Last Week in AI: OpenAI Ships Agents, xAI Eyes Cursor,
+  DeepSeek and Kimi Advance'
+author: Jesus Rodriguez
+source_url: https://thesequence.substack.com/p/the-sequence-radar-849-last-week
+category: rss
+location: archive
+published_date: '2026-04-26'
+saved_at: '2026-04-26T11:19:39.869000+00:00'
+updated_at: '2026-05-08T13:17:15.680683+00:00'
+tags:
+- processed
+publication: Substack
+---
+
+Major model releases and deal making moves.

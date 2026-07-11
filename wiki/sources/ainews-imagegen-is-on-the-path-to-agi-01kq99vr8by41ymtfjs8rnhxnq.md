@@ -17,6 +17,9 @@ assessed_as_of: '2026-04-28'
 ingested_at: '2026-06-06T21:37:38+00:00'
 canonical_url: https://www.latent.space/p/ainews-imagegen-is-on-the-path-to
 content_sha256: 736693b9d353be021c5664e7af3f21bc482892f92aa550c6047b67c29a391752
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-04/ainews-imagegen-is-on-the-path-to-agi-01kq99vr8by41ymtfjs8rnhxnq-agentic-coding-is-becoming-a-supervised-metered-workflow.md
 - signals/2026-04/ainews-imagegen-is-on-the-path-to-agi-01kq99vr8by41ymtfjs8rnhxnq-image-generation-is-becoming-a-workflow-component-not-a-standalone-demo.md
@@ -66,3 +69,22 @@ The article leans into a strong rhetorical claim that image generation is part o
 - Canonical URL: https://www.latent.space/p/ainews-imagegen-is-on-the-path-to
 - Raw markdown: `raw/readwise/ainews-imagegen-is-on-the-path-to-agi-01kq99vr8by41ymtfjs8rnhxnq.md`
 - Raw HTML: `raw/readwise/ainews-imagegen-is-on-the-path-to-agi-01kq99vr8by41ymtfjs8rnhxnq.html`
+
+## Full source text
+
+---
+readwise_id: 01kq99vr8by41ymtfjs8rnhxnq
+title: '[AINews] ImageGen is on the Path to AGI'
+author: Latent Space
+source_url: https://www.latent.space/p/ainews-imagegen-is-on-the-path-to
+category: rss
+location: archive
+published_date: '2026-04-28'
+saved_at: '2026-04-28T05:44:12.371000+00:00'
+updated_at: '2026-05-02T20:42:25.755347+00:00'
+tags:
+- processed
+publication: Latent
+---
+
+AI image models like GPT-Image-2 are advancing creative and educational uses. OpenAI is expanding cloud partnerships, improving models, and changing pricing for tools like Copilot. Chinese labs and others are pushing open-source, multi-agent AI systems with better long-context and local performance.

@@ -9,6 +9,9 @@ assessed_as_of: '2026-06-01'
 ingested_at: '2026-06-16T00:32:46+00:00'
 canonical_url: https://readwise.io/reader/document_raw_content/464635099
 content_sha256: cf92bdefa68d6e7319c8acf2598f79757a87a9a69df23cb8a8bcb46bbb90f11e
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # PRC-Linked Influence Operations Are Targeting AI Debates In The US
@@ -44,3 +47,20 @@ The report argues that the campaigns matter even though they had little authenti
 - Canonical URL: https://readwise.io/reader/document_raw_content/464635099
 - Raw markdown: `raw/readwise/prc-linked-influence-operations-are-targeting-ai-debates-in-the-us-01ktxmx5xkym51qcgjf60d7zns.md`
 - Raw HTML: `raw/readwise/prc-linked-influence-operations-are-targeting-ai-debates-in-the-us-01ktxmx5xkym51qcgjf60d7zns.html`
+
+## Full source text
+
+---
+readwise_id: "01ktxmx5xkym51qcgjf60d7zns"
+title: "PRC-Linked Influence Operations Are Targeting AI Debates In The US"
+author: "OpenAI"
+publication: "readwise-upload-pdf"
+source_url: "https://readwise.io/reader/document_raw_content/464635099"
+category: "pdf"
+location: "archive"
+saved_at: "2026-06-12T10:09:11.322000+00:00"
+updated_at: "2026-06-14T06:13:06.394084+00:00"
+tags: ["processed"]
+---
+
+Chinese-linked groups used ChatGPT accounts to spread false stories about AI and US tech policies. They targeted Americans and overseas Chinese to create distrust in US technology and government. These actions show China is testing ways to influence debates and gain an advantage in AI development.

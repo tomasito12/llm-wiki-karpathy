@@ -20,6 +20,9 @@ assessed_as_of: '2026-03-19'
 ingested_at: '2026-06-06T21:58:24+00:00'
 canonical_url: https://www.intercom.com/blog/kaizen-for-the-ai-era-how-small-improvements-build-smarter-support/
 content_sha256: ff0073788434d46430283e1839d408f04188b4371011e9ab805d8cd52da3a6dc
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/continuous-improvement-for-ai-support-systems.md
 - topics/human-feedback-loops-in-support-operations.md
@@ -66,3 +69,22 @@ The article leans on a clean continuous-improvement narrative, but real support 
 - Canonical URL: https://www.intercom.com/blog/kaizen-for-the-ai-era-how-small-improvements-build-smarter-support/
 - Raw markdown: `raw/readwise/kaizen-for-the-ai-era-how-small-improvements-build-smarter-support-01knemav4tebprk93x7286a9fm.md`
 - Raw HTML: `raw/readwise/kaizen-for-the-ai-era-how-small-improvements-build-smarter-support-01knemav4tebprk93x7286a9fm.html`
+
+## Full source text
+
+---
+readwise_id: 01knemav4tebprk93x7286a9fm
+title: 'Kaizen for the AI era: How small improvements build smarter support'
+author: Caroline Glackin
+source_url: https://www.intercom.com/blog/kaizen-for-the-ai-era-how-small-improvements-build-smarter-support/
+category: rss
+location: archive
+published_date: '2026-03-19'
+saved_at: '2026-04-05T10:51:52.122000+00:00'
+updated_at: '2026-05-08T13:24:04.377150+00:00'
+tags:
+- processed
+publication: Intercom
+---
+
+Kaizen is a way to improve by making small, steady changes every day. At Intercom, both AI and human teams use this approach to learn and get better from customer interactions. This constant improvement helps create better support and a strong advantage over time.

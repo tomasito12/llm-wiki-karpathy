@@ -18,6 +18,9 @@ assessed_as_of: '2026-04-27'
 ingested_at: '2026-06-05T16:12:33.570211+00:00'
 canonical_url: https://ai.gopubby.com/rag-llm-wiki-or-gbrain-how-your-agent-remembers-changes-everything-56829e66725c
 content_sha256: c8c8eccc70578f2eb3f2e3ffe45539bc9b7a43ff1b21c0bc8c5339d4f1fb9dd3
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/agent-memory-architecture.md
 - topics/llm-maintained-knowledge-compilation.md
@@ -64,3 +67,22 @@ The article implies that RAG is “vanilla” and limited, but also concedes it 
 - Canonical URL: https://ai.gopubby.com/rag-llm-wiki-or-gbrain-how-your-agent-remembers-changes-everything-56829e66725c
 - Raw markdown: `raw/readwise/rag-llm-wiki-or-gbrain-how-your-agent-remembers-changes-everything-01kqkvj2z9yv69c235tfg6b2gk.md`
 - Raw HTML: `raw/readwise/rag-llm-wiki-or-gbrain-how-your-agent-remembers-changes-everything-01kqkvj2z9yv69c235tfg6b2gk.html`
+
+## Full source text
+
+---
+readwise_id: 01kqkvj2z9yv69c235tfg6b2gk
+title: RAG, LLM Wiki, or Gbrain? How Your Agent Remembers Changes Everything
+author: Yanli Liu
+source_url: https://ai.gopubby.com/rag-llm-wiki-or-gbrain-how-your-agent-remembers-changes-everything-56829e66725c
+category: article
+location: archive
+published_date: '2026-04-27'
+saved_at: '2026-05-02T08:05:57.353000+00:00'
+updated_at: '2026-05-02T14:21:40.059206+00:00'
+tags:
+- processed
+publication: Gopubby
+---
+
+There are three main agent architectures for managing knowledge: RAG retrieves answers from large document sets, LLM Wiki builds a growing, linked knowledge base, and GBrain adds autonomous skills that act on knowledge. Each fits different needs based on scale, learning, and action: RAG is best for big, changing corpora; LLM Wiki for deep, compounding expertise; and GBrain for power users needing automation. The future lies in combining these approaches into one system that retrieves, compiles, and acts smoothly.

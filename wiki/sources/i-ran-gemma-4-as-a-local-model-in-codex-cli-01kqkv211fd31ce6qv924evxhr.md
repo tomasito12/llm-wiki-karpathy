@@ -15,6 +15,9 @@ assessed_as_of: '2026-04-13'
 ingested_at: '2026-05-17T13:37:08.445272+00:00'
 canonical_url: https://medium.com/google-cloud/i-ran-gemma-4-as-a-local-model-in-codex-cli-7fda754dc0d4
 content_sha256: 9b43e012a014ff6d708163182bfcb8e83ee07c55050d0f51db8aa2525ad7e6cf
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/local-coding-model-setup.md
 derived_models:
@@ -72,3 +75,22 @@ The article pushes back against the intuition that faster token generation autom
 - Canonical URL: https://medium.com/google-cloud/i-ran-gemma-4-as-a-local-model-in-codex-cli-7fda754dc0d4
 - Raw markdown: `raw/readwise/i-ran-gemma-4-as-a-local-model-in-codex-cli-01kqkv211fd31ce6qv924evxhr.md`
 - Raw HTML: `raw/readwise/i-ran-gemma-4-as-a-local-model-in-codex-cli-01kqkv211fd31ce6qv924evxhr.html`
+
+## Full source text
+
+---
+readwise_id: 01kqkv211fd31ce6qv924evxhr
+title: I ran Gemma 4 as a local model in Codex CLI
+author: Daniel Vaughan
+source_url: https://medium.com/google-cloud/i-ran-gemma-4-as-a-local-model-in-codex-cli-7fda754dc0d4
+category: article
+location: archive
+published_date: '2026-04-13'
+saved_at: '2026-05-02T07:57:10.156000+00:00'
+updated_at: '2026-05-02T14:21:53.843972+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+The author tested Gemma 4 local models on a MacBook Pro and a Dell GB10 using Codex CLI for coding tasks. The Dell produced higher-quality code with fewer errors, while the Mac was faster in token generation but less reliable. Overall, code quality and tool-calling success mattered more than raw speed for this workflow.

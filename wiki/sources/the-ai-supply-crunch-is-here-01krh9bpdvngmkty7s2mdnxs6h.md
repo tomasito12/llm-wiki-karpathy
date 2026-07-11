@@ -10,6 +10,9 @@ assessed_as_of: '2026-04-30'
 ingested_at: '2026-06-05T16:38:56.166408+00:00'
 canonical_url: https://www.economist.com/leaders/2026/04/30/the-ai-supply-crunch-is-here
 content_sha256: e27c34968d5200011681b2df8c287f89b18d843c094649fe0eb835d4e216a26c
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # The AI supply crunch is here
@@ -45,3 +48,21 @@ The article’s strongest claims are plausible but still partly inferential. For
 - Canonical URL: https://www.economist.com/leaders/2026/04/30/the-ai-supply-crunch-is-here
 - Raw markdown: `raw/readwise/the-ai-supply-crunch-is-here-01krh9bpdvngmkty7s2mdnxs6h.md`
 - Raw HTML: `raw/readwise/the-ai-supply-crunch-is-here-01krh9bpdvngmkty7s2mdnxs6h.html`
+
+## Full source text
+
+---
+readwise_id: "01krh9bpdvngmkty7s2mdnxs6h"
+title: "The AI supply crunch is here"
+author: "The Economist"
+publication: "Economist"
+source_url: "https://www.economist.com/leaders/2026/04/30/the-ai-supply-crunch-is-here"
+category: "article"
+location: "archive"
+published_date: "2026-04-30"
+saved_at: "2026-05-13T18:25:06.491000+00:00"
+updated_at: "2026-05-15T04:26:20.154889+00:00"
+tags: ["processed"]
+---
+
+The demand for AI computing power is growing fast, but supply is limited. Big tech companies are spending huge amounts to secure the hardware they need. This shortage will make AI more expensive and slow down its wider use.

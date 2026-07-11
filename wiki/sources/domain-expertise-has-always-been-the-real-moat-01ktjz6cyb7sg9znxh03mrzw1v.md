@@ -17,6 +17,9 @@ assessed_as_of: '2026-05-30'
 ingested_at: '2026-06-10T14:58:50+00:00'
 canonical_url: https://brethorsting.com/blog/2026/05/domain-expertise-has-always-been-the-real-moat/
 content_sha256: 4a97355ea2f034f6f1a63fa5c839e6c4fffa318ecf2745ba970a88a0fb6ecb63
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/agentic-coding-workflows.md
 - topics/domain-expertise-as-verification.md
@@ -63,3 +66,21 @@ The argument may overstate the extent to which code generation has been commodit
 - Canonical URL: https://brethorsting.com/blog/2026/05/domain-expertise-has-always-been-the-real-moat/
 - Raw markdown: `raw/readwise/domain-expertise-has-always-been-the-real-moat-01ktjz6cyb7sg9znxh03mrzw1v.md`
 - Raw HTML: `raw/readwise/domain-expertise-has-always-been-the-real-moat-01ktjz6cyb7sg9znxh03mrzw1v.html`
+
+## Full source text
+
+---
+readwise_id: "01ktjz6cyb7sg9znxh03mrzw1v"
+title: "Domain Expertise Has Always Been the Real Moat"
+author: "brethorsting.com"
+publication: "Brethorsting"
+source_url: "https://brethorsting.com/blog/2026/05/domain-expertise-has-always-been-the-real-moat/"
+category: "article"
+location: "archive"
+published_date: "2026-05-30"
+saved_at: "2026-06-08T06:37:19.691000+00:00"
+updated_at: "2026-06-08T14:37:01.768014+00:00"
+tags: ["processed"]
+---
+
+Writing code is now easier because AI can generate it without deep domain knowledge. The real challenge is knowing if the AI’s output is correct, which requires domain expertise. The most valuable people combine strong coding skills with deep understanding of the domain.

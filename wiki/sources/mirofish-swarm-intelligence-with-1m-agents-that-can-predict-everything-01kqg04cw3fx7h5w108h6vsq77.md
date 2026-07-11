@@ -23,6 +23,9 @@ assessed_as_of: '2026-03-16'
 ingested_at: '2026-06-06T22:00:40+00:00'
 canonical_url: https://medium.com/@agentnativedev/mirofish-swarm-intelligence-with-1m-agents-that-can-predict-everything-114296323663
 content_sha256: 2da63fe156609dc36b5298ee430cbb1d97829ab1e0557a1f28d99198a2bf8978
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/oasis.md
 derived_topics:
@@ -73,3 +76,22 @@ The article is confident about the architecture but much less confident about th
 - Canonical URL: https://medium.com/@agentnativedev/mirofish-swarm-intelligence-with-1m-agents-that-can-predict-everything-114296323663
 - Raw markdown: `raw/readwise/mirofish-swarm-intelligence-with-1m-agents-that-can-predict-everything-01kqg04cw3fx7h5w108h6vsq77.md`
 - Raw HTML: `raw/readwise/mirofish-swarm-intelligence-with-1m-agents-that-can-predict-everything-01kqg04cw3fx7h5w108h6vsq77.html`
+
+## Full source text
+
+---
+readwise_id: 01kqg04cw3fx7h5w108h6vsq77
+title: 'MiroFish: Swarm-Intelligence with 1M Agents That Can Predict Everything'
+author: Agent Native
+source_url: https://medium.com/@agentnativedev/mirofish-swarm-intelligence-with-1m-agents-that-can-predict-everything-114296323663
+category: article
+location: archive
+published_date: '2026-03-16'
+saved_at: '2026-04-30T20:08:53.891000+00:00'
+updated_at: '2026-05-02T14:22:06.884212+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+MiroFish is a simulation platform that runs up to one million AI agents with unique personalities interacting in social environments. It reveals how false information can spread among agents, creating challenges in managing memory and truth. This system helps study complex social behaviors but still faces limits due to cost and AI reasoning gaps.

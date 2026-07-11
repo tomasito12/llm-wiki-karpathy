@@ -25,6 +25,9 @@ assessed_as_of: '2026-06-12'
 ingested_at: '2026-06-15T23:51:39+00:00'
 canonical_url: mailto:reader-forwarded-email/3813d7061048f17a0b20b7a7ed5566be
 content_sha256: db412e4bdf789acc5d0d29fd1c66b7370a16d32b7415be0ff8bcd5b9f30e18ab
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-06/mythos-begets-fable-cursor-s-composer-2-5-agents-building-agents-01ktxm9yka45ht6-privacy-and-retention-policies-are-product-constraints-for-enterpris-12a58dce7a.md
 - signals/2026-06/mythos-begets-fable-cursor-s-composer-2-5-agents-building-agents-01ktxm9yka45ht6-specialist-coding-models-are-being-trained-inside-product-specific-h-c96698b1dd.md
@@ -80,3 +83,21 @@ The article contains some promotional framing, especially around major model lau
 - Canonical URL: mailto:reader-forwarded-email/3813d7061048f17a0b20b7a7ed5566be
 - Raw markdown: `raw/readwise/mythos-begets-fable-cursor-s-composer-2-5-agents-building-agents-01ktxm9yka45ht6v4236w9yszr.md`
 - Raw HTML: `raw/readwise/mythos-begets-fable-cursor-s-composer-2-5-agents-building-agents-01ktxm9yka45ht6v4236w9yszr.html`
+
+## Full source text
+
+---
+readwise_id: "01ktxm9yka45ht6v4236w9yszr"
+title: "Mythos Begets Fable, Cursor's Composer 2.5, Agents Building Agents"
+author: "The Batch @ DeepLearning.AI"
+publication: "GILL, an Innovative Approach to Multimodal Model Training"
+source_url: "mailto:reader-forwarded-email/3813d7061048f17a0b20b7a7ed5566be"
+category: "email"
+location: "archive"
+published_date: "2026-06-12"
+saved_at: "2026-06-12T09:58:40.490000+00:00"
+updated_at: "2026-06-14T06:36:45.467013+00:00"
+tags: ["processed"]
+---
+
+Anthropic released two powerful AI models, Claude Mythos 5 and Claude Fable 5, with advanced reasoning and coding skills but limits on sensitive topics. Cursor improved its software engineering model, Composer 2.5, which competes well with leading AI coding tools. Anthropic also highlighted how AI is boosting software development and sparked debate about AI’s ability to improve itself in the future.

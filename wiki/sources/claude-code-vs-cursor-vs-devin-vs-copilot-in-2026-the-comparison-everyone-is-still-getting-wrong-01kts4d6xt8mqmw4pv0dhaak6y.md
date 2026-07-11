@@ -25,6 +25,9 @@ assessed_as_of: '2026-05-04'
 ingested_at: '2026-07-08T19:07:58.032016+00:00'
 canonical_url: https://medium.com/data-science-collective/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-5afd6ceff3e7
 content_sha256: db5fe457df8d6a9074665ede9bf5ce010fdea8bf92b32f725082762dab8e2668
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_models:
 - foundation-models/opus-4-6.md
 derived_topics:
@@ -75,3 +78,21 @@ The article treats the tools as if their identities are already distinct and sta
 - Canonical URL: https://medium.com/data-science-collective/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-5afd6ceff3e7
 - Raw markdown: `raw/readwise/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y.md`
 - Raw HTML: `raw/readwise/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-01kts4d6xt8mqmw4pv0dhaak6y.html`
+
+## Full source text
+
+---
+readwise_id: "01kts4d6xt8mqmw4pv0dhaak6y"
+title: "Claude Code vs Cursor vs Devin vs Copilot in 2026: The Comparison Everyone Is Still Getting Wrong"
+author: "Anubhav"
+publication: "Medium"
+source_url: "https://medium.com/data-science-collective/claude-code-vs-cursor-vs-devin-vs-copilot-in-2026-the-comparison-everyone-is-still-getting-wrong-5afd6ceff3e7"
+category: "article"
+location: "archive"
+published_date: "2026-05-04"
+saved_at: "2026-06-10T16:03:52.377000+00:00"
+updated_at: "2026-06-11T18:14:24.786635+00:00"
+tags: ["processed"]
+---
+
+Devin killed its $500 plan, Cursor 3.0 rebuilt itself as an agent switchboard, Claude Code hit 1M context, and Copilot quietly became three…

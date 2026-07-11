@@ -23,6 +23,9 @@ assessed_as_of: '2026-04-28'
 ingested_at: '2026-06-08T19:35:02.165158+00:00'
 canonical_url: https://medium.com/@kurtis-redux/tolaria-the-local-first-open-source-note-app-that-blends-the-best-of-obsidian-and-notion-82a090bc9672
 content_sha256: d20e7e9f7cff47eff952bb29e707a091519096f0711702a275683af8ffa1704c
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/tolaria.md
 derived_topics:
@@ -73,3 +76,23 @@ The author presents Tolaria as unusually polished for a very new product, but th
 - Canonical URL: https://medium.com/@kurtis-redux/tolaria-the-local-first-open-source-note-app-that-blends-the-best-of-obsidian-and-notion-82a090bc9672
 - Raw markdown: `raw/readwise/tolaria-the-local-first-open-source-note-app-that-blends-the-best-of-obsidian-and-notion-01kqkyzqa74qr7rxzzjs08gc58.md`
 - Raw HTML: `raw/readwise/tolaria-the-local-first-open-source-note-app-that-blends-the-best-of-obsidian-and-notion-01kqkyzqa74qr7rxzzjs08gc58.html`
+
+## Full source text
+
+---
+readwise_id: 01kqkyzqa74qr7rxzzjs08gc58
+title: 'Tolaria: The Local‑First, Open‑Source Note App That Blends the Best of Obsidian
+  and Notion'
+author: Kurtis Redux
+source_url: https://medium.com/@kurtis-redux/tolaria-the-local-first-open-source-note-app-that-blends-the-best-of-obsidian-and-notion-82a090bc9672
+category: article
+location: archive
+published_date: '2026-04-28'
+saved_at: '2026-05-02T09:05:49.895000+00:00'
+updated_at: '2026-05-02T14:21:37.388155+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+It is new — and catching fire.

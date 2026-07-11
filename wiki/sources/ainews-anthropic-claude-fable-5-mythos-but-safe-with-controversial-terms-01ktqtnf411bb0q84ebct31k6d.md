@@ -18,6 +18,9 @@ assessed_as_of: '2026-06-10'
 ingested_at: '2026-07-11T12:06:51.798151+00:00'
 canonical_url: mailto:reader-forwarded-email/ddbb99991d9db1ceb3295d66ef983a37
 content_sha256: 4abd23f56b3dbbd2605aa51fb37923135e7ba8b20e4eb66d2ea44bc0782d5023
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-06/ainews-anthropic-claude-fable-5-mythos-but-safe-with-controversial-terms-01ktqtn-frontier-model-releases-are-becoming-policy-and-pricing-products-not-015a183cb1.md
 - signals/2026-06/ainews-anthropic-claude-fable-5-mythos-but-safe-with-controversial-terms-01ktqtn-silent-safety-interventions-create-an-auditability-problem-for-paid-71fdbf3e1e.md
@@ -64,3 +67,21 @@ The launch is framed as both a safety measure and a competitive product move, bu
 - Canonical URL: mailto:reader-forwarded-email/ddbb99991d9db1ceb3295d66ef983a37
 - Raw markdown: `raw/readwise/ainews-anthropic-claude-fable-5-mythos-but-safe-with-controversial-terms-01ktqtnf411bb0q84ebct31k6d.md`
 - Raw HTML: `raw/readwise/ainews-anthropic-claude-fable-5-mythos-but-safe-with-controversial-terms-01ktqtnf411bb0q84ebct31k6d.html`
+
+## Full source text
+
+---
+readwise_id: "01ktqtnf411bb0q84ebct31k6d"
+title: "[AINews] Anthropic Claude Fable 5 — Mythos but Safe, with Controversial Terms"
+author: "AINews"
+publication: "Substack"
+source_url: "mailto:reader-forwarded-email/ddbb99991d9db1ceb3295d66ef983a37"
+category: "email"
+location: "archive"
+published_date: "2026-06-10"
+saved_at: "2026-06-10T03:54:22.722000+00:00"
+updated_at: "2026-06-10T09:06:44.158639+00:00"
+tags: ["processed"]
+---
+
+By some measures, Opus 4. 8, barely two weeks old, was already the leading model in the world.

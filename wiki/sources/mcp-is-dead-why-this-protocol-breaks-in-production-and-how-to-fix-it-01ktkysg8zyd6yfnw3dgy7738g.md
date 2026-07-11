@@ -19,6 +19,9 @@ assessed_as_of: '2026-06-07'
 ingested_at: '2026-06-15T23:41:07+00:00'
 canonical_url: https://medium.com/ai-engineering-simplified/mcp-is-dead-why-this-protocol-breaks-in-production-and-how-to-fix-it-5499db11ef3e
 content_sha256: 2ebce6f0eeff09eaf1958b5e6ad04f0715d8cb5d74d3c766898de77f959dd54f
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/model-context-protocol.md
 - glossary/transport-layer-security-gap.md
@@ -72,3 +75,21 @@ The title says MCP is dead, but the body explicitly argues MCP is not going away
 - Canonical URL: https://medium.com/ai-engineering-simplified/mcp-is-dead-why-this-protocol-breaks-in-production-and-how-to-fix-it-5499db11ef3e
 - Raw markdown: `raw/readwise/mcp-is-dead-why-this-protocol-breaks-in-production-and-how-to-fix-it-01ktkysg8zyd6yfnw3dgy7738g.md`
 - Raw HTML: `raw/readwise/mcp-is-dead-why-this-protocol-breaks-in-production-and-how-to-fix-it-01ktkysg8zyd6yfnw3dgy7738g.html`
+
+## Full source text
+
+---
+readwise_id: "01ktkysg8zyd6yfnw3dgy7738g"
+title: "MCP Is Dead: Why This Protocol Breaks in Production(And How to Fix It)"
+author: "Divy Yadav"
+publication: "Medium"
+source_url: "https://medium.com/ai-engineering-simplified/mcp-is-dead-why-this-protocol-breaks-in-production-and-how-to-fix-it-5499db11ef3e"
+category: "article"
+location: "archive"
+published_date: "2026-06-07"
+saved_at: "2026-06-08T15:49:30.473000+00:00"
+updated_at: "2026-06-15T11:16:41.813883+00:00"
+tags: ["processed"]
+---
+
+MCP is a protocol that helps AI agents connect to many tools with one integration, but it has serious security and maintenance problems in real use. Developers face risks like unauthenticated servers, extra servers to manage, and wasted AI context space, causing many to avoid MCP in production. Instead, teams use direct API calls, native tool use, or new protocols like UTCP for safer and simpler AI tool integration.

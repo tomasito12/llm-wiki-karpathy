@@ -19,6 +19,9 @@ publication: Larsfaye
 ingested_at: '2026-06-06T15:31:43.309281+00:00'
 canonical_url: https://larsfaye.com/articles/agentic-coding-is-a-trap
 content_sha256: 9024b202ed7152d4ad5c7fce9eb97520132ada8c303382b47e670e249db05022
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/agentic-coding-workflows.md
 - topics/cognitive-debt-in-ai-workflows.md
@@ -65,3 +68,20 @@ The argument sometimes treats review-based coding as inherently inferior, but ma
 - Canonical URL: https://larsfaye.com/articles/agentic-coding-is-a-trap
 - Raw markdown: `raw/readwise/agentic-coding-is-a-trap-01krv8ckkgpcbaz9tn6ryd5vy9.md`
 - Raw HTML: `raw/readwise/agentic-coding-is-a-trap-01krv8ckkgpcbaz9tn6ryd5vy9.html`
+
+## Full source text
+
+---
+readwise_id: "01krv8ckkgpcbaz9tn6ryd5vy9"
+title: "Agentic Coding is a Trap"
+author: "larsfaye.com"
+publication: "Larsfaye"
+source_url: "https://larsfaye.com/articles/agentic-coding-is-a-trap"
+category: "article"
+location: "archive"
+saved_at: "2026-05-17T15:20:32.112000+00:00"
+updated_at: "2026-05-18T14:32:09.456075+00:00"
+tags: ["processed"]
+---
+
+Relying too much on AI coding agents can weaken programmers' critical thinking and coding skills. Skilled developers are needed to review AI-generated code, but overuse of AI tools makes this harder. To stay sharp, programmers must keep writing and understanding code themselves.

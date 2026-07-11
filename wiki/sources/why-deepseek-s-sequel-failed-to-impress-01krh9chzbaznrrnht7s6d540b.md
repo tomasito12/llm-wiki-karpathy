@@ -19,6 +19,9 @@ assessed_as_of: '2026-04-28'
 ingested_at: '2026-05-22T15:14:57.412124+00:00'
 canonical_url: https://www.economist.com/business/2026/04/28/why-deepseeks-sequel-failed-to-impress
 content_sha256: 0f84901d9e5bab0f0a0a8666ecb8d8f89a7f32cc72838a47a2cc235a53568c4a
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/ai-model-differentiation-shifts-to-distribution.md
 - topics/state-control-over-ai-supply-chains.md
@@ -65,3 +68,21 @@ There is a tension between the claim that v4 remains highly capable and cheap fo
 - Canonical URL: https://www.economist.com/business/2026/04/28/why-deepseeks-sequel-failed-to-impress
 - Raw markdown: `raw/readwise/why-deepseek-s-sequel-failed-to-impress-01krh9chzbaznrrnht7s6d540b.md`
 - Raw HTML: `raw/readwise/why-deepseek-s-sequel-failed-to-impress-01krh9chzbaznrrnht7s6d540b.html`
+
+## Full source text
+
+---
+readwise_id: "01krh9chzbaznrrnht7s6d540b"
+title: "Why DeepSeek’s sequel failed to impress"
+author: "The Economist"
+publication: "Economist"
+source_url: "https://www.economist.com/business/2026/04/28/why-deepseeks-sequel-failed-to-impress"
+category: "article"
+location: "archive"
+published_date: "2026-04-28"
+saved_at: "2026-05-13T18:25:34.699000+00:00"
+updated_at: "2026-05-14T19:51:32.109528+00:00"
+tags: ["processed"]
+---
+
+DeepSeek’s new AI model, v4, is almost as good as top Western models but did not excite the market. The Chinese AI field is crowded, with big companies like Alibaba creating popular AI apps. DeepSeek also faces challenges from government controls and rising costs.

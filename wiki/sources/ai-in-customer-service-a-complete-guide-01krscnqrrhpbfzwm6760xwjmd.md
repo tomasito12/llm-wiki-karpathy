@@ -25,6 +25,9 @@ assessed_as_of: '2025-11-11'
 ingested_at: '2026-06-07T20:19:48.673655+00:00'
 canonical_url: https://www.cognigy.com/blog/customer-service-ai
 content_sha256: cd7f221e860f2fdd08654fd94b415f0b567126f959e4f9578c8bb48626eb932a
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/narrow-support-automation-rollout.md
 derived_implementation_studies:
@@ -83,3 +86,21 @@ The article presents agentic AI as a natural next step from conversational AI, b
 - Canonical URL: https://www.cognigy.com/blog/customer-service-ai
 - Raw markdown: `raw/readwise/ai-in-customer-service-a-complete-guide-01krscnqrrhpbfzwm6760xwjmd.md`
 - Raw HTML: `raw/readwise/ai-in-customer-service-a-complete-guide-01krscnqrrhpbfzwm6760xwjmd.html`
+
+## Full source text
+
+---
+readwise_id: "01krscnqrrhpbfzwm6760xwjmd"
+title: "AI in Customer Service: A Complete Guide"
+author: "Alexander Teusz"
+publication: "cognigy.com"
+source_url: "https://www.cognigy.com/blog/customer-service-ai"
+category: "article"
+location: "archive"
+published_date: "2025-11-11"
+saved_at: "2026-05-16T21:56:56.726000+00:00"
+updated_at: "2026-05-19T09:28:20.582336+00:00"
+tags: ["processed"]
+---
+
+AI in customer service uses smart AI Agents to help customers quickly and anytime. These Agents handle tasks, reduce wait times, and improve customer experience by providing fast, personalized support. They assist both customers and human agents, making service better and more efficient.

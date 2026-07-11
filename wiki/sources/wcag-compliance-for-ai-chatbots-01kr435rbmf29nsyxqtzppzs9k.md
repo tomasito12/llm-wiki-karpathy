@@ -16,6 +16,9 @@ assessed_as_of: '2026-04-26'
 ingested_at: '2026-05-17T19:33:58.674724+00:00'
 canonical_url: https://medium.com/autocomplete-real-world-ai/wcag-compliance-for-ai-chatbots-074c2370d8a8
 content_sha256: 38cf4f704cbfe99f1ea2ad1b12463e57d7043ce1f103425bb6a9543921e32167
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/aria-live-region.md
 - glossary/web-content-accessibility-guidelines-wcag.md
@@ -69,3 +72,22 @@ The piece is strongest on concrete accessibility mechanics, but some legal and s
 - Canonical URL: https://medium.com/autocomplete-real-world-ai/wcag-compliance-for-ai-chatbots-074c2370d8a8
 - Raw markdown: `raw/readwise/wcag-compliance-for-ai-chatbots-01kr435rbmf29nsyxqtzppzs9k.md`
 - Raw HTML: `raw/readwise/wcag-compliance-for-ai-chatbots-01kr435rbmf29nsyxqtzppzs9k.html`
+
+## Full source text
+
+---
+readwise_id: 01kr435rbmf29nsyxqtzppzs9k
+title: WCAG compliance for AI chatbots
+author: Marco Kotrotsos
+source_url: https://medium.com/autocomplete-real-world-ai/wcag-compliance-for-ai-chatbots-074c2370d8a8
+category: article
+location: archive
+published_date: '2026-04-26'
+saved_at: '2026-05-08T15:26:52.788000+00:00'
+updated_at: '2026-05-08T15:30:15.235586+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+Many AI chatbots are not accessible to users with disabilities because they lack proper focus management, ARIA live regions, keyboard support, and speech-to-text compatibility. The European Accessibility Act requires chatbots to meet WCAG 2.1 Level AA standards, with penalties for non-compliance. To fix this, developers should follow guidelines like the MITRE Chatbot Accessibility Playbook and test with real screen readers, not just automated tools.

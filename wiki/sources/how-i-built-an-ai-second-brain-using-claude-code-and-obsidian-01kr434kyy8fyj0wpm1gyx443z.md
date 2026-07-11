@@ -23,6 +23,9 @@ assessed_as_of: '2026-05-03'
 ingested_at: '2026-06-05T15:15:26.889070+00:00'
 canonical_url: https://medium.com/@alipilevar/how-i-built-an-ai-second-brain-using-claude-code-and-obsidian-b9347ac34a69
 content_sha256: d28fa4256a98f966c5f73ee23a85ba3f9107764b82d6ff231675a4d465e87d8d
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/agentic-personal-knowledge-management.md
 derived_tools:
@@ -76,3 +79,22 @@ The article frames the setup as simple and weekend-buildable, but the descriptio
 - Canonical URL: https://medium.com/@alipilevar/how-i-built-an-ai-second-brain-using-claude-code-and-obsidian-b9347ac34a69
 - Raw markdown: `raw/readwise/how-i-built-an-ai-second-brain-using-claude-code-and-obsidian-01kr434kyy8fyj0wpm1gyx443z.md`
 - Raw HTML: `raw/readwise/how-i-built-an-ai-second-brain-using-claude-code-and-obsidian-01kr434kyy8fyj0wpm1gyx443z.html`
+
+## Full source text
+
+---
+readwise_id: 01kr434kyy8fyj0wpm1gyx443z
+title: How I Built an AI Second Brain Using Claude Code and Obsidian
+author: Ali Pilevar
+source_url: https://medium.com/@alipilevar/how-i-built-an-ai-second-brain-using-claude-code-and-obsidian-b9347ac34a69
+category: article
+location: archive
+published_date: '2026-05-03'
+saved_at: '2026-05-08T15:26:15.518000+00:00'
+updated_at: '2026-05-08T15:30:37.368367+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+Ali Pilevar built an AI-powered system using Claude Code and Obsidian to organize daily tasks automatically. The system reads emails, calendars, and to-dos, then creates a clear, prioritized plan each morning. This approach saves time, reduces stress, and adapts to personal work habits.

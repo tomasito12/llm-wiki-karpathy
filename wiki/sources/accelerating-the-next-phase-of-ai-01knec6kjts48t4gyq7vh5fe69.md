@@ -10,6 +10,9 @@ assessed_as_of: '2026-03-31'
 ingested_at: '2026-06-07T20:04:07.118791+00:00'
 canonical_url: https://openai.com/index/accelerating-the-next-phase-ai
 content_sha256: 4c6e30e8dcb2c2643d88dbd9a1a91254b5987e1a84b3b2900e76bcf87b21cea3
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # Accelerating the next phase of AI
@@ -45,3 +48,21 @@ The article blends strategic explanation with promotion, so its strongest claims
 - Canonical URL: https://openai.com/index/accelerating-the-next-phase-ai
 - Raw markdown: `raw/readwise/accelerating-the-next-phase-of-ai-01knec6kjts48t4gyq7vh5fe69.md`
 - Raw HTML: `raw/readwise/accelerating-the-next-phase-of-ai-01knec6kjts48t4gyq7vh5fe69.html`
+
+## Full source text
+
+---
+readwise_id: "01knec6kjts48t4gyq7vh5fe69"
+title: "Accelerating the next phase of AI"
+author: "OpenAI Blog"
+publication: "openai.com"
+source_url: "https://openai.com/index/accelerating-the-next-phase-ai"
+category: "rss"
+location: "archive"
+published_date: "2026-03-31"
+saved_at: "2026-04-05T08:29:44.698000+00:00"
+updated_at: "2026-05-11T09:40:31.574440+00:00"
+tags: ["processed"]
+---
+
+OpenAI raised $122 billion and is growing fast with over 900 million weekly users of ChatGPT. They are building smarter AI models and a unified superapp to help people and businesses work better. Their strong partnerships and large compute power help them lead AI innovation worldwide.

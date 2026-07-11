@@ -10,6 +10,9 @@ assessed_as_of: '2026-05-13'
 ingested_at: '2026-06-06T21:07:32.057614+00:00'
 canonical_url: https://www.economist.com/business/2026/05/13/the-war-between-businesses-and-hackers-enters-a-perilous-new-phase
 content_sha256: ca3e07f8903a18b861c0096e1cebfb61cf2758cdf5028a1f87763d4ee1b50911
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # The war between businesses and hackers enters a perilous new phase
@@ -45,3 +48,21 @@ The article presents collaboration between labs and security firms as promising,
 - Canonical URL: https://www.economist.com/business/2026/05/13/the-war-between-businesses-and-hackers-enters-a-perilous-new-phase
 - Raw markdown: `raw/readwise/the-war-between-businesses-and-hackers-enters-a-perilous-new-phase-01krjzgpm35mgsws0fz2rpc80q.md`
 - Raw HTML: `raw/readwise/the-war-between-businesses-and-hackers-enters-a-perilous-new-phase-01krjzgpm35mgsws0fz2rpc80q.html`
+
+## Full source text
+
+---
+readwise_id: "01krjzgpm35mgsws0fz2rpc80q"
+title: "The war between businesses and hackers enters a perilous new phase"
+author: "The Economist"
+publication: "Economist"
+source_url: "https://www.economist.com/business/2026/05/13/the-war-between-businesses-and-hackers-enters-a-perilous-new-phase"
+category: "article"
+location: "archive"
+published_date: "2026-05-13"
+saved_at: "2026-05-14T10:11:33.634000+00:00"
+updated_at: "2026-05-14T19:50:46.425823+00:00"
+tags: ["processed"]
+---
+
+AI is making cyber-attacks more powerful and harder to stop. Companies and security firms are racing to use AI to defend themselves. Though the threat is big, better tools and teamwork offer hope to fight back.

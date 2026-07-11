@@ -25,6 +25,9 @@ assessed_as_of: '2026-05-08'
 ingested_at: '2026-07-09T19:23:30.472042+00:00'
 canonical_url: https://kotrotsos.medium.com/the-local-ai-stack-for-apple-silicon-now-with-superpowers-c6038147eb1a
 content_sha256: 3758f18903f5a610aa941ba9c4e1b72b5c1a4d18ea41e173cbc22753cf94a820
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_models:
 - foundation-models/apple-foundation-models.md
 derived_tools:
@@ -79,3 +82,21 @@ The article is confident that local stacks can substitute for cloud pipelines in
 - Canonical URL: https://kotrotsos.medium.com/the-local-ai-stack-for-apple-silicon-now-with-superpowers-c6038147eb1a
 - Raw markdown: `raw/readwise/the-local-ai-stack-for-apple-silicon-now-with-superpowers-01krjqdz9985k9ja2fh5ftkd71.md`
 - Raw HTML: `raw/readwise/the-local-ai-stack-for-apple-silicon-now-with-superpowers-01krjqdz9985k9ja2fh5ftkd71.html`
+
+## Full source text
+
+---
+readwise_id: "01krjqdz9985k9ja2fh5ftkd71"
+title: "The Local AI Stack for Apple Silicon, Now With Superpowers."
+author: "Marco Kotrotsos"
+publication: "Medium"
+source_url: "https://kotrotsos.medium.com/the-local-ai-stack-for-apple-silicon-now-with-superpowers-c6038147eb1a"
+category: "article"
+location: "archive"
+published_date: "2026-05-08"
+saved_at: "2026-05-14T07:50:15.593000+00:00"
+updated_at: "2026-05-19T09:33:38.723899+00:00"
+tags: ["processed"]
+---
+
+Apple Silicon now runs powerful local AI models faster and with better privacy using tools like Ollama 0.19, Apple Foundation Models, and WhisperKit. Developers can build apps with a hybrid AI stack that works offline and scales from small to very large models on different chips. This new setup beats cloud services in speed and cost, making local AI practical and efficient for many uses.

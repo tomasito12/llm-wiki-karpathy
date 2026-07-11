@@ -25,6 +25,9 @@ assessed_as_of: '2026-06-12'
 ingested_at: '2026-06-15T21:14:35+00:00'
 canonical_url: mailto:reader-forwarded-email/06ff7c6cf6757b2f3c54d239ae85b1aa
 content_sha256: a319a782bbecfb1ca55a17d04e442ccef11ba38a61cc5c765dfb59db8af5f154
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-06/ainews-loopcraft-the-art-of-stacking-loops-01ktx5ag5dag2znp3fdp4c7c5y-agent-orchestration-is-replacing-prompt-by-prompt-interaction.md
 - signals/2026-06/ainews-loopcraft-the-art-of-stacking-loops-01ktx5ag5dag2znp3fdp4c7c5y-dataset-observability-and-lineage-are-becoming-core-multimodal-infrastructure.md
@@ -77,3 +80,21 @@ The roundup celebrates autonomy and loop stacking, but several examples still de
 - Canonical URL: mailto:reader-forwarded-email/06ff7c6cf6757b2f3c54d239ae85b1aa
 - Raw markdown: `raw/readwise/ainews-loopcraft-the-art-of-stacking-loops-01ktx5ag5dag2znp3fdp4c7c5y.md`
 - Raw HTML: `raw/readwise/ainews-loopcraft-the-art-of-stacking-loops-01ktx5ag5dag2znp3fdp4c7c5y.html`
+
+## Full source text
+
+---
+readwise_id: "01ktx5ag5dag2znp3fdp4c7c5y"
+title: "[AINews] Loopcraft: The Art of Stacking Loops"
+author: "AINews"
+publication: "Substack"
+source_url: "mailto:reader-forwarded-email/06ff7c6cf6757b2f3c54d239ae85b1aa"
+category: "email"
+location: "archive"
+published_date: "2026-06-12"
+saved_at: "2026-06-12T05:36:49.837000+00:00"
+updated_at: "2026-06-12T10:12:18.674662+00:00"
+tags: ["processed"]
+---
+
+AI research is shifting toward systems where multiple agents work together to improve efficiency and scale. New tools focus on data quality, memory management, and faster inference to support complex AI tasks. Despite progress, AI still struggles with hard expert tasks and long-term synthesis.

@@ -176,6 +176,11 @@ Structure:
 5. `## Limitations / open questions`
 6. `## Contradictions / unverified claims`
 7. `## Source metadata` — canonical URL, raw capture paths
+8. `## Full source text` — full raw Markdown from `raw/readwise/<source_id>.md` when available locally; otherwise a clear placeholder
+
+Full source text is embedded **as-is** after the managed sections. Raw article Markdown may contain its own `##` headings; wiki-lint validates only the fixed headings above, not headings inside the embedded raw body.
+
+Source pages remain **generated** managed output. Do not hand-edit them; update `state/reviews/<source_id>/review.json` and rerun `hatch run wiki-render`.
 
 ### Evidence pages (signals, insights, implementation studies)
 

@@ -23,6 +23,9 @@ published_date: '2026-05-12'
 ingested_at: '2026-06-05T18:50:37.342037+00:00'
 canonical_url: https://x.com/ArtificialAnlys/status/2054234919887573292
 content_sha256: 1c4ce3303902202f89a5b4fe57930c2e226b77126e6d44732de8753d066ff0ca
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_models:
 - foundation-models/gpt-realtime-2-high.md
 - foundation-models/grok-voice-think-fast-1-0.md
@@ -76,3 +79,21 @@ No contradictions captured.
 - Canonical URL: https://x.com/ArtificialAnlys/status/2054234919887573292
 - Raw markdown: `raw/readwise/announcing-agentic-performance-benchmarking-for-speech-to-speech-models-on-01krgrx80q2dg5k4a2bcx1b5xn.md`
 - Raw HTML: `raw/readwise/announcing-agentic-performance-benchmarking-for-speech-to-speech-models-on-01krgrx80q2dg5k4a2bcx1b5xn.html`
+
+## Full source text
+
+---
+readwise_id: "01krgrx80q2dg5k4a2bcx1b5xn"
+title: "Announcing agentic performance benchmarking for Speech to Speech models on..."
+author: "Artificial Analysis"
+publication: "X (formerly Twitter)"
+source_url: "https://x.com/ArtificialAnlys/status/2054234919887573292"
+category: "tweet"
+location: "archive"
+published_date: "2026-05-12"
+saved_at: "2026-05-13T13:37:35.768000+00:00"
+updated_at: "2026-05-13T17:11:02.771630+00:00"
+tags: ["processed"]
+---
+
+Artificial Analysis introduced a new benchmark called 𝜏-Voice to test Speech to Speech models in real customer service situations. The best model, xAI's Grok Voice Think Fast 1.0, solved about 52% of tasks but conversations took over 5 minutes on average. Speech to Speech technology is improving, but challenges like noise and accents still affect performance.

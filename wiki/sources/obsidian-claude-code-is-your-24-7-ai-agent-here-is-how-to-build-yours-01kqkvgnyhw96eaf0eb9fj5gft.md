@@ -14,6 +14,9 @@ assessed_as_of: '2026-04-23'
 ingested_at: '2026-05-18T19:50:37.149247+00:00'
 canonical_url: https://medium.com/@KanikaBK/obsidian-claude-code-is-your-24-7-ai-agent-here-is-how-to-build-yours-7239a07d6b9e
 content_sha256: d4fdda6606209399a3d45ed296e087ba472a55256132a9294bf6547f6b32e3be
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/agentic-personal-knowledge-management.md
 derived_tools:
@@ -67,3 +70,22 @@ The article presents the setup as a '24×7 AI agent,' but the described behavior
 - Canonical URL: https://medium.com/@KanikaBK/obsidian-claude-code-is-your-24-7-ai-agent-here-is-how-to-build-yours-7239a07d6b9e
 - Raw markdown: `raw/readwise/obsidian-claude-code-is-your-24-7-ai-agent-here-is-how-to-build-yours-01kqkvgnyhw96eaf0eb9fj5gft.md`
 - Raw HTML: `raw/readwise/obsidian-claude-code-is-your-24-7-ai-agent-here-is-how-to-build-yours-01kqkvgnyhw96eaf0eb9fj5gft.html`
+
+## Full source text
+
+---
+readwise_id: 01kqkvgnyhw96eaf0eb9fj5gft
+title: 'Obsidian + Claude Code is your 24×7 AI Agent: Here is how to build yours'
+author: Kanika B K
+source_url: https://medium.com/@KanikaBK/obsidian-claude-code-is-your-24-7-ai-agent-here-is-how-to-build-yours-7239a07d6b9e
+category: article
+location: archive
+published_date: '2026-04-23'
+saved_at: '2026-05-02T08:05:10.491000+00:00'
+updated_at: '2026-05-02T22:04:53.875533+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+Kanika explains how to connect Obsidian, a note-taking app, with Claude Code, an AI that reads and writes your notes. This setup turns your notes into a smart assistant that helps organize tasks and ideas automatically. With simple steps, you can make your vault work for you like a 24×7 AI agent.

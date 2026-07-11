@@ -16,6 +16,9 @@ assessed_as_of: '2026-01-19'
 ingested_at: '2026-05-22T15:11:06.277814+00:00'
 canonical_url: https://www.cognigy.com/blog/retail-ux-is-stuck.-multimodal-ai-is-the-reset-button
 content_sha256: a8ac1462b813225db2e66ea0980d5769303ab58494424a6bf4fc9f6a822d1284
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/intent-driven-commerce-interfaces.md
 - topics/realtime-multimodal-interaction.md
@@ -62,3 +65,21 @@ The article presents agentic commerce as inevitable, but that is a strategic ass
 - Canonical URL: https://www.cognigy.com/blog/retail-ux-is-stuck.-multimodal-ai-is-the-reset-button
 - Raw markdown: `raw/readwise/retail-ux-is-stuck-multimodal-ai-is-the-reset-button-01krrsfc31qt8htb9zawxb8hz4.md`
 - Raw HTML: `raw/readwise/retail-ux-is-stuck-multimodal-ai-is-the-reset-button-01krrsfc31qt8htb9zawxb8hz4.html`
+
+## Full source text
+
+---
+readwise_id: "01krrsfc31qt8htb9zawxb8hz4"
+title: "Retail UX is Stuck. Multimodal AI is the Reset Button."
+author: "Jarrod Davis"
+publication: "cognigy.com"
+source_url: "https://www.cognigy.com/blog/retail-ux-is-stuck.-multimodal-ai-is-the-reset-button"
+category: "article"
+location: "archive"
+published_date: "2026-01-19"
+saved_at: "2026-05-16T16:21:25.217000+00:00"
+updated_at: "2026-05-16T17:31:01.422530+00:00"
+tags: ["processed"]
+---
+
+E-commerce has not changed much in 25 years and needs a new kind of user experience. Multimodal AI combines language and visuals to create a smarter, real-time shopping interface. NiCE Cognigy offers tools to build this future-ready, AI-driven commerce experience today.

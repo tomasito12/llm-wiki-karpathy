@@ -14,6 +14,9 @@ assessed_as_of: '2026-04-18'
 ingested_at: '2026-06-08T19:40:42.025474+00:00'
 canonical_url: https://www.economist.com/finance-and-economics/2026/04/13/the-tech-jobs-bust-is-real-dont-blame-ai-yet
 content_sha256: 9b0b2b27391292d03979b8a4cabf9b396b1e21930d44ce07d5b3e2df6661717d
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/tech-skills-spread-across-the-economy.md
 derived_trends:
@@ -57,3 +60,21 @@ The strongest claim to scrutinize is that AI is not yet to blame, because the ar
 - Canonical URL: https://www.economist.com/finance-and-economics/2026/04/13/the-tech-jobs-bust-is-real-dont-blame-ai-yet
 - Raw markdown: `raw/readwise/the-tech-jobs-bust-is-real-don-t-blame-ai-yet-01krh9ekg4x863gyv44bgqkckf.md`
 - Raw HTML: `raw/readwise/the-tech-jobs-bust-is-real-don-t-blame-ai-yet-01krh9ekg4x863gyv44bgqkckf.html`
+
+## Full source text
+
+---
+readwise_id: "01krh9ekg4x863gyv44bgqkckf"
+title: "The tech jobs bust is real. Don’t blame AI (yet)"
+author: "The Economist"
+publication: "Economist"
+source_url: "https://www.economist.com/finance-and-economics/2026/04/13/the-tech-jobs-bust-is-real-dont-blame-ai-yet"
+category: "article"
+location: "archive"
+published_date: "2026-04-18"
+saved_at: "2026-05-13T18:26:41.796000+00:00"
+updated_at: "2026-05-13T18:27:34.354754+00:00"
+tags: ["processed"]
+---
+
+Tech companies are laying off workers, but this is not mainly because of AI. Most firms use AI only a little, and job demand for tech skills is still growing. Many tech jobs are moving to other industries, not disappearing.

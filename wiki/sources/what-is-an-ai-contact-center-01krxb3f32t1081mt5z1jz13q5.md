@@ -18,6 +18,9 @@ assessed_as_of: '2024-07-16'
 ingested_at: '2026-06-08T19:22:15.884839+00:00'
 canonical_url: https://www.cognigy.com/blog/ai-powered-contact-center
 content_sha256: debdfa955fff853ed95ab4859b49f68e7e921c1fe8f9f2a6a8ed65a60d69c8f8
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/enterprise-conversational-ai-integration.md
 - topics/support-automation-as-operating-model.md
@@ -64,3 +67,21 @@ The piece says AI contact centers are not fully automated and human agents remai
 - Canonical URL: https://www.cognigy.com/blog/ai-powered-contact-center
 - Raw markdown: `raw/readwise/what-is-an-ai-contact-center-01krxb3f32t1081mt5z1jz13q5.md`
 - Raw HTML: `raw/readwise/what-is-an-ai-contact-center-01krxb3f32t1081mt5z1jz13q5.html`
+
+## Full source text
+
+---
+readwise_id: "01krxb3f32t1081mt5z1jz13q5"
+title: "What is an AI Contact Center?"
+author: "Cognigy"
+publication: "cognigy.com"
+source_url: "https://www.cognigy.com/blog/ai-powered-contact-center"
+category: "article"
+location: "archive"
+published_date: "2024-07-16"
+saved_at: "2026-05-18T10:46:27.170000+00:00"
+updated_at: "2026-05-20T15:23:31.312110+00:00"
+tags: ["processed"]
+---
+
+An AI contact center uses artificial intelligence to help customers faster and support agents during calls. AI handles simple tasks and directs complex issues to human agents, improving satisfaction and efficiency. This technology saves time, reduces costs, and is becoming essential for modern customer service.

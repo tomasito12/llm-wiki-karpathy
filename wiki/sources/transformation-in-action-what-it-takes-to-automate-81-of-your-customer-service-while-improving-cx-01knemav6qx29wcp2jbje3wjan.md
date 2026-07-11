@@ -19,6 +19,9 @@ assessed_as_of: '2026-03-13'
 ingested_at: '2026-05-19T16:41:18.498423+00:00'
 canonical_url: https://www.intercom.com/blog/automate-customer-service-while-improving-customer-experience/
 content_sha256: 60286d524fe8a02485f6f5965d6f1bd777d77628e690b803b361565ed041ed1a
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_implementation_studies:
 - implementation-studies/2026-03/transformation-in-action-what-it-takes-to-automate-81-of-your-customer-service-w-intercom-s-ai-first-support-transformation-with-fin-871998217f.md
 derived_topics:
@@ -69,3 +72,23 @@ The article presents a strong success narrative, but it is still a company case 
 - Canonical URL: https://www.intercom.com/blog/automate-customer-service-while-improving-customer-experience/
 - Raw markdown: `raw/readwise/transformation-in-action-what-it-takes-to-automate-81-of-your-customer-service-while-improving-cx-01knemav6qx29wcp2jbje3wjan.md`
 - Raw HTML: `raw/readwise/transformation-in-action-what-it-takes-to-automate-81-of-your-customer-service-while-improving-cx-01knemav6qx29wcp2jbje3wjan.html`
+
+## Full source text
+
+---
+readwise_id: 01knemav6qx29wcp2jbje3wjan
+title: 'Transformation in action: What it takes to automate 81% of your customer service
+  while improving CX'
+author: Declan Ivory
+source_url: https://www.intercom.com/blog/automate-customer-service-while-improving-customer-experience/
+category: rss
+location: archive
+published_date: '2026-03-13'
+saved_at: '2026-04-05T10:51:49.183000+00:00'
+updated_at: '2026-05-08T15:04:14.916761+00:00'
+tags:
+- processed
+publication: Intercom
+---
+
+Intercom transformed its customer support by using AI to automate 81% of inquiries, handling a 300% increase in demand without adding staff. They focused on building trust, improving knowledge, and redesigning conversations to enhance the customer experience. This shift let their team focus on complex issues and increased customer satisfaction and company revenue.

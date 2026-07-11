@@ -15,6 +15,9 @@ assessed_as_of: '2026-05-05'
 ingested_at: '2026-05-17T20:06:17.267395+00:00'
 canonical_url: https://medium.com/generative-ai/run-your-own-ai-agent-locally-ollama-mcp-and-skills-explained-a913fe46e938
 content_sha256: 30ab954001bdfba64fcc36992a7585a7cb8508c3aac4a50e332fd8a7b6dcdd8a
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/local-coding-model-setup.md
 derived_models:
@@ -69,3 +72,21 @@ The article presents the stack as a practical template, but the evidence is main
 - Canonical URL: https://medium.com/generative-ai/run-your-own-ai-agent-locally-ollama-mcp-and-skills-explained-a913fe46e938
 - Raw markdown: `raw/readwise/run-your-own-ai-agent-locally-ollama-mcp-and-skills-explained-01krbndqeaakn1z9vmar5vjf14.md`
 - Raw HTML: `raw/readwise/run-your-own-ai-agent-locally-ollama-mcp-and-skills-explained-01krbndqeaakn1z9vmar5vjf14.html`
+
+## Full source text
+
+---
+readwise_id: "01krbndqeaakn1z9vmar5vjf14"
+title: "Run Your Own AI Agent Locally: Ollama, MCP, and Skills Explained"
+author: "Jes Fink-Jensen"
+publication: "Medium"
+source_url: "https://medium.com/generative-ai/run-your-own-ai-agent-locally-ollama-mcp-and-skills-explained-a913fe46e938"
+category: "article"
+location: "archive"
+published_date: "2026-05-05"
+saved_at: "2026-05-11T14:00:29.386000+00:00"
+updated_at: "2026-05-12T09:43:33.508740+00:00"
+tags: ["processed"]
+---
+
+A working implementation of the LLM-as-language, MCP-as-library analogy — every layer visible and replaceable.

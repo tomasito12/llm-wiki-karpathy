@@ -13,6 +13,9 @@ assessed_as_of: '2026-04-23'
 ingested_at: '2026-05-18T14:45:57.395895+00:00'
 canonical_url: https://thesequence.substack.com/p/the-sequence-opinion-848-the-agents
 content_sha256: d9eedd32ec0caf2413c2fd5f1a43daf8aa22062872cb2278980cd9d6516fe760
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/model-context-protocol.md
 derived_pages:
@@ -52,3 +55,22 @@ The argument is elegant but abstract, so it risks overstating the universality o
 - Canonical URL: https://thesequence.substack.com/p/the-sequence-opinion-848-the-agents
 - Raw markdown: `raw/readwise/the-sequence-opinion-848-the-agent-s-hands-cli-or-mcp-01kpx19wnknk0ms9zpszqvv62b.md`
 - Raw HTML: `raw/readwise/the-sequence-opinion-848-the-agent-s-hands-cli-or-mcp-01kpx19wnknk0ms9zpszqvv62b.html`
+
+## Full source text
+
+---
+readwise_id: 01kpx19wnknk0ms9zpszqvv62b
+title: 'The Sequence Opinion #848: The Agent’s Hands: CLI or MCP?'
+author: Jesus Rodriguez
+source_url: https://thesequence.substack.com/p/the-sequence-opinion-848-the-agents
+category: rss
+location: archive
+published_date: '2026-04-23'
+saved_at: '2026-04-23T11:23:45.275000+00:00'
+updated_at: '2026-05-08T13:17:16.452689+00:00'
+tags:
+- processed
+publication: Substack
+---
+
+What matter most when building agentic tool interfaces.

@@ -18,6 +18,9 @@ assessed_as_of: '2026-04-28'
 ingested_at: '2026-05-21T14:46:11.640692+00:00'
 canonical_url: https://towardsdatascience.com/the-next-frontier-of-ai-in-production-is-chaos-engineering/?utm_campaign=tds%20variable&utm_medium=email&_hsenc=p2ANqtz-_Uw8GBxfagNQurwb8V1rCgPtziUtB_NSEYpqjoLLSfPpXF1GzNxvW-xgVYkR8HAYFIeBBZHBD2_sU09-pXvBxvx7QV2w&_hsmi=418698396&utm_source=newsletter
 content_sha256: 6efb341efa423b1ce1e9f0251c625d1c0340bb2e2f4993be188c1afd534c5ad4
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/feedforward-controls.md
 - glossary/harness.md
@@ -71,3 +74,21 @@ The article's biggest tension is that it treats hypothesis-driven chaos as a too
 - Canonical URL: https://towardsdatascience.com/the-next-frontier-of-ai-in-production-is-chaos-engineering/?utm_campaign=tds%20variable&utm_medium=email&_hsenc=p2ANqtz-_Uw8GBxfagNQurwb8V1rCgPtziUtB_NSEYpqjoLLSfPpXF1GzNxvW-xgVYkR8HAYFIeBBZHBD2_sU09-pXvBxvx7QV2w&_hsmi=418698396&utm_source=newsletter
 - Raw markdown: `raw/readwise/the-next-frontier-of-ai-in-production-is-chaos-engineering-01krkb7np7mz3q1weya69wvnvv.md`
 - Raw HTML: `raw/readwise/the-next-frontier-of-ai-in-production-is-chaos-engineering-01krkb7np7mz3q1weya69wvnvv.html`
+
+## Full source text
+
+---
+readwise_id: "01krkb7np7mz3q1weya69wvnvv"
+title: "The Next Frontier of AI in Production Is Chaos Engineering"
+author: "Sayali Patil"
+publication: "Medium"
+source_url: "https://towardsdatascience.com/the-next-frontier-of-ai-in-production-is-chaos-engineering/?utm_campaign=tds%20variable&utm_medium=email&_hsenc=p2ANqtz-_Uw8GBxfagNQurwb8V1rCgPtziUtB_NSEYpqjoLLSfPpXF1GzNxvW-xgVYkR8HAYFIeBBZHBD2_sU09-pXvBxvx7QV2w&_hsmi=418698396&utm_source=newsletter"
+category: "article"
+location: "archive"
+published_date: "2026-04-28"
+saved_at: "2026-05-14T13:36:20.679000+00:00"
+updated_at: "2026-05-17T07:14:20.294809+00:00"
+tags: ["processed"]
+---
+
+Chaos engineering needs to move beyond breaking things randomly to testing specific system behaviors based on clear hypotheses. The new intent-based approach designs experiments from what engineers want to learn, improving safety and insight. This method helps teams understand failures better and avoid repeating useless tests.

@@ -15,6 +15,9 @@ assessed_as_of: '2026-05-08'
 ingested_at: '2026-06-06T21:37:11+00:00'
 canonical_url: https://www.latent.space/p/ainews-gpt-realtime-2-translate-and
 content_sha256: c4feda103bf2438d75472232038ed4cf234550374b4f061c104098828e5a739d
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-05/ainews-gpt-realtime-2-translate-and-whisper-new-sota-realtime-voice-apis-01kr37c-realtime-voice-agents-are-becoming-workflow-completion-systems-abad84aaf4.md
 derived_trends:
@@ -58,3 +61,23 @@ The roundup repeats strong claims like “GPT-5-class reasoning” and “total 
 - Canonical URL: https://www.latent.space/p/ainews-gpt-realtime-2-translate-and
 - Raw markdown: `raw/readwise/ainews-gpt-realtime-2-translate-and-whisper-new-sota-realtime-voice-apis-01kr37cy2zcbfsf6mk4g4x0bxb.md`
 - Raw HTML: `raw/readwise/ainews-gpt-realtime-2-translate-and-whisper-new-sota-realtime-voice-apis-01kr37cy2zcbfsf6mk4g4x0bxb.html`
+
+## Full source text
+
+---
+readwise_id: 01kr37cy2zcbfsf6mk4g4x0bxb
+title: '[AINews] GPT-Realtime-2, -Translate, and -Whisper: new SOTA realtime voice
+  APIs'
+author: Latent Space
+source_url: https://www.latent.space/p/ainews-gpt-realtime-2-translate-and
+category: rss
+location: archive
+published_date: '2026-05-08'
+saved_at: '2026-05-08T07:21:24.904000+00:00'
+updated_at: '2026-05-08T09:58:35.153518+00:00'
+tags:
+- processed
+publication: Latent
+---
+
+OpenAI continues deploying GPT-5 everywhere

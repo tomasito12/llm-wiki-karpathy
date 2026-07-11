@@ -10,6 +10,9 @@ assessed_as_of: '2026-04-17'
 ingested_at: '2026-05-21T14:49:25.298962+00:00'
 canonical_url: https://medium.com/@piedpay/the-best-terminal-for-claude-code-ghostty-95c35b2d90e6
 content_sha256: 60e05d1e3c9abdf1e8ddcf034d14ebecac8369334169879fbef8304a2bdaabdb
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/ghostty.md
 derived_pages:
@@ -48,3 +51,21 @@ The article leans on subjective experience and a few asserted numbers, so the pe
 - Canonical URL: https://medium.com/@piedpay/the-best-terminal-for-claude-code-ghostty-95c35b2d90e6
 - Raw markdown: `raw/readwise/the-best-terminal-for-claude-code-ghostty-01kr4pm55j8vbyk7am14aec7yz.md`
 - Raw HTML: `raw/readwise/the-best-terminal-for-claude-code-ghostty-01kr4pm55j8vbyk7am14aec7yz.html`
+
+## Full source text
+
+---
+readwise_id: "01kr4pm55j8vbyk7am14aec7yz"
+title: "The Best Terminal for Claude Code - Ghostty"
+author: "Chimin"
+publication: "Medium"
+source_url: "https://medium.com/@piedpay/the-best-terminal-for-claude-code-ghostty-95c35b2d90e6"
+category: "article"
+location: "archive"
+published_date: "2026-04-17"
+saved_at: "2026-05-08T21:06:47.602000+00:00"
+updated_at: "2026-05-09T16:19:10.957228+00:00"
+tags: ["processed"]
+---
+
+Ghostty: A GPU-Accelerated Terminal for the AI Era

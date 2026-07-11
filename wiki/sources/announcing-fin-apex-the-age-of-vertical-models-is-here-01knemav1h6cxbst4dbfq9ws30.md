@@ -15,6 +15,9 @@ assessed_as_of: '2026-03-26'
 ingested_at: '2026-05-18T20:28:47.243748+00:00'
 canonical_url: https://www.intercom.com/blog/announcing-fin-apex-the-age-of-vertical-models-is-here/
 content_sha256: fcb02c75978a6cfcc413b6ade2f523dfd1d80e451a7e6cfdf6c4f4e3a90fe1c0
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/fine-tuning.md
 - glossary/knowledge-management.md
@@ -72,3 +75,22 @@ The post combines a product launch with a strategic claim that general-purpose f
 - Canonical URL: https://www.intercom.com/blog/announcing-fin-apex-the-age-of-vertical-models-is-here/
 - Raw markdown: `raw/readwise/announcing-fin-apex-the-age-of-vertical-models-is-here-01knemav1h6cxbst4dbfq9ws30.md`
 - Raw HTML: `raw/readwise/announcing-fin-apex-the-age-of-vertical-models-is-here-01knemav1h6cxbst4dbfq9ws30.html`
+
+## Full source text
+
+---
+readwise_id: 01knemav1h6cxbst4dbfq9ws30
+title: 'Announcing Fin Apex: The age of vertical models is here'
+author: Eoghan McCabe
+source_url: https://www.intercom.com/blog/announcing-fin-apex-the-age-of-vertical-models-is-here/
+category: rss
+location: archive
+published_date: '2026-03-26'
+saved_at: '2026-04-05T10:51:58.018000+00:00'
+updated_at: '2026-05-08T13:23:32.798358+00:00'
+tags:
+- processed
+publication: Intercom
+---
+
+Intercom launched Apex, a new AI model that improves customer service by solving problems faster, cheaper, and better than top competitors. Apex helps companies fix more customer issues and reduces errors, making service smarter and more efficient. This breakthrough shows how specialized AI models will shape the future, pushing big labs to create their own custom solutions.

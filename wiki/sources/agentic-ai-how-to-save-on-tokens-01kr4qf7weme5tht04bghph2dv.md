@@ -25,6 +25,9 @@ assessed_as_of: '2026-05-08'
 ingested_at: '2026-05-26T21:53:23.257710+00:00'
 canonical_url: https://medium.com/data-science-collective/agentic-ai-how-to-save-on-tokens-9a1571ac6c85
 content_sha256: b5998d0f3c9394aa0df3d355271c19c543a7b1fcfdf8bb9283896bb9b0a1507f
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/context-compaction.md
 - how-to/lazy-loading-tools.md
@@ -76,3 +79,21 @@ The article is candid that many of the techniques trade cost for complexity, but
 - Canonical URL: https://medium.com/data-science-collective/agentic-ai-how-to-save-on-tokens-9a1571ac6c85
 - Raw markdown: `raw/readwise/agentic-ai-how-to-save-on-tokens-01kr4qf7weme5tht04bghph2dv.md`
 - Raw HTML: `raw/readwise/agentic-ai-how-to-save-on-tokens-01kr4qf7weme5tht04bghph2dv.html`
+
+## Full source text
+
+---
+readwise_id: "01kr4qf7weme5tht04bghph2dv"
+title: "Agentic AI: How to Save on Tokens"
+author: "Ida Silfverskiöld"
+publication: "Medium"
+source_url: "https://medium.com/data-science-collective/agentic-ai-how-to-save-on-tokens-9a1571ac6c85"
+category: "article"
+location: "archive"
+published_date: "2026-05-08"
+saved_at: "2026-05-08T21:21:35.118000+00:00"
+updated_at: "2026-05-11T09:40:29.096405+00:00"
+tags: ["processed"]
+---
+
+Caching, lazy-loading, routing, compaction, and so on

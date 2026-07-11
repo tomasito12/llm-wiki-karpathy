@@ -16,6 +16,9 @@ assessed_as_of: '2026-04-27'
 ingested_at: '2026-06-05T14:55:34.984915+00:00'
 canonical_url: https://www.economist.com/business/2026/04/27/the-ai-rush-is-hitting-a-bottleneck
 content_sha256: dae422ec67854a86cbba09713af580b020e0b257df34f05d940d6b5f04f96150
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/compute-supply-becomes-the-ai-bottleneck.md
 derived_trends:
@@ -59,3 +62,21 @@ The article leans on a broad scarcity narrative, but some relief mechanisms are 
 - Canonical URL: https://www.economist.com/business/2026/04/27/the-ai-rush-is-hitting-a-bottleneck
 - Raw markdown: `raw/readwise/the-ai-rush-is-hitting-a-bottleneck-01krh9cw3j10nhcqc5srt894rx.md`
 - Raw HTML: `raw/readwise/the-ai-rush-is-hitting-a-bottleneck-01krh9cw3j10nhcqc5srt894rx.html`
+
+## Full source text
+
+---
+readwise_id: "01krh9cw3j10nhcqc5srt894rx"
+title: "The AI rush is hitting a bottleneck"
+author: "The Economist"
+publication: "Economist"
+source_url: "https://www.economist.com/business/2026/04/27/the-ai-rush-is-hitting-a-bottleneck"
+category: "article"
+location: "archive"
+published_date: "2026-04-27"
+saved_at: "2026-05-13T18:25:45.074000+00:00"
+updated_at: "2026-05-15T04:25:37.070943+00:00"
+tags: ["processed"]
+---
+
+Demand for AI is growing fast, but data centres and chipmakers cannot supply enough computing power. Building new facilities and making advanced chips takes years and faces political and material hurdles. This shortage may slow down the rapid growth of AI technology soon.

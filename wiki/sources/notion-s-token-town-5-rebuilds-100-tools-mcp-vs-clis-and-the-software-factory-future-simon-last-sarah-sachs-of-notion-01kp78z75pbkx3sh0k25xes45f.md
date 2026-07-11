@@ -28,6 +28,9 @@ assessed_as_of: '2026-04-15'
 ingested_at: '2026-06-05T15:28:32.680537+00:00'
 canonical_url: https://www.latent.space/p/notion
 content_sha256: 30cc50e4340c346681021eae57eb692c635318ec1733897fde5cb2f98eddd023
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_interview_insights:
 - interview-insights/2026-04/notion-s-token-town-5-rebuilds-100-tools-mcp-vs-clis-and-the-software-factory-fu-design-agent-products-around-model-constraints-not-product-complexit-f5580eb500.md
 - interview-insights/2026-04/notion-s-token-town-5-rebuilds-100-tools-mcp-vs-clis-and-the-software-factory-fu-evals-should-be-treated-as-an-agent-harness-not-just-testing-4d8f7c7373.md
@@ -79,3 +82,23 @@ Some claims are ambitious and should be treated cautiously. For example, calling
 - Canonical URL: https://www.latent.space/p/notion
 - Raw markdown: `raw/readwise/notion-s-token-town-5-rebuilds-100-tools-mcp-vs-clis-and-the-software-factory-future-simon-last-sarah-sachs-of-notion-01kp78z75pbkx3sh0k25xes45f.md`
 - Raw HTML: `raw/readwise/notion-s-token-town-5-rebuilds-100-tools-mcp-vs-clis-and-the-software-factory-future-simon-last-sarah-sachs-of-notion-01kp78z75pbkx3sh0k25xes45f.html`
+
+## Full source text
+
+---
+readwise_id: 01kp78z75pbkx3sh0k25xes45f
+title: 'Notion’s Token Town: 5 Rebuilds, 100+ Tools, MCP vs CLIs and the Software
+  Factory Future — Simon Last & Sarah Sachs of Notion'
+author: Latent Space
+source_url: https://www.latent.space/p/notion
+category: podcast
+location: archive
+published_date: '2026-04-15'
+saved_at: '2026-04-15T00:34:26.687000+00:00'
+updated_at: '2026-05-08T10:48:58.900951+00:00'
+tags:
+- processed
+publication: Latent
+---
+
+Notion's cofounder and head of AI peel back the curtains to talk about finally shipping the Knowledge Work AI agents the world has been waiting for.

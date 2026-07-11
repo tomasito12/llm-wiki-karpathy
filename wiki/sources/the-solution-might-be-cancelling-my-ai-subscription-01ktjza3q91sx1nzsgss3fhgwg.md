@@ -17,6 +17,9 @@ assessed_as_of: '2026-05-31'
 ingested_at: '2026-06-16T01:46:06+00:00'
 canonical_url: https://thoughts.hmmz.org/2026-05-31.html
 content_sha256: d4dc9f526bf551148b87007702afdaca8414e38a34a0012e650d4889ab85e9e7
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/attention-hungry-ai-workflows.md
 - topics/manual-capture-friction.md
@@ -63,3 +66,21 @@ The article’s strongest claims are subjective and may overgeneralize from a fe
 - Canonical URL: https://thoughts.hmmz.org/2026-05-31.html
 - Raw markdown: `raw/readwise/the-solution-might-be-cancelling-my-ai-subscription-01ktjza3q91sx1nzsgss3fhgwg.md`
 - Raw HTML: `raw/readwise/the-solution-might-be-cancelling-my-ai-subscription-01ktjza3q91sx1nzsgss3fhgwg.html`
+
+## Full source text
+
+---
+readwise_id: "01ktjza3q91sx1nzsgss3fhgwg"
+title: "the solution might be cancelling my AI subscription"
+author: "hmmz.org"
+publication: "Hmmz"
+source_url: "https://thoughts.hmmz.org/2026-05-31.html"
+category: "article"
+location: "archive"
+published_date: "2026-05-31"
+saved_at: "2026-06-08T06:39:21.319000+00:00"
+updated_at: "2026-06-15T11:09:35.826095+00:00"
+tags: ["processed"]
+---
+
+The author built many AI projects but finds them mostly useless and hard to maintain. AI tools increase distraction and shallow work, hurting real focus and productivity. To manage this, the author thinks limiting AI use is the best way forward.

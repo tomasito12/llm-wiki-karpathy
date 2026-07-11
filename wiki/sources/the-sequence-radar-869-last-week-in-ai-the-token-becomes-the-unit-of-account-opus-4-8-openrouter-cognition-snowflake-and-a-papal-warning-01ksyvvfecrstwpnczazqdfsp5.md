@@ -20,6 +20,9 @@ assessed_as_of: '2026-05-31'
 ingested_at: '2026-06-06T14:48:33.301501+00:00'
 canonical_url: https://thesequence.substack.com/p/the-sequence-radar-869-last-week
 content_sha256: 8d9aa8e31f3535cdfb5bcb45f2f5ab27e296a1526a982437a7433c63e02ac998
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-05/the-sequence-radar-869-last-week-in-ai-the-token-becomes-the-unit-of-account-opu-agent-workflows-are-becoming-the-product-surface-not-just-model-qual-3331b69e97.md
 - signals/2026-05/the-sequence-radar-869-last-week-in-ai-the-token-becomes-the-unit-of-account-opu-autonomous-coding-is-moving-from-demo-to-internal-default-ec155ec761.md
@@ -69,3 +72,21 @@ The piece presents token-based accounting as if it cleanly explains the whole st
 - Canonical URL: https://thesequence.substack.com/p/the-sequence-radar-869-last-week
 - Raw markdown: `raw/readwise/the-sequence-radar-869-last-week-in-ai-the-token-becomes-the-unit-of-account-opus-4-8-openrouter-cognition-snowflake-and-a-papal-warning-01ksyvvfecrstwpnczazqdfsp5.md`
 - Raw HTML: `raw/readwise/the-sequence-radar-869-last-week-in-ai-the-token-becomes-the-unit-of-account-opus-4-8-openrouter-cognition-snowflake-and-a-papal-warning-01ksyvvfecrstwpnczazqdfsp5.html`
+
+## Full source text
+
+---
+readwise_id: "01ksyvvfecrstwpnczazqdfsp5"
+title: "The Sequence Radar #869: Last Week in AI: The Token Becomes the Unit of Account — Opus 4.8, OpenRouter, Cognition, Snowflake, and a papal warning"
+author: "Jesus Rodriguez"
+publication: "substack.com"
+source_url: "https://thesequence.substack.com/p/the-sequence-radar-869-last-week"
+category: "rss"
+location: "archive"
+published_date: "2026-05-31"
+saved_at: "2026-05-31T11:14:04.437000+00:00"
+updated_at: "2026-05-31T12:23:06.122685+00:00"
+tags: ["processed"]
+---
+
+Opus 4.8 and remarkable fundraising events.

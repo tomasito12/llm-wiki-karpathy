@@ -22,6 +22,9 @@ assessed_as_of: '2026-05-15'
 ingested_at: '2026-06-06T22:00:05+00:00'
 canonical_url: https://www.intercom.com/blog/introducing-operator/
 content_sha256: ce1ac8170530a94fc13b1ac0e245c58b68c8e37c7d96eaf888a24e35b8a1d53f
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/operator.md
 derived_topics:
@@ -72,3 +75,21 @@ The launch language is ambitious, but the evidence is mostly aspirational produc
 - Canonical URL: https://www.intercom.com/blog/introducing-operator/
 - Raw markdown: `raw/readwise/meet-operator-an-agent-for-your-customer-operations-01krmvv5n3fkq5e3h1w2mjttew.md`
 - Raw HTML: `raw/readwise/meet-operator-an-agent-for-your-customer-operations-01krmvv5n3fkq5e3h1w2mjttew.html`
+
+## Full source text
+
+---
+readwise_id: "01krmvv5n3fkq5e3h1w2mjttew"
+title: "Meet Operator: An Agent for your customer operations"
+author: "Patrick Andrews"
+publication: "The Intercom Blog"
+source_url: "https://www.intercom.com/blog/introducing-operator/"
+category: "rss"
+location: "archive"
+published_date: "2026-05-15"
+saved_at: "2026-05-15T03:45:45.267000+00:00"
+updated_at: "2026-05-20T20:56:24.167549+00:00"
+tags: ["processed"]
+---
+
+Learn how Operator can help you understand, manage, and improve your customer experience in a way that has never been possible before.

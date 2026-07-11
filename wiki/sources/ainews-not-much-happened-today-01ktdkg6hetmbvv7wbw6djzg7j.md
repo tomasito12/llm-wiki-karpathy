@@ -18,6 +18,9 @@ assessed_as_of: '2026-06-06'
 ingested_at: '2026-07-08T19:22:21.690993+00:00'
 canonical_url: mailto:reader-forwarded-email/a82a9be41a1810c695a0320e4638e027
 content_sha256: 061ec8a74745aa9784f89424c7074bcac886dee3f33ee8a6bbd8e610beb36781
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-06/ainews-not-much-happened-today-01ktdkg6hetmbvv7wbw6djzg7j-agent-evaluation-is-moving-toward-long-horizon-economically-meaningful-work.md
 - signals/2026-06/ainews-not-much-happened-today-01ktdkg6hetmbvv7wbw6djzg7j-recursive-self-improvement-is-becoming-a-formal-lab-program.md
@@ -64,3 +67,21 @@ The roundup surfaces a recurring tension between strong language and weak proof:
 - Canonical URL: mailto:reader-forwarded-email/a82a9be41a1810c695a0320e4638e027
 - Raw markdown: `raw/readwise/ainews-not-much-happened-today-01ktdkg6hetmbvv7wbw6djzg7j.md`
 - Raw HTML: `raw/readwise/ainews-not-much-happened-today-01ktdkg6hetmbvv7wbw6djzg7j.html`
+
+## Full source text
+
+---
+readwise_id: "01ktdkg6hetmbvv7wbw6djzg7j"
+title: "[AINews] not much happened today"
+author: "AINews"
+publication: "Substack"
+source_url: "mailto:reader-forwarded-email/a82a9be41a1810c695a0320e4638e027"
+category: "email"
+location: "archive"
+published_date: "2026-06-06"
+saved_at: "2026-06-06T04:36:45.742000+00:00"
+updated_at: "2026-06-06T07:39:54.535675+00:00"
+tags: ["processed"]
+---
+
+The AI field saw steady progress in self-improving systems and reliable benchmarks this week. New open models like Gemma 4 QAT and Ideogram 4 improved efficiency and accessibility. Tooling and infrastructure advances focused on cost control, agent efficiency, and platform security.

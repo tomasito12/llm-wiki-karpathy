@@ -19,6 +19,9 @@ publication: cognigy.com
 ingested_at: '2026-06-07T20:08:33.558019+00:00'
 canonical_url: https://www.cognigy.com/en/case-study/aegea
 content_sha256: a0fd95dd22b2d99e80dddba3f15b1748569d2f224ce3ac6e2be0c919b513a3d4
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_implementation_studies:
 - implementation-studies/unknown/ai-agent-on-whatsapppeaking-at-1-1-million-conversations-per-month-01krxb2md77sjdtamz26vqqa7m-aegea-s-whatsapp-support-automation-rollout.md
 derived_tools:
@@ -73,3 +76,20 @@ The strongest claims are impressive but lightly evidenced: high conversation vol
 - Canonical URL: https://www.cognigy.com/en/case-study/aegea
 - Raw markdown: `raw/readwise/ai-agent-on-whatsapppeaking-at-1-1-million-conversations-per-month-01krxb2md77sjdtamz26vqqa7m.md`
 - Raw HTML: `raw/readwise/ai-agent-on-whatsapppeaking-at-1-1-million-conversations-per-month-01krxb2md77sjdtamz26vqqa7m.html`
+
+## Full source text
+
+---
+readwise_id: "01krxb2md77sjdtamz26vqqa7m"
+title: "AI Agent on WhatsAppPeaking at 1.1 Million Conversations per Month"
+author: "NiCE Cognigy"
+publication: "cognigy.com"
+source_url: "https://www.cognigy.com/en/case-study/aegea"
+category: "article"
+location: "archive"
+saved_at: "2026-05-18T10:45:59.847000+00:00"
+updated_at: "2026-05-19T12:07:57.261822+00:00"
+tags: ["processed"]
+---
+
+AEGEA, a Brazilian sanitation company, used Cognigy’s AI Agent on WhatsApp to handle over 1.1 million customer conversations monthly. This AI tool helped customers quickly solve issues like bill payments and service problems, reducing the need for human support. During floods in 2024, the AI Agent provided critical documents and support to thousands, ensuring fast aid despite service disruptions.

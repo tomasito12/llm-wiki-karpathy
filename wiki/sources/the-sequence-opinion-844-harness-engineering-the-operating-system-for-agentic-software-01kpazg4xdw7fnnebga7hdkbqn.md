@@ -18,6 +18,9 @@ assessed_as_of: '2026-04-16'
 ingested_at: '2026-05-22T15:34:07.882986+00:00'
 canonical_url: https://thesequence.substack.com/p/the-sequence-opinion-844-harness
 content_sha256: a0d1a41ea5d3a194436cf82dff16256aac3ca49d4c00ceb8e5cfc36849f4d490
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/feedforward-controls.md
 - glossary/harness.md
@@ -70,3 +73,23 @@ The argument is persuasive, but it is mostly asserted rather than demonstrated i
 - Canonical URL: https://thesequence.substack.com/p/the-sequence-opinion-844-harness
 - Raw markdown: `raw/readwise/the-sequence-opinion-844-harness-engineering-the-operating-system-for-agentic-software-01kpazg4xdw7fnnebga7hdkbqn.md`
 - Raw HTML: `raw/readwise/the-sequence-opinion-844-harness-engineering-the-operating-system-for-agentic-software-01kpazg4xdw7fnnebga7hdkbqn.html`
+
+## Full source text
+
+---
+readwise_id: 01kpazg4xdw7fnnebga7hdkbqn
+title: 'The Sequence Opinion #844: Harness Engineering: The Operating System for Agentic
+  Software'
+author: Jesus Rodriguez
+source_url: https://thesequence.substack.com/p/the-sequence-opinion-844-harness
+category: rss
+location: archive
+published_date: '2026-04-16'
+saved_at: '2026-04-16T11:05:53.397000+00:00'
+updated_at: '2026-05-08T10:47:52.360428+00:00'
+tags:
+- processed
+publication: Substack
+---
+
+Building reliable software with AI models requires more than just writing good prompts. It needs a well-designed system that guides the AI, shows problems clearly, and helps fix mistakes. This new approach, called harness engineering, treats AI as a tool inside a strong framework to do real, long-term work.

@@ -15,6 +15,9 @@ assessed_as_of: '2026-04-27'
 ingested_at: '2026-05-17T13:26:04.904667+00:00'
 canonical_url: https://medium.com/ai-advances/harness-engineering-what-every-ai-engineer-needs-to-know-in-2026-0ab649e5686a
 content_sha256: 14b1d7a9da5ad369719cb9c4c9f325d01f66bfe79bd54379de9108b69951911f
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/feedforward-controls.md
 - glossary/harness.md
@@ -67,3 +70,22 @@ The piece is persuasive, but it also bundles several different claims under one 
 - Canonical URL: https://medium.com/ai-advances/harness-engineering-what-every-ai-engineer-needs-to-know-in-2026-0ab649e5686a
 - Raw markdown: `raw/readwise/harness-engineering-what-every-ai-engineer-needs-to-know-in-2026-01kqfyrmc31stvazs0r8kbpbbx.md`
 - Raw HTML: `raw/readwise/harness-engineering-what-every-ai-engineer-needs-to-know-in-2026-01kqfyrmc31stvazs0r8kbpbbx.html`
+
+## Full source text
+
+---
+readwise_id: 01kqfyrmc31stvazs0r8kbpbbx
+title: 'Harness Engineering: What Every AI Engineer Needs to Know in 2026'
+author: Yanli Liu
+source_url: https://medium.com/ai-advances/harness-engineering-what-every-ai-engineer-needs-to-know-in-2026-0ab649e5686a
+category: article
+location: archive
+published_date: '2026-04-27'
+saved_at: '2026-04-30T19:44:59.779000+00:00'
+updated_at: '2026-05-02T14:22:27.073519+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+In 2026, AI engineers use "harness engineering" to control AI agents that write code by setting clear rules and feedback loops. Three major teams—OpenAI, Anthropic, and ThoughtWorks—developed different harness designs to improve code quality and reliability. The key is giving AI agents context and structure so they produce useful, maintainable software without constant human rewriting.

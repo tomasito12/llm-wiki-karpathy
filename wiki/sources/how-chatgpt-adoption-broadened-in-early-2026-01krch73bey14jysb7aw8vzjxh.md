@@ -17,6 +17,9 @@ assessed_as_of: '2026-05-11'
 ingested_at: '2026-06-06T21:51:35+00:00'
 canonical_url: https://openai.com/signals/research/2026q1-update
 content_sha256: a057c6d6c9b1f021ba36155153c263caabe617b95afffb0184ed3f166c590a29
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/ai-workflow-restructuring.md
 - topics/consumer-ai-distribution.md
@@ -63,3 +66,21 @@ The post frames the data as evidence of broader mainstreaming, but the claims ar
 - Canonical URL: https://openai.com/signals/research/2026q1-update
 - Raw markdown: `raw/readwise/how-chatgpt-adoption-broadened-in-early-2026-01krch73bey14jysb7aw8vzjxh.md`
 - Raw HTML: `raw/readwise/how-chatgpt-adoption-broadened-in-early-2026-01krch73bey14jysb7aw8vzjxh.html`
+
+## Full source text
+
+---
+readwise_id: "01krch73bey14jysb7aw8vzjxh"
+title: "How ChatGPT adoption broadened in early 2026"
+author: "OpenAI Blog"
+publication: "openai.com"
+source_url: "https://openai.com/signals/research/2026q1-update"
+category: "rss"
+location: "archive"
+published_date: "2026-05-11"
+saved_at: "2026-05-11T22:06:09.334000+00:00"
+updated_at: "2026-05-13T13:28:25.568933+00:00"
+tags: ["processed"]
+---
+
+ChatGPT adoption surged in Q1 2026, with fastest growth among users over 35 and more balanced gender usage, signaling broader mainstream AI adoption.

@@ -16,7 +16,11 @@ def test_graph_merge_render_and_export_include_stage2_metadata(tmp_path: Path) -
     artifacts = [_artifact("source-a", "Local models", "2026-01-02")]
     collected = collect_items(artifacts, tmp_path / "wiki")
     graph = build_knowledge_graph(collected, wiki_dir=tmp_path / "wiki", taxonomy_version="tax123")
-    rendered = render_graph(graph, wiki_dir=tmp_path / "wiki")
+    rendered = render_graph(
+        graph,
+        wiki_dir=tmp_path / "wiki",
+        raw_dir=tmp_path / "raw" / "readwise",
+    )
     payload = graph_export_payload(graph)
 
     topic = next(page for page in graph.knowledge_pages if page.entity_id == "topic:local-models")
@@ -121,7 +125,11 @@ def test_implementation_studies_render_as_individual_monthly_pages(tmp_path: Pat
     wiki_dir = tmp_path / "wiki"
     collected = collect_items(artifacts, wiki_dir)
     graph = build_knowledge_graph(collected, wiki_dir=wiki_dir, taxonomy_version="tax123")
-    rendered = render_graph(graph, wiki_dir=wiki_dir)
+    rendered = render_graph(
+        graph,
+        wiki_dir=wiki_dir,
+        raw_dir=tmp_path / "raw" / "readwise",
+    )
     payload = graph_export_payload(graph)
 
     assert not any(page.category == "impl_study" for page in graph.knowledge_pages)

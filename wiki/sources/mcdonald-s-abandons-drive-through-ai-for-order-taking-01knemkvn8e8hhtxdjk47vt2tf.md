@@ -10,6 +10,9 @@ assessed_as_of: '2024-06-18'
 ingested_at: '2026-05-19T19:09:14.539238+00:00'
 canonical_url: https://voicebot.ai/2024/06/18/mcdonalds-abandons-drive-through-ai-for/
 content_sha256: 747de15954ae3039f14bf077cac2cead6d4941ee7d11a7c7b29f3d316d071caa
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # McDonald’s Abandons Drive Through AI for Order Taking
@@ -44,3 +47,21 @@ The article hints that the objective may continue even if the IBM approach ends,
 - Canonical URL: https://voicebot.ai/2024/06/18/mcdonalds-abandons-drive-through-ai-for/
 - Raw markdown: `raw/readwise/mcdonald-s-abandons-drive-through-ai-for-order-taking-01knemkvn8e8hhtxdjk47vt2tf.md`
 - Raw HTML: `raw/readwise/mcdonald-s-abandons-drive-through-ai-for-order-taking-01knemkvn8e8hhtxdjk47vt2tf.html`
+
+## Full source text
+
+---
+readwise_id: "01knemkvn8e8hhtxdjk47vt2tf"
+title: "McDonald’s Abandons Drive Through AI for Order Taking"
+author: "Bret Kinsella"
+publication: "Voicebot.ai"
+source_url: "https://voicebot.ai/2024/06/18/mcdonalds-abandons-drive-through-ai-for/"
+category: "rss"
+location: "archive"
+published_date: "2024-06-18"
+saved_at: "2026-04-05T10:56:56.561000+00:00"
+updated_at: "2026-05-16T16:22:04.683101+00:00"
+tags: ["processed"]
+---
+
+McDonald's tried using AI for drive-thru order-taking but will end the partnership with IBM soon. They are exploring voice ordering solutions more broadly with a new partnership with Google Cloud for generative AI. The shift reflects ongoing challenges in hiring staff and the evolving technology landscape for AI in quick-service restaurants.

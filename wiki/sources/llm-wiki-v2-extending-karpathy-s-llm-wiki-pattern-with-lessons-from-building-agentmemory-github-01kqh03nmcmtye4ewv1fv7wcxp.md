@@ -15,6 +15,9 @@ assessed_as_of: '2026-04-07'
 ingested_at: '2026-05-18T15:30:15.451408+00:00'
 canonical_url: https://gist.github.com/rohitg00/2067ab416f7bbe447c1977edaaa681e2
 content_sha256: 10698aafc3235bdcfc049235b5a029d4cd71fa93496ff000bf76eff6957349d1
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/context-engineering.md
 - topics/knowledge-management.md
@@ -57,3 +60,23 @@ The strongest claims are architectural, but they are presented without operation
 - Canonical URL: https://gist.github.com/rohitg00/2067ab416f7bbe447c1977edaaa681e2
 - Raw markdown: `raw/readwise/llm-wiki-v2-extending-karpathy-s-llm-wiki-pattern-with-lessons-from-building-agentmemory-github-01kqh03nmcmtye4ewv1fv7wcxp.md`
 - Raw HTML: `raw/readwise/llm-wiki-v2-extending-karpathy-s-llm-wiki-pattern-with-lessons-from-building-agentmemory-github-01kqh03nmcmtye4ewv1fv7wcxp.html`
+
+## Full source text
+
+---
+readwise_id: 01kqh03nmcmtye4ewv1fv7wcxp
+title: LLM Wiki v2 — extending Karpathy's LLM Wiki pattern with lessons from building
+  agentmemory · GitHub
+author: '262588213843476'
+source_url: https://gist.github.com/rohitg00/2067ab416f7bbe447c1977edaaa681e2
+category: article
+location: archive
+published_date: '2026-04-07'
+saved_at: '2026-05-01T05:27:44.524000+00:00'
+updated_at: '2026-05-02T14:22:05.882073+00:00'
+tags:
+- processed
+publication: Github
+---
+
+This document improves Karpathy's LLM Wiki by adding ways to manage knowledge over time, keep it accurate, and organize it with a knowledge graph. It explains how to automate wiki upkeep so it stays useful as it grows. The key is combining memory lifecycles, structure, and quality checks to build a trusted personal knowledge base.

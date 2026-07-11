@@ -25,6 +25,9 @@ assessed_as_of: '2026-06-02'
 ingested_at: '2026-06-09T18:22:32+00:00'
 canonical_url: https://cdn.openai.com/pdf/the-next-era-of-knowledge-work.pdf
 content_sha256: 2d7dc90ae4d594dba3a81cf1f3d14d4de38be9b206ddd900e56154d1122f231c
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_implementation_studies:
 - implementation-studies/2026-06/the-next-era-of-knowledge-work-01kt4kxtskp8d1y3yxh2yh07pm-groundvue-s-public-meeting-knowledge-collection-workflow.md
 derived_tools:
@@ -79,3 +82,20 @@ The article argues that Codex reduces coordination and approval friction, but an
 - Canonical URL: https://cdn.openai.com/pdf/the-next-era-of-knowledge-work.pdf
 - Raw markdown: `raw/readwise/the-next-era-of-knowledge-work-01kt4kxtskp8d1y3yxh2yh07pm.md`
 - Raw HTML: `raw/readwise/the-next-era-of-knowledge-work-01kt4kxtskp8d1y3yxh2yh07pm.html`
+
+## Full source text
+
+---
+readwise_id: "01kt4kxtskp8d1y3yxh2yh07pm"
+title: "The Next Era Of Knowledge Work"
+author: "Codex"
+publication: "openai.com"
+source_url: "https://cdn.openai.com/pdf/the-next-era-of-knowledge-work.pdf"
+category: "pdf"
+location: "archive"
+saved_at: "2026-06-02T16:51:02.579000+00:00"
+updated_at: "2026-06-03T16:41:18.404734+00:00"
+tags: ["processed"]
+---
+
+The Next Era of Knowledge Work How Codex is helping people navigate the complexity of modern work June 2, 2026 5M >6x >3x Codex weekly active users Growth in Codex weekly active users since the desktop app launched Knowledge workers are now adopting Codex >3x faster than developers Data Analysis, Research, Knowledge Artifacts Codex's fastest-growth task types for knowledge workers Knowledge Work in the Modern World Knowledge work dominates advanced economies. More than 40 percent of US labor, roughly 72 million people, works primarily with information: analysis, code, documents, designs, systems, decisions, and communication. This is a recent historical development. In 1850, approximately 60 percent of Americans worked in agriculture. By 1970, that had fallen to about 4 percent even as output soared. Manufacturing absorbed much of the displaced labor and peaked around 26 percent of US employment in 1960, then receded with globalization and robotics. Knowledge work filled the space. Peter Drucker coined the term in 1959 to describe occupations whose primary inputs and outputs are symbols rather than crops or manufactured goods. The category now includes software, engineering, science, management, education, healthcare, law, finance, design, marketing, journalism, consulting, and much of public administration. The result is a strange abundance. Modern workers can produce documents, messages, dashboards, models, and presentations faster than ever. Yet they spend a remarkable share of their time looking for context, reconciling conflicting versions, waiting for responses, and moving information across systems. A McKinsey Global Institute study found that the average knowledge worker spends roughly 28 percent of the workweek managing email and nearly 20 percent of it looking for internal information or tracking down colleagues who can help with specific tasks. This is the inheritance of piecemeal digitization. Email made correspondence instantaneous. Documents became collaborative. Spreadsheets, dashboards, ticketing systems, CRMs, knowledge bases, chat tools, and SaaS applications captured more work. Each solved a local problem but gave us fragmented tools. The information we need now hides in inboxes, folders, chats, comments, permissions, dashboards, tickets, meetings, and our own memory. The office became digital without becoming integrated. Three frictions now define the daily cost of knowledge work: First, search is the cost of finding the relevant inputs across sprawling, untransparent systems: the right file, clause, file path, precedent, dataset, message, or expert are all needles in obscure haystacks. Second, coordination is the cost of moving information and decisions through teams, tools and formats, while navigating an organization's divergent and shifting incentives. And third, approval and verification are the costs of getting work accepted and ensuring that it survives contact with reality. In engineering, that means tests, reviews, deployments, and ongoing monitoring. In law or consulting, it means partner review, client acceptance, and defensible reasoning. In science, it requires experiments, replication, and evidence. These frictions explain why computers invaded the office long before they increased its productivity. Robert Solow captured this when he observed that the computer age was visible everywhere except in the productivity statistics. Erik Brynjolfsson later gave that puzzle a name, the productivity paradox, and developed the deeper theory that information technology produces large gains only when organizations redesign processes, skills, management structures, and workflows around the tasks that the technology has made cheap. Electricity followed the same pattern. Large gains arrived only after factories stopped treating electric power as a substitute for steam engines and rebuilt floorplans around distributed electric motors at each machine. That took decades. Knowledge work is still waiting for its…

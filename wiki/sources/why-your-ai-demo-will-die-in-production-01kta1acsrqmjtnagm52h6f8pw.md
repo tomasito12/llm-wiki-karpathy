@@ -15,6 +15,9 @@ assessed_as_of: '2026-05-18'
 ingested_at: '2026-06-08T15:44:08.184048+00:00'
 canonical_url: https://towardsdatascience.com/why-your-ai-demo-will-die-in-production/
 content_sha256: 4b65087e81e21ddbe2c2bc138582c1bac23b560adfaf80786f8e9c8305e4f775
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/ai-production-readiness-contracts-and-controls.md
 - topics/production-debt-in-ai-systems.md
@@ -61,3 +64,21 @@ The article is strong on diagnosis but light on evidence. The claim that 95% of 
 - Canonical URL: https://towardsdatascience.com/why-your-ai-demo-will-die-in-production/
 - Raw markdown: `raw/readwise/why-your-ai-demo-will-die-in-production-01kta1acsrqmjtnagm52h6f8pw.md`
 - Raw HTML: `raw/readwise/why-your-ai-demo-will-die-in-production-01kta1acsrqmjtnagm52h6f8pw.html`
+
+## Full source text
+
+---
+readwise_id: "01kta1acsrqmjtnagm52h6f8pw"
+title: "Why Your AI Demo Will Die in Production"
+author: "Ari Joury, PhD"
+publication: "Medium"
+source_url: "https://towardsdatascience.com/why-your-ai-demo-will-die-in-production/"
+category: "article"
+location: "archive"
+published_date: "2026-05-18"
+saved_at: "2026-06-04T19:21:17.878000+00:00"
+updated_at: "2026-06-05T06:48:18.654383+00:00"
+tags: ["processed"]
+---
+
+Most AI pilot projects fail because they focus only on demos and ignore real-world challenges. Five kinds of "debt"—technical, operational, evaluation, integration, and governance—stop AI from working well in production. To succeed, teams must fix these issues with strong engineering and clear ownership.

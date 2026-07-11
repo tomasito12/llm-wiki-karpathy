@@ -16,6 +16,9 @@ assessed_as_of: '2026-04-13'
 ingested_at: '2026-06-09T19:04:04+00:00'
 canonical_url: https://medium.com/@visrow/zeespec-how-to-write-a-complete-system-specification-for-ai-in-1-hour-cb70a9e8f61a
 content_sha256: 39041a6b1dff61c71e756d212d9f535081570adb9db671e6c5f787167f56a5c0
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/structured-specification-for-agentic-development.md
 derived_topics:
@@ -63,3 +66,22 @@ The claim that clear answers make AI “deterministic” is directionally plausi
 - Canonical URL: https://medium.com/@visrow/zeespec-how-to-write-a-complete-system-specification-for-ai-in-1-hour-cb70a9e8f61a
 - Raw markdown: `raw/readwise/zeespec-how-to-write-a-complete-system-specification-for-ai-in-1-hour-01kqfz6p0jfhx9r1y4rd3x27sa.md`
 - Raw HTML: `raw/readwise/zeespec-how-to-write-a-complete-system-specification-for-ai-in-1-hour-01kqfz6p0jfhx9r1y4rd3x27sa.html`
+
+## Full source text
+
+---
+readwise_id: 01kqfz6p0jfhx9r1y4rd3x27sa
+title: 'ZeeSpec: How to Write a Complete System Specification for AI in 1 Hour'
+author: Vishal Mysore
+source_url: https://medium.com/@visrow/zeespec-how-to-write-a-complete-system-specification-for-ai-in-1-hour-cb70a9e8f61a
+category: article
+location: archive
+published_date: '2026-04-13'
+saved_at: '2026-04-30T19:52:40.209000+00:00'
+updated_at: '2026-05-02T14:22:24.437223+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+ZeeSpec is a fast way to write a complete AI system specification by answering 60 clear questions in one hour. It makes all important decisions explicit, so AI cannot guess or make mistakes. This method helps create precise, reliable systems with no hidden assumptions.

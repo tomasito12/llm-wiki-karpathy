@@ -14,6 +14,9 @@ assessed_as_of: '2026-05-08'
 ingested_at: '2026-06-01T16:11:09.308498+00:00'
 canonical_url: https://www.intercom.com/blog/building-outcome-based-pricing-for-fin-for-sales/
 content_sha256: bfd871a02c5140cb6ef5ea84ee115fe8a84b961450d075b7e86f6570f66fa838
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/fin-for-sales.md
 derived_topics:
@@ -57,3 +60,22 @@ The article presents qualified-lead pricing as the most honest proxy for sales v
 - Canonical URL: https://www.intercom.com/blog/building-outcome-based-pricing-for-fin-for-sales/
 - Raw markdown: `raw/readwise/building-outcome-based-pricing-for-fin-for-sales-01kr3k6ta71c0h2jx16gawcmam.md`
 - Raw HTML: `raw/readwise/building-outcome-based-pricing-for-fin-for-sales-01kr3k6ta71c0h2jx16gawcmam.html`
+
+## Full source text
+
+---
+readwise_id: 01kr3k6ta71c0h2jx16gawcmam
+title: Building outcome-based pricing for Fin for Sales
+author: Aisling O'Reilly
+source_url: https://www.intercom.com/blog/building-outcome-based-pricing-for-fin-for-sales/
+category: rss
+location: archive
+published_date: '2026-05-08'
+saved_at: '2026-05-08T10:47:47.343000+00:00'
+updated_at: '2026-05-08T11:39:59.062743+00:00'
+tags:
+- processed
+publication: Intercom
+---
+
+Pricing should align with value delivery. In the case of sales, that means paying when Fin qualifies a lead.

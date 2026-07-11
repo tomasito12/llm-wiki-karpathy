@@ -32,6 +32,9 @@ assessed_as_of: '2026-04-03'
 ingested_at: '2026-06-05T17:18:31.110834+00:00'
 canonical_url: https://medium.com/@gabi.preda/run-gemma-4-e2b-locally-with-ollama-no-cloud-no-limits-7e6c3f6bd860
 content_sha256: 6cfe28fd6fc2323a910ed95e98ae53dbbc6bee69762b639c3bfb31e3bd88a72a
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/local-model-setup.md
 derived_models:
@@ -90,3 +93,22 @@ The piece presents visible reasoning traces as a feature, but the article does n
 - Canonical URL: https://medium.com/@gabi.preda/run-gemma-4-e2b-locally-with-ollama-no-cloud-no-limits-7e6c3f6bd860
 - Raw markdown: `raw/readwise/run-gemma-4-e2b-locally-with-ollama-no-cloud-no-limits-01kqz03kb05v3j801whhfw5twr.md`
 - Raw HTML: `raw/readwise/run-gemma-4-e2b-locally-with-ollama-no-cloud-no-limits-01kqz03kb05v3j801whhfw5twr.html`
+
+## Full source text
+
+---
+readwise_id: 01kqz03kb05v3j801whhfw5twr
+title: 'Run Gemma 4:E2B Locally with Ollama: No Cloud, No Limits'
+author: Gabriel Preda
+source_url: https://medium.com/@gabi.preda/run-gemma-4-e2b-locally-with-ollama-no-cloud-no-limits-7e6c3f6bd860
+category: article
+location: archive
+published_date: '2026-04-03'
+saved_at: '2026-05-06T15:57:04.224000+00:00'
+updated_at: '2026-05-06T17:34:57.879612+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+Gemma 4:E2B is a powerful AI model you can run on your own computer using Ollama, without needing the cloud. It handles text, images, reasoning, and object detection with good accuracy and privacy. Running locally saves money and gives you full control over your AI experiments.

@@ -17,6 +17,9 @@ assessed_as_of: May 2026
 ingested_at: '2026-06-06T21:51:59+00:00'
 canonical_url: https://cdn.openai.com/pdf/025ecc00-e528-48dc-95f7-90a96c7be449/frontiers-of-ai-leadership-lessons-guide.pdf
 content_sha256: e835c9064860e3336ac1e885d593b7b7f2a832ee8784081e3ead6e138305bf77
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/organizational-ai-readiness.md
 - topics/verification-loops-in-ai-workflows.md
@@ -63,3 +66,20 @@ The piece argues that governance enables speed, which is plausible, but it provi
 - Canonical URL: https://cdn.openai.com/pdf/025ecc00-e528-48dc-95f7-90a96c7be449/frontiers-of-ai-leadership-lessons-guide.pdf
 - Raw markdown: `raw/readwise/how-enterprises-are-scaling-ai-from-curiosity-to-compounding-impact-01krb30w4035rre51qghcz3qsp.md`
 - Raw HTML: `raw/readwise/how-enterprises-are-scaling-ai-from-curiosity-to-compounding-impact-01krb30w4035rre51qghcz3qsp.html`
+
+## Full source text
+
+---
+readwise_id: "01krb30w4035rre51qghcz3qsp"
+title: "How Enterprises Are Scaling AI From Curiosity To Compounding Impact"
+author: "OpenAI"
+publication: "openai.com"
+source_url: "https://cdn.openai.com/pdf/025ecc00-e528-48dc-95f7-90a96c7be449/frontiers-of-ai-leadership-lessons-guide.pdf"
+category: "pdf"
+location: "archive"
+saved_at: "2026-05-11T08:38:53.824000+00:00"
+updated_at: "2026-05-11T08:40:40.017329+00:00"
+tags: ["processed"]
+---
+
+Enterprises succeed with AI by focusing on trust, culture, and redesigning workflows, not just technology. Leaders must treat AI as a core capability and govern it to ensure quality and responsible use. The biggest gains come from embedding AI into real work while keeping human judgment central.

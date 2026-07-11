@@ -24,6 +24,9 @@ assessed_as_of: '2026-04-22'
 ingested_at: '2026-06-16T16:30:21.232967+00:00'
 canonical_url: https://openai.com/index/introducing-openai-privacy-filter
 content_sha256: f829a93c626baf32b0ea79180fec32e3e7827b2ef9abcae3db5bb5e5431296e6
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_models:
 - foundation-models/privacy-filter.md
 derived_topics:
@@ -74,3 +77,22 @@ The release combines strong performance claims with a vendor-authored benchmark 
 - Canonical URL: https://openai.com/index/introducing-openai-privacy-filter
 - Raw markdown: `raw/readwise/introducing-openai-privacy-filter-01kptv6v2rm47hbeqs6trnpaaj.md`
 - Raw HTML: `raw/readwise/introducing-openai-privacy-filter-01kptv6v2rm47hbeqs6trnpaaj.html`
+
+## Full source text
+
+---
+readwise_id: 01kptv6v2rm47hbeqs6trnpaaj
+title: Introducing OpenAI Privacy Filter
+author: OpenAI Blog
+source_url: https://openai.com/index/introducing-openai-privacy-filter
+category: rss
+location: archive
+published_date: '2026-04-22'
+saved_at: '2026-04-22T14:58:45.024000+00:00'
+updated_at: '2026-05-07T12:10:27.665102+00:00'
+tags:
+- processed
+publication: OpenAI
+---
+
+OpenAI has released Privacy Filter, a small model that detects and hides personal information in text. It works quickly, understands context, and runs locally to keep data safe. Developers can use and customize it to improve privacy in their AI systems.

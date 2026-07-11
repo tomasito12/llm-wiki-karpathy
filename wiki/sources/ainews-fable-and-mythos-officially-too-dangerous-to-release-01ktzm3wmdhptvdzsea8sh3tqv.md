@@ -22,6 +22,9 @@ assessed_as_of: '2026-06-13'
 ingested_at: '2026-06-15T21:04:09+00:00'
 canonical_url: mailto:reader-forwarded-email/5db03868a244b10f351f4686b0eda4a8
 content_sha256: 16123f26e98ff0f82d8fd603817306b4bb1d6d7c6670f578df5b24aa35ce38ad
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-06/ainews-fable-and-mythos-officially-too-dangerous-to-release-01ktzm3wmdhptvdzsea8-agent-infrastructure-is-shifting-toward-sandboxing-and-power-normali-5a19601998.md
 - signals/2026-06/ainews-fable-and-mythos-officially-too-dangerous-to-release-01ktzm3wmdhptvdzsea8-open-weight-releases-are-converging-on-large-moe-models-with-long-co-32b6949585.md
@@ -77,3 +80,21 @@ There is a tension between the strong rhetoric around frontier-model danger and 
 - Canonical URL: mailto:reader-forwarded-email/5db03868a244b10f351f4686b0eda4a8
 - Raw markdown: `raw/readwise/ainews-fable-and-mythos-officially-too-dangerous-to-release-01ktzm3wmdhptvdzsea8sh3tqv.md`
 - Raw HTML: `raw/readwise/ainews-fable-and-mythos-officially-too-dangerous-to-release-01ktzm3wmdhptvdzsea8sh3tqv.html`
+
+## Full source text
+
+---
+readwise_id: "01ktzm3wmdhptvdzsea8sh3tqv"
+title: "[AINews] Fable and Mythos officially too dangerous to release"
+author: "AINews"
+publication: "Substack"
+source_url: "mailto:reader-forwarded-email/5db03868a244b10f351f4686b0eda4a8"
+category: "email"
+location: "archive"
+published_date: "2026-06-13"
+saved_at: "2026-06-13T04:33:50.734000+00:00"
+updated_at: "2026-06-14T06:06:56.268947+00:00"
+tags: ["processed"]
+---
+
+Anthropic has suspended access to its Fable 5 model due to national security concerns, causing disruptions for users. New open-source coding models like Kimi-K2.7-Code and MiniMax M3 were released, showing advances but also raising questions about benchmarks and usability. The AI community is focusing more on reliable infrastructure, realistic benchmarks, and risks tied to dependence on single vendors.

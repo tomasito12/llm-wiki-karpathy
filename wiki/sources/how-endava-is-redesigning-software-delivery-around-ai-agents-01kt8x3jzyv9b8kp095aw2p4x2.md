@@ -20,6 +20,9 @@ assessed_as_of: '2026-06-04'
 ingested_at: '2026-06-06T15:36:55.781543+00:00'
 canonical_url: https://openai.com/index/endava-frontiers
 content_sha256: 3640bca8b884d015b77d8e52e952b7a2866b755cfdfaaef2e7e3393486cac70a
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_implementation_studies:
 - implementation-studies/2026-06/how-endava-is-redesigning-software-delivery-around-ai-agents-01kt8x3jzyv9b8kp095aw2p4x2-endava-s-ai-native-delivery-rollout.md
 derived_topics:
@@ -70,3 +73,21 @@ The article presents strong claims about redesigning delivery around agents, but
 - Canonical URL: https://openai.com/index/endava-frontiers
 - Raw markdown: `raw/readwise/how-endava-is-redesigning-software-delivery-around-ai-agents-01kt8x3jzyv9b8kp095aw2p4x2.md`
 - Raw HTML: `raw/readwise/how-endava-is-redesigning-software-delivery-around-ai-agents-01kt8x3jzyv9b8kp095aw2p4x2.html`
+
+## Full source text
+
+---
+readwise_id: "01kt8x3jzyv9b8kp095aw2p4x2"
+title: "How Endava is redesigning software delivery around AI agents"
+author: "OpenAI Blog"
+publication: "openai.com"
+source_url: "https://openai.com/index/endava-frontiers"
+category: "rss"
+location: "archive"
+published_date: "2026-06-04"
+saved_at: "2026-06-04T08:48:23.110000+00:00"
+updated_at: "2026-06-05T09:14:03.084919+00:00"
+tags: ["processed"]
+---
+
+Endava is using AI agents to speed up software delivery and improve teamwork across the company. They built an AI-native process called DavaFlow that helps teams plan, build, and deploy software faster. AI tools are now used by many departments, making work easier and changing how the whole company operates.

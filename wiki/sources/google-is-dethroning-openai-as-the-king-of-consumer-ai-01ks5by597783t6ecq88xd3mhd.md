@@ -19,6 +19,9 @@ assessed_as_of: '2026-05-20'
 ingested_at: '2026-06-06T21:51:13+00:00'
 canonical_url: https://www.economist.com/business/2026/05/20/google-is-dethroning-openai-as-the-king-of-consumer-ai
 content_sha256: f5dbe5e7ca18cf4188e91739349afd87ef7528d820781d28202fddb4efa19117
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_models:
 - foundation-models/gemini-3-5-flash.md
 derived_topics:
@@ -69,3 +72,21 @@ The article’s opening examples include somewhat gimmicky use cases, which weak
 - Canonical URL: https://www.economist.com/business/2026/05/20/google-is-dethroning-openai-as-the-king-of-consumer-ai
 - Raw markdown: `raw/readwise/google-is-dethroning-openai-as-the-king-of-consumer-ai-01ks5by597783t6ecq88xd3mhd.md`
 - Raw HTML: `raw/readwise/google-is-dethroning-openai-as-the-king-of-consumer-ai-01ks5by597783t6ecq88xd3mhd.html`
+
+## Full source text
+
+---
+readwise_id: "01ks5by597783t6ecq88xd3mhd"
+title: "Google is dethroning OpenAI as the king of consumer AI"
+author: "The Economist"
+publication: "Economist"
+source_url: "https://www.economist.com/business/2026/05/20/google-is-dethroning-openai-as-the-king-of-consumer-ai"
+category: "article"
+location: "archive"
+published_date: "2026-05-20"
+saved_at: "2026-05-21T13:34:57.319000+00:00"
+updated_at: "2026-05-21T16:18:51.987324+00:00"
+tags: ["processed"]
+---
+
+Google is challenging OpenAI's lead in consumer AI with its new Gemini 3.5 Flash model and AI agents. These tools will reach billions through Google Search and the Gemini app. However, heavy AI use is costly, pushing Google to find ways to control expenses and boost revenue.

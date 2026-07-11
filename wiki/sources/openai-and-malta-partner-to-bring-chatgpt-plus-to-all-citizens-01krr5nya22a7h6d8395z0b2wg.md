@@ -16,6 +16,9 @@ assessed_as_of: '2026-05-16'
 ingested_at: '2026-06-06T22:01:48+00:00'
 canonical_url: https://openai.com/index/malta-chatgpt-plus-partnership
 content_sha256: c0eb6731e654cbd58a17a4999c104450f44c9675acaff15a9487d08cd25fdb4d
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/country-specific-ai-partnerships.md
 - topics/government-led-ai-adoption-programs.md
@@ -62,3 +65,21 @@ The article presents free ChatGPT Plus and AI literacy as inherently empowering,
 - Canonical URL: https://openai.com/index/malta-chatgpt-plus-partnership
 - Raw markdown: `raw/readwise/openai-and-malta-partner-to-bring-chatgpt-plus-to-all-citizens-01krr5nya22a7h6d8395z0b2wg.md`
 - Raw HTML: `raw/readwise/openai-and-malta-partner-to-bring-chatgpt-plus-to-all-citizens-01krr5nya22a7h6d8395z0b2wg.html`
+
+## Full source text
+
+---
+readwise_id: "01krr5nya22a7h6d8395z0b2wg"
+title: "OpenAI and Malta partner to bring ChatGPT Plus to all citizens"
+author: "OpenAI Blog"
+publication: "openai.com"
+source_url: "https://openai.com/index/malta-chatgpt-plus-partnership"
+category: "rss"
+location: "archive"
+published_date: "2026-05-16"
+saved_at: "2026-05-16T10:35:25.963000+00:00"
+updated_at: "2026-05-18T17:19:00.465303+00:00"
+tags: ["processed"]
+---
+
+OpenAI and Malta have partnered to give every Maltese citizen free access to ChatGPT Plus for one year. People can take a course to learn how to use AI safely and effectively. This program aims to help Malta lead the world in making AI tools available and useful for everyone.

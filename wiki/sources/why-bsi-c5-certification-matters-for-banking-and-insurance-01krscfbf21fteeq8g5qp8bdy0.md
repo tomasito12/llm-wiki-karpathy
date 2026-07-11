@@ -15,6 +15,9 @@ assessed_as_of: '2025-10-14'
 ingested_at: '2026-06-08T18:50:53.215006+00:00'
 canonical_url: https://www.cognigy.com/blog/why-bsi-c5-certification-matters-for-banking-and-insurance
 content_sha256: cb3bbf0e1b85a9716b5c9c00e76d4ed9d5e140c9ff77f0b7b9aad6cf7b61ee6d
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/audit-ready-cloud-compliance.md
 - topics/type-i-vs-type-ii-audit-assurance.md
@@ -61,3 +64,21 @@ The article presents BSI C5 as a strong trust shortcut, but that framing can ove
 - Canonical URL: https://www.cognigy.com/blog/why-bsi-c5-certification-matters-for-banking-and-insurance
 - Raw markdown: `raw/readwise/why-bsi-c5-certification-matters-for-banking-and-insurance-01krscfbf21fteeq8g5qp8bdy0.md`
 - Raw HTML: `raw/readwise/why-bsi-c5-certification-matters-for-banking-and-insurance-01krscfbf21fteeq8g5qp8bdy0.html`
+
+## Full source text
+
+---
+readwise_id: "01krscfbf21fteeq8g5qp8bdy0"
+title: "Why BSI C5 Certification Matters for Banking and Insurance"
+author: "Jarrod Davis"
+publication: "cognigy.com"
+source_url: "https://www.cognigy.com/blog/why-bsi-c5-certification-matters-for-banking-and-insurance"
+category: "article"
+location: "archive"
+published_date: "2025-10-14"
+saved_at: "2026-05-16T21:53:27.522000+00:00"
+updated_at: "2026-05-17T16:18:54.845585+00:00"
+tags: ["processed"]
+---
+
+BSI C5 is a German cloud security standard that ensures strong protection for sensitive banking and insurance data. Cognigy’s BSI C5 attestation shows their security controls are independently verified and effective. This certification helps financial organizations meet regulations easily and trust cloud services.

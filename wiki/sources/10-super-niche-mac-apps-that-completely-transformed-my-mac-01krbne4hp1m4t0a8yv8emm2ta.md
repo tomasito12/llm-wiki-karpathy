@@ -17,6 +17,9 @@ assessed_as_of: '2025-11-22'
 ingested_at: '2026-06-06T15:27:42.284826+00:00'
 canonical_url: https://medium.com/macoclock/10-super-niche-mac-apps-that-completely-transformed-my-mac-ee0671c693bc
 content_sha256: d4b9df31767f7893416ed6324706a13ac2f6fb98d3f975fcc83ce03b0e113290
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/ai-renamer.md
 - tools/flix-fixer.md
@@ -80,3 +83,21 @@ A few claims are promotional or overstated, especially comparisons like 'best' o
 - Canonical URL: https://medium.com/macoclock/10-super-niche-mac-apps-that-completely-transformed-my-mac-ee0671c693bc
 - Raw markdown: `raw/readwise/10-super-niche-mac-apps-that-completely-transformed-my-mac-01krbne4hp1m4t0a8yv8emm2ta.md`
 - Raw HTML: `raw/readwise/10-super-niche-mac-apps-that-completely-transformed-my-mac-01krbne4hp1m4t0a8yv8emm2ta.html`
+
+## Full source text
+
+---
+readwise_id: "01krbne4hp1m4t0a8yv8emm2ta"
+title: "10 Super-Niche Mac Apps That Completely Transformed My Mac!"
+author: "Clark"
+publication: "Medium"
+source_url: "https://medium.com/macoclock/10-super-niche-mac-apps-that-completely-transformed-my-mac-ee0671c693bc"
+category: "article"
+location: "archive"
+published_date: "2025-11-22"
+saved_at: "2026-05-11T14:00:42.806000+00:00"
+updated_at: "2026-05-12T08:45:16.042774+00:00"
+tags: ["processed"]
+---
+
+The Apps You Don’t Know You Need, But You Do!

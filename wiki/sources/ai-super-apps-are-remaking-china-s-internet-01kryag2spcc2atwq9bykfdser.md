@@ -19,6 +19,9 @@ assessed_as_of: '2026-05-17'
 ingested_at: '2026-06-07T20:35:18.475583+00:00'
 canonical_url: https://www.economist.com/business/2026/05/17/ai-super-apps-are-remaking-chinas-internet
 content_sha256: 2b0b48d494905a3e0667b08891e07522c8ab14c6e28d4331dcf4420dd58ff600
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/intent-driven-commerce-interfaces.md
 - topics/super-app-agent-integration.md
@@ -65,3 +68,21 @@ The article’s “third era” framing is compelling but still speculative; one
 - Canonical URL: https://www.economist.com/business/2026/05/17/ai-super-apps-are-remaking-chinas-internet
 - Raw markdown: `raw/readwise/ai-super-apps-are-remaking-china-s-internet-01kryag2spcc2atwq9bykfdser.md`
 - Raw HTML: `raw/readwise/ai-super-apps-are-remaking-china-s-internet-01kryag2spcc2atwq9bykfdser.html`
+
+## Full source text
+
+---
+readwise_id: "01kryag2spcc2atwq9bykfdser"
+title: "AI super-apps are remaking China’s internet"
+author: "The Economist"
+publication: "Economist"
+source_url: "https://www.economist.com/business/2026/05/17/ai-super-apps-are-remaking-chinas-internet"
+category: "article"
+location: "archive"
+published_date: "2026-05-17"
+saved_at: "2026-05-18T19:55:06.422000+00:00"
+updated_at: "2026-05-19T06:21:36.724151+00:00"
+tags: ["processed"]
+---
+
+China’s biggest tech companies are creating AI super-apps that can buy and deliver things for users automatically. These apps are changing how people use the internet and could reshape China’s digital economy. A fierce race is underway as companies like Alibaba, Tencent, and ByteDance compete to lead this new AI era.

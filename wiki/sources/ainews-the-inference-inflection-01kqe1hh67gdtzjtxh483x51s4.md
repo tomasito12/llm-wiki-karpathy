@@ -18,6 +18,9 @@ assessed_as_of: '2026-04-30'
 ingested_at: '2026-06-06T21:42:36+00:00'
 canonical_url: https://www.latent.space/p/ainews-the-inference-inflection
 content_sha256: fe7255c2b9f5d7ec4fe5cfec60d15f3b0a7049f418f084a84a6fb301ed5a3b3d
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-04/ainews-the-inference-inflection-01kqe1hh67gdtzjtxh483x51s4-agent-products-are-moving-toward-persistent-harnessed-workflows.md
 - signals/2026-04/ainews-the-inference-inflection-01kqe1hh67gdtzjtxh483x51s4-inference-capacity-becomes-the-binding-constraint-for-ai-products.md
@@ -64,3 +67,22 @@ The strongest claim in the opening is rhetorical: it treats inference as a strat
 - Canonical URL: https://www.latent.space/p/ainews-the-inference-inflection
 - Raw markdown: `raw/readwise/ainews-the-inference-inflection-01kqe1hh67gdtzjtxh483x51s4.md`
 - Raw HTML: `raw/readwise/ainews-the-inference-inflection-01kqe1hh67gdtzjtxh483x51s4.html`
+
+## Full source text
+
+---
+readwise_id: 01kqe1hh67gdtzjtxh483x51s4
+title: '[AINews] The Inference Inflection'
+author: Latent Space
+source_url: https://www.latent.space/p/ainews-the-inference-inflection
+category: rss
+location: archive
+published_date: '2026-04-30'
+saved_at: '2026-04-30T01:55:01.008000+00:00'
+updated_at: '2026-05-02T20:47:33.311982+00:00'
+tags:
+- processed
+publication: Latent
+---
+
+AI inference demand is growing rapidly, driving higher CPU and GPU use beyond training needs. Companies are shifting focus to efficient agent systems and open model harnesses to improve AI performance and cost. New tools and research show progress in long-context AI, model serving, and knowledge evaluation.

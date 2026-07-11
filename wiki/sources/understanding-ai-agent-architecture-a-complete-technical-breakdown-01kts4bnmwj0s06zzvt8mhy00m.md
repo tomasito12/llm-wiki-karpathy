@@ -28,6 +28,9 @@ assessed_as_of: '2026-05-09'
 ingested_at: '2026-06-16T02:43:21+00:00'
 canonical_url: https://medium.com/write-a-catalyst/understanding-ai-agent-architecture-a-complete-technical-breakdown-6d62df9ff902
 content_sha256: 523e26814030f896cfc4facc305c7169c4c5f2e15f5bb494a0a446d35f95ad7e
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/production-ai-agent-architecture.md
 derived_models:
@@ -86,3 +89,21 @@ The article presents a fairly clean layered architecture, but real agent systems
 - Canonical URL: https://medium.com/write-a-catalyst/understanding-ai-agent-architecture-a-complete-technical-breakdown-6d62df9ff902
 - Raw markdown: `raw/readwise/understanding-ai-agent-architecture-a-complete-technical-breakdown-01kts4bnmwj0s06zzvt8mhy00m.md`
 - Raw HTML: `raw/readwise/understanding-ai-agent-architecture-a-complete-technical-breakdown-01kts4bnmwj0s06zzvt8mhy00m.html`
+
+## Full source text
+
+---
+readwise_id: "01kts4bnmwj0s06zzvt8mhy00m"
+title: "Understanding AI Agent Architecture: A Complete Technical Breakdown"
+author: "Ravindu Himansha"
+publication: "Medium"
+source_url: "https://medium.com/write-a-catalyst/understanding-ai-agent-architecture-a-complete-technical-breakdown-6d62df9ff902"
+category: "article"
+location: "archive"
+published_date: "2026-05-09"
+saved_at: "2026-06-10T16:03:01.916000+00:00"
+updated_at: "2026-06-14T13:04:16.800341+00:00"
+tags: ["processed"]
+---
+
+A technical deep-dive into how autonomous AI agents are actually built, from system design to production deployment

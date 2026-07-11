@@ -14,6 +14,9 @@ assessed_as_of: '2026-05-06'
 ingested_at: '2026-06-06T21:41:19+00:00'
 canonical_url: mailto:reader-forwarded-email/df23a43889a10adddc756131d13e941e
 content_sha256: bd0c355bee4b87cbc3613472ae667d8caa38a5becf2693a59d73a18faef0fa1f
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-05/ainews-silicon-valley-gets-serious-about-services-01kqxwyym9mnsvsx1gygtwcr84-model-vendors-are-attaching-services-layers-to-enterprise-deployment.md
 derived_trends:
@@ -57,3 +60,20 @@ The roundup’s strongest strategic reading may outrun the evidence: it implies 
 - Canonical URL: mailto:reader-forwarded-email/df23a43889a10adddc756131d13e941e
 - Raw markdown: `raw/readwise/ainews-silicon-valley-gets-serious-about-services-01kqxwyym9mnsvsx1gygtwcr84.md`
 - Raw HTML: `raw/readwise/ainews-silicon-valley-gets-serious-about-services-01kqxwyym9mnsvsx1gygtwcr84.html`
+
+## Full source text
+
+---
+readwise_id: "01kqxwyym9mnsvsx1gygtwcr84"
+title: "[AINews] Silicon Valley gets Serious about Services"
+author: "AINews"
+source_url: "mailto:reader-forwarded-email/df23a43889a10adddc756131d13e941e"
+category: "email"
+location: "archive"
+published_date: "2026-05-06"
+saved_at: "2026-05-06T05:42:51.785000+00:00"
+updated_at: "2026-05-06T12:35:26.867031+00:00"
+tags: ["processed"]
+---
+
+Silicon Valley is focusing on AI services to help businesses use smart agents for tasks beyond coding. Companies like Anthropic and OpenAI are launching new service partnerships to improve workflows and IT systems. Faster AI models and tools are also being developed to boost speed and efficiency in AI applications.

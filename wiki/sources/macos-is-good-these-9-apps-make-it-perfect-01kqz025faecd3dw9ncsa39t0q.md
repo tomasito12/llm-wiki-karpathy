@@ -17,6 +17,9 @@ assessed_as_of: '2026-02-09'
 ingested_at: '2026-06-01T15:39:15.848708+00:00'
 canonical_url: https://medium.com/macoclock/macos-is-good-these-9-apps-make-it-perfect-d16aaec1e1f7
 content_sha256: 23ca7cf40f56e3daae7850b03b10c8f7edd1c7592d4d0ac2325ada8e97f140c4
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_models:
 - foundation-models/llama-4.md
 derived_tools:
@@ -84,3 +87,22 @@ The article is promotional in tone and leans on strong subjective praise such as
 - Canonical URL: https://medium.com/macoclock/macos-is-good-these-9-apps-make-it-perfect-d16aaec1e1f7
 - Raw markdown: `raw/readwise/macos-is-good-these-9-apps-make-it-perfect-01kqz025faecd3dw9ncsa39t0q.md`
 - Raw HTML: `raw/readwise/macos-is-good-these-9-apps-make-it-perfect-01kqz025faecd3dw9ncsa39t0q.html`
+
+## Full source text
+
+---
+readwise_id: 01kqz025faecd3dw9ncsa39t0q
+title: macOS is Good. These 9 Apps Make It Perfect.
+author: Alex Gear & Tech Reviews
+source_url: https://medium.com/macoclock/macos-is-good-these-9-apps-make-it-perfect-d16aaec1e1f7
+category: article
+location: archive
+published_date: '2026-02-09'
+saved_at: '2026-05-06T15:56:17.257000+00:00'
+updated_at: '2026-05-06T17:36:15.739964+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+Macs with M-series chips are powerful, but macOS still has some small annoyances. The author shares nine helpful apps that fix these issues and improve workflow. These apps are mostly free or one-time purchases and make using a Mac easier and smoother.

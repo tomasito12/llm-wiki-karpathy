@@ -22,6 +22,9 @@ assessed_as_of: '2026-05-02'
 ingested_at: '2026-06-06T21:52:43+00:00'
 canonical_url: https://medium.com/agentic-builders/how-to-build-production-ready-ai-agents-mcp-cli-and-skills-the-right-tool-for-the-right-job-701dc102863f
 content_sha256: a2c382089bf9231743cb982f2c496a10fe2196caa842b1091b7a1f3998c5020f
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/model-context-protocol.md
 derived_how_to:
@@ -76,3 +79,23 @@ The article frames MCP, CLI, and Skills as a clean three-layer stack, but many r
 - Canonical URL: https://medium.com/agentic-builders/how-to-build-production-ready-ai-agents-mcp-cli-and-skills-the-right-tool-for-the-right-job-701dc102863f
 - Raw markdown: `raw/readwise/how-to-build-production-ready-ai-agents-mcp-cli-and-skills-the-right-tool-for-the-right-job-01kr4347xhzg1papsh9y4v36a2.md`
 - Raw HTML: `raw/readwise/how-to-build-production-ready-ai-agents-mcp-cli-and-skills-the-right-tool-for-the-right-job-01kr4347xhzg1papsh9y4v36a2.html`
+
+## Full source text
+
+---
+readwise_id: 01kr4347xhzg1papsh9y4v36a2
+title: 'How to Build Production-Ready AI Agents: MCP, CLI, and Skills — the Right
+  Tool for the Right Job'
+author: Ana Bildea
+source_url: https://medium.com/agentic-builders/how-to-build-production-ready-ai-agents-mcp-cli-and-skills-the-right-tool-for-the-right-job-701dc102863f
+category: article
+location: archive
+published_date: '2026-05-02'
+saved_at: '2026-05-08T15:26:03.185000+00:00'
+updated_at: '2026-05-08T15:30:46.183184+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+In 2026, building production-ready AI agents requires using three key tools together: Skills, MCP, and CLI. MCP ensures secure, governed connectivity, CLI offers efficient local execution, and Skills provide domain knowledge. The best agents combine all three to handle complex tasks smoothly and securely.

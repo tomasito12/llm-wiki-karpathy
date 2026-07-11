@@ -18,6 +18,9 @@ assessed_as_of: '2026-06-03'
 ingested_at: '2026-06-06T21:37:58+00:00'
 canonical_url: https://www.latent.space/p/ainews-microsoft-build-mai-thinking
 content_sha256: 07390ac6028966030d9fdc00afcbb420d33ac3cad4774acb13f4bba4bfa84765
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-06/ainews-microsoft-build-mai-thinking-1-and-mai-family-models-01kt60w6z2qjzjg1hvr1-model-lineage-and-post-training-control-are-becoming-enterprise-sell-2cb3660f08.md
 - signals/2026-06/ainews-microsoft-build-mai-thinking-1-and-mai-family-models-01kt60w6z2qjzjg1hvr1-vendors-are-pairing-model-launches-with-unusually-detailed-training-1d505502a0.md
@@ -64,3 +67,21 @@ The roundup includes internal tensions around parameter counts, compute estimate
 - Canonical URL: https://www.latent.space/p/ainews-microsoft-build-mai-thinking
 - Raw markdown: `raw/readwise/ainews-microsoft-build-mai-thinking-1-and-mai-family-models-01kt60w6z2qjzjg1hvr1wbz60g.md`
 - Raw HTML: `raw/readwise/ainews-microsoft-build-mai-thinking-1-and-mai-family-models-01kt60w6z2qjzjg1hvr1wbz60g.html`
+
+## Full source text
+
+---
+readwise_id: "01kt60w6z2qjzjg1hvr1wbz60g"
+title: "[AINews] Microsoft Build: MAI-Thinking-1 and MAI Family models"
+author: "Latent Space"
+publication: "latent.space"
+source_url: "https://www.latent.space/p/ainews-microsoft-build-mai-thinking"
+category: "rss"
+location: "archive"
+published_date: "2026-06-03"
+saved_at: "2026-06-03T05:56:32.426000+00:00"
+updated_at: "2026-06-03T09:24:31.829472+00:00"
+tags: ["processed"]
+---
+
+Microsoft Build recap, and new MAI model technical details

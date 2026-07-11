@@ -21,6 +21,9 @@ assessed_as_of: '2026-04-21'
 ingested_at: '2026-06-06T21:58:55+00:00'
 canonical_url: https://medium.com/@creativeaininja/karpathys-llm-wiki-how-to-actually-use-ai-so-it-stops-starting-over-21c5146a7b53
 content_sha256: 86b040241603558dc57ae280dff5743e4bfc7eaff8263f45601fb0e90c841cc7
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/agent-maintained-knowledge-bases.md
 derived_models:
@@ -76,3 +79,22 @@ The article leans heavily on the compiler analogy, but that analogy can hide how
 - Canonical URL: https://medium.com/@creativeaininja/karpathys-llm-wiki-how-to-actually-use-ai-so-it-stops-starting-over-21c5146a7b53
 - Raw markdown: `raw/readwise/karpathy-s-llm-wiki-how-to-actually-use-ai-so-it-stops-starting-over-01kqktnemtp7dbmtzfbef6h1hr.md`
 - Raw HTML: `raw/readwise/karpathy-s-llm-wiki-how-to-actually-use-ai-so-it-stops-starting-over-01kqktnemtp7dbmtzfbef6h1hr.html`
+
+## Full source text
+
+---
+readwise_id: 01kqktnemtp7dbmtzfbef6h1hr
+title: 'Karpathy’s LLM Wiki: How to Actually Use AI So It Stops Starting Over'
+author: Kristopher Dunham
+source_url: https://medium.com/@creativeaininja/karpathys-llm-wiki-how-to-actually-use-ai-so-it-stops-starting-over-21c5146a7b53
+category: article
+location: archive
+published_date: '2026-04-21'
+saved_at: '2026-05-02T07:50:19.034000+00:00'
+updated_at: '2026-05-02T14:21:54.339561+00:00'
+tags:
+- processed
+publication: Medium
+---
+
+Karpathy’s LLM Wiki is a system where an AI reads and organizes knowledge into a growing wiki instead of searching raw sources each time. This wiki acts like compiled code, letting the AI quickly answer questions using integrated information. It works best for storing and accessing knowledge you already understand, making research and complex information easier to use over time.

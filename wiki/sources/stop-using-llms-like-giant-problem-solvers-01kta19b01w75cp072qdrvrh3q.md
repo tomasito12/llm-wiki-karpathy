@@ -20,6 +20,9 @@ assessed_as_of: '2026-05-26'
 ingested_at: '2026-06-10T16:15:26+00:00'
 canonical_url: https://towardsdatascience.com/stop-using-llms-like-giant-problem-solvers/
 content_sha256: 8b8c90ce2e273ca124cef8c7f848d9377a9a1d07f84bdac9fa67d3e98e4e884e
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/checkpointing.md
 - glossary/reference-ids.md
@@ -73,3 +76,21 @@ The framing that the workflow became better mainly by changing the shape of the 
 - Canonical URL: https://towardsdatascience.com/stop-using-llms-like-giant-problem-solvers/
 - Raw markdown: `raw/readwise/stop-using-llms-like-giant-problem-solvers-01kta19b01w75cp072qdrvrh3q.md`
 - Raw HTML: `raw/readwise/stop-using-llms-like-giant-problem-solvers-01kta19b01w75cp072qdrvrh3q.html`
+
+## Full source text
+
+---
+readwise_id: "01kta19b01w75cp072qdrvrh3q"
+title: "Stop Using LLMs Like Giant Problem Solvers"
+author: "Clara Chong"
+publication: "Medium"
+source_url: "https://towardsdatascience.com/stop-using-llms-like-giant-problem-solvers/"
+category: "article"
+location: "archive"
+published_date: "2026-05-26"
+saved_at: "2026-06-04T19:20:43.265000+00:00"
+updated_at: "2026-06-08T11:42:35.855301+00:00"
+tags: ["processed"]
+---
+
+The author turned messy PDF files into clear data by making the AI agent’s tasks smaller and more focused. They used code to handle structure, checks, and control, while the AI handled understanding the content. This approach made the system more reliable and easier to fix than relying on the AI alone.

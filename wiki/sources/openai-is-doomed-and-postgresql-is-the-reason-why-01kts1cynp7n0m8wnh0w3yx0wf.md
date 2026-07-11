@@ -10,6 +10,9 @@ assessed_as_of: '2026-04-16'
 ingested_at: '2026-06-16T00:12:25+00:00'
 canonical_url: https://medium.com/postgresql-blogs/openai-is-doomed-and-postgresql-is-the-reason-why-d45edf150dc2
 content_sha256: c520a73e31c3ffd4024b811ed35eb94ea7614488c96307d1aea9e4323f0b9f8e
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 ---
 
 # OpenAI is Doomed (And PostgreSQL is the Reason Why)
@@ -45,3 +48,21 @@ The piece is strongly opinionated and uses loaded framing, so several claims are
 - Canonical URL: https://medium.com/postgresql-blogs/openai-is-doomed-and-postgresql-is-the-reason-why-d45edf150dc2
 - Raw markdown: `raw/readwise/openai-is-doomed-and-postgresql-is-the-reason-why-01kts1cynp7n0m8wnh0w3yx0wf.md`
 - Raw HTML: `raw/readwise/openai-is-doomed-and-postgresql-is-the-reason-why-01kts1cynp7n0m8wnh0w3yx0wf.html`
+
+## Full source text
+
+---
+readwise_id: "01kts1cynp7n0m8wnh0w3yx0wf"
+title: "OpenAI is Doomed (And PostgreSQL is the Reason Why)"
+author: "Oz"
+publication: "Medium"
+source_url: "https://medium.com/postgresql-blogs/openai-is-doomed-and-postgresql-is-the-reason-why-d45edf150dc2"
+category: "article"
+location: "archive"
+published_date: "2026-04-16"
+saved_at: "2026-06-10T15:11:18.198000+00:00"
+updated_at: "2026-06-15T15:15:50.456695+00:00"
+tags: ["processed"]
+---
+
+Why the era of sending your data to a black box is over, and how a 30-year-old database is winning the AI war.

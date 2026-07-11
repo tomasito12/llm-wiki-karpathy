@@ -18,6 +18,9 @@ assessed_as_of: '2026-05-30'
 ingested_at: '2026-06-06T21:48:47+00:00'
 canonical_url: mailto:reader-forwarded-email/8ae15afb13d401b6d16da91716230be5
 content_sha256: 336825df766584ba5d95175538d9a815449389e3462d829f3270519bab98a3fa
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-05/fw-gemini-flash-gets-pricey-ai-act-delays-agents-drive-online-traffic-01ksvvrjag-ai-driven-web-traffic-is-shifting-toward-agentic-browsing-and-transa-0622780613.md
 - signals/2026-05/fw-gemini-flash-gets-pricey-ai-act-delays-agents-drive-online-traffic-01ksvvrjag-ai-engineer-roles-are-expanding-faster-than-vendor-embedded-fde-role-6332a4776c.md
@@ -67,3 +70,21 @@ The piece mixes measured reporting with some confident framing that should be tr
 - Canonical URL: mailto:reader-forwarded-email/8ae15afb13d401b6d16da91716230be5
 - Raw markdown: `raw/readwise/fw-gemini-flash-gets-pricey-ai-act-delays-agents-drive-online-traffic-01ksvvrjagwspvfp3kxzv4mme8.md`
 - Raw HTML: `raw/readwise/fw-gemini-flash-gets-pricey-ai-act-delays-agents-drive-online-traffic-01ksvvrjagwspvfp3kxzv4mme8.html`
+
+## Full source text
+
+---
+readwise_id: "01ksvvrjagwspvfp3kxzv4mme8"
+title: "Fw: Gemini Flash Gets Pricey, AI Act Delays, Agents Drive Online Traffic"
+author: "Thomas Plischke"
+publication: "WEB.DE News"
+source_url: "mailto:reader-forwarded-email/8ae15afb13d401b6d16da91716230be5"
+category: "email"
+location: "archive"
+published_date: "2026-05-30"
+saved_at: "2026-05-30T07:14:48.784000+00:00"
+updated_at: "2026-05-31T08:51:09.045711+00:00"
+tags: ["processed"]
+---
+
+The new Gemini 3.5 Flash AI model is powerful but costs three times more than its predecessor. The AI Act deadlines for high-risk systems and transparency rules have been delayed to give developers more time. AI-driven internet traffic nearly tripled in 2025, mainly in retail, media, and travel sectors.

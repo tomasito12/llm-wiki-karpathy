@@ -17,6 +17,9 @@ assessed_as_of: '2026-05-19'
 ingested_at: '2026-06-06T21:46:38+00:00'
 canonical_url: mailto:reader-forwarded-email/e935913e56d03a4c719bb4db420b494b
 content_sha256: be516dba55155fec822437d867d4afddc4eb035da497a59a8e9558a0e0824361
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-05/fod-153-agentic-coding-in-search-what-it-even-means-01ks22c7cq51p2zx1zpbrhc9ba-ai-product-teams-are-converging-on-workflow-embedded-agents.md
 - signals/2026-05/fod-153-agentic-coding-in-search-what-it-even-means-01ks22c7cq51p2zx1zpbrhc9ba-search-is-moving-from-retrieval-to-query-time-software-generation.md
@@ -63,3 +66,21 @@ The piece is excited about Search as a build layer, but it also admits that gene
 - Canonical URL: mailto:reader-forwarded-email/e935913e56d03a4c719bb4db420b494b
 - Raw markdown: `raw/readwise/fod-153-agentic-coding-in-search-what-it-even-means-01ks22c7cq51p2zx1zpbrhc9ba.md`
 - Raw HTML: `raw/readwise/fod-153-agentic-coding-in-search-what-it-even-means-01ks22c7cq51p2zx1zpbrhc9ba.html`
+
+## Full source text
+
+---
+readwise_id: "01ks22c7cq51p2zx1zpbrhc9ba"
+title: "FOD#153: Agentic coding in search – What it even means?"
+author: "🔳 Turing Post"
+publication: "beehiiv.com"
+source_url: "mailto:reader-forwarded-email/e935913e56d03a4c719bb4db420b494b"
+category: "email"
+location: "archive"
+published_date: "2026-05-19"
+saved_at: "2026-05-20T06:50:09.176000+00:00"
+updated_at: "2026-05-20T08:08:00.352981+00:00"
+tags: ["processed"]
+---
+
+Google is transforming its search box into a powerful tool that can create custom apps and interactive features using AI agents. This new "agentic coding" will make search more helpful and change how people and developers use information. It could reshape the internet economy by turning search into a place where questions become software.

@@ -21,6 +21,9 @@ assessed_as_of: '2026-05-08'
 ingested_at: '2026-06-02T20:00:21.511258+00:00'
 canonical_url: https://towardsdatascience.com/unified-agentic-memory-across-harnesses-using-hooks/
 content_sha256: 72c3dd8cc1c6a1ab77ed620f44e5af271228212c373a2a98e770a0994bfc5720
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/hooks.md
 derived_how_to:
@@ -79,3 +82,21 @@ The article’s strongest claim is that hooks make memory deterministic and port
 - Canonical URL: https://towardsdatascience.com/unified-agentic-memory-across-harnesses-using-hooks/
 - Raw markdown: `raw/readwise/unified-agentic-memory-across-harnesses-using-hooks-01kr7bk2d0hagq604nt14zrqcv.md`
 - Raw HTML: `raw/readwise/unified-agentic-memory-across-harnesses-using-hooks-01kr7bk2d0hagq604nt14zrqcv.html`
+
+## Full source text
+
+---
+readwise_id: "01kr7bk2d0hagq604nt14zrqcv"
+title: "Unified Agentic Memory Across Harnesses Using Hooks"
+author: "Tomaz Bratanic"
+publication: "Medium"
+source_url: "https://towardsdatascience.com/unified-agentic-memory-across-harnesses-using-hooks/"
+category: "article"
+location: "archive"
+published_date: "2026-05-08"
+saved_at: "2026-05-09T21:51:40.960000+00:00"
+updated_at: "2026-05-11T09:40:30.930822+00:00"
+tags: ["processed"]
+---
+
+Hooks enable different AI coding tools to share a single memory system by logging all session events outside the tools themselves. This memory is stored in Neo4j and updated in batches by summarizing past interactions into organized notes. As a result, users can switch between tools like Claude Code, Codex, and Cursor without losing their agent’s memory or context.

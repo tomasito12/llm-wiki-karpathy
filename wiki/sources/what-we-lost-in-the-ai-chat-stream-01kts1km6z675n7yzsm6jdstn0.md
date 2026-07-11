@@ -16,6 +16,9 @@ assessed_as_of: '2026-05-18'
 ingested_at: '2026-06-17T15:57:30.003269+00:00'
 canonical_url: https://medium.com/design-bootcamp/what-we-lost-in-the-ai-chat-stream-2f96a22a6b80
 content_sha256: 6635559daaec55364a96db86c558607ad29298f250661fba8bcab8141a071f9a
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_topics:
 - topics/artifact-first-ai-workflows.md
 - topics/cognitive-debt-in-ai-workflows.md
@@ -62,3 +65,21 @@ The article’s strongest claim is that chat is not an extension of mind because
 - Canonical URL: https://medium.com/design-bootcamp/what-we-lost-in-the-ai-chat-stream-2f96a22a6b80
 - Raw markdown: `raw/readwise/what-we-lost-in-the-ai-chat-stream-01kts1km6z675n7yzsm6jdstn0.md`
 - Raw HTML: `raw/readwise/what-we-lost-in-the-ai-chat-stream-01kts1km6z675n7yzsm6jdstn0.html`
+
+## Full source text
+
+---
+readwise_id: "01kts1km6z675n7yzsm6jdstn0"
+title: "What we lost in the AI chat stream"
+author: "Chelsey (Jiahui) Qiu"
+publication: "Medium"
+source_url: "https://medium.com/design-bootcamp/what-we-lost-in-the-ai-chat-stream-2f96a22a6b80"
+category: "article"
+location: "archive"
+published_date: "2026-05-18"
+saved_at: "2026-06-10T15:14:56.862000+00:00"
+updated_at: "2026-06-11T19:38:09.548408+00:00"
+tags: ["processed"]
+---
+
+Most of the chat is iteration, not insight. The real cost is the thinking we stop doing.

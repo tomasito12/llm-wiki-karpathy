@@ -19,6 +19,9 @@ assessed_as_of: '2026-05-13'
 ingested_at: '2026-05-18T15:39:48.516474+00:00'
 canonical_url: https://www.intercom.com/blog/sales-agent-knowledge-management-guide/
 content_sha256: fea933347abc8aaeefa22409e4a3319f951e3624ab2791f2826d8496e47b360d
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/knowledge-management.md
 - glossary/retrieval-augmented-generation.md
@@ -72,3 +75,21 @@ The piece strongly favors a knowledge-heavy approach, but it does not show that 
 - Canonical URL: https://www.intercom.com/blog/sales-agent-knowledge-management-guide/
 - Raw markdown: `raw/readwise/the-ultimate-guide-to-knowledge-management-for-your-sales-agent-01krh989qjyns47e84f2k7v769.md`
 - Raw HTML: `raw/readwise/the-ultimate-guide-to-knowledge-management-for-your-sales-agent-01krh989qjyns47e84f2k7v769.html`
+
+## Full source text
+
+---
+readwise_id: "01krh989qjyns47e84f2k7v769"
+title: "The ultimate guide to knowledge management for your Sales Agent"
+author: "Beth-Ann Sher"
+publication: "The Intercom Blog"
+source_url: "https://www.intercom.com/blog/sales-agent-knowledge-management-guide/"
+category: "rss"
+location: "archive"
+published_date: "2026-05-13"
+saved_at: "2026-05-13T18:23:12.187000+00:00"
+updated_at: "2026-05-13T21:23:59.394435+00:00"
+tags: ["processed"]
+---
+
+Everything you need to know about building and maintaining a knowledge base that powers your Sales Agent, in one comprehensive guide.

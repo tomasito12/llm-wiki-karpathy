@@ -25,6 +25,9 @@ assessed_as_of: '2026-04-22'
 ingested_at: '2026-06-06T21:43:28+00:00'
 canonical_url: https://www.intercom.com/blog/announcing-fin-for-sales/
 content_sha256: b8b3d224399a970678590714d748776b2c7768a0035176fff2f38b27e2ea2609
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_tools:
 - tools/fin-for-sales.md
 derived_topics:
@@ -75,3 +78,22 @@ The launch leans on classic product-marketing language such as 'runs your inboun
 - Canonical URL: https://www.intercom.com/blog/announcing-fin-for-sales/
 - Raw markdown: `raw/readwise/announcing-fin-for-sales-a-new-role-for-fin-customer-agent-01kpv1kfp3y4qs3dhz4fwpy238.md`
 - Raw HTML: `raw/readwise/announcing-fin-for-sales-a-new-role-for-fin-customer-agent-01kpv1kfp3y4qs3dhz4fwpy238.html`
+
+## Full source text
+
+---
+readwise_id: 01kpv1kfp3y4qs3dhz4fwpy238
+title: 'Announcing Fin for Sales: A new role for Fin Customer Agent'
+author: Rati Zvirawa
+source_url: https://www.intercom.com/blog/announcing-fin-for-sales/
+category: rss
+location: archive
+published_date: '2026-04-22'
+saved_at: '2026-04-22T16:50:30.796000+00:00'
+updated_at: '2026-05-07T12:08:27.015423+00:00'
+tags:
+- processed
+publication: Intercom
+---
+
+Fin for Sales is a new AI tool that talks to website visitors instantly and helps guide them through buying. It learns about each prospect, answers questions, and sends the best leads to your sales team. This tool works 24/7, books meetings, and helps close deals while your team sleeps.

@@ -18,6 +18,9 @@ assessed_as_of: '2026-04-25'
 ingested_at: '2026-06-06T21:35:34+00:00'
 canonical_url: https://www.latent.space/p/ainews-deepseek-v4-pro-16t-a49b-and
 content_sha256: ab9f72d3b0c4eacab0c52c2258c616197bcb665315b96b2bd4aa892b7a9aa3ea
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_signals:
 - signals/2026-04/ainews-deepseek-v4-pro-1-6t-a49b-and-flash-284b-a13b-base-and-instruct-runnable-open-weight-long-context-models-are-becoming-systems-releases-not-che-eaf3b878d3.md
 derived_trends:
@@ -61,3 +64,23 @@ The roundup mixes strong praise with clear uncertainty, so several claims should
 - Canonical URL: https://www.latent.space/p/ainews-deepseek-v4-pro-16t-a49b-and
 - Raw markdown: `raw/readwise/ainews-deepseek-v4-pro-1-6t-a49b-and-flash-284b-a13b-base-and-instruct-runnable-on-huawei-ascend-chips-01kq1ghc73kbvsy1qm9z5ahy3t.md`
 - Raw HTML: `raw/readwise/ainews-deepseek-v4-pro-1-6t-a49b-and-flash-284b-a13b-base-and-instruct-runnable-on-huawei-ascend-chips-01kq1ghc73kbvsy1qm9z5ahy3t.html`
+
+## Full source text
+
+---
+readwise_id: 01kq1ghc73kbvsy1qm9z5ahy3t
+title: '[AINews] DeepSeek V4 Pro (1.6T-A49B) and Flash (284B-A13B), Base and Instruct
+  — runnable on Huawei Ascend chips'
+author: Latent Space
+source_url: https://www.latent.space/p/ainews-deepseek-v4-pro-16t-a49b-and
+category: rss
+location: archive
+published_date: '2026-04-25'
+saved_at: '2026-04-25T05:06:56.939000+00:00'
+updated_at: '2026-05-07T08:25:55.029913+00:00'
+tags:
+- processed
+publication: Latent
+---
+
+DeepSeek V4 Pro and Flash are advanced AI models with very large contexts, running efficiently on Huawei Ascend chips to reduce reliance on NVIDIA hardware. The models offer strong performance for long documents and complex tasks while aiming for better cost and energy efficiency. This release is seen as important in the AI and geopolitical landscape, highlighting China’s push for computing independence.

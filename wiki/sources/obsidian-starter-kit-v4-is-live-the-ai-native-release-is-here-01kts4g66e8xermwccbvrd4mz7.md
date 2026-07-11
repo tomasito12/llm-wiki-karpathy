@@ -25,6 +25,9 @@ assessed_as_of: '2026-05-15'
 ingested_at: '2026-06-16T00:02:09+00:00'
 canonical_url: https://pkmjournal.com/obsidian-starter-kit-v4-is-live-the-ai-native-release-is-here-654f195d8aec
 content_sha256: e3b6788c9a4f29083ed5a9ce794b15c18030b2d584f10eb8c994b4b72c01d1b1
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_glossary:
 - glossary/llm-wikis.md
 - glossary/model-context-protocol.md
@@ -82,3 +85,21 @@ The article argues for strong structure and determinism, but the practical reali
 - Canonical URL: https://pkmjournal.com/obsidian-starter-kit-v4-is-live-the-ai-native-release-is-here-654f195d8aec
 - Raw markdown: `raw/readwise/obsidian-starter-kit-v4-is-live-the-ai-native-release-is-here-01kts4g66e8xermwccbvrd4mz7.md`
 - Raw HTML: `raw/readwise/obsidian-starter-kit-v4-is-live-the-ai-native-release-is-here-01kts4g66e8xermwccbvrd4mz7.html`
+
+## Full source text
+
+---
+readwise_id: "01kts4g66e8xermwccbvrd4mz7"
+title: "Obsidian Starter Kit v4 Is Live: The AI-Native Release Is Here"
+author: "Sébastien Dubois"
+publication: "Medium"
+source_url: "https://pkmjournal.com/obsidian-starter-kit-v4-is-live-the-ai-native-release-is-here-654f195d8aec"
+category: "article"
+location: "archive"
+published_date: "2026-05-15"
+saved_at: "2026-06-10T16:05:29.934000+00:00"
+updated_at: "2026-06-11T13:35:52.014877+00:00"
+tags: ["processed"]
+---
+
+Blog

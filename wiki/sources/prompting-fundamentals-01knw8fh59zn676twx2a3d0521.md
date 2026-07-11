@@ -16,6 +16,9 @@ assessed_as_of: '2026-04-10'
 ingested_at: '2026-06-17T15:48:49.692083+00:00'
 canonical_url: https://openai.com/academy/prompting
 content_sha256: 438ab597904a482c2bce91a13b54a8f6ff34a2eb7aced7c1e57c365ee8f43aaf
+source_text_available: true
+source_text_mode: full
+source_text_source: raw_markdown
 derived_how_to:
 - how-to/prompt-engineering-fundamentals.md
 derived_topics:
@@ -59,3 +62,22 @@ The strongest claim is implicit: that better prompting can significantly improve
 - Canonical URL: https://openai.com/academy/prompting
 - Raw markdown: `raw/readwise/prompting-fundamentals-01knw8fh59zn676twx2a3d0521.md`
 - Raw HTML: `raw/readwise/prompting-fundamentals-01knw8fh59zn676twx2a3d0521.html`
+
+## Full source text
+
+---
+readwise_id: 01knw8fh59zn676twx2a3d0521
+title: Prompting fundamentals
+author: OpenAI Blog
+source_url: https://openai.com/academy/prompting
+category: rss
+location: archive
+published_date: '2026-04-10'
+saved_at: '2026-04-10T17:53:52.874000+00:00'
+updated_at: '2026-05-04T20:42:20.247893+00:00'
+tags:
+- processed
+publication: OpenAI
+---
+
+Prompt engineering helps you write clear instructions so ChatGPT gives better answers. To do this, be clear about the task, add helpful context, and describe how you want the response. Experiment with prompts to find what works best for your needs.
