@@ -3751,7 +3751,7 @@
     },
     {
       "path": "tools/fin.md",
-      "sha256": "873101547894797c60a15a4ec72da78d8420713e9ad98d0c05bd6f50b47bab05"
+      "sha256": "999ae05f57b9a8ab57aefbbfee2d8e4118d1008c490d231f98d6a14ed85255b5"
     },
     {
       "path": "tools/final-cut-pro.md",
@@ -5058,13 +5058,13 @@
       "sha256": "34ff512c68169fd3d444d98ac38f210a274c62e76e3493144268c95571d76f43"
     }
   ],
-  "graph_export_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy-source-fulltext/state/wiki_render_graph.json",
+  "graph_export_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy-source-access-spec/state/wiki_render_graph.json",
   "implementation_study_count": 18,
   "interview_insight_count": 97,
   "knowledge_page_count": 614,
   "signal_count": 160,
   "source_count": 360,
-  "synthesis_cache_dir": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy-source-fulltext/state/synthesis",
+  "synthesis_cache_dir": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy-source-access-spec/state/synthesis",
   "taxonomy_version": "c380707bf09a",
   "tool_version": "1"
 }

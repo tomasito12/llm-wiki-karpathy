@@ -18,13 +18,13 @@ source_ids:
 - how-to-make-the-case-for-giving-your-ai-agent-system-access-01ktv9jzh8ynayfwz0kx9wat67
 value_level: high
 confidence: 0.92
-synthesis_state: stale
-synthesis_stale: true
-synthesis_input_hash: 71baa47fc574ed34
+synthesis_state: synthesized
+synthesis_stale: false
+synthesis_input_hash: 63a9d525159b10f3
 current_input_hash: 63a9d525159b10f3
 synthesis_schema_version: 1
 synthesis_prompt_version: 1
-last_synthesized_at: '2026-07-09T15:35:18Z'
+last_synthesized_at: '2026-07-12T13:53:39Z'
 types:
 - cloud-saas
 - enterprise-ai
@@ -33,12 +33,19 @@ types:
 
 # Fin
 
-> [!warning] Synthesis may be stale
-> New or changed evidence exists. The prose synthesis below was generated from an older evidence hash.
-
 ## Executive synthesis
 
-Fin appears to be Intercom’s support automation layer for teams that want AI to do more than answer FAQs. The sources consistently frame it as an overlay that can sit on top of existing helpdesks, especially HubSpot and Freshworks, so teams can add an agent without a full migration. Its main value is in support workflows that require live system access: reading backend data, using Data Connectors, executing Procedures, and handing off to humans when needed. The product also appears to include recommendations for prioritizing integrations or workflows by volume and effort, which makes it useful for phased rollout planning. The main caveat is that the evidence is entirely vendor-authored, so capability and maturity claims are plausible but not independently verified here.
+Fin is Intercom’s automation layer for customer support teams looking for more than basic Q&A capabilities. It integrates into existing helpdesk systems like HubSpot and Freshworks, allowing teams to add AI-driven support without replacing their current setup. The platform enables workflows that require live data access and action-taking. It includes features like recommendations for prioritizing tasks based on conversation volume. However, all evidence comes from vendor sources, making it important to approach capability and maturity claims with caution.
+
+## Typical use case
+
+### Layering AI Support Automation on Helpdesks
+
+A support team at a mid-sized company uses Fin layered over their existing helpdesk platform, Freshworks. Agents receive alerts about high-volume issues from Fin's recommendations dashboard, which surfaces relevant live data and automates ticket resolution by triggering backend actions. This setup minimizes wait times and reduces repetitive tasks for agents. The team rolls out new features incrementally, testing workflows before fully integrating Fin's capabilities.
+
+- Why this helps: This example illustrates how Fin can enhance customer support operations without a complete tech overhaul. By overlapping AI capabilities, support teams can streamline issue resolution and improve workflow without the complications of migrating systems.
+
+- Basis: `source-grounded`
 
 ## Context card
 
@@ -88,9 +95,9 @@ Treat Fin as a support-automation overlay for existing helpdesk stacks, especial
 - Sources: 2
 - Evidence items: 18
 - Current input hash: `63a9d525159b10f3`
-- Cached input hash: `71baa47fc574ed34`
-- Last synthesized: 2026-07-09T15:35:18Z
-- Synthesis status: `stale`
+- Cached input hash: `63a9d525159b10f3`
+- Last synthesized: 2026-07-12T13:53:39Z
+- Synthesis status: `fresh`
 
 ## Related pages
 
