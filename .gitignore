@@ -42,3 +42,19 @@ state/review_feedback.sqlite
 
 # Local agent/app runtime state
 .agents/**
+
+# Externalized knowledge data and generated vault content
+state/reviews/
+state/synthesis/
+state/wiki_render_graph.json
+state/wiki_render_manifest.json
+state/releases/
+state/synthesis_previews/
+state/synthesis_runs/
+state/synthesis_backups/
+state/synthesis_prompts/
+state/ingest_batches/
+state/ingest_manifest.json
+wiki/
+sources/
+indexes/
