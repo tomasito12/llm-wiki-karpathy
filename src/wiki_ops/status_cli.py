@@ -9,7 +9,14 @@ import sys
 from pathlib import Path
 
 from src.ingest_review.paths import repo_root
+from src.wiki_ops.retention import (
+    RetentionInventory,
+    build_retention_recommendations,
+    collect_retention_inventory,
+    format_retention_text,
+)
 from src.wiki_ops.status import (
+    OpsStatus,
     OpsStatusConfig,
     collect_ops_status,
     format_text_report,
@@ -17,7 +24,7 @@ from src.wiki_ops.status import (
 from src.wiki_paths.cli_helpers import (
     add_paths_config_argument,
     load_paths_for_cli,
-    resolve_cli_path,
+    paths_with_status_cli_overrides,
 )
 from src.wiki_paths.config import WikiPathsConfigError
 
@@ -101,27 +108,37 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Print resolved wiki path configuration as JSON and exit.",
     )
+    parser.add_argument(
+        "--retention",
+        action="store_true",
+        help="Append artifact retention inventory to the status report.",
+    )
+    parser.add_argument(
+        "--retention-json",
+        action="store_true",
+        help="Print artifact retention inventory as JSON and exit.",
+    )
     return parser
 
 
 def config_from_args(args: argparse.Namespace) -> OpsStatusConfig:
     """Build status config from parsed CLI arguments."""
     repo = (args.repo_root or repo_root()).resolve()
-    paths = load_paths_for_cli(args, repo_root_override=repo)
+    paths = paths_with_status_cli_overrides(
+        args,
+        load_paths_for_cli(args, repo_root_override=repo),
+    )
     return OpsStatusConfig(
         repo_root=repo,
-        raw_dir=resolve_cli_path(args.raw_dir, configured=paths.raw_dir),
-        reviews_dir=resolve_cli_path(args.reviews_dir, configured=paths.reviews_dir),
-        wiki_dir=resolve_cli_path(args.wiki_dir, configured=paths.wiki_dir),
-        graph_path=resolve_cli_path(args.graph_path, configured=paths.graph_path),
-        manifest_path=resolve_cli_path(args.manifest_path, configured=paths.manifest_path),
-        synthesis_cache_dir=resolve_cli_path(
-            args.synthesis_cache_dir,
-            configured=paths.synthesis_dir,
-        ),
-        preview_dir=resolve_cli_path(args.preview_dir, configured=paths.preview_dir),
-        run_dir=resolve_cli_path(args.run_dir, configured=paths.run_dir),
-        backup_dir=resolve_cli_path(args.backup_dir, configured=paths.backup_dir),
+        raw_dir=paths.raw_dir,
+        reviews_dir=paths.reviews_dir,
+        wiki_dir=paths.wiki_dir,
+        graph_path=paths.graph_path,
+        manifest_path=paths.manifest_path,
+        synthesis_cache_dir=paths.synthesis_dir,
+        preview_dir=paths.preview_dir,
+        run_dir=paths.run_dir,
+        backup_dir=paths.backup_dir,
     )
 
 
@@ -138,14 +155,40 @@ def main(argv: list[str] | None = None) -> int:
     if args.paths_json:
         print(json.dumps(paths.to_dict(), indent=2, sort_keys=True))
         return 0
+    resolved_paths = paths_with_status_cli_overrides(args, paths)
+    if args.retention_json:
+        inventory = collect_retention_inventory(resolved_paths)
+        print(json.dumps(inventory.to_dict(), indent=2, sort_keys=True))
+        LOGGER.info("wiki-ops-status retention inventory complete")
+        return 0
     config = config_from_args(args)
     status = collect_ops_status(config)
+    inventory = None
+    if args.retention:
+        inventory = collect_retention_inventory(resolved_paths)
+        status = _merge_retention_into_status(status, inventory)
     if args.json:
         print(json.dumps(status.to_dict(), indent=2, sort_keys=True))
     else:
         print(format_text_report(status))
+        if inventory is not None:
+            print("")
+            print(format_retention_text(inventory))
     LOGGER.info("wiki-ops-status complete")
     return 0
+
+
+def _merge_retention_into_status(status: OpsStatus, inventory: RetentionInventory) -> OpsStatus:
+    """Merge retention warnings and recommendations into an ops status snapshot."""
+    return OpsStatus(
+        sources=status.sources,
+        reviews=status.reviews,
+        render=status.render,
+        synthesis=status.synthesis,
+        artifacts=status.artifacts,
+        recommendations=[*status.recommendations, *build_retention_recommendations(inventory)],
+        warnings=[*status.warnings, *inventory.warnings],
+    )
 
 
 if __name__ == "__main__":
