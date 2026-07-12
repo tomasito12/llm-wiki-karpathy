@@ -1,0 +1,81 @@
+{
+  "areas": {
+    "raw_readwise": {
+      "byte_count": 11588524,
+      "data_class": "canonical",
+      "exists": true,
+      "file_count": 724,
+      "sha256": "0f012d5b5cb9549ee8d3ad9f117dfa331ba2b11aab28530cd3fdbeaa903877ef"
+    },
+    "render_graph": {
+      "byte_count": 14456459,
+      "data_class": "generated",
+      "exists": true,
+      "file_count": 1,
+      "sha256": "c3f8452f16c066196f909736de28df40ac9826e9143dda875309dfd683ceeb79"
+    },
+    "render_manifest": {
+      "byte_count": 250671,
+      "data_class": "generated",
+      "exists": true,
+      "file_count": 1,
+      "sha256": "f440e1a23aaa605a2fb228d90b928ea55722d10a6906184afc9584b2a6ec7b27"
+    },
+    "reviews": {
+      "byte_count": 19827979,
+      "data_class": "canonical",
+      "exists": true,
+      "file_count": 378,
+      "sha256": "75ef108e4e6f857b0adbbb24aa3d0d9f91b1469fc4b75784b5b4f8152a9e7845"
+    },
+    "synthesis_cache": {
+      "byte_count": 714495,
+      "data_class": "canonical",
+      "exists": true,
+      "file_count": 124,
+      "sha256": "74c53145ad66e716d1e74eb0ae01fd432418eca8bedcf2cd9b54652cc9900085"
+    },
+    "wiki": {
+      "byte_count": 10008073,
+      "data_class": "generated",
+      "exists": true,
+      "file_count": 1294,
+      "sha256": "c3e9f4811d638c64ece3e67c5f460ee54c2e6bf0c550deb55b36013bbb6003bd"
+    }
+  },
+  "code": {
+    "git_commit": "f07d9c28f690171ea9d69876e033fa0d244e36b8",
+    "git_dirty": false,
+    "repo_root": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy-source-access-spec"
+  },
+  "counts": {
+    "raw_files": 724,
+    "reviews": 360,
+    "synthesis_entries": 124,
+    "wiki_files": 1294
+  },
+  "created_at": "2026-07-12T13:57:25Z",
+  "output_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy-source-access-spec/state/releases/20260712T135725Z.json",
+  "paths": {
+    "graph_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy-source-access-spec/state/wiki_render_graph.json",
+    "manifest_path": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy-source-access-spec/state/wiki_render_manifest.json",
+    "raw_dir": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy/raw/readwise",
+    "release_dir": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy-source-access-spec/state/releases",
+    "reviews_dir": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy-source-access-spec/state/reviews",
+    "synthesis_dir": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy-source-access-spec/state/synthesis",
+    "wiki_dir": "/Users/plischke/Desktop/Private Development/llm-wiki-karpathy-source-access-spec/wiki"
+  },
+  "release_id": "20260712T135725Z",
+  "retention": {
+    "cleanup_blocked_reason": "real cleanup requires hatch run wiki-cleanup --after-release <release_id> --yes",
+    "cleanup_candidate_count": 0,
+    "temporary_byte_count": 1227118,
+    "temporary_file_count": 189
+  },
+  "schema_version": 1,
+  "status": "warning",
+  "status_reasons": [
+    "Temporary artifacts are present."
+  ],
+  "warnings": []
+}
