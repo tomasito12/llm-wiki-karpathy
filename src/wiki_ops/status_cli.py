@@ -9,6 +9,11 @@ import sys
 from pathlib import Path
 
 from src.ingest_review.paths import repo_root
+from src.wiki_ops.release_manifest import (
+    build_release_manifest,
+    format_release_dry_run_text,
+    write_release_manifest,
+)
 from src.wiki_ops.retention import (
     RetentionInventory,
     build_retention_recommendations,
@@ -26,7 +31,7 @@ from src.wiki_paths.cli_helpers import (
     load_paths_for_cli,
     paths_with_status_cli_overrides,
 )
-from src.wiki_paths.config import WikiPathsConfigError
+from src.wiki_paths.config import WikiPaths, WikiPathsConfigError
 
 LOGGER = logging.getLogger(__name__)
 
@@ -118,6 +123,36 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Print artifact retention inventory as JSON and exit.",
     )
+    parser.add_argument(
+        "--release-dry-run",
+        action="store_true",
+        help="Preview a release manifest without writing files.",
+    )
+    parser.add_argument(
+        "--release-json",
+        action="store_true",
+        help="Print a release manifest as JSON without writing files.",
+    )
+    parser.add_argument(
+        "--write-release-manifest",
+        action="store_true",
+        help="Write a release manifest JSON file under paths.release_dir.",
+    )
+    parser.add_argument(
+        "--yes",
+        action="store_true",
+        help="Confirm writing a release manifest.",
+    )
+    parser.add_argument(
+        "--overwrite",
+        action="store_true",
+        help="Allow overwriting an existing release manifest file.",
+    )
+    parser.add_argument(
+        "--release-id",
+        default=None,
+        help="Optional fixed release id for manifest preview or write.",
+    )
     return parser
 
 
@@ -161,6 +196,8 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps(inventory.to_dict(), indent=2, sort_keys=True))
         LOGGER.info("wiki-ops-status retention inventory complete")
         return 0
+    if args.release_json or args.release_dry_run or args.write_release_manifest:
+        return _handle_release_manifest(args, resolved_paths)
     config = config_from_args(args)
     status = collect_ops_status(config)
     inventory = None
@@ -175,6 +212,36 @@ def main(argv: list[str] | None = None) -> int:
             print("")
             print(format_retention_text(inventory))
     LOGGER.info("wiki-ops-status complete")
+    return 0
+
+
+def _handle_release_manifest(args: argparse.Namespace, paths: WikiPaths) -> int:
+    """Preview or write a release manifest."""
+    if args.write_release_manifest and not args.yes:
+        LOGGER.error("--write-release-manifest requires --yes")
+        return 2
+    config = config_from_args(args)
+    ops_status = collect_ops_status(config)
+    manifest = build_release_manifest(
+        paths,
+        release_id=args.release_id,
+        ops_status=ops_status,
+    )
+    if args.write_release_manifest:
+        try:
+            output_path = write_release_manifest(manifest, overwrite=args.overwrite)
+        except FileExistsError as exc:
+            LOGGER.error("%s", exc)
+            return 2
+        print(f"Wrote release manifest: {output_path}")
+        LOGGER.info("wiki-ops-status release manifest written")
+        return 0
+    if args.release_json:
+        print(json.dumps(manifest.to_dict(), indent=2, sort_keys=True))
+        LOGGER.info("wiki-ops-status release manifest preview complete")
+        return 0
+    print(format_release_dry_run_text(manifest, paths))
+    LOGGER.info("wiki-ops-status release manifest dry-run complete")
     return 0
 
 
