@@ -37,6 +37,14 @@ KEEP_TRACKED_ROOT_FILES = frozenset(
 )
 KEEP_UNTRACKED_CONFIG_FILES = frozenset({"config/wiki_paths.toml"})
 UNTRACK_LATER_EXACT: dict[str, tuple[str, str]] = {
+    "raw/.gitkeep": (
+        "raw",
+        "Raw directory placeholder belongs with externalized raw data.",
+    ),
+    "state/ingest_manifest.json": (
+        "state/ingest_manifest",
+        "Legacy ingest manifest belongs to external knowledge-store state.",
+    ),
     "state/wiki_render_graph.json": (
         "state/wiki_render_graph",
         "Render graph belongs to external knowledge store.",

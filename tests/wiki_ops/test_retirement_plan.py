@@ -70,6 +70,24 @@ def test_classify_temporary_artifacts_as_untrack_later() -> None:
         assert action == "untrack_later", path
 
 
+def test_classify_legacy_raw_placeholder_as_untrack_later() -> None:
+    """The historical raw placeholder should leave Git with external raw data."""
+    area, action, reason = classify_tracked_path("raw/.gitkeep")
+
+    assert area == "raw"
+    assert action == "untrack_later"
+    assert "externalized raw data" in reason
+
+
+def test_classify_legacy_ingest_manifest_as_untrack_later() -> None:
+    """The legacy ingest manifest should leave Git with external state."""
+    area, action, reason = classify_tracked_path("state/ingest_manifest.json")
+
+    assert area == "state/ingest_manifest"
+    assert action == "untrack_later"
+    assert "external knowledge-store state" in reason
+
+
 def test_classify_tests_fixtures_as_keep_tracked() -> None:
     """Test fixtures should remain tracked in the code repository."""
     _area, action, _reason = classify_tracked_path("tests/fixtures/wiki/sample.md")
