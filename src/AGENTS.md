@@ -59,6 +59,22 @@ Run these after substantive code changes:
 
 Generated wiki layout rules live in [`src/wiki_contract/`](wiki_contract/). Both `wiki-render` and `wiki-lint` import from this module — do not duplicate folder lists, category definitions, required frontmatter fields, or heading contracts elsewhere.
 
+## External knowledge store operating mode
+
+- The preferred local operating mode uses `config/wiki_paths.toml`, which is
+  machine-specific and intentionally gitignored. Keep
+  `config/wiki_paths.example.toml` as the committed template.
+- Current local roots:
+  - knowledge store: `/Users/plischke/Desktop/Private Development/llm-wiki-data`
+  - private generated vault: `/Users/plischke/Desktop/Private Development/llm-wiki-vault-private`
+- Commands should use the central `WikiPaths` layer and respect `--paths-config`
+  / `LLM_WIKI_PATHS_CONFIG` instead of hard-coding repo-local `raw/`, `state/`,
+  or `wiki/` paths.
+- Before migration-sensitive work, run:
+  `hatch run wiki-ops-status --migration-plan --require-external-knowledge-root --require-external-vault-root`.
+- The old repo-local data is retained as a development/release artifact for now.
+  Do not delete it without an explicit cleanup/migration task.
+
 ## Ingest review dashboard (classification + human approval)
 
 - Run: `hatch run dashboard` — opens Streamlit at [`src/dashboard/app.py`](src/dashboard/app.py).

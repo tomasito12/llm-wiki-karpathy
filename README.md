@@ -8,6 +8,10 @@ The long-term goal is broader than browsing generated notes in Obsidian: the wik
 
 For the current implementation status and next stabilization steps, see [Current System Status](docs/current-system-status.md).
 
+The active local operating mode now uses an external knowledge store and a
+separate private generated vault. See [External Knowledge Store Operating
+Mode](docs/external-operating-mode.md).
+
 ## Domain Focus
 
 This wiki is optimized for the user's work as an AI expert at EnBW. The strongest relevance signal is knowledge that helps design, evaluate, operate, or improve AI-supported customer service: chatbots, voicebots, Cognigy AI, contact-center automation, service workflows, human handoff, quality evaluation, governance, and surrounding orchestration.
@@ -43,11 +47,38 @@ Agents should read `AGENTS.md` first. Detailed behavior is scoped:
 - `wiki/AGENTS.md` for the generated Obsidian vault contract
 - `src/AGENTS.md` for code/tooling development workflows
 
-### 3. Open the same folder in Obsidian
+### 3. Configure local paths
 
-Open the project directory as an Obsidian vault. The managed wiki lives under `wiki/`.
+The real path config is machine-specific and intentionally not committed.
 
-### 4. Export sources from Readwise
+Copy the example and adjust paths if needed:
+
+```bash
+cp config/wiki_paths.example.toml config/wiki_paths.toml
+```
+
+The current local operating mode uses:
+
+```text
+knowledge store: /Users/plischke/Desktop/Private Development/llm-wiki-data
+private vault:   /Users/plischke/Desktop/Private Development/llm-wiki-vault-private
+```
+
+Commands load `config/wiki_paths.toml` automatically when it exists.
+
+### 4. Open the generated vault in Obsidian
+
+Open the private generated vault in Obsidian:
+
+```text
+/Users/plischke/Desktop/Private Development/llm-wiki-vault-private
+```
+
+The managed wiki lives under its `wiki/` folder. The older repo-local `wiki/`
+folder is kept as a development/release artifact, but the external vault is the
+preferred browsing surface.
+
+### 5. Export sources from Readwise
 
 Set `READWISE_TOKEN` or `READWISE_API_TOKEN`, then run:
 
@@ -55,9 +86,12 @@ Set `READWISE_TOKEN` or `READWISE_API_TOKEN`, then run:
 hatch run readwise-sync
 ```
 
-This exports archived Readwise Reader documents tagged `processed` into `raw/readwise/` as paired `.html` and `.md` files. `raw/` is local-only and not committed.
+With external paths configured, this exports archived Readwise Reader documents
+tagged `processed` into the external knowledge store under `raw/readwise/` as
+paired `.html` and `.md` files. Raw exports are local/private data and are not
+committed to the code repo.
 
-### 5. Review and approve extraction
+### 6. Review and approve extraction
 
 Start the review dashboard:
 
@@ -65,7 +99,10 @@ Start the review dashboard:
 hatch run dashboard
 ```
 
-The dashboard analyzes raw Readwise exports and writes human-reviewed artifacts under `state/reviews/<source_id>/review.json`. These review artifacts are the canonical source of truth for generated wiki pages.
+The dashboard analyzes raw Readwise exports and writes human-reviewed artifacts
+under `state/reviews/<source_id>/review.json` in the configured knowledge
+store. These review artifacts are the canonical source of truth for generated
+wiki pages.
 
 For unattended pre-analysis of pending exports:
 
@@ -75,7 +112,7 @@ hatch run ingest-preanalyze --limit 100
 
 Pre-analysis still requires later human review in the dashboard.
 
-### 6. Render the generated wiki
+### 7. Render the generated wiki
 
 After review artifacts change, regenerate the Obsidian wiki:
 
@@ -84,11 +121,13 @@ hatch run wiki-render --dry-run
 hatch run wiki-render
 ```
 
-`wiki-render` fully regenerates managed folders under `wiki/`, writes `state/wiki_render_manifest.json`, and exports the Stage 2 graph to `state/wiki_render_graph.json`.
+`wiki-render` fully regenerates managed folders under the configured `wiki_dir`,
+writes `state/wiki_render_manifest.json`, and exports the Stage 2 graph to
+`state/wiki_render_graph.json`.
 
 Do not hand-edit managed generated pages. Fix the review artifact or synthesis cache, then render again.
 
-### 7. Run Stage 2 synthesis in small batches
+### 8. Run Stage 2 synthesis in small batches
 
 Plan first:
 
@@ -109,9 +148,11 @@ hatch run wiki-render --dry-run
 hatch run wiki-render
 ```
 
-Stage 2 writes cache entries under `state/synthesis/<category>/<slug>.json`; the renderer reads those cache entries and turns fresh ones into human-readable synthesized wiki pages.
+Stage 2 writes cache entries under `state/synthesis/<category>/<slug>.json` in
+the configured knowledge store; the renderer reads those cache entries and turns
+fresh ones into human-readable synthesized wiki pages.
 
-### 8. Check health before committing
+### 9. Check health before committing
 
 ```bash
 hatch run lint:check
@@ -119,6 +160,12 @@ hatch run test:run
 hatch run wiki-render --dry-run
 hatch run wiki-lint
 hatch run wiki-synthesis-cache-lint --json
+```
+
+For the external operating mode, also run:
+
+```bash
+hatch run wiki-ops-status --migration-plan --require-external-knowledge-root --require-external-vault-root
 ```
 
 ---
@@ -131,10 +178,10 @@ llm-wiki-karpathy/
 ├── llm-wiki.md        # Karpathy's original idea document (optional root note)
 ├── article.md         # Walkthrough article (optional root note)
 │
-├── raw/               # Your source documents (local only; not in Git)
+├── raw/               # Legacy/default local source path (active data is external)
 │   └── .gitkeep
 │
-├── wiki/              # Generated Obsidian knowledge base (versioned in Git)
+├── wiki/              # Legacy/default generated wiki path (active vault is external)
 │   ├── AGENTS.md      # Generated vault contract
 │   ├── sources/       # One page per reviewed source
 │   ├── topics/        # Merged knowledge pages
@@ -150,22 +197,25 @@ llm-wiki-karpathy/
 │
 ├── src/               # Code and automation layer
 │   └── AGENTS.md      # Scoped coding/tooling instructions
-├── state/             # Pipeline state (see “What Git tracks” below)
+├── state/             # Legacy/default pipeline state path (active state is external)
 ├── docs/              # Architecture, status, and design notes
 └── .obsidian/         # Obsidian vault UI state (local only; not in Git)
 ```
 
-**Readwise Reader:** with `READWISE_TOKEN` set, run `hatch run readwise-sync` to export archived documents tagged `processed` into `raw/readwise/` (paired HTML + Markdown). Details are in [`src/AGENTS.md`](src/AGENTS.md).
+**Readwise Reader:** with `READWISE_TOKEN` set, run `hatch run readwise-sync`
+to export archived documents tagged `processed` into the configured
+`raw/readwise/` path (paired HTML + Markdown). Details are in
+[`src/AGENTS.md`](src/AGENTS.md).
 
 ### How the layers work
 
 | Layer | Folder | Who owns it | Purpose |
 |-------|--------|-------------|---------|
-| Raw sources | `raw/` | You + Readwise sync | Local source exports. The pipeline reads them but does not commit them. |
-| Review artifacts | `state/reviews/` | Human + dashboard | Canonical reviewed extraction output. |
-| Render graph | `state/wiki_render_graph.json` | `wiki-render` | Machine-readable Stage 1 graph and Stage 2 input. |
-| Synthesis cache | `state/synthesis/` | Stage 2 workflow | LLM synthesis cache keyed by evidence hash. |
-| The wiki | `wiki/` | Generator | Structured, interlinked Obsidian markdown projection. |
+| Raw sources | `<knowledge_root>/raw/` | You + Readwise sync | Local source exports. The pipeline reads them but does not commit them to the code repo. |
+| Review artifacts | `<knowledge_root>/state/reviews/` | Human + dashboard | Canonical reviewed extraction output. |
+| Render graph | `<knowledge_root>/state/wiki_render_graph.json` | `wiki-render` | Machine-readable Stage 1 graph and Stage 2 input. |
+| Synthesis cache | `<knowledge_root>/state/synthesis/` | Stage 2 workflow | LLM synthesis cache keyed by evidence hash. |
+| The wiki | `<vault_root>/wiki/` | Generator | Structured, interlinked Obsidian markdown projection. |
 | Routing policy | `AGENTS.md` | You + AI | Routes requests by intent and enforces fail-closed handling for ambiguity. |
 | Wiki rules | `wiki/AGENTS.md` | You + AI | Defines generated vault structure, provenance, and Obsidian conventions. |
 | Code rules | `src/AGENTS.md` | You + AI | Defines coding standards, tests, linting, and tooling workflow. |
@@ -216,14 +266,16 @@ The routing + scoped instruction files are not set in stone. Edit them to fit yo
 
 | Tracked (commit these) | Not tracked (local only) |
 |------------------------|---------------------------|
-| `wiki/**` — generated knowledge base and wiki contracts | `raw/**` — Readwise exports and other large sources |
-| `src/**`, `tests/**`, `pyproject.toml`, `.pre-commit-config.yaml`, root `AGENTS.md`, `README.md` | `state/readwise_library.json` — export index (rebuild with `hatch run readwise-rebuild-index`) |
-| `state/reviews/**` — reviewed extraction artifacts, if you want reproducible renders from Git | `.env`, `.obsidian/**`, Python caches, `coverage.xml` |
-| `state/wiki_render_graph.json`, `state/wiki_render_manifest.json` — render audit artifacts | `state/review_feedback.sqlite` — local reviewer feedback log |
-| `state/synthesis/**`, `state/synthesis_previews/**`, `state/synthesis_runs/**` — Stage 2 cache, previews, and run audits |  |
-| `docs/**` — architecture and status notes |  |
+| `src/**`, `tests/**`, `pyproject.toml`, `.pre-commit-config.yaml`, root `AGENTS.md`, `README.md` | `config/wiki_paths.toml` — machine-specific absolute paths |
+| `docs/**` — architecture and status notes | `.env`, `.obsidian/**`, Python caches, `coverage.xml` |
+| `config/*.example.toml` and non-secret config templates | external `llm-wiki-data/**` and `llm-wiki-vault-private/**` until a separate backup/repo policy is chosen |
+| Repo-local `wiki/**` and durable `state/**` only when deliberately kept as release/development artifacts | `raw/**` — legacy/default local source path, not committed |
 
-**Backups:** mirror `raw/` and optionally `state/readwise_library.json` via cloud drive or NAS. The generated wiki is recoverable from committed review artifacts, synthesis caches, and Git history.
+**Backups:** the external knowledge store is now the important backup target.
+Mirror `/Users/plischke/Desktop/Private Development/llm-wiki-data` with a real
+backup tool before deleting old repo-local data. The generated private vault is
+recoverable from the knowledge store plus code, but it may still be worth
+backing up for convenience.
 
 **Optional root files:** `article.md` and `llm-wiki.md` are supplementary notes kept at the repo root for convenience. You may delete them, move content into `wiki/`, or stop tracking them with `git rm --cached` if you prefer a slimmer tree—no tooling depends on their paths.
 

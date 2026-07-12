@@ -1,47 +1,61 @@
 # Current System Status
 
-Last reviewed: 2026-07-10
+Last reviewed: 2026-07-12
 
 This document is a short orientation map for future sessions. It explains what is stable, what is partially built, and what should be handled next before adding more features.
 
 ## Executive Summary
 
-The foundation is usable and internally consistent enough to continue. The wiki can be regenerated deterministically from reviewed source artifacts, Stage 2 synthesis caches can be planned and rendered, and the current Obsidian output passes the wiki-specific checks.
+The foundation is usable and internally consistent enough to continue. The wiki
+can be regenerated deterministically from reviewed source artifacts, Stage 2
+synthesis caches can be planned and rendered, and the current Obsidian output
+passes the wiki-specific checks.
 
-The previous test-runner blocker has been fixed. Hatch now uses Python 3.12 for project environments, Pytest no longer crashes on `readline`, and the full test suite plus coverage run successfully.
+The project now has an external local operating mode:
+
+- code repo: `llm-wiki-karpathy-source-access-spec`
+- knowledge store: `llm-wiki-data`
+- private generated vault: `llm-wiki-vault-private`
+
+The copy-only migration has completed and the external paths are controlled by
+local `config/wiki_paths.toml`. See
+[`docs/external-operating-mode.md`](external-operating-mode.md).
 
 ## Current Architecture
 
-The current pipeline has these layers:
+The current pipeline has these layers in the external operating mode:
 
-1. `raw/readwise/`
+1. `<knowledge_root>/raw/readwise/`
    Local source exports. These are not committed to Git.
 
-2. `state/reviews/<source_id>/review.json`
+2. `<knowledge_root>/state/reviews/<source_id>/review.json`
    Human-reviewed extraction artifacts. These are the canonical source of truth for generated wiki content.
 
 3. `hatch run wiki-render`
-   Deterministically builds the generated Obsidian vault under `wiki/` and writes:
-   - `state/wiki_render_manifest.json`
-   - `state/wiki_render_graph.json`
+   Deterministically builds the generated Obsidian vault under `<vault_root>/wiki/` and writes:
+   - `<knowledge_root>/state/wiki_render_manifest.json`
+   - `<knowledge_root>/state/wiki_render_graph.json`
 
-4. `state/wiki_render_graph.json`
+4. `<knowledge_root>/state/wiki_render_graph.json`
    Machine-readable graph export. This is the input for Stage 2 synthesis planning and execution.
 
-5. `state/synthesis/<category>/<slug>.json`
+5. `<knowledge_root>/state/synthesis/<category>/<slug>.json`
    Stage 2 synthesis cache entries. These are generated only by the synthesis workflow and are keyed by the current evidence hash.
 
-6. `wiki/`
+6. `<vault_root>/wiki/`
    Generated Obsidian projection. Managed wiki pages should not be hand-edited because `wiki-render` can overwrite them.
 
 ## What Is Stable
 
-- `wiki-render` is idempotent on the current checked-in state.
+- `wiki-render` is idempotent against the external knowledge store and private vault.
 - `wiki-lint` passes.
 - `wiki-synthesis-cache-lint` passes for all existing synthesis cache entries.
 - `lint:check` passes (`ruff` and `ty`).
 - `test:run` and `test:cov` pass on Python 3.12.
 - Existing Stage 2 synthesis cache entries are fresh against the current graph.
+- External `knowledge_root` and `vault_root` are configured locally through
+  `config/wiki_paths.toml`.
+- The first copy-only migration has been completed and verified.
 - Stage 2 input hashes now normalize tiny float representation differences, so render-only confidence formatting changes do not force unnecessary LLM resynthesis.
 - `wiki-reset` tests no longer delete the real `state/wiki_render_manifest.json` when using temporary test paths.
 - Related-page links are now generated from Stage 1 graph relationships instead of being empty placeholders.
@@ -60,7 +74,8 @@ synthesis batches were created.
 
 2. Review/classify sources.
    - Use the dashboard or pre-analysis workflow.
-   - The durable review artifacts live under `state/reviews/<source_id>/review.json`.
+   - The durable review artifacts live under
+     `<knowledge_root>/state/reviews/<source_id>/review.json`.
 
 3. Render Stage 1 and graph data.
    - `hatch run wiki-render`
@@ -72,12 +87,15 @@ synthesis batches were created.
 
 5. Run targeted Stage 2 synthesis.
    - `hatch run wiki-synthesis-workflow --entity topic:example --yes`
-   - This writes final cache files under `state/synthesis/<category>/<slug>.json`.
-   - It also writes preview and audit artifacts under `state/synthesis_previews/`
-     and `state/synthesis_runs/`.
+   - This writes final cache files under
+     `<knowledge_root>/state/synthesis/<category>/<slug>.json`.
+   - It also writes preview and audit artifacts under configured temporary paths
+     such as `<knowledge_root>/tmp/synthesis_previews/` and
+     `<knowledge_root>/tmp/synthesis_runs/`.
 
 6. Review previews.
-   - Inspect `state/synthesis_previews/<category>/<slug>.md`.
+   - Inspect `<knowledge_root>/tmp/synthesis_previews/<category>/<slug>.md`
+     when previews are enabled.
    - If the page is poor, refresh only that entity instead of rerunning the whole batch.
 
 7. Validate and render final wiki output.
@@ -86,41 +104,37 @@ synthesis batches were created.
    - If the dry-run would write files and the previews look good, run `hatch run wiki-render`.
 
 8. Commit only durable artifacts.
-   - Commit final synthesis caches in `state/synthesis/`.
-   - Commit generated wiki pages and `state/wiki_render_manifest.json` when they changed.
-   - Do not commit `state/synthesis_previews/`, `state/synthesis_runs/`, or
-     `state/synthesis_backups/` unless there is a deliberate review/audit reason.
+   - In external operating mode, do not assume generated knowledge data belongs
+     in the code repo.
+   - Commit code, tests, docs, and config examples.
+   - Commit local release artifacts only when there is a deliberate
+     development/release reason.
+   - Do not commit `config/wiki_paths.toml`; it is machine-specific.
 
 ## Current Check Results
 
-Run on 2026-07-10:
+Run on 2026-07-12 after copy-only migration:
 
 ```text
-hatch run wiki-render --dry-run
+hatch run wiki-ops-status --migration-plan --require-external-knowledge-root --require-external-vault-root
+=> external roots active; raw/reviews/synthesis/graph/manifest/releases/wiki already external
+
+hatch run wiki-render --dry-run --require-source-text
 => sources=360 pages=614 files=1264 written=0 unchanged=1264 pruned=0
+=> source full text coverage available=358 missing=2 total=360 ratio=99.4%
 
 hatch run wiki-synthesis-cache-lint
-=> checked=89 ok=89 warnings=0 errors=0
+=> checked=124 ok=124 warnings=0 errors=0
 
 hatch run wiki-synthesis-plan --changed-only --limit 20 --json
-=> new=83 stale=0 unchanged=84 skipped_single_source=447 skipped_evidence_object=275
+=> changed candidates=43, stale=0
 
 hatch run lint:check
 => ruff ok, ty ok
 
-hatch run test:run
-=> 901 passed
-
-hatch run test:cov
-=> 901 passed, total coverage 75%
+hatch run wiki-lint
+=> ok
 ```
-
-The earlier failure mode was fixed in this pass:
-
-- Hatch previously selected Anaconda Python 3.11.4.
-- The project now pins Hatch environments to Python 3.12.
-- `hatch run python -c "import readline"` succeeds.
-- Pytest starts normally and completes.
 
 ## Stage 2 Status
 
@@ -148,11 +162,10 @@ Current behavior:
 
 Current cache count:
 
-- 13 glossary synthesis pages
-- 8 how-to synthesis pages
-- 11 model synthesis pages
-- 16 tool synthesis pages
-- 41 topic synthesis pages
+- 124 synthesis cache entries total
+- 124 fresh
+- 0 stale
+- 0 errors
 
 ## Main Risks
 
@@ -177,9 +190,19 @@ Maintenance rule:
 - Treat `wiki/AGENTS.md` as the generated vault contract.
 - When behavior changes, update the scoped instruction file first, then the README if the change affects normal operation.
 
-### 3. Stage 2 Batch Size and Cost
+### 3. External Store Backup
 
-There are currently 157 new multi-source synthesis candidates. Running them all at once would create unnecessary API cost and review burden.
+The external knowledge store is now the important data location. It is not yet
+backed by a formal backup policy in this repo.
+
+Maintenance rule:
+
+- Do not delete old repo-local data until `llm-wiki-data` has a real backup.
+- Prefer a later explicit backup slice over ad hoc manual copying.
+
+### 4. Stage 2 Batch Size and Cost
+
+There are still changed synthesis candidates. Running them all at once would create unnecessary API cost and review burden.
 
 Recommended next step:
 
@@ -190,15 +213,23 @@ Recommended next step:
 
 ## Recommended Next Work Sequence
 
-1. Continue Stage 2 synthesis in small reviewed batches.
-2. Before each batch, rerun:
+1. Keep the external operating mode stable.
+2. Add a copy-verification command that compares source and external stores by
+   count and hash.
+3. Decide and document backup strategy for `llm-wiki-data`.
+4. Continue Stage 2 synthesis in small reviewed batches.
+5. Before each batch, rerun:
+   - `hatch run wiki-ops-status --migration-plan --require-external-knowledge-root --require-external-vault-root`
    - `hatch run lint:check`
    - `hatch run test:run`
-   - `hatch run wiki-render --dry-run`
+   - `hatch run wiki-render --dry-run --require-source-text`
    - `hatch run wiki-lint`
    - `hatch run wiki-synthesis-cache-lint --json`
-3. Only after Stage 2 is boring and repeatable, consider retrieval/API/team access features.
 
 ## Current Judgment
 
-Continue the project, but keep the next phase conservative. The system is not collapsing under its own weight. The test environment is repaired and the top-level README now matches the current workflow. The next useful work is small Stage 2 synthesis batches. Avoid new architectural features until Stage 2 is boring and repeatable.
+Continue the project, but keep the next phase conservative. The external
+knowledge store split is now real enough to operate, but not yet backed up or
+fully automated. The next useful work is stabilization around verification,
+backup, and small Stage 2 synthesis batches. Avoid deleting old in-repo data
+until rollback and backup are boring.

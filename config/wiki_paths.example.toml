@@ -1,0 +1,19 @@
+[paths]
+# Copy this file to config/wiki_paths.toml and adjust absolute paths for the
+# machine that operates the wiki. The real config is intentionally gitignored.
+
+knowledge_root = "/Users/plischke/Desktop/Private Development/llm-wiki-data"
+vault_root = "/Users/plischke/Desktop/Private Development/llm-wiki-vault-private"
+
+raw_dir = "{knowledge_root}/raw/readwise"
+reviews_dir = "{knowledge_root}/state/reviews"
+synthesis_dir = "{knowledge_root}/state/synthesis"
+graph_path = "{knowledge_root}/state/wiki_render_graph.json"
+manifest_path = "{knowledge_root}/state/wiki_render_manifest.json"
+release_dir = "{knowledge_root}/state/releases"
+
+preview_dir = "{knowledge_root}/tmp/synthesis_previews"
+run_dir = "{knowledge_root}/tmp/synthesis_runs"
+backup_dir = "{knowledge_root}/tmp/synthesis_backups"
+
+wiki_dir = "{vault_root}/wiki"
