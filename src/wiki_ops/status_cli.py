@@ -19,6 +19,12 @@ from src.wiki_ops.release_manifest import (
     format_release_dry_run_text,
     write_release_manifest,
 )
+from src.wiki_ops.release_verify import (
+    ReleaseSelectionError,
+    format_release_verification_text,
+    release_verification_to_json,
+    verify_release,
+)
 from src.wiki_ops.retention import (
     RetentionInventory,
     build_retention_recommendations,
@@ -178,6 +184,22 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Block migration readiness when vault_root equals repo_root.",
     )
+    parser.add_argument(
+        "--verify-release",
+        metavar="RELEASE_ID",
+        default=None,
+        help="Verify current knowledge store state against a release manifest (use 'latest').",
+    )
+    parser.add_argument(
+        "--verify-json",
+        action="store_true",
+        help="Print release verification as JSON only and exit.",
+    )
+    parser.add_argument(
+        "--verify-allow-path-mismatch",
+        action="store_true",
+        help="Downgrade release path mismatches from error to warning.",
+    )
     return parser
 
 
@@ -233,6 +255,8 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps(migration_plan_to_json(plan), indent=2, sort_keys=True))
         LOGGER.info("wiki-ops-status migration plan complete")
         return 0
+    if args.verify_release is not None:
+        return _handle_release_verification(args, resolved_paths)
     if args.release_json or args.release_dry_run or args.write_release_manifest:
         return _handle_release_manifest(args, resolved_paths)
     config = config_from_args(args)
@@ -261,6 +285,30 @@ def main(argv: list[str] | None = None) -> int:
             print(format_migration_plan_text(migration_plan))
     LOGGER.info("wiki-ops-status complete")
     return 0
+
+
+def _handle_release_verification(args: argparse.Namespace, paths: WikiPaths) -> int:
+    """Verify one release manifest against the current knowledge store."""
+    try:
+        report = verify_release(
+            paths,
+            selector=args.verify_release,
+            allow_path_mismatch=args.verify_allow_path_mismatch,
+        )
+    except ReleaseSelectionError as exc:
+        LOGGER.error("%s", exc)
+        return 2
+    if args.verify_json:
+        print(json.dumps(release_verification_to_json(report), indent=2, sort_keys=True))
+        LOGGER.info("wiki-ops-status release verification complete")
+        return 0 if report.status in {"ok", "warning"} else 2
+    config = config_from_args(args)
+    status = collect_ops_status(config)
+    print(format_text_report(status))
+    print("")
+    print(format_release_verification_text(report))
+    LOGGER.info("wiki-ops-status release verification complete")
+    return 0 if report.status in {"ok", "warning"} else 2
 
 
 def _handle_release_manifest(args: argparse.Namespace, paths: WikiPaths) -> int:
