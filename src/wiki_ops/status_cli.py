@@ -31,6 +31,11 @@ from src.wiki_ops.retention import (
     collect_retention_inventory,
     format_retention_text,
 )
+from src.wiki_ops.retirement_plan import (
+    build_retirement_plan,
+    format_retirement_plan_text,
+    retirement_plan_to_json,
+)
 from src.wiki_ops.status import (
     OpsStatus,
     OpsStatusConfig,
@@ -200,6 +205,16 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Downgrade release path mismatches from error to warning.",
     )
+    parser.add_argument(
+        "--retirement-plan",
+        action="store_true",
+        help="Append old repo data retirement plan to the status report.",
+    )
+    parser.add_argument(
+        "--retirement-json",
+        action="store_true",
+        help="Print old repo data retirement plan as JSON and exit.",
+    )
     return parser
 
 
@@ -255,6 +270,13 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps(migration_plan_to_json(plan), indent=2, sort_keys=True))
         LOGGER.info("wiki-ops-status migration plan complete")
         return 0
+    if args.retirement_json:
+        config = config_from_args(args)
+        ops_status = collect_ops_status(config)
+        plan = build_retirement_plan(resolved_paths, ops_status=ops_status)
+        print(json.dumps(retirement_plan_to_json(plan), indent=2, sort_keys=True))
+        LOGGER.info("wiki-ops-status retirement plan complete")
+        return 0
     if args.verify_release is not None:
         return _handle_release_verification(args, resolved_paths)
     if args.release_json or args.release_dry_run or args.write_release_manifest:
@@ -273,6 +295,9 @@ def main(argv: list[str] | None = None) -> int:
             require_external_vault_root=args.require_external_vault_root,
             ops_status=status,
         )
+    retirement_plan = None
+    if args.retirement_plan:
+        retirement_plan = build_retirement_plan(resolved_paths, ops_status=status)
     if args.json:
         print(json.dumps(status.to_dict(), indent=2, sort_keys=True))
     else:
@@ -283,6 +308,9 @@ def main(argv: list[str] | None = None) -> int:
         if migration_plan is not None:
             print("")
             print(format_migration_plan_text(migration_plan))
+        if retirement_plan is not None:
+            print("")
+            print(format_retirement_plan_text(retirement_plan))
     LOGGER.info("wiki-ops-status complete")
     return 0
 
