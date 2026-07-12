@@ -88,6 +88,15 @@ def test_classify_legacy_ingest_manifest_as_untrack_later() -> None:
     assert "external knowledge-store state" in reason
 
 
+def test_classify_retirement_audit_reports_as_keep_tracked() -> None:
+    """Committed retirement audit reports should not remain manual-review noise."""
+    area, action, reason = classify_tracked_path("state/retirement_runs/20260712T155949Z.json")
+
+    assert area == "state/retirement_runs"
+    assert action == "keep_tracked"
+    assert "migration actions" in reason
+
+
 def test_classify_tests_fixtures_as_keep_tracked() -> None:
     """Test fixtures should remain tracked in the code repository."""
     _area, action, _reason = classify_tracked_path("tests/fixtures/wiki/sample.md")

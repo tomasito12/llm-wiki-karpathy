@@ -251,6 +251,12 @@ def classify_tracked_path(path: str) -> tuple[str, ProposedAction, str]:
         return ("tests", "keep_tracked", "Tests and fixtures belong in the code repository.")
     if normalized.startswith("docs/"):
         return ("docs", "keep_tracked", "Documentation belongs in the code repository.")
+    if normalized.startswith("state/retirement_runs/"):
+        return (
+            "state/retirement_runs",
+            "keep_tracked",
+            "Repo-data retirement audit reports document one-time migration actions.",
+        )
     if normalized in KEEP_TRACKED_ROOT_FILES:
         return ("repo_root", "keep_tracked", "Repository metadata belongs in the code repository.")
     if normalized.startswith("config/") and normalized.endswith(".example.toml"):
