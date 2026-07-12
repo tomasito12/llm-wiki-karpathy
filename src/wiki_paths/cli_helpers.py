@@ -55,6 +55,34 @@ def resolve_cli_path(explicit: Path | None, *, configured: Path) -> Path:
     return explicit.resolve() if explicit is not None else configured.resolve()
 
 
+def paths_with_cleanup_cli_overrides(args: argparse.Namespace, paths: WikiPaths) -> WikiPaths:
+    """Apply wiki-cleanup CLI path flags on top of configured paths."""
+    return WikiPaths(
+        repo_root=paths.repo_root,
+        knowledge_root=paths.knowledge_root,
+        vault_root=paths.vault_root,
+        raw_dir=paths.raw_dir,
+        reviews_dir=paths.reviews_dir,
+        synthesis_dir=paths.synthesis_dir,
+        graph_path=paths.graph_path,
+        manifest_path=paths.manifest_path,
+        release_dir=paths.release_dir,
+        preview_dir=resolve_cli_path(
+            getattr(args, "preview_dir", None),
+            configured=paths.preview_dir,
+        ),
+        run_dir=resolve_cli_path(getattr(args, "run_dir", None), configured=paths.run_dir),
+        backup_dir=resolve_cli_path(
+            getattr(args, "backup_dir", None),
+            configured=paths.backup_dir,
+        ),
+        wiki_dir=paths.wiki_dir,
+        source_pages_dir=paths.source_pages_dir,
+        source_index_path=paths.source_index_path,
+        indexes_dir=paths.indexes_dir,
+    )
+
+
 def paths_with_status_cli_overrides(args: argparse.Namespace, paths: WikiPaths) -> WikiPaths:
     """Apply wiki-ops-status CLI path flags on top of configured paths."""
     return WikiPaths(

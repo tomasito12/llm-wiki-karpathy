@@ -74,6 +74,9 @@ tag-migrate = [
 wiki-lint = [
   "python -m src.wiki_lint {args}",
 ]
+wiki-cleanup = [
+  "python -m src.wiki_ops.cleanup_cli {args}",
+]
 wiki-ops-status = [
   "python -m src.wiki_ops.status_cli {args}",
 ]

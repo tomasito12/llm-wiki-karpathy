@@ -10,7 +10,9 @@ from typing import Any, Literal
 from src.wiki_paths.config import WikiPaths
 
 DataClass = Literal["canonical", "generated", "temporary"]
-CLEANUP_BLOCKED_REASON = "cleanup is not implemented in this read-only slice"
+CLEANUP_BLOCKED_REASON = (
+    "real cleanup requires hatch run wiki-cleanup --after-release <release_id> --yes"
+)
 
 
 @dataclass(frozen=True)
@@ -237,8 +239,8 @@ def build_retention_recommendations(inventory: RetentionInventory) -> list[str]:
     recommendations: list[str] = []
     if inventory.cleanup_preflight.temporary_file_count > 0:
         recommendations.append(
-            "Temporary artifacts are present; keep them for now or clean them after "
-            "a release manifest exists.",
+            "Temporary artifacts are present; inspect cleanup candidates with "
+            "`hatch run wiki-cleanup --dry-run` after a release manifest exists.",
         )
     for warning in inventory.warnings:
         if warning.startswith("Canonical path missing:"):
