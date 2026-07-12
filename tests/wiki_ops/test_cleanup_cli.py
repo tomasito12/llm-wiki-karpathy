@@ -178,9 +178,7 @@ def test_area_filter_limits_candidates(tmp_path: Path, capsys) -> None:
     )
     payload = json.loads(capsys.readouterr().out)
 
-    assert {candidate["area_key"] for candidate in payload["candidates"]} <= {
-        "synthesis_previews"
-    }
+    assert {candidate["area_key"] for candidate in payload["candidates"]} <= {"synthesis_previews"}
 
 
 def test_unknown_area_exits_two(tmp_path: Path, caplog) -> None:

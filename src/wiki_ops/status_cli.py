@@ -9,6 +9,11 @@ import sys
 from pathlib import Path
 
 from src.ingest_review.paths import repo_root
+from src.wiki_ops.migration_plan import (
+    build_migration_plan,
+    format_migration_plan_text,
+    migration_plan_to_json,
+)
 from src.wiki_ops.release_manifest import (
     build_release_manifest,
     format_release_dry_run_text,
@@ -153,6 +158,26 @@ def build_parser() -> argparse.ArgumentParser:
         default=None,
         help="Optional fixed release id for manifest preview or write.",
     )
+    parser.add_argument(
+        "--migration-plan",
+        action="store_true",
+        help="Append knowledge store migration plan to the status report.",
+    )
+    parser.add_argument(
+        "--migration-json",
+        action="store_true",
+        help="Print knowledge store migration plan as JSON and exit.",
+    )
+    parser.add_argument(
+        "--require-external-knowledge-root",
+        action="store_true",
+        help="Block migration readiness when knowledge_root equals repo_root.",
+    )
+    parser.add_argument(
+        "--require-external-vault-root",
+        action="store_true",
+        help="Block migration readiness when vault_root equals repo_root.",
+    )
     return parser
 
 
@@ -196,6 +221,18 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps(inventory.to_dict(), indent=2, sort_keys=True))
         LOGGER.info("wiki-ops-status retention inventory complete")
         return 0
+    if args.migration_json:
+        config = config_from_args(args)
+        ops_status = collect_ops_status(config)
+        plan = build_migration_plan(
+            resolved_paths,
+            require_external_knowledge_root=args.require_external_knowledge_root,
+            require_external_vault_root=args.require_external_vault_root,
+            ops_status=ops_status,
+        )
+        print(json.dumps(migration_plan_to_json(plan), indent=2, sort_keys=True))
+        LOGGER.info("wiki-ops-status migration plan complete")
+        return 0
     if args.release_json or args.release_dry_run or args.write_release_manifest:
         return _handle_release_manifest(args, resolved_paths)
     config = config_from_args(args)
@@ -204,6 +241,14 @@ def main(argv: list[str] | None = None) -> int:
     if args.retention:
         inventory = collect_retention_inventory(resolved_paths)
         status = _merge_retention_into_status(status, inventory)
+    migration_plan = None
+    if args.migration_plan:
+        migration_plan = build_migration_plan(
+            resolved_paths,
+            require_external_knowledge_root=args.require_external_knowledge_root,
+            require_external_vault_root=args.require_external_vault_root,
+            ops_status=status,
+        )
     if args.json:
         print(json.dumps(status.to_dict(), indent=2, sort_keys=True))
     else:
@@ -211,6 +256,9 @@ def main(argv: list[str] | None = None) -> int:
         if inventory is not None:
             print("")
             print(format_retention_text(inventory))
+        if migration_plan is not None:
+            print("")
+            print(format_migration_plan_text(migration_plan))
     LOGGER.info("wiki-ops-status complete")
     return 0
 

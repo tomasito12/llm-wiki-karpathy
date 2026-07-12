@@ -28,9 +28,7 @@ CLEANUP_SKIP_REASONS = {
     "ingest_batches": "kept for audit in first cleanup slice",
 }
 CLEANUP_FILE_REASON = "clean after release"
-REAL_CLEANUP_REQUIREMENT = (
-    "Real cleanup requires --after-release <release_id> and --yes."
-)
+REAL_CLEANUP_REQUIREMENT = "Real cleanup requires --after-release <release_id> and --yes."
 MANIFEST_PATH_KEYS = (
     "raw_dir",
     "reviews_dir",
@@ -387,9 +385,7 @@ def format_cleanup_dry_run_text(plan: CleanupPlan) -> str:
     for skipped in plan.skipped_areas:
         count = area_counts.get(skipped.area_key, (0, 0))[0]
         if count:
-            lines.append(
-                f"- {skipped.area_key}: {count} files, skipped, {skipped.reason}"
-            )
+            lines.append(f"- {skipped.area_key}: {count} files, skipped, {skipped.reason}")
         else:
             lines.append(f"- {skipped.area_key}: skipped, {skipped.reason}")
     if plan.blocked_reasons:
@@ -496,11 +492,7 @@ def _collect_area_files(area_root: Path) -> list[tuple[Path, int]]:
     files: list[tuple[Path, int]] = []
     for root, dirnames, filenames in os.walk(area_root, followlinks=False):
         root_path = Path(root)
-        dirnames[:] = [
-            name
-            for name in dirnames
-            if not (root_path / name).is_symlink()
-        ]
+        dirnames[:] = [name for name in dirnames if not (root_path / name).is_symlink()]
         for filename in filenames:
             file_path = root_path / filename
             if file_path.is_symlink():
@@ -533,9 +525,7 @@ def _validate_release_manifest(
         return errors
     schema_version = payload.get("schema_version")
     if schema_version != SUPPORTED_RELEASE_MANIFEST_SCHEMA:
-        errors.append(
-            f"Unsupported release manifest schema version: {schema_version!r}."
-        )
+        errors.append(f"Unsupported release manifest schema version: {schema_version!r}.")
     status = payload.get("status")
     if status == "blocked":
         errors.append("Release manifest status is blocked.")
@@ -543,9 +533,7 @@ def _validate_release_manifest(
     if not isinstance(manifest_paths, dict):
         errors.append("Release manifest is missing resolved paths.")
     elif not allow_path_mismatch and not _manifest_paths_match(manifest_paths, paths):
-        errors.append(
-            "Release manifest paths do not match current resolved path configuration."
-        )
+        errors.append("Release manifest paths do not match current resolved path configuration.")
     return errors
 
 
@@ -560,10 +548,7 @@ def _manifest_paths_match(manifest_paths: dict[str, Any], paths: WikiPaths) -> b
         "manifest_path": str(paths.manifest_path.resolve()),
         "release_dir": str(paths.release_dir.resolve()),
     }
-    return all(
-        str(manifest_paths.get(key)) == current_paths[key]
-        for key in MANIFEST_PATH_KEYS
-    )
+    return all(str(manifest_paths.get(key)) == current_paths[key] for key in MANIFEST_PATH_KEYS)
 
 
 def _path_is_protected(resolved_path: Path, paths: WikiPaths) -> bool:

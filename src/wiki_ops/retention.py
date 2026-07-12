@@ -260,8 +260,7 @@ def format_retention_text(inventory: RetentionInventory) -> str:
     preflight = inventory.cleanup_preflight
     if preflight.temporary_file_count:
         lines.append(
-            "- cleanup preflight: temporary artifacts present; "
-            f"{preflight.cleanup_blocked_reason}"
+            f"- cleanup preflight: temporary artifacts present; {preflight.cleanup_blocked_reason}"
         )
     else:
         lines.append(
@@ -328,11 +327,7 @@ def _path_inventory_stats(path: Path) -> _PathInventoryStats:
     oldest_mtime: float | None = None
     for root, dirnames, filenames in os.walk(path, followlinks=False):
         root_path = Path(root)
-        dirnames[:] = [
-            name
-            for name in dirnames
-            if not (root_path / name).is_symlink()
-        ]
+        dirnames[:] = [name for name in dirnames if not (root_path / name).is_symlink()]
         for filename in filenames:
             file_path = root_path / filename
             if file_path.is_symlink():

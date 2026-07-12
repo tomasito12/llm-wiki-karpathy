@@ -238,6 +238,11 @@ def collect_git_metadata(repo_root: Path) -> GitMetadata:
     )
 
 
+def source_text_coverage_warning(wiki_dir: Path) -> str | None:
+    """Return a warning when source full-text coverage is below the render guard."""
+    return _source_text_coverage_warning(wiki_dir)
+
+
 def build_release_manifest(
     paths: WikiPaths,
     *,
@@ -425,11 +430,7 @@ def _hash_directory(path: Path) -> tuple[int, int, str]:
     byte_count = 0
     for root, dirnames, filenames in os.walk(path, followlinks=False):
         root_path = Path(root)
-        dirnames[:] = [
-            name
-            for name in dirnames
-            if not (root_path / name).is_symlink()
-        ]
+        dirnames[:] = [name for name in dirnames if not (root_path / name).is_symlink()]
         for filename in filenames:
             file_path = root_path / filename
             if file_path.is_symlink():
