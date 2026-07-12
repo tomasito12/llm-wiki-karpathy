@@ -21,6 +21,15 @@ The copy-only migration has completed and the external paths are controlled by
 local `config/wiki_paths.toml`. See
 [`docs/external-operating-mode.md`](external-operating-mode.md).
 
+A one-time migration safety backup exists in iCloud Drive:
+
+```text
+~/Library/Mobile Documents/com~apple~CloudDocs/LLM Wiki Backups/20260712T145527Z-migration-backup
+```
+
+It contains both `llm-wiki-data` and `llm-wiki-vault-private`. This is a
+short-term migration fallback, not yet the final long-term backup strategy.
+
 ## Current Architecture
 
 The current pipeline has these layers in the external operating mode:
@@ -56,6 +65,8 @@ The current pipeline has these layers in the external operating mode:
 - External `knowledge_root` and `vault_root` are configured locally through
   `config/wiki_paths.toml`.
 - The first copy-only migration has been completed and verified.
+- A one-time iCloud migration safety backup has been created for the external
+  knowledge store and private generated vault.
 - Stage 2 input hashes now normalize tiny float representation differences, so render-only confidence formatting changes do not force unnecessary LLM resynthesis.
 - `wiki-reset` tests no longer delete the real `state/wiki_render_manifest.json` when using temporary test paths.
 - Related-page links are now generated from Stage 1 graph relationships instead of being empty placeholders.

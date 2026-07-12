@@ -175,6 +175,40 @@ The external knowledge store and private vault are not yet separate Git repos in
 this slice. Backup/versioning policy for those directories should be handled in
 a later step.
 
+## Migration Safety Backup
+
+A one-time migration safety backup was created in iCloud Drive:
+
+```text
+~/Library/Mobile Documents/com~apple~CloudDocs/LLM Wiki Backups/20260712T145527Z-migration-backup
+```
+
+It contains:
+
+```text
+llm-wiki-data/
+llm-wiki-vault-private/
+```
+
+Verification at creation time:
+
+```text
+Active knowledge store files: 1287
+Backup knowledge store files: 1287 project files plus 2 Finder .DS_Store files
+Backup knowledge store size: 48M
+Backup private vault files: 1294
+Backup private vault size: 12M
+Total backup size: 60M
+```
+
+Purpose:
+
+- short-term safety net for the migration
+- fallback before old repo-local data is retired
+
+This is not yet the final long-term backup strategy. A later backup slice should
+define a durable backup target, cadence, retention, and restore verification.
+
 ## Current Release Markers
 
 The first external migration produced these markers:
