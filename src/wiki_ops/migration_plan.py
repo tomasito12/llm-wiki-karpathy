@@ -626,9 +626,7 @@ def _empty_canonical_checks(
         if ops_status is not None and (
             ops_status.reviews.artifacts > 0 or (ops_status.render.graph_sources or 0) > 0
         ):
-            warnings.append(
-                "Raw exports are empty while review artifacts or graph sources exist."
-            )
+            warnings.append("Raw exports are empty while review artifacts or graph sources exist.")
             return warnings, "blocked"
         return warnings, "warning"
     if area_key == "reviews" and exists and file_count == 0:
