@@ -409,6 +409,73 @@ hatch run ingest-queue --status all --json
 
 The status report must expose Readwise index health, not only raw file counts.
 
+## 7. Legacy Root Pages And Manual Vault Folders
+
+### Finding
+
+The active private vault still contains legacy/manual pages and folders directly
+under the generated wiki root that may no longer fit the current generated
+Obsidian structure.
+
+Observed examples in the active vault:
+
+```text
+/Users/plischke/Desktop/Private Development/llm-wiki-vault-private/wiki/log.md
+/Users/plischke/Desktop/Private Development/llm-wiki-vault-private/wiki/AGENTS.md
+/Users/plischke/Desktop/Private Development/llm-wiki-vault-private/wiki/legacy/
+/Users/plischke/Desktop/Private Development/llm-wiki-vault-private/wiki/notes/
+/Users/plischke/Desktop/Private Development/llm-wiki-vault-private/wiki/questions/
+```
+
+The `log.md` root page appears to be a legacy "Log Index" style page. It is not
+clear whether it still has a useful role now that generated indexes and ops
+status pages exist. The same uncertainty applies to `legacy/`, `notes/`, and
+`questions/`. `AGENTS.md` may still be useful for Obsidian/agent context, but
+its ownership and placement should be reviewed.
+
+### Why This Matters
+
+The generated wiki should have a clear information architecture. Old manual
+pages at the root can confuse both humans and agents because they look as
+important as the generated index, even when they are stale.
+
+This matters especially because:
+
+- root-level pages are high-salience in Obsidian
+- agents may treat root files as current instructions or navigation
+- manual folders may duplicate newer generated indexes or notes
+- deleting too eagerly could remove useful historical context
+
+### Requirement
+
+Do not delete these pages ad hoc. First create a read-only vault hygiene review
+that classifies root/manual items as:
+
+- keep as active navigation or instruction
+- move to an archive/manual area
+- fold into generated indexes or docs
+- safe delete after backup/versioning
+- needs human review
+
+### Next Step
+
+Extend the planned vault hygiene/orphan report to include non-managed root
+items and manual folders.
+
+The report should list:
+
+- root-level files besides `index.md`
+- non-managed folders such as `legacy/`, `notes/`, and `questions/`
+- whether each item is referenced by current generated pages
+- last modified time and approximate content purpose
+- recommended action, without deleting anything automatically
+
+Cleanup should happen only after:
+
+- the private vault is backed up or versioned
+- the report is reviewed
+- the user approves deletion/move/archive actions
+
 ## Working Order
 
 Recommended order from here:
@@ -418,7 +485,9 @@ Recommended order from here:
 3. Decide private vault Git strategy.
 4. Initialize/version the private vault if approved.
 5. Add read-only vault duplicate/orphan lint.
-6. Clean or archive old repo-local wiki files.
-7. Design manual-first commit helpers.
-8. Keep Readwise raw/index/review alignment visible in `wiki-ops-status`.
-9. Only then add automatic commit behavior.
+6. Review legacy root pages and manual vault folders (`log.md`, `legacy/`,
+   `notes/`, `questions/`, root `AGENTS.md`).
+7. Clean or archive old repo-local wiki files.
+8. Design manual-first commit helpers.
+9. Keep Readwise raw/index/review alignment visible in `wiki-ops-status`.
+10. Only then add automatic commit behavior.

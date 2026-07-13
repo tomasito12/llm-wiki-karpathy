@@ -81,3 +81,62 @@ def test_finish_review_session_sets_finished_at_without_prior_timer(
     assert isinstance(finished, str) and finished.strip()
     assert "Review finished" in msg
     mock_save.assert_called_once_with(artifact_path, artifact)
+
+
+@patch("src.dashboard.app.save_artifact")
+@patch("src.dashboard.app.backup_artifact")
+@patch("src.dashboard.app.st")
+def test_persist_new_analysis_artifact_saves_and_backs_up_existing(
+    mock_st: MagicMock,
+    mock_backup: MagicMock,
+    mock_save: MagicMock,
+) -> None:
+    """Fresh manual analyses should be persisted and replace stale on-disk artifacts."""
+    from src.dashboard.app import persist_new_analysis_artifact
+
+    artifact_path = REPO_ROOT / "state" / "reviews" / "src-1" / "review.json"
+    artifact = {"source": {"source_id": "src-1", "content_sha256": "new"}}
+    existing = {"source": {"source_id": "src-1", "content_sha256": "old"}}
+    backup_path = artifact_path.parent / "review.prev.20260713T000000Z.json"
+    mock_st.session_state = {}
+    mock_backup.return_value = backup_path
+
+    result = persist_new_analysis_artifact(
+        artifact_path=artifact_path,
+        artifact=artifact,
+        existing=existing,
+        source_id="src-1",
+    )
+
+    assert result == backup_path
+    mock_backup.assert_called_once_with(artifact_path)
+    mock_save.assert_called_once_with(artifact_path, artifact)
+    assert mock_st.session_state["artifact"] == artifact
+    assert mock_st.session_state["artifact_source_id"] == "src-1"
+
+
+@patch("src.dashboard.app.save_artifact")
+@patch("src.dashboard.app.backup_artifact")
+@patch("src.dashboard.app.st")
+def test_persist_new_analysis_artifact_skips_backup_without_existing(
+    mock_st: MagicMock,
+    mock_backup: MagicMock,
+    mock_save: MagicMock,
+) -> None:
+    """Fresh manual analyses without an old artifact should save without backup noise."""
+    from src.dashboard.app import persist_new_analysis_artifact
+
+    artifact_path = REPO_ROOT / "state" / "reviews" / "src-1" / "review.json"
+    artifact = {"source": {"source_id": "src-1", "content_sha256": "new"}}
+    mock_st.session_state = {}
+
+    result = persist_new_analysis_artifact(
+        artifact_path=artifact_path,
+        artifact=artifact,
+        existing=None,
+        source_id="src-1",
+    )
+
+    assert result is None
+    mock_backup.assert_not_called()
+    mock_save.assert_called_once_with(artifact_path, artifact)

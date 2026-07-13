@@ -301,6 +301,21 @@ def finish_review_session(
     return f"Review finished — saved to {artifact_path}"
 
 
+def persist_new_analysis_artifact(
+    *,
+    artifact_path: Path,
+    artifact: dict[str, Any],
+    existing: dict[str, Any] | None,
+    source_id: str,
+) -> Path | None:
+    """Persist a fresh analysis artifact and return the backup path if one was written."""
+    backup_path = backup_artifact(artifact_path) if existing else None
+    save_artifact(artifact_path, artifact)
+    st.session_state["artifact"] = artifact
+    st.session_state["artifact_source_id"] = source_id
+    return backup_path
+
+
 def main() -> None:
     """Run the ingest review Streamlit app."""
     root, wiki_paths, paths_config_label = load_dashboard_wiki_paths()
@@ -590,8 +605,6 @@ def main() -> None:
                     "in the sidebar to replace (a backup is written first)."
                 )
             else:
-                if existing and overwrite:
-                    backup_artifact(artifact_path)
                 unskip_source(reviews_root, source_id)
                 try:
                     provider = OpenAIIngestionProvider()
@@ -613,11 +626,17 @@ def main() -> None:
                         prompt_version=prompt_version,
                         reviews_root=reviews_root,
                     )
-                    st.session_state["artifact"] = artifact
-                    st.session_state["artifact_source_id"] = source_id
+                    backup_path = persist_new_analysis_artifact(
+                        artifact_path=artifact_path,
+                        artifact=artifact,
+                        existing=existing,
+                        source_id=source_id,
+                    )
                     queue_queue_filter_change(st.session_state, FILTER_AFTER_ANALYZE)
                     st.session_state.pop(source_review_mode_session_key(source_id), None)
-                    st.success("Analysis complete.")
+                    if backup_path is not None:
+                        st.caption(f"Previous analysis backed up to `{backup_path.name}`.")
+                    st.success("Analysis complete and saved.")
                     st.rerun()
                 except Exception as exc:  # noqa: BLE001
                     st.error(f"Analysis failed: {exc}")
