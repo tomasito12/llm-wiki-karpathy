@@ -36,6 +36,7 @@ def start_preanalyze_process(
     model: str,
     prompt_version: str,
     limit: int,
+    between_articles_seconds: float,
     log_dir: Path,
     paths_config: Path | None = None,
 ) -> Path:
@@ -53,6 +54,8 @@ def start_preanalyze_process(
         model,
         "--prompt-version",
         prompt_version,
+        "--between-articles",
+        str(between_articles_seconds),
         "--raw-dir",
         str(raw_dir),
         "--reviews-dir",
@@ -99,11 +102,24 @@ def render_preanalyze_sidebar(
             key="preanalyze_limit",
         )
     )
+    between_articles_seconds = float(
+        st.number_input(
+            "Pause zwischen Artikeln (Sekunden)",
+            min_value=0,
+            value=0,
+            step=100,
+            key="preanalyze_between_articles_seconds",
+            help=(
+                "Wartezeit zwischen zwei OpenAI-Analysen. "
+                "Für langsame Nachtläufe z. B. 2000 Sekunden verwenden."
+            ),
+        )
+    )
     log_dir = repo_root / "state" / "ingest_batches"
     if st.button(
         "Vorab-Analyse starten",
         key="preanalyze_start_button",
-        use_container_width=True,
+        width="stretch",
     ):
         if not os.environ.get("OPENAI_API_KEY"):
             st.error("OPENAI_API_KEY is not set.")
@@ -117,6 +133,7 @@ def render_preanalyze_sidebar(
                     model=model,
                     prompt_version=prompt_version,
                     limit=limit,
+                    between_articles_seconds=between_articles_seconds,
                     log_dir=log_dir,
                     paths_config=paths_config,
                 )

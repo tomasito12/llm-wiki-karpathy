@@ -105,7 +105,7 @@ def render_readwise_sync_sidebar(
     if st.button(
         "Sync from Readwise",
         key="readwise_sync_button",
-        use_container_width=True,
+        width="stretch",
         type="primary",
     ):
         with st.spinner("Syncing from Readwise Reader…"):

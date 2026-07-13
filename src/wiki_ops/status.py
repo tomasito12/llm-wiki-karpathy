@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Any
 
 from src.ingest_review.review_queue_status import status_from_artifact
+from src.readwise.library_index import LibraryIndex
 from src.wiki_synthesis.cache_lint import lint_synthesis_cache
 from src.wiki_synthesis.planner import load_graph_export, plan_from_graph
 
@@ -27,6 +28,7 @@ class OpsStatusConfig:
     preview_dir: Path
     run_dir: Path
     backup_dir: Path
+    readwise_index_path: Path | None = None
 
 
 @dataclass(frozen=True)
@@ -37,6 +39,20 @@ class SourceStatus:
     raw_markdown: int
     paired: int
     incomplete: int
+
+
+@dataclass(frozen=True)
+class ReadwiseIndexStatus:
+    """Health facts for the Readwise export bookkeeping index."""
+
+    path: str
+    exists: bool
+    documents: int
+    suppressed_ids: int
+    watermark_present: bool
+    raw_exports_not_in_index: int
+    index_entries_missing_raw: int
+    malformed: bool
 
 
 @dataclass(frozen=True)
@@ -108,10 +124,14 @@ class OpsStatus:
     artifacts: ArtifactStatus
     recommendations: list[str]
     warnings: list[str]
+    readwise_index: ReadwiseIndexStatus | None = None
 
     def to_dict(self) -> dict[str, Any]:
         """Return a JSON-serializable status snapshot."""
         payload = asdict(self)
+        payload["readwise_index"] = (
+            asdict(self.readwise_index) if self.readwise_index is not None else None
+        )
         payload["synthesis"] = {
             "cache_entries": self.synthesis.cache_entries,
             "fresh": self.synthesis.fresh,
@@ -137,6 +157,7 @@ def default_config(repo_root: Path) -> OpsStatusConfig:
         preview_dir=root / "state" / "synthesis_previews",
         run_dir=root / "state" / "synthesis_runs",
         backup_dir=root / "state" / "synthesis_backups",
+        readwise_index_path=root / "state" / "readwise_library.json",
     )
 
 
@@ -148,6 +169,11 @@ def collect_ops_status(
     """Collect read-only operational status for the wiki system."""
     warnings: list[str] = []
     sources = collect_source_status(config.raw_dir)
+    readwise_index, readwise_warnings = collect_readwise_index_status(
+        raw_dir=config.raw_dir,
+        index_path=config.readwise_index_path,
+    )
+    warnings.extend(readwise_warnings)
     reviews = collect_review_status(config.reviews_dir)
     render = collect_render_status(
         wiki_dir=config.wiki_dir,
@@ -166,6 +192,7 @@ def collect_ops_status(
     warnings.extend(artifact_warnings)
     status = OpsStatus(
         sources=sources,
+        readwise_index=readwise_index,
         reviews=reviews,
         render=render,
         synthesis=synthesis,
@@ -176,6 +203,7 @@ def collect_ops_status(
     recommendations = build_recommendations(status)
     return OpsStatus(
         sources=status.sources,
+        readwise_index=status.readwise_index,
         reviews=status.reviews,
         render=status.render,
         synthesis=status.synthesis,
@@ -201,6 +229,81 @@ def collect_source_status(raw_dir: Path) -> SourceStatus:
         paired=paired,
         incomplete=incomplete,
     )
+
+
+def collect_readwise_index_status(
+    *,
+    raw_dir: Path,
+    index_path: Path | None,
+) -> tuple[ReadwiseIndexStatus | None, list[str]]:
+    """Collect Readwise index health and raw/index alignment facts."""
+    if index_path is None:
+        return None, []
+    warnings: list[str] = []
+    exists = index_path.is_file()
+    raw_stems = _raw_export_stems(raw_dir)
+    try:
+        index = LibraryIndex.load(index_path)
+        malformed = False
+    except (OSError, json.JSONDecodeError, KeyError, TypeError, ValueError) as exc:
+        warnings.append(f"Readwise index unreadable: {exc}")
+        return (
+            ReadwiseIndexStatus(
+                path=str(index_path),
+                exists=exists,
+                documents=0,
+                suppressed_ids=0,
+                watermark_present=False,
+                raw_exports_not_in_index=len(raw_stems),
+                index_entries_missing_raw=0,
+                malformed=True,
+            ),
+            warnings,
+        )
+    indexed_stems = {
+        Path(record.html_path).stem
+        for record in index.documents.values()
+        if record.html_path
+    }
+    raw_exports_not_in_index = len(raw_stems - indexed_stems)
+    index_entries_missing_raw = sum(
+        1
+        for record in index.documents.values()
+        if not _record_has_raw_pair(
+            raw_dir=raw_dir,
+            html_path=record.html_path,
+            md_path=record.md_path,
+        )
+    )
+    status = ReadwiseIndexStatus(
+        path=str(index_path),
+        exists=exists,
+        documents=len(index.documents),
+        suppressed_ids=len(index.suppressed_ids),
+        watermark_present=index.last_updated_after is not None,
+        raw_exports_not_in_index=raw_exports_not_in_index,
+        index_entries_missing_raw=index_entries_missing_raw,
+        malformed=malformed,
+    )
+    if raw_stems and not exists:
+        warnings.append(
+            f"Readwise index missing while raw exports exist: {index_path}"
+        )
+    elif raw_stems and not index.documents and not index.suppressed_ids:
+        warnings.append(
+            f"Readwise index empty while raw exports exist: {index_path}"
+        )
+    if raw_exports_not_in_index:
+        warnings.append(
+            "Readwise raw/index mismatch: "
+            f"{raw_exports_not_in_index} raw export pairs are not in the index."
+        )
+    if index_entries_missing_raw:
+        warnings.append(
+            "Readwise raw/index mismatch: "
+            f"{index_entries_missing_raw} index entries are missing raw files."
+        )
+    return status, warnings
 
 
 def collect_review_status(reviews_dir: Path) -> ReviewStatus:
@@ -403,6 +506,10 @@ def classify_uncommitted_paths(repo_root: Path, paths: list[str]) -> dict[str, i
 def build_recommendations(status: OpsStatus) -> list[str]:
     """Return conservative next-action recommendations from status facts."""
     recommendations: list[str] = []
+    if _readwise_index_needs_attention(status.readwise_index):
+        recommendations.append(
+            "Fix Readwise raw/index alignment before running readwise-sync."
+        )
     if status.synthesis.errors:
         recommendations.append("Fix synthesis cache errors before running wiki-render.")
     elif status.synthesis.stale:
@@ -448,7 +555,25 @@ def format_text_report(status: OpsStatus) -> str:
             f"- raw md exports: {status.sources.raw_markdown}",
             f"- paired exports: {status.sources.paired}",
             f"- incomplete exports: {status.sources.incomplete}",
-            "",
+        "",
+        ]
+    )
+    if status.readwise_index is not None:
+        lines.extend(
+            [
+                "Readwise Index",
+                f"- index: {_presence_label(status.readwise_index.exists)}",
+                f"- documents: {status.readwise_index.documents}",
+                f"- suppressed ids: {status.readwise_index.suppressed_ids}",
+                f"- watermark: {_presence_label(status.readwise_index.watermark_present)}",
+                f"- raw pairs not indexed: {status.readwise_index.raw_exports_not_in_index}",
+                f"- indexed entries missing raw: {status.readwise_index.index_entries_missing_raw}",
+                f"- malformed: {'yes' if status.readwise_index.malformed else 'no'}",
+                "",
+            ]
+        )
+    lines.extend(
+        [
             "Reviews",
             f"- review artifacts: {status.reviews.artifacts}",
             f"- finished: {status.reviews.finished}",
@@ -554,6 +679,33 @@ def _directory_has_entries(path: Path) -> bool:
     if not path.is_dir():
         return False
     return any(path.iterdir())
+
+
+def _raw_export_stems(raw_dir: Path) -> set[str]:
+    """Return stems that have both Readwise HTML and Markdown export files."""
+    if not raw_dir.is_dir():
+        return set()
+    html_stems = {path.stem for path in raw_dir.glob("*.html")}
+    md_stems = {path.stem for path in raw_dir.glob("*.md")}
+    return html_stems & md_stems
+
+
+def _record_has_raw_pair(*, raw_dir: Path, html_path: str, md_path: str) -> bool:
+    """Return whether an indexed record points to files present under raw_dir."""
+    html_name = Path(html_path).name
+    md_name = Path(md_path).name
+    return (raw_dir / html_name).is_file() and (raw_dir / md_name).is_file()
+
+
+def _readwise_index_needs_attention(status: ReadwiseIndexStatus | None) -> bool:
+    """Return whether Readwise sync bookkeeping needs attention before syncing."""
+    if status is None:
+        return False
+    return (
+        status.malformed
+        or status.raw_exports_not_in_index > 0
+        or status.index_entries_missing_raw > 0
+    )
 
 
 def _is_durable_path(relative_path: str) -> bool:

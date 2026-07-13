@@ -13,6 +13,7 @@ from src.readwise.export import sha256_hex
 from src.readwise.library_index import ExportedRecord, LibraryIndex
 from src.readwise.sync import (
     INITIAL_LOOKBACK_DAYS,
+    ReadwiseIndexSafetyError,
     _needs_export,
     resolved_updated_after_for_list,
     run_sync,
@@ -199,6 +200,88 @@ def test_run_sync_writes_files_and_index(tmp_path: Path) -> None:
     assert any(out_dir.glob("*.md"))
     data = json.loads(index_path.read_text(encoding="utf-8"))
     assert "doc1" in data["documents"]
+
+
+def test_run_sync_blocks_empty_index_with_existing_raw_exports(tmp_path: Path) -> None:
+    """Real sync must not bootstrap an empty index over populated raw exports."""
+    index_path = tmp_path / "readwise_library.json"
+    out_dir = tmp_path / "raw" / "readwise"
+    out_dir.mkdir(parents=True)
+    (out_dir / "existing.html").write_text("<p>old</p>", encoding="utf-8")
+    (out_dir / "existing.md").write_text("---\n---\n", encoding="utf-8")
+
+    with httpx.Client(transport=httpx.MockTransport(lambda _r: httpx.Response(200))) as client:
+        try:
+            run_sync(
+                "token",
+                index_path=index_path,
+                output_dir=out_dir,
+                repo_root=tmp_path,
+                client=client,
+            )
+        except ReadwiseIndexSafetyError as exc:
+            assert "raw exports already exist" in str(exc)
+        else:  # pragma: no cover - explicit failure branch
+            raise AssertionError("expected ReadwiseIndexSafetyError")
+
+
+def test_run_sync_allows_intentional_index_bootstrap(tmp_path: Path) -> None:
+    """The bootstrap guard can be overridden for a deliberate first sync."""
+    index_path = tmp_path / "readwise_library.json"
+    out_dir = tmp_path / "raw" / "readwise"
+    out_dir.mkdir(parents=True)
+    (out_dir / "existing.html").write_text("<p>old</p>", encoding="utf-8")
+    (out_dir / "existing.md").write_text("---\n---\n", encoding="utf-8")
+    payload = {
+        "count": 0,
+        "nextPageCursor": None,
+        "results": [],
+    }
+
+    def handler(_request: httpx.Request) -> httpx.Response:
+        return httpx.Response(200, json=payload)
+
+    with httpx.Client(transport=httpx.MockTransport(handler)) as client:
+        result = run_sync(
+            "token",
+            index_path=index_path,
+            output_dir=out_dir,
+            repo_root=tmp_path,
+            allow_index_bootstrap=True,
+            client=client,
+        )
+
+    assert result.examined == 0
+
+
+def test_run_sync_dry_run_allows_empty_index_with_existing_raw_exports(tmp_path: Path) -> None:
+    """Dry-run can inspect the API without mutating the unsafe local state."""
+    index_path = tmp_path / "readwise_library.json"
+    out_dir = tmp_path / "raw" / "readwise"
+    out_dir.mkdir(parents=True)
+    (out_dir / "existing.html").write_text("<p>old</p>", encoding="utf-8")
+    (out_dir / "existing.md").write_text("---\n---\n", encoding="utf-8")
+    payload = {
+        "count": 1,
+        "nextPageCursor": None,
+        "results": [_row("doc1", "2024-01-03T00:00:00+00:00", html="<p>Hi</p>")],
+    }
+
+    def handler(_request: httpx.Request) -> httpx.Response:
+        return httpx.Response(200, json=payload)
+
+    with httpx.Client(transport=httpx.MockTransport(handler)) as client:
+        result = run_sync(
+            "token",
+            index_path=index_path,
+            output_dir=out_dir,
+            repo_root=tmp_path,
+            dry_run=True,
+            client=client,
+        )
+
+    assert result.exported == 1
+    assert not index_path.exists()
 
 
 def test_run_sync_skips_unchanged(tmp_path: Path) -> None:

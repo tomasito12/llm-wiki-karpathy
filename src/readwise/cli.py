@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 
 from src.readwise.dedupe_cli import run_readwise_dedupe
 from src.readwise.near_duplicates import DEFAULT_THRESHOLD
-from src.readwise.sync import _repo_root, run_sync
+from src.readwise.sync import ReadwiseIndexSafetyError, _repo_root, run_sync
 from src.wiki_paths.cli_helpers import (
     add_paths_config_argument,
     load_paths_for_cli,
@@ -91,6 +91,14 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Prompt for each duplicate pair during post-sync dedupe.",
     )
+    parser.add_argument(
+        "--allow-index-bootstrap",
+        action="store_true",
+        help=(
+            "Allow a real sync when raw exports already exist but the Readwise "
+            "index is empty or missing. Use only for an intentional first sync."
+        ),
+    )
     return parser
 
 
@@ -115,15 +123,20 @@ def main(argv: list[str] | None = None) -> int:
     default_index = paths.knowledge_root / "state" / "readwise_library.json"
     index_path = resolve_cli_path(args.index, configured=default_index)
     output_dir = resolve_cli_path(args.output_dir, configured=paths.raw_dir)
-    result = run_sync(
-        token.strip(),
-        index_path=index_path,
-        output_dir=output_dir,
-        repo_root=repo,
-        dry_run=args.dry_run,
-        prune_missing=args.prune_missing,
-        reset_watermark=args.reset_watermark,
-    )
+    try:
+        result = run_sync(
+            token.strip(),
+            index_path=index_path,
+            output_dir=output_dir,
+            repo_root=repo,
+            dry_run=args.dry_run,
+            prune_missing=args.prune_missing,
+            reset_watermark=args.reset_watermark,
+            allow_index_bootstrap=args.allow_index_bootstrap,
+        )
+    except ReadwiseIndexSafetyError as exc:
+        print(str(exc), file=sys.stderr)
+        return 2
     mode = "dry-run" if result.dry_run else "sync"
     print(f"{mode}: examined={result.examined} exported={result.exported} skipped={result.skipped}")
     if result.examined == 0 and result.incremental_filter_active:

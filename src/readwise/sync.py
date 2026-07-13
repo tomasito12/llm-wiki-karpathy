@@ -68,9 +68,56 @@ class SyncResult:
     incremental_watermark: str | None
 
 
+class ReadwiseIndexSafetyError(RuntimeError):
+    """Raised when a sync would bootstrap an index over existing raw exports."""
+
+
 def _repo_root() -> Path:
     """Resolve repository root (directory containing ``state`` and ``raw``)."""
     return Path(__file__).resolve().parents[2]
+
+
+def count_raw_export_pairs(raw_dir: Path) -> tuple[int, int]:
+    """Return ``(html_count, md_count)`` for direct Readwise export files."""
+    if not raw_dir.is_dir():
+        return 0, 0
+    return (
+        sum(1 for _ in raw_dir.glob("*.html")),
+        sum(1 for _ in raw_dir.glob("*.md")),
+    )
+
+
+def validate_index_bootstrap_safety(
+    *,
+    index_path: Path,
+    out_dir: Path,
+    repo_root: Path,
+    index: LibraryIndex,
+    allow_index_bootstrap: bool,
+    dry_run: bool,
+) -> None:
+    """Block accidental first-sync behavior over an already populated raw directory."""
+    if dry_run or allow_index_bootstrap:
+        return
+    html_count, md_count = count_raw_export_pairs(out_dir)
+    if html_count == 0 and md_count == 0:
+        return
+    if index.documents or index.suppressed_ids or index.last_updated_after is not None:
+        return
+    legacy_index = repo_root / "state" / "readwise_library.json"
+    legacy_hint = ""
+    if index_path.resolve() != legacy_index.resolve() and legacy_index.is_file():
+        legacy_hint = f" A repo-local legacy index exists at {legacy_index}."
+    raise ReadwiseIndexSafetyError(
+        "Refusing Readwise sync: raw exports already exist but the configured "
+        f"Readwise index is empty or missing ({index_path}). "
+        f"Found {html_count} HTML and {md_count} Markdown exports under {out_dir}. "
+        "This usually means the raw directory was migrated without "
+        "state/readwise_library.json; syncing now would re-export the whole "
+        "Reader lookback window and lose suppressed_ids bookkeeping."
+        f"{legacy_hint} Rebuild or migrate the index first, or pass "
+        "--allow-index-bootstrap only for an intentional first sync.",
+    )
 
 
 def _consume_reader_documents(
@@ -149,6 +196,7 @@ def run_sync(
     dry_run: bool = False,
     prune_missing: bool = False,
     reset_watermark: bool = False,
+    allow_index_bootstrap: bool = False,
     client: httpx.Client | None = None,
 ) -> SyncResult:
     """List archive+processed documents and export new or updated ones.
@@ -161,6 +209,14 @@ def run_sync(
     out_dir = output_dir or (root / "raw" / "readwise")
 
     index = LibraryIndex.load(idx_path)
+    validate_index_bootstrap_safety(
+        index_path=idx_path,
+        out_dir=out_dir,
+        repo_root=root,
+        index=index,
+        allow_index_bootstrap=allow_index_bootstrap,
+        dry_run=dry_run,
+    )
     if reset_watermark:
         index.last_updated_after = None
     updated_after = resolved_updated_after_for_list(index)

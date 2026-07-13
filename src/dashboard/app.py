@@ -17,6 +17,7 @@ from typing import Any
 
 import streamlit as st
 
+from src.dashboard.ops_ui import render_operations_page
 from src.dashboard.paths import (
     REPO_LOCAL_INGESTION_WARNING,
     ingestion_paths_point_inside_repo,
@@ -311,7 +312,7 @@ def main() -> None:
 
     app_view = st.radio(
         "View",
-        ["Ingest review", "Tag registry"],
+        ["Ingest review", "Operations", "Tag registry"],
         horizontal=True,
         key="dashboard_app_view",
     )
@@ -378,6 +379,15 @@ def main() -> None:
             prompt_version=prompt_version,
             paths_config=resolve_active_paths_config_path(root),
         )
+
+    if app_view == "Operations":
+        render_operations_page(
+            st,
+            repo_root=root,
+            paths=wiki_paths,
+            paths_config=resolve_active_paths_config_path(root),
+        )
+        return
 
     readwise_sync_flash = st.session_state.pop("_readwise_sync_flash", None)
     if readwise_sync_flash:

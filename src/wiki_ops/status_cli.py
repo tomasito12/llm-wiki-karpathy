@@ -236,6 +236,7 @@ def config_from_args(args: argparse.Namespace) -> OpsStatusConfig:
         preview_dir=paths.preview_dir,
         run_dir=paths.run_dir,
         backup_dir=paths.backup_dir,
+        readwise_index_path=paths.knowledge_root / "state" / "readwise_library.json",
     )
 
 

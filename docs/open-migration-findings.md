@@ -341,6 +341,74 @@ Render wiki after 5 new syntheses
 
 Only later should the command perform the commit itself.
 
+## 6. Readwise Index Is Canonical Bookkeeping
+
+### Finding
+
+During the external knowledge-store migration, raw Readwise exports were present
+in the external raw directory, but the active external Readwise index was not
+treated as equally critical operational state.
+
+That allowed the dashboard sync to run against an effectively fresh
+`readwise_library.json`. The command then used the initial Reader lookback
+window and re-exported the available Readwise documents instead of recognizing
+that most raw exports already existed.
+
+### Why This Matters
+
+`state/readwise_library.json` is not just a performance cache. It contains:
+
+- the Readwise document id to raw filename mapping
+- the incremental `last_updated_after` watermark
+- `suppressed_ids` from duplicate cleanup
+- the stable link between raw exports and existing review artifacts
+
+If raw files move without the index, the system can:
+
+- re-export a large Reader window unnecessarily
+- lose duplicate suppression state
+- produce new filename slugs when Readwise titles changed
+- orphan existing review artifacts, because reviews are keyed by raw filename
+  stem
+
+### Current Repair
+
+The active external knowledge store has been repaired so that:
+
+- raw export pairs and index entries are aligned
+- old suppressed ids are restored
+- existing review artifacts again have matching raw source files
+- replaced/quarantined files are preserved under the external knowledge store
+  `tmp/` repair folders
+
+There are still near-duplicate candidates reported by `readwise-dedupe
+--dry-run`. These were not deleted automatically because they require the normal
+dedupe policy/manual review.
+
+### New Safety Rule
+
+Real `readwise-sync` must fail closed when:
+
+- the configured raw directory already contains exports, and
+- the configured Readwise index is missing or empty, and
+- the operator has not explicitly passed `--allow-index-bootstrap`.
+
+`--allow-index-bootstrap` is only acceptable for an intentional first sync into a
+confirmed fresh raw directory.
+
+### Agent Checklist
+
+Before any migration-sensitive Readwise operation, run:
+
+```text
+hatch run wiki-ops-status
+hatch run readwise-rebuild-index --dry-run --paths-config config/wiki_paths.toml --force
+hatch run readwise-dedupe --dry-run --paths-config config/wiki_paths.toml
+hatch run ingest-queue --status all --json
+```
+
+The status report must expose Readwise index health, not only raw file counts.
+
 ## Working Order
 
 Recommended order from here:
@@ -352,5 +420,5 @@ Recommended order from here:
 5. Add read-only vault duplicate/orphan lint.
 6. Clean or archive old repo-local wiki files.
 7. Design manual-first commit helpers.
-8. Only then add automatic commit behavior.
-
+8. Keep Readwise raw/index/review alignment visible in `wiki-ops-status`.
+9. Only then add automatic commit behavior.

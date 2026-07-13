@@ -5,6 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from src.readwise import cli
+from src.readwise.sync import ReadwiseIndexSafetyError
 
 
 def test_main_missing_token_exits_nonzero(monkeypatch) -> None:
@@ -33,7 +34,7 @@ def test_main_dispatches_run_sync(monkeypatch, tmp_path: Path) -> None:
         return _Result()
 
     monkeypatch.setattr("src.readwise.cli.run_sync", _fake_run_sync)
-    assert cli.main(["--index", str(tmp_path / "i.json")]) == 0
+    assert cli.main(["--index", str(tmp_path / "i.json"), "--no-dedupe"]) == 0
 
 
 def test_main_uses_configured_output_dir(monkeypatch, tmp_path: Path) -> None:
@@ -86,6 +87,27 @@ def test_build_parser_reset_watermark_flag() -> None:
     assert args.reset_watermark is True
 
 
+def test_build_parser_allow_index_bootstrap_flag() -> None:
+    """Explicit index bootstrap override is accepted by the parser."""
+    parser = cli.build_parser()
+    args = parser.parse_args(["--allow-index-bootstrap"])
+    assert args.allow_index_bootstrap is True
+
+
+def test_main_reports_index_safety_error(monkeypatch, tmp_path: Path, capsys) -> None:
+    """The CLI should turn index bootstrap safety failures into exit code 2."""
+    monkeypatch.setenv("READWISE_TOKEN", "fake-token")
+    monkeypatch.setattr(cli, "load_dotenv_from_repo", lambda: None)
+
+    def _fake_run_sync(_token: str, **_kwargs: object) -> object:
+        raise ReadwiseIndexSafetyError("unsafe index bootstrap")
+
+    monkeypatch.setattr("src.readwise.cli.run_sync", _fake_run_sync)
+
+    assert cli.main(["--index", str(tmp_path / "i.json")]) == 2
+    assert "unsafe index bootstrap" in capsys.readouterr().err
+
+
 def test_main_prints_incremental_hint_when_zero_examined(monkeypatch, capsys) -> None:
     """Stderr notes empty API result when watermark yields zero documents."""
 
@@ -100,7 +122,7 @@ def test_main_prints_incremental_hint_when_zero_examined(monkeypatch, capsys) ->
     monkeypatch.setenv("READWISE_TOKEN", "fake-token")
     monkeypatch.setattr(cli, "load_dotenv_from_repo", lambda: None)
     monkeypatch.setattr("src.readwise.cli.run_sync", lambda *a, **k: _Result())
-    assert cli.main([]) == 0
+    assert cli.main(["--no-dedupe"]) == 0
     err = capsys.readouterr().err
     assert "Reader API" in err
     assert "watermark" in err

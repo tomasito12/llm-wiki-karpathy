@@ -12,6 +12,7 @@ from src.wiki_ops.status import (
     build_recommendations,
     classify_uncommitted_paths,
     collect_ops_status,
+    collect_readwise_index_status,
     collect_render_status,
     collect_review_status,
     collect_source_status,
@@ -47,6 +48,105 @@ def test_collect_source_status_handles_missing_raw_directory(tmp_path: Path) -> 
     assert status.raw_markdown == 0
     assert status.paired == 0
     assert status.incomplete == 0
+
+
+def test_collect_readwise_index_status_reports_aligned_index(tmp_path: Path) -> None:
+    """The Readwise status should report aligned raw exports and index entries."""
+    raw_dir = tmp_path / "raw" / "readwise"
+    raw_dir.mkdir(parents=True)
+    (raw_dir / "article-01abc.html").write_text("<html></html>", encoding="utf-8")
+    (raw_dir / "article-01abc.md").write_text("body", encoding="utf-8")
+    index_path = tmp_path / "state" / "readwise_library.json"
+    index_path.parent.mkdir()
+    index_path.write_text(
+        json.dumps(
+            {
+                "version": 1,
+                "last_updated_after": "2026-07-01T00:00:00+00:00",
+                "suppressed_ids": ["01sup"],
+                "documents": {
+                    "01abc": {
+                        "html_path": "raw/readwise/article-01abc.html",
+                        "md_path": "raw/readwise/article-01abc.md",
+                        "source_url": "https://example.test",
+                        "updated_at": "2026-07-01T00:00:00+00:00",
+                        "content_sha256": "abc",
+                    }
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    status, warnings = collect_readwise_index_status(raw_dir=raw_dir, index_path=index_path)
+
+    assert status is not None
+    assert status.exists is True
+    assert status.documents == 1
+    assert status.suppressed_ids == 1
+    assert status.watermark_present is True
+    assert status.raw_exports_not_in_index == 0
+    assert status.index_entries_missing_raw == 0
+    assert warnings == []
+
+
+def test_collect_readwise_index_status_warns_when_raw_exists_without_index(
+    tmp_path: Path,
+) -> None:
+    """Existing raw exports with a missing index should be visible in ops status."""
+    raw_dir = tmp_path / "raw" / "readwise"
+    raw_dir.mkdir(parents=True)
+    (raw_dir / "article-01abc.html").write_text("<html></html>", encoding="utf-8")
+    (raw_dir / "article-01abc.md").write_text("body", encoding="utf-8")
+
+    status, warnings = collect_readwise_index_status(
+        raw_dir=raw_dir,
+        index_path=tmp_path / "state" / "readwise_library.json",
+    )
+
+    assert status is not None
+    assert status.exists is False
+    assert status.documents == 0
+    assert status.raw_exports_not_in_index == 1
+    assert any("Readwise index missing while raw exports exist" in item for item in warnings)
+
+
+def test_collect_readwise_index_status_warns_about_two_way_mismatch(
+    tmp_path: Path,
+) -> None:
+    """Raw-only and index-only entries should both be reported."""
+    raw_dir = tmp_path / "raw" / "readwise"
+    raw_dir.mkdir(parents=True)
+    (raw_dir / "raw-only-01raw.html").write_text("<html></html>", encoding="utf-8")
+    (raw_dir / "raw-only-01raw.md").write_text("body", encoding="utf-8")
+    index_path = tmp_path / "state" / "readwise_library.json"
+    index_path.parent.mkdir()
+    index_path.write_text(
+        json.dumps(
+            {
+                "version": 1,
+                "last_updated_after": "2026-07-01T00:00:00+00:00",
+                "documents": {
+                    "01missing": {
+                        "html_path": "raw/readwise/missing-01missing.html",
+                        "md_path": "raw/readwise/missing-01missing.md",
+                        "source_url": None,
+                        "updated_at": None,
+                        "content_sha256": None,
+                    }
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    status, warnings = collect_readwise_index_status(raw_dir=raw_dir, index_path=index_path)
+
+    assert status is not None
+    assert status.raw_exports_not_in_index == 1
+    assert status.index_entries_missing_raw == 1
+    assert any("raw export pairs are not in the index" in item for item in warnings)
+    assert any("index entries are missing raw files" in item for item in warnings)
 
 
 def test_collect_review_status_counts_finished_and_in_progress(tmp_path: Path) -> None:
@@ -230,6 +330,7 @@ def test_collect_ops_status_includes_recommendations_and_json_keys(tmp_path: Pat
     payload = status.to_dict()
 
     assert "sources" in payload
+    assert "readwise_index" in payload
     assert "reviews" in payload
     assert "render" in payload
     assert "synthesis" in payload
@@ -448,6 +549,53 @@ def test_format_text_report_shows_other_and_backup_counts() -> None:
 
     assert "- uncommitted backup files: 3" in report
     assert "- uncommitted other files: 7" in report
+
+
+def test_format_text_report_shows_readwise_index_section() -> None:
+    """The text report should expose Readwise index health."""
+    from src.wiki_ops.status import (
+        ArtifactStatus,
+        OpsStatus,
+        ReadwiseIndexStatus,
+        RenderStatus,
+        ReviewStatus,
+        SourceStatus,
+        SynthesisPlanStatus,
+        SynthesisStatus,
+    )
+
+    status = OpsStatus(
+        sources=SourceStatus(1, 1, 1, 0),
+        readwise_index=ReadwiseIndexStatus(
+            path="/tmp/readwise_library.json",
+            exists=True,
+            documents=1,
+            suppressed_ids=2,
+            watermark_present=True,
+            raw_exports_not_in_index=0,
+            index_entries_missing_raw=0,
+            malformed=False,
+        ),
+        reviews=ReviewStatus(0, 0, 0, 0),
+        render=RenderStatus(False, False, False, None, None),
+        synthesis=SynthesisStatus(
+            0,
+            None,
+            None,
+            None,
+            None,
+            SynthesisPlanStatus(None, None, None, None, None),
+        ),
+        artifacts=ArtifactStatus(0, 0, 0, 0, 0, 0, False, 0),
+        recommendations=[],
+        warnings=[],
+    )
+
+    report = format_text_report(status)
+
+    assert "Readwise Index" in report
+    assert "- documents: 1" in report
+    assert "- suppressed ids: 2" in report
 
 
 def _cache_entry(page: dict[str, Any], input_hash: str) -> dict[str, Any]:

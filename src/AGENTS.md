@@ -244,7 +244,28 @@ Generated wiki layout rules live in [`src/wiki_contract/`](wiki_contract/). Both
 ## Readwise Reader export
 
 - Set `READWISE_TOKEN` (or `READWISE_API_TOKEN`) from [readwise.io/access_token](https://readwise.io/access_token), or put it in a repo-root `.env` file (loaded automatically; does not override existing shell variables).
-- Run: `hatch run readwise-sync` (optional: `--dry-run`, `--prune-missing`, `--reset-watermark`, `--no-dedupe`, `--dedupe-threshold`, `--dedupe-interactive`, `--output-dir`, `--index`).
+- Run: `hatch run readwise-sync` (optional: `--dry-run`, `--prune-missing`, `--reset-watermark`, `--no-dedupe`, `--dedupe-threshold`, `--dedupe-interactive`, `--output-dir`, `--index`, `--allow-index-bootstrap`).
+- In external operating mode, the Readwise index is canonical operational state:
+  `/Users/plischke/Desktop/Private Development/llm-wiki-data/state/readwise_library.json`.
+  It is not a disposable cache. It binds Readwise document IDs to raw export
+  filenames, stores the incremental watermark, and preserves `suppressed_ids`
+  from duplicate cleanup.
+- Do not run a real `readwise-sync` when `raw/readwise` already contains exports
+  but the configured `readwise_library.json` is missing or empty. That usually
+  means raw files were migrated without bookkeeping. First migrate or rebuild
+  the index, then dry-run the queue/dedupe checks.
+- `readwise-sync` now fails closed in that dangerous state. Use
+  `--allow-index-bootstrap` only for an intentional first sync into a confirmed
+  fresh raw directory, never as a routine workaround.
+- Before migration-sensitive Readwise work, check:
+  `hatch run wiki-ops-status`,
+  `hatch run readwise-rebuild-index --dry-run --paths-config config/wiki_paths.toml --force`,
+  `hatch run readwise-dedupe --dry-run --paths-config config/wiki_paths.toml`,
+  and `hatch run ingest-queue --status all --json`.
+- Existing review artifacts are keyed by raw filename stem. If Readwise changes
+  a title and therefore a future export slug, preserve the review-aligned old
+  filename or deliberately migrate the review directory and graph references.
+  Do not blindly accept a new slug if it would orphan an existing review.
 - Each run passes Readwise **`updatedAfter`**: either `last_updated_after` from `state/readwise_library.json`, or on the **first run** (no watermark yet) a timestamp **~100 days** in the past so the initial sync still uses a bounded window.
 - Exports Reader **Library Archive** documents tagged **processed** to `raw/readwise/` as paired `.html` + `.md`, with dedupe in `state/readwise_library.json`.
 - After a successful sync (not `--dry-run`), runs **`readwise-dedupe`** by default: scans `raw/readwise/` for near-duplicate HTML exports and **deletes the shorter copy**, adding its Readwise id to `suppressed_ids` so sync will not re-import it. Pass **`--no-dedupe`** to skip.

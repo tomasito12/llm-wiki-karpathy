@@ -51,6 +51,7 @@ def test_start_preanalyze_process_includes_explicit_paths_and_config(tmp_path: P
             model="test-model",
             prompt_version="v1",
             limit=5,
+            between_articles_seconds=2000.0,
             log_dir=log_dir,
             paths_config=config_path,
         )
@@ -62,6 +63,8 @@ def test_start_preanalyze_process_includes_explicit_paths_and_config(tmp_path: P
     assert str(reviews) in command
     assert "--wiki-root" in command
     assert str(wiki) in command
+    assert "--between-articles" in command
+    assert "2000.0" in command
     assert "--paths-config" in command
     assert str(config_path) in command
     assert log_path.parent == log_dir
