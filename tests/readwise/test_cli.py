@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import sys
 from pathlib import Path
 
 from src.readwise import cli
@@ -13,8 +12,7 @@ def test_main_missing_token_exits_nonzero(monkeypatch) -> None:
     monkeypatch.delenv("READWISE_TOKEN", raising=False)
     monkeypatch.delenv("READWISE_API_TOKEN", raising=False)
     monkeypatch.setattr(cli, "load_dotenv_from_repo", lambda: None)
-    monkeypatch.setattr(sys, "argv", ["readwise-sync"])
-    assert cli.main() == 1
+    assert cli.main([]) == 1
 
 
 def test_main_dispatches_run_sync(monkeypatch, tmp_path: Path) -> None:
@@ -35,8 +33,43 @@ def test_main_dispatches_run_sync(monkeypatch, tmp_path: Path) -> None:
         return _Result()
 
     monkeypatch.setattr("src.readwise.cli.run_sync", _fake_run_sync)
-    monkeypatch.setattr(sys, "argv", ["readwise-sync", "--index", str(tmp_path / "i.json")])
-    assert cli.main() == 0
+    assert cli.main(["--index", str(tmp_path / "i.json")]) == 0
+
+
+def test_main_uses_configured_output_dir(monkeypatch, tmp_path: Path) -> None:
+    """Readwise sync should write to configured raw_dir by default."""
+    knowledge = tmp_path / "knowledge"
+    raw_dir = knowledge / "raw" / "readwise"
+    raw_dir.mkdir(parents=True)
+    config_path = tmp_path / "wiki_paths.toml"
+    config_path.write_text(
+        f"""
+[paths]
+knowledge_root = "{knowledge}"
+""".strip(),
+        encoding="utf-8",
+    )
+    seen: dict[str, object] = {}
+
+    class _Result:
+        examined = 0
+        exported = 0
+        skipped = 0
+        dry_run = True
+        incremental_filter_active = False
+        incremental_watermark = None
+
+    monkeypatch.setenv("READWISE_TOKEN", "fake-token")
+    monkeypatch.setattr(cli, "load_dotenv_from_repo", lambda: None)
+
+    def _fake_run_sync(_token: str, **kwargs: object) -> object:
+        seen.update(kwargs)
+        return _Result()
+
+    monkeypatch.setattr("src.readwise.cli.run_sync", _fake_run_sync)
+    assert cli.main(["--paths-config", str(config_path), "--dry-run"]) == 0
+    assert seen["output_dir"] == raw_dir.resolve()
+    assert seen["index_path"] == (knowledge / "state" / "readwise_library.json").resolve()
 
 
 def test_build_parser_dry_run_flag() -> None:
@@ -67,8 +100,7 @@ def test_main_prints_incremental_hint_when_zero_examined(monkeypatch, capsys) ->
     monkeypatch.setenv("READWISE_TOKEN", "fake-token")
     monkeypatch.setattr(cli, "load_dotenv_from_repo", lambda: None)
     monkeypatch.setattr("src.readwise.cli.run_sync", lambda *a, **k: _Result())
-    monkeypatch.setattr(sys, "argv", ["readwise-sync"])
-    assert cli.main() == 0
+    assert cli.main([]) == 0
     err = capsys.readouterr().err
     assert "Reader API" in err
     assert "watermark" in err

@@ -44,7 +44,7 @@ def test_needs_export_true_when_id_missing() -> None:
         doc_updated_at="2024-01-01T00:00:00+00:00",
         doc_html="<p></p>",
         index=idx,
-        repo_root=Path("/tmp"),
+        out_dir=Path("/tmp/out"),
         prune_missing=False,
     )
 
@@ -64,7 +64,7 @@ def test_needs_export_false_when_updated_at_matches(tmp_path: Path) -> None:
         doc_updated_at="2024-01-01T00:00:00+00:00",
         doc_html=html,
         index=idx,
-        repo_root=tmp_path,
+        out_dir=tmp_path,
         prune_missing=False,
     )
 
@@ -85,7 +85,7 @@ def test_needs_export_true_when_html_hash_differs_at_same_updated_at() -> None:
         doc_updated_at="2024-01-01T00:00:00+00:00",
         doc_html="<p>new</p>",
         index=idx,
-        repo_root=Path("/tmp"),
+        out_dir=Path("/tmp/out"),
         prune_missing=False,
     )
 
@@ -99,12 +99,72 @@ def test_needs_export_true_when_prune_missing_and_files_gone(tmp_path: Path) -> 
         updated_at="2024-01-01T00:00:00+00:00",
         content_sha256=None,
     )
+    out_dir = tmp_path / "external" / "raw" / "readwise"
+    out_dir.mkdir(parents=True)
     assert _needs_export(
         doc_id="a",
         doc_updated_at="2024-01-01T00:00:00+00:00",
         doc_html="<p>x</p>",
         index=idx,
-        repo_root=tmp_path,
+        out_dir=out_dir,
+        prune_missing=True,
+    )
+
+
+def test_needs_export_false_when_prune_missing_and_files_present_in_out_dir(
+    tmp_path: Path,
+) -> None:
+    """Prune-missing should check the configured output dir, not the code repo."""
+    html = "<p>same</p>"
+    idx = LibraryIndex.empty()
+    idx.documents["a"] = ExportedRecord(
+        html_path="raw/readwise/file.html",
+        md_path="raw/readwise/file.md",
+        source_url=None,
+        updated_at="2024-01-01T00:00:00+00:00",
+        content_sha256=sha256_hex(html),
+    )
+    out_dir = tmp_path / "external" / "raw" / "readwise"
+    out_dir.mkdir(parents=True)
+    (out_dir / "file.html").write_text(html, encoding="utf-8")
+    (out_dir / "file.md").write_text("---\n---\n", encoding="utf-8")
+
+    assert not _needs_export(
+        doc_id="a",
+        doc_updated_at="2024-01-01T00:00:00+00:00",
+        doc_html=html,
+        index=idx,
+        out_dir=out_dir,
+        prune_missing=True,
+    )
+
+
+def test_needs_export_true_when_prune_missing_files_only_in_repo_not_out_dir(
+    tmp_path: Path,
+) -> None:
+    """Files present only under repo_root must not satisfy prune-missing checks."""
+    html = "<p>same</p>"
+    idx = LibraryIndex.empty()
+    idx.documents["a"] = ExportedRecord(
+        html_path="raw/readwise/file.html",
+        md_path="raw/readwise/file.md",
+        source_url=None,
+        updated_at="2024-01-01T00:00:00+00:00",
+        content_sha256=sha256_hex(html),
+    )
+    repo_raw = tmp_path / "repo" / "raw" / "readwise"
+    repo_raw.mkdir(parents=True)
+    (repo_raw / "file.html").write_text(html, encoding="utf-8")
+    (repo_raw / "file.md").write_text("---\n---\n", encoding="utf-8")
+    out_dir = tmp_path / "external" / "raw" / "readwise"
+    out_dir.mkdir(parents=True)
+
+    assert _needs_export(
+        doc_id="a",
+        doc_updated_at="2024-01-01T00:00:00+00:00",
+        doc_html=html,
+        index=idx,
+        out_dir=out_dir,
         prune_missing=True,
     )
 

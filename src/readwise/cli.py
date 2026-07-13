@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import logging
 import os
 import sys
 from pathlib import Path
@@ -12,6 +13,14 @@ from dotenv import load_dotenv
 from src.readwise.dedupe_cli import run_readwise_dedupe
 from src.readwise.near_duplicates import DEFAULT_THRESHOLD
 from src.readwise.sync import _repo_root, run_sync
+from src.wiki_paths.cli_helpers import (
+    add_paths_config_argument,
+    load_paths_for_cli,
+    resolve_cli_path,
+)
+from src.wiki_paths.config import WikiPathsConfigError
+
+LOGGER = logging.getLogger(__name__)
 
 
 def load_dotenv_from_repo() -> None:
@@ -25,27 +34,27 @@ def load_dotenv_from_repo() -> None:
 
 def build_parser() -> argparse.ArgumentParser:
     """Construct CLI parser for readwise sync."""
-    root = _repo_root()
     parser = argparse.ArgumentParser(
         prog="readwise-sync",
         description="Export Readwise Reader archive documents tagged 'processed' to raw/readwise/",
     )
+    add_paths_config_argument(parser)
     parser.add_argument(
         "--index",
         type=Path,
-        default=root / "state" / "readwise_library.json",
-        help="Path to read/write export index JSON.",
+        default=None,
+        help="Export index JSON path (default: knowledge_root/state/readwise_library.json).",
     )
     parser.add_argument(
         "--output-dir",
         type=Path,
-        default=root / "raw" / "readwise",
-        help="Directory for paired .html and .md exports.",
+        default=None,
+        help="Directory for paired .html and .md exports (default: configured raw_dir).",
     )
     parser.add_argument(
         "--repo-root",
         type=Path,
-        default=root,
+        default=None,
         help="Repository root (used to resolve index paths on disk).",
     )
     parser.add_argument(
@@ -85,11 +94,16 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
     """Run sync from CLI arguments and environment."""
     load_dotenv_from_repo()
-    parser = build_parser()
-    args = parser.parse_args()
+    args = build_parser().parse_args(argv)
+    repo = (args.repo_root or _repo_root()).resolve()
+    try:
+        paths = load_paths_for_cli(args, repo_root_override=repo)
+    except WikiPathsConfigError as exc:
+        LOGGER.error("%s", exc)
+        return 2
     token = os.environ.get("READWISE_TOKEN") or os.environ.get("READWISE_API_TOKEN")
     if not token or not token.strip():
         print(
@@ -98,11 +112,14 @@ def main() -> int:
             file=sys.stderr,
         )
         return 1
+    default_index = paths.knowledge_root / "state" / "readwise_library.json"
+    index_path = resolve_cli_path(args.index, configured=default_index)
+    output_dir = resolve_cli_path(args.output_dir, configured=paths.raw_dir)
     result = run_sync(
         token.strip(),
-        index_path=args.index,
-        output_dir=args.output_dir,
-        repo_root=args.repo_root,
+        index_path=index_path,
+        output_dir=output_dir,
+        repo_root=repo,
         dry_run=args.dry_run,
         prune_missing=args.prune_missing,
         reset_watermark=args.reset_watermark,
@@ -123,8 +140,8 @@ def main() -> int:
 
     if not args.no_dedupe and not result.dry_run:
         dedupe_code = run_readwise_dedupe(
-            raw_dir=args.output_dir,
-            index_path=args.index,
+            raw_dir=output_dir,
+            index_path=index_path,
             threshold=args.dedupe_threshold,
             dry_run=False,
             interactive=args.dedupe_interactive,

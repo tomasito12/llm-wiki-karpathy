@@ -12,6 +12,12 @@ from src.pipeline.source_publication import backfill_publications_in_raw_dir
 from src.readwise.export import sha256_hex
 from src.readwise.library_index import ExportedRecord, LibraryIndex
 from src.readwise.sync import max_iso_timestamps
+from src.wiki_paths.cli_helpers import (
+    add_paths_config_argument,
+    load_paths_for_cli,
+    resolve_cli_path,
+)
+from src.wiki_paths.config import WikiPathsConfigError
 
 _READWISE_ID_FALLBACK = re.compile(r"^[0-9a-z]{20,30}$")
 
@@ -135,17 +141,18 @@ def build_parser() -> argparse.ArgumentParser:
         prog="readwise-rebuild-index",
         description="Rebuild state/readwise_library.json from raw/readwise export files.",
     )
+    add_paths_config_argument(parser)
     parser.add_argument(
         "--raw-dir",
         type=Path,
-        default=Path("raw/readwise"),
-        help="Directory with paired .html and .md exports (default: raw/readwise).",
+        default=None,
+        help="Directory with paired .html and .md exports (default: configured raw_dir).",
     )
     parser.add_argument(
         "--index",
         type=Path,
-        default=Path("state/readwise_library.json"),
-        help="Output library index JSON path (default: state/readwise_library.json).",
+        default=None,
+        help="Library index JSON path (default: knowledge_root/state/readwise_library.json).",
     )
     parser.add_argument(
         "--dry-run",
@@ -173,11 +180,17 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
     """Run rebuild CLI."""
-    args = build_parser().parse_args()
-    raw_dir = args.raw_dir.resolve()
-    index_path = args.index.resolve()
+    args = build_parser().parse_args(argv)
+    try:
+        paths = load_paths_for_cli(args)
+    except WikiPathsConfigError as exc:
+        print(str(exc), file=sys.stderr)
+        return 2
+    default_index = paths.knowledge_root / "state" / "readwise_library.json"
+    raw_dir = resolve_cli_path(args.raw_dir, configured=paths.raw_dir).resolve()
+    index_path = resolve_cli_path(args.index, configured=default_index).resolve()
     if not raw_dir.is_dir():
         print(f"raw-dir is not a directory: {raw_dir}", file=sys.stderr)
         return 1

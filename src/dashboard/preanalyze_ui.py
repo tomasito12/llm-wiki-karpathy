@@ -37,6 +37,7 @@ def start_preanalyze_process(
     prompt_version: str,
     limit: int,
     log_dir: Path,
+    paths_config: Path | None = None,
 ) -> Path:
     """Start ``ingest-preanalyze`` detached and return the log path."""
     log_dir.mkdir(parents=True, exist_ok=True)
@@ -59,6 +60,8 @@ def start_preanalyze_process(
         "--wiki-root",
         str(wiki_root),
     ]
+    if paths_config is not None:
+        command.extend(["--paths-config", str(paths_config)])
     with log_path.open("w", encoding="utf-8") as log_file:
         log_file.write(f"$ {' '.join(command)}\n")
         log_file.flush()
@@ -82,6 +85,7 @@ def render_preanalyze_sidebar(
     wiki_root: Path,
     model: str,
     prompt_version: str,
+    paths_config: Path | None = None,
 ) -> None:
     """Render dashboard controls for pre-analyzing pending sources."""
     st.subheader("Pre-analysis")
@@ -114,6 +118,7 @@ def render_preanalyze_sidebar(
                     prompt_version=prompt_version,
                     limit=limit,
                     log_dir=log_dir,
+                    paths_config=paths_config,
                 )
             except OSError as exc:
                 st.error(f"Could not start pre-analysis: {exc}")

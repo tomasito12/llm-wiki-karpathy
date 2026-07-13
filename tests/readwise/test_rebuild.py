@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from pathlib import Path
-from unittest import mock
 
 import pytest
 
@@ -119,9 +118,7 @@ def test_rebuild_cli_dry_run(tmp_path: Path) -> None:
     raw = tmp_path / "rw"
     raw.mkdir()
     idx = tmp_path / "lib.json"
-    argv = ["rebuild", "--raw-dir", str(raw), "--index", str(idx), "--dry-run"]
-    with mock.patch("sys.argv", argv):
-        assert rebuild_main() == 0
+    assert rebuild_main(["--raw-dir", str(raw), "--index", str(idx), "--dry-run"]) == 0
 
 
 def test_rebuild_cli_backfill_only(tmp_path: Path) -> None:
@@ -132,16 +129,35 @@ def test_rebuild_cli_backfill_only(tmp_path: Path) -> None:
         '---\nsource_url: "https://anthropic.com/news/x"\n---\n',
         encoding="utf-8",
     )
-    argv = [
-        "rebuild",
-        "--raw-dir",
-        str(raw),
-        "--index",
-        str(idx),
-        "--backfill-publication",
-        "--backfill-only",
-    ]
-    with mock.patch("sys.argv", argv):
-        assert rebuild_main() == 0
+    assert (
+        rebuild_main(
+            [
+                "--raw-dir",
+                str(raw),
+                "--index",
+                str(idx),
+                "--backfill-publication",
+                "--backfill-only",
+            ]
+        )
+        == 0
+    )
     assert "publication: Anthropic" in (raw / "post.md").read_text(encoding="utf-8")
     assert not idx.exists()
+
+
+def test_rebuild_cli_uses_configured_paths_by_default(tmp_path: Path) -> None:
+    """Rebuild CLI should default raw/index paths from wiki paths config."""
+    knowledge = tmp_path / "knowledge"
+    raw = knowledge / "raw" / "readwise"
+    raw.mkdir(parents=True)
+    config_path = tmp_path / "wiki_paths.toml"
+    config_path.write_text(
+        f"""
+[paths]
+knowledge_root = "{knowledge}"
+""".strip(),
+        encoding="utf-8",
+    )
+
+    assert rebuild_main(["--paths-config", str(config_path), "--dry-run"]) == 0

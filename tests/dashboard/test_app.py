@@ -5,14 +5,19 @@ from __future__ import annotations
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
+from src.wiki_paths.config import default_wiki_paths
+
 REPO_ROOT = Path(__file__).resolve().parents[2]
 
 
 @patch("src.dashboard.app.list_readwise_html_sources", return_value=[])
-@patch("src.dashboard.app.load_repo_dotenv", return_value=REPO_ROOT)
+@patch(
+    "src.dashboard.app.load_dashboard_wiki_paths",
+    return_value=(REPO_ROOT, default_wiki_paths(REPO_ROOT), "repo-local defaults"),
+)
 @patch("src.dashboard.app.st")
 def test_main_handles_empty_raw_dir(
-    mock_st: MagicMock, _mock_load_repo: MagicMock, _mock_list: MagicMock
+    mock_st: MagicMock, _mock_load_paths: MagicMock, _mock_list: MagicMock
 ) -> None:
     """The dashboard loads and exits early when no HTML sources exist."""
     mock_st.radio.return_value = "Ingest review"
@@ -28,11 +33,14 @@ def test_main_handles_empty_raw_dir(
 
 
 @patch("src.dashboard.tag_registry_ui.render_tag_registry")
-@patch("src.dashboard.app.load_repo_dotenv", return_value=REPO_ROOT)
+@patch(
+    "src.dashboard.app.load_dashboard_wiki_paths",
+    return_value=(REPO_ROOT, default_wiki_paths(REPO_ROOT), "repo-local defaults"),
+)
 @patch("src.dashboard.app.st")
 def test_main_tag_registry_view_short_circuits_ingest(
     mock_st: MagicMock,
-    _mock_load_repo: MagicMock,
+    _mock_load_paths: MagicMock,
     mock_render_registry: MagicMock,
 ) -> None:
     """Tag registry view renders registry UI and skips ingest review."""

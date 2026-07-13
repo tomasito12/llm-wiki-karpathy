@@ -17,6 +17,12 @@ from typing import Any
 
 import streamlit as st
 
+from src.dashboard.paths import (
+    REPO_LOCAL_INGESTION_WARNING,
+    ingestion_paths_point_inside_repo,
+    load_dashboard_wiki_paths,
+    resolve_active_paths_config_path,
+)
 from src.dashboard.preanalyze_ui import render_preanalyze_sidebar
 from src.dashboard.readwise_sync_ui import render_readwise_sync_sidebar
 from src.dashboard.review_queue_ui import (
@@ -94,7 +100,6 @@ from src.ingest_review.models_ui import (
     collect_model_new_types,
     render_model_proposals,
 )
-from src.ingest_review.paths import load_repo_dotenv
 from src.ingest_review.proposal_force_extract_handler import process_pending_forced_extract
 from src.ingest_review.proposal_regen_handler import process_pending_proposal_regen
 from src.ingest_review.providers.openai_provider import OpenAIIngestionProvider
@@ -297,7 +302,7 @@ def finish_review_session(
 
 def main() -> None:
     """Run the ingest review Streamlit app."""
-    root = load_repo_dotenv()
+    root, wiki_paths, paths_config_label = load_dashboard_wiki_paths()
     st.set_page_config(
         page_title="LLM Wiki",
         layout="wide",
@@ -325,13 +330,24 @@ def main() -> None:
 
     with st.sidebar:
         st.header("Settings")
+        st.caption(f"Code repo: `{root}`")
+        st.caption(f"Knowledge root: `{wiki_paths.knowledge_root}`")
+        st.caption(f"Vault root: `{wiki_paths.vault_root}`")
+        st.caption(f"Path config: `{paths_config_label}`")
         raw_dir = Path(
-            st.text_input("Raw readwise dir", value=str(root / "raw" / "readwise"))
+            st.text_input("Raw readwise dir", value=str(wiki_paths.raw_dir))
         ).expanduser()
-        wiki_root = Path(st.text_input("Wiki root", value=str(root / "wiki"))).expanduser()
+        wiki_root = Path(st.text_input("Wiki root", value=str(wiki_paths.wiki_dir))).expanduser()
         reviews_root = Path(
-            st.text_input("Reviews state dir", value=str(root / "state" / "reviews"))
+            st.text_input("Reviews state dir", value=str(wiki_paths.reviews_dir))
         ).expanduser()
+        if ingestion_paths_point_inside_repo(
+            wiki_paths,
+            raw_dir=raw_dir,
+            reviews_root=reviews_root,
+            wiki_root=wiki_root,
+        ):
+            st.warning(REPO_LOCAL_INGESTION_WARNING)
         model = st.text_input(
             "OpenAI model", value=os.environ.get("INGEST_OPENAI_MODEL", "gpt-4o-mini")
         )
@@ -346,7 +362,12 @@ def main() -> None:
             if has_key
             else "API key: **not set** — add `OPENAI_API_KEY` to `.env` at repo root."
         )
-        render_readwise_sync_sidebar(st, repo_root=root, output_dir=raw_dir)
+        render_readwise_sync_sidebar(
+            st,
+            repo_root=root,
+            output_dir=raw_dir,
+            index_path=wiki_paths.knowledge_root / "state" / "readwise_library.json",
+        )
         render_preanalyze_sidebar(
             st,
             repo_root=root,
@@ -355,6 +376,7 @@ def main() -> None:
             wiki_root=wiki_root,
             model=model,
             prompt_version=prompt_version,
+            paths_config=resolve_active_paths_config_path(root),
         )
 
     readwise_sync_flash = st.session_state.pop("_readwise_sync_flash", None)

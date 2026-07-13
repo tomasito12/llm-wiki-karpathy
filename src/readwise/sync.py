@@ -77,7 +77,6 @@ def _consume_reader_documents(
     stream: Iterator[ReaderDocument],
     *,
     index: LibraryIndex,
-    repo_root: Path,
     out_dir: Path,
     dry_run: bool,
     prune_missing: bool,
@@ -99,7 +98,7 @@ def _consume_reader_documents(
             doc_updated_at=doc.updated_at,
             doc_html=doc.html_content,
             index=index,
-            repo_root=repo_root,
+            out_dir=out_dir,
             prune_missing=prune_missing,
         ):
             skipped += 1
@@ -119,7 +118,7 @@ def _needs_export(
     doc_updated_at: str | None,
     doc_html: str | None,
     index: LibraryIndex,
-    repo_root: Path,
+    out_dir: Path,
     prune_missing: bool,
 ) -> bool:
     """Return True if this document should be written to disk."""
@@ -134,8 +133,8 @@ def _needs_export(
         if sha256_hex(doc_html) != existing.content_sha256:
             return True
     if prune_missing:
-        html_path = repo_root / existing.html_path
-        md_path = repo_root / existing.md_path
+        html_path = out_dir / Path(existing.html_path).name
+        md_path = out_dir / Path(existing.md_path).name
         if not html_path.is_file() or not md_path.is_file():
             return True
     return False
@@ -171,7 +170,6 @@ def run_sync(
         examined, exported, skipped, seen_updated, index_dirty = _consume_reader_documents(
             stream,
             index=index,
-            repo_root=root,
             out_dir=out_dir,
             dry_run=dry_run,
             prune_missing=prune_missing,
@@ -182,7 +180,6 @@ def run_sync(
             examined, exported, skipped, seen_updated, index_dirty = _consume_reader_documents(
                 stream,
                 index=index,
-                repo_root=root,
                 out_dir=out_dir,
                 dry_run=dry_run,
                 prune_missing=prune_missing,

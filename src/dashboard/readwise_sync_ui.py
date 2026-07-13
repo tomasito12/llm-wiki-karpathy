@@ -76,6 +76,7 @@ def render_readwise_sync_sidebar(
     *,
     repo_root: Path,
     output_dir: Path,
+    index_path: Path | None = None,
 ) -> None:
     """Render Readwise sync controls in the dashboard sidebar."""
     st.subheader("Readwise")
@@ -111,6 +112,7 @@ def render_readwise_sync_sidebar(
             result, error = try_readwise_sync(
                 repo_root=repo_root,
                 output_dir=output_dir,
+                index_path=index_path,
                 prune_missing=prune_missing,
                 reset_watermark=reset_watermark,
             )

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import logging
 import sys
 from collections.abc import Callable
 from pathlib import Path
@@ -13,12 +14,18 @@ from src.readwise.near_duplicates import (
     load_documents,
     run_dedupe,
 )
-from src.readwise.sync import _repo_root
+from src.wiki_paths.cli_helpers import (
+    add_paths_config_argument,
+    load_paths_for_cli,
+    resolve_cli_path,
+)
+from src.wiki_paths.config import WikiPathsConfigError
+
+LOGGER = logging.getLogger(__name__)
 
 
 def build_parser() -> argparse.ArgumentParser:
     """Construct CLI parser for readwise dedupe."""
-    root = _repo_root()
     parser = argparse.ArgumentParser(
         prog="readwise-dedupe",
         description=(
@@ -26,17 +33,18 @@ def build_parser() -> argparse.ArgumentParser:
             "the shorter copy by default."
         ),
     )
+    add_paths_config_argument(parser)
     parser.add_argument(
         "--raw-dir",
         type=Path,
-        default=root / "raw" / "readwise",
-        help="Readwise export directory (default: <repo>/raw/readwise).",
+        default=None,
+        help="Readwise export directory (default: configured raw_dir).",
     )
     parser.add_argument(
         "--index",
         type=Path,
-        default=root / "state" / "readwise_library.json",
-        help="Path to read/write export index JSON.",
+        default=None,
+        help="Export index JSON path (default: knowledge_root/state/readwise_library.json).",
     )
     parser.add_argument(
         "--threshold",
@@ -138,12 +146,18 @@ def run_readwise_dedupe(
     return 0
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
     """Run dedupe from CLI arguments."""
-    args = build_parser().parse_args()
+    args = build_parser().parse_args(argv)
+    try:
+        paths = load_paths_for_cli(args)
+    except WikiPathsConfigError as exc:
+        LOGGER.error("%s", exc)
+        return 2
+    default_index = paths.knowledge_root / "state" / "readwise_library.json"
     return run_readwise_dedupe(
-        raw_dir=args.raw_dir,
-        index_path=args.index,
+        raw_dir=resolve_cli_path(args.raw_dir, configured=paths.raw_dir),
+        index_path=resolve_cli_path(args.index, configured=default_index),
         threshold=args.threshold,
         dry_run=args.dry_run,
         interactive=args.interactive,

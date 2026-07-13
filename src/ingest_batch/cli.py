@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import logging
 import os
 import sys
 from pathlib import Path
@@ -14,15 +15,23 @@ from src.ingest_batch.preanalyze import (
 )
 from src.ingest_review.paths import load_repo_dotenv
 from src.ingest_review.schema import PROMPT_VERSION
+from src.wiki_paths.cli_helpers import (
+    add_paths_config_argument,
+    load_paths_for_cli,
+    resolve_cli_path,
+)
+from src.wiki_paths.config import WikiPathsConfigError
+
+LOGGER = logging.getLogger(__name__)
 
 
 def build_parser() -> argparse.ArgumentParser:
     """Construct the ``ingest-preanalyze`` argument parser."""
-    root = load_repo_dotenv()
     parser = argparse.ArgumentParser(
         prog="ingest-preanalyze",
         description="Pre-analyze pending Readwise exports with the synchronous review pipeline.",
     )
+    add_paths_config_argument(parser)
     parser.add_argument(
         "--limit",
         type=int,
@@ -56,20 +65,20 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--raw-dir",
         type=Path,
-        default=root / "raw" / "readwise",
-        help="Readwise export directory (default: <repo>/raw/readwise).",
+        default=None,
+        help="Readwise export directory (default: configured raw_dir).",
     )
     parser.add_argument(
         "--reviews-dir",
         type=Path,
-        default=root / "state" / "reviews",
-        help="Review artifacts directory (default: <repo>/state/reviews).",
+        default=None,
+        help="Review artifacts directory (default: configured reviews_dir).",
     )
     parser.add_argument(
         "--wiki-root",
         type=Path,
-        default=root / "wiki",
-        help="Wiki root directory (default: <repo>/wiki).",
+        default=None,
+        help="Wiki root directory (default: configured wiki_dir).",
     )
     parser.add_argument(
         "--between-articles",
@@ -98,6 +107,11 @@ def main(argv: list[str] | None = None) -> int:
     """Run ``ingest-preanalyze`` from command-line arguments."""
     args = build_parser().parse_args(argv)
     root = load_repo_dotenv()
+    try:
+        paths = load_paths_for_cli(args)
+    except WikiPathsConfigError as exc:
+        LOGGER.error("%s", exc)
+        return 2
     if not os.environ.get("OPENAI_API_KEY"):
         print(
             "OPENAI_API_KEY is not set. Add it to .env at the repo root or export it.",
@@ -105,9 +119,11 @@ def main(argv: list[str] | None = None) -> int:
         )
         return 2
 
-    raw_dir = args.raw_dir.expanduser().resolve()
-    reviews_root = args.reviews_dir.expanduser().resolve()
-    wiki_root = args.wiki_root.expanduser().resolve()
+    raw_dir = resolve_cli_path(args.raw_dir, configured=paths.raw_dir).expanduser().resolve()
+    reviews_root = (
+        resolve_cli_path(args.reviews_dir, configured=paths.reviews_dir).expanduser().resolve()
+    )
+    wiki_root = resolve_cli_path(args.wiki_root, configured=paths.wiki_dir).expanduser().resolve()
     if not raw_dir.is_dir():
         print(f"raw-dir is not a directory: {raw_dir}", file=sys.stderr)
         return 1
