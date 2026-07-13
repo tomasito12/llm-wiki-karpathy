@@ -10,6 +10,7 @@ from typing import Any
 
 from src.ingest_review.review_queue_status import status_from_artifact
 from src.readwise.library_index import LibraryIndex
+from src.wiki_ops.source_access import SourceAccessStatus, collect_source_access_status
 from src.wiki_synthesis.cache_lint import lint_synthesis_cache
 from src.wiki_synthesis.planner import load_graph_export, plan_from_graph
 
@@ -125,12 +126,16 @@ class OpsStatus:
     recommendations: list[str]
     warnings: list[str]
     readwise_index: ReadwiseIndexStatus | None = None
+    source_access: SourceAccessStatus | None = None
 
     def to_dict(self) -> dict[str, Any]:
         """Return a JSON-serializable status snapshot."""
         payload = asdict(self)
         payload["readwise_index"] = (
             asdict(self.readwise_index) if self.readwise_index is not None else None
+        )
+        payload["source_access"] = (
+            self.source_access.to_dict() if self.source_access is not None else None
         )
         payload["synthesis"] = {
             "cache_entries": self.synthesis.cache_entries,
@@ -180,6 +185,12 @@ def collect_ops_status(
         graph_path=config.graph_path,
         manifest_path=config.manifest_path,
     )
+    source_access, source_access_warnings = collect_source_access_status(
+        wiki_dir=config.wiki_dir,
+        raw_dir=config.raw_dir,
+        graph_path=config.graph_path,
+    )
+    warnings.extend(source_access_warnings)
     synthesis, synthesis_warnings = collect_synthesis_status(
         graph_path=config.graph_path,
         synthesis_cache_dir=config.synthesis_cache_dir,
@@ -193,6 +204,7 @@ def collect_ops_status(
     status = OpsStatus(
         sources=sources,
         readwise_index=readwise_index,
+        source_access=source_access,
         reviews=reviews,
         render=render,
         synthesis=synthesis,
@@ -204,6 +216,7 @@ def collect_ops_status(
     return OpsStatus(
         sources=status.sources,
         readwise_index=status.readwise_index,
+        source_access=status.source_access,
         reviews=status.reviews,
         render=status.render,
         synthesis=status.synthesis,
@@ -261,9 +274,7 @@ def collect_readwise_index_status(
             warnings,
         )
     indexed_stems = {
-        Path(record.html_path).stem
-        for record in index.documents.values()
-        if record.html_path
+        Path(record.html_path).stem for record in index.documents.values() if record.html_path
     }
     raw_exports_not_in_index = len(raw_stems - indexed_stems)
     index_entries_missing_raw = sum(
@@ -286,13 +297,9 @@ def collect_readwise_index_status(
         malformed=malformed,
     )
     if raw_stems and not exists:
-        warnings.append(
-            f"Readwise index missing while raw exports exist: {index_path}"
-        )
+        warnings.append(f"Readwise index missing while raw exports exist: {index_path}")
     elif raw_stems and not index.documents and not index.suppressed_ids:
-        warnings.append(
-            f"Readwise index empty while raw exports exist: {index_path}"
-        )
+        warnings.append(f"Readwise index empty while raw exports exist: {index_path}")
     if raw_exports_not_in_index:
         warnings.append(
             "Readwise raw/index mismatch: "
@@ -507,8 +514,10 @@ def build_recommendations(status: OpsStatus) -> list[str]:
     """Return conservative next-action recommendations from status facts."""
     recommendations: list[str] = []
     if _readwise_index_needs_attention(status.readwise_index):
+        recommendations.append("Fix Readwise raw/index alignment before running readwise-sync.")
+    if _source_access_needs_attention(status.source_access):
         recommendations.append(
-            "Fix Readwise raw/index alignment before running readwise-sync."
+            "Fix source access gaps before versioning or sharing the private vault."
         )
     if status.synthesis.errors:
         recommendations.append("Fix synthesis cache errors before running wiki-render.")
@@ -555,7 +564,7 @@ def format_text_report(status: OpsStatus) -> str:
             f"- raw md exports: {status.sources.raw_markdown}",
             f"- paired exports: {status.sources.paired}",
             f"- incomplete exports: {status.sources.incomplete}",
-        "",
+            "",
         ]
     )
     if status.readwise_index is not None:
@@ -569,6 +578,27 @@ def format_text_report(status: OpsStatus) -> str:
                 f"- raw pairs not indexed: {status.readwise_index.raw_exports_not_in_index}",
                 f"- indexed entries missing raw: {status.readwise_index.index_entries_missing_raw}",
                 f"- malformed: {'yes' if status.readwise_index.malformed else 'no'}",
+                "",
+            ]
+        )
+    if status.source_access is not None:
+        source_access = status.source_access
+        lines.extend(
+            [
+                "Source Access",
+                f"- source pages: {source_access.source_pages_total}",
+                f"- embedded full text: {source_access.embedded_full_text}",
+                f"- locally linked source text: {source_access.locally_linked_source_text}",
+                f"- external URL only: {source_access.external_url_only}",
+                f"- malformed source pages: {len(source_access.malformed_pages)}",
+                f"- source id mismatches: {len(source_access.source_id_mismatches)}",
+                "- source pages missing raw markdown: "
+                f"{len(source_access.source_pages_missing_raw_markdown)}",
+                f"- graph sources: {source_access.graph_sources}",
+                f"- graph sources missing pages: {len(source_access.graph_sources_missing_pages)}",
+                f"- source wikilinks: {source_access.source_links_total}",
+                "- broken source wikilink targets: "
+                f"{len(source_access.broken_source_link_targets)}",
                 "",
             ]
         )
@@ -705,6 +735,22 @@ def _readwise_index_needs_attention(status: ReadwiseIndexStatus | None) -> bool:
         status.malformed
         or status.raw_exports_not_in_index > 0
         or status.index_entries_missing_raw > 0
+    )
+
+
+def _source_access_needs_attention(status: SourceAccessStatus | None) -> bool:
+    """Return whether private-vault source access has integrity gaps."""
+    if status is None:
+        return False
+    return bool(
+        not status.wiki_dir_exists
+        or status.external_url_only
+        or status.malformed_pages
+        or status.source_id_mismatches
+        or status.source_pages_missing_raw_markdown
+        or status.graph_sources is None
+        or status.graph_sources_missing_pages
+        or status.broken_source_link_targets
     )
 
 

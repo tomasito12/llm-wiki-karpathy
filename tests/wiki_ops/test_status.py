@@ -331,6 +331,7 @@ def test_collect_ops_status_includes_recommendations_and_json_keys(tmp_path: Pat
 
     assert "sources" in payload
     assert "readwise_index" in payload
+    assert "source_access" in payload
     assert "reviews" in payload
     assert "render" in payload
     assert "synthesis" in payload

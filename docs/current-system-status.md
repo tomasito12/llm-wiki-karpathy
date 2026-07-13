@@ -64,6 +64,9 @@ The current pipeline has these layers in the external operating mode:
 - Existing Stage 2 synthesis cache entries are fresh against the current graph.
 - External `knowledge_root` and `vault_root` are configured locally through
   `config/wiki_paths.toml`.
+- Private-vault source access uses embedded full raw Markdown in the existing
+  `wiki/sources/<source_id>.md` pages. `wiki-ops-status` verifies source access,
+  graph coverage, raw Markdown alignment, and generated source wikilinks.
 - The first copy-only migration has been completed and verified.
 - A one-time iCloud migration safety backup has been created for the external
   knowledge store and private generated vault.
@@ -124,7 +127,8 @@ synthesis batches were created.
 
 ## Current Check Results
 
-Run on 2026-07-12 after copy-only migration:
+Baseline run on 2026-07-12 after copy-only migration, with source-access
+verification refreshed on 2026-07-13:
 
 ```text
 hatch run wiki-ops-status --migration-plan --require-external-knowledge-root --require-external-vault-root
@@ -133,6 +137,11 @@ hatch run wiki-ops-status --migration-plan --require-external-knowledge-root --r
 hatch run wiki-render --dry-run --require-source-text
 => sources=360 pages=614 files=1264 written=0 unchanged=1264 pruned=0
 => source full text coverage available=358 missing=2 total=360 ratio=99.4%
+
+hatch run wiki-ops-status --json
+=> source pages=360 embedded full text=360 external URL only=0
+=> graph sources missing pages=0 source pages missing raw markdown=0
+=> broken source wikilink targets=0
 
 hatch run wiki-synthesis-cache-lint
 => checked=124 ok=124 warnings=0 errors=0

@@ -321,6 +321,13 @@ Generated wiki layout rules live in [`src/wiki_contract/`](wiki_contract/). Both
 - This command makes no LLM calls and writes no files.
 - Purpose: summarize source/review/render/synthesis/artifact state before deciding what to run next.
 - Use `--json` for future web frontend integration.
+- The `Source Access` section verifies the private-vault full-text contract:
+  embedded text coverage, local raw-link fallback, external-only pages,
+  source-page/raw-Markdown alignment, graph sources without pages, and broken
+  source wikilinks from managed generated pages.
+- Private-vault policy is to embed full raw Markdown in
+  `wiki/sources/<source_id>.md`. The external knowledge store remains canonical;
+  future team/public exports require an explicit safer source mode.
 
 ## Wiki lint
 

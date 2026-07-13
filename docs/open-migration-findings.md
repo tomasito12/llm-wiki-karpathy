@@ -141,34 +141,56 @@ The source page must not only provide:
 That is not enough, because it does not guarantee access to the text that was
 actually ingested.
 
-### Current Uncertainty
+### Decision And Resolution
 
-There may be a mismatch between:
+Resolved on 2026-07-13.
 
-- what the source-fulltext implementation intended
-- what the generated pages currently show
-- which vault Obsidian is currently opening
+The private vault uses Option A: full raw Markdown is embedded into the existing
+generated page at `wiki/sources/<source_id>.md`.
 
-Before changing the renderer, verify against the active vault:
+This is an explicit private-vault product decision:
+
+- the knowledge store remains canonical
+- the embedded page is a regenerable reading and agent-access copy
+- no parallel `sources/full/` hierarchy is introduced
+- raw exports that are not yet reviewed remain in the knowledge store and do
+  not receive generated source pages until they enter the render graph
+- future team/public exports must use an explicit safer source mode such as
+  `summary`, `excerpt`, or `none`
+- private-vault Git and remote-hosting decisions must treat embedded source text
+  as potentially private or copyright-sensitive
+
+`hatch run wiki-ops-status` now includes a read-only `Source Access` section.
+It checks:
+
+- source pages with embedded full text
+- source pages with a clickable local raw Markdown link
+- pages that expose only an external URL
+- source-page-to-raw-Markdown alignment
+- graph sources without a generated source page
+- filename/frontmatter source-id consistency
+- broken source wikilinks from managed generated pages
+
+Verification against the active vault:
 
 ```text
 /Users/plischke/Desktop/Private Development/llm-wiki-vault-private
 ```
 
-### Next Step
+reported:
 
-Create a source-access verification check:
+```text
+source pages: 360
+embedded full text: 360
+locally linked source text: 0
+external URL only: 0
+graph sources missing pages: 0
+source pages missing raw markdown: 0
+broken source wikilink targets: 0
+```
 
-1. Pick several source pages from the active private vault.
-2. Verify whether full local text is embedded or locally linked.
-3. Verify whether an agent can resolve the raw text without using the original
-   web URL.
-4. Report coverage, for example:
-   - source pages total
-   - pages with embedded full text
-   - pages with local raw file link
-   - pages with only external URL
-5. Decide whether to embed full text or use local raw links.
+Finding 2 is complete. Re-run `hatch run wiki-ops-status` after render or path
+changes to prevent regressions.
 
 ## 3. Duplicate And Orphan Wiki Pages
 
@@ -480,8 +502,8 @@ Cleanup should happen only after:
 
 Recommended order from here:
 
-1. Finish and commit the current path-configuration/dashboard slice.
-2. Verify raw source text access in the active private vault.
+1. Path-configuration/dashboard slice — completed.
+2. Raw source text access verification and private full-text decision — completed.
 3. Decide private vault Git strategy.
 4. Initialize/version the private vault if approved.
 5. Add read-only vault duplicate/orphan lint.

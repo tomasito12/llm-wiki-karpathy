@@ -7,6 +7,22 @@ source texts from the Obsidian wiki.
 
 It is intended for an implementation agent that has no prior chat context.
 
+## Resolved Private-Vault Decision
+
+Decision confirmed on 2026-07-13:
+
+- embed full raw Markdown in the existing generated page at
+  `wiki/sources/<source_id>.md`
+- keep the external knowledge store as the canonical raw-data location
+- treat the embedded vault page as a regenerable private reading copy
+- do not introduce the earlier proposed parallel `sources/full/` hierarchy
+- require an explicit non-full source mode for any future team or public export
+
+The later
+[`source-page-fulltext-implementation-spec.md`](source-page-fulltext-implementation-spec.md)
+is canonical where its existing-page layout differs from the exploratory target
+structure below.
+
 ## Problem
 
 The generated wiki currently links to original source URLs and source metadata,
