@@ -328,6 +328,16 @@ Generated wiki layout rules live in [`src/wiki_contract/`](wiki_contract/). Both
 - Private-vault policy is to embed full raw Markdown in
   `wiki/sources/<source_id>.md`. The external knowledge store remains canonical;
   future team/public exports require an explicit safer source mode.
+- Vault Git strategy: `hatch run wiki-ops-status --vault-git-strategy` or
+  `--vault-git-json`. This is read-only and reports vault size, Git state,
+  content classification, and whether local plain Git init is recommended.
+- Current private-vault Git policy: separate local plain-Git repo at
+  `vault_root`, no remote push yet, no Git LFS yet, commit embedded full source
+  text, and keep `llm-wiki-data` on a separate backup policy.
+- Before each vault commit, run `wiki-ops-status`, `wiki-render --dry-run
+  --require-source-text`, and `wiki-lint`, then inspect `git status` / `git diff`
+  in the vault root and commit manually.
+- Vault `.gitignore` template: `docs/templates/private-vault.gitignore`.
 
 ## Wiki lint
 

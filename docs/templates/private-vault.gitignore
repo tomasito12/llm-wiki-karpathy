@@ -1,0 +1,11 @@
+# Obsidian / editor local state
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
+.trash/
+
+# macOS
+.DS_Store
+
+# Local-only secrets
+.env

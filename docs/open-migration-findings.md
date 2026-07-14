@@ -65,24 +65,82 @@ Git should version the generated end product:
 Git should not be used as the only backup for all raw/canonical knowledge data.
 The knowledge store needs a separate backup/snapshot policy.
 
+### Decision And Resolution
+
+Resolved on 2026-07-13.
+
+**Trade-off decisions:**
+
+| Topic | Decision | Rationale |
+|---|---|---|
+| Plain Git vs Git LFS | Plain Git | Active vault is ~9.5 MiB with Markdown-only largest files |
+| Local-only vs remote | Local-only first | Embedded full source text is private/sensitive |
+| Commit full source text | Yes | Confirmed private-vault product decision from Finding 2 |
+| Vault Git vs knowledge backup | Separate concerns | Vault Git versions generated output only; `llm-wiki-data` still needs its own backup policy |
+| Automatic commits | Deferred | Manual commits until hygiene and backup policy are stable |
+
+`hatch run wiki-ops-status --vault-git-strategy` (or `--vault-git-json`) now
+produces a read-only strategy report with:
+
+- vault size and file counts
+- largest files and markdown/binary split
+- content classification (`managed_generated`, `manual_or_legacy`, `other`)
+- current Git state
+- plain Git / Git LFS / remote recommendations
+- readiness for local `git init`
+
+Verification against the active vault reported:
+
+```text
+total size: 9.47 MiB
+markdown files: 1294
+use plain git: yes
+use git lfs: no
+remote policy: private_remote_later
+commit full source text: yes
+ready for git init: yes
+```
+
+**Operator workflow before each vault commit:**
+
+1. `hatch run wiki-ops-status`
+2. `hatch run wiki-render --dry-run --require-source-text`
+3. `hatch run wiki-lint`
+4. `cd <vault_root> && git status && git diff`
+5. Manual `git commit` in the vault root only after the checks look correct
+
+Use the template at [`docs/templates/private-vault.gitignore`](templates/private-vault.gitignore)
+for the vault-root `.gitignore`. Do not configure a remote push yet.
+
+**First init steps (manual, vault root):**
+
+```bash
+hatch run wiki-ops-status --vault-git-strategy
+cd /Users/plischke/Desktop/Private\ Development/llm-wiki-vault-private
+cp ../llm-wiki-karpathy/docs/templates/private-vault.gitignore .gitignore
+git init
+git add .
+git status
+git commit -m "Initial private vault snapshot after source-access verification"
+```
+
+Finding 1 infrastructure is complete. The active vault has been initialized as a
+local plain-Git repository with an initial manual commit. Remote hosting,
+automatic commits, and knowledge-store backup policy remain separate follow-up
+work.
+
 ### Open Decisions
 
-- Should `llm-wiki-vault-private` be pushed to a private GitHub repository or
-  remain local-only at first?
-- Should full source text be committed into the private vault repo, or should
-  vault pages link to files in the knowledge store?
-- Should Git LFS be considered later if vault size grows too fast?
+- Should `llm-wiki-vault-private` be pushed to a private GitHub repository later?
+- Should Git LFS be introduced if vault size or binary attachments grow materially?
 - What should the automatic commit policy be after successful render?
 
 ### Next Step
 
-Write and implement a small "private vault Git strategy" slice:
-
-1. Measure vault size and file count.
-2. Classify vault contents as safe-to-version or needs-review.
-3. Initialize Git only if the report is acceptable.
-4. Make the first manual commit.
-5. Add later automation only after manual operation feels safe.
+- Complete the first local manual vault commit if not done yet.
+- Keep using `hatch run wiki-ops-status --vault-git-strategy` before future vault commits.
+- Defer remote push until an explicit privacy review.
+- Defer automatic commits until Finding 3/7 hygiene and knowledge-store backup are in place.
 
 ## 2. Raw Source Text Access
 
@@ -504,8 +562,8 @@ Recommended order from here:
 
 1. Path-configuration/dashboard slice — completed.
 2. Raw source text access verification and private full-text decision — completed.
-3. Decide private vault Git strategy.
-4. Initialize/version the private vault if approved.
+3. Private vault Git strategy report and local-only plain-Git decision — completed.
+4. Initialize/version the private vault locally — completed (initial manual commit).
 5. Add read-only vault duplicate/orphan lint.
 6. Review legacy root pages and manual vault folders (`log.md`, `legacy/`,
    `notes/`, `questions/`, root `AGENTS.md`).

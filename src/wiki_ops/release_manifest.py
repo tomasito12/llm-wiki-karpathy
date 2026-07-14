@@ -31,6 +31,7 @@ RELEASE_MANIFEST_AREA_KEYS = (
 )
 ReleaseStatus = Literal["ready", "warning", "blocked"]
 PathKind = Literal["file", "directory", "missing", "other"]
+CheckpointKind = Literal["release", "pre_ingest", "pre_review", "pre_synthesis", "pre_render"]
 
 
 @dataclass(frozen=True)
@@ -78,6 +79,21 @@ class GitMetadata:
 
 
 @dataclass(frozen=True)
+class CheckpointMetadata:
+    """Optional external backup metadata for restoring a release."""
+
+    kind: CheckpointKind
+    snapshot_id: str | None = None
+
+    def to_dict(self) -> dict[str, str | None]:
+        """Return a JSON-serializable checkpoint metadata payload."""
+        return {
+            "kind": self.kind,
+            "snapshot_id": self.snapshot_id,
+        }
+
+
+@dataclass(frozen=True)
 class ReleaseAreaSummary:
     """Hashed summary for one release manifest area."""
 
@@ -102,6 +118,8 @@ class ReleaseManifest:
     status: ReleaseStatus
     status_reasons: list[str]
     code: GitMetadata
+    checkpoint: CheckpointMetadata
+    vault: GitMetadata | None
     paths: dict[str, str]
     areas: dict[str, ReleaseAreaSummary]
     counts: dict[str, int]
@@ -118,6 +136,8 @@ class ReleaseManifest:
             "status": self.status,
             "status_reasons": list(self.status_reasons),
             "code": self.code.to_dict(),
+            "checkpoint": self.checkpoint.to_dict(),
+            "vault": self.vault.to_dict() if self.vault is not None else None,
             "paths": dict(sorted(self.paths.items())),
             "areas": {key: self.areas[key].to_dict() for key in sorted(self.areas)},
             "counts": dict(sorted(self.counts.items())),
@@ -250,6 +270,8 @@ def build_release_manifest(
     created_at: datetime | None = None,
     ops_status: OpsStatus | None = None,
     inventory: RetentionInventory | None = None,
+    checkpoint_kind: CheckpointKind = "release",
+    snapshot_id: str | None = None,
 ) -> ReleaseManifest:
     """Build a release manifest from resolved paths and retention inventory."""
     moment = created_at or datetime.now(UTC)
@@ -263,6 +285,7 @@ def build_release_manifest(
         if key in inventory_by_key
     }
     git = collect_git_metadata(paths.repo_root)
+    vault = collect_git_metadata(paths.vault_root)
     source_text_warning = _source_text_coverage_warning(paths.wiki_dir)
     status, status_reasons, warnings = evaluate_release_status(
         inventory=resolved_inventory,
@@ -295,6 +318,8 @@ def build_release_manifest(
         status=status,
         status_reasons=status_reasons,
         code=git,
+        checkpoint=CheckpointMetadata(kind=checkpoint_kind, snapshot_id=snapshot_id),
+        vault=vault,
         paths=_manifest_paths(paths),
         areas=areas,
         counts=counts,

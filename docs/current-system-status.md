@@ -67,6 +67,10 @@ The current pipeline has these layers in the external operating mode:
 - Private-vault source access uses embedded full raw Markdown in the existing
   `wiki/sources/<source_id>.md` pages. `wiki-ops-status` verifies source access,
   graph coverage, raw Markdown alignment, and generated source wikilinks.
+- Private vault Git strategy is available via
+  `hatch run wiki-ops-status --vault-git-strategy` or `--vault-git-json`.
+  Current recommendation for the active vault: plain local Git, no LFS, no remote
+  push yet, commit embedded full source text in the separate vault repository.
 - The first copy-only migration has been completed and verified.
 - A one-time iCloud migration safety backup has been created for the external
   knowledge store and private generated vault.
@@ -142,6 +146,10 @@ hatch run wiki-ops-status --json
 => source pages=360 embedded full text=360 external URL only=0
 => graph sources missing pages=0 source pages missing raw markdown=0
 => broken source wikilink targets=0
+
+hatch run wiki-ops-status --vault-git-json
+=> total size ~9.47 MiB, use plain git=yes, use git lfs=no
+=> remote policy=private_remote_later, ready for git init=yes
 
 hatch run wiki-synthesis-cache-lint
 => checked=124 ok=124 warnings=0 errors=0

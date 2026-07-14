@@ -8,6 +8,7 @@ from pathlib import Path
 from src.wiki_ops import cleanup_cli
 from src.wiki_ops.release_manifest import (
     SCHEMA_VERSION,
+    CheckpointMetadata,
     GitMetadata,
     ReleaseAreaSummary,
     ReleaseManifest,
@@ -262,6 +263,8 @@ def _write_release_manifest(
         status=status,
         status_reasons=[],
         code=GitMetadata(repo_root=paths.repo_root, git_commit="abc", git_dirty=False),
+        checkpoint=CheckpointMetadata(kind="release", snapshot_id="restic:test"),
+        vault=None,
         paths={
             "raw_dir": str(paths.raw_dir),
             "reviews_dir": str(paths.reviews_dir),

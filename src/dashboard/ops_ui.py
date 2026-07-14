@@ -15,6 +15,7 @@ from src.dashboard.readwise_sync_ui import (
     readwise_token_from_env,
     try_readwise_sync,
 )
+from src.wiki_ops.release_manifest import RELEASE_MANIFEST_AREA_KEYS
 from src.wiki_paths.config import WikiPaths
 
 
@@ -374,6 +375,174 @@ def render_synthesis_operations(
             st.rerun()
 
 
+def render_release_operations(
+    st: Any,
+    *,
+    repo_root: Path,
+    paths_config: Path | None,
+) -> None:
+    """Render release manifest + restore controls."""
+    config_args = _paths_config_args(paths_config)
+    checkpoint_kinds = ["release", "pre_ingest", "pre_review", "pre_synthesis", "pre_render"]
+    with st.container(border=True):
+        st.subheader("Releases and restore")
+        st.caption(
+            "This is a temporary UI over the CLI. Prefer dry-run first; restore requires an "
+            "external snapshot."
+        )
+
+        with st.form("ops_release_manifest_form"):
+            st.markdown("**Release manifest**")
+            release_id = st.text_input(
+                "Release id (optional)",
+                value="",
+                placeholder="YYYYMMDDTHHMMSSZ (leave empty for auto)",
+                help="Optional fixed release id. Leave empty to auto-generate.",
+            ).strip()
+            snapshot_id = st.text_input(
+                "Snapshot id (optional)",
+                value="",
+                placeholder="restic:<snapshot> (recommended when you have one)",
+                help="External snapshot id recorded in the manifest. Restore refuses without it.",
+            ).strip()
+            checkpoint_kind = st.selectbox(
+                "Checkpoint kind",
+                options=checkpoint_kinds,
+                index=0,
+                help="Label the release checkpoint (use pre_* for risky operations).",
+            )
+            col_a, col_b, col_c = st.columns(3)
+            with col_a:
+                submit_preview = st.form_submit_button(
+                    "Preview (dry-run text)",
+                    type="secondary",
+                    use_container_width=False,
+                )
+            with col_b:
+                submit_json = st.form_submit_button(
+                    "Preview as JSON",
+                    type="secondary",
+                    use_container_width=False,
+                )
+            with col_c:
+                confirm_write = st.checkbox(
+                    "I understand this writes a file",
+                    value=False,
+                    help="Required to write a release manifest file.",
+                )
+                submit_write = st.form_submit_button(
+                    "Write release manifest",
+                    type="primary",
+                    use_container_width=False,
+                    disabled=not confirm_write,
+                )
+
+        if submit_preview or submit_json or submit_write:
+            args: list[str] = []
+            if submit_preview:
+                args.append("--release-dry-run")
+            if submit_json:
+                args.append("--release-json")
+            if submit_write:
+                args.extend(["--write-release-manifest", "--yes"])
+            if release_id:
+                args.extend(["--release-id", release_id])
+            if snapshot_id:
+                args.extend(["--snapshot-id", snapshot_id])
+            args.extend(["--checkpoint-kind", checkpoint_kind])
+            _store_result(
+                st,
+                run_dashboard_command(
+                    label="Release manifest",
+                    command=_python_command("src.wiki_ops.status_cli", *config_args, *args),
+                    cwd=repo_root,
+                ),
+            )
+            st.rerun()
+
+        st.divider()
+
+        with st.form("ops_release_restore_form"):
+            st.markdown("**Restore from release snapshot**")
+            selector = (
+                st.text_input(
+                    "Release selector",
+                    value="latest",
+                    help="Use 'latest' or a specific release id (YYYYMMDDTHHMMSSZ).",
+                ).strip()
+                or "latest"
+            )
+            snapshot_root = st.text_input(
+                "Snapshot root path",
+                value="",
+                placeholder="/path/to/snapshot-root",
+                help=(
+                    "Filesystem snapshot root that contains both knowledge_root and vault_root "
+                    "trees (same relative paths as on disk)."
+                ),
+            ).strip()
+            areas = st.multiselect(
+                "Areas to restore",
+                options=list(RELEASE_MANIFEST_AREA_KEYS),
+                default=["render_graph"],
+                help="Select which areas to restore. Use with dry-run first.",
+            )
+            dry_run = st.checkbox("Dry-run (plan only)", value=True)
+            allow_path_mismatch = st.checkbox(
+                "Allow path mismatch during verify",
+                value=False,
+                help="Downgrades path mismatches from error to warning in verify.",
+            )
+            col_l, col_r = st.columns(2)
+            with col_l:
+                output_json = st.checkbox("Output as JSON", value=False)
+            with col_r:
+                confirm_restore = st.checkbox(
+                    "I understand this overwrites files",
+                    value=False,
+                    disabled=dry_run,
+                    help="Required to execute restore (disabled for dry-run).",
+                )
+            run_restore = st.form_submit_button(
+                "Run restore",
+                type="primary",
+                disabled=(not dry_run and not confirm_restore),
+            )
+
+        if run_restore:
+            if not snapshot_root:
+                st.error("Snapshot root path is required.", icon=":material/error:")
+            elif not areas:
+                st.error("Select at least one area to restore.", icon=":material/error:")
+            else:
+                args = [
+                    "--restore-release",
+                    selector,
+                    "--restore-snapshot-root",
+                    snapshot_root,
+                    "--restore-areas",
+                    ",".join(areas),
+                ]
+                if dry_run:
+                    args.append("--restore-dry-run")
+                else:
+                    args.extend(["--yes"])
+                if output_json:
+                    args.append("--restore-json")
+                if allow_path_mismatch:
+                    args.append("--verify-allow-path-mismatch")
+                _store_result(
+                    st,
+                    run_dashboard_command(
+                        label="Release restore",
+                        command=_python_command("src.wiki_ops.status_cli", *config_args, *args),
+                        cwd=repo_root,
+                        timeout_seconds=600,
+                    ),
+                )
+                st.rerun()
+
+
 def render_operations_page(
     st: Any,
     *,
@@ -394,6 +563,11 @@ def render_operations_page(
         )
     with col_right:
         render_synthesis_operations(
+            st,
+            repo_root=repo_root,
+            paths_config=paths_config,
+        )
+        render_release_operations(
             st,
             repo_root=repo_root,
             paths_config=paths_config,
