@@ -14,12 +14,15 @@ import "./styles.css";
 import type {
   ConfigResponse,
   EditableEntityGroup,
+  EntityCounts,
   EntityGroups,
+  EntitySection,
   ManagementDecisionFilter,
   ManagementReview,
   ManagementReviewStatus,
   ManagementWebMode,
   NormalizedEntity,
+  NormalizedEntityGroup,
   QueueItem,
   QueueResponse,
   QueueStatusFilter,
@@ -43,6 +46,22 @@ const DECISION_FILTER_OPTIONS: Array<{ value: ManagementDecisionFilter; label: s
   { value: "reanalyze_requested", label: "Re-analysis requested" }
 ];
 
+const ENTITY_SECTIONS: Array<{ section: EntitySection; title: string }> = [
+  { section: "wiki_entities", title: "Wiki entities" },
+  { section: "source_specific_insights", title: "Source-specific insights" }
+];
+
+const ENTITY_COUNT_LABELS: Array<{ key: keyof EntityCounts; label: string }> = [
+  { key: "topics", label: "topics" },
+  { key: "glossary", label: "glossary" },
+  { key: "trends", label: "trends" },
+  { key: "how_to", label: "how-tos" },
+  { key: "tools", label: "tools" },
+  { key: "models", label: "models" },
+  { key: "implementation_studies", label: "studies" },
+  { key: "signals", label: "signals" },
+  { key: "interview_insights", label: "insights" }
+];
 const QUEUE_LIMIT = 250;
 const DECISION_ACTIONS: Array<{ status: ManagementReviewStatus; label: string }> = [
   { status: "approved", label: "Approve article" },
@@ -229,7 +248,7 @@ export default function App(): ReactElement {
       title: item.title,
       description: item.description,
       tags: item.tags.join(", "),
-      hidden: isHiddenEntity(item)
+      hidden: item.hidden
     });
     setEntityMessage(null);
     setEntityMessageKey(null);
@@ -349,7 +368,7 @@ export default function App(): ReactElement {
               >
                 <span>{item.title}</span>
                 <small>
-                  {item.published_date || "No date"} · {item.entity_counts.topics} topics
+                  {item.published_date || "No date"} · {formatEntityCounts(item.entity_counts)}
                 </small>
                 {item.management_status ? (
                   <small className={`management-badge ${managementStatusClass(item.management_status)}`}>
@@ -500,14 +519,19 @@ function entityKey(group: EditableEntityGroup, index: number): string {
   return `${group}:${index}`;
 }
 
-function isHiddenEntity(item: NormalizedEntity): boolean {
-  const reviewState = item.raw.review_state;
-  return Boolean(
-    reviewState &&
-      typeof reviewState === "object" &&
-      "hidden" in reviewState &&
-      (reviewState as { hidden?: unknown }).hidden === true
+function formatEntityCounts(counts: EntityCounts): string {
+  const parts = ENTITY_COUNT_LABELS.filter(({ key }) => counts[key] > 0).map(
+    ({ key, label }) => `${counts[key]} ${label}`
   );
+  return parts.length > 0 ? parts.join(" · ") : "0 entities";
+}
+
+function entityGroupItems(entities: EntityGroups, group: EditableEntityGroup): NormalizedEntity[] {
+  return entities.groups.find((entry) => entry.group === group)?.items ?? [];
+}
+
+function isHiddenEntity(item: NormalizedEntity): boolean {
+  return item.hidden;
 }
 
 function parseTagInput(input: string): string[] {
@@ -534,7 +558,7 @@ function entityForDraft(
   entities: EntityGroups,
   draft: EntityEditDraft
 ): NormalizedEntity | null {
-  return entities[draft.group].find((item) => item.index === draft.index) ?? null;
+  return entityGroupItems(entities, draft.group).find((item) => item.index === draft.index) ?? null;
 }
 
 function buildEntityEditPayload(
@@ -790,52 +814,91 @@ function EntitySections({
         />
         Show hidden
       </label>
+      {ENTITY_SECTIONS.map((section) => (
+        <EntitySectionBlock
+          editDraft={editDraft}
+          entityError={entityError}
+          entityMessage={entityMessage}
+          entityMessageKey={entityMessageKey}
+          entityPending={entityPending}
+          groups={entities.groups.filter((group) => group.section === section.section)}
+          key={section.section}
+          onCancelEdit={onCancelEdit}
+          onDraftChange={onDraftChange}
+          onSaveEdit={onSaveEdit}
+          onStartEdit={onStartEdit}
+          sectionTitle={section.title}
+          showHidden={showHidden}
+        />
+      ))}
+    </section>
+  );
+}
+
+function EntitySectionBlock({
+  editDraft,
+  entityError,
+  entityMessage,
+  entityMessageKey,
+  entityPending,
+  groups,
+  onCancelEdit,
+  onDraftChange,
+  onSaveEdit,
+  onStartEdit,
+  sectionTitle,
+  showHidden
+}: {
+  editDraft: EntityEditDraft | null;
+  entityError: string | null;
+  entityMessage: string | null;
+  entityMessageKey: string | null;
+  entityPending: boolean;
+  groups: NormalizedEntityGroup[];
+  onCancelEdit: () => void;
+  onDraftChange: (draft: EntityEditDraft) => void;
+  onSaveEdit: () => void;
+  onStartEdit: (group: EditableEntityGroup, item: NormalizedEntity) => void;
+  sectionTitle: string;
+  showHidden: boolean;
+}): ReactElement | null {
+  const visibleGroups = groups.filter((group) => {
+    const visibleItems = showHidden
+      ? group.items
+      : group.items.filter((item) => !isHiddenEntity(item));
+    return visibleItems.length > 0;
+  });
+  if (visibleGroups.length === 0) {
+    return null;
+  }
+  return (
+    <section
+      className={
+        sectionTitle === "Source-specific insights"
+          ? "entity-section source-specific-section"
+          : "entity-section"
+      }
+    >
+      <h3 className="entity-section-title">{sectionTitle}</h3>
       <div className="entity-grid">
-        <EntityGroup
-          editDraft={editDraft}
-          entityError={entityError}
-          entityMessage={entityMessage}
-          entityMessageKey={entityMessageKey}
-          entityPending={entityPending}
-          group="topics"
-          title="Topics"
-          items={entities.topics}
-          onCancelEdit={onCancelEdit}
-          onDraftChange={onDraftChange}
-          onSaveEdit={onSaveEdit}
-          onStartEdit={onStartEdit}
-          showHidden={showHidden}
-        />
-        <EntityGroup
-          editDraft={editDraft}
-          entityError={entityError}
-          entityMessage={entityMessage}
-          entityMessageKey={entityMessageKey}
-          entityPending={entityPending}
-          group="glossary"
-          title="Glossary"
-          items={entities.glossary}
-          onCancelEdit={onCancelEdit}
-          onDraftChange={onDraftChange}
-          onSaveEdit={onSaveEdit}
-          onStartEdit={onStartEdit}
-          showHidden={showHidden}
-        />
-        <EntityGroup
-          editDraft={editDraft}
-          entityError={entityError}
-          entityMessage={entityMessage}
-          entityMessageKey={entityMessageKey}
-          entityPending={entityPending}
-          group="trends"
-          title="Trends"
-          items={entities.trends}
-          onCancelEdit={onCancelEdit}
-          onDraftChange={onDraftChange}
-          onSaveEdit={onSaveEdit}
-          onStartEdit={onStartEdit}
-          showHidden={showHidden}
-        />
+        {visibleGroups.map((group) => (
+          <EntityGroup
+            editDraft={editDraft}
+            entityError={entityError}
+            entityMessage={entityMessage}
+            entityMessageKey={entityMessageKey}
+            entityPending={entityPending}
+            group={group.group}
+            items={group.items}
+            key={group.group}
+            onCancelEdit={onCancelEdit}
+            onDraftChange={onDraftChange}
+            onSaveEdit={onSaveEdit}
+            onStartEdit={onStartEdit}
+            showHidden={showHidden}
+            title={group.label}
+          />
+        ))}
       </div>
     </section>
   );
@@ -1003,6 +1066,27 @@ function EntityCard({
           ))}
         </div>
       ) : null}
+      {item.types.length > 0 ? (
+        <div className="tag-cloud compact">
+          {item.types.map((type) => (
+            <span className="type-chip" key={type}>
+              {type}
+            </span>
+          ))}
+        </div>
+      ) : null}
+      {item.detail_lists.map((detailList) => (
+        <details className="entity-detail-list" key={detailList.label}>
+          <summary>
+            {detailList.label} ({detailList.items.length})
+          </summary>
+          <ul>
+            {detailList.items.map((entry) => (
+              <li key={entry}>{entry}</li>
+            ))}
+          </ul>
+        </details>
+      ))}
       {item.evidence ? (
         <details className="evidence-details">
           <summary>Evidence</summary>

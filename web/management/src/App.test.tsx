@@ -4,6 +4,71 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import App from "./App";
 
+function makeEntity(
+  index: number,
+  title: string,
+  options: {
+    description?: string;
+    tags?: string[];
+    hidden?: boolean;
+    render_category?: string;
+    render_mode?: "merged" | "individual";
+    section?: "wiki_entities" | "source_specific_insights";
+  } = {}
+) {
+  return {
+    index,
+    title,
+    description: options.description ?? "",
+    tags: options.tags ?? [],
+    types: [],
+    evidence: "",
+    hidden: options.hidden ?? false,
+    render_category: options.render_category ?? "topic",
+    render_mode: options.render_mode ?? "merged",
+    detail_lists: [],
+    raw: {}
+  };
+}
+
+function buildEntityGroups(
+  entries: Array<{
+    group:
+      | "topics"
+      | "glossary"
+      | "trends"
+      | "how_to"
+      | "tools"
+      | "models"
+      | "implementation_studies"
+      | "signals"
+      | "interview_insights";
+    label: string;
+    section: "wiki_entities" | "source_specific_insights";
+    items: ReturnType<typeof makeEntity>[];
+  }>
+) {
+  const byGroup = Object.fromEntries(entries.map((entry) => [entry.group, entry.items]));
+  return {
+    topics: byGroup.topics ?? [],
+    glossary: byGroup.glossary ?? [],
+    trends: byGroup.trends ?? [],
+    groups: entries
+  };
+}
+
+const emptyEntityCounts = {
+  topics: 0,
+  glossary: 0,
+  trends: 0,
+  how_to: 0,
+  tools: 0,
+  models: 0,
+  implementation_studies: 0,
+  signals: 0,
+  interview_insights: 0
+};
+
 const configPayload = {
   mode: "write_enabled",
   capabilities: ["review_decision", "review_entity_edit", "review_finish"],
@@ -43,7 +108,7 @@ const queuePayload = {
       status: "in_progress",
       stale: null,
       tags: ["api"],
-      entity_counts: { topics: 1, glossary: 0, trends: 0 },
+      entity_counts: { ...emptyEntityCounts, topics: 1 },
       review_json_path: "/tmp/reviews/newer-source/review.json",
       raw_md_available: true,
       management_status: null
@@ -58,7 +123,7 @@ const queuePayload = {
       status: "in_progress",
       stale: null,
       tags: ["api"],
-      entity_counts: { topics: 1, glossary: 1, trends: 1 },
+      entity_counts: { ...emptyEntityCounts, topics: 1, glossary: 1, trends: 1 },
       review_json_path: "/tmp/reviews/api-source/review.json",
       raw_md_available: true,
       management_status: null
@@ -94,7 +159,7 @@ const finishedQueuePayload = {
       status: "finished",
       stale: null,
       tags: ["finished"],
-      entity_counts: { topics: 0, glossary: 0, trends: 0 },
+      entity_counts: emptyEntityCounts,
       review_json_path: "/tmp/reviews/finished-source/review.json",
       raw_md_available: false,
       management_status: "approved"
@@ -127,38 +192,42 @@ const sourcePayload = {
     key_insights: ["API insight"]
   },
   tags: ["api"],
-  entities: {
-    topics: [
-      {
-        index: 0,
-        title: "API Topic",
-        description: "Topic description",
-        tags: ["api"],
-        evidence: "Evidence",
-        raw: {}
-      }
-    ],
-    glossary: [
-      {
-        index: 0,
-        title: "API Term",
-        description: "Term definition",
-        tags: [],
-        evidence: "",
-        raw: {}
-      }
-    ],
-    trends: [
-      {
-        index: 0,
-        title: "API Trend",
-        description: "Trend description",
-        tags: [],
-        evidence: "",
-        raw: {}
-      }
-    ]
-  },
+  entities: buildEntityGroups([
+    {
+      group: "topics",
+      label: "Topics",
+      section: "wiki_entities",
+      items: [
+        makeEntity(0, "API Topic", {
+          description: "Topic description",
+          tags: ["api"],
+          render_category: "topic"
+        })
+      ]
+    },
+    {
+      group: "glossary",
+      label: "Glossary",
+      section: "wiki_entities",
+      items: [
+        makeEntity(0, "API Term", {
+          description: "Term definition",
+          render_category: "glossary"
+        })
+      ]
+    },
+    {
+      group: "trends",
+      label: "Trends",
+      section: "wiki_entities",
+      items: [
+        makeEntity(0, "API Trend", {
+          description: "Trend description",
+          render_category: "trend"
+        })
+      ]
+    }
+  ]),
   management_review: null,
   debug: {
     artifact: { llm_output: { source_summary: { summary: "API summary" } } }
@@ -194,11 +263,7 @@ const finishedSourcePayload = {
     key_insights: []
   },
   tags: ["finished"],
-  entities: {
-    topics: [],
-    glossary: [],
-    trends: []
-  }
+  entities: buildEntityGroups([]),
 };
 
 const rawPayload = {
@@ -234,49 +299,92 @@ const finishResponse = {
 const editedSourcePayload = {
   ...sourcePayload,
   tags: ["api", "edited"],
-  entities: {
-    ...sourcePayload.entities,
-    topics: [
-      {
-        ...sourcePayload.entities.topics[0],
-        title: "Edited topic",
-        description: "Edited description.",
-        tags: ["api", "edited"]
-      }
-    ]
-  }
+  entities: buildEntityGroups([
+    {
+      group: "topics",
+      label: "Topics",
+      section: "wiki_entities",
+      items: [
+        makeEntity(0, "Edited topic", {
+          description: "Edited description.",
+          tags: ["api", "edited"],
+          render_category: "topic"
+        })
+      ]
+    },
+    {
+      group: "glossary",
+      label: "Glossary",
+      section: "wiki_entities",
+      items: sourcePayload.entities.glossary
+    },
+    {
+      group: "trends",
+      label: "Trends",
+      section: "wiki_entities",
+      items: sourcePayload.entities.trends
+    }
+  ])
 };
 
 const hiddenSourcePayload = {
   ...sourcePayload,
-  entities: {
-    ...sourcePayload.entities,
-    topics: [
-      {
-        ...sourcePayload.entities.topics[0],
-        raw: {
-          review_state: {
-            hidden: true,
-            hidden_at: "2026-07-15T12:34:56Z",
-            hidden_by: "plischke"
-          }
-        }
-      }
-    ]
-  }
+  entities: buildEntityGroups([
+    {
+      group: "topics",
+      label: "Topics",
+      section: "wiki_entities",
+      items: [
+        makeEntity(0, "API Topic", {
+          description: "Topic description",
+          tags: ["api"],
+          hidden: true,
+          render_category: "topic"
+        })
+      ]
+    },
+    {
+      group: "glossary",
+      label: "Glossary",
+      section: "wiki_entities",
+      items: sourcePayload.entities.glossary
+    },
+    {
+      group: "trends",
+      label: "Trends",
+      section: "wiki_entities",
+      items: sourcePayload.entities.trends
+    }
+  ])
 };
 
 const noDescriptionSourcePayload = {
   ...sourcePayload,
-  entities: {
-    ...sourcePayload.entities,
-    topics: [
-      {
-        ...sourcePayload.entities.topics[0],
-        description: ""
-      }
-    ]
-  }
+  entities: buildEntityGroups([
+    {
+      group: "topics",
+      label: "Topics",
+      section: "wiki_entities",
+      items: [
+        makeEntity(0, "API Topic", {
+          tags: ["api"],
+          render_category: "topic"
+        })
+      ]
+    },
+    {
+      group: "glossary",
+      label: "Glossary",
+      section: "wiki_entities",
+      items: sourcePayload.entities.glossary
+    },
+    {
+      group: "trends",
+      label: "Trends",
+      section: "wiki_entities",
+      items: sourcePayload.entities.trends
+    }
+  ])
 };
 
 const entityEditResponse = {
@@ -958,5 +1066,210 @@ describe("App", () => {
     expect(await screen.findByRole("heading", { name: "Finished Article" })).toBeInTheDocument();
     expect(await screen.findByText("Finished summary")).toBeInTheDocument();
     expect(screen.queryByText("API summary")).not.toBeInTheDocument();
+  });
+
+  it("renders expanded entity groups and source-specific insights", async () => {
+    const fullCoverageSourcePayload = {
+      ...sourcePayload,
+      entities: buildEntityGroups([
+        {
+          group: "topics",
+          label: "Topics",
+          section: "wiki_entities",
+          items: sourcePayload.entities.topics
+        },
+        {
+          group: "how_to",
+          label: "How-tos",
+          section: "wiki_entities",
+          items: [
+            makeEntity(0, "How to cache prompts", {
+              description: "Cache repeated prefixes.",
+              render_category: "how_to"
+            })
+          ]
+        },
+        {
+          group: "tools",
+          label: "Tools",
+          section: "wiki_entities",
+          items: [
+            makeEntity(0, "Prompt cache", {
+              description: "Caching tool.",
+              render_category: "tool"
+            })
+          ]
+        },
+        {
+          group: "implementation_studies",
+          label: "Implementation studies",
+          section: "source_specific_insights",
+          items: [
+            makeEntity(0, "Telecom voicebot study", {
+              description: "Evaluation at scale.",
+              render_category: "impl_study",
+              render_mode: "individual"
+            })
+          ]
+        },
+        {
+          group: "signals",
+          label: "Signals",
+          section: "source_specific_insights",
+          items: [
+            makeEntity(0, "Signal headline", {
+              description: "Signal summary.",
+              render_category: "signal",
+              render_mode: "individual"
+            })
+          ]
+        }
+      ])
+    };
+    vi.mocked(fetch).mockImplementation(async (input: RequestInfo | URL) => {
+      const url = String(input);
+      if (url.includes("/api/config")) {
+        return Response.json(configPayload);
+      }
+      if (url.includes("/api/review/queue")) {
+        return Response.json({
+          ...queuePayload,
+          items: [{ ...queuePayload.items[1], entity_counts: { ...emptyEntityCounts, topics: 1, how_to: 1, tools: 1, implementation_studies: 1, signals: 1 } }]
+        });
+      }
+      if (url.includes("/api/review/source/api-source")) {
+        return Response.json(fullCoverageSourcePayload);
+      }
+      return new Response("not found", { status: 404 });
+    });
+    render(<App />);
+
+    expect(await screen.findByText("How to cache prompts")).toBeInTheDocument();
+    expect(screen.getByText("Prompt cache")).toBeInTheDocument();
+    expect(screen.getByText("Source-specific insights")).toBeInTheDocument();
+    expect(screen.getByText("Telecom voicebot study")).toBeInTheDocument();
+    expect(screen.getByText("Signal headline")).toBeInTheDocument();
+    expect(screen.getByText(/1 topics · 1 how-tos · 1 tools · 1 studies · 1 signals/)).toBeInTheDocument();
+  });
+
+  it("edits a how-to through the existing entity endpoint", async () => {
+    const howToSourcePayload = {
+      ...sourcePayload,
+      entities: buildEntityGroups([
+        {
+          group: "how_to",
+          label: "How-tos",
+          section: "wiki_entities",
+          items: [
+            makeEntity(0, "How to cache prompts", {
+              description: "Cache repeated prefixes.",
+              render_category: "how_to"
+            })
+          ]
+        }
+      ])
+    };
+    vi.mocked(fetch).mockImplementation(async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = String(input);
+      if (url.includes("/api/config")) {
+        return Response.json(configPayload);
+      }
+      if (url.includes("/api/review/source/api-source/entity") && init?.method === "PATCH") {
+        return Response.json({
+          ...entityEditResponse,
+          group: "how_to",
+          source: {
+            ...howToSourcePayload,
+            entities: buildEntityGroups([
+              {
+                group: "how_to",
+                label: "How-tos",
+                section: "wiki_entities",
+                items: [
+                  makeEntity(0, "Edited how-to", {
+                    description: "Edited answer.",
+                    render_category: "how_to"
+                  })
+                ]
+              }
+            ])
+          }
+        });
+      }
+      if (url.includes("/api/review/queue")) {
+        return Response.json({ ...queuePayload, items: [queuePayload.items[1]] });
+      }
+      if (url.includes("/api/review/source/api-source")) {
+        return Response.json(howToSourcePayload);
+      }
+      return new Response("not found", { status: 404 });
+    });
+    render(<App />);
+
+    await userEvent.click(await screen.findByRole("button", { name: "Edit How to cache prompts" }));
+    await userEvent.clear(screen.getByLabelText("Entity title"));
+    await userEvent.type(screen.getByLabelText("Entity title"), "Edited how-to");
+    await userEvent.click(screen.getByRole("button", { name: "Save entity" }));
+
+    await waitFor(() => {
+      expect(vi.mocked(fetch)).toHaveBeenCalledWith(
+        "/api/review/source/api-source/entity",
+        expect.objectContaining({
+          body: JSON.stringify({
+            group: "how_to",
+            index: 0,
+            title: "Edited how-to"
+          }),
+          method: "PATCH"
+        })
+      );
+    });
+    expect(await screen.findByText("Edited how-to")).toBeInTheDocument();
+  });
+
+  it("hides source-specific insights from the default list until show hidden is enabled", async () => {
+    const hiddenInsightPayload = {
+      ...sourcePayload,
+      entities: buildEntityGroups([
+        {
+          group: "signals",
+          label: "Signals",
+          section: "source_specific_insights",
+          items: [
+            makeEntity(0, "Hidden signal", {
+              description: "Hidden summary.",
+              hidden: true,
+              render_category: "signal",
+              render_mode: "individual"
+            })
+          ]
+        }
+      ])
+    };
+    vi.mocked(fetch).mockImplementation(async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = String(input);
+      if (url.includes("/api/config")) {
+        return Response.json(configPayload);
+      }
+      if (url.includes("/api/review/source/api-source/entity") && init?.method === "PATCH") {
+        return Response.json({
+          ...entityEditResponse,
+          group: "signals",
+          source: hiddenInsightPayload
+        });
+      }
+      if (url.includes("/api/review/queue")) {
+        return Response.json({ ...queuePayload, items: [queuePayload.items[1]] });
+      }
+      if (url.includes("/api/review/source/api-source")) {
+        return Response.json(hiddenInsightPayload);
+      }
+      return new Response("not found", { status: 404 });
+    });
+    render(<App />);
+
+    expect(screen.queryByText("Hidden signal")).not.toBeInTheDocument();
+    await userEvent.click(await screen.findByLabelText("Show hidden"));
+    expect(await screen.findByText("Hidden signal")).toBeInTheDocument();
   });
 });

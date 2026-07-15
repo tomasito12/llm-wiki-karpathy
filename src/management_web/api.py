@@ -25,6 +25,7 @@ from src.management_web.models import (
     SourceDetailResponse,
 )
 from src.management_web.review_data import (
+    EntityEditConflictError,
     FinishConflictError,
     build_review_queue,
     finish_review,
@@ -154,6 +155,8 @@ def create_app(
         """Apply a targeted edit to one normalized entity card."""
         try:
             return update_review_entity(app.state.paths, source_id, edit)
+        except EntityEditConflictError as exc:
+            raise HTTPException(status_code=409, detail=str(exc)) from exc
         except ValueError as exc:
             raise HTTPException(status_code=400, detail=str(exc)) from exc
         except FileNotFoundError as exc:

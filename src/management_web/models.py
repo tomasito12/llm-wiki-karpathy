@@ -25,7 +25,19 @@ ManagementDecisionFilter = Literal[
     "skipped",
     "reanalyze_requested",
 ]
-EditableEntityGroup = Literal["topics", "glossary", "trends"]
+EditableEntityGroup = Literal[
+    "topics",
+    "glossary",
+    "trends",
+    "how_to",
+    "tools",
+    "models",
+    "implementation_studies",
+    "signals",
+    "interview_insights",
+]
+EntitySection = Literal["wiki_entities", "source_specific_insights"]
+RenderMode = Literal["merged", "individual"]
 
 
 class HealthResponse(BaseModel):
@@ -51,6 +63,12 @@ class EntityCounts(BaseModel):
     topics: int = 0
     glossary: int = 0
     trends: int = 0
+    how_to: int = 0
+    tools: int = 0
+    models: int = 0
+    implementation_studies: int = 0
+    signals: int = 0
+    interview_insights: int = 0
 
 
 class QueueCounts(BaseModel):
@@ -128,6 +146,15 @@ class SourceSummary(BaseModel):
     key_insights: list[str]
 
 
+class EntityDetailList(BaseModel):
+    """Read-only supporting list values for one entity card."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    label: str
+    items: list[str]
+
+
 class NormalizedEntity(BaseModel):
     """One normalized extracted entity for compact display."""
 
@@ -137,16 +164,33 @@ class NormalizedEntity(BaseModel):
     title: str
     description: str
     tags: list[str]
+    types: list[str] = []
     evidence: str
+    hidden: bool = False
+    render_category: str
+    render_mode: RenderMode
+    detail_lists: list[EntityDetailList] = []
     raw: dict[str, Any]
 
 
+class NormalizedEntityGroup(BaseModel):
+    """One configured entity group with normalized items."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    group: EditableEntityGroup
+    label: str
+    section: EntitySection
+    items: list[NormalizedEntity]
+
+
 class EntityGroups(BaseModel):
-    """Entity groups rendered by the first read-only review slice."""
+    """Entity groups rendered in the management review workspace."""
 
     topics: list[NormalizedEntity]
     glossary: list[NormalizedEntity]
     trends: list[NormalizedEntity]
+    groups: list[NormalizedEntityGroup]
 
 
 class DebugPayload(BaseModel):

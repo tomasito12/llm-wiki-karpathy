@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+from typing import Any, cast
 
 from fastapi.testclient import TestClient
 
@@ -27,6 +28,16 @@ def _write_raw(paths: WikiPaths, source_id: str, *, markdown: str | None = "Raw 
         (paths.raw_dir / f"{source_id}.md").write_text(markdown, encoding="utf-8")
 
 
+def _review_node(llm_item: dict[str, Any]) -> dict[str, Any]:
+    """Return a render-aligned review node for API test artifacts."""
+    return {
+        "proposal_status": "approved",
+        "llm_item": llm_item,
+        "sections": {},
+        "tags": {},
+    }
+
+
 def _write_artifact(
     paths: WikiPaths,
     source_id: str,
@@ -38,14 +49,22 @@ def _write_artifact(
     review_dir = paths.reviews_dir / source_id
     review_dir.mkdir(parents=True)
     review_finished_at = "2026-07-15T10:00:00Z" if finished else None
-    artifact = {
+    llm_output: dict[str, Any] = {
+        "source_summary": {"summary": "API summary", "key_insights": ["API insight"]},
+        "topics": [{"topic_title": "API Topic", "topic_tags": ["api"]}],
+        "glossary": [{"term": "API Term"}],
+        "industry_trends": [{"trend_title": "API Trend"}],
+    }
+    artifact: dict[str, Any] = {
         "source": {"title": "API Article", "readwise_id": "rw-api"},
         "review_analytics": {"review_finished_at": review_finished_at},
-        "llm_output": {
-            "source_summary": {"summary": "API summary", "key_insights": ["API insight"]},
-            "topics": [{"topic_title": "API Topic", "topic_tags": ["api"]}],
-            "glossary": [{"term": "API Term"}],
-            "industry_trends": [{"trend_title": "API Trend"}],
+        "llm_output": llm_output,
+        "review": {
+            "topics": [_review_node(cast(dict[str, Any], llm_output["topics"][0]))],
+            "glossary": [_review_node(cast(dict[str, Any], llm_output["glossary"][0]))],
+            "industry_trends": [
+                _review_node(cast(dict[str, Any], llm_output["industry_trends"][0]))
+            ],
         },
     }
     if management_status is not None:
@@ -312,9 +331,9 @@ def test_entity_endpoint_hides_entity(tmp_path: Path) -> None:
     )
 
     assert response.status_code == 200
-    raw_state = response.json()["source"]["entities"]["topics"][0]["raw"]["review_state"]
-    assert raw_state["hidden"] is True
-    assert raw_state["hidden_by"] == "plischke"
+    assert response.json()["source"]["entities"]["topics"][0]["hidden"] is True
+    artifact = json.loads((paths.reviews_dir / "api-source" / "review.json").read_text())
+    assert artifact["review"]["topics"][0]["proposal_status"] == "rejected"
 
 
 def test_entity_endpoint_rejects_invalid_requests(tmp_path: Path) -> None:
@@ -341,7 +360,7 @@ def test_entity_endpoint_rejects_invalid_requests(tmp_path: Path) -> None:
     assert (
         client.patch(
             "/api/review/source/api-source/entity",
-            json={"group": "tools", "index": 0, "title": "Edited"},
+            json={"group": "future_entities", "index": 0, "title": "Edited"},
         ).status_code
         == 400
     )

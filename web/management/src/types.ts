@@ -6,7 +6,18 @@ export type ManagementReviewStatus =
   | "skipped"
   | "reanalyze_requested";
 export type ManagementDecisionFilter = ManagementReviewStatus | "not_reviewed" | "all";
-export type EditableEntityGroup = "topics" | "glossary" | "trends";
+export type EditableEntityGroup =
+  | "topics"
+  | "glossary"
+  | "trends"
+  | "how_to"
+  | "tools"
+  | "models"
+  | "implementation_studies"
+  | "signals"
+  | "interview_insights";
+export type EntitySection = "wiki_entities" | "source_specific_insights";
+export type RenderMode = "merged" | "individual";
 
 export type ManagementWebMode = "write_enabled";
 
@@ -20,6 +31,12 @@ export interface EntityCounts {
   topics: number;
   glossary: number;
   trends: number;
+  how_to: number;
+  tools: number;
+  models: number;
+  implementation_studies: number;
+  signals: number;
+  interview_insights: number;
 }
 
 export interface QueueCounts {
@@ -83,19 +100,37 @@ export interface SourceSummary {
   key_insights: string[];
 }
 
+export interface EntityDetailList {
+  label: string;
+  items: string[];
+}
+
 export interface NormalizedEntity {
   index: number;
   title: string;
   description: string;
   tags: string[];
+  types: string[];
   evidence: string;
+  hidden: boolean;
+  render_category: string;
+  render_mode: RenderMode;
+  detail_lists: EntityDetailList[];
   raw: Record<string, unknown>;
+}
+
+export interface NormalizedEntityGroup {
+  group: EditableEntityGroup;
+  label: string;
+  section: EntitySection;
+  items: NormalizedEntity[];
 }
 
 export interface EntityGroups {
   topics: NormalizedEntity[];
   glossary: NormalizedEntity[];
   trends: NormalizedEntity[];
+  groups: NormalizedEntityGroup[];
 }
 
 export interface ManagementReview {

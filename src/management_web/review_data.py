@@ -1,4 +1,4 @@
-"""Read-only loading and normalization for management review artifacts."""
+"""Loading, normalization, and render-aligned writes for management review artifacts."""
 
 from __future__ import annotations
 
@@ -11,11 +11,19 @@ from pathlib import Path
 from typing import Any, cast, get_args
 
 from src.ingest_queue.queue import IngestItem, list_ingest_items
+from src.management_web.entity_config import (
+    ENTITY_CONFIG_BY_GROUP,
+    ENTITY_CONFIGS,
+    LLM_OUTPUT_NON_ENTITY_KEYS,
+    SUPPORTED_ARTIFACT_KEYS,
+    EditableEntityConfig,
+)
 from src.management_web.models import (
     DebugPayload,
     DecisionCounts,
     EditableEntityGroup,
     EntityCounts,
+    EntityDetailList,
     EntityEditRequest,
     EntityEditResponse,
     EntityGroups,
@@ -27,6 +35,7 @@ from src.management_web.models import (
     ManagementReviewRequest,
     ManagementReviewStatus,
     NormalizedEntity,
+    NormalizedEntityGroup,
     QueueCounts,
     QueueResponse,
     QueueStatusFilter,
@@ -39,51 +48,27 @@ from src.management_web.models import (
 )
 from src.pipeline.atomic import atomic_write_json
 from src.wiki_paths.config import WikiPaths
+from src.wiki_render.resolve import (
+    list_value,
+    proposal_is_included,
+    reviewed_tags,
+    reviewed_types,
+    scalar_value,
+)
+from src.wiki_render.resolve import (
+    llm_item as review_llm_item,
+)
 
 _SOURCE_ID_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_-]*$")
 _MANAGEMENT_REVIEW_STATUSES = set(get_args(ManagementReviewStatus))
-_ENTITY_GROUP_PATHS: dict[str, tuple[str, str]] = {
-    "topics": ("llm_output", "topics"),
-    "glossary": ("llm_output", "glossary"),
-    "trends": ("llm_output", "industry_trends"),
-}
-_TITLE_KEYS = {
-    "topics": ("topic", "topic_title", "title"),
-    "glossary": ("term", "glossary_term", "title"),
-    "trends": ("trend", "trend_title", "title"),
-}
-_DESCRIPTION_KEYS = {
-    "topics": (
-        "topic_description",
-        "knowledge_summary",
-        "operational_insight",
-        "description",
-        "summary",
-    ),
-    "glossary": (
-        "definition",
-        "proposed_definition",
-        "knowledge_summary",
-        "description",
-        "summary",
-    ),
-    "trends": (
-        "trend_description",
-        "knowledge_summary",
-        "operational_insight",
-        "description",
-        "summary",
-    ),
-}
-_TAG_KEYS = {
-    "topics": ("topic_tags", "proposed_tags", "primary_tag", "secondary_tag"),
-    "glossary": ("tags", "glossary_tags", "proposed_tags", "primary_tag", "secondary_tag"),
-    "trends": ("trend_tags", "proposed_tags", "primary_tag", "secondary_tag"),
-}
 
 
 class FinishConflictError(ValueError):
     """Raised when finishing would overwrite a conflicting management decision."""
+
+
+class EntityEditConflictError(ValueError):
+    """Raised when an entity edit cannot align review and llm_output nodes."""
 
 
 def validate_source_id(source_id: str) -> str:
@@ -337,13 +322,32 @@ def update_review_entity(
     )
     entity_group = _validate_entity_group(request.group)
     _validate_entity_edit_request(request)
-    entities = _artifact_entity_list(artifact, entity_group)
-    if request.index < 0 or request.index >= len(entities):
+    config = ENTITY_CONFIG_BY_GROUP[entity_group]
+    review_nodes = _review_entity_list(artifact, config)
+    llm_items = _llm_entity_list(artifact, config)
+    if request.index < 0 or request.index >= max(len(review_nodes), len(llm_items)):
         raise ValueError(f"Entity index out of range: {request.index}")
-    entity = entities[request.index]
-    if not isinstance(entity, dict):
-        raise ValueError(f"Entity at index {request.index} is not editable")
-    _apply_entity_edit(entity, request, entity_group, reviewed_by=reviewed_by)
+    llm_has_item = request.index < len(llm_items) and isinstance(
+        llm_items[request.index], dict
+    )
+    review_has_node = request.index < len(review_nodes) and isinstance(
+        review_nodes[request.index], dict
+    )
+    if llm_has_item and not review_has_node:
+        raise EntityEditConflictError(
+            f"Review node missing for {entity_group} index {request.index}"
+        )
+    if not review_has_node:
+        raise ValueError(f"Entity index out of range: {request.index}")
+    review_node = review_nodes[request.index]
+    llm_entity = llm_items[request.index] if llm_has_item else None
+    _apply_entity_edit(
+        review_node,
+        llm_entity,
+        request,
+        config,
+        reviewed_by=reviewed_by,
+    )
     backup_path = _write_review_artifact_with_backup(
         review_json_path,
         artifact,
@@ -387,6 +391,7 @@ def finish_review(
     if not _has_analysis_payload(artifact):
         raise ValueError("Cannot finish review artifact with no analysis payload")
     _ensure_finish_allowed(artifact, force=request.force)
+    _ensure_finish_entity_coverage(artifact)
     finished_at = _utc_timestamp()
     analytics = artifact.get("review_analytics")
     if not isinstance(analytics, dict):
@@ -464,19 +469,21 @@ def normalize_source_summary(artifact: dict[str, Any] | None) -> SourceSummary:
 
 
 def normalize_entities(artifact: dict[str, Any] | None) -> EntityGroups:
-    """Normalize the entity groups rendered in the first review slice.
+    """Normalize all supported entity groups for the management review workspace.
 
     Args:
         artifact: Loaded review artifact, when available.
 
     Returns:
-        Entity groups for topics, glossary, and trends.
+        Entity groups including legacy topic/glossary/trend fields and generic groups.
     """
-    llm_output = _dict_value(artifact, "llm_output")
+    groups = [_normalize_entity_group(artifact, config) for config in ENTITY_CONFIGS]
+    by_group = {group.group: group for group in groups}
     return EntityGroups(
-        topics=_normalize_entity_list(llm_output.get("topics"), kind="topic"),
-        glossary=_normalize_entity_list(llm_output.get("glossary"), kind="glossary"),
-        trends=_normalize_entity_list(llm_output.get("industry_trends"), kind="trend"),
+        topics=by_group["topics"].items,
+        glossary=by_group["glossary"].items,
+        trends=by_group["trends"].items,
+        groups=groups,
     )
 
 
@@ -491,8 +498,8 @@ def collect_tags(artifact: dict[str, Any] | None) -> list[str]:
     """
     tags: set[str] = set()
     entities = normalize_entities(artifact)
-    for group in (entities.topics, entities.glossary, entities.trends):
-        for entity in group:
+    for group in entities.groups:
+        for entity in group.items:
             tags.update(entity.tags)
     return sorted(tags)
 
@@ -540,11 +547,7 @@ def _queue_item(paths: WikiPaths, item: IngestItem):
         status=classify_review_status(item, artifact),
         stale=None,
         tags=collect_tags(artifact),
-        entity_counts=EntityCounts(
-            topics=len(entities.topics),
-            glossary=len(entities.glossary),
-            trends=len(entities.trends),
-        ),
+        entity_counts=_entity_counts(entities),
         review_json_path=str(item.review_json_path),
         raw_md_available=item.raw_md_path is not None,
         management_status=management_review.status if management_review else None,
@@ -554,9 +557,32 @@ def _queue_item(paths: WikiPaths, item: IngestItem):
 def _has_analysis_payload(artifact: dict[str, Any]) -> bool:
     """Return whether an artifact contains pre-analysis output, not only a decision."""
     llm_output = _dict_value(artifact, "llm_output")
-    return any(
-        key in llm_output for key in ("source_summary", "topics", "glossary", "industry_trends")
-    )
+    if isinstance(llm_output.get("source_summary"), dict):
+        return True
+    return bool(_llm_output_entity_list_keys(llm_output))
+
+
+def _llm_output_entity_list_keys(llm_output: dict[str, Any]) -> list[str]:
+    """Return non-empty entity-like list keys present under ``llm_output``."""
+    keys: list[str] = []
+    for key, value in llm_output.items():
+        if key in LLM_OUTPUT_NON_ENTITY_KEYS:
+            continue
+        if not isinstance(value, list) or not value:
+            continue
+        if not all(isinstance(item, dict) for item in value):
+            continue
+        keys.append(key)
+    return keys
+
+
+def unsupported_llm_output_entity_keys(llm_output: dict[str, Any]) -> list[str]:
+    """Return unsupported entity list keys that would bypass management-web coverage."""
+    return [
+        key
+        for key in _llm_output_entity_list_keys(llm_output)
+        if key not in SUPPORTED_ARTIFACT_KEYS
+    ]
 
 
 def _utc_timestamp() -> str:
@@ -680,60 +706,250 @@ def _queue_item_matches_query(item: Any, query: str) -> bool:
     return query in haystack
 
 
-def _normalize_entity_list(raw_items: Any, *, kind: str) -> list[NormalizedEntity]:
-    """Normalize list-like entity payloads into display cards."""
-    if not isinstance(raw_items, list):
-        return []
-    return [_normalize_entity(item, kind=kind, index=index) for index, item in enumerate(raw_items)]
+def _normalize_entity_group(
+    artifact: dict[str, Any] | None,
+    config: EditableEntityConfig,
+) -> NormalizedEntityGroup:
+    """Normalize one configured entity group from review and llm_output data."""
+    review_nodes = _review_entity_list(artifact or {}, config)
+    llm_items = _llm_entity_list(artifact or {}, config)
+    item_count = max(len(review_nodes), len(llm_items))
+    items = [
+        _normalize_entity_item(
+            config,
+            review_nodes[index] if index < len(review_nodes) else None,
+            llm_items[index] if index < len(llm_items) else None,
+            index=index,
+        )
+        for index in range(item_count)
+        if _entity_item_exists(
+            review_nodes[index] if index < len(review_nodes) else None,
+            llm_items[index] if index < len(llm_items) else None,
+        )
+    ]
+    return NormalizedEntityGroup(
+        group=cast("EditableEntityGroup", config.group),
+        label=config.label,
+        section=config.section,
+        items=items,
+    )
 
 
-def _normalize_entity(item: Any, *, kind: str, index: int) -> NormalizedEntity:
-    """Normalize one entity item, preserving raw fields for debug inspection."""
-    if not isinstance(item, dict):
-        text = str(item).strip()
+def _entity_item_exists(review_node: Any, llm_item: Any) -> bool:
+    """Return whether an entity pair has renderable content at an index."""
+    if isinstance(review_node, dict) or isinstance(llm_item, dict):
+        return True
+    return llm_item is not None and str(llm_item).strip() != ""
+
+
+def _normalize_entity_item(
+    config: EditableEntityConfig,
+    review_node: dict[str, Any] | None,
+    llm_item: Any,
+    *,
+    index: int,
+) -> NormalizedEntity:
+    """Normalize one entity item using review-first render accessors."""
+    if isinstance(llm_item, dict):
+        llm_dict = llm_item
+    elif llm_item is not None and not isinstance(review_node, dict):
+        text = str(llm_item).strip()
         return NormalizedEntity(
             index=index,
             title=text,
             description="",
             tags=[],
+            types=[],
             evidence="",
-            raw={"value": item},
+            hidden=False,
+            render_category=config.render_category,
+            render_mode=config.render_mode,
+            detail_lists=[],
+            raw={"value": llm_item},
         )
-    title_keys = {
-        "topic": ("topic_title", "title", "name"),
-        "glossary": ("term", "title", "name"),
-        "trend": ("trend_title", "title", "name"),
-    }[kind]
-    description_keys = {
-        "topic": (
-            "topic_description",
-            "knowledge_summary",
-            "operational_insight",
-            "description",
-            "summary",
-        ),
-        "glossary": ("definition", "proposed_definition", "description"),
-        "trend": (
-            "trend_description",
-            "operational_insight",
-            "knowledge_summary",
-            "description",
-            "summary",
-        ),
-    }[kind]
-    tag_keys = {
-        "topic": ("topic_tags", "proposed_tags", "tags", "primary_tag", "secondary_tag"),
-        "glossary": ("tags", "glossary_tags", "proposed_tags", "primary_tag", "secondary_tag"),
-        "trend": ("trend_tags", "proposed_tags", "tags", "primary_tag", "secondary_tag"),
-    }[kind]
+    else:
+        llm_dict = {}
+    review_dict = review_node if isinstance(review_node, dict) else {}
+    title = _entity_title(config, review_dict, llm_dict)
+    description = _entity_description(config, review_dict, llm_dict)
+    tags = _entity_tags(config, review_dict, llm_dict)
+    types = _entity_types(review_dict, llm_dict)
+    hidden = _entity_is_hidden(review_dict, llm_dict)
     return NormalizedEntity(
         index=index,
-        title=_first_string(item, title_keys),
-        description=_first_string(item, description_keys),
-        tags=_string_list_from_keys(item, tag_keys),
-        evidence=_first_evidence(item),
-        raw=item,
+        title=title,
+        description=description,
+        tags=tags,
+        types=types,
+        evidence=_entity_evidence(review_dict, llm_dict),
+        hidden=hidden,
+        render_category=config.render_category,
+        render_mode=config.render_mode,
+        detail_lists=_entity_detail_lists(config, review_dict, llm_dict),
+        raw=llm_dict or review_dict,
     )
+
+
+def _entity_title(
+    config: EditableEntityConfig,
+    review_node: dict[str, Any],
+    llm_item: dict[str, Any],
+) -> str:
+    """Return the display title for one entity."""
+    if review_node:
+        title = scalar_value(review_node, config.title_key)
+        if title:
+            return title
+        embedded = review_llm_item(review_node)
+        if embedded:
+            title = _first_string(embedded, (config.title_key, *config.title_fallback_keys))
+            if title:
+                return title
+    return _first_string(llm_item, (config.title_key, *config.title_fallback_keys))
+
+
+def _entity_description(
+    config: EditableEntityConfig,
+    review_node: dict[str, Any],
+    llm_item: dict[str, Any],
+) -> str:
+    """Return the compact description for one entity."""
+    if review_node:
+        description = scalar_value(review_node, config.description_key)
+        if description:
+            return description
+        embedded = review_llm_item(review_node)
+        if embedded:
+            description = _first_string(
+                embedded,
+                (config.description_key, *config.description_fallback_keys),
+            )
+            if description:
+                return description
+    return _first_string(
+        llm_item,
+        (config.description_key, *config.description_fallback_keys),
+    )
+
+
+def _entity_detail_lists(
+    config: EditableEntityConfig,
+    review_node: dict[str, Any],
+    llm_item: dict[str, Any],
+) -> list[EntityDetailList]:
+    """Return read-only supporting list fields for one entity card."""
+    detail_lists: list[EntityDetailList] = []
+    for field_key, label in config.detail_list_fields:
+        if review_node:
+            items = list_value(review_node, field_key)
+        else:
+            items = _list_from_llm_item(llm_item, field_key)
+        if items:
+            detail_lists.append(EntityDetailList(label=label, items=items))
+    return detail_lists
+
+
+def _entity_evidence(review_node: dict[str, Any], llm_item: dict[str, Any]) -> str:
+    """Return the first evidence-like string from review or llm data."""
+    if review_node:
+        for key in (
+            "evidence",
+            "supporting_snippet",
+            "evidence_from_source",
+            "source_phrase",
+            "source_quote",
+            "supporting_evidence",
+        ):
+            text = scalar_value(review_node, key)
+            if text:
+                return text
+    return _first_evidence(llm_item)
+
+
+def _entity_is_hidden(review_node: dict[str, Any], llm_item: dict[str, Any]) -> bool:
+    """Return whether an entity is hidden or rejected from normal display."""
+    if review_node and not proposal_is_included(review_node):
+        return True
+    for payload in (review_node, llm_item):
+        state = payload.get("review_state") if isinstance(payload, dict) else None
+        if isinstance(state, dict) and state.get("hidden") is True:
+            return True
+    return False
+
+def _entity_tags(
+    config: EditableEntityConfig,
+    review_node: dict[str, Any],
+    llm_item: dict[str, Any],
+) -> list[str]:
+    """Return display tags from review accessors with llm_output fallbacks."""
+    if review_node:
+        tags = reviewed_tags(review_node)
+        if tags:
+            return tags
+        embedded = review_llm_item(review_node)
+        if embedded:
+            return _tags_from_llm_item(embedded, config)
+    return _tags_from_llm_item(llm_item, config)
+
+
+def _entity_types(review_node: dict[str, Any], llm_item: dict[str, Any]) -> list[str]:
+    """Return display types from review accessors with llm_output fallbacks."""
+    if review_node:
+        types = reviewed_types(review_node)
+        if types:
+            return types
+        embedded = review_llm_item(review_node)
+        if embedded:
+            return _types_from_llm_item(embedded)
+    return _types_from_llm_item(llm_item)
+
+
+def _tags_from_llm_item(llm_item: dict[str, Any], config: EditableEntityConfig) -> list[str]:
+    """Return display tags from an llm_output item."""
+    return _string_list_from_keys(llm_item, config.tag_keys)
+
+
+def _types_from_llm_item(llm_item: dict[str, Any]) -> list[str]:
+    """Return display types from an llm_output item."""
+    types: set[str] = set()
+    proposed = llm_item.get("proposed_types")
+    if isinstance(proposed, list):
+        types.update(str(item).strip() for item in proposed if str(item).strip())
+    proposed_new = llm_item.get("proposed_new_type")
+    if isinstance(proposed_new, str) and proposed_new.strip():
+        types.add(proposed_new.strip())
+    return sorted(types)
+
+
+def _list_from_llm_item(llm_item: dict[str, Any], key: str) -> list[str]:
+    """Return a stripped string list from one llm_output field."""
+    raw = llm_item.get(key)
+    if not isinstance(raw, list):
+        return []
+    return [str(item).strip() for item in raw if str(item).strip()]
+
+
+def _entity_counts(entities: EntityGroups) -> EntityCounts:
+    """Count visible entities per group for queue rows."""
+    counts = EntityCounts()
+    for group in entities.groups:
+        visible = sum(1 for item in group.items if not item.hidden)
+        setattr(counts, group.group, visible)
+    return counts
+
+
+def _review_entity_list(artifact: dict[str, Any], config: EditableEntityConfig) -> list[Any]:
+    """Return the review-tree entity list for one configured group."""
+    review = _dict_value(artifact, "review")
+    raw_entities = review.get(config.review_key)
+    return raw_entities if isinstance(raw_entities, list) else []
+
+
+def _llm_entity_list(artifact: dict[str, Any], config: EditableEntityConfig) -> list[Any]:
+    """Return the llm_output entity list for one configured group."""
+    llm_output = _dict_value(artifact, "llm_output")
+    raw_entities = llm_output.get(config.artifact_key)
+    return raw_entities if isinstance(raw_entities, list) else []
 
 
 def _dict_value(payload: dict[str, Any] | None, key: str) -> dict[str, Any]:
@@ -825,7 +1041,7 @@ def _load_existing_review_artifact_for_write(
 
 def _validate_entity_group(group: str) -> EditableEntityGroup:
     """Return a supported editable entity group or raise."""
-    if group not in _ENTITY_GROUP_PATHS:
+    if group not in ENTITY_CONFIG_BY_GROUP:
         raise ValueError(f"Invalid entity group: {group!r}")
     return cast("EditableEntityGroup", group)
 
@@ -846,43 +1062,106 @@ def _validate_entity_edit_request(request: EntityEditRequest) -> None:
         _normalize_tags(request.tags)
 
 
-def _artifact_entity_list(artifact: dict[str, Any], group: EditableEntityGroup) -> list[Any]:
-    """Return the underlying artifact entity list for an editable group."""
-    parent_key, list_key = _ENTITY_GROUP_PATHS[group]
-    parent = artifact.get(parent_key)
-    if not isinstance(parent, dict):
-        raise ValueError(f"Artifact group parent missing: {parent_key}")
-    raw_entities = parent.get(list_key)
-    if not isinstance(raw_entities, list):
-        raise ValueError(f"Artifact entity group missing: {group}")
-    return raw_entities
-
-
 def _apply_entity_edit(
-    entity: dict[str, Any],
+    review_node: dict[str, Any],
+    llm_entity: dict[str, Any] | None,
     request: EntityEditRequest,
-    group: EditableEntityGroup,
+    config: EditableEntityConfig,
     *,
     reviewed_by: str,
 ) -> None:
-    """Apply validated entity edit fields to one artifact entity."""
+    """Apply validated entity edit fields to review and mirrored llm_output nodes."""
     if request.title is not None:
-        _set_first_mapped_string(entity, _TITLE_KEYS[group], request.title.strip())
+        _set_review_scalar(review_node, config.title_key, request.title.strip())
+        if llm_entity is not None:
+            llm_entity[config.title_key] = request.title.strip()
     if request.description is not None:
-        _set_first_mapped_string(entity, _DESCRIPTION_KEYS[group], request.description.strip())
+        _set_review_scalar(review_node, config.description_key, request.description.strip())
+        if llm_entity is not None:
+            llm_entity[config.description_key] = request.description.strip()
     if request.tags is not None:
-        _set_entity_tags(entity, _normalize_tags(request.tags), group)
+        tags = _normalize_tags(request.tags)
+        _set_review_tags(review_node, tags)
+        if llm_entity is not None:
+            _set_llm_tags(llm_entity, tags, config)
     if request.hidden is not None:
-        _set_entity_hidden_state(entity, request.hidden, reviewed_by=reviewed_by)
+        _set_review_hidden_state(review_node, request.hidden, reviewed_by=reviewed_by)
+        if llm_entity is not None:
+            _set_llm_hidden_state(llm_entity, request.hidden, reviewed_by=reviewed_by)
 
 
-def _set_first_mapped_string(entity: dict[str, Any], keys: tuple[str, ...], value: str) -> None:
-    """Set the first existing mapped string field, or the preferred field."""
-    for key in keys:
-        if key in entity:
-            entity[key] = value
-            return
-    entity[keys[0]] = value
+def _set_review_scalar(review_node: dict[str, Any], key: str, value: str) -> None:
+    """Write a reviewed scalar field into the review tree."""
+    section = _ensure_review_section(review_node, key)
+    section["final_text"] = value
+
+
+def _ensure_review_section(review_node: dict[str, Any], key: str) -> dict[str, Any]:
+    """Return or create a review section for one scalar/list field."""
+    sections = review_node.get("sections")
+    if not isinstance(sections, dict):
+        sections = {}
+        review_node["sections"] = sections
+    section = sections.get(key)
+    if not isinstance(section, dict):
+        section = {}
+        sections[key] = section
+    section["status"] = "modified"
+    return section
+
+
+def _set_review_tags(review_node: dict[str, Any], tags: list[str]) -> None:
+    """Write reviewed tags into the review tree."""
+    tag_node = review_node.get("tags")
+    if not isinstance(tag_node, dict):
+        tag_node = {}
+        review_node["tags"] = tag_node
+    tag_node["final_tags"] = tags
+
+
+def _set_llm_tags(
+    llm_entity: dict[str, Any],
+    tags: list[str],
+    config: EditableEntityConfig,
+) -> None:
+    """Mirror reviewed tags into llm_output for display coherence."""
+    llm_entity["proposed_tags"] = tags
+    for key in config.tag_keys:
+        if key != "proposed_tags":
+            llm_entity.pop(key, None)
+
+
+def _set_review_hidden_state(
+    review_node: dict[str, Any],
+    hidden: bool,
+    *,
+    reviewed_by: str,
+) -> None:
+    """Set render-aligned hidden state on a review node."""
+    review_node["proposal_status"] = "rejected" if hidden else "approved"
+    state = review_node.get("review_state")
+    if not isinstance(state, dict):
+        state = {}
+    state["hidden"] = hidden
+    state["hidden_at"] = _utc_timestamp()
+    state["hidden_by"] = reviewed_by
+    review_node["review_state"] = state
+
+
+def _set_llm_hidden_state(
+    llm_entity: dict[str, Any],
+    hidden: bool,
+    *,
+    reviewed_by: str,
+) -> None:
+    """Mirror hidden metadata into llm_output for display coherence."""
+    state = llm_entity.get("review_state")
+    if not isinstance(state, dict):
+        state = {}
+    state["hidden"] = hidden
+    state["hidden_at"] = _utc_timestamp()
+    state["hidden_by"] = reviewed_by
+    llm_entity["review_state"] = state
 
 
 def _normalize_tags(tags: list[str]) -> list[str]:
@@ -899,38 +1178,6 @@ def _normalize_tags(tags: list[str]) -> list[str]:
     return normalized
 
 
-def _set_entity_tags(
-    entity: dict[str, Any],
-    tags: list[str],
-    group: EditableEntityGroup,
-) -> None:
-    """Set normalized tags using the first suitable existing tag field."""
-    target_key = "proposed_tags"
-    for key in _TAG_KEYS[group]:
-        if isinstance(entity.get(key), list):
-            target_key = key
-            break
-    entity[target_key] = tags
-    for key in _TAG_KEYS[group]:
-        if key != target_key:
-            entity.pop(key, None)
-
-
-def _set_entity_hidden_state(
-    entity: dict[str, Any],
-    hidden: bool,
-    *,
-    reviewed_by: str,
-) -> None:
-    """Set or update review hidden state without deleting the entity."""
-    state = entity.get("review_state")
-    if not isinstance(state, dict):
-        state = {}
-    state["hidden"] = hidden
-    state["hidden_at"] = _utc_timestamp()
-    state["hidden_by"] = reviewed_by
-    entity["review_state"] = state
-
 
 def _ensure_finish_allowed(artifact: dict[str, Any], *, force: bool) -> None:
     """Reject finishing when a conflicting management decision exists."""
@@ -940,6 +1187,17 @@ def _ensure_finish_allowed(artifact: dict[str, Any], *, force: bool) -> None:
     raise FinishConflictError(
         f"Finish conflicts with existing management decision: {management_review.status}"
     )
+
+
+def _ensure_finish_entity_coverage(artifact: dict[str, Any]) -> None:
+    """Reject finishing when llm_output contains unsupported entity groups."""
+    llm_output = _dict_value(artifact, "llm_output")
+    unsupported = unsupported_llm_output_entity_keys(llm_output)
+    if unsupported:
+        blocked = unsupported[0]
+        raise FinishConflictError(
+            f"Finish blocked by unsupported entity group in artifact: {blocked}"
+        )
 
 
 def _write_review_artifact_with_backup(

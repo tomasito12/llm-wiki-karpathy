@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+from typing import Any, cast
 
 import pytest
 
@@ -14,15 +15,19 @@ from src.management_web.models import (
     ManagementReviewRequest,
 )
 from src.management_web.review_data import (
+    EntityEditConflictError,
+    FinishConflictError,
     build_review_queue,
     finish_review,
     get_source_detail,
     read_raw_markdown,
+    unsupported_llm_output_entity_keys,
     update_review_entity,
     validate_source_id,
     write_management_decision,
 )
 from src.wiki_paths.config import WikiPaths, default_wiki_paths
+from src.wiki_render.resolve import proposal_is_included, reviewed_tags, scalar_value
 
 
 def _paths(tmp_path: Path) -> WikiPaths:
@@ -43,7 +48,7 @@ def _write_raw(paths: WikiPaths, source_id: str, *, markdown: str | None = "Body
 def _write_artifact(
     paths: WikiPaths,
     source_id: str,
-    artifact: dict[str, object],
+    artifact: dict[str, Any],
 ) -> None:
     """Write one review artifact under the configured reviews directory."""
     review_dir = paths.reviews_dir / source_id
@@ -51,9 +56,75 @@ def _write_artifact(
     (review_dir / "review.json").write_text(json.dumps(artifact), encoding="utf-8")
 
 
-def _artifact(*, finished: bool = False) -> dict[str, object]:
+def _review_node(
+    llm_item: dict[str, Any],
+    *,
+    status: str = "approved",
+) -> dict[str, Any]:
+    """Return a render-aligned review node for one llm_output item."""
+    return {
+        "proposal_status": status,
+        "llm_item": llm_item,
+        "sections": {},
+        "tags": {},
+    }
+
+
+def _review_tree_from_llm_output(llm_output: dict[str, Any]) -> dict[str, Any]:
+    """Build a paired review tree from representative llm_output entity lists."""
+    review: dict[str, Any] = {}
+    for artifact_key, review_key in (
+        ("topics", "topics"),
+        ("glossary", "glossary"),
+        ("industry_trends", "industry_trends"),
+        ("how_to", "how_to"),
+        ("tools", "tools"),
+        ("foundation_models", "foundation_models"),
+        ("implementation_studies", "implementation_studies"),
+        ("roundup_signals", "roundup_signals"),
+        ("interview_insights", "interview_insights"),
+    ):
+        items = llm_output.get(artifact_key)
+        if isinstance(items, list):
+            review[review_key] = [
+                _review_node(cast(dict[str, Any], item))
+                for item in items
+                if isinstance(item, dict)
+            ]
+    return review
+
+
+def _artifact(*, finished: bool = False) -> dict[str, Any]:
     """Return a minimal but representative review artifact."""
     review_finished_at = "2026-07-15T10:00:00Z" if finished else None
+    llm_output: dict[str, Any] = {
+        "source_summary": {
+            "summary": "A concise summary.",
+            "key_insights": ["First useful insight", "Second useful insight"],
+        },
+        "topics": [
+            {
+                "topic_title": "Agentic coding workflows",
+                "topic_description": "How agents shape software work.",
+                "topic_tags": ["ai-engineering", "agents"],
+                "evidence": "The article discusses coding agents.",
+            }
+        ],
+        "glossary": [
+            {
+                "term": "Retrieval augmented generation",
+                "definition": "Grounding generation with retrieved context.",
+                "tags": ["rag"],
+            }
+        ],
+        "industry_trends": [
+            {
+                "trend_title": "Teams adopt AI review assistants",
+                "trend_description": "Review assistants become part of delivery workflows.",
+                "trend_tags": ["software-delivery"],
+            }
+        ],
+    }
     return {
         "source": {
             "title": "Analyzed Article",
@@ -69,38 +140,12 @@ def _artifact(*, finished: bool = False) -> dict[str, object]:
         },
         "content_sha256": "stored-hash",
         "review_analytics": {"review_finished_at": review_finished_at},
-        "llm_output": {
-            "source_summary": {
-                "summary": "A concise summary.",
-                "key_insights": ["First useful insight", "Second useful insight"],
-            },
-            "topics": [
-                {
-                    "topic_title": "Agentic coding workflows",
-                    "topic_description": "How agents shape software work.",
-                    "topic_tags": ["ai-engineering", "agents"],
-                    "evidence": "The article discusses coding agents.",
-                }
-            ],
-            "glossary": [
-                {
-                    "term": "Retrieval augmented generation",
-                    "definition": "Grounding generation with retrieved context.",
-                    "tags": ["rag"],
-                }
-            ],
-            "industry_trends": [
-                {
-                    "trend_title": "Teams adopt AI review assistants",
-                    "trend_description": "Review assistants become part of delivery workflows.",
-                    "trend_tags": ["software-delivery"],
-                }
-            ],
-        },
+        "llm_output": llm_output,
+        "review": _review_tree_from_llm_output(llm_output),
     }
 
 
-def _decided_artifact(status: str, *, published_date: str = "2026-07-01") -> dict[str, object]:
+def _decided_artifact(status: str, *, published_date: str = "2026-07-01") -> dict[str, Any]:
     """Return an analyzed artifact with a management decision."""
     return {
         **_artifact(),
@@ -378,6 +423,17 @@ def test_update_review_entity_updates_title_without_losing_unknown_fields(tmp_pa
                     }
                 ]
             },
+            "review": {
+                "topics": [
+                    _review_node(
+                        {
+                            "topic_title": "Old title",
+                            "topic_description": "Existing description.",
+                            "custom_field": {"keep": True},
+                        }
+                    )
+                ]
+            },
         },
     )
 
@@ -390,11 +446,13 @@ def test_update_review_entity_updates_title_without_losing_unknown_fields(tmp_pa
     review_path = paths.reviews_dir / "editable" / "review.json"
     artifact = json.loads(review_path.read_text(encoding="utf-8"))
     topic = artifact["llm_output"]["topics"][0]
+    review_topic = artifact["review"]["topics"][0]
     assert response.source.entities.topics[0].title == "Prompt caching"
     assert response.backup_path is not None
     assert Path(response.backup_path).is_file()
     assert topic["topic_title"] == "Prompt caching"
     assert topic["custom_field"] == {"keep": True}
+    assert review_topic["sections"]["topic_title"]["final_text"] == "Prompt caching"
 
 
 def test_update_review_entity_updates_description_using_mapped_field(tmp_path: Path) -> None:
@@ -414,6 +472,16 @@ def test_update_review_entity_updates_description_using_mapped_field(tmp_path: P
                     }
                 ]
             },
+            "review": {
+                "industry_trends": [
+                    _review_node(
+                        {
+                            "trend_title": "Old trend",
+                            "operational_insight": "Old description.",
+                        }
+                    )
+                ]
+            },
         },
     )
 
@@ -424,9 +492,12 @@ def test_update_review_entity_updates_description_using_mapped_field(tmp_path: P
     )
 
     artifact = json.loads((paths.reviews_dir / "editable" / "review.json").read_text())
-    assert artifact["llm_output"]["industry_trends"][0]["operational_insight"] == (
+    assert artifact["llm_output"]["industry_trends"][0]["trend_description"] == (
         "Better description."
     )
+    assert artifact["review"]["industry_trends"][0]["sections"]["trend_description"][
+        "final_text"
+    ] == "Better description."
 
 
 def test_update_review_entity_updates_normalized_topic_description_field(tmp_path: Path) -> None:
@@ -442,7 +513,10 @@ def test_update_review_entity_updates_normalized_topic_description_field(tmp_pat
     )
 
     artifact = json.loads((paths.reviews_dir / "editable" / "review.json").read_text())
-    assert artifact["llm_output"]["topics"][0]["topic_description"] == (
+    assert artifact["llm_output"]["topics"][0]["knowledge_summary"] == (
+        "Round-tripped description."
+    )
+    assert artifact["review"]["topics"][0]["sections"]["knowledge_summary"]["final_text"] == (
         "Round-tripped description."
     )
     assert response.source.entities.topics[0].description == "Round-tripped description."
@@ -465,7 +539,11 @@ def test_update_review_entity_normalizes_tags(tmp_path: Path) -> None:
     )
 
     artifact = json.loads((paths.reviews_dir / "editable" / "review.json").read_text())
-    assert artifact["llm_output"]["topics"][0]["topic_tags"] == [
+    assert artifact["llm_output"]["topics"][0]["proposed_tags"] == [
+        "ai-engineering",
+        "prompt-caching",
+    ]
+    assert artifact["review"]["topics"][0]["tags"]["final_tags"] == [
         "ai-engineering",
         "prompt-caching",
     ]
@@ -489,6 +567,18 @@ def test_update_review_entity_replaces_scalar_tag_fields(tmp_path: Path) -> None
                         "primary_tag": "old-primary",
                         "secondary_tag": "old-secondary",
                     }
+                ]
+            },
+            "review": {
+                "topics": [
+                    _review_node(
+                        {
+                            "topic_title": "Scalar tags",
+                            "topic_description": "Description.",
+                            "primary_tag": "old-primary",
+                            "secondary_tag": "old-secondary",
+                        }
+                    )
                 ]
             },
         },
@@ -527,13 +617,15 @@ def test_update_review_entity_hides_and_unhides_without_deleting_entity(tmp_path
 
     artifact = json.loads((paths.reviews_dir / "editable" / "review.json").read_text())
     topic = artifact["llm_output"]["topics"][0]
+    review_topic = artifact["review"]["topics"][0]
     assert (
-        hidden_response.source.debug.artifact["llm_output"]["topics"][0]["review_state"]["hidden"]
-        is True
+        hidden_response.source.debug.artifact["review"]["topics"][0]["proposal_status"]
+        == "rejected"
     )
     assert topic["review_state"]["hidden"] is False
+    assert review_topic["proposal_status"] == "approved"
     assert topic["topic_title"] == "Agentic coding workflows"
-    assert unhidden_response.source.entities.topics[0].raw["review_state"]["hidden"] is False
+    assert unhidden_response.source.entities.topics[0].hidden is False
 
 
 def test_update_review_entity_rejects_invalid_inputs(tmp_path: Path) -> None:
@@ -559,7 +651,7 @@ def test_update_review_entity_rejects_invalid_inputs(tmp_path: Path) -> None:
         update_review_entity(
             paths,
             "editable",
-            EntityEditRequest(group="tools", index=0, title="Safe title"),
+            EntityEditRequest(group="future_entities", index=0, title="Safe title"),
         )
     with pytest.raises(ValueError, match="Entity index out of range"):
         update_review_entity(
@@ -1045,6 +1137,300 @@ def test_read_raw_markdown_returns_unavailable_when_sidecar_missing(tmp_path: Pa
     assert raw.available is False
     assert raw.content == ""
     assert raw.path is None
+
+
+def _full_coverage_artifact() -> dict[str, Any]:
+    """Return an artifact containing all supported entity groups."""
+    llm_output: dict[str, Any] = {
+        "source_summary": {"summary": "Full coverage summary."},
+        "topics": [{"topic_title": "Topic A", "topic_tags": ["topic-a"]}],
+        "glossary": [{"term": "Term A", "tags": ["glossary-a"]}],
+        "industry_trends": [{"trend_title": "Trend A", "trend_tags": ["trend-a"]}],
+        "how_to": [{"question_title": "How to cache prompts", "answer_summary": "Cache prefixes."}],
+        "tools": [
+            {"name": "Tool A", "short_description": "Tool summary.", "proposed_tags": ["tool-a"]}
+        ],
+        "foundation_models": [
+            {
+                "model_name": "Model A",
+                "operational_profile": "Model profile.",
+                "proposed_tags": ["model-a"],
+            }
+        ],
+        "implementation_studies": [{"title": "Study A", "overview": "Study overview."}],
+        "roundup_signals": [{"signal_title": "Signal A", "summary": "Signal summary."}],
+        "interview_insights": [{"insight_title": "Insight A", "summary": "Insight summary."}],
+    }
+    return {
+        "source": {"title": "Full Coverage Article"},
+        "llm_output": llm_output,
+        "review": _review_tree_from_llm_output(llm_output),
+    }
+
+
+def test_normalize_all_supported_entity_groups(tmp_path: Path) -> None:
+    """Source detail should normalize all nine supported entity groups."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "full")
+    _write_artifact(paths, "full", _full_coverage_artifact())
+
+    detail = get_source_detail(paths, "full")
+
+    assert [group.group for group in detail.entities.groups] == [
+        "topics",
+        "glossary",
+        "trends",
+        "how_to",
+        "tools",
+        "models",
+        "implementation_studies",
+        "signals",
+        "interview_insights",
+    ]
+    assert detail.entities.groups[3].items[0].title == "How to cache prompts"
+    assert detail.entities.groups[6].section == "source_specific_insights"
+
+
+def test_queue_counts_include_all_supported_entity_groups(tmp_path: Path) -> None:
+    """Queue rows should expose counts for every supported entity group."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "full")
+    _write_artifact(paths, "full", _full_coverage_artifact())
+
+    queue = build_review_queue(paths, status="in_progress", limit=10, offset=0, query=None)
+
+    counts = queue.items[0].entity_counts
+    assert counts.topics == 1
+    assert counts.how_to == 1
+    assert counts.tools == 1
+    assert counts.models == 1
+    assert counts.implementation_studies == 1
+    assert counts.signals == 1
+    assert counts.interview_insights == 1
+
+
+def test_update_review_entity_writes_how_to_title_to_review_tree(tmp_path: Path) -> None:
+    """How-to title edits should write review sections and mirror llm_output."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "editable")
+    llm_output: dict[str, Any] = {
+        "how_to": [{"question_title": "Old how-to", "answer_summary": "Old answer."}]
+    }
+    _write_artifact(
+        paths,
+        "editable",
+        {"llm_output": llm_output, "review": _review_tree_from_llm_output(llm_output)},
+    )
+
+    update_review_entity(
+        paths,
+        "editable",
+        EntityEditRequest(group="how_to", index=0, title="How to use prompt caching"),
+    )
+
+    artifact = json.loads((paths.reviews_dir / "editable" / "review.json").read_text())
+    assert artifact["review"]["how_to"][0]["sections"]["question_title"]["final_text"] == (
+        "How to use prompt caching"
+    )
+    assert artifact["llm_output"]["how_to"][0]["question_title"] == "How to use prompt caching"
+    assert scalar_value(artifact["review"]["how_to"][0], "question_title") == (
+        "How to use prompt caching"
+    )
+
+
+def test_update_review_entity_writes_tools_description_to_review_tree(tmp_path: Path) -> None:
+    """Tool description edits should write the mapped review section."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "editable")
+    llm_output: dict[str, Any] = {
+        "tools": [{"name": "Tool A", "short_description": "Old description."}]
+    }
+    _write_artifact(
+        paths,
+        "editable",
+        {"llm_output": llm_output, "review": _review_tree_from_llm_output(llm_output)},
+    )
+
+    update_review_entity(
+        paths,
+        "editable",
+        EntityEditRequest(group="tools", index=0, description="Better tool description."),
+    )
+
+    artifact = json.loads((paths.reviews_dir / "editable" / "review.json").read_text())
+    assert artifact["review"]["tools"][0]["sections"]["short_description"]["final_text"] == (
+        "Better tool description."
+    )
+
+
+def test_update_review_entity_writes_model_tags_to_review_tree(tmp_path: Path) -> None:
+    """Model tag edits should write review.tags.final_tags."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "editable")
+    llm_output: dict[str, Any] = {
+        "foundation_models": [
+            {"model_name": "Model A", "operational_profile": "Profile.", "proposed_tags": ["old"]}
+        ]
+    }
+    _write_artifact(
+        paths,
+        "editable",
+        {"llm_output": llm_output, "review": _review_tree_from_llm_output(llm_output)},
+    )
+
+    update_review_entity(
+        paths,
+        "editable",
+        EntityEditRequest(group="models", index=0, tags=["frontier-model", "local-model"]),
+    )
+
+    artifact = json.loads((paths.reviews_dir / "editable" / "review.json").read_text())
+    assert artifact["review"]["foundation_models"][0]["tags"]["final_tags"] == [
+        "frontier-model",
+        "local-model",
+    ]
+    assert reviewed_tags(artifact["review"]["foundation_models"][0]) == [
+        "frontier-model",
+        "local-model",
+    ]
+
+
+def test_update_review_entity_writes_signal_and_insight_descriptions(tmp_path: Path) -> None:
+    """Source-specific insight descriptions should write review summary sections."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "editable")
+    llm_output: dict[str, Any] = {
+        "roundup_signals": [{"signal_title": "Signal A", "summary": "Old signal summary."}],
+        "interview_insights": [{"insight_title": "Insight A", "summary": "Old insight summary."}],
+    }
+    _write_artifact(
+        paths,
+        "editable",
+        {"llm_output": llm_output, "review": _review_tree_from_llm_output(llm_output)},
+    )
+
+    update_review_entity(
+        paths,
+        "editable",
+        EntityEditRequest(group="signals", index=0, description="Updated signal summary."),
+    )
+    update_review_entity(
+        paths,
+        "editable",
+        EntityEditRequest(
+            group="interview_insights",
+            index=0,
+            description="Updated insight summary.",
+        ),
+    )
+
+    artifact = json.loads((paths.reviews_dir / "editable" / "review.json").read_text())
+    assert artifact["review"]["roundup_signals"][0]["sections"]["summary"]["final_text"] == (
+        "Updated signal summary."
+    )
+    assert artifact["review"]["interview_insights"][0]["sections"]["summary"]["final_text"] == (
+        "Updated insight summary."
+    )
+
+
+def test_update_review_entity_writes_implementation_study_title_to_review_tree(
+    tmp_path: Path,
+) -> None:
+    """Implementation study title edits should write review sections and mirror llm_output."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "editable")
+    llm_output: dict[str, Any] = {
+        "implementation_studies": [{"title": "Old study", "overview": "Old overview."}]
+    }
+    _write_artifact(
+        paths,
+        "editable",
+        {"llm_output": llm_output, "review": _review_tree_from_llm_output(llm_output)},
+    )
+
+    update_review_entity(
+        paths,
+        "editable",
+        EntityEditRequest(group="implementation_studies", index=0, title="Updated study"),
+    )
+
+    artifact = json.loads((paths.reviews_dir / "editable" / "review.json").read_text())
+    assert artifact["review"]["implementation_studies"][0]["sections"]["title"]["final_text"] == (
+        "Updated study"
+    )
+    assert artifact["llm_output"]["implementation_studies"][0]["title"] == "Updated study"
+
+
+def test_hiding_how_to_rejects_from_normal_detail_output(tmp_path: Path) -> None:
+    """Hidden how-tos should disappear from default detail output and queue counts."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "editable")
+    llm_output: dict[str, Any] = {
+        "how_to": [{"question_title": "Hide me", "answer_summary": "Answer."}]
+    }
+    _write_artifact(
+        paths,
+        "editable",
+        {"llm_output": llm_output, "review": _review_tree_from_llm_output(llm_output)},
+    )
+
+    update_review_entity(
+        paths,
+        "editable",
+        EntityEditRequest(group="how_to", index=0, hidden=True),
+    )
+
+    detail = get_source_detail(paths, "editable")
+    queue = build_review_queue(paths, status="in_progress", limit=10, offset=0, query=None)
+    how_to_group = next(group for group in detail.entities.groups if group.group == "how_to")
+    assert how_to_group.items[0].hidden is True
+    assert queue.items[0].entity_counts.how_to == 0
+    artifact = json.loads((paths.reviews_dir / "editable" / "review.json").read_text())
+    assert artifact["review"]["how_to"][0]["proposal_status"] == "rejected"
+    assert proposal_is_included(artifact["review"]["how_to"][0]) is False
+
+
+def test_update_review_entity_returns_conflict_when_review_node_missing(tmp_path: Path) -> None:
+    """Entity edits should reject llm_output-only entities without a review node."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "editable")
+    _write_artifact(
+        paths,
+        "editable",
+        {"llm_output": {"how_to": [{"question_title": "Orphan how-to"}]}, "review": {}},
+    )
+
+    with pytest.raises(EntityEditConflictError, match="Review node missing"):
+        update_review_entity(
+            paths,
+            "editable",
+            EntityEditRequest(group="how_to", index=0, title="Edited"),
+        )
+
+
+def test_finish_review_rejects_unsupported_entity_coverage(tmp_path: Path) -> None:
+    """Finish should reject artifacts with future entity lists not covered by the UI."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "ready")
+    artifact = _artifact()
+    llm_output = cast(dict[str, Any], artifact["llm_output"])
+    llm_output["future_entities"] = [{"title": "Future entity"}]
+    _write_artifact(paths, "ready", artifact)
+
+    with pytest.raises(FinishConflictError, match="unsupported entity group"):
+        finish_review(paths, "ready", FinishReviewRequest())
+
+
+def test_unsupported_llm_output_entity_keys_detects_unknown_entity_lists() -> None:
+    """Unsupported entity detection should scan all llm_output entity lists."""
+    llm_output: dict[str, Any] = {
+        "source_summary": {"summary": "Summary only."},
+        "topics": [{"topic_title": "Known topic"}],
+        "future_entities": [{"title": "Future entity"}],
+        "notes": ["not", "entity", "lists"],
+    }
+
+    assert unsupported_llm_output_entity_keys(llm_output) == ["future_entities"]
 
 
 @pytest.mark.parametrize("source_id", ["../secret", "nested/source", "source.json", ""])
