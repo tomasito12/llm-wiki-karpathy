@@ -4,6 +4,19 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import App from "./App";
 
+const configPayload = {
+  mode: "write_enabled",
+  capabilities: ["review_decision", "review_entity_edit", "review_finish"],
+  paths: {
+    repo_root: "/tmp/repo",
+    knowledge_root: "/tmp/knowledge",
+    vault_root: "/tmp/vault",
+    raw_dir: "/tmp/raw",
+    reviews_dir: "/tmp/reviews",
+    wiki_dir: "/tmp/wiki"
+  }
+};
+
 const queuePayload = {
   counts: {
     total: 1,
@@ -117,6 +130,7 @@ const sourcePayload = {
   entities: {
     topics: [
       {
+        index: 0,
         title: "API Topic",
         description: "Topic description",
         tags: ["api"],
@@ -126,6 +140,7 @@ const sourcePayload = {
     ],
     glossary: [
       {
+        index: 0,
         title: "API Term",
         description: "Term definition",
         tags: [],
@@ -135,6 +150,7 @@ const sourcePayload = {
     ],
     trends: [
       {
+        index: 0,
         title: "API Trend",
         description: "Trend description",
         tags: [],
@@ -208,6 +224,74 @@ const decisionResponse = {
   backup_path: "/tmp/reviews/api-source/review.before-management-review.20260715T123456Z.json"
 };
 
+const finishResponse = {
+  source_id: "api-source",
+  management_review: approvedSourcePayload.management_review,
+  review_finished_at: "2026-07-15T12:34:56Z",
+  backup_path: "/tmp/reviews/api-source/review.before-management-edit.20260715T123456Z.json"
+};
+
+const editedSourcePayload = {
+  ...sourcePayload,
+  tags: ["api", "edited"],
+  entities: {
+    ...sourcePayload.entities,
+    topics: [
+      {
+        ...sourcePayload.entities.topics[0],
+        title: "Edited topic",
+        description: "Edited description.",
+        tags: ["api", "edited"]
+      }
+    ]
+  }
+};
+
+const hiddenSourcePayload = {
+  ...sourcePayload,
+  entities: {
+    ...sourcePayload.entities,
+    topics: [
+      {
+        ...sourcePayload.entities.topics[0],
+        raw: {
+          review_state: {
+            hidden: true,
+            hidden_at: "2026-07-15T12:34:56Z",
+            hidden_by: "plischke"
+          }
+        }
+      }
+    ]
+  }
+};
+
+const noDescriptionSourcePayload = {
+  ...sourcePayload,
+  entities: {
+    ...sourcePayload.entities,
+    topics: [
+      {
+        ...sourcePayload.entities.topics[0],
+        description: ""
+      }
+    ]
+  }
+};
+
+const entityEditResponse = {
+  source_id: "api-source",
+  group: "topics",
+  index: 0,
+  backup_path: "/tmp/reviews/api-source/review.before-management-edit.20260715T123456Z.json",
+  source: editedSourcePayload
+};
+
+const hiddenEntityResponse = {
+  ...entityEditResponse,
+  source: hiddenSourcePayload
+};
+
 const approvedQueuePayload = {
   ...queuePayload,
   decision_counts: {
@@ -251,13 +335,16 @@ describe("App", () => {
       vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
         const url = String(input);
         if (url.includes("/api/config")) {
-          return Response.json({
-            mode: "readonly",
-            paths: { raw_dir: "/tmp/raw", reviews_dir: "/tmp/reviews" }
-          });
+          return Response.json(configPayload);
         }
         if (url.includes("/api/review/source/api-source/decision") && init?.method === "PATCH") {
           return Response.json(decisionResponse);
+        }
+        if (url.includes("/api/review/source/api-source/entity") && init?.method === "PATCH") {
+          return Response.json(entityEditResponse);
+        }
+        if (url.includes("/api/review/source/api-source/finish") && init?.method === "PATCH") {
+          return Response.json(finishResponse);
         }
         if (url.includes("/api/review/queue") && url.includes("decision=approved")) {
           return Response.json(approvedQueuePayload);
@@ -340,7 +427,8 @@ describe("App", () => {
       const url = String(input);
       if (url.includes("/api/config")) {
         return Response.json({
-          mode: "readonly",
+          mode: "write_enabled",
+            capabilities: ["review_decision", "review_entity_edit", "review_finish"],
           paths: { raw_dir: "/tmp/raw", reviews_dir: "/tmp/reviews" }
         });
       }
@@ -379,6 +467,177 @@ describe("App", () => {
     ).toBe(true);
   });
 
+  it("opens one entity editor and cancels without saving", async () => {
+    render(<App />);
+
+    await screen.findByText("API summary");
+    await userEvent.click(screen.getByRole("button", { name: "Edit API Topic" }));
+
+    expect(screen.getByLabelText("Entity title")).toHaveValue("API Topic");
+    expect(screen.getByLabelText("Entity description")).toHaveValue("Topic description");
+    expect(screen.getByLabelText("Entity tags")).toHaveValue("api");
+
+    await userEvent.clear(screen.getByLabelText("Entity title"));
+    await userEvent.type(screen.getByLabelText("Entity title"), "Draft title");
+    await userEvent.click(screen.getByRole("button", { name: "Cancel edit" }));
+
+    expect(await screen.findByText("API Topic")).toBeInTheDocument();
+    expect(screen.queryByDisplayValue("Draft title")).not.toBeInTheDocument();
+    expect(
+      vi
+        .mocked(fetch)
+        .mock.calls.some(([input]) => String(input).includes("/api/review/source/api-source/entity"))
+    ).toBe(false);
+  });
+
+  it("saves entity edits and refreshes the displayed source from the response", async () => {
+    render(<App />);
+
+    await screen.findByText("API summary");
+    await userEvent.click(screen.getByRole("button", { name: "Edit API Topic" }));
+    await userEvent.clear(screen.getByLabelText("Entity title"));
+    await userEvent.type(screen.getByLabelText("Entity title"), "Edited topic");
+    await userEvent.clear(screen.getByLabelText("Entity description"));
+    await userEvent.type(screen.getByLabelText("Entity description"), "Edited description.");
+    await userEvent.clear(screen.getByLabelText("Entity tags"));
+    await userEvent.type(screen.getByLabelText("Entity tags"), "api, edited, api");
+    await userEvent.click(screen.getByRole("button", { name: "Save entity" }));
+
+    await waitFor(() => {
+      expect(vi.mocked(fetch)).toHaveBeenCalledWith(
+        "/api/review/source/api-source/entity",
+        expect.objectContaining({
+          body: JSON.stringify({
+            group: "topics",
+            index: 0,
+            title: "Edited topic",
+            description: "Edited description.",
+            tags: ["api", "edited", "api"]
+          }),
+          method: "PATCH"
+        })
+      );
+    });
+    await waitFor(() => {
+      const queueCalls = vi
+        .mocked(fetch)
+        .mock.calls.filter(([input]) => String(input).includes("/api/review/queue"));
+      expect(queueCalls.length).toBeGreaterThanOrEqual(2);
+    });
+    expect(await screen.findByText("Edited topic")).toBeInTheDocument();
+    expect(await screen.findByText("Entity saved.")).toBeInTheDocument();
+  });
+
+  it("shows inline validation and server errors for entity edits", async () => {
+    vi.mocked(fetch).mockImplementation(async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = String(input);
+      if (url.includes("/api/config")) {
+        return Response.json({
+          mode: "write_enabled",
+            capabilities: ["review_decision", "review_entity_edit", "review_finish"],
+          paths: { raw_dir: "/tmp/raw", reviews_dir: "/tmp/reviews" }
+        });
+      }
+      if (url.includes("/api/review/queue")) {
+        return Response.json(queuePayload);
+      }
+      if (url.includes("/api/review/source/api-source/entity") && init?.method === "PATCH") {
+        return new Response("failed", { status: 500, statusText: "Server Error" });
+      }
+      if (url.includes("/api/review/source/api-source")) {
+        return Response.json(sourcePayload);
+      }
+      return new Response("not found", { status: 404 });
+    });
+    render(<App />);
+
+    await screen.findByText("API summary");
+    await userEvent.click(screen.getByRole("button", { name: "Edit API Topic" }));
+    await userEvent.clear(screen.getByLabelText("Entity title"));
+
+    expect(screen.getByRole("button", { name: "Save entity" })).toBeDisabled();
+    expect(screen.getByText("Title cannot be empty.")).toBeInTheDocument();
+
+    await userEvent.type(screen.getByLabelText("Entity title"), "Valid title");
+    await userEvent.click(screen.getByRole("button", { name: "Save entity" }));
+
+    expect(await screen.findByText(/Entity save failed/)).toBeInTheDocument();
+  });
+
+  it("hides entities from the default list and reveals them with show hidden", async () => {
+    vi.mocked(fetch).mockImplementation(async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = String(input);
+      if (url.includes("/api/config")) {
+        return Response.json({
+          mode: "write_enabled",
+            capabilities: ["review_decision", "review_entity_edit", "review_finish"],
+          paths: { raw_dir: "/tmp/raw", reviews_dir: "/tmp/reviews" }
+        });
+      }
+      if (url.includes("/api/review/queue")) {
+        return Response.json(queuePayload);
+      }
+      if (url.includes("/api/review/source/api-source/entity") && init?.method === "PATCH") {
+        return Response.json(hiddenEntityResponse);
+      }
+      if (url.includes("/api/review/source/api-source")) {
+        return Response.json(sourcePayload);
+      }
+      return new Response("not found", { status: 404 });
+    });
+    render(<App />);
+
+    await screen.findByText("API summary");
+    await userEvent.click(screen.getByRole("button", { name: "Edit API Topic" }));
+    await userEvent.click(screen.getByLabelText("Hidden"));
+    await userEvent.click(screen.getByRole("button", { name: "Save entity" }));
+
+    await waitFor(() => expect(screen.queryByText("API Topic")).not.toBeInTheDocument());
+    await userEvent.click(screen.getByLabelText("Show hidden"));
+
+    expect(await screen.findByText("API Topic")).toBeInTheDocument();
+    expect(screen.getByText("Hidden")).toBeInTheDocument();
+  });
+
+  it("omits unchanged empty description fields when hiding an entity", async () => {
+    vi.mocked(fetch).mockImplementation(async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = String(input);
+      if (url.includes("/api/config")) {
+        return Response.json({
+          mode: "write_enabled",
+            capabilities: ["review_decision", "review_entity_edit", "review_finish"],
+          paths: { raw_dir: "/tmp/raw", reviews_dir: "/tmp/reviews" }
+        });
+      }
+      if (url.includes("/api/review/queue")) {
+        return Response.json(queuePayload);
+      }
+      if (url.includes("/api/review/source/api-source/entity") && init?.method === "PATCH") {
+        return Response.json(hiddenEntityResponse);
+      }
+      if (url.includes("/api/review/source/api-source")) {
+        return Response.json(noDescriptionSourcePayload);
+      }
+      return new Response("not found", { status: 404 });
+    });
+    render(<App />);
+
+    await screen.findByText("API summary");
+    await userEvent.click(screen.getByRole("button", { name: "Edit API Topic" }));
+    await userEvent.click(screen.getByLabelText("Hidden"));
+    await userEvent.click(screen.getByRole("button", { name: "Save entity" }));
+
+    await waitFor(() => {
+      expect(vi.mocked(fetch)).toHaveBeenCalledWith(
+        "/api/review/source/api-source/entity",
+        expect.objectContaining({
+          body: JSON.stringify({ group: "topics", index: 0, hidden: true }),
+          method: "PATCH"
+        })
+      );
+    });
+  });
+
   it("writes approve decisions and reloads source and queue state", async () => {
     render(<App />);
 
@@ -413,7 +672,8 @@ describe("App", () => {
       const url = String(input);
       if (url.includes("/api/config")) {
         return Response.json({
-          mode: "readonly",
+          mode: "write_enabled",
+            capabilities: ["review_decision", "review_entity_edit", "review_finish"],
           paths: { raw_dir: "/tmp/raw", reviews_dir: "/tmp/reviews" }
         });
       }
@@ -449,7 +709,8 @@ describe("App", () => {
       const url = String(input);
       if (url.includes("/api/config")) {
         return Response.json({
-          mode: "readonly",
+          mode: "write_enabled",
+            capabilities: ["review_decision", "review_entity_edit", "review_finish"],
           paths: { raw_dir: "/tmp/raw", reviews_dir: "/tmp/reviews" }
         });
       }
@@ -485,7 +746,8 @@ describe("App", () => {
       const url = String(input);
       if (url.includes("/api/config")) {
         return Response.json({
-          mode: "readonly",
+          mode: "write_enabled",
+            capabilities: ["review_decision", "review_entity_edit", "review_finish"],
           paths: { raw_dir: "/tmp/raw", reviews_dir: "/tmp/reviews" }
         });
       }
@@ -520,7 +782,8 @@ describe("App", () => {
       const url = String(input);
       if (url.includes("/api/config")) {
         return Response.json({
-          mode: "readonly",
+          mode: "write_enabled",
+            capabilities: ["review_decision", "review_entity_edit", "review_finish"],
           paths: { raw_dir: "/tmp/raw", reviews_dir: "/tmp/reviews" }
         });
       }
@@ -549,7 +812,8 @@ describe("App", () => {
       const url = String(input);
       if (url.includes("/api/config")) {
         return Response.json({
-          mode: "readonly",
+          mode: "write_enabled",
+            capabilities: ["review_decision", "review_entity_edit", "review_finish"],
           paths: { raw_dir: "/tmp/raw", reviews_dir: "/tmp/reviews" }
         });
       }
@@ -576,6 +840,112 @@ describe("App", () => {
     expect(await screen.findByText("Decision saved: approved")).toBeInTheDocument();
     expect(await screen.findByText(/Refresh failed/)).toBeInTheDocument();
     expect(screen.queryByText(/Decision failed/)).not.toBeInTheDocument();
+  });
+
+  it("finishes the current review and selects the next matching source", async () => {
+    let queueCalls = 0;
+    vi.mocked(fetch).mockImplementation(async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = String(input);
+      if (url.includes("/api/config")) {
+        return Response.json({
+          mode: "write_enabled",
+            capabilities: ["review_decision", "review_entity_edit", "review_finish"],
+          paths: { raw_dir: "/tmp/raw", reviews_dir: "/tmp/reviews" }
+        });
+      }
+      if (url.includes("/api/review/source/api-source/finish") && init?.method === "PATCH") {
+        return Response.json(finishResponse);
+      }
+      if (url.includes("/api/review/queue")) {
+        queueCalls += 1;
+        return Response.json(queueCalls > 1 ? onlyNewerQueuePayload : queuePayload);
+      }
+      if (url.includes("/api/review/source/newer-source")) {
+        return Response.json(newerSourcePayload);
+      }
+      if (url.includes("/api/review/source/api-source")) {
+        return Response.json(sourcePayload);
+      }
+      return new Response("not found", { status: 404 });
+    });
+    render(<App />);
+
+    await screen.findByText("API summary");
+    await userEvent.click(screen.getByRole("button", { name: "Finish review" }));
+
+    await waitFor(() => {
+      expect(vi.mocked(fetch)).toHaveBeenCalledWith(
+        "/api/review/source/api-source/finish",
+        expect.objectContaining({
+          body: JSON.stringify({ notes: "", force: false }),
+          method: "PATCH"
+        })
+      );
+    });
+    expect(await screen.findByRole("heading", { name: "Newer Article" })).toBeInTheDocument();
+    expect(await screen.findByText("Newer summary")).toBeInTheDocument();
+  });
+
+  it("shows the empty state after finishing the last matching source", async () => {
+    let queueCalls = 0;
+    vi.mocked(fetch).mockImplementation(async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = String(input);
+      if (url.includes("/api/config")) {
+        return Response.json({
+          mode: "write_enabled",
+            capabilities: ["review_decision", "review_entity_edit", "review_finish"],
+          paths: { raw_dir: "/tmp/raw", reviews_dir: "/tmp/reviews" }
+        });
+      }
+      if (url.includes("/api/review/source/api-source/finish") && init?.method === "PATCH") {
+        return Response.json(finishResponse);
+      }
+      if (url.includes("/api/review/queue")) {
+        queueCalls += 1;
+        return Response.json(queueCalls > 1 ? emptyQueuePayload : { ...queuePayload, items: [queuePayload.items[1]] });
+      }
+      if (url.includes("/api/review/source/api-source")) {
+        return Response.json(sourcePayload);
+      }
+      return new Response("not found", { status: 404 });
+    });
+    render(<App />);
+
+    await screen.findByText("API summary");
+    await userEvent.click(screen.getByRole("button", { name: "Finish review" }));
+
+    expect(await screen.findByText("No sources match.")).toBeInTheDocument();
+    expect(screen.getByText("Select a source to inspect its review artifact.")).toBeInTheDocument();
+  });
+
+  it("shows finish conflicts and keeps the current source visible", async () => {
+    vi.mocked(fetch).mockImplementation(async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = String(input);
+      if (url.includes("/api/config")) {
+        return Response.json({
+          mode: "write_enabled",
+            capabilities: ["review_decision", "review_entity_edit", "review_finish"],
+          paths: { raw_dir: "/tmp/raw", reviews_dir: "/tmp/reviews" }
+        });
+      }
+      if (url.includes("/api/review/queue")) {
+        return Response.json(queuePayload);
+      }
+      if (url.includes("/api/review/source/api-source/finish") && init?.method === "PATCH") {
+        return new Response("conflict", { status: 409, statusText: "Conflict" });
+      }
+      if (url.includes("/api/review/source/api-source")) {
+        return Response.json(sourcePayload);
+      }
+      return new Response("not found", { status: 404 });
+    });
+    render(<App />);
+
+    await screen.findByText("API summary");
+    await userEvent.click(screen.getByRole("button", { name: "Finish review" }));
+
+    expect(await screen.findByText(/Finish failed/)).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: "API Article" })).toBeInTheDocument();
   });
 
   it("replaces the selected source when filters remove the current selection", async () => {

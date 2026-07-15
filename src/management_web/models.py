@@ -1,10 +1,18 @@
-"""Typed response models for the read-only management web API."""
+"""Typed response models for the management web API."""
 
 from __future__ import annotations
 
 from typing import Any, Literal
 
 from pydantic import BaseModel, ConfigDict
+
+ManagementWebMode = Literal["write_enabled"]
+MANAGEMENT_WEB_MODE: ManagementWebMode = "write_enabled"
+MANAGEMENT_WEB_WRITE_CAPABILITIES: tuple[str, ...] = (
+    "review_decision",
+    "review_entity_edit",
+    "review_finish",
+)
 
 ReviewStatus = Literal["pending", "in_progress", "finished", "incomplete"]
 QueueStatusFilter = Literal["all", "pending", "in_progress", "finished", "incomplete"]
@@ -17,6 +25,7 @@ ManagementDecisionFilter = Literal[
     "skipped",
     "reanalyze_requested",
 ]
+EditableEntityGroup = Literal["topics", "glossary", "trends"]
 
 
 class HealthResponse(BaseModel):
@@ -24,13 +33,15 @@ class HealthResponse(BaseModel):
 
     ok: bool
     service: str
-    mode: Literal["readonly"]
+    mode: ManagementWebMode
+    capabilities: list[str]
 
 
 class ConfigResponse(BaseModel):
     """Safe resolved path configuration for the private management app."""
 
-    mode: Literal["readonly"]
+    mode: ManagementWebMode
+    capabilities: list[str]
     paths: dict[str, str]
 
 
@@ -122,6 +133,7 @@ class NormalizedEntity(BaseModel):
 
     model_config = ConfigDict(extra="forbid")
 
+    index: int
     title: str
     description: str
     tags: list[str]
@@ -165,6 +177,43 @@ class ManagementDecisionResponse(BaseModel):
     source_id: str
     management_review: ManagementReview
     backup_path: str | None
+
+
+class EntityEditRequest(BaseModel):
+    """Request body for editing a normalized entity card."""
+
+    group: str
+    index: int
+    title: str | None = None
+    description: str | None = None
+    tags: list[str] | None = None
+    hidden: bool | None = None
+
+
+class EntityEditResponse(BaseModel):
+    """Response returned after a targeted entity edit."""
+
+    source_id: str
+    group: EditableEntityGroup
+    index: int
+    backup_path: str
+    source: SourceDetailResponse
+
+
+class FinishReviewRequest(BaseModel):
+    """Request body for finishing the normal successful review workflow."""
+
+    notes: str = ""
+    force: bool = False
+
+
+class FinishReviewResponse(BaseModel):
+    """Response returned after finishing a review artifact."""
+
+    source_id: str
+    management_review: ManagementReview
+    review_finished_at: str
+    backup_path: str
 
 
 class SourceDetailResponse(BaseModel):

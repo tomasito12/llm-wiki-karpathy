@@ -1,5 +1,9 @@
 import type {
   ConfigResponse,
+  EntityEditRequest,
+  EntityEditResponse,
+  FinishReviewRequest,
+  FinishReviewResponse,
   ManagementDecisionResponse,
   ManagementDecisionFilter,
   ManagementReviewRequest,
@@ -60,4 +64,26 @@ export function writeManagementDecision(
       method: "PATCH"
     }
   );
+}
+
+export function updateReviewEntity(
+  sourceId: string,
+  edit: EntityEditRequest
+): Promise<EntityEditResponse> {
+  return fetchJson<EntityEditResponse>(`/api/review/source/${encodeURIComponent(sourceId)}/entity`, {
+    body: JSON.stringify(edit),
+    headers: { "Content-Type": "application/json" },
+    method: "PATCH"
+  });
+}
+
+export function finishReview(
+  sourceId: string,
+  request: FinishReviewRequest
+): Promise<FinishReviewResponse> {
+  return fetchJson<FinishReviewResponse>(`/api/review/source/${encodeURIComponent(sourceId)}/finish`, {
+    body: JSON.stringify(request),
+    headers: { "Content-Type": "application/json" },
+    method: "PATCH"
+  });
 }

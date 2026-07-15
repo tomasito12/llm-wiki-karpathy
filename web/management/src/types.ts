@@ -6,9 +6,13 @@ export type ManagementReviewStatus =
   | "skipped"
   | "reanalyze_requested";
 export type ManagementDecisionFilter = ManagementReviewStatus | "not_reviewed" | "all";
+export type EditableEntityGroup = "topics" | "glossary" | "trends";
+
+export type ManagementWebMode = "write_enabled";
 
 export interface ConfigResponse {
-  mode: "readonly";
+  mode: ManagementWebMode;
+  capabilities: string[];
   paths: Record<string, string>;
 }
 
@@ -80,6 +84,7 @@ export interface SourceSummary {
 }
 
 export interface NormalizedEntity {
+  index: number;
   title: string;
   description: string;
   tags: string[];
@@ -109,6 +114,35 @@ export interface ManagementDecisionResponse {
   source_id: string;
   management_review: ManagementReview;
   backup_path: string | null;
+}
+
+export interface EntityEditRequest {
+  group: EditableEntityGroup;
+  index: number;
+  title?: string;
+  description?: string;
+  tags?: string[];
+  hidden?: boolean;
+}
+
+export interface EntityEditResponse {
+  source_id: string;
+  group: EditableEntityGroup;
+  index: number;
+  backup_path: string;
+  source: SourceDetailResponse;
+}
+
+export interface FinishReviewRequest {
+  notes: string;
+  force: boolean;
+}
+
+export interface FinishReviewResponse {
+  source_id: string;
+  management_review: ManagementReview;
+  review_finished_at: string;
+  backup_path: string;
 }
 
 export interface SourceDetailResponse {

@@ -1,4 +1,4 @@
-"""Tests for the read-only management web FastAPI endpoints."""
+"""Tests for the management web FastAPI endpoints."""
 
 from __future__ import annotations
 
@@ -8,6 +8,7 @@ from pathlib import Path
 from fastapi.testclient import TestClient
 
 from src.management_web.api import create_app
+from src.management_web.models import MANAGEMENT_WEB_WRITE_CAPABILITIES
 from src.wiki_paths.config import WikiPaths, default_wiki_paths
 
 
@@ -57,14 +58,19 @@ def _write_artifact(
     (review_dir / "review.json").write_text(json.dumps(artifact), encoding="utf-8")
 
 
-def test_health_endpoint_reports_readonly_mode(tmp_path: Path) -> None:
-    """Health should identify the management web service and read-only mode."""
+def test_health_endpoint_reports_write_enabled_mode(tmp_path: Path) -> None:
+    """Health should identify the management web service and enabled write capabilities."""
     client = TestClient(create_app(paths=_paths(tmp_path)))
 
     response = client.get("/api/health")
 
     assert response.status_code == 200
-    assert response.json() == {"ok": True, "service": "management-web", "mode": "readonly"}
+    assert response.json() == {
+        "ok": True,
+        "service": "management-web",
+        "mode": "write_enabled",
+        "capabilities": list(MANAGEMENT_WEB_WRITE_CAPABILITIES),
+    }
 
 
 def test_config_endpoint_returns_safe_resolved_paths(tmp_path: Path) -> None:
@@ -76,7 +82,8 @@ def test_config_endpoint_returns_safe_resolved_paths(tmp_path: Path) -> None:
 
     assert response.status_code == 200
     payload = response.json()
-    assert payload["mode"] == "readonly"
+    assert payload["mode"] == "write_enabled"
+    assert payload["capabilities"] == list(MANAGEMENT_WEB_WRITE_CAPABILITIES)
     assert payload["paths"]["repo_root"] == str(paths.repo_root)
     assert payload["paths"]["raw_dir"] == str(paths.raw_dir)
     assert payload["paths"]["reviews_dir"] == str(paths.reviews_dir)
@@ -259,6 +266,162 @@ def test_decision_endpoint_returns_validation_error_for_malformed_body(
     response = client.patch("/api/review/source/api-source/decision", json={"notes": ""})
 
     assert response.status_code == 422
+
+
+def test_entity_endpoint_updates_entity_and_returns_refreshed_source(tmp_path: Path) -> None:
+    """PATCH entity should update the artifact and return the refreshed source detail."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "api-source")
+    _write_artifact(paths, "api-source")
+    client = TestClient(create_app(paths=paths))
+
+    response = client.patch(
+        "/api/review/source/api-source/entity",
+        json={
+            "group": "topics",
+            "index": 0,
+            "title": "Edited topic",
+            "description": "Edited description.",
+            "tags": [" api ", "edited", "api"],
+        },
+    )
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["source_id"] == "api-source"
+    assert payload["group"] == "topics"
+    assert payload["index"] == 0
+    assert Path(payload["backup_path"]).is_file()
+    assert payload["source"]["entities"]["topics"][0]["title"] == "Edited topic"
+    assert payload["source"]["entities"]["topics"][0]["description"] == "Edited description."
+    assert payload["source"]["entities"]["topics"][0]["tags"] == ["api", "edited"]
+    artifact = json.loads((paths.reviews_dir / "api-source" / "review.json").read_text())
+    assert artifact["llm_output"]["topics"][0]["topic_title"] == "Edited topic"
+
+
+def test_entity_endpoint_hides_entity(tmp_path: Path) -> None:
+    """PATCH entity should persist hidden review_state metadata."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "api-source")
+    _write_artifact(paths, "api-source")
+    client = TestClient(create_app(paths=paths))
+
+    response = client.patch(
+        "/api/review/source/api-source/entity",
+        json={"group": "topics", "index": 0, "hidden": True},
+    )
+
+    assert response.status_code == 200
+    raw_state = response.json()["source"]["entities"]["topics"][0]["raw"]["review_state"]
+    assert raw_state["hidden"] is True
+    assert raw_state["hidden_by"] == "plischke"
+
+
+def test_entity_endpoint_rejects_invalid_requests(tmp_path: Path) -> None:
+    """PATCH entity should map data-layer safety failures to 400 or 404."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "api-source")
+    _write_artifact(paths, "api-source")
+    client = TestClient(create_app(paths=paths))
+
+    assert (
+        client.patch(
+            "/api/review/source/source.json/entity",
+            json={"group": "topics", "index": 0, "title": "Edited"},
+        ).status_code
+        == 400
+    )
+    assert (
+        client.patch(
+            "/api/review/source/missing/entity",
+            json={"group": "topics", "index": 0, "title": "Edited"},
+        ).status_code
+        == 404
+    )
+    assert (
+        client.patch(
+            "/api/review/source/api-source/entity",
+            json={"group": "tools", "index": 0, "title": "Edited"},
+        ).status_code
+        == 400
+    )
+    assert (
+        client.patch(
+            "/api/review/source/api-source/entity",
+            json={"group": "topics", "index": 99, "title": "Edited"},
+        ).status_code
+        == 400
+    )
+    assert (
+        client.patch(
+            "/api/review/source/api-source/entity",
+            json={"group": "topics", "index": 0},
+        ).status_code
+        == 400
+    )
+    assert (
+        client.patch(
+            "/api/review/source/api-source/entity",
+            json={"group": "topics", "index": 0, "tags": ["api", " "]},
+        ).status_code
+        == 400
+    )
+    assert (
+        client.patch("/api/review/source/api-source/entity", json={"group": "topics"}).status_code
+        == 422
+    )
+
+
+def test_finish_endpoint_marks_review_finished_and_approved(tmp_path: Path) -> None:
+    """PATCH finish should write lifecycle completion and approved management state."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "api-source")
+    _write_artifact(paths, "api-source")
+    client = TestClient(create_app(paths=paths))
+
+    response = client.patch("/api/review/source/api-source/finish", json={"notes": "Done"})
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["source_id"] == "api-source"
+    assert payload["management_review"]["status"] == "approved"
+    assert payload["management_review"]["notes"] == "Done"
+    assert payload["review_finished_at"].endswith("Z")
+    assert Path(payload["backup_path"]).is_file()
+    artifact = json.loads((paths.reviews_dir / "api-source" / "review.json").read_text())
+    assert artifact["review_analytics"]["review_finished_at"] == payload["review_finished_at"]
+    assert artifact["management_review"]["status"] == "approved"
+
+
+def test_finish_endpoint_returns_conflict_for_non_approved_decision(tmp_path: Path) -> None:
+    """PATCH finish should return 409 when an existing non-approved decision blocks it."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "api-source")
+    _write_artifact(paths, "api-source", management_status="needs_attention")
+    client = TestClient(create_app(paths=paths))
+
+    conflict_response = client.patch("/api/review/source/api-source/finish", json={})
+    forced_response = client.patch(
+        "/api/review/source/api-source/finish",
+        json={"force": True},
+    )
+
+    assert conflict_response.status_code == 409
+    assert "conflicts with existing management decision" in conflict_response.json()["detail"]
+    assert forced_response.status_code == 200
+    assert forced_response.json()["management_review"]["status"] == "approved"
+
+
+def test_finish_endpoint_rejects_invalid_and_missing_sources(tmp_path: Path) -> None:
+    """PATCH finish should map source and artifact safety failures to 400 or 404."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "missing-artifact")
+    client = TestClient(create_app(paths=paths))
+
+    assert client.patch("/api/review/source/source.json/finish", json={}).status_code == 400
+    assert client.patch("/api/review/source/missing/finish", json={}).status_code == 404
+    assert client.patch("/api/review/source/missing-artifact/finish", json={}).status_code == 404
+    assert client.patch("/api/review/source/missing-artifact/finish", json=[]).status_code == 422
 
 
 def test_raw_source_endpoint_returns_available_markdown(tmp_path: Path) -> None:

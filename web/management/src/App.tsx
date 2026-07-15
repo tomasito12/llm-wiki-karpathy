@@ -2,19 +2,23 @@ import { useEffect, useMemo, useState } from "react";
 import type { ReactElement } from "react";
 
 import {
+  finishReview,
   getConfig,
   getRawSource,
   getReviewQueue,
   getSourceDetail,
+  updateReviewEntity,
   writeManagementDecision
 } from "./api";
 import "./styles.css";
 import type {
   ConfigResponse,
+  EditableEntityGroup,
   EntityGroups,
   ManagementDecisionFilter,
   ManagementReview,
   ManagementReviewStatus,
+  ManagementWebMode,
   NormalizedEntity,
   QueueItem,
   QueueResponse,
@@ -47,6 +51,15 @@ const DECISION_ACTIONS: Array<{ status: ManagementReviewStatus; label: string }>
   { status: "reanalyze_requested", label: "Request re-analysis" }
 ];
 
+interface EntityEditDraft {
+  group: EditableEntityGroup;
+  index: number;
+  title: string;
+  description: string;
+  tags: string;
+  hidden: boolean;
+}
+
 export default function App(): ReactElement {
   const [config, setConfig] = useState<ConfigResponse | null>(null);
   const [queue, setQueue] = useState<QueueResponse | null>(null);
@@ -62,6 +75,15 @@ export default function App(): ReactElement {
   const [decisionPending, setDecisionPending] = useState(false);
   const [decisionMessage, setDecisionMessage] = useState<string | null>(null);
   const [decisionError, setDecisionError] = useState<string | null>(null);
+  const [finishPending, setFinishPending] = useState(false);
+  const [finishMessage, setFinishMessage] = useState<string | null>(null);
+  const [finishError, setFinishError] = useState<string | null>(null);
+  const [showHidden, setShowHidden] = useState(false);
+  const [entityDraft, setEntityDraft] = useState<EntityEditDraft | null>(null);
+  const [entityPending, setEntityPending] = useState(false);
+  const [entityMessage, setEntityMessage] = useState<string | null>(null);
+  const [entityMessageKey, setEntityMessageKey] = useState<string | null>(null);
+  const [entityError, setEntityError] = useState<string | null>(null);
 
   useEffect(() => {
     getConfig().then(setConfig).catch((err: unknown) => setError(String(err)));
@@ -90,6 +112,13 @@ export default function App(): ReactElement {
     setRawOpen(false);
     setDebugOpen(false);
     setRawSource(null);
+    setShowHidden(false);
+    setEntityDraft(null);
+    setEntityMessage(null);
+    setEntityMessageKey(null);
+    setEntityError(null);
+    setFinishMessage(null);
+    setFinishError(null);
     getSourceDetail(selectedSourceId).then(setSource).catch((err: unknown) => setError(String(err)));
   }, [selectedSourceId]);
 
@@ -171,6 +200,89 @@ export default function App(): ReactElement {
     }
   }
 
+  async function finishCurrentReview(): Promise<void> {
+    if (!source) {
+      return;
+    }
+    setFinishPending(true);
+    setFinishMessage(null);
+    setFinishError(null);
+    try {
+      await finishReview(source.source_id, { notes: "", force: false });
+      setFinishMessage("Review finished.");
+      try {
+        await reloadSelectedSource(source.source_id);
+      } catch (err: unknown) {
+        setFinishError(`Refresh failed: ${err instanceof Error ? err.message : String(err)}`);
+      }
+    } catch (err: unknown) {
+      setFinishError(`Finish failed: ${err instanceof Error ? err.message : String(err)}`);
+    } finally {
+      setFinishPending(false);
+    }
+  }
+
+  function startEntityEdit(group: EditableEntityGroup, item: NormalizedEntity): void {
+    setEntityDraft({
+      group,
+      index: item.index,
+      title: item.title,
+      description: item.description,
+      tags: item.tags.join(", "),
+      hidden: isHiddenEntity(item)
+    });
+    setEntityMessage(null);
+    setEntityMessageKey(null);
+    setEntityError(null);
+  }
+
+  async function saveEntityEdit(): Promise<void> {
+    if (!source || !entityDraft) {
+      return;
+    }
+    const validationError = entityDraftError(entityDraft);
+    if (validationError) {
+      setEntityError(validationError);
+      return;
+    }
+    setEntityPending(true);
+    setEntityMessage(null);
+    setEntityError(null);
+    try {
+      const originalEntity = entityForDraft(source.entities, entityDraft);
+      const response = await updateReviewEntity(
+        source.source_id,
+        buildEntityEditPayload(entityDraft, originalEntity)
+      );
+      const queuePayload = await getReviewQueue({
+        status: statusFilter,
+        decision: decisionFilter,
+        q: query,
+        limit: QUEUE_LIMIT
+      });
+      const sortedPayload = { ...queuePayload, items: sortQueueItems(queuePayload.items) };
+      setQueue(sortedPayload);
+      const nextSourceId = sortedPayload.items.some((item) => item.source_id === source.source_id)
+        ? source.source_id
+        : (sortedPayload.items[0]?.source_id ?? null);
+      setSelectedSourceId(nextSourceId);
+      if (!nextSourceId) {
+        setSource(null);
+      } else if (nextSourceId === source.source_id) {
+        setSource(response.source);
+      } else {
+        setSource(await getSourceDetail(nextSourceId));
+      }
+      setEntityMessageKey(entityKey(entityDraft.group, entityDraft.index));
+      setEntityDraft(null);
+      setEntityMessage("Entity saved.");
+    } catch (err: unknown) {
+      setEntityError(`Entity save failed: ${err instanceof Error ? err.message : String(err)}`);
+    } finally {
+      setEntityPending(false);
+    }
+  }
+
   return (
     <div className="app-shell">
       <header className="topbar">
@@ -178,7 +290,7 @@ export default function App(): ReactElement {
           <h1>Review Workspace</h1>
           <p>Batch review for pre-analyzed Readwise sources</p>
         </div>
-        <div className="mode-pill">Write enabled</div>
+        <div className="mode-pill">{managementModeLabel(config?.mode)}</div>
       </header>
 
       {error ? <div className="error-banner">{error}</div> : null}
@@ -266,11 +378,28 @@ export default function App(): ReactElement {
                 decisionPending={decisionPending}
                 decisionMessage={decisionMessage}
                 decisionError={decisionError}
+                finishPending={finishPending}
+                finishMessage={finishMessage}
+                finishError={finishError}
                 onDecision={writeDecision}
+                onFinish={() => void finishCurrentReview()}
               />
               <SummaryCard source={source} />
               <TagCloud tags={source.tags} />
-              <EntitySections entities={source.entities} />
+              <EntitySections
+                editDraft={entityDraft}
+                entityError={entityError}
+                entityMessage={entityMessage}
+                entityMessageKey={entityMessageKey}
+                entityPending={entityPending}
+                entities={source.entities}
+                onCancelEdit={() => setEntityDraft(null)}
+                onDraftChange={setEntityDraft}
+                onSaveEdit={() => void saveEntityEdit()}
+                onStartEdit={startEntityEdit}
+                showHidden={showHidden}
+                onShowHiddenChange={setShowHidden}
+              />
               <div className="utility-actions">
                 <button onClick={openRawSource}>
                   {rawOpen ? "Hide raw source" : "Show raw source"}
@@ -349,6 +478,13 @@ function countForDecisionFilter(queue: QueueResponse, decision: ManagementDecisi
   return queue.decision_counts[decision];
 }
 
+function managementModeLabel(mode: ManagementWebMode | undefined): string {
+  if (mode === "write_enabled") {
+    return "Write enabled";
+  }
+  return "Loading...";
+}
+
 function sortQueueItems(items: QueueItem[]): QueueItem[] {
   return [...items].sort((left, right) => {
     const leftDate = left.published_date || "9999-12-31";
@@ -358,6 +494,93 @@ function sortQueueItems(items: QueueItem[]): QueueItem[] {
     }
     return left.title.localeCompare(right.title);
   });
+}
+
+function entityKey(group: EditableEntityGroup, index: number): string {
+  return `${group}:${index}`;
+}
+
+function isHiddenEntity(item: NormalizedEntity): boolean {
+  const reviewState = item.raw.review_state;
+  return Boolean(
+    reviewState &&
+      typeof reviewState === "object" &&
+      "hidden" in reviewState &&
+      (reviewState as { hidden?: unknown }).hidden === true
+  );
+}
+
+function parseTagInput(input: string): string[] {
+  if (!input.trim()) {
+    return [];
+  }
+  return input.split(",").map((tag) => tag.trim());
+}
+
+function entityDraftError(draft: EntityEditDraft): string | null {
+  if (!draft.title.trim()) {
+    return "Title cannot be empty.";
+  }
+  if (draft.description !== "" && !draft.description.trim()) {
+    return "Description cannot be empty.";
+  }
+  if (parseTagInput(draft.tags).some((tag) => tag === "")) {
+    return "Tags cannot contain empty values.";
+  }
+  return null;
+}
+
+function entityForDraft(
+  entities: EntityGroups,
+  draft: EntityEditDraft
+): NormalizedEntity | null {
+  return entities[draft.group].find((item) => item.index === draft.index) ?? null;
+}
+
+function buildEntityEditPayload(
+  draft: EntityEditDraft,
+  original: NormalizedEntity | null
+): {
+  group: EditableEntityGroup;
+  index: number;
+  title?: string;
+  description?: string;
+  tags?: string[];
+  hidden?: boolean;
+} {
+  const payload: {
+    group: EditableEntityGroup;
+    index: number;
+    title?: string;
+    description?: string;
+    tags?: string[];
+    hidden?: boolean;
+  } = {
+    group: draft.group,
+    index: draft.index
+  };
+  if (!original || draft.title !== original.title) {
+    payload.title = draft.title.trim();
+  }
+  if (!original || draft.description !== original.description) {
+    payload.description = draft.description.trim();
+  }
+  if (!original || draft.tags !== original.tags.join(", ")) {
+    payload.tags = parseTagInput(draft.tags);
+  }
+  if (!original || draft.hidden !== isHiddenEntity(original)) {
+    payload.hidden = draft.hidden;
+  }
+  return payload;
+}
+
+function entityDraftUnchanged(draft: EntityEditDraft, item: NormalizedEntity): boolean {
+  return (
+    draft.title === item.title &&
+    draft.description === item.description &&
+    draft.tags === item.tags.join(", ") &&
+    draft.hidden === isHiddenEntity(item)
+  );
 }
 
 function DecisionCountsSummary({
@@ -411,7 +634,11 @@ function SourceHeader({
   decisionPending,
   decisionMessage,
   decisionError,
-  onDecision
+  finishPending,
+  finishMessage,
+  finishError,
+  onDecision,
+  onFinish
 }: {
   source: SourceDetailResponse;
   selectedIndex: number;
@@ -423,7 +650,11 @@ function SourceHeader({
   decisionPending: boolean;
   decisionMessage: string | null;
   decisionError: string | null;
+  finishPending: boolean;
+  finishMessage: string | null;
+  finishError: string | null;
   onDecision: (status: ManagementReviewStatus) => Promise<void>;
+  onFinish: () => void;
 }): ReactElement {
   return (
     <section className="source-header">
@@ -450,10 +681,13 @@ function SourceHeader({
             Next
           </button>
         </div>
+        <button className="primary-action" disabled={finishPending || decisionPending} onClick={onFinish}>
+          Finish review
+        </button>
         <div className="decision-actions" aria-label="Article decisions">
           {DECISION_ACTIONS.map((action) => (
             <button
-              disabled={decisionPending}
+              disabled={decisionPending || finishPending}
               key={action.status}
               onClick={() => void onDecision(action.status)}
             >
@@ -461,6 +695,8 @@ function SourceHeader({
             </button>
           ))}
         </div>
+        {finishMessage ? <p className="success-message">{finishMessage}</p> : null}
+        {finishError ? <p className="error-message">{finishError}</p> : null}
         {decisionMessage ? <p className="success-message">{decisionMessage}</p> : null}
         {decisionError ? <p className="error-message">{decisionError}</p> : null}
       </div>
@@ -517,24 +753,125 @@ function TagCloud({ tags }: { tags: string[] }): ReactElement {
   );
 }
 
-function EntitySections({ entities }: { entities: EntityGroups }): ReactElement {
+function EntitySections({
+  editDraft,
+  entityError,
+  entityMessage,
+  entityMessageKey,
+  entityPending,
+  entities,
+  onCancelEdit,
+  onDraftChange,
+  onSaveEdit,
+  onStartEdit,
+  showHidden,
+  onShowHiddenChange
+}: {
+  editDraft: EntityEditDraft | null;
+  entityError: string | null;
+  entityMessage: string | null;
+  entityMessageKey: string | null;
+  entityPending: boolean;
+  entities: EntityGroups;
+  onCancelEdit: () => void;
+  onDraftChange: (draft: EntityEditDraft) => void;
+  onSaveEdit: () => void;
+  onStartEdit: (group: EditableEntityGroup, item: NormalizedEntity) => void;
+  showHidden: boolean;
+  onShowHiddenChange: (showHidden: boolean) => void;
+}): ReactElement {
   return (
-    <div className="entity-grid">
-      <EntityGroup title="Topics" items={entities.topics} />
-      <EntityGroup title="Glossary" items={entities.glossary} />
-      <EntityGroup title="Trends" items={entities.trends} />
-    </div>
+    <section className="entity-workspace">
+      <label className="inline-toggle">
+        <input
+          checked={showHidden}
+          onChange={(event) => onShowHiddenChange(event.target.checked)}
+          type="checkbox"
+        />
+        Show hidden
+      </label>
+      <div className="entity-grid">
+        <EntityGroup
+          editDraft={editDraft}
+          entityError={entityError}
+          entityMessage={entityMessage}
+          entityMessageKey={entityMessageKey}
+          entityPending={entityPending}
+          group="topics"
+          title="Topics"
+          items={entities.topics}
+          onCancelEdit={onCancelEdit}
+          onDraftChange={onDraftChange}
+          onSaveEdit={onSaveEdit}
+          onStartEdit={onStartEdit}
+          showHidden={showHidden}
+        />
+        <EntityGroup
+          editDraft={editDraft}
+          entityError={entityError}
+          entityMessage={entityMessage}
+          entityMessageKey={entityMessageKey}
+          entityPending={entityPending}
+          group="glossary"
+          title="Glossary"
+          items={entities.glossary}
+          onCancelEdit={onCancelEdit}
+          onDraftChange={onDraftChange}
+          onSaveEdit={onSaveEdit}
+          onStartEdit={onStartEdit}
+          showHidden={showHidden}
+        />
+        <EntityGroup
+          editDraft={editDraft}
+          entityError={entityError}
+          entityMessage={entityMessage}
+          entityMessageKey={entityMessageKey}
+          entityPending={entityPending}
+          group="trends"
+          title="Trends"
+          items={entities.trends}
+          onCancelEdit={onCancelEdit}
+          onDraftChange={onDraftChange}
+          onSaveEdit={onSaveEdit}
+          onStartEdit={onStartEdit}
+          showHidden={showHidden}
+        />
+      </div>
+    </section>
   );
 }
 
 function EntityGroup({
+  editDraft,
+  entityError,
+  entityMessage,
+  entityMessageKey,
+  entityPending,
+  group,
   title,
-  items
+  items,
+  onCancelEdit,
+  onDraftChange,
+  onSaveEdit,
+  onStartEdit,
+  showHidden
 }: {
+  editDraft: EntityEditDraft | null;
+  entityError: string | null;
+  entityMessage: string | null;
+  entityMessageKey: string | null;
+  entityPending: boolean;
+  group: EditableEntityGroup;
   title: string;
   items: NormalizedEntity[];
+  onCancelEdit: () => void;
+  onDraftChange: (draft: EntityEditDraft) => void;
+  onSaveEdit: () => void;
+  onStartEdit: (group: EditableEntityGroup, item: NormalizedEntity) => void;
+  showHidden: boolean;
 }): ReactElement {
-  if (items.length === 0) {
+  const visibleItems = showHidden ? items : items.filter((item) => !isHiddenEntity(item));
+  if (visibleItems.length === 0) {
     return (
       <section className="empty-entity-row">
         <span>{title}</span>
@@ -546,18 +883,119 @@ function EntityGroup({
   return (
     <section className="review-card entity-group">
       <h3>
-        {title} <span>{items.length}</span>
+        {title} <span>{visibleItems.length}</span>
       </h3>
-      {items.map((item) => <EntityCard key={`${title}-${item.title}`} item={item} />)}
+      {visibleItems.map((item) => {
+        const isEditing = entityKey(group, item.index) === (
+          editDraft ? entityKey(editDraft.group, editDraft.index) : ""
+        );
+        return (
+          <EntityCard
+            editDraft={isEditing ? editDraft : null}
+            entityError={isEditing ? entityError : null}
+            entityMessage={entityKey(group, item.index) === entityMessageKey ? entityMessage : null}
+            entityPending={entityPending}
+            group={group}
+            item={item}
+            key={`${title}-${item.index}-${item.title}`}
+            onCancelEdit={onCancelEdit}
+            onDraftChange={onDraftChange}
+            onSaveEdit={onSaveEdit}
+            onStartEdit={onStartEdit}
+          />
+        );
+      })}
     </section>
   );
 }
 
-function EntityCard({ item }: { item: NormalizedEntity }): ReactElement {
+function EntityCard({
+  editDraft,
+  entityError,
+  entityMessage,
+  entityPending,
+  group,
+  item,
+  onCancelEdit,
+  onDraftChange,
+  onSaveEdit,
+  onStartEdit
+}: {
+  editDraft: EntityEditDraft | null;
+  entityError: string | null;
+  entityMessage: string | null;
+  entityPending: boolean;
+  group: EditableEntityGroup;
+  item: NormalizedEntity;
+  onCancelEdit: () => void;
+  onDraftChange: (draft: EntityEditDraft) => void;
+  onSaveEdit: () => void;
+  onStartEdit: (group: EditableEntityGroup, item: NormalizedEntity) => void;
+}): ReactElement {
+  const hidden = isHiddenEntity(item);
+  if (editDraft) {
+    const validationError = entityDraftError(editDraft);
+    const unchanged = entityDraftUnchanged(editDraft, item);
+    return (
+      <article className="entity-card entity-editor">
+        <label>
+          Entity title
+          <input
+            disabled={entityPending}
+            onChange={(event) => onDraftChange({ ...editDraft, title: event.target.value })}
+            value={editDraft.title}
+          />
+        </label>
+        <label>
+          Entity description
+          <textarea
+            disabled={entityPending}
+            onChange={(event) => onDraftChange({ ...editDraft, description: event.target.value })}
+            value={editDraft.description}
+          />
+        </label>
+        <label>
+          Entity tags
+          <input
+            disabled={entityPending}
+            onChange={(event) => onDraftChange({ ...editDraft, tags: event.target.value })}
+            value={editDraft.tags}
+          />
+        </label>
+        <label className="inline-toggle">
+          <input
+            checked={editDraft.hidden}
+            disabled={entityPending}
+            onChange={(event) => onDraftChange({ ...editDraft, hidden: event.target.checked })}
+            type="checkbox"
+          />
+          Hidden
+        </label>
+        {validationError ? <p className="error-message inline">{validationError}</p> : null}
+        {entityError ? <p className="error-message inline">{entityError}</p> : null}
+        <div className="button-row">
+          <button onClick={onCancelEdit} disabled={entityPending}>
+            Cancel edit
+          </button>
+          <button
+            disabled={entityPending || Boolean(validationError) || unchanged}
+            onClick={onSaveEdit}
+          >
+            Save entity
+          </button>
+        </div>
+      </article>
+    );
+  }
   return (
-    <article className="entity-card">
-      <h4>{item.title || "Untitled entity"}</h4>
+    <article className={hidden ? "entity-card hidden-entity" : "entity-card"}>
+      <div className="entity-card-header">
+        <h4>{item.title || "Untitled entity"}</h4>
+        <button onClick={() => onStartEdit(group, item)}>Edit {item.title || "entity"}</button>
+      </div>
+      {hidden ? <span className="hidden-badge">Hidden</span> : null}
       {item.description ? <p>{item.description}</p> : null}
+      {entityMessage ? <p className="success-message inline">{entityMessage}</p> : null}
       {item.tags.length > 0 ? (
         <div className="tag-cloud compact">
           {item.tags.map((tag) => (

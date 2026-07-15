@@ -1,4 +1,4 @@
-"""FastAPI application for the read-only management web backend."""
+"""FastAPI application for the management web backend."""
 
 from __future__ import annotations
 
@@ -8,7 +8,13 @@ from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 
 from src.management_web.models import (
+    MANAGEMENT_WEB_MODE,
+    MANAGEMENT_WEB_WRITE_CAPABILITIES,
     ConfigResponse,
+    EntityEditRequest,
+    EntityEditResponse,
+    FinishReviewRequest,
+    FinishReviewResponse,
     HealthResponse,
     ManagementDecisionFilter,
     ManagementDecisionResponse,
@@ -19,9 +25,12 @@ from src.management_web.models import (
     SourceDetailResponse,
 )
 from src.management_web.review_data import (
+    FinishConflictError,
     build_review_queue,
+    finish_review,
     get_source_detail,
     read_raw_markdown,
+    update_review_entity,
     write_management_decision,
 )
 from src.wiki_paths.config import WikiPaths, load_wiki_paths
@@ -32,7 +41,7 @@ def create_app(
     paths: WikiPaths | None = None,
     paths_config: Path | None = None,
 ) -> FastAPI:
-    """Create the read-only management web FastAPI application.
+    """Create the management web FastAPI application.
 
     Args:
         paths: Optional pre-resolved paths, mainly for tests.
@@ -54,8 +63,13 @@ def create_app(
 
     @app.get("/api/health", response_model=HealthResponse)
     def health() -> HealthResponse:
-        """Return basic service health and read-only mode."""
-        return HealthResponse(ok=True, service="management-web", mode="readonly")
+        """Return basic service health and enabled write capabilities."""
+        return HealthResponse(
+            ok=True,
+            service="management-web",
+            mode=MANAGEMENT_WEB_MODE,
+            capabilities=list(MANAGEMENT_WEB_WRITE_CAPABILITIES),
+        )
 
     @app.get("/api/config", response_model=ConfigResponse)
     def config() -> ConfigResponse:
@@ -63,7 +77,8 @@ def create_app(
         current_paths: WikiPaths = app.state.paths
         path_payload = current_paths.to_dict()
         return ConfigResponse(
-            mode="readonly",
+            mode=MANAGEMENT_WEB_MODE,
+            capabilities=list(MANAGEMENT_WEB_WRITE_CAPABILITIES),
             paths={
                 "repo_root": path_payload["repo_root"],
                 "knowledge_root": path_payload["knowledge_root"],
@@ -127,5 +142,43 @@ def create_app(
             raise HTTPException(status_code=404, detail=str(exc)) from exc
         except OSError as exc:
             raise HTTPException(status_code=500, detail="Failed to write decision") from exc
+
+    @app.patch(
+        "/api/review/source/{source_id}/entity",
+        response_model=EntityEditResponse,
+    )
+    def review_source_entity(
+        source_id: str,
+        edit: EntityEditRequest,
+    ) -> EntityEditResponse:
+        """Apply a targeted edit to one normalized entity card."""
+        try:
+            return update_review_entity(app.state.paths, source_id, edit)
+        except ValueError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+        except FileNotFoundError as exc:
+            raise HTTPException(status_code=404, detail=str(exc)) from exc
+        except OSError as exc:
+            raise HTTPException(status_code=500, detail="Failed to edit entity") from exc
+
+    @app.patch(
+        "/api/review/source/{source_id}/finish",
+        response_model=FinishReviewResponse,
+    )
+    def review_source_finish(
+        source_id: str,
+        request: FinishReviewRequest,
+    ) -> FinishReviewResponse:
+        """Finish the selected review artifact and approve it."""
+        try:
+            return finish_review(app.state.paths, source_id, request)
+        except FinishConflictError as exc:
+            raise HTTPException(status_code=409, detail=str(exc)) from exc
+        except ValueError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+        except FileNotFoundError as exc:
+            raise HTTPException(status_code=404, detail=str(exc)) from exc
+        except OSError as exc:
+            raise HTTPException(status_code=500, detail="Failed to finish review") from exc
 
     return app

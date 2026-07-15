@@ -18,7 +18,8 @@ body {
 
 button,
 input,
-select {
+select,
+textarea {
   font: inherit;
 }
 
@@ -157,10 +158,16 @@ label {
 }
 
 input,
-select {
+select,
+textarea {
   border: 1px solid #d8dde5;
   border-radius: 8px;
   padding: 0.55rem 0.65rem;
+}
+
+textarea {
+  min-height: 5.5rem;
+  resize: vertical;
 }
 
 .counts-grid {
@@ -319,6 +326,24 @@ select {
   grid-template-columns: 1fr;
 }
 
+.entity-workspace {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.inline-toggle {
+  align-items: center;
+  flex-direction: row;
+  font-weight: 700;
+  gap: 0.45rem;
+  margin-top: 0;
+}
+
+.inline-toggle input {
+  width: auto;
+}
+
 .entity-group h3 {
   align-items: center;
   display: flex;
@@ -330,9 +355,42 @@ select {
   padding: 0.85rem 0;
 }
 
+.entity-card-header {
+  align-items: flex-start;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: space-between;
+}
+
+.entity-card-header button {
+  font-size: 0.72rem;
+  padding: 0.35rem 0.55rem;
+}
+
+.entity-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
 .entity-card h4 {
   font-size: 0.98rem;
   margin: 0 0 0.35rem;
+}
+
+.hidden-entity {
+  opacity: 0.72;
+}
+
+.hidden-badge {
+  background: #f4f5f6;
+  border: 1px solid #d9dde3;
+  border-radius: 999px;
+  color: #5b6470;
+  display: inline-flex;
+  font-size: 0.72rem;
+  margin: 0 0 0.45rem;
+  padding: 0.1rem 0.4rem;
 }
 
 .entity-card p {
@@ -375,6 +433,14 @@ blockquote {
   display: grid;
   gap: 0.4rem;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 100%;
+}
+
+.primary-action {
+  background: #1f6feb;
+  border-color: #1f6feb;
+  color: #fff;
+  font-weight: 700;
   width: 100%;
 }
 
@@ -431,6 +497,11 @@ blockquote {
 
 .error-message {
   color: #b42318;
+}
+
+.success-message.inline,
+.error-message.inline {
+  text-align: left;
 }
 
 .drawer pre,

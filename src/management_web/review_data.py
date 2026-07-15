@@ -14,8 +14,13 @@ from src.ingest_queue.queue import IngestItem, list_ingest_items
 from src.management_web.models import (
     DebugPayload,
     DecisionCounts,
+    EditableEntityGroup,
     EntityCounts,
+    EntityEditRequest,
+    EntityEditResponse,
     EntityGroups,
+    FinishReviewRequest,
+    FinishReviewResponse,
     ManagementDecisionFilter,
     ManagementDecisionResponse,
     ManagementReview,
@@ -37,6 +42,48 @@ from src.wiki_paths.config import WikiPaths
 
 _SOURCE_ID_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_-]*$")
 _MANAGEMENT_REVIEW_STATUSES = set(get_args(ManagementReviewStatus))
+_ENTITY_GROUP_PATHS: dict[str, tuple[str, str]] = {
+    "topics": ("llm_output", "topics"),
+    "glossary": ("llm_output", "glossary"),
+    "trends": ("llm_output", "industry_trends"),
+}
+_TITLE_KEYS = {
+    "topics": ("topic", "topic_title", "title"),
+    "glossary": ("term", "glossary_term", "title"),
+    "trends": ("trend", "trend_title", "title"),
+}
+_DESCRIPTION_KEYS = {
+    "topics": (
+        "topic_description",
+        "knowledge_summary",
+        "operational_insight",
+        "description",
+        "summary",
+    ),
+    "glossary": (
+        "definition",
+        "proposed_definition",
+        "knowledge_summary",
+        "description",
+        "summary",
+    ),
+    "trends": (
+        "trend_description",
+        "knowledge_summary",
+        "operational_insight",
+        "description",
+        "summary",
+    ),
+}
+_TAG_KEYS = {
+    "topics": ("topic_tags", "proposed_tags", "primary_tag", "secondary_tag"),
+    "glossary": ("tags", "glossary_tags", "proposed_tags", "primary_tag", "secondary_tag"),
+    "trends": ("trend_tags", "proposed_tags", "primary_tag", "secondary_tag"),
+}
+
+
+class FinishConflictError(ValueError):
+    """Raised when finishing would overwrite a conflicting management decision."""
 
 
 def validate_source_id(source_id: str) -> str:
@@ -252,12 +299,117 @@ def write_management_decision(
     artifact["management_review"] = management_review.model_dump()
     backup_path: Path | None = None
     if previous_text is not None:
-        backup_path = _write_review_backup(review_json_path, previous_text)
+        backup_path = _write_review_backup(
+            review_json_path, previous_text, reason="management-review"
+        )
     atomic_write_json(review_json_path, artifact)
     return ManagementDecisionResponse(
         source_id=safe_source_id,
         management_review=management_review,
         backup_path=str(backup_path) if backup_path is not None else None,
+    )
+
+
+def update_review_entity(
+    paths: WikiPaths,
+    source_id: str,
+    request: EntityEditRequest,
+    *,
+    reviewed_by: str = "plischke",
+) -> EntityEditResponse:
+    """Apply a targeted entity edit to an existing review artifact.
+
+    Args:
+        paths: Resolved wiki paths.
+        source_id: Safe Readwise export stem.
+        request: Target entity and editable fields.
+        reviewed_by: Operator identifier to store in hidden state metadata.
+
+    Returns:
+        Edit response containing the refreshed source detail.
+
+    Raises:
+        ValueError: If the source ID, group, index, or field payload is invalid.
+        FileNotFoundError: If raw HTML or review artifact is missing.
+    """
+    safe_source_id, review_json_path, artifact = _load_existing_review_artifact_for_write(
+        paths, source_id
+    )
+    entity_group = _validate_entity_group(request.group)
+    _validate_entity_edit_request(request)
+    entities = _artifact_entity_list(artifact, entity_group)
+    if request.index < 0 or request.index >= len(entities):
+        raise ValueError(f"Entity index out of range: {request.index}")
+    entity = entities[request.index]
+    if not isinstance(entity, dict):
+        raise ValueError(f"Entity at index {request.index} is not editable")
+    _apply_entity_edit(entity, request, entity_group, reviewed_by=reviewed_by)
+    backup_path = _write_review_artifact_with_backup(
+        review_json_path,
+        artifact,
+        reason="management-edit",
+    )
+    return EntityEditResponse(
+        source_id=safe_source_id,
+        group=entity_group,
+        index=request.index,
+        backup_path=str(backup_path),
+        source=get_source_detail(paths, safe_source_id),
+    )
+
+
+def finish_review(
+    paths: WikiPaths,
+    source_id: str,
+    request: FinishReviewRequest,
+    *,
+    reviewed_by: str = "plischke",
+) -> FinishReviewResponse:
+    """Finish an analyzed review artifact and approve its management decision.
+
+    Args:
+        paths: Resolved wiki paths.
+        source_id: Safe Readwise export stem.
+        request: Finish request with optional notes and conflict override.
+        reviewed_by: Operator identifier to store in management_review.
+
+    Returns:
+        Finish response with approval state and backup path.
+
+    Raises:
+        ValueError: If finishing is not valid for this artifact.
+        FileNotFoundError: If raw HTML or review artifact is missing.
+        FinishConflictError: If an existing non-approved decision blocks finish.
+    """
+    safe_source_id, review_json_path, artifact = _load_existing_review_artifact_for_write(
+        paths, source_id
+    )
+    if not _has_analysis_payload(artifact):
+        raise ValueError("Cannot finish review artifact with no analysis payload")
+    _ensure_finish_allowed(artifact, force=request.force)
+    finished_at = _utc_timestamp()
+    analytics = artifact.get("review_analytics")
+    if not isinstance(analytics, dict):
+        analytics = {}
+    analytics["review_finished_at"] = finished_at
+    artifact["review_analytics"] = analytics
+    management_review = ManagementReview(
+        status="approved",
+        reviewed_at=finished_at,
+        reviewed_by=reviewed_by,
+        notes=request.notes,
+    )
+    artifact["management_review"] = management_review.model_dump()
+    backup_path = _write_review_artifact_with_backup(
+        review_json_path,
+        artifact,
+        reason="management-edit",
+    )
+    return FinishReviewResponse(
+        source_id=safe_source_id,
+        management_review=management_review,
+        review_finished_at=finished_at,
+        backup_path=str(backup_path),
     )
 
 
@@ -417,14 +569,12 @@ def _backup_timestamp() -> str:
     return datetime.now(tz=UTC).strftime("%Y%m%dT%H%M%SZ")
 
 
-def _write_review_backup(review_json_path: Path, text: str) -> Path:
+def _write_review_backup(review_json_path: Path, text: str, *, reason: str) -> Path:
     """Write a non-overwriting backup for an existing review artifact."""
     timestamp = _backup_timestamp()
     for counter in range(1000):
         suffix = "" if counter == 0 else f".{counter}"
-        backup_path = review_json_path.with_name(
-            f"review.before-management-review.{timestamp}{suffix}.json"
-        )
+        backup_path = review_json_path.with_name(f"review.before-{reason}.{timestamp}{suffix}.json")
         try:
             with backup_path.open("x", encoding="utf-8") as backup:
                 backup.write(text)
@@ -534,15 +684,20 @@ def _normalize_entity_list(raw_items: Any, *, kind: str) -> list[NormalizedEntit
     """Normalize list-like entity payloads into display cards."""
     if not isinstance(raw_items, list):
         return []
-    return [_normalize_entity(item, kind=kind) for item in raw_items]
+    return [_normalize_entity(item, kind=kind, index=index) for index, item in enumerate(raw_items)]
 
 
-def _normalize_entity(item: Any, *, kind: str) -> NormalizedEntity:
+def _normalize_entity(item: Any, *, kind: str, index: int) -> NormalizedEntity:
     """Normalize one entity item, preserving raw fields for debug inspection."""
     if not isinstance(item, dict):
         text = str(item).strip()
         return NormalizedEntity(
-            title=text, description="", tags=[], evidence="", raw={"value": item}
+            index=index,
+            title=text,
+            description="",
+            tags=[],
+            evidence="",
+            raw={"value": item},
         )
     title_keys = {
         "topic": ("topic_title", "title", "name"),
@@ -572,6 +727,7 @@ def _normalize_entity(item: Any, *, kind: str) -> NormalizedEntity:
         "trend": ("trend_tags", "proposed_tags", "tags", "primary_tag", "secondary_tag"),
     }[kind]
     return NormalizedEntity(
+        index=index,
         title=_first_string(item, title_keys),
         description=_first_string(item, description_keys),
         tags=_string_list_from_keys(item, tag_keys),
@@ -649,3 +805,151 @@ def _first_evidence(payload: dict[str, Any]) -> str:
         if point_text:
             return point_text
     return ""
+
+
+def _load_existing_review_artifact_for_write(
+    paths: WikiPaths,
+    source_id: str,
+) -> tuple[str, Path, dict[str, Any]]:
+    """Load an existing artifact for a safe write operation."""
+    safe_source_id = validate_source_id(source_id)
+    raw_html_path = paths.raw_dir / f"{safe_source_id}.html"
+    if not raw_html_path.is_file():
+        raise FileNotFoundError(f"Source not found: {safe_source_id}")
+    review_json_path = paths.reviews_dir / safe_source_id / "review.json"
+    artifact = load_review_artifact(review_json_path)
+    if artifact is None:
+        raise FileNotFoundError(f"Review artifact not found: {safe_source_id}")
+    return safe_source_id, review_json_path, artifact
+
+
+def _validate_entity_group(group: str) -> EditableEntityGroup:
+    """Return a supported editable entity group or raise."""
+    if group not in _ENTITY_GROUP_PATHS:
+        raise ValueError(f"Invalid entity group: {group!r}")
+    return cast("EditableEntityGroup", group)
+
+
+def _validate_entity_edit_request(request: EntityEditRequest) -> None:
+    """Validate that at least one well-formed editable field is present."""
+    has_field = any(
+        value is not None
+        for value in (request.title, request.description, request.tags, request.hidden)
+    )
+    if not has_field:
+        raise ValueError("At least one editable field must be present")
+    if request.title is not None and not request.title.strip():
+        raise ValueError("Title cannot be empty")
+    if request.description is not None and not request.description.strip():
+        raise ValueError("Description cannot be empty")
+    if request.tags is not None:
+        _normalize_tags(request.tags)
+
+
+def _artifact_entity_list(artifact: dict[str, Any], group: EditableEntityGroup) -> list[Any]:
+    """Return the underlying artifact entity list for an editable group."""
+    parent_key, list_key = _ENTITY_GROUP_PATHS[group]
+    parent = artifact.get(parent_key)
+    if not isinstance(parent, dict):
+        raise ValueError(f"Artifact group parent missing: {parent_key}")
+    raw_entities = parent.get(list_key)
+    if not isinstance(raw_entities, list):
+        raise ValueError(f"Artifact entity group missing: {group}")
+    return raw_entities
+
+
+def _apply_entity_edit(
+    entity: dict[str, Any],
+    request: EntityEditRequest,
+    group: EditableEntityGroup,
+    *,
+    reviewed_by: str,
+) -> None:
+    """Apply validated entity edit fields to one artifact entity."""
+    if request.title is not None:
+        _set_first_mapped_string(entity, _TITLE_KEYS[group], request.title.strip())
+    if request.description is not None:
+        _set_first_mapped_string(entity, _DESCRIPTION_KEYS[group], request.description.strip())
+    if request.tags is not None:
+        _set_entity_tags(entity, _normalize_tags(request.tags), group)
+    if request.hidden is not None:
+        _set_entity_hidden_state(entity, request.hidden, reviewed_by=reviewed_by)
+
+
+def _set_first_mapped_string(entity: dict[str, Any], keys: tuple[str, ...], value: str) -> None:
+    """Set the first existing mapped string field, or the preferred field."""
+    for key in keys:
+        if key in entity:
+            entity[key] = value
+            return
+    entity[keys[0]] = value
+
+
+def _normalize_tags(tags: list[str]) -> list[str]:
+    """Trim and deduplicate tags while preserving input order."""
+    normalized: list[str] = []
+    seen: set[str] = set()
+    for tag in tags:
+        text = str(tag).strip()
+        if not text:
+            raise ValueError("Tags cannot contain empty values")
+        if text not in seen:
+            normalized.append(text)
+            seen.add(text)
+    return normalized
+
+
+def _set_entity_tags(
+    entity: dict[str, Any],
+    tags: list[str],
+    group: EditableEntityGroup,
+) -> None:
+    """Set normalized tags using the first suitable existing tag field."""
+    target_key = "proposed_tags"
+    for key in _TAG_KEYS[group]:
+        if isinstance(entity.get(key), list):
+            target_key = key
+            break
+    entity[target_key] = tags
+    for key in _TAG_KEYS[group]:
+        if key != target_key:
+            entity.pop(key, None)
+
+
+def _set_entity_hidden_state(
+    entity: dict[str, Any],
+    hidden: bool,
+    *,
+    reviewed_by: str,
+) -> None:
+    """Set or update review hidden state without deleting the entity."""
+    state = entity.get("review_state")
+    if not isinstance(state, dict):
+        state = {}
+    state["hidden"] = hidden
+    state["hidden_at"] = _utc_timestamp()
+    state["hidden_by"] = reviewed_by
+    entity["review_state"] = state
+
+
+def _ensure_finish_allowed(artifact: dict[str, Any], *, force: bool) -> None:
+    """Reject finishing when a conflicting management decision exists."""
+    management_review = get_management_review(artifact)
+    if management_review is None or management_review.status == "approved" or force:
+        return
+    raise FinishConflictError(
+        f"Finish conflicts with existing management decision: {management_review.status}"
+    )
+
+
+def _write_review_artifact_with_backup(
+    review_json_path: Path,
+    artifact: dict[str, Any],
+    *,
+    reason: str,
+) -> Path:
+    """Back up and atomically overwrite an existing review artifact."""
+    previous_text = review_json_path.read_text(encoding="utf-8")
+    backup_path = _write_review_backup(review_json_path, previous_text, reason=reason)
+    atomic_write_json(review_json_path, artifact)
+    return backup_path

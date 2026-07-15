@@ -7,11 +7,18 @@ from pathlib import Path
 
 import pytest
 
-from src.management_web.models import ManagementDecisionFilter, ManagementReviewRequest
+from src.management_web.models import (
+    EntityEditRequest,
+    FinishReviewRequest,
+    ManagementDecisionFilter,
+    ManagementReviewRequest,
+)
 from src.management_web.review_data import (
     build_review_queue,
+    finish_review,
     get_source_detail,
     read_raw_markdown,
+    update_review_entity,
     validate_source_id,
     write_management_decision,
 )
@@ -346,10 +353,374 @@ def test_get_source_detail_normalizes_artifact_for_review_card(tmp_path: Path) -
     assert detail.summary.short == "A concise summary."
     assert detail.summary.key_insights == ["First useful insight", "Second useful insight"]
     assert detail.tags == ["agents", "ai-engineering", "rag", "software-delivery"]
+    assert detail.entities.topics[0].index == 0
     assert detail.entities.topics[0].title == "Agentic coding workflows"
     assert detail.entities.glossary[0].title == "Retrieval augmented generation"
     assert detail.entities.trends[0].title == "Teams adopt AI review assistants"
     assert detail.debug.artifact["content_sha256"] == "stored-hash"
+
+
+def test_update_review_entity_updates_title_without_losing_unknown_fields(tmp_path: Path) -> None:
+    """Entity edits should update mapped fields and preserve unknown artifact data."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "editable")
+    _write_artifact(
+        paths,
+        "editable",
+        {
+            **_artifact(),
+            "llm_output": {
+                "topics": [
+                    {
+                        "topic_title": "Old title",
+                        "topic_description": "Existing description.",
+                        "custom_field": {"keep": True},
+                    }
+                ]
+            },
+        },
+    )
+
+    response = update_review_entity(
+        paths,
+        "editable",
+        EntityEditRequest(group="topics", index=0, title="Prompt caching"),
+    )
+
+    review_path = paths.reviews_dir / "editable" / "review.json"
+    artifact = json.loads(review_path.read_text(encoding="utf-8"))
+    topic = artifact["llm_output"]["topics"][0]
+    assert response.source.entities.topics[0].title == "Prompt caching"
+    assert response.backup_path is not None
+    assert Path(response.backup_path).is_file()
+    assert topic["topic_title"] == "Prompt caching"
+    assert topic["custom_field"] == {"keep": True}
+
+
+def test_update_review_entity_updates_description_using_mapped_field(tmp_path: Path) -> None:
+    """Description edits should update the first existing mapped description field."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "editable")
+    _write_artifact(
+        paths,
+        "editable",
+        {
+            **_artifact(),
+            "llm_output": {
+                "industry_trends": [
+                    {
+                        "trend_title": "Old trend",
+                        "operational_insight": "Old description.",
+                    }
+                ]
+            },
+        },
+    )
+
+    update_review_entity(
+        paths,
+        "editable",
+        EntityEditRequest(group="trends", index=0, description="Better description."),
+    )
+
+    artifact = json.loads((paths.reviews_dir / "editable" / "review.json").read_text())
+    assert artifact["llm_output"]["industry_trends"][0]["operational_insight"] == (
+        "Better description."
+    )
+
+
+def test_update_review_entity_updates_normalized_topic_description_field(tmp_path: Path) -> None:
+    """Description edits should round-trip for fields already preferred by normalization."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "editable")
+    _write_artifact(paths, "editable", _artifact())
+
+    response = update_review_entity(
+        paths,
+        "editable",
+        EntityEditRequest(group="topics", index=0, description="Round-tripped description."),
+    )
+
+    artifact = json.loads((paths.reviews_dir / "editable" / "review.json").read_text())
+    assert artifact["llm_output"]["topics"][0]["topic_description"] == (
+        "Round-tripped description."
+    )
+    assert response.source.entities.topics[0].description == "Round-tripped description."
+
+
+def test_update_review_entity_normalizes_tags(tmp_path: Path) -> None:
+    """Tag edits should trim whitespace and deduplicate while preserving order."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "editable")
+    _write_artifact(paths, "editable", _artifact())
+
+    response = update_review_entity(
+        paths,
+        "editable",
+        EntityEditRequest(
+            group="topics",
+            index=0,
+            tags=[" ai-engineering ", "prompt-caching", "ai-engineering"],
+        ),
+    )
+
+    artifact = json.loads((paths.reviews_dir / "editable" / "review.json").read_text())
+    assert artifact["llm_output"]["topics"][0]["topic_tags"] == [
+        "ai-engineering",
+        "prompt-caching",
+    ]
+    assert response.source.entities.topics[0].tags == ["ai-engineering", "prompt-caching"]
+
+
+def test_update_review_entity_replaces_scalar_tag_fields(tmp_path: Path) -> None:
+    """Tag edits should not leave stale primary/secondary tag fields visible."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "editable")
+    _write_artifact(
+        paths,
+        "editable",
+        {
+            **_artifact(),
+            "llm_output": {
+                "topics": [
+                    {
+                        "topic_title": "Scalar tags",
+                        "topic_description": "Description.",
+                        "primary_tag": "old-primary",
+                        "secondary_tag": "old-secondary",
+                    }
+                ]
+            },
+        },
+    )
+
+    response = update_review_entity(
+        paths,
+        "editable",
+        EntityEditRequest(group="topics", index=0, tags=["new-tag"]),
+    )
+
+    artifact = json.loads((paths.reviews_dir / "editable" / "review.json").read_text())
+    topic = artifact["llm_output"]["topics"][0]
+    assert topic["proposed_tags"] == ["new-tag"]
+    assert "primary_tag" not in topic
+    assert "secondary_tag" not in topic
+    assert response.source.entities.topics[0].tags == ["new-tag"]
+
+
+def test_update_review_entity_hides_and_unhides_without_deleting_entity(tmp_path: Path) -> None:
+    """Hidden edits should write review_state and keep the original entity object."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "editable")
+    _write_artifact(paths, "editable", _artifact())
+
+    hidden_response = update_review_entity(
+        paths,
+        "editable",
+        EntityEditRequest(group="topics", index=0, hidden=True),
+    )
+    unhidden_response = update_review_entity(
+        paths,
+        "editable",
+        EntityEditRequest(group="topics", index=0, hidden=False),
+    )
+
+    artifact = json.loads((paths.reviews_dir / "editable" / "review.json").read_text())
+    topic = artifact["llm_output"]["topics"][0]
+    assert (
+        hidden_response.source.debug.artifact["llm_output"]["topics"][0]["review_state"]["hidden"]
+        is True
+    )
+    assert topic["review_state"]["hidden"] is False
+    assert topic["topic_title"] == "Agentic coding workflows"
+    assert unhidden_response.source.entities.topics[0].raw["review_state"]["hidden"] is False
+
+
+def test_update_review_entity_rejects_invalid_inputs(tmp_path: Path) -> None:
+    """Entity edits should reject unsafe paths, missing artifacts, invalid groups, and indexes."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "editable")
+    _write_artifact(paths, "editable", _artifact())
+    _write_raw(paths, "missing-artifact")
+
+    with pytest.raises(ValueError, match="Invalid source_id"):
+        update_review_entity(
+            paths,
+            "../secret",
+            EntityEditRequest(group="topics", index=0, title="Safe title"),
+        )
+    with pytest.raises(FileNotFoundError, match="Review artifact not found"):
+        update_review_entity(
+            paths,
+            "missing-artifact",
+            EntityEditRequest(group="topics", index=0, title="Safe title"),
+        )
+    with pytest.raises(ValueError, match="Invalid entity group"):
+        update_review_entity(
+            paths,
+            "editable",
+            EntityEditRequest(group="tools", index=0, title="Safe title"),
+        )
+    with pytest.raises(ValueError, match="Entity index out of range"):
+        update_review_entity(
+            paths,
+            "editable",
+            EntityEditRequest(group="topics", index=99, title="Safe title"),
+        )
+    with pytest.raises(ValueError, match="At least one editable field"):
+        update_review_entity(paths, "editable", EntityEditRequest(group="topics", index=0))
+    with pytest.raises(ValueError, match="Title cannot be empty"):
+        update_review_entity(
+            paths,
+            "editable",
+            EntityEditRequest(group="topics", index=0, title=" "),
+        )
+    with pytest.raises(ValueError, match="Tags cannot contain empty values"):
+        update_review_entity(
+            paths,
+            "editable",
+            EntityEditRequest(group="topics", index=0, tags=["valid", " "]),
+        )
+
+
+def test_update_review_entity_rejects_missing_raw_source(tmp_path: Path) -> None:
+    """Entity edits should require the matching raw HTML source."""
+    paths = _paths(tmp_path)
+    _write_artifact(paths, "orphan", _artifact())
+
+    with pytest.raises(FileNotFoundError, match="Source not found"):
+        update_review_entity(
+            paths,
+            "orphan",
+            EntityEditRequest(group="topics", index=0, title="Safe title"),
+        )
+
+
+def test_update_review_entity_does_not_mutate_raw_or_wiki_files(tmp_path: Path) -> None:
+    """Entity edits should only modify the selected review artifact."""
+    paths = _paths(tmp_path)
+    paths.wiki_dir.mkdir(parents=True)
+    wiki_page = paths.wiki_dir / "page.md"
+    wiki_page.write_text("wiki", encoding="utf-8")
+    _write_raw(paths, "editable", markdown="Original markdown")
+    _write_artifact(paths, "editable", _artifact())
+    raw_html = paths.raw_dir / "editable.html"
+    raw_md = paths.raw_dir / "editable.md"
+    raw_html_text = raw_html.read_text(encoding="utf-8")
+    raw_md_text = raw_md.read_text(encoding="utf-8")
+
+    update_review_entity(
+        paths,
+        "editable",
+        EntityEditRequest(group="topics", index=0, title="Updated title"),
+    )
+
+    assert raw_html.read_text(encoding="utf-8") == raw_html_text
+    assert raw_md.read_text(encoding="utf-8") == raw_md_text
+    assert wiki_page.read_text(encoding="utf-8") == "wiki"
+
+
+def test_finish_review_writes_finished_timestamp_and_approved_decision(tmp_path: Path) -> None:
+    """Finishing should mark lifecycle completion and approve the management review."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "ready")
+    _write_artifact(paths, "ready", _artifact())
+
+    response = finish_review(paths, "ready", FinishReviewRequest(notes="Looks good."))
+
+    artifact = json.loads((paths.reviews_dir / "ready" / "review.json").read_text())
+    assert response.source_id == "ready"
+    assert response.management_review.status == "approved"
+    assert response.management_review.reviewed_by == "plischke"
+    assert response.management_review.notes == "Looks good."
+    assert response.review_finished_at.endswith("Z")
+    assert Path(response.backup_path).is_file()
+    assert artifact["review_analytics"]["review_finished_at"] == response.review_finished_at
+    assert artifact["management_review"]["status"] == "approved"
+    assert (
+        build_review_queue(
+            paths,
+            status="finished",
+            decision="approved",
+            limit=10,
+            offset=0,
+            query=None,
+        )
+        .items[0]
+        .source_id
+        == "ready"
+    )
+
+
+@pytest.mark.parametrize("status", ["needs_attention", "skipped", "reanalyze_requested"])
+def test_finish_review_rejects_conflicting_management_decision(
+    tmp_path: Path,
+    status: str,
+) -> None:
+    """Finishing should not silently overwrite non-approved management decisions."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "ready")
+    _write_artifact(paths, "ready", _decided_artifact(status))
+
+    with pytest.raises(ValueError, match="conflicts with existing management decision"):
+        finish_review(paths, "ready", FinishReviewRequest())
+
+
+def test_finish_review_force_overrides_conflicting_management_decision(tmp_path: Path) -> None:
+    """A forced finish should deliberately convert conflicting decisions to approved."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "ready")
+    _write_artifact(paths, "ready", _decided_artifact("needs_attention"))
+
+    response = finish_review(paths, "ready", FinishReviewRequest(force=True))
+
+    assert response.management_review.status == "approved"
+    artifact = json.loads((paths.reviews_dir / "ready" / "review.json").read_text())
+    assert artifact["management_review"]["status"] == "approved"
+
+
+def test_finish_review_rejects_missing_or_unanalyzed_artifacts(tmp_path: Path) -> None:
+    """Finishing should require an existing artifact with analysis payload."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "missing-artifact")
+    _write_raw(paths, "management-only")
+    _write_artifact(
+        paths,
+        "management-only",
+        {
+            "management_review": {
+                "status": "approved",
+                "reviewed_at": "2026-07-15T12:34:56Z",
+                "reviewed_by": "plischke",
+                "notes": "",
+            }
+        },
+    )
+
+    with pytest.raises(FileNotFoundError, match="Review artifact not found"):
+        finish_review(paths, "missing-artifact", FinishReviewRequest())
+    with pytest.raises(ValueError, match="no analysis payload"):
+        finish_review(paths, "management-only", FinishReviewRequest())
+
+
+def test_finish_review_does_not_mutate_raw_or_wiki_files(tmp_path: Path) -> None:
+    """Finishing should only modify the selected review artifact and its backup."""
+    paths = _paths(tmp_path)
+    paths.wiki_dir.mkdir(parents=True)
+    wiki_page = paths.wiki_dir / "page.md"
+    wiki_page.write_text("wiki", encoding="utf-8")
+    _write_raw(paths, "ready", markdown="Original markdown")
+    _write_artifact(paths, "ready", _artifact())
+    raw_html = paths.raw_dir / "ready.html"
+    raw_md = paths.raw_dir / "ready.md"
+    raw_html_text = raw_html.read_text(encoding="utf-8")
+    raw_md_text = raw_md.read_text(encoding="utf-8")
+
+    finish_review(paths, "ready", FinishReviewRequest())
+
+    assert raw_html.read_text(encoding="utf-8") == raw_html_text
+    assert raw_md.read_text(encoding="utf-8") == raw_md_text
+    assert wiki_page.read_text(encoding="utf-8") == "wiki"
 
 
 def test_get_source_detail_returns_existing_management_review(tmp_path: Path) -> None:

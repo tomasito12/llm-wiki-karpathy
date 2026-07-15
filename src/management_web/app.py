@@ -1,4 +1,4 @@
-"""CLI entry point for the read-only management web backend."""
+"""CLI entry point for the management web backend."""
 
 from __future__ import annotations
 
@@ -19,7 +19,7 @@ def build_parser() -> argparse.ArgumentParser:
     """
     parser = argparse.ArgumentParser(
         prog="management-api",
-        description="Run the read-only LLM Wiki management web backend.",
+        description="Run the LLM Wiki management web backend.",
     )
     add_paths_config_argument(parser)
     parser.add_argument("--host", default="127.0.0.1", help="Host to bind.")
