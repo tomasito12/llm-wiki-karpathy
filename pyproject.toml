@@ -61,6 +61,9 @@ medium-to-readwise = [
 management-api = [
   "python -m src.management_web.app {args}",
 ]
+management-ui = [
+  "npm --prefix web/management run dev -- {args}",
+]
 readwise-dedupe = [
   "python -m src.readwise.dedupe_cli {args}",
 ]

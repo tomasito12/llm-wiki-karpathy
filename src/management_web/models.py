@@ -8,6 +8,7 @@ from pydantic import BaseModel, ConfigDict
 
 ReviewStatus = Literal["pending", "in_progress", "finished", "incomplete"]
 QueueStatusFilter = Literal["all", "pending", "in_progress", "finished", "incomplete"]
+ManagementReviewStatus = Literal["approved", "needs_attention", "skipped", "reanalyze_requested"]
 
 
 class HealthResponse(BaseModel):
@@ -58,6 +59,7 @@ class QueueItem(BaseModel):
     entity_counts: EntityCounts
     review_json_path: str
     raw_md_available: bool
+    management_status: ManagementReviewStatus | None = None
 
 
 class QueueResponse(BaseModel):
@@ -122,6 +124,30 @@ class DebugPayload(BaseModel):
     artifact: dict[str, Any]
 
 
+class ManagementReview(BaseModel):
+    """Article-level decision state written by the management web UI."""
+
+    status: ManagementReviewStatus
+    reviewed_at: str
+    reviewed_by: str
+    notes: str = ""
+
+
+class ManagementReviewRequest(BaseModel):
+    """Request body for writing an article-level management decision."""
+
+    status: str
+    notes: str = ""
+
+
+class ManagementDecisionResponse(BaseModel):
+    """Response returned after writing a management decision."""
+
+    source_id: str
+    management_review: ManagementReview
+    backup_path: str | None
+
+
 class SourceDetailResponse(BaseModel):
     """Normalized detail object for one review source."""
 
@@ -133,6 +159,7 @@ class SourceDetailResponse(BaseModel):
     summary: SourceSummary
     tags: list[str]
     entities: EntityGroups
+    management_review: ManagementReview | None
     debug: DebugPayload
 
 

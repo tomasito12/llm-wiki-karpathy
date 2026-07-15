@@ -1,5 +1,10 @@
 export type ReviewStatus = "pending" | "in_progress" | "finished" | "incomplete";
 export type QueueStatusFilter = ReviewStatus | "all";
+export type ManagementReviewStatus =
+  | "approved"
+  | "needs_attention"
+  | "skipped"
+  | "reanalyze_requested";
 
 export interface ConfigResponse {
   mode: "readonly";
@@ -33,6 +38,7 @@ export interface QueueItem {
   entity_counts: EntityCounts;
   review_json_path: string;
   raw_md_available: boolean;
+  management_status: ManagementReviewStatus | null;
 }
 
 export interface QueueResponse {
@@ -77,6 +83,24 @@ export interface EntityGroups {
   trends: NormalizedEntity[];
 }
 
+export interface ManagementReview {
+  status: ManagementReviewStatus;
+  reviewed_at: string;
+  reviewed_by: string;
+  notes: string;
+}
+
+export interface ManagementReviewRequest {
+  status: ManagementReviewStatus;
+  notes: string;
+}
+
+export interface ManagementDecisionResponse {
+  source_id: string;
+  management_review: ManagementReview;
+  backup_path: string | null;
+}
+
 export interface SourceDetailResponse {
   source_id: string;
   status: ReviewStatus;
@@ -86,6 +110,7 @@ export interface SourceDetailResponse {
   summary: SourceSummary;
   tags: string[];
   entities: EntityGroups;
+  management_review: ManagementReview | null;
   debug: {
     artifact: Record<string, unknown>;
   };

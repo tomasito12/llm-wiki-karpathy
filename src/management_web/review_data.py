@@ -3,16 +3,22 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 from collections.abc import Iterable
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any
+from typing import Any, cast, get_args
 
 from src.ingest_queue.queue import IngestItem, list_ingest_items
 from src.management_web.models import (
     DebugPayload,
     EntityCounts,
     EntityGroups,
+    ManagementDecisionResponse,
+    ManagementReview,
+    ManagementReviewRequest,
+    ManagementReviewStatus,
     NormalizedEntity,
     QueueCounts,
     QueueResponse,
@@ -24,9 +30,11 @@ from src.management_web.models import (
     SourcePaths,
     SourceSummary,
 )
+from src.pipeline.atomic import atomic_write_json
 from src.wiki_paths.config import WikiPaths
 
 _SOURCE_ID_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_-]*$")
+_MANAGEMENT_REVIEW_STATUSES = set(get_args(ManagementReviewStatus))
 
 
 def validate_source_id(source_id: str) -> str:
@@ -65,6 +73,26 @@ def load_review_artifact(path: Path) -> dict[str, Any] | None:
     return payload if isinstance(payload, dict) else None
 
 
+def get_management_review(artifact: dict[str, Any] | None) -> ManagementReview | None:
+    """Return normalized management review state from an artifact.
+
+    Args:
+        artifact: Loaded review artifact, when available.
+
+    Returns:
+        Management review state, or `None` when no valid block exists.
+    """
+    if not isinstance(artifact, dict):
+        return None
+    raw_review = artifact.get("management_review")
+    if not isinstance(raw_review, dict):
+        return None
+    try:
+        return ManagementReview.model_validate(raw_review)
+    except ValueError:
+        return None
+
+
 def classify_review_status(item: IngestItem, artifact: dict[str, Any] | None) -> ReviewStatus:
     """Classify one ingest item using the management web status vocabulary.
 
@@ -82,6 +110,8 @@ def classify_review_status(item: IngestItem, artifact: dict[str, Any] | None) ->
     analytics = artifact.get("review_analytics")
     if isinstance(analytics, dict) and str(analytics.get("review_finished_at") or "").strip():
         return "finished"
+    if not _has_analysis_payload(artifact):
+        return "pending"
     return "in_progress"
 
 
@@ -109,7 +139,7 @@ def build_review_queue(
         _queue_item(paths, item) for item in list_ingest_items(paths.raw_dir, paths.reviews_dir)
     ]
     counts = _count_queue_items(rows)
-    filtered = _filter_queue_items(rows, status=status, query=query)
+    filtered = _sort_queue_items(_filter_queue_items(rows, status=status, query=query))
     bounded_offset = max(offset, 0)
     bounded_limit = max(limit, 0)
     return QueueResponse(
@@ -163,7 +193,59 @@ def get_source_detail(paths: WikiPaths, source_id: str) -> SourceDetailResponse:
         summary=normalize_source_summary(artifact),
         tags=collect_tags(artifact),
         entities=entities,
+        management_review=get_management_review(artifact),
         debug=DebugPayload(artifact=artifact or {}),
+    )
+
+
+def write_management_decision(
+    paths: WikiPaths,
+    source_id: str,
+    decision: ManagementReviewRequest,
+    *,
+    reviewed_by: str = "plischke",
+) -> ManagementDecisionResponse:
+    """Write an article-level management review decision with backup.
+
+    Args:
+        paths: Resolved wiki paths.
+        source_id: Safe Readwise export stem.
+        decision: Requested article-level decision.
+        reviewed_by: Operator identifier to store in the decision block.
+
+    Returns:
+        Decision response including backup path when an artifact was overwritten.
+
+    Raises:
+        ValueError: If `source_id` is unsafe.
+        FileNotFoundError: If no matching raw HTML source exists.
+    """
+    safe_source_id = validate_source_id(source_id)
+    raw_html_path = paths.raw_dir / f"{safe_source_id}.html"
+    if not raw_html_path.is_file():
+        raise FileNotFoundError(f"Source not found: {safe_source_id}")
+    if decision.status not in _MANAGEMENT_REVIEW_STATUSES:
+        raise ValueError(f"Invalid management review status: {decision.status!r}")
+    review_json_path = paths.reviews_dir / safe_source_id / "review.json"
+    previous_text = (
+        review_json_path.read_text(encoding="utf-8") if review_json_path.is_file() else None
+    )
+    artifact = load_review_artifact(review_json_path) or {}
+    management_review = ManagementReview(
+        status=cast("ManagementReviewStatus", decision.status),
+        reviewed_at=_utc_timestamp(),
+        reviewed_by=reviewed_by,
+        notes=decision.notes,
+    )
+    artifact["management_review"] = management_review.model_dump()
+    backup_path: Path | None = None
+    if previous_text is not None:
+        backup_path = _write_review_backup(review_json_path, previous_text)
+    atomic_write_json(review_json_path, artifact)
+    return ManagementDecisionResponse(
+        source_id=safe_source_id,
+        management_review=management_review,
+        backup_path=str(backup_path) if backup_path is not None else None,
     )
 
 
@@ -212,7 +294,7 @@ def normalize_source_summary(artifact: dict[str, Any] | None) -> SourceSummary:
         else []
     )
     return SourceSummary(
-        short=_string_field(summary, "summary"),
+        short=_first_string(summary, ("accessible_overview", "summary")),
         key_insights=insights,
     )
 
@@ -281,6 +363,7 @@ def _queue_item(paths: WikiPaths, item: IngestItem):
     from src.management_web.models import QueueItem
 
     artifact = load_review_artifact(item.review_json_path)
+    management_review = get_management_review(artifact)
     metadata = extract_source_metadata(item.basename, item, artifact)
     entities = normalize_entities(artifact)
     return QueueItem(
@@ -300,7 +383,45 @@ def _queue_item(paths: WikiPaths, item: IngestItem):
         ),
         review_json_path=str(item.review_json_path),
         raw_md_available=item.raw_md_path is not None,
+        management_status=management_review.status if management_review else None,
     )
+
+
+def _has_analysis_payload(artifact: dict[str, Any]) -> bool:
+    """Return whether an artifact contains pre-analysis output, not only a decision."""
+    llm_output = _dict_value(artifact, "llm_output")
+    return any(
+        key in llm_output for key in ("source_summary", "topics", "glossary", "industry_trends")
+    )
+
+
+def _utc_timestamp() -> str:
+    """Return a UTC ISO timestamp with second precision and `Z` suffix."""
+    return datetime.now(tz=UTC).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+
+
+def _backup_timestamp() -> str:
+    """Return a compact UTC timestamp for backup filenames."""
+    return datetime.now(tz=UTC).strftime("%Y%m%dT%H%M%SZ")
+
+
+def _write_review_backup(review_json_path: Path, text: str) -> Path:
+    """Write a non-overwriting backup for an existing review artifact."""
+    timestamp = _backup_timestamp()
+    for counter in range(1000):
+        suffix = "" if counter == 0 else f".{counter}"
+        backup_path = review_json_path.with_name(
+            f"review.before-management-review.{timestamp}{suffix}.json"
+        )
+        try:
+            with backup_path.open("x", encoding="utf-8") as backup:
+                backup.write(text)
+                backup.flush()
+                os.fsync(backup.fileno())
+            return backup_path
+        except FileExistsError:
+            continue
+    raise OSError(f"Could not create unique review backup for {review_json_path}")
 
 
 def _count_queue_items(items: Iterable[Any]) -> QueueCounts:
@@ -331,6 +452,18 @@ def _filter_queue_items(
     if not normalized_query:
         return filtered
     return [item for item in filtered if _queue_item_matches_query(item, normalized_query)]
+
+
+def _sort_queue_items(items: list[Any]) -> list[Any]:
+    """Sort queue items by oldest publication date first with stable fallbacks."""
+    return sorted(
+        items,
+        key=lambda item: (
+            item.published_date or "9999-12-31",
+            item.title.lower(),
+            item.source_id,
+        ),
+    )
 
 
 def _queue_item_matches_query(item: Any, query: str) -> bool:
@@ -368,22 +501,32 @@ def _normalize_entity(item: Any, *, kind: str) -> NormalizedEntity:
         "trend": ("trend_title", "title", "name"),
     }[kind]
     description_keys = {
-        "topic": ("topic_description", "description", "summary"),
+        "topic": (
+            "topic_description",
+            "knowledge_summary",
+            "operational_insight",
+            "description",
+            "summary",
+        ),
         "glossary": ("definition", "proposed_definition", "description"),
-        "trend": ("trend_description", "description", "summary"),
+        "trend": (
+            "trend_description",
+            "operational_insight",
+            "knowledge_summary",
+            "description",
+            "summary",
+        ),
     }[kind]
     tag_keys = {
-        "topic": ("topic_tags", "tags"),
-        "glossary": ("tags", "glossary_tags"),
-        "trend": ("trend_tags", "tags"),
+        "topic": ("topic_tags", "proposed_tags", "tags", "primary_tag", "secondary_tag"),
+        "glossary": ("tags", "glossary_tags", "proposed_tags", "primary_tag", "secondary_tag"),
+        "trend": ("trend_tags", "proposed_tags", "tags", "primary_tag", "secondary_tag"),
     }[kind]
     return NormalizedEntity(
         title=_first_string(item, title_keys),
         description=_first_string(item, description_keys),
         tags=_string_list_from_keys(item, tag_keys),
-        evidence=_first_string(
-            item, ("evidence", "source_phrase", "source_quote", "supporting_evidence")
-        ),
+        evidence=_first_evidence(item),
         raw=item,
     )
 
@@ -415,10 +558,45 @@ def _first_string(payload: dict[str, Any], keys: tuple[str, ...]) -> str:
 
 
 def _string_list_from_keys(payload: dict[str, Any], keys: tuple[str, ...]) -> list[str]:
-    """Return unique stripped strings from the first list-valued candidate key."""
+    """Return unique stripped strings from list or scalar candidate keys."""
+    tags: set[str] = set()
     for key in keys:
         raw = payload.get(key)
-        if not isinstance(raw, list):
-            continue
-        return sorted({str(item).strip() for item in raw if str(item).strip()})
-    return []
+        if isinstance(raw, list):
+            tags.update(str(item).strip() for item in raw if str(item).strip())
+        elif raw is not None:
+            text = str(raw).strip()
+            if text:
+                tags.add(text)
+    return sorted(tags)
+
+
+def _first_evidence(payload: dict[str, Any]) -> str:
+    """Return the first evidence-like display string from current artifact fields."""
+    text = _first_string(
+        payload,
+        (
+            "evidence",
+            "supporting_snippet",
+            "evidence_from_source",
+            "source_phrase",
+            "source_quote",
+            "supporting_evidence",
+        ),
+    )
+    if text:
+        return text
+    raw_points = payload.get("supporting_data_points")
+    if not isinstance(raw_points, list):
+        return ""
+    for point in raw_points:
+        if isinstance(point, dict):
+            point_text = _first_string(
+                point,
+                ("text", "snippet", "evidence", "point", "summary", "description"),
+            )
+        else:
+            point_text = str(point).strip()
+        if point_text:
+            return point_text
+    return ""

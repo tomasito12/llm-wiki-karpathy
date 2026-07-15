@@ -10,6 +10,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from src.management_web.models import (
     ConfigResponse,
     HealthResponse,
+    ManagementDecisionResponse,
+    ManagementReviewRequest,
     QueueResponse,
     QueueStatusFilter,
     RawSourceResponse,
@@ -19,6 +21,7 @@ from src.management_web.review_data import (
     build_review_queue,
     get_source_detail,
     read_raw_markdown,
+    write_management_decision,
 )
 from src.wiki_paths.config import WikiPaths, load_wiki_paths
 
@@ -44,7 +47,7 @@ def create_app(
         CORSMiddleware,
         allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
         allow_credentials=False,
-        allow_methods=["GET"],
+        allow_methods=["GET", "PATCH"],
         allow_headers=["*"],
     )
 
@@ -103,5 +106,23 @@ def create_app(
             return read_raw_markdown(app.state.paths, source_id)
         except ValueError as exc:
             raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    @app.patch(
+        "/api/review/source/{source_id}/decision",
+        response_model=ManagementDecisionResponse,
+    )
+    def review_source_decision(
+        source_id: str,
+        decision: ManagementReviewRequest,
+    ) -> ManagementDecisionResponse:
+        """Write an article-level management review decision."""
+        try:
+            return write_management_decision(app.state.paths, source_id, decision)
+        except ValueError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+        except FileNotFoundError as exc:
+            raise HTTPException(status_code=404, detail=str(exc)) from exc
+        except OSError as exc:
+            raise HTTPException(status_code=500, detail="Failed to write decision") from exc
 
     return app

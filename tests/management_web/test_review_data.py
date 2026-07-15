@@ -7,11 +7,13 @@ from pathlib import Path
 
 import pytest
 
+from src.management_web.models import ManagementReviewRequest
 from src.management_web.review_data import (
     build_review_queue,
     get_source_detail,
     read_raw_markdown,
     validate_source_id,
+    write_management_decision,
 )
 from src.wiki_paths.config import WikiPaths, default_wiki_paths
 
@@ -133,6 +135,27 @@ def test_build_review_queue_filters_searches_and_paginates(tmp_path: Path) -> No
     assert queue.offset == 1
 
 
+def test_build_review_queue_sorts_oldest_published_sources_first(tmp_path: Path) -> None:
+    """Queue items should put older published sources before newer ones."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "newer")
+    _write_artifact(
+        paths,
+        "newer",
+        {**_artifact(), "source": {"title": "Newer", "published_date": "2026-07-02"}},
+    )
+    _write_raw(paths, "older")
+    _write_artifact(
+        paths,
+        "older",
+        {**_artifact(), "source": {"title": "Older", "published_date": "2026-06-01"}},
+    )
+
+    queue = build_review_queue(paths, status="all", limit=10, offset=0, query=None)
+
+    assert [item.source_id for item in queue.items] == ["older", "newer"]
+
+
 def test_get_source_detail_normalizes_artifact_for_review_card(tmp_path: Path) -> None:
     """Source detail should expose metadata, summary, tags, and entity groups for the UI."""
     paths = _paths(tmp_path)
@@ -153,6 +176,80 @@ def test_get_source_detail_normalizes_artifact_for_review_card(tmp_path: Path) -
     assert detail.debug.artifact["content_sha256"] == "stored-hash"
 
 
+def test_get_source_detail_returns_existing_management_review(tmp_path: Path) -> None:
+    """Source detail should expose existing management review decisions."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "decided")
+    _write_artifact(
+        paths,
+        "decided",
+        {
+            **_artifact(),
+            "management_review": {
+                "status": "approved",
+                "reviewed_at": "2026-07-15T12:34:56Z",
+                "reviewed_by": "plischke",
+                "notes": "Looks good.",
+            },
+        },
+    )
+
+    detail = get_source_detail(paths, "decided")
+
+    assert detail.management_review is not None
+    assert detail.management_review.status == "approved"
+    assert detail.management_review.reviewed_by == "plischke"
+    assert detail.management_review.notes == "Looks good."
+
+
+def test_build_review_queue_includes_management_status(tmp_path: Path) -> None:
+    """Queue rows should expose management decision status separately from analysis status."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "decided")
+    _write_artifact(
+        paths,
+        "decided",
+        {
+            **_artifact(),
+            "management_review": {
+                "status": "needs_attention",
+                "reviewed_at": "2026-07-15T12:34:56Z",
+                "reviewed_by": "plischke",
+                "notes": "",
+            },
+        },
+    )
+
+    queue = build_review_queue(paths, status="all", limit=10, offset=0, query=None)
+
+    assert queue.items[0].status == "in_progress"
+    assert queue.items[0].management_status == "needs_attention"
+
+
+def test_get_source_detail_prefers_accessible_overview_for_easy_read(tmp_path: Path) -> None:
+    """Easy Read should prefer the shorter accessible overview over the summary."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "easy-read")
+    _write_artifact(
+        paths,
+        "easy-read",
+        {
+            "source": {"title": "Easy Read"},
+            "llm_output": {
+                "source_summary": {
+                    "accessible_overview": "Easy read overview.",
+                    "summary": "Longer technical summary.",
+                    "key_insights": [],
+                }
+            },
+        },
+    )
+
+    detail = get_source_detail(paths, "easy-read")
+
+    assert detail.summary.short == "Easy read overview."
+
+
 def test_get_source_detail_tolerates_missing_optional_fields(tmp_path: Path) -> None:
     """Missing optional artifact fields should not prevent source detail rendering."""
     paths = _paths(tmp_path)
@@ -167,6 +264,216 @@ def test_get_source_detail_tolerates_missing_optional_fields(tmp_path: Path) -> 
     assert detail.entities.topics[0].title == "unexpected scalar"
     assert detail.entities.glossary == []
     assert detail.entities.trends == []
+
+
+def test_get_source_detail_normalizes_current_review_artifact_fields(tmp_path: Path) -> None:
+    """Current artifact fields should keep tags, descriptions, and evidence visible."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "current")
+    _write_artifact(
+        paths,
+        "current",
+        {
+            "source": {"title": "Current Artifact"},
+            "llm_output": {
+                "topics": [
+                    {
+                        "topic_title": "Contact center evaluation",
+                        "knowledge_summary": "Evaluation criteria for contact-center AI.",
+                        "operational_insight": "Track containment and handoff quality together.",
+                        "proposed_tags": ["contact-center-automation"],
+                        "primary_tag": "evaluation",
+                        "secondary_tag": "governance",
+                        "supporting_snippet": "Teams compare quality and containment together.",
+                        "supporting_data_points": ["A fallback data point."],
+                    }
+                ],
+                "glossary": [
+                    {
+                        "term": "Containment rate",
+                        "proposed_definition": "Share of conversations resolved without handoff.",
+                        "proposed_tags": ["metrics", "automation"],
+                    }
+                ],
+                "industry_trends": [
+                    {
+                        "trend_title": "Voicebot reviews move toward operational evidence",
+                        "operational_insight": "Operational QA becomes part of rollout decisions.",
+                        "proposed_tags": ["voicebots"],
+                        "evidence_from_source": "The source describes evidence-based QA.",
+                    }
+                ],
+            },
+        },
+    )
+
+    detail = get_source_detail(paths, "current")
+
+    assert detail.tags == [
+        "automation",
+        "contact-center-automation",
+        "evaluation",
+        "governance",
+        "metrics",
+        "voicebots",
+    ]
+    assert detail.entities.topics[0].description == "Evaluation criteria for contact-center AI."
+    assert detail.entities.topics[0].evidence == "Teams compare quality and containment together."
+    assert detail.entities.topics[0].tags == [
+        "contact-center-automation",
+        "evaluation",
+        "governance",
+    ]
+    assert detail.entities.glossary[0].tags == ["automation", "metrics"]
+    assert detail.entities.trends[0].description == (
+        "Operational QA becomes part of rollout decisions."
+    )
+    assert detail.entities.trends[0].evidence == "The source describes evidence-based QA."
+    assert detail.entities.trends[0].tags == ["voicebots"]
+
+
+def test_write_management_decision_creates_new_artifact_when_missing(tmp_path: Path) -> None:
+    """A pending raw source should get a new review.json with only management_review."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "pending")
+
+    response = write_management_decision(
+        paths,
+        "pending",
+        ManagementReviewRequest(status="approved", notes=""),
+    )
+
+    review_path = paths.reviews_dir / "pending" / "review.json"
+    artifact = json.loads(review_path.read_text(encoding="utf-8"))
+    assert response.source_id == "pending"
+    assert response.backup_path is None
+    assert artifact["management_review"]["status"] == "approved"
+    assert artifact["management_review"]["reviewed_by"] == "plischke"
+    assert artifact["management_review"]["notes"] == ""
+    assert artifact["management_review"]["reviewed_at"].endswith("Z")
+
+
+def test_write_management_decision_backs_up_existing_artifact(tmp_path: Path) -> None:
+    """Existing review.json content should be backed up before overwriting."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "existing")
+    original_artifact = _artifact()
+    _write_artifact(paths, "existing", original_artifact)
+    review_path = paths.reviews_dir / "existing" / "review.json"
+    original_text = review_path.read_text(encoding="utf-8")
+
+    response = write_management_decision(
+        paths,
+        "existing",
+        ManagementReviewRequest(status="needs_attention", notes="Review taxonomy."),
+    )
+
+    assert response.backup_path is not None
+    backup_path = Path(response.backup_path)
+    assert backup_path.name.startswith("review.before-management-review.")
+    assert backup_path.read_text(encoding="utf-8") == original_text
+    updated_artifact = json.loads(review_path.read_text(encoding="utf-8"))
+    assert updated_artifact["source"]["title"] == "Analyzed Article"
+    assert updated_artifact["management_review"]["status"] == "needs_attention"
+    assert updated_artifact["management_review"]["notes"] == "Review taxonomy."
+
+
+def test_write_management_decision_keeps_multiple_backups_in_same_second(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Repeated decisions in one second should not overwrite earlier backups."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "existing")
+    _write_artifact(paths, "existing", _artifact())
+    monkeypatch.setattr(
+        "src.management_web.review_data._backup_timestamp",
+        lambda: "20260715T123456Z",
+    )
+
+    write_management_decision(
+        paths,
+        "existing",
+        ManagementReviewRequest(status="approved", notes=""),
+    )
+    before_second_write = (paths.reviews_dir / "existing" / "review.json").read_text(
+        encoding="utf-8"
+    )
+    write_management_decision(
+        paths,
+        "existing",
+        ManagementReviewRequest(status="needs_attention", notes=""),
+    )
+
+    backups = sorted(
+        (paths.reviews_dir / "existing").glob("review.before-management-review.*.json")
+    )
+    assert len(backups) == 2
+    assert any(json.loads(path.read_text(encoding="utf-8"))["source"] for path in backups)
+    assert any(path.read_text(encoding="utf-8") == before_second_write for path in backups)
+
+
+def test_management_only_decision_artifact_keeps_queue_status_pending(tmp_path: Path) -> None:
+    """Decision-only artifacts should not be mistaken for completed pre-analysis."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "pending")
+
+    write_management_decision(
+        paths,
+        "pending",
+        ManagementReviewRequest(status="skipped", notes=""),
+    )
+    queue = build_review_queue(paths, status="all", limit=10, offset=0, query=None)
+
+    assert queue.items[0].status == "pending"
+    assert queue.items[0].management_status == "skipped"
+
+
+def test_write_management_decision_rejects_missing_raw_source(tmp_path: Path) -> None:
+    """Decision writes should require a matching raw HTML source."""
+    paths = _paths(tmp_path)
+
+    with pytest.raises(FileNotFoundError, match="Source not found"):
+        write_management_decision(
+            paths,
+            "missing",
+            ManagementReviewRequest(status="approved", notes=""),
+        )
+
+
+def test_write_management_decision_rejects_unsafe_source_id(tmp_path: Path) -> None:
+    """Decision writes should use the same source ID safety gate as reads."""
+    paths = _paths(tmp_path)
+
+    with pytest.raises(ValueError, match="Invalid source_id"):
+        write_management_decision(
+            paths,
+            "../secret",
+            ManagementReviewRequest(status="approved", notes=""),
+        )
+
+
+def test_write_management_decision_does_not_mutate_raw_or_wiki_files(tmp_path: Path) -> None:
+    """Decision writes should be scoped to the selected review artifact."""
+    paths = _paths(tmp_path)
+    paths.wiki_dir.mkdir(parents=True)
+    wiki_page = paths.wiki_dir / "page.md"
+    wiki_page.write_text("wiki", encoding="utf-8")
+    _write_raw(paths, "source", markdown="Original markdown")
+    raw_html = paths.raw_dir / "source.html"
+    raw_md = paths.raw_dir / "source.md"
+    raw_html_text = raw_html.read_text(encoding="utf-8")
+    raw_md_text = raw_md.read_text(encoding="utf-8")
+
+    write_management_decision(
+        paths,
+        "source",
+        ManagementReviewRequest(status="skipped", notes=""),
+    )
+
+    assert raw_html.read_text(encoding="utf-8") == raw_html_text
+    assert raw_md.read_text(encoding="utf-8") == raw_md_text
+    assert wiki_page.read_text(encoding="utf-8") == "wiki"
 
 
 def test_read_raw_markdown_returns_available_content(tmp_path: Path) -> None:

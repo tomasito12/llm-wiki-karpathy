@@ -1,4 +1,4 @@
-import { cleanup, render, screen, waitFor } from "@testing-library/react";
+import { cleanup, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -14,8 +14,8 @@ const queuePayload = {
   },
   items: [
     {
-      source_id: "api-source",
-      title: "API Article",
+      source_id: "newer-source",
+      title: "Newer Article",
       author: "Ada",
       publication: "Example Weekly",
       published_date: "2026-07-01",
@@ -23,9 +23,25 @@ const queuePayload = {
       status: "in_progress",
       stale: null,
       tags: ["api"],
+      entity_counts: { topics: 1, glossary: 0, trends: 0 },
+      review_json_path: "/tmp/reviews/newer-source/review.json",
+      raw_md_available: true,
+      management_status: null
+    },
+    {
+      source_id: "api-source",
+      title: "API Article",
+      author: "Ada",
+      publication: "Example Weekly",
+      published_date: "2026-05-01",
+      category: "article",
+      status: "in_progress",
+      stale: null,
+      tags: ["api"],
       entity_counts: { topics: 1, glossary: 1, trends: 1 },
       review_json_path: "/tmp/reviews/api-source/review.json",
-      raw_md_available: true
+      raw_md_available: true,
+      management_status: null
     }
   ],
   limit: 50,
@@ -53,7 +69,8 @@ const finishedQueuePayload = {
       tags: ["finished"],
       entity_counts: { topics: 0, glossary: 0, trends: 0 },
       review_json_path: "/tmp/reviews/finished-source/review.json",
-      raw_md_available: false
+      raw_md_available: false,
+      management_status: "approved"
     }
   ],
   limit: 50,
@@ -112,8 +129,23 @@ const sourcePayload = {
       }
     ]
   },
+  management_review: null,
   debug: {
     artifact: { llm_output: { source_summary: { summary: "API summary" } } }
+  }
+};
+
+const newerSourcePayload = {
+  ...sourcePayload,
+  source_id: "newer-source",
+  metadata: {
+    ...sourcePayload.metadata,
+    title: "Newer Article",
+    published_date: "2026-07-01"
+  },
+  summary: {
+    short: "Newer summary",
+    key_insights: []
   }
 };
 
@@ -146,17 +178,36 @@ const rawPayload = {
   path: "/tmp/raw/api-source.md"
 };
 
+const approvedSourcePayload = {
+  ...sourcePayload,
+  management_review: {
+    status: "approved",
+    reviewed_at: "2026-07-15T12:34:56Z",
+    reviewed_by: "plischke",
+    notes: "Looks good."
+  }
+};
+
+const decisionResponse = {
+  source_id: "api-source",
+  management_review: approvedSourcePayload.management_review,
+  backup_path: "/tmp/reviews/api-source/review.before-management-review.20260715T123456Z.json"
+};
+
 describe("App", () => {
   beforeEach(() => {
     vi.stubGlobal(
       "fetch",
-      vi.fn(async (input: RequestInfo | URL) => {
+      vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
         const url = String(input);
         if (url.includes("/api/config")) {
           return Response.json({
             mode: "readonly",
             paths: { raw_dir: "/tmp/raw", reviews_dir: "/tmp/reviews" }
           });
+        }
+        if (url.includes("/api/review/source/api-source/decision") && init?.method === "PATCH") {
+          return Response.json(decisionResponse);
         }
         if (url.includes("/api/review/queue") && url.includes("status=finished")) {
           return Response.json(finishedQueuePayload);
@@ -166,6 +217,9 @@ describe("App", () => {
         }
         if (url.includes("/api/review/source/finished-source")) {
           return Response.json(finishedSourcePayload);
+        }
+        if (url.includes("/api/review/source/newer-source")) {
+          return Response.json(newerSourcePayload);
         }
         if (url.includes("/api/review/source/api-source/raw")) {
           return Response.json(rawPayload);
@@ -186,14 +240,18 @@ describe("App", () => {
   it("renders the read-only review workspace and on-demand drawers", async () => {
     render(<App />);
 
-    expect(await screen.findByText("Management Web")).toBeInTheDocument();
-    expect(screen.getByText("Read-only")).toBeInTheDocument();
+    expect(await screen.findByText("Review Workspace")).toBeInTheDocument();
+    expect(screen.getByText("Write enabled")).toBeInTheDocument();
     expect(await screen.findByText("API Article")).toBeInTheDocument();
+    expect(screen.getAllByText("Ready for review").length).toBeGreaterThan(0);
     expect(await screen.findByText("API summary")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Easy Read" })).toBeInTheDocument();
     expect(await screen.findByText("API Topic")).toBeInTheDocument();
     expect(await screen.findByText("API Term")).toBeInTheDocument();
     expect(await screen.findByText("API Trend")).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Approve article" })).toBeDisabled();
+    expect(screen.getByRole("button", { name: "Previous" })).toBeDisabled();
+    expect(screen.getByRole("button", { name: "Next" })).not.toBeDisabled();
+    expect(screen.getByRole("button", { name: "Approve article" })).toBeEnabled();
 
     await userEvent.click(screen.getByRole("button", { name: "Show raw source" }));
     expect(await screen.findByText("Raw article text")).toBeInTheDocument();
@@ -202,6 +260,176 @@ describe("App", () => {
     await waitFor(() => {
       expect(screen.getByText(/source_summary/)).toBeInTheDocument();
     });
+
+    expect(
+      vi.mocked(fetch).mock.calls.some(([input]) => String(input).includes("status=in_progress"))
+    ).toBe(true);
+  });
+
+  it("sorts visible queue rows by oldest published date first", async () => {
+    render(<App />);
+
+    const sourceList = await screen.findByLabelText("Source list");
+    const rows = within(sourceList).getAllByRole("button");
+
+    expect(rows[0]).toHaveTextContent("API Article");
+    expect(rows[1]).toHaveTextContent("Newer Article");
+  });
+
+  it("renders current management decision state when present", async () => {
+    vi.mocked(fetch).mockImplementation(async (input: RequestInfo | URL) => {
+      const url = String(input);
+      if (url.includes("/api/config")) {
+        return Response.json({
+          mode: "readonly",
+          paths: { raw_dir: "/tmp/raw", reviews_dir: "/tmp/reviews" }
+        });
+      }
+      if (url.includes("/api/review/queue")) {
+        return Response.json({
+          ...queuePayload,
+          items: [{ ...queuePayload.items[1], management_status: "approved" }]
+        });
+      }
+      if (url.includes("/api/review/source/api-source")) {
+        return Response.json(approvedSourcePayload);
+      }
+      return new Response("not found", { status: 404 });
+    });
+
+    render(<App />);
+
+    expect(await screen.findByText("Decision: Approved")).toBeInTheDocument();
+    expect(screen.getByText("Reviewed by plischke")).toBeInTheDocument();
+    expect(screen.getByText("Looks good.")).toBeInTheDocument();
+    expect(await screen.findByText("Approved")).toBeInTheDocument();
+  });
+
+  it("writes approve decisions and reloads source and queue state", async () => {
+    render(<App />);
+
+    await screen.findByText("API summary");
+    await userEvent.click(screen.getByRole("button", { name: "Approve article" }));
+
+    await waitFor(() => {
+      expect(vi.mocked(fetch)).toHaveBeenCalledWith(
+        "/api/review/source/api-source/decision",
+        expect.objectContaining({
+          body: JSON.stringify({ status: "approved", notes: "" }),
+          method: "PATCH"
+        })
+      );
+    });
+    await waitFor(() => {
+      const queueCalls = vi
+        .mocked(fetch)
+        .mock.calls.filter(([input]) => String(input).includes("/api/review/queue"));
+      const sourceCalls = vi
+        .mocked(fetch)
+        .mock.calls.filter(([input]) => String(input).includes("/api/review/source/api-source"));
+      expect(queueCalls.length).toBeGreaterThanOrEqual(2);
+      expect(sourceCalls.length).toBeGreaterThanOrEqual(2);
+    });
+    expect(await screen.findByText("Decision saved: approved")).toBeInTheDocument();
+  });
+
+  it("disables article action buttons while a decision request is pending", async () => {
+    let resolveDecision: (response: Response) => void = () => undefined;
+    vi.mocked(fetch).mockImplementation(async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = String(input);
+      if (url.includes("/api/config")) {
+        return Response.json({
+          mode: "readonly",
+          paths: { raw_dir: "/tmp/raw", reviews_dir: "/tmp/reviews" }
+        });
+      }
+      if (url.includes("/api/review/queue")) {
+        return Response.json(queuePayload);
+      }
+      if (url.includes("/api/review/source/api-source/decision") && init?.method === "PATCH") {
+        return await new Promise<Response>((resolve) => {
+          resolveDecision = resolve;
+        });
+      }
+      if (url.includes("/api/review/source/api-source")) {
+        return Response.json(sourcePayload);
+      }
+      return new Response("not found", { status: 404 });
+    });
+    render(<App />);
+
+    await screen.findByText("API summary");
+    await userEvent.click(screen.getByRole("button", { name: "Approve article" }));
+
+    expect(screen.getByRole("button", { name: "Approve article" })).toBeDisabled();
+    expect(screen.getByRole("button", { name: "Needs attention" })).toBeDisabled();
+    expect(screen.getByRole("button", { name: "Skip" })).toBeDisabled();
+    expect(screen.getByRole("button", { name: "Request re-analysis" })).toBeDisabled();
+
+    resolveDecision(Response.json(decisionResponse));
+  });
+
+  it("shows decision write errors", async () => {
+    vi.mocked(fetch).mockImplementation(async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = String(input);
+      if (url.includes("/api/config")) {
+        return Response.json({
+          mode: "readonly",
+          paths: { raw_dir: "/tmp/raw", reviews_dir: "/tmp/reviews" }
+        });
+      }
+      if (url.includes("/api/review/queue")) {
+        return Response.json(queuePayload);
+      }
+      if (url.includes("/api/review/source/api-source/decision") && init?.method === "PATCH") {
+        return new Response("failed", { status: 500, statusText: "Server Error" });
+      }
+      if (url.includes("/api/review/source/api-source")) {
+        return Response.json(sourcePayload);
+      }
+      return new Response("not found", { status: 404 });
+    });
+    render(<App />);
+
+    await screen.findByText("API summary");
+    await userEvent.click(screen.getByRole("button", { name: "Approve article" }));
+
+    expect(await screen.findByText(/Decision failed/)).toBeInTheDocument();
+  });
+
+  it("keeps saved decision feedback when refresh after a successful write fails", async () => {
+    let queueCalls = 0;
+    vi.mocked(fetch).mockImplementation(async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = String(input);
+      if (url.includes("/api/config")) {
+        return Response.json({
+          mode: "readonly",
+          paths: { raw_dir: "/tmp/raw", reviews_dir: "/tmp/reviews" }
+        });
+      }
+      if (url.includes("/api/review/source/api-source/decision") && init?.method === "PATCH") {
+        return Response.json(decisionResponse);
+      }
+      if (url.includes("/api/review/queue")) {
+        queueCalls += 1;
+        if (queueCalls > 1) {
+          return new Response("failed", { status: 500, statusText: "Server Error" });
+        }
+        return Response.json(queuePayload);
+      }
+      if (url.includes("/api/review/source/api-source")) {
+        return Response.json(sourcePayload);
+      }
+      return new Response("not found", { status: 404 });
+    });
+    render(<App />);
+
+    await screen.findByText("API summary");
+    await userEvent.click(screen.getByRole("button", { name: "Approve article" }));
+
+    expect(await screen.findByText("Decision saved: approved")).toBeInTheDocument();
+    expect(await screen.findByText(/Refresh failed/)).toBeInTheDocument();
+    expect(screen.queryByText(/Decision failed/)).not.toBeInTheDocument();
   });
 
   it("replaces the selected source when filters remove the current selection", async () => {

@@ -26,7 +26,13 @@ def _write_raw(paths: WikiPaths, source_id: str, *, markdown: str | None = "Raw 
         (paths.raw_dir / f"{source_id}.md").write_text(markdown, encoding="utf-8")
 
 
-def _write_artifact(paths: WikiPaths, source_id: str, *, finished: bool = False) -> None:
+def _write_artifact(
+    paths: WikiPaths,
+    source_id: str,
+    *,
+    finished: bool = False,
+    management_status: str | None = None,
+) -> None:
     """Write a minimal review artifact for API tests."""
     review_dir = paths.reviews_dir / source_id
     review_dir.mkdir(parents=True)
@@ -41,6 +47,13 @@ def _write_artifact(paths: WikiPaths, source_id: str, *, finished: bool = False)
             "industry_trends": [{"trend_title": "API Trend"}],
         },
     }
+    if management_status is not None:
+        artifact["management_review"] = {
+            "status": management_status,
+            "reviewed_at": "2026-07-15T12:34:56Z",
+            "reviewed_by": "plischke",
+            "notes": "",
+        }
     (review_dir / "review.json").write_text(json.dumps(artifact), encoding="utf-8")
 
 
@@ -86,6 +99,7 @@ def test_review_queue_endpoint_returns_counts_and_items(tmp_path: Path) -> None:
     assert payload["counts"]["in_progress"] == 1
     assert payload["counts"]["finished"] == 1
     assert [item["source_id"] for item in payload["items"]] == ["api-source"]
+    assert payload["items"][0]["management_status"] is None
 
 
 def test_source_detail_endpoint_returns_normalized_artifact(tmp_path: Path) -> None:
@@ -103,7 +117,112 @@ def test_source_detail_endpoint_returns_normalized_artifact(tmp_path: Path) -> N
     assert payload["metadata"]["title"] == "API Article"
     assert payload["summary"]["short"] == "API summary"
     assert payload["entities"]["topics"][0]["title"] == "API Topic"
+    assert payload["management_review"] is None
     assert payload["debug"]["artifact"]["llm_output"]["source_summary"]["summary"] == "API summary"
+
+
+def test_read_endpoints_return_management_decision_state(tmp_path: Path) -> None:
+    """Read endpoints should expose management decision state separately from analysis status."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "api-source")
+    _write_artifact(paths, "api-source", management_status="approved")
+    client = TestClient(create_app(paths=paths))
+
+    queue_response = client.get("/api/review/queue", params={"status": "in_progress"})
+    detail_response = client.get("/api/review/source/api-source")
+
+    assert queue_response.status_code == 200
+    assert queue_response.json()["items"][0]["management_status"] == "approved"
+    assert detail_response.status_code == 200
+    assert detail_response.json()["management_review"]["status"] == "approved"
+
+
+def test_decision_endpoint_writes_decision_and_backup(tmp_path: Path) -> None:
+    """PATCH decision should write management_review and back up existing artifacts."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "api-source")
+    _write_artifact(paths, "api-source")
+    client = TestClient(create_app(paths=paths))
+
+    response = client.patch(
+        "/api/review/source/api-source/decision",
+        json={"status": "approved", "notes": "Looks good."},
+    )
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["source_id"] == "api-source"
+    assert payload["management_review"]["status"] == "approved"
+    assert payload["management_review"]["reviewed_by"] == "plischke"
+    assert payload["management_review"]["notes"] == "Looks good."
+    assert payload["backup_path"] is not None
+    artifact = json.loads((paths.reviews_dir / "api-source" / "review.json").read_text())
+    assert artifact["management_review"]["status"] == "approved"
+    assert Path(payload["backup_path"]).is_file()
+
+
+def test_decision_endpoint_creates_artifact_without_backup_when_missing(tmp_path: Path) -> None:
+    """PATCH decision may create review.json for a raw source that has no artifact yet."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "pending-source")
+    client = TestClient(create_app(paths=paths))
+
+    response = client.patch(
+        "/api/review/source/pending-source/decision",
+        json={"status": "skipped"},
+    )
+
+    assert response.status_code == 200
+    assert response.json()["backup_path"] is None
+    artifact = json.loads((paths.reviews_dir / "pending-source" / "review.json").read_text())
+    assert artifact["management_review"]["status"] == "skipped"
+
+
+def test_decision_endpoint_rejects_missing_raw_source(tmp_path: Path) -> None:
+    """PATCH decision should 404 when the selected raw source does not exist."""
+    client = TestClient(create_app(paths=_paths(tmp_path)))
+
+    response = client.patch("/api/review/source/missing/decision", json={"status": "approved"})
+
+    assert response.status_code == 404
+
+
+def test_decision_endpoint_rejects_unsafe_source_id(tmp_path: Path) -> None:
+    """PATCH decision should reject unsafe source IDs before filesystem writes."""
+    client = TestClient(create_app(paths=_paths(tmp_path)))
+
+    response = client.patch("/api/review/source/source.json/decision", json={"status": "approved"})
+
+    assert response.status_code == 400
+    assert "Invalid source_id" in response.json()["detail"]
+
+
+def test_decision_endpoint_rejects_invalid_status(tmp_path: Path) -> None:
+    """PATCH decision should return 400 for unsupported decision statuses."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "api-source")
+    client = TestClient(create_app(paths=paths))
+
+    response = client.patch(
+        "/api/review/source/api-source/decision",
+        json={"status": "finished"},
+    )
+
+    assert response.status_code == 400
+    assert "Invalid management review status" in response.json()["detail"]
+
+
+def test_decision_endpoint_returns_validation_error_for_malformed_body(
+    tmp_path: Path,
+) -> None:
+    """PATCH decision should keep malformed request bodies on FastAPI's 422 path."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "api-source")
+    client = TestClient(create_app(paths=paths))
+
+    response = client.patch("/api/review/source/api-source/decision", json={"notes": ""})
+
+    assert response.status_code == 422
 
 
 def test_raw_source_endpoint_returns_available_markdown(tmp_path: Path) -> None:

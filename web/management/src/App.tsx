@@ -1,12 +1,21 @@
 import { useEffect, useMemo, useState } from "react";
 import type { ReactElement } from "react";
 
-import { getConfig, getRawSource, getReviewQueue, getSourceDetail } from "./api";
+import {
+  getConfig,
+  getRawSource,
+  getReviewQueue,
+  getSourceDetail,
+  writeManagementDecision
+} from "./api";
 import "./styles.css";
 import type {
   ConfigResponse,
   EntityGroups,
+  ManagementReview,
+  ManagementReviewStatus,
   NormalizedEntity,
+  QueueItem,
   QueueResponse,
   QueueStatusFilter,
   RawSourceResponse,
@@ -15,10 +24,18 @@ import type {
 
 const STATUS_OPTIONS: Array<{ value: QueueStatusFilter; label: string }> = [
   { value: "all", label: "All" },
-  { value: "pending", label: "Pending" },
-  { value: "in_progress", label: "In progress" },
+  { value: "pending", label: "Needs analysis" },
+  { value: "in_progress", label: "Ready for review" },
   { value: "finished", label: "Finished" },
   { value: "incomplete", label: "Incomplete" }
+];
+
+const QUEUE_LIMIT = 250;
+const DECISION_ACTIONS: Array<{ status: ManagementReviewStatus; label: string }> = [
+  { status: "approved", label: "Approve article" },
+  { status: "needs_attention", label: "Needs attention" },
+  { status: "skipped", label: "Skip" },
+  { status: "reanalyze_requested", label: "Request re-analysis" }
 ];
 
 export default function App(): ReactElement {
@@ -27,25 +44,29 @@ export default function App(): ReactElement {
   const [source, setSource] = useState<SourceDetailResponse | null>(null);
   const [rawSource, setRawSource] = useState<RawSourceResponse | null>(null);
   const [selectedSourceId, setSelectedSourceId] = useState<string | null>(null);
-  const [statusFilter, setStatusFilter] = useState<QueueStatusFilter>("all");
+  const [statusFilter, setStatusFilter] = useState<QueueStatusFilter>("in_progress");
   const [query, setQuery] = useState("");
   const [rawOpen, setRawOpen] = useState(false);
   const [debugOpen, setDebugOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [decisionPending, setDecisionPending] = useState(false);
+  const [decisionMessage, setDecisionMessage] = useState<string | null>(null);
+  const [decisionError, setDecisionError] = useState<string | null>(null);
 
   useEffect(() => {
     getConfig().then(setConfig).catch((err: unknown) => setError(String(err)));
   }, []);
 
   useEffect(() => {
-    getReviewQueue({ status: statusFilter, q: query })
+    getReviewQueue({ status: statusFilter, q: query, limit: QUEUE_LIMIT })
       .then((payload) => {
-        setQueue(payload);
+        const sortedPayload = { ...payload, items: sortQueueItems(payload.items) };
+        setQueue(sortedPayload);
         setSelectedSourceId((current) => {
-          if (current && payload.items.some((item) => item.source_id === current)) {
+          if (current && sortedPayload.items.some((item) => item.source_id === current)) {
             return current;
           }
-          return payload.items[0]?.source_id ?? null;
+          return sortedPayload.items[0]?.source_id ?? null;
         });
       })
       .catch((err: unknown) => setError(String(err)));
@@ -69,6 +90,8 @@ export default function App(): ReactElement {
     return queue.items.findIndex((item) => item.source_id === selectedSourceId);
   }, [queue, selectedSourceId]);
 
+  const visibleTotal = queue ? countForFilter(queue, statusFilter) : 0;
+
   function moveSelection(direction: -1 | 1): void {
     if (!queue || selectedIndex < 0) {
       return;
@@ -91,14 +114,46 @@ export default function App(): ReactElement {
     }
   }
 
+  async function reloadSelectedSource(sourceId: string): Promise<void> {
+    const [queuePayload, sourcePayload] = await Promise.all([
+      getReviewQueue({ status: statusFilter, q: query, limit: QUEUE_LIMIT }),
+      getSourceDetail(sourceId)
+    ]);
+    setQueue({ ...queuePayload, items: sortQueueItems(queuePayload.items) });
+    setSelectedSourceId(sourceId);
+    setSource(sourcePayload);
+  }
+
+  async function writeDecision(status: ManagementReviewStatus): Promise<void> {
+    if (!source) {
+      return;
+    }
+    setDecisionPending(true);
+    setDecisionMessage(null);
+    setDecisionError(null);
+    try {
+      const response = await writeManagementDecision(source.source_id, { status, notes: "" });
+      setDecisionMessage(`Decision saved: ${response.management_review.status}`);
+      try {
+        await reloadSelectedSource(source.source_id);
+      } catch (err: unknown) {
+        setDecisionError(`Refresh failed: ${err instanceof Error ? err.message : String(err)}`);
+      }
+    } catch (err: unknown) {
+      setDecisionError(`Decision failed: ${err instanceof Error ? err.message : String(err)}`);
+    } finally {
+      setDecisionPending(false);
+    }
+  }
+
   return (
     <div className="app-shell">
       <header className="topbar">
         <div>
-          <h1>Management Web</h1>
-          <p>Fast batch review for pre-analyzed Readwise sources</p>
+          <h1>Review Workspace</h1>
+          <p>Batch review for pre-analyzed Readwise sources</p>
         </div>
-        <div className="mode-pill">Read-only</div>
+        <div className="mode-pill">Write enabled</div>
       </header>
 
       {error ? <div className="error-banner">{error}</div> : null}
@@ -141,8 +196,13 @@ export default function App(): ReactElement {
               >
                 <span>{item.title}</span>
                 <small>
-                  {item.status.replace("_", " ")} · {item.entity_counts.topics} topics
+                  {item.published_date || "No date"} · {item.entity_counts.topics} topics
                 </small>
+                {item.management_status ? (
+                  <small className={`management-badge ${managementStatusClass(item.management_status)}`}>
+                    {managementStatusLabel(item.management_status)}
+                  </small>
+                ) : null}
               </button>
             ))}
             {queue?.items.length === 0 ? <p className="empty-state">No sources match.</p> : null}
@@ -152,11 +212,25 @@ export default function App(): ReactElement {
         <section className="review-panel">
           {source ? (
             <>
-              <SourceHeader source={source} />
+              <SourceHeader
+                source={source}
+                selectedIndex={selectedIndex}
+                visibleTotal={visibleTotal}
+                canMovePrevious={selectedIndex > 0}
+                canMoveNext={Boolean(
+                  queue && selectedIndex >= 0 && selectedIndex < queue.items.length - 1
+                )}
+                onMovePrevious={() => moveSelection(-1)}
+                onMoveNext={() => moveSelection(1)}
+                decisionPending={decisionPending}
+                decisionMessage={decisionMessage}
+                decisionError={decisionError}
+                onDecision={writeDecision}
+              />
               <SummaryCard source={source} />
               <TagCloud tags={source.tags} />
               <EntitySections entities={source.entities} />
-              <div className="drawer-actions">
+              <div className="utility-actions">
                 <button onClick={openRawSource}>
                   {rawOpen ? "Hide raw source" : "Show raw source"}
                 </button>
@@ -172,55 +246,87 @@ export default function App(): ReactElement {
           ) : (
             <div className="empty-state">Select a source to inspect its review artifact.</div>
           )}
-        </section>
 
-        <aside className="side-panel">
-          <section className="panel-card">
-            <h2>Position</h2>
-            <p>
-              {selectedIndex >= 0 && queue
-                ? `${selectedIndex + 1} of ${queue.items.length}`
-                : "No source selected"}
-            </p>
-            <div className="button-row">
-              <button disabled={selectedIndex <= 0} onClick={() => moveSelection(-1)}>
-                Previous
-              </button>
-              <button
-                disabled={!queue || selectedIndex < 0 || selectedIndex >= queue.items.length - 1}
-                onClick={() => moveSelection(1)}
-              >
-                Next
-              </button>
-            </div>
-          </section>
-
-          <section className="panel-card">
-            <h2>Article Actions</h2>
-            <p className="readonly-note">Read-only slice: these controls are placeholders.</p>
-            <button disabled>Approve article</button>
-            <button disabled>Needs attention</button>
-            <button disabled>Skip</button>
-            <button disabled>Request re-analysis</button>
-          </section>
-
-          <section className="panel-card path-card">
-            <h2>Paths</h2>
+          <details className="path-details">
+            <summary>Paths</summary>
             <p>{config?.paths.raw_dir ?? "Loading raw path..."}</p>
             <p>{config?.paths.reviews_dir ?? "Loading reviews path..."}</p>
-          </section>
-        </aside>
+          </details>
+        </section>
       </main>
     </div>
   );
+}
+
+function statusLabel(status: QueueStatusFilter): string {
+  if (status === "pending") {
+    return "Needs analysis";
+  }
+  if (status === "in_progress") {
+    return "Ready for review";
+  }
+  if (status === "all") {
+    return "All";
+  }
+  return status.charAt(0).toUpperCase() + status.slice(1);
+}
+
+function managementStatusLabel(status: ManagementReviewStatus): string {
+  if (status === "approved") {
+    return "Approved";
+  }
+  if (status === "needs_attention") {
+    return "Needs attention";
+  }
+  if (status === "skipped") {
+    return "Skipped";
+  }
+  return "Re-analysis requested";
+}
+
+function managementStatusClass(status: ManagementReviewStatus): string {
+  if (status === "approved") {
+    return "management-approved";
+  }
+  if (status === "skipped") {
+    return "management-skipped";
+  }
+  return "management-attention";
+}
+
+function countForFilter(queue: QueueResponse, status: QueueStatusFilter): number {
+  if (status === "pending") {
+    return queue.counts.pending;
+  }
+  if (status === "in_progress") {
+    return queue.counts.in_progress;
+  }
+  if (status === "finished") {
+    return queue.counts.finished;
+  }
+  if (status === "incomplete") {
+    return queue.counts.incomplete;
+  }
+  return queue.counts.total;
+}
+
+function sortQueueItems(items: QueueItem[]): QueueItem[] {
+  return [...items].sort((left, right) => {
+    const leftDate = left.published_date || "9999-12-31";
+    const rightDate = right.published_date || "9999-12-31";
+    if (leftDate !== rightDate) {
+      return leftDate.localeCompare(rightDate);
+    }
+    return left.title.localeCompare(right.title);
+  });
 }
 
 function QueueCountsCard({ queue }: { queue: QueueResponse | null }): ReactElement {
   return (
     <section className="counts-grid">
       <Metric label="Total" value={queue?.counts.total ?? 0} />
-      <Metric label="Pending" value={queue?.counts.pending ?? 0} />
-      <Metric label="In progress" value={queue?.counts.in_progress ?? 0} />
+      <Metric label="Needs analysis" value={queue?.counts.pending ?? 0} />
+      <Metric label="Ready for review" value={queue?.counts.in_progress ?? 0} />
       <Metric label="Finished" value={queue?.counts.finished ?? 0} />
       <Metric label="Incomplete" value={queue?.counts.incomplete ?? 0} />
     </section>
@@ -236,36 +342,107 @@ function Metric({ label, value }: { label: string; value: number }): ReactElemen
   );
 }
 
-function SourceHeader({ source }: { source: SourceDetailResponse }): ReactElement {
+function SourceHeader({
+  source,
+  selectedIndex,
+  visibleTotal,
+  canMovePrevious,
+  canMoveNext,
+  onMovePrevious,
+  onMoveNext,
+  decisionPending,
+  decisionMessage,
+  decisionError,
+  onDecision
+}: {
+  source: SourceDetailResponse;
+  selectedIndex: number;
+  visibleTotal: number;
+  canMovePrevious: boolean;
+  canMoveNext: boolean;
+  onMovePrevious: () => void;
+  onMoveNext: () => void;
+  decisionPending: boolean;
+  decisionMessage: string | null;
+  decisionError: string | null;
+  onDecision: (status: ManagementReviewStatus) => Promise<void>;
+}): ReactElement {
   return (
     <section className="source-header">
       <div>
         <p className="eyebrow">{source.metadata.publication || source.metadata.category || "Source"}</p>
         <h2>{source.metadata.title}</h2>
-        <p>
+        <p className="source-byline">
           {source.metadata.author || "Unknown author"} · {source.metadata.published_date || "No date"}
         </p>
+        <div className="status-row">
+          <span>{statusLabel(source.status)}</span>
+          <span>{source.stale === null ? "Stale unknown" : source.stale ? "Stale" : "Current"}</span>
+          <span>Readwise {source.metadata.readwise_id || "unknown"}</span>
+        </div>
+        <ManagementDecisionState review={source.management_review} />
       </div>
-      <div className="status-stack">
-        <span>{source.status.replace("_", " ")}</span>
-        <span>{source.stale === null ? "Stale unknown" : source.stale ? "Stale" : "Current"}</span>
-        <span>Readwise {source.metadata.readwise_id || "unknown"}</span>
+      <div className="review-navigation">
+        <span>{selectedIndex >= 0 ? `${selectedIndex + 1} / ${visibleTotal}` : "No source"}</span>
+        <div className="button-row">
+          <button disabled={!canMovePrevious} onClick={onMovePrevious}>
+            Previous
+          </button>
+          <button disabled={!canMoveNext} onClick={onMoveNext}>
+            Next
+          </button>
+        </div>
+        <div className="decision-actions" aria-label="Article decisions">
+          {DECISION_ACTIONS.map((action) => (
+            <button
+              disabled={decisionPending}
+              key={action.status}
+              onClick={() => void onDecision(action.status)}
+            >
+              {action.label}
+            </button>
+          ))}
+        </div>
+        {decisionMessage ? <p className="success-message">{decisionMessage}</p> : null}
+        {decisionError ? <p className="error-message">{decisionError}</p> : null}
       </div>
     </section>
   );
 }
 
-function SummaryCard({ source }: { source: SourceDetailResponse }): ReactElement {
+function ManagementDecisionState({
+  review
+}: {
+  review: ManagementReview | null;
+}): ReactElement {
+  if (!review) {
+    return <p className="management-review-state">Decision: Not reviewed</p>;
+  }
   return (
-    <section className="review-card">
-      <h3>Summary</h3>
-      <p>{source.summary.short || "No source summary available."}</p>
+    <div className={`management-review-state ${managementStatusClass(review.status)}`}>
+      <strong>Decision: {managementStatusLabel(review.status)}</strong>
+      <span>Reviewed by {review.reviewed_by}</span>
+      <span>{review.reviewed_at}</span>
+      {review.notes ? <p>{review.notes}</p> : null}
+    </div>
+  );
+}
+
+function SummaryCard({ source }: { source: SourceDetailResponse }): ReactElement {
+  const easyRead = source.summary.short || "No easy read available.";
+  return (
+    <section className="review-card easy-read-card">
+      <h3>Easy Read</h3>
+      <p>{easyRead}</p>
       {source.summary.key_insights.length > 0 ? (
-        <ul>
-          {source.summary.key_insights.map((insight) => (
-            <li key={insight}>{insight}</li>
-          ))}
-        </ul>
+        <details>
+          <summary>Key insights ({source.summary.key_insights.length})</summary>
+          <ul>
+            {source.summary.key_insights.map((insight) => (
+              <li key={insight}>{insight}</li>
+            ))}
+          </ul>
+        </details>
       ) : null}
     </section>
   );
@@ -299,16 +476,21 @@ function EntityGroup({
   title: string;
   items: NormalizedEntity[];
 }): ReactElement {
+  if (items.length === 0) {
+    return (
+      <section className="empty-entity-row">
+        <span>{title}</span>
+        <small>No {title.toLowerCase()} extracted</small>
+      </section>
+    );
+  }
+
   return (
     <section className="review-card entity-group">
       <h3>
         {title} <span>{items.length}</span>
       </h3>
-      {items.length > 0 ? (
-        items.map((item) => <EntityCard key={`${title}-${item.title}`} item={item} />)
-      ) : (
-        <p className="empty-state">No {title.toLowerCase()} extracted.</p>
-      )}
+      {items.map((item) => <EntityCard key={`${title}-${item.title}`} item={item} />)}
     </section>
   );
 }
@@ -325,7 +507,12 @@ function EntityCard({ item }: { item: NormalizedEntity }): ReactElement {
           ))}
         </div>
       ) : null}
-      {item.evidence ? <blockquote>{item.evidence}</blockquote> : null}
+      {item.evidence ? (
+        <details className="evidence-details">
+          <summary>Evidence</summary>
+          <blockquote>{item.evidence}</blockquote>
+        </details>
+      ) : null}
     </article>
   );
 }
