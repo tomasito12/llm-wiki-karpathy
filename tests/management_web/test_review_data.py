@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pytest
 
-from src.management_web.models import ManagementReviewRequest
+from src.management_web.models import ManagementDecisionFilter, ManagementReviewRequest
 from src.management_web.review_data import (
     build_review_queue,
     get_source_detail,
@@ -93,6 +93,20 @@ def _artifact(*, finished: bool = False) -> dict[str, object]:
     }
 
 
+def _decided_artifact(status: str, *, published_date: str = "2026-07-01") -> dict[str, object]:
+    """Return an analyzed artifact with a management decision."""
+    return {
+        **_artifact(),
+        "source": {"title": f"{status} Article", "published_date": published_date},
+        "management_review": {
+            "status": status,
+            "reviewed_at": "2026-07-15T12:34:56Z",
+            "reviewed_by": "plischke",
+            "notes": "",
+        },
+    }
+
+
 def test_build_review_queue_classifies_counts_and_items(tmp_path: Path) -> None:
     """Queue loading should classify pending, incomplete, in-progress, and finished sources."""
     paths = _paths(tmp_path)
@@ -116,6 +130,168 @@ def test_build_review_queue_classifies_counts_and_items(tmp_path: Path) -> None:
         "incomplete": "incomplete",
         "pending": "pending",
     }
+
+
+def test_build_review_queue_defaults_to_not_reviewed_decision_filter(tmp_path: Path) -> None:
+    """Default queue loading should hide sources that already have management decisions."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "undecided")
+    _write_artifact(paths, "undecided", _artifact())
+    _write_raw(paths, "approved")
+    _write_artifact(paths, "approved", _decided_artifact("approved"))
+
+    queue = build_review_queue(paths, status="in_progress", limit=10, offset=0, query=None)
+
+    assert [item.source_id for item in queue.items] == ["undecided"]
+    assert queue.decision_counts.not_reviewed == 1
+    assert queue.decision_counts.approved == 1
+    assert queue.counts.in_progress == 2
+
+
+def test_build_review_queue_decision_all_includes_decided_and_undecided(
+    tmp_path: Path,
+) -> None:
+    """The all decision filter should include sources regardless of management status."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "undecided")
+    _write_artifact(paths, "undecided", _artifact())
+    _write_raw(paths, "approved")
+    _write_artifact(paths, "approved", _decided_artifact("approved"))
+
+    queue = build_review_queue(
+        paths,
+        status="in_progress",
+        decision="all",
+        limit=10,
+        offset=0,
+        query=None,
+    )
+
+    assert [item.source_id for item in queue.items] == ["undecided", "approved"]
+
+
+@pytest.mark.parametrize(
+    ("decision", "expected_source_id"),
+    [
+        ("approved", "approved"),
+        ("needs_attention", "needs-attention"),
+        ("skipped", "skipped"),
+        ("reanalyze_requested", "reanalyze-requested"),
+    ],
+)
+def test_build_review_queue_filters_by_management_decision(
+    tmp_path: Path,
+    decision: ManagementDecisionFilter,
+    expected_source_id: str,
+) -> None:
+    """Decision filters should include only matching management decisions."""
+    paths = _paths(tmp_path)
+    for source_id, status in [
+        ("approved", "approved"),
+        ("needs-attention", "needs_attention"),
+        ("skipped", "skipped"),
+        ("reanalyze-requested", "reanalyze_requested"),
+    ]:
+        _write_raw(paths, source_id)
+        _write_artifact(paths, source_id, _decided_artifact(status))
+    _write_raw(paths, "undecided")
+    _write_artifact(paths, "undecided", _artifact())
+
+    queue = build_review_queue(
+        paths,
+        status="in_progress",
+        decision=decision,
+        limit=10,
+        offset=0,
+        query=None,
+    )
+
+    assert [item.source_id for item in queue.items] == [expected_source_id]
+
+
+def test_build_review_queue_decision_counts_follow_source_status_filter(
+    tmp_path: Path,
+) -> None:
+    """Decision counts should be computed after source-analysis status filtering."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "ready-undecided")
+    _write_artifact(paths, "ready-undecided", _artifact())
+    _write_raw(paths, "ready-approved")
+    _write_artifact(paths, "ready-approved", _decided_artifact("approved"))
+    _write_raw(paths, "finished-approved")
+    _write_artifact(
+        paths,
+        "finished-approved",
+        {
+            **_decided_artifact("approved"),
+            "review_analytics": {"review_finished_at": "2026-07-15T10:00:00Z"},
+        },
+    )
+
+    queue = build_review_queue(
+        paths,
+        status="in_progress",
+        decision="all",
+        limit=10,
+        offset=0,
+        query=None,
+    )
+
+    assert queue.decision_counts.not_reviewed == 1
+    assert queue.decision_counts.approved == 1
+    assert queue.counts.finished == 1
+
+
+def test_build_review_queue_applies_query_after_decision_filter(tmp_path: Path) -> None:
+    """Query search should only search within sources matching the decision filter."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "undecided-api")
+    _write_artifact(paths, "undecided-api", {**_artifact(), "source": {"title": "API Undecided"}})
+    _write_raw(paths, "approved-api")
+    _write_artifact(
+        paths,
+        "approved-api",
+        {**_decided_artifact("approved"), "source": {"title": "API Approved"}},
+    )
+
+    queue = build_review_queue(
+        paths,
+        status="in_progress",
+        decision="approved",
+        limit=10,
+        offset=0,
+        query="api",
+    )
+
+    assert [item.source_id for item in queue.items] == ["approved-api"]
+
+
+def test_build_review_queue_sorts_after_decision_filter(tmp_path: Path) -> None:
+    """Filtered decided rows should still sort oldest published date first."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "newer-approved")
+    _write_artifact(
+        paths,
+        "newer-approved",
+        _decided_artifact("approved", published_date="2026-07-02"),
+    )
+    _write_raw(paths, "older-approved")
+    _write_artifact(
+        paths,
+        "older-approved",
+        _decided_artifact("approved", published_date="2026-06-01"),
+    )
+
+    queue = build_review_queue(
+        paths,
+        status="in_progress",
+        decision="approved",
+        limit=10,
+        offset=0,
+        query=None,
+    )
+
+    assert [item.source_id for item in queue.items] == ["older-approved", "newer-approved"]
 
 
 def test_build_review_queue_filters_searches_and_paginates(tmp_path: Path) -> None:
@@ -151,7 +327,7 @@ def test_build_review_queue_sorts_oldest_published_sources_first(tmp_path: Path)
         {**_artifact(), "source": {"title": "Older", "published_date": "2026-06-01"}},
     )
 
-    queue = build_review_queue(paths, status="all", limit=10, offset=0, query=None)
+    queue = build_review_queue(paths, status="all", decision="all", limit=10, offset=0, query=None)
 
     assert [item.source_id for item in queue.items] == ["older", "newer"]
 
@@ -220,7 +396,7 @@ def test_build_review_queue_includes_management_status(tmp_path: Path) -> None:
         },
     )
 
-    queue = build_review_queue(paths, status="all", limit=10, offset=0, query=None)
+    queue = build_review_queue(paths, status="all", decision="all", limit=10, offset=0, query=None)
 
     assert queue.items[0].status == "in_progress"
     assert queue.items[0].management_status == "needs_attention"
@@ -423,7 +599,7 @@ def test_management_only_decision_artifact_keeps_queue_status_pending(tmp_path: 
         "pending",
         ManagementReviewRequest(status="skipped", notes=""),
     )
-    queue = build_review_queue(paths, status="all", limit=10, offset=0, query=None)
+    queue = build_review_queue(paths, status="all", decision="all", limit=10, offset=0, query=None)
 
     assert queue.items[0].status == "pending"
     assert queue.items[0].management_status == "skipped"

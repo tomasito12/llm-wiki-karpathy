@@ -12,6 +12,7 @@ import "./styles.css";
 import type {
   ConfigResponse,
   EntityGroups,
+  ManagementDecisionFilter,
   ManagementReview,
   ManagementReviewStatus,
   NormalizedEntity,
@@ -29,6 +30,14 @@ const STATUS_OPTIONS: Array<{ value: QueueStatusFilter; label: string }> = [
   { value: "finished", label: "Finished" },
   { value: "incomplete", label: "Incomplete" }
 ];
+const DECISION_FILTER_OPTIONS: Array<{ value: ManagementDecisionFilter; label: string }> = [
+  { value: "not_reviewed", label: "Not reviewed" },
+  { value: "all", label: "All decisions" },
+  { value: "approved", label: "Approved" },
+  { value: "needs_attention", label: "Needs attention" },
+  { value: "skipped", label: "Skipped" },
+  { value: "reanalyze_requested", label: "Re-analysis requested" }
+];
 
 const QUEUE_LIMIT = 250;
 const DECISION_ACTIONS: Array<{ status: ManagementReviewStatus; label: string }> = [
@@ -45,6 +54,7 @@ export default function App(): ReactElement {
   const [rawSource, setRawSource] = useState<RawSourceResponse | null>(null);
   const [selectedSourceId, setSelectedSourceId] = useState<string | null>(null);
   const [statusFilter, setStatusFilter] = useState<QueueStatusFilter>("in_progress");
+  const [decisionFilter, setDecisionFilter] = useState<ManagementDecisionFilter>("not_reviewed");
   const [query, setQuery] = useState("");
   const [rawOpen, setRawOpen] = useState(false);
   const [debugOpen, setDebugOpen] = useState(false);
@@ -58,7 +68,7 @@ export default function App(): ReactElement {
   }, []);
 
   useEffect(() => {
-    getReviewQueue({ status: statusFilter, q: query, limit: QUEUE_LIMIT })
+    getReviewQueue({ status: statusFilter, decision: decisionFilter, q: query, limit: QUEUE_LIMIT })
       .then((payload) => {
         const sortedPayload = { ...payload, items: sortQueueItems(payload.items) };
         setQueue(sortedPayload);
@@ -70,7 +80,7 @@ export default function App(): ReactElement {
         });
       })
       .catch((err: unknown) => setError(String(err)));
-  }, [query, statusFilter]);
+  }, [decisionFilter, query, statusFilter]);
 
   useEffect(() => {
     if (!selectedSourceId) {
@@ -90,7 +100,7 @@ export default function App(): ReactElement {
     return queue.items.findIndex((item) => item.source_id === selectedSourceId);
   }, [queue, selectedSourceId]);
 
-  const visibleTotal = queue ? countForFilter(queue, statusFilter) : 0;
+  const visibleTotal = queue?.items.length ?? 0;
 
   function moveSelection(direction: -1 | 1): void {
     if (!queue || selectedIndex < 0) {
@@ -115,13 +125,28 @@ export default function App(): ReactElement {
   }
 
   async function reloadSelectedSource(sourceId: string): Promise<void> {
-    const [queuePayload, sourcePayload] = await Promise.all([
-      getReviewQueue({ status: statusFilter, q: query, limit: QUEUE_LIMIT }),
-      getSourceDetail(sourceId)
-    ]);
-    setQueue({ ...queuePayload, items: sortQueueItems(queuePayload.items) });
-    setSelectedSourceId(sourceId);
-    setSource(sourcePayload);
+    const queuePayload = await getReviewQueue({
+      status: statusFilter,
+      decision: decisionFilter,
+      q: query,
+      limit: QUEUE_LIMIT
+    });
+    const sortedPayload = { ...queuePayload, items: sortQueueItems(queuePayload.items) };
+    setQueue(sortedPayload);
+    const nextSourceId = sortedPayload.items.some((item) => item.source_id === sourceId)
+      ? sourceId
+      : (sortedPayload.items[0]?.source_id ?? null);
+    setSelectedSourceId(nextSourceId);
+    if (!nextSourceId) {
+      setSource(null);
+      setRawSource(null);
+      setDecisionMessage(null);
+      return;
+    }
+    if (nextSourceId !== sourceId) {
+      setDecisionMessage(null);
+    }
+    setSource(await getSourceDetail(nextSourceId));
   }
 
   async function writeDecision(status: ManagementReviewStatus): Promise<void> {
@@ -175,6 +200,22 @@ export default function App(): ReactElement {
                 ))}
               </select>
             </label>
+            <label>
+              Decision
+              <select
+                value={decisionFilter}
+                onChange={(event) =>
+                  setDecisionFilter(event.target.value as ManagementDecisionFilter)
+                }
+              >
+                {DECISION_FILTER_OPTIONS.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <DecisionCountsSummary queue={queue} decisionFilter={decisionFilter} />
             <label>
               Search
               <input
@@ -294,20 +335,18 @@ function managementStatusClass(status: ManagementReviewStatus): string {
   return "management-attention";
 }
 
-function countForFilter(queue: QueueResponse, status: QueueStatusFilter): number {
-  if (status === "pending") {
-    return queue.counts.pending;
+function countForDecisionFilter(queue: QueueResponse, decision: ManagementDecisionFilter): number {
+  if (decision === "all") {
+    const counts = queue.decision_counts;
+    return (
+      counts.not_reviewed +
+      counts.approved +
+      counts.needs_attention +
+      counts.skipped +
+      counts.reanalyze_requested
+    );
   }
-  if (status === "in_progress") {
-    return queue.counts.in_progress;
-  }
-  if (status === "finished") {
-    return queue.counts.finished;
-  }
-  if (status === "incomplete") {
-    return queue.counts.incomplete;
-  }
-  return queue.counts.total;
+  return queue.decision_counts[decision];
 }
 
 function sortQueueItems(items: QueueItem[]): QueueItem[] {
@@ -319,6 +358,25 @@ function sortQueueItems(items: QueueItem[]): QueueItem[] {
     }
     return left.title.localeCompare(right.title);
   });
+}
+
+function DecisionCountsSummary({
+  queue,
+  decisionFilter
+}: {
+  queue: QueueResponse | null;
+  decisionFilter: ManagementDecisionFilter;
+}): ReactElement {
+  if (!queue) {
+    return <p className="decision-counts">Loading decision counts...</p>;
+  }
+  const selectedCount = countForDecisionFilter(queue, decisionFilter);
+  return (
+    <p className="decision-counts">
+      {queue.decision_counts.not_reviewed} not reviewed · {queue.decision_counts.approved} approved ·{" "}
+      {queue.decision_counts.needs_attention} needs attention · selected {selectedCount}
+    </p>
+  );
 }
 
 function QueueCountsCard({ queue }: { queue: QueueResponse | null }): ReactElement {

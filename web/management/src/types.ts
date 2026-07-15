@@ -5,6 +5,7 @@ export type ManagementReviewStatus =
   | "needs_attention"
   | "skipped"
   | "reanalyze_requested";
+export type ManagementDecisionFilter = ManagementReviewStatus | "not_reviewed" | "all";
 
 export interface ConfigResponse {
   mode: "readonly";
@@ -25,6 +26,14 @@ export interface QueueCounts {
   incomplete: number;
 }
 
+export interface DecisionCounts {
+  not_reviewed: number;
+  approved: number;
+  needs_attention: number;
+  skipped: number;
+  reanalyze_requested: number;
+}
+
 export interface QueueItem {
   source_id: string;
   title: string;
@@ -43,6 +52,7 @@ export interface QueueItem {
 
 export interface QueueResponse {
   counts: QueueCounts;
+  decision_counts: DecisionCounts;
   items: QueueItem[];
   limit: number;
   offset: number;

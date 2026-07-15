@@ -98,8 +98,41 @@ def test_review_queue_endpoint_returns_counts_and_items(tmp_path: Path) -> None:
     payload = response.json()
     assert payload["counts"]["in_progress"] == 1
     assert payload["counts"]["finished"] == 1
+    assert payload["decision_counts"]["not_reviewed"] == 1
     assert [item["source_id"] for item in payload["items"]] == ["api-source"]
     assert payload["items"][0]["management_status"] is None
+
+
+def test_review_queue_endpoint_filters_management_decisions_by_default(tmp_path: Path) -> None:
+    """Queue endpoint should default to undecided work inside the selected status."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "undecided")
+    _write_artifact(paths, "undecided")
+    _write_raw(paths, "approved")
+    _write_artifact(paths, "approved", management_status="approved")
+    client = TestClient(create_app(paths=paths))
+
+    default_response = client.get("/api/review/queue", params={"status": "in_progress"})
+    all_response = client.get(
+        "/api/review/queue",
+        params={"status": "in_progress", "decision": "all"},
+    )
+    approved_response = client.get(
+        "/api/review/queue",
+        params={"status": "in_progress", "decision": "approved"},
+    )
+
+    assert default_response.status_code == 200
+    assert [item["source_id"] for item in default_response.json()["items"]] == ["undecided"]
+    assert all_response.status_code == 200
+    assert {item["source_id"] for item in all_response.json()["items"]} == {
+        "approved",
+        "undecided",
+    }
+    assert approved_response.status_code == 200
+    assert [item["source_id"] for item in approved_response.json()["items"]] == ["approved"]
+    assert default_response.json()["decision_counts"]["not_reviewed"] == 1
+    assert default_response.json()["decision_counts"]["approved"] == 1
 
 
 def test_source_detail_endpoint_returns_normalized_artifact(tmp_path: Path) -> None:
@@ -128,7 +161,10 @@ def test_read_endpoints_return_management_decision_state(tmp_path: Path) -> None
     _write_artifact(paths, "api-source", management_status="approved")
     client = TestClient(create_app(paths=paths))
 
-    queue_response = client.get("/api/review/queue", params={"status": "in_progress"})
+    queue_response = client.get(
+        "/api/review/queue",
+        params={"status": "in_progress", "decision": "all"},
+    )
     detail_response = client.get("/api/review/source/api-source")
 
     assert queue_response.status_code == 200

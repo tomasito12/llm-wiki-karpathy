@@ -10,6 +10,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from src.management_web.models import (
     ConfigResponse,
     HealthResponse,
+    ManagementDecisionFilter,
     ManagementDecisionResponse,
     ManagementReviewRequest,
     QueueResponse,
@@ -76,6 +77,7 @@ def create_app(
     @app.get("/api/review/queue", response_model=QueueResponse)
     def review_queue(
         status: QueueStatusFilter = "all",
+        decision: ManagementDecisionFilter = "not_reviewed",
         limit: int = Query(default=50, ge=0),
         offset: int = Query(default=0, ge=0),
         q: str | None = None,
@@ -84,6 +86,7 @@ def create_app(
         return build_review_queue(
             app.state.paths,
             status=status,
+            decision=decision,
             limit=limit,
             offset=offset,
             query=q,

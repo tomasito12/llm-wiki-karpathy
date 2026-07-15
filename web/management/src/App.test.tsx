@@ -12,6 +12,13 @@ const queuePayload = {
     finished: 0,
     incomplete: 0
   },
+  decision_counts: {
+    not_reviewed: 2,
+    approved: 0,
+    needs_attention: 0,
+    skipped: 0,
+    reanalyze_requested: 0
+  },
   items: [
     {
       source_id: "newer-source",
@@ -55,6 +62,13 @@ const finishedQueuePayload = {
     in_progress: 1,
     finished: 1,
     incomplete: 0
+  },
+  decision_counts: {
+    not_reviewed: 0,
+    approved: 1,
+    needs_attention: 0,
+    skipped: 0,
+    reanalyze_requested: 0
   },
   items: [
     {
@@ -194,6 +208,42 @@ const decisionResponse = {
   backup_path: "/tmp/reviews/api-source/review.before-management-review.20260715T123456Z.json"
 };
 
+const approvedQueuePayload = {
+  ...queuePayload,
+  decision_counts: {
+    not_reviewed: 2,
+    approved: 1,
+    needs_attention: 0,
+    skipped: 0,
+    reanalyze_requested: 0
+  },
+  items: [{ ...queuePayload.items[1], management_status: "approved" }]
+};
+
+const onlyNewerQueuePayload = {
+  ...queuePayload,
+  decision_counts: {
+    not_reviewed: 1,
+    approved: 1,
+    needs_attention: 0,
+    skipped: 0,
+    reanalyze_requested: 0
+  },
+  items: [queuePayload.items[0]]
+};
+
+const emptyQueuePayload = {
+  ...queuePayload,
+  decision_counts: {
+    not_reviewed: 0,
+    approved: 1,
+    needs_attention: 0,
+    skipped: 0,
+    reanalyze_requested: 0
+  },
+  items: []
+};
+
 describe("App", () => {
   beforeEach(() => {
     vi.stubGlobal(
@@ -208,6 +258,9 @@ describe("App", () => {
         }
         if (url.includes("/api/review/source/api-source/decision") && init?.method === "PATCH") {
           return Response.json(decisionResponse);
+        }
+        if (url.includes("/api/review/queue") && url.includes("decision=approved")) {
+          return Response.json(approvedQueuePayload);
         }
         if (url.includes("/api/review/queue") && url.includes("status=finished")) {
           return Response.json(finishedQueuePayload);
@@ -242,7 +295,7 @@ describe("App", () => {
 
     expect(await screen.findByText("Review Workspace")).toBeInTheDocument();
     expect(screen.getByText("Write enabled")).toBeInTheDocument();
-    expect(await screen.findByText("API Article")).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: "API Article" })).toBeInTheDocument();
     expect(screen.getAllByText("Ready for review").length).toBeGreaterThan(0);
     expect(await screen.findByText("API summary")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Easy Read" })).toBeInTheDocument();
@@ -262,7 +315,13 @@ describe("App", () => {
     });
 
     expect(
-      vi.mocked(fetch).mock.calls.some(([input]) => String(input).includes("status=in_progress"))
+      vi
+        .mocked(fetch)
+        .mock.calls.some(
+          ([input]) =>
+            String(input).includes("status=in_progress") &&
+            String(input).includes("decision=not_reviewed")
+        )
     ).toBe(true);
   });
 
@@ -302,7 +361,22 @@ describe("App", () => {
     expect(await screen.findByText("Decision: Approved")).toBeInTheDocument();
     expect(screen.getByText("Reviewed by plischke")).toBeInTheDocument();
     expect(screen.getByText("Looks good.")).toBeInTheDocument();
-    expect(await screen.findByText("Approved")).toBeInTheDocument();
+    expect(within(await screen.findByLabelText("Source list")).getByText("Approved")).toBeInTheDocument();
+  });
+
+  it("switches the decision filter to show decided articles with badges", async () => {
+    render(<App />);
+
+    await screen.findByText("API summary");
+    await userEvent.selectOptions(screen.getByLabelText("Decision"), "approved");
+
+    expect(within(await screen.findByLabelText("Source list")).getByText("Approved")).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: "API Article" })).toBeInTheDocument();
+    expect(
+      vi
+        .mocked(fetch)
+        .mock.calls.some(([input]) => String(input).includes("decision=approved"))
+    ).toBe(true);
   });
 
   it("writes approve decisions and reloads source and queue state", async () => {
@@ -331,6 +405,78 @@ describe("App", () => {
       expect(sourceCalls.length).toBeGreaterThanOrEqual(2);
     });
     expect(await screen.findByText("Decision saved: approved")).toBeInTheDocument();
+  });
+
+  it("selects the next undecided source after approving the current source", async () => {
+    let queueCalls = 0;
+    vi.mocked(fetch).mockImplementation(async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = String(input);
+      if (url.includes("/api/config")) {
+        return Response.json({
+          mode: "readonly",
+          paths: { raw_dir: "/tmp/raw", reviews_dir: "/tmp/reviews" }
+        });
+      }
+      if (url.includes("/api/review/source/api-source/decision") && init?.method === "PATCH") {
+        return Response.json(decisionResponse);
+      }
+      if (url.includes("/api/review/queue")) {
+        queueCalls += 1;
+        return Response.json(queueCalls > 1 ? onlyNewerQueuePayload : queuePayload);
+      }
+      if (url.includes("/api/review/source/newer-source")) {
+        return Response.json(newerSourcePayload);
+      }
+      if (url.includes("/api/review/source/api-source")) {
+        return Response.json(sourcePayload);
+      }
+      return new Response("not found", { status: 404 });
+    });
+
+    render(<App />);
+
+    expect(await screen.findByText("API summary")).toBeInTheDocument();
+    await userEvent.click(screen.getByRole("button", { name: "Approve article" }));
+
+    expect(await screen.findByRole("heading", { name: "Newer Article" })).toBeInTheDocument();
+    expect(await screen.findByText("Newer summary")).toBeInTheDocument();
+    expect(screen.queryByText("Decision saved: approved")).not.toBeInTheDocument();
+  });
+
+  it("clears the selected source after approving the last undecided source", async () => {
+    let queueCalls = 0;
+    vi.mocked(fetch).mockImplementation(async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = String(input);
+      if (url.includes("/api/config")) {
+        return Response.json({
+          mode: "readonly",
+          paths: { raw_dir: "/tmp/raw", reviews_dir: "/tmp/reviews" }
+        });
+      }
+      if (url.includes("/api/review/source/api-source/decision") && init?.method === "PATCH") {
+        return Response.json(decisionResponse);
+      }
+      if (url.includes("/api/review/queue")) {
+        queueCalls += 1;
+        return Response.json(queueCalls > 1 ? emptyQueuePayload : {
+          ...queuePayload,
+          items: [queuePayload.items[1]]
+        });
+      }
+      if (url.includes("/api/review/source/api-source")) {
+        return Response.json(sourcePayload);
+      }
+      return new Response("not found", { status: 404 });
+    });
+
+    render(<App />);
+
+    expect(await screen.findByText("API summary")).toBeInTheDocument();
+    await userEvent.click(screen.getByRole("button", { name: "Approve article" }));
+
+    expect(await screen.findByText("No sources match.")).toBeInTheDocument();
+    expect(screen.getByText("Select a source to inspect its review artifact.")).toBeInTheDocument();
+    expect(screen.queryByText("Decision saved: approved")).not.toBeInTheDocument();
   });
 
   it("disables article action buttons while a decision request is pending", async () => {

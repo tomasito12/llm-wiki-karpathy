@@ -13,8 +13,10 @@ from typing import Any, cast, get_args
 from src.ingest_queue.queue import IngestItem, list_ingest_items
 from src.management_web.models import (
     DebugPayload,
+    DecisionCounts,
     EntityCounts,
     EntityGroups,
+    ManagementDecisionFilter,
     ManagementDecisionResponse,
     ManagementReview,
     ManagementReviewRequest,
@@ -119,6 +121,7 @@ def build_review_queue(
     paths: WikiPaths,
     *,
     status: QueueStatusFilter = "all",
+    decision: ManagementDecisionFilter = "not_reviewed",
     limit: int = 50,
     offset: int = 0,
     query: str | None = None,
@@ -128,6 +131,7 @@ def build_review_queue(
     Args:
         paths: Resolved wiki paths.
         status: Status filter to apply to returned items.
+        decision: Management decision filter to apply after status filtering.
         limit: Maximum number of returned items.
         offset: Number of filtered items to skip.
         query: Optional case-insensitive search query.
@@ -139,11 +143,19 @@ def build_review_queue(
         _queue_item(paths, item) for item in list_ingest_items(paths.raw_dir, paths.reviews_dir)
     ]
     counts = _count_queue_items(rows)
-    filtered = _sort_queue_items(_filter_queue_items(rows, status=status, query=query))
+    status_filtered = _filter_queue_items_by_status(rows, status=status)
+    decision_counts = _count_decisions(status_filtered)
+    filtered = _sort_queue_items(
+        _filter_queue_items_by_query(
+            _filter_queue_items_by_decision(status_filtered, decision=decision),
+            query=query,
+        )
+    )
     bounded_offset = max(offset, 0)
     bounded_limit = max(limit, 0)
     return QueueResponse(
         counts=counts,
+        decision_counts=decision_counts,
         items=filtered[bounded_offset : bounded_offset + bounded_limit],
         limit=bounded_limit,
         offset=bounded_offset,
@@ -440,18 +452,55 @@ def _count_queue_items(items: Iterable[Any]) -> QueueCounts:
     return counts
 
 
-def _filter_queue_items(
+def _count_decisions(items: Iterable[Any]) -> DecisionCounts:
+    """Count management decision states for already status-filtered items."""
+    counts = DecisionCounts()
+    for item in items:
+        if item.management_status is None:
+            counts.not_reviewed += 1
+        elif item.management_status == "approved":
+            counts.approved += 1
+        elif item.management_status == "needs_attention":
+            counts.needs_attention += 1
+        elif item.management_status == "skipped":
+            counts.skipped += 1
+        elif item.management_status == "reanalyze_requested":
+            counts.reanalyze_requested += 1
+    return counts
+
+
+def _filter_queue_items_by_status(
     items: list[Any],
     *,
     status: QueueStatusFilter,
+) -> list[Any]:
+    """Apply the source-analysis status filter to queue items."""
+    return [item for item in items if status == "all" or item.status == status]
+
+
+def _filter_queue_items_by_decision(
+    items: list[Any],
+    *,
+    decision: ManagementDecisionFilter,
+) -> list[Any]:
+    """Apply the management decision filter to queue items."""
+    if decision == "all":
+        return items
+    if decision == "not_reviewed":
+        return [item for item in items if item.management_status is None]
+    return [item for item in items if item.management_status == decision]
+
+
+def _filter_queue_items_by_query(
+    items: list[Any],
+    *,
     query: str | None,
 ) -> list[Any]:
-    """Apply status and text filters to queue items."""
+    """Apply the text query filter to queue items."""
     normalized_query = (query or "").strip().lower()
-    filtered = [item for item in items if status == "all" or item.status == status]
     if not normalized_query:
-        return filtered
-    return [item for item in filtered if _queue_item_matches_query(item, normalized_query)]
+        return items
+    return [item for item in items if _queue_item_matches_query(item, normalized_query)]
 
 
 def _sort_queue_items(items: list[Any]) -> list[Any]:

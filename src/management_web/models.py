@@ -9,6 +9,14 @@ from pydantic import BaseModel, ConfigDict
 ReviewStatus = Literal["pending", "in_progress", "finished", "incomplete"]
 QueueStatusFilter = Literal["all", "pending", "in_progress", "finished", "incomplete"]
 ManagementReviewStatus = Literal["approved", "needs_attention", "skipped", "reanalyze_requested"]
+ManagementDecisionFilter = Literal[
+    "not_reviewed",
+    "all",
+    "approved",
+    "needs_attention",
+    "skipped",
+    "reanalyze_requested",
+]
 
 
 class HealthResponse(BaseModel):
@@ -44,6 +52,16 @@ class QueueCounts(BaseModel):
     incomplete: int = 0
 
 
+class DecisionCounts(BaseModel):
+    """Management decision counts inside the current source-analysis filter."""
+
+    not_reviewed: int = 0
+    approved: int = 0
+    needs_attention: int = 0
+    skipped: int = 0
+    reanalyze_requested: int = 0
+
+
 class QueueItem(BaseModel):
     """One source row in the batch review queue."""
 
@@ -66,6 +84,7 @@ class QueueResponse(BaseModel):
     """Paginated queue response for the review workspace."""
 
     counts: QueueCounts
+    decision_counts: DecisionCounts
     items: list[QueueItem]
     limit: int
     offset: int

@@ -1,6 +1,7 @@
 import type {
   ConfigResponse,
   ManagementDecisionResponse,
+  ManagementDecisionFilter,
   ManagementReviewRequest,
   QueueResponse,
   QueueStatusFilter,
@@ -22,12 +23,14 @@ export function getConfig(): Promise<ConfigResponse> {
 
 export function getReviewQueue(params: {
   status: QueueStatusFilter;
+  decision: ManagementDecisionFilter;
   q: string;
   limit?: number;
   offset?: number;
 }): Promise<QueueResponse> {
   const search = new URLSearchParams({
     status: params.status,
+    decision: params.decision,
     limit: String(params.limit ?? 50),
     offset: String(params.offset ?? 0)
   });
