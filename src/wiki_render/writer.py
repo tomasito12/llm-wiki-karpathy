@@ -22,6 +22,9 @@ class WriteReport:
     unchanged: int
     pruned: int
     skipped_prune: bool
+    protected_from_prune: int = 0
+    write_paths: tuple[str, ...] = ()
+    prune_paths: tuple[str, ...] = ()
 
 
 def write_rendered_files(
@@ -32,16 +35,19 @@ def write_rendered_files(
     run_metadata: dict[str, Any],
     dry_run: bool = False,
     prune: bool = True,
+    protected_paths: set[str] | None = None,
 ) -> WriteReport:
     """Write rendered files and advisory manifest."""
     unique = _unique_files(files)
     written = 0
     unchanged = 0
+    write_paths: list[str] = []
     for rendered in unique:
         target = wiki_dir / rendered.relative_path
         if target.exists() and target.read_text(encoding="utf-8") == rendered.text:
             unchanged += 1
             continue
+        write_paths.append(rendered.relative_path)
         if not dry_run:
             atomic_write_text(target, rendered.text)
         written += 1
@@ -49,14 +55,21 @@ def write_rendered_files(
     previous_paths = _previous_manifest_paths(manifest_path)
     current_paths = {rendered.relative_path for rendered in unique}
     pruned = 0
+    protected_from_prune = 0
     skipped_prune = False
+    protected = protected_paths or set()
+    prune_paths: list[str] = []
     stale_paths = sorted(previous_paths - current_paths)
     if prune and previous_paths:
         for rel in stale_paths:
+            if rel in protected:
+                protected_from_prune += 1
+                continue
             if not layout.is_managed_relative_path(rel):
                 continue
             target = wiki_dir / rel
             if target.is_file():
+                prune_paths.append(rel)
                 if not dry_run:
                     target.unlink()
                 pruned += 1
@@ -82,6 +95,9 @@ def write_rendered_files(
         unchanged=unchanged,
         pruned=pruned,
         skipped_prune=skipped_prune,
+        protected_from_prune=protected_from_prune,
+        write_paths=tuple(write_paths),
+        prune_paths=tuple(prune_paths),
     )
 
 

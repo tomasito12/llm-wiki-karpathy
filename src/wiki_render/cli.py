@@ -8,6 +8,7 @@ import sys
 from pathlib import Path
 
 from src.ingest_review.paths import repo_root
+from src.ingest_review.review_scope import in_progress_source_ids
 from src.ingest_review.schema import ARTIFACT_SCHEMA_VERSION
 from src.wiki_paths.cli_helpers import (
     add_paths_config_argument,
@@ -16,12 +17,15 @@ from src.wiki_paths.cli_helpers import (
 )
 from src.wiki_paths.config import WikiPathsConfigError
 from src.wiki_render import TOOL_VERSION
-from src.wiki_render.collect import collect_items
 from src.wiki_render.graph_export import write_graph_export
 from src.wiki_render.loader import load_review_artifacts
-from src.wiki_render.merge import build_knowledge_graph
-from src.wiki_render.render import render_graph
+from src.wiki_render.report import (
+    RenderRunSummary,
+    format_render_summary_text,
+    load_previous_render_snapshot,
+)
 from src.wiki_render.resolve import taxonomy_version
+from src.wiki_render.scope import protected_prune_paths_for_in_progress, render_artifacts
 from src.wiki_render.source_text import (
     DEFAULT_MIN_SOURCE_TEXT_AVAILABLE_RATIO,
     evaluate_source_text_coverage,
@@ -76,6 +80,24 @@ def build_parser() -> argparse.ArgumentParser:
         help="Directory containing raw Readwise Markdown exports.",
     )
     parser.add_argument(
+        "--include-in-progress",
+        action="store_true",
+        help=(
+            "Also render in-progress review artifacts for vault preview. "
+            "Default scope is finished reviews only."
+        ),
+    )
+    parser.add_argument(
+        "--show-writes",
+        action="store_true",
+        help="List every file path that would be written or was written.",
+    )
+    parser.add_argument(
+        "--show-prune",
+        action="store_true",
+        help="List every file path that would be pruned or was pruned.",
+    )
+    parser.add_argument(
         "--dry-run",
         action="store_true",
         help="Compute and report planned writes without changing files.",
@@ -121,20 +143,32 @@ def main(argv: list[str] | None = None) -> int:
             raw_dir,
         )
     tax_version = taxonomy_version(root)
-    artifacts = load_review_artifacts(reviews_dir)
-    collected = collect_items(artifacts, wiki_dir)
-    graph = build_knowledge_graph(
-        collected,
-        wiki_dir=wiki_dir,
-        taxonomy_version=tax_version,
+    include_in_progress = bool(args.include_in_progress)
+    artifacts = load_review_artifacts(
+        reviews_dir,
+        include_in_progress=include_in_progress,
     )
-    rendered = render_graph(
-        graph,
+    graph, rendered = render_artifacts(
+        artifacts,
         wiki_dir=wiki_dir,
         raw_dir=raw_dir,
         repo_root=root,
         synthesis_cache_dir=synthesis_cache_dir,
+        taxonomy_version=tax_version,
     )
+    protected_paths: set[str] = set()
+    excluded_in_progress = 0
+    if not include_in_progress:
+        excluded_in_progress = len(in_progress_source_ids(reviews_dir))
+        if excluded_in_progress:
+            protected_paths = protected_prune_paths_for_in_progress(
+                reviews_dir=reviews_dir,
+                wiki_dir=wiki_dir,
+                raw_dir=raw_dir,
+                repo_root=root,
+                synthesis_cache_dir=synthesis_cache_dir,
+                taxonomy_version=tax_version,
+            )
     coverage = summarize_source_text_coverage(rendered)
     coverage_warning = evaluate_source_text_coverage(coverage)
     if coverage_warning:
@@ -143,6 +177,7 @@ def main(argv: list[str] | None = None) -> int:
             return 2
         LOGGER.warning(coverage_warning)
     write_graph_export(graph_path, graph, dry_run=args.dry_run)
+    previous = load_previous_render_snapshot(manifest_path)
     report = write_rendered_files(
         wiki_dir=wiki_dir,
         files=rendered,
@@ -151,6 +186,8 @@ def main(argv: list[str] | None = None) -> int:
             "tool_version": TOOL_VERSION,
             "artifact_schema_version": ARTIFACT_SCHEMA_VERSION,
             "taxonomy_version": tax_version,
+            "render_scope": ("include_in_progress" if include_in_progress else "finished_only"),
+            "excluded_in_progress_sources": excluded_in_progress,
             "source_count": len(graph.sources),
             "knowledge_page_count": len(graph.knowledge_pages),
             "signal_count": len(graph.signals),
@@ -161,16 +198,19 @@ def main(argv: list[str] | None = None) -> int:
         },
         dry_run=args.dry_run,
         prune=not args.no_prune,
+        protected_paths=protected_paths,
     )
     LOGGER.info(
-        "wiki-render complete sources=%d pages=%d files=%d written=%d "
-        "unchanged=%d pruned=%d dry_run=%s",
+        "wiki-render complete scope=%s sources=%d pages=%d files=%d written=%d "
+        "unchanged=%d pruned=%d protected=%d dry_run=%s",
+        "include_in_progress" if include_in_progress else "finished_only",
         len(graph.sources),
         len(graph.knowledge_pages),
         report.planned,
         report.written,
         report.unchanged,
         report.pruned,
+        report.protected_from_prune,
         args.dry_run,
     )
     if coverage.total:
@@ -183,6 +223,28 @@ def main(argv: list[str] | None = None) -> int:
         )
     if report.skipped_prune and not args.no_prune:
         LOGGER.warning("Prune skipped because no previous manifest was available")
+    if report.protected_from_prune:
+        LOGGER.info(
+            "protected %d in-progress preview file(s) from prune",
+            report.protected_from_prune,
+        )
+    summary = RenderRunSummary(
+        dry_run=args.dry_run,
+        source_count=len(graph.sources),
+        knowledge_page_count=len(graph.knowledge_pages),
+        write_report=report,
+        coverage=coverage,
+        previous=previous,
+        include_in_progress=include_in_progress,
+        excluded_in_progress_sources=excluded_in_progress,
+    )
+    print(
+        format_render_summary_text(
+            summary,
+            show_writes=args.show_writes,
+            show_prune=args.show_prune,
+        )
+    )
     return 0
 
 

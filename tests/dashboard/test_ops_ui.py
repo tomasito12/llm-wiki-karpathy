@@ -8,6 +8,7 @@ from unittest.mock import MagicMock, patch
 
 from src.dashboard.ops_ui import (
     DashboardCommandResult,
+    _output_interpretation,
     command_text,
     render_command_result,
     run_dashboard_command,
@@ -79,6 +80,28 @@ def test_render_command_result_outputs_error() -> None:
 
     mock_st.error.assert_called_once()
     mock_st.code.assert_called_once_with("boom", language="text")
+
+
+def test_output_interpretation_returns_hint_for_known_labels() -> None:
+    """Known command labels should get a plain-language output hint."""
+    assert _output_interpretation("Show synthesis plan") is not None
+    assert _output_interpretation("Unknown label") is None
+
+
+def test_render_command_result_shows_interpretation_for_known_label() -> None:
+    """Rendering should include an info hint when the label is recognized."""
+    mock_st = MagicMock()
+    result = DashboardCommandResult(
+        label="Batch dry-run",
+        command=["python", "-m", "src.wiki_synthesis.batch_cli", "--dry-run"],
+        returncode=0,
+        stdout="planned=3\n",
+        stderr="",
+    )
+
+    render_command_result(mock_st, result)
+
+    mock_st.info.assert_called_once()
 
 
 def test_render_button_command_uses_current_interpreter(tmp_path: Path) -> None:

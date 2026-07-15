@@ -6,11 +6,21 @@ import json
 from pathlib import Path
 
 from src.wiki_synthesis import select_cli
+from tests.wiki_synthesis.review_fixture import write_finished_review, write_paths_config
 
 
 def test_select_cli_json_output(tmp_path: Path, capsys) -> None:
     """Select CLI should print valid JSON with ranked entries."""
     graph_path = tmp_path / "graph.json"
+    reviews_dir = tmp_path / "reviews"
+    write_finished_review(reviews_dir, "a")
+    write_finished_review(reviews_dir, "b")
+    config_path = write_paths_config(
+        tmp_path,
+        graph_path=graph_path,
+        cache_dir=tmp_path / "cache",
+        reviews_dir=reviews_dir,
+    )
     graph_path.write_text(
         json.dumps(
             {
@@ -43,10 +53,8 @@ def test_select_cli_json_output(tmp_path: Path, capsys) -> None:
 
     exit_code = select_cli.main(
         [
-            "--graph-path",
-            str(graph_path),
-            "--cache-dir",
-            str(tmp_path / "cache"),
+            "--paths-config",
+            str(config_path),
             "--json",
             "--limit",
             "5",
@@ -62,6 +70,15 @@ def test_select_cli_json_output(tmp_path: Path, capsys) -> None:
 def test_select_cli_commands_output(tmp_path: Path, capsys) -> None:
     """Select CLI command mode should print workflow invocations."""
     graph_path = tmp_path / "graph.json"
+    reviews_dir = tmp_path / "reviews"
+    write_finished_review(reviews_dir, "a")
+    write_finished_review(reviews_dir, "b")
+    config_path = write_paths_config(
+        tmp_path,
+        graph_path=graph_path,
+        cache_dir=tmp_path / "cache",
+        reviews_dir=reviews_dir,
+    )
     graph_path.write_text(
         json.dumps(
             {
@@ -86,10 +103,8 @@ def test_select_cli_commands_output(tmp_path: Path, capsys) -> None:
 
     exit_code = select_cli.main(
         [
-            "--graph-path",
-            str(graph_path),
-            "--cache-dir",
-            str(tmp_path / "cache"),
+            "--paths-config",
+            str(config_path),
             "--commands",
             "--limit",
             "1",
@@ -107,7 +122,10 @@ def test_select_cli_paths_config_overrides_graph_and_cache(tmp_path: Path, capsy
     external.mkdir()
     graph_path = external / "graph.json"
     cache_dir = external / "cache"
+    reviews_dir = external / "reviews"
     cache_dir.mkdir()
+    write_finished_review(reviews_dir, "a")
+    write_finished_review(reviews_dir, "b")
     graph_path.write_text(
         json.dumps(
             {
@@ -129,14 +147,11 @@ def test_select_cli_paths_config_overrides_graph_and_cache(tmp_path: Path, capsy
         ),
         encoding="utf-8",
     )
-    config_path = tmp_path / "wiki_paths.toml"
-    config_path.write_text(
-        f"""
-[paths]
-graph_path = "{graph_path}"
-synthesis_dir = "{cache_dir}"
-""".strip(),
-        encoding="utf-8",
+    config_path = write_paths_config(
+        tmp_path,
+        graph_path=graph_path,
+        cache_dir=cache_dir,
+        reviews_dir=reviews_dir,
     )
 
     exit_code = select_cli.main(
@@ -158,6 +173,9 @@ def test_select_cli_explicit_graph_path_overrides_config(tmp_path: Path, capsys)
     """An explicit --graph-path flag should override config values."""
     config_graph = tmp_path / "config-graph.json"
     cli_graph = tmp_path / "cli-graph.json"
+    reviews_dir = tmp_path / "reviews"
+    write_finished_review(reviews_dir, "a")
+    write_finished_review(reviews_dir, "b")
     for graph_path in (config_graph, cli_graph):
         graph_path.write_text(
             json.dumps(
@@ -180,13 +198,11 @@ def test_select_cli_explicit_graph_path_overrides_config(tmp_path: Path, capsys)
             ),
             encoding="utf-8",
         )
-    config_path = tmp_path / "wiki_paths.toml"
-    config_path.write_text(
-        f"""
-[paths]
-graph_path = "{config_graph}"
-""".strip(),
-        encoding="utf-8",
+    config_path = write_paths_config(
+        tmp_path,
+        graph_path=config_graph,
+        cache_dir=tmp_path / "cache",
+        reviews_dir=reviews_dir,
     )
 
     exit_code = select_cli.main(

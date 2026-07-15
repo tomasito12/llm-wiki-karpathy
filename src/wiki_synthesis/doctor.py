@@ -72,6 +72,7 @@ def run_doctor(
     include_single_source: bool = False,
     limit: int = 1,
     require_api_key: bool = False,
+    finished_source_ids: set[str] | None = None,
 ) -> DoctorReport:
     """Run preflight checks for the synthesis workflow."""
     plan = plan_from_graph(
@@ -82,6 +83,7 @@ def run_doctor(
         include_single_source=include_single_source,
         changed_only=True,
         limit=limit,
+        finished_source_ids=finished_source_ids,
     )
     cache_lint = lint_synthesis_cache(
         graph,

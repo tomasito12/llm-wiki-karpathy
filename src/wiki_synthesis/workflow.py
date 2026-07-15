@@ -40,6 +40,7 @@ def run_synthesis_workflow(
     limit: int = 1,
     dry_run: bool = True,
     review: bool = True,
+    finished_source_ids: set[str] | None = None,
 ) -> SynthesisWorkflowReport:
     """Run the controlled synthesis workflow and optionally render previews."""
     run_report = run_synthesis(
@@ -52,6 +53,7 @@ def run_synthesis_workflow(
         include_single_source=include_single_source,
         limit=limit,
         dry_run=dry_run,
+        finished_source_ids=finished_source_ids,
     )
     reviews: list[SynthesisReviewPreview] = []
     if review and not dry_run:

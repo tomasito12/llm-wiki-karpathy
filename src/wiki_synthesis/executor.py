@@ -94,6 +94,7 @@ def run_synthesis(
     limit: int = 1,
     dry_run: bool = True,
     now_fn: Callable[[], datetime] | None = None,
+    finished_source_ids: set[str] | None = None,
 ) -> SynthesisRunReport:
     """Run Stage 2 synthesis for planned new/stale entries."""
     plan = plan_from_graph(
@@ -103,6 +104,7 @@ def run_synthesis(
         entity=entity,
         include_single_source=include_single_source,
         changed_only=True,
+        finished_source_ids=finished_source_ids,
     )
     targets = _target_entries(plan.entries, limit=limit)
     items: list[SynthesisRunItem] = []

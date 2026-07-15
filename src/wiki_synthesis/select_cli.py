@@ -8,6 +8,7 @@ import logging
 import sys
 from pathlib import Path
 
+from src.ingest_review.review_scope import finished_source_ids
 from src.wiki_paths.cli_helpers import (
     add_paths_config_argument,
     load_paths_for_cli,
@@ -89,6 +90,7 @@ def main(argv: list[str] | None = None) -> int:
         return 2
     graph_path = resolve_cli_path(args.graph_path, configured=paths.graph_path)
     cache_dir = resolve_cli_path(args.cache_dir, configured=paths.synthesis_dir)
+    reviews_dir = resolve_cli_path(None, configured=paths.reviews_dir)
     graph = load_graph_export(graph_path)
     result = select_synthesis_candidates(
         graph,
@@ -97,6 +99,7 @@ def main(argv: list[str] | None = None) -> int:
         entity=args.entity,
         include_single_source=args.include_single_source,
         limit=args.limit,
+        finished_source_ids=finished_source_ids(reviews_dir),
     )
     if args.json:
         print(json.dumps(result.to_dict(), indent=2, sort_keys=True))

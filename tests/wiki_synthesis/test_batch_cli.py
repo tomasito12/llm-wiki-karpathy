@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 
 from src.wiki_synthesis import batch_cli
+from tests.wiki_synthesis.review_fixture import write_finished_review, write_paths_config
 
 
 def test_batch_cli_requires_yes_for_real_run(tmp_path: Path, caplog) -> None:
@@ -34,18 +35,23 @@ def test_batch_cli_requires_yes_for_real_run(tmp_path: Path, caplog) -> None:
 def test_batch_cli_dry_run_json_output(tmp_path: Path, capsys, monkeypatch) -> None:
     """Dry-run batch CLI should print JSON without provider calls."""
     graph_path = _write_graph(tmp_path)
+    reviews_dir = tmp_path / "reviews"
+    write_finished_review(reviews_dir, "source-a")
+    write_finished_review(reviews_dir, "source-b")
+    config_path = write_paths_config(
+        tmp_path,
+        graph_path=graph_path,
+        cache_dir=tmp_path / "cache",
+        reviews_dir=reviews_dir,
+        preview_dir=tmp_path / "previews",
+        run_dir=tmp_path / "runs",
+    )
     monkeypatch.delenv("OPENAI_API_KEY", raising=False)
 
     exit_code = batch_cli.main(
         [
-            "--graph-path",
-            str(graph_path),
-            "--cache-dir",
-            str(tmp_path / "cache"),
-            "--preview-dir",
-            str(tmp_path / "previews"),
-            "--report-dir",
-            str(tmp_path / "runs"),
+            "--paths-config",
+            str(config_path),
             "--dry-run",
             "--json",
             "--limit",
@@ -95,8 +101,11 @@ def test_batch_cli_paths_config_overrides_graph_and_cache(
     cache_dir = external / "cache"
     preview_dir = external / "previews"
     report_dir = external / "runs"
+    reviews_dir = external / "reviews"
     for directory in (cache_dir, preview_dir, report_dir):
         directory.mkdir(parents=True)
+    write_finished_review(reviews_dir, "source-a")
+    write_finished_review(reviews_dir, "source-b")
     graph_path.write_text(
         json.dumps(
             {
@@ -134,16 +143,13 @@ def test_batch_cli_paths_config_overrides_graph_and_cache(
         ),
         encoding="utf-8",
     )
-    config_path = tmp_path / "wiki_paths.toml"
-    config_path.write_text(
-        f"""
-[paths]
-graph_path = "{graph_path}"
-synthesis_dir = "{cache_dir}"
-preview_dir = "{preview_dir}"
-run_dir = "{report_dir}"
-""".strip(),
-        encoding="utf-8",
+    config_path = write_paths_config(
+        tmp_path,
+        graph_path=graph_path,
+        cache_dir=cache_dir,
+        reviews_dir=reviews_dir,
+        preview_dir=preview_dir,
+        run_dir=report_dir,
     )
 
     exit_code = batch_cli.main(

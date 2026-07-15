@@ -110,7 +110,7 @@ def collect_source_access_status(
         else:
             external_url_only += 1
 
-    graph_source_ids = _load_graph_source_ids(graph_path)
+    graph_source_ids = load_graph_source_ids(graph_path)
     missing_graph_pages = (
         sorted(graph_source_ids - page_ids) if graph_source_ids is not None else []
     )
@@ -164,7 +164,7 @@ def _has_local_raw_link(text: str) -> bool:
     return any(pattern.search(text) for pattern in LOCAL_RAW_LINK_PATTERNS)
 
 
-def _load_graph_source_ids(graph_path: Path) -> set[str] | None:
+def load_graph_source_ids(graph_path: Path) -> set[str] | None:
     """Load source ids from the current render graph when available."""
     if not graph_path.is_file():
         return None

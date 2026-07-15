@@ -8,6 +8,7 @@ import logging
 import sys
 from pathlib import Path
 
+from src.ingest_review.review_scope import finished_source_ids
 from src.wiki_paths.cli_helpers import (
     add_paths_config_argument,
     load_paths_for_cli,
@@ -84,6 +85,7 @@ def main(argv: list[str] | None = None) -> int:
         return 2
     graph_path = resolve_cli_path(args.graph_path, configured=paths.graph_path)
     cache_dir = resolve_cli_path(args.cache_dir, configured=paths.synthesis_dir)
+    reviews_dir = resolve_cli_path(None, configured=paths.reviews_dir)
     graph = load_graph_export(graph_path)
     plan = plan_from_graph(
         graph,
@@ -93,6 +95,7 @@ def main(argv: list[str] | None = None) -> int:
         include_single_source=args.include_single_source,
         changed_only=args.changed_only,
         limit=args.limit,
+        finished_source_ids=finished_source_ids(reviews_dir),
     )
     if args.json:
         print(json.dumps(plan.to_dict(), indent=2, sort_keys=True))
@@ -109,6 +112,7 @@ def _print_text_plan(plan: SynthesisPlan) -> None:
         f"total={summary.total} shown={summary.shown} "
         f"new={summary.new} stale={summary.stale} unchanged={summary.unchanged} "
         f"skipped_single_source={summary.skipped_single_source} "
+        f"skipped_in_progress_source={summary.skipped_in_progress_source} "
         f"skipped_evidence_object={summary.skipped_evidence_object}"
     )
     for entry in plan.entries:

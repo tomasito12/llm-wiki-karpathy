@@ -14,6 +14,7 @@ from src.wiki_synthesis.cache import (
 )
 from src.wiki_synthesis.input_hash import synthesis_input_hash
 from src.wiki_synthesis.models import PlanEntry, PlanSummary, SynthesisPlan
+from src.wiki_synthesis.review_gate import page_uses_only_finished_sources
 
 KNOWLEDGE_PAGES_KEY = "knowledge_pages"
 EVIDENCE_OBJECT_KEYS: tuple[str, ...] = (
@@ -42,17 +43,24 @@ def plan_from_graph(
     include_single_source: bool = False,
     changed_only: bool = False,
     limit: int | None = None,
+    finished_source_ids: set[str] | None = None,
 ) -> SynthesisPlan:
     """Return a Stage 2 synthesis plan for a graph export."""
     all_entries = [
-        _entry_for_page(page, cache_dir=cache_dir, include_single_source=include_single_source)
+        _entry_for_page(
+            page,
+            cache_dir=cache_dir,
+            include_single_source=include_single_source,
+            finished_source_ids=finished_source_ids,
+        )
         for page in _knowledge_pages(graph)
         if _matches_filters(page, category=category, entity=entity)
     ]
     filtered = [
         entry
         for entry in all_entries
-        if not changed_only or entry.state not in {"unchanged", "skipped_single_source"}
+        if not changed_only
+        or entry.state not in {"unchanged", "skipped_single_source", "skipped_in_progress_source"}
     ]
     if limit is not None:
         filtered = filtered[: max(0, limit)]
@@ -69,6 +77,7 @@ def _entry_for_page(
     *,
     cache_dir: Path,
     include_single_source: bool,
+    finished_source_ids: set[str] | None,
 ) -> PlanEntry:
     """Return a planning entry for one knowledge page."""
     category = str(page.get("category", ""))
@@ -76,7 +85,14 @@ def _entry_for_page(
     current_hash = synthesis_input_hash(page)
     source_count = _int_value(page.get("source_count"))
     evidence_count = _int_value(page.get("evidence_count"))
-    if source_count <= 1 and not include_single_source:
+    if finished_source_ids is not None and not page_uses_only_finished_sources(
+        page,
+        finished_source_ids,
+    ):
+        state = "skipped_in_progress_source"
+        reason = "knowledge page includes at least one in-progress or unfinished source"
+        cached_hash = ""
+    elif source_count <= 1 and not include_single_source:
         state = "skipped_single_source"
         reason = "single-source knowledge pages are not synthesized by default"
         cached_hash = ""
@@ -178,6 +194,7 @@ def _summary(
         stale=_count_state(all_entries, "stale"),
         skipped_single_source=_count_state(all_entries, "skipped_single_source"),
         skipped_evidence_object=skipped_evidence_object,
+        skipped_in_progress_source=_count_state(all_entries, "skipped_in_progress_source"),
         error=_count_state(all_entries, "error"),
     )
 

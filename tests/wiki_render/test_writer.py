@@ -30,6 +30,7 @@ def test_writer_skips_unchanged_files_and_records_manifest(tmp_path: Path) -> No
     )
 
     assert first.written == 1
+    assert first.write_paths == ("topics/example.md",)
     assert second.unchanged == 1
     assert manifest.is_file()
 
@@ -57,6 +58,7 @@ def test_writer_prunes_only_manifest_tracked_files(tmp_path: Path) -> None:
     )
 
     assert report.pruned == 1
+    assert report.prune_paths == ("topics/old.md",)
     assert not (wiki_dir / "topics" / "old.md").exists()
     assert untracked.exists()
 

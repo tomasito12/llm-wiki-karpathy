@@ -10,6 +10,7 @@ import sys
 from pathlib import Path
 
 from src.ingest_review.paths import load_repo_dotenv
+from src.ingest_review.review_scope import finished_source_ids
 from src.wiki_paths.cli_helpers import (
     add_paths_config_argument,
     load_paths_for_cli,
@@ -144,6 +145,7 @@ def main(argv: list[str] | None = None) -> int:
     cache_dir = resolve_cli_path(args.cache_dir, configured=paths.synthesis_dir)
     preview_dir = resolve_cli_path(args.preview_dir, configured=paths.preview_dir)
     report_dir = resolve_cli_path(args.report_dir, configured=paths.run_dir)
+    reviews_dir = resolve_cli_path(None, configured=paths.reviews_dir)
     graph = load_graph_export(graph_path)
     provider_factory = None if args.dry_run else _OpenAIProviderFactory()
     progress_lines: list[str] = []
@@ -169,6 +171,7 @@ def main(argv: list[str] | None = None) -> int:
         continue_on_error=args.continue_on_error,
         write_audit=not args.no_audit_log,
         progress_fn=_progress,
+        finished_source_ids=finished_source_ids(reviews_dir),
     )
     if args.json:
         payload = report.to_dict()

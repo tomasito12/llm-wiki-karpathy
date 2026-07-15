@@ -107,6 +107,7 @@ def run_synthesis_batch(
     sleep_fn: Callable[[float], None] = time.sleep,
     progress_fn: Callable[[str], None] | None = None,
     now_fn: Callable[[], datetime] | None = None,
+    finished_source_ids: set[str] | None = None,
 ) -> BatchReport:
     """Execute a bounded batch of ranked synthesis candidates."""
     started = time.monotonic()
@@ -117,6 +118,7 @@ def run_synthesis_batch(
         entity=entity,
         include_single_source=include_single_source,
         limit=limit,
+        finished_source_ids=finished_source_ids,
     )
     items: list[BatchItemResult] = []
     failures: list[dict[str, Any]] = []
@@ -146,6 +148,7 @@ def run_synthesis_batch(
                 limit=1,
                 dry_run=False,
                 now_fn=now_fn,
+                finished_source_ids=finished_source_ids,
             )
             if run_report.called > 0:
                 provider_reached = True
@@ -210,6 +213,7 @@ def run_synthesis_batch(
         category=category,
         entity=entity,
         include_single_source=include_single_source,
+        finished_source_ids=finished_source_ids,
     )
     report = BatchReport(
         dry_run=dry_run,

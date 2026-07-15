@@ -38,6 +38,7 @@ class PlanSummary:
     stale: int
     skipped_single_source: int
     skipped_evidence_object: int
+    skipped_in_progress_source: int
     error: int
 
     def to_dict(self) -> dict[str, int]:

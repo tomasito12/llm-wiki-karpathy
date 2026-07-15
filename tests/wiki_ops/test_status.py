@@ -9,12 +9,16 @@ from typing import Any
 from src.pipeline.atomic import atomic_write_json
 from src.wiki_ops.status import (
     OpsStatusConfig,
+    PipelineAlignmentStatus,
+    ReviewWorkflowStatus,
     build_recommendations,
     classify_uncommitted_paths,
     collect_ops_status,
+    collect_pipeline_alignment_status,
     collect_readwise_index_status,
     collect_render_status,
     collect_review_status,
+    collect_review_workflow_status,
     collect_source_status,
     default_config,
     format_text_report,
@@ -336,9 +340,192 @@ def test_collect_ops_status_includes_recommendations_and_json_keys(tmp_path: Pat
     assert "render" in payload
     assert "synthesis" in payload
     assert "artifacts" in payload
+    assert "pipeline" in payload
+    assert "vault_hygiene" in payload
+    assert status.vault_hygiene is not None
     assert "recommendations" in payload
     assert status.recommendations
     assert status.artifacts.uncommitted_previews == 1
+
+
+def test_collect_review_workflow_status_counts_all_buckets(tmp_path: Path) -> None:
+    """Workflow counts should include not started and skipped raw export pairs."""
+    raw_dir = tmp_path / "raw"
+    reviews_dir = tmp_path / "reviews"
+    raw_dir.mkdir()
+    reviews_dir.mkdir()
+    for stem in ("finished", "pending", "new", "skipped"):
+        (raw_dir / f"{stem}.html").write_text("<html></html>", encoding="utf-8")
+        (raw_dir / f"{stem}.md").write_text("body", encoding="utf-8")
+    finished_dir = reviews_dir / "finished"
+    pending_dir = reviews_dir / "pending"
+    finished_dir.mkdir()
+    pending_dir.mkdir()
+    (finished_dir / "review.json").write_text(
+        json.dumps({"review_analytics": {"review_finished_at": "2026-05-01T00:00:00+00:00"}}),
+        encoding="utf-8",
+    )
+    (pending_dir / "review.json").write_text(
+        json.dumps({"review_analytics": {"review_finished_at": None}}),
+        encoding="utf-8",
+    )
+    (reviews_dir / "skipped_sources.json").write_text(
+        json.dumps({"sources": {"skipped": {"skipped_at": "2026-05-01T00:00:00+00:00"}}}),
+        encoding="utf-8",
+    )
+
+    status = collect_review_workflow_status(raw_dir=raw_dir, reviews_dir=reviews_dir)
+
+    assert status.raw_total == 4
+    assert status.finished == 1
+    assert status.in_progress == 1
+    assert status.not_started == 1
+    assert status.skipped == 1
+
+
+def test_collect_pipeline_alignment_status_flags_reviews_not_in_graph(
+    tmp_path: Path,
+) -> None:
+    """Pipeline alignment should explain when review artifacts outpace the render snapshot."""
+    raw_dir = tmp_path / "raw"
+    reviews_dir = tmp_path / "reviews"
+    graph_path = tmp_path / "graph.json"
+    raw_dir.mkdir()
+    reviews_dir.mkdir()
+    for stem in ("in-graph", "missing-from-graph"):
+        (raw_dir / f"{stem}.html").write_text("<html></html>", encoding="utf-8")
+        (raw_dir / f"{stem}.md").write_text("body", encoding="utf-8")
+        review_dir = reviews_dir / stem
+        review_dir.mkdir()
+        finished_at = "2026-05-01T00:00:00+00:00" if stem == "in-graph" else None
+        (review_dir / "review.json").write_text(
+            json.dumps({"review_analytics": {"review_finished_at": finished_at}}),
+            encoding="utf-8",
+        )
+    graph_path.write_text(
+        json.dumps({"sources": [{"source_id": "in-graph"}]}),
+        encoding="utf-8",
+    )
+
+    pipeline, warnings = collect_pipeline_alignment_status(
+        raw_dir=raw_dir,
+        reviews_dir=reviews_dir,
+        graph_path=graph_path,
+        source_pages=1,
+    )
+
+    assert pipeline.review_artifacts == 2
+    assert pipeline.graph_sources == 1
+    assert pipeline.reviews_not_in_graph == 0
+    assert pipeline.finished_not_in_graph == 0
+    assert pipeline.in_progress_excluded_from_render == 1
+    assert pipeline.in_progress_in_graph == 0
+    assert pipeline.render_stale is False
+
+
+def test_build_recommendations_suggest_render_when_reviews_not_in_graph() -> None:
+    """Stale render snapshots should recommend a render dry-run with the gap count."""
+    from src.wiki_ops.status import (
+        ArtifactStatus,
+        OpsStatus,
+        RenderStatus,
+        ReviewStatus,
+        SourceStatus,
+        SynthesisPlanStatus,
+        SynthesisStatus,
+    )
+
+    status = OpsStatus(
+        sources=SourceStatus(0, 0, 0, 0),
+        reviews=ReviewStatus(2, 1, 1, 0),
+        render=RenderStatus(True, True, True, 1, 1),
+        synthesis=SynthesisStatus(
+            0,
+            0,
+            0,
+            0,
+            0,
+            SynthesisPlanStatus(0, 0, 0, 0, 0),
+        ),
+        artifacts=ArtifactStatus(0, 0, 0, 0, 0, 0, False, 0),
+        recommendations=[],
+        warnings=[],
+        pipeline=PipelineAlignmentStatus(
+            raw_export_pairs=2,
+            workflow=ReviewWorkflowStatus(2, 0, 1, 1, 0),
+            review_artifacts=2,
+            graph_sources=1,
+            source_pages=1,
+            reviews_not_in_graph=1,
+            finished_not_in_graph=1,
+            in_progress_in_graph=0,
+            graph_sources_without_review=0,
+            in_progress_excluded_from_render=0,
+            source_pages_vs_graph_delta=0,
+            render_stale=True,
+            render_stale_reason="1 finished source(s) are not in the last render snapshot.",
+        ),
+    )
+
+    recommendations = build_recommendations(status)
+
+    assert (
+        recommendations[0] == "Run wiki-render --dry-run: 1 finished source(s) are not in the "
+        "last render snapshot yet."
+    )
+
+
+def test_format_text_report_includes_pipeline_alignment_section() -> None:
+    """The text report should explain how raw, review, and render buckets relate."""
+    from src.wiki_ops.status import (
+        ArtifactStatus,
+        OpsStatus,
+        RenderStatus,
+        ReviewStatus,
+        SourceStatus,
+        SynthesisPlanStatus,
+        SynthesisStatus,
+    )
+
+    status = OpsStatus(
+        sources=SourceStatus(4, 4, 4, 0),
+        reviews=ReviewStatus(2, 1, 1, 0),
+        render=RenderStatus(True, True, True, 1, 1),
+        synthesis=SynthesisStatus(
+            0,
+            None,
+            None,
+            None,
+            None,
+            SynthesisPlanStatus(None, None, None, None, None),
+        ),
+        artifacts=ArtifactStatus(0, 0, 0, 0, 0, 0, False, 0),
+        recommendations=[],
+        warnings=[],
+        pipeline=PipelineAlignmentStatus(
+            raw_export_pairs=4,
+            workflow=ReviewWorkflowStatus(4, 1, 1, 1, 1),
+            review_artifacts=2,
+            graph_sources=1,
+            source_pages=1,
+            reviews_not_in_graph=0,
+            finished_not_in_graph=0,
+            in_progress_in_graph=0,
+            graph_sources_without_review=0,
+            in_progress_excluded_from_render=1,
+            source_pages_vs_graph_delta=0,
+            render_stale=False,
+            render_stale_reason=None,
+        ),
+    )
+
+    report = format_text_report(status)
+
+    assert "How to read this report" in report
+    assert "Pipeline alignment" in report
+    assert "1 finished, 1 in progress, 1 not started, 1 skipped (of 4 total)" in report
+    assert "- in-progress sources excluded from finished-only render: 1" in report
+    assert "see Pipeline alignment for not started/skipped." in report
 
 
 def test_build_recommendations_suggest_render_when_graph_missing() -> None:
@@ -409,7 +596,7 @@ def test_build_recommendations_suggest_render_dry_run_after_cache_changes() -> N
     assert (
         recommendations[0] == "Run hatch run wiki-render --dry-run after synthesis cache changes."
     )
-    assert "No render needed." not in recommendations
+    assert "Render snapshot matches current review artifacts" not in recommendations
 
 
 def test_build_recommendations_allows_no_render_after_render_outputs_changed() -> None:
@@ -443,7 +630,10 @@ def test_build_recommendations_allows_no_render_after_render_outputs_changed() -
 
     recommendations = build_recommendations(status)
 
-    assert recommendations[0] == "No render needed."
+    assert (
+        recommendations[0]
+        == "Render snapshot matches current review artifacts; no full render required."
+    )
 
 
 def test_build_recommendations_warn_about_uncommitted_other() -> None:
@@ -550,6 +740,54 @@ def test_format_text_report_shows_other_and_backup_counts() -> None:
 
     assert "- uncommitted backup files: 3" in report
     assert "- uncommitted other files: 7" in report
+
+
+def test_format_text_report_shows_vault_hygiene_section() -> None:
+    """The text report should expose vault hygiene counts."""
+    from src.wiki_lint.vault_hygiene import VaultHygieneStatus
+    from src.wiki_ops.status import (
+        ArtifactStatus,
+        OpsStatus,
+        RenderStatus,
+        ReviewStatus,
+        SourceStatus,
+        SynthesisPlanStatus,
+        SynthesisStatus,
+    )
+
+    status = OpsStatus(
+        sources=SourceStatus(0, 0, 0, 0),
+        reviews=ReviewStatus(0, 0, 0, 0),
+        render=RenderStatus(True, True, True, 1, 1),
+        synthesis=SynthesisStatus(
+            0,
+            None,
+            None,
+            None,
+            None,
+            SynthesisPlanStatus(None, None, None, None, None),
+        ),
+        artifacts=ArtifactStatus(0, 0, 0, 0, 0, 0, False, 0),
+        recommendations=[],
+        warnings=[],
+        vault_hygiene=VaultHygieneStatus(
+            manifest_exists=True,
+            manifest_paths=10,
+            vault_markdown_files=12,
+            orphan_total=2,
+            safe_delete_candidates=(),
+            protected_in_progress=(),
+            manual_review=(),
+            manual_root_items=(),
+            duplicate_groups=(),
+            recommended_actions=("No vault hygiene action required.",),
+        ),
+    )
+
+    report = format_text_report(status)
+
+    assert "Vault Hygiene" in report
+    assert "- orphan generated pages: 2" in report
 
 
 def test_format_text_report_shows_readwise_index_section() -> None:

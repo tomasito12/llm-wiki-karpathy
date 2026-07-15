@@ -125,6 +125,7 @@ def select_synthesis_candidates(
     entity: str | None = None,
     include_single_source: bool = False,
     limit: int = DEFAULT_SELECT_LIMIT,
+    finished_source_ids: set[str] | None = None,
 ) -> SelectionResult:
     """Return ranked changed synthesis candidates without side effects."""
     plan = plan_from_graph(
@@ -134,6 +135,7 @@ def select_synthesis_candidates(
         entity=entity,
         include_single_source=include_single_source,
         changed_only=True,
+        finished_source_ids=finished_source_ids,
     )
     changed_entries = [entry for entry in plan.entries if entry.state in CHANGED_STATES]
     total_changed = len(changed_entries)
@@ -175,6 +177,7 @@ def count_changed_candidates(
     category: str | None = None,
     entity: str | None = None,
     include_single_source: bool = False,
+    finished_source_ids: set[str] | None = None,
 ) -> int:
     """Return the number of changed synthesis candidates matching filters."""
     plan = plan_from_graph(
@@ -184,6 +187,7 @@ def count_changed_candidates(
         entity=entity,
         include_single_source=include_single_source,
         changed_only=True,
+        finished_source_ids=finished_source_ids,
     )
     return sum(1 for entry in plan.entries if entry.state in CHANGED_STATES)
 

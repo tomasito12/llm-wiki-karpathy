@@ -8,9 +8,18 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any
 
-from src.ingest_review.review_queue_status import status_from_artifact
+from src.ingest_review.review_queue_status import (
+    build_source_status_map,
+    count_by_status,
+    status_from_artifact,
+)
 from src.readwise.library_index import LibraryIndex
-from src.wiki_ops.source_access import SourceAccessStatus, collect_source_access_status
+from src.wiki_lint.vault_hygiene import VaultHygieneStatus, collect_vault_hygiene_status
+from src.wiki_ops.source_access import (
+    SourceAccessStatus,
+    collect_source_access_status,
+    load_graph_source_ids,
+)
 from src.wiki_synthesis.cache_lint import lint_synthesis_cache
 from src.wiki_synthesis.planner import load_graph_export, plan_from_graph
 
@@ -57,6 +66,36 @@ class ReadwiseIndexStatus:
 
 
 @dataclass(frozen=True)
+class ReviewWorkflowStatus:
+    """Review workflow counts across all raw export pairs."""
+
+    raw_total: int
+    not_started: int
+    in_progress: int
+    finished: int
+    skipped: int
+
+
+@dataclass(frozen=True)
+class PipelineAlignmentStatus:
+    """Cross-bucket facts that explain raw, review, and render counts."""
+
+    raw_export_pairs: int
+    workflow: ReviewWorkflowStatus
+    review_artifacts: int
+    graph_sources: int | None
+    source_pages: int | None
+    reviews_not_in_graph: int | None
+    finished_not_in_graph: int | None
+    in_progress_in_graph: int | None
+    graph_sources_without_review: int | None
+    in_progress_excluded_from_render: int | None
+    source_pages_vs_graph_delta: int | None
+    render_stale: bool
+    render_stale_reason: str | None
+
+
+@dataclass(frozen=True)
 class ReviewStatus:
     """Counts for human review artifacts."""
 
@@ -86,6 +125,7 @@ class SynthesisPlanStatus:
     unchanged: int | None
     skipped_single_source: int | None
     skipped_evidence_object: int | None
+    skipped_in_progress_source: int | None = None
 
 
 @dataclass(frozen=True)
@@ -127,6 +167,8 @@ class OpsStatus:
     warnings: list[str]
     readwise_index: ReadwiseIndexStatus | None = None
     source_access: SourceAccessStatus | None = None
+    pipeline: PipelineAlignmentStatus | None = None
+    vault_hygiene: VaultHygieneStatus | None = None
 
     def to_dict(self) -> dict[str, Any]:
         """Return a JSON-serializable status snapshot."""
@@ -136,6 +178,10 @@ class OpsStatus:
         )
         payload["source_access"] = (
             self.source_access.to_dict() if self.source_access is not None else None
+        )
+        payload["pipeline"] = asdict(self.pipeline) if self.pipeline is not None else None
+        payload["vault_hygiene"] = (
+            self.vault_hygiene.to_dict() if self.vault_hygiene is not None else None
         )
         payload["synthesis"] = {
             "cache_entries": self.synthesis.cache_entries,
@@ -194,6 +240,7 @@ def collect_ops_status(
     synthesis, synthesis_warnings = collect_synthesis_status(
         graph_path=config.graph_path,
         synthesis_cache_dir=config.synthesis_cache_dir,
+        reviews_dir=config.reviews_dir,
     )
     warnings.extend(synthesis_warnings)
     artifacts, artifact_warnings = collect_artifact_status(
@@ -201,10 +248,28 @@ def collect_ops_status(
         porcelain_lines=porcelain_lines,
     )
     warnings.extend(artifact_warnings)
+    pipeline, pipeline_warnings = collect_pipeline_alignment_status(
+        raw_dir=config.raw_dir,
+        reviews_dir=config.reviews_dir,
+        graph_path=config.graph_path,
+        source_pages=(source_access.source_pages_total if source_access is not None else None),
+    )
+    warnings.extend(pipeline_warnings)
+    vault_hygiene, vault_hygiene_warnings = collect_vault_hygiene_status(
+        wiki_dir=config.wiki_dir,
+        manifest_path=config.manifest_path,
+        reviews_dir=config.reviews_dir,
+        raw_dir=config.raw_dir,
+        repo_root=config.repo_root,
+        synthesis_cache_dir=config.synthesis_cache_dir,
+    )
+    warnings.extend(vault_hygiene_warnings)
     status = OpsStatus(
         sources=sources,
         readwise_index=readwise_index,
         source_access=source_access,
+        pipeline=pipeline,
+        vault_hygiene=vault_hygiene,
         reviews=reviews,
         render=render,
         synthesis=synthesis,
@@ -217,6 +282,8 @@ def collect_ops_status(
         sources=status.sources,
         readwise_index=status.readwise_index,
         source_access=status.source_access,
+        pipeline=status.pipeline,
+        vault_hygiene=status.vault_hygiene,
         reviews=status.reviews,
         render=status.render,
         synthesis=status.synthesis,
@@ -343,6 +410,110 @@ def collect_review_status(reviews_dir: Path) -> ReviewStatus:
     )
 
 
+def collect_review_workflow_status(
+    *,
+    raw_dir: Path,
+    reviews_dir: Path,
+) -> ReviewWorkflowStatus:
+    """Count review workflow buckets across all paired raw export ids."""
+    raw_ids = sorted(_raw_export_stems(raw_dir))
+    if not raw_ids:
+        return ReviewWorkflowStatus(
+            raw_total=0,
+            not_started=0,
+            in_progress=0,
+            finished=0,
+            skipped=0,
+        )
+    status_map = build_source_status_map(reviews_dir, raw_ids)
+    counts = count_by_status(status_map)
+    return ReviewWorkflowStatus(
+        raw_total=len(raw_ids),
+        not_started=counts["not_started"],
+        in_progress=counts["in_progress"],
+        finished=counts["finished"],
+        skipped=counts["skipped"],
+    )
+
+
+def collect_pipeline_alignment_status(
+    *,
+    raw_dir: Path,
+    reviews_dir: Path,
+    graph_path: Path,
+    source_pages: int | None,
+) -> tuple[PipelineAlignmentStatus, list[str]]:
+    """Compare raw exports, review artifacts, and the last render snapshot."""
+    warnings: list[str] = []
+    workflow = collect_review_workflow_status(raw_dir=raw_dir, reviews_dir=reviews_dir)
+    review_artifacts = _count_review_artifacts(reviews_dir)
+    graph_ids = load_graph_source_ids(graph_path)
+    graph_sources = len(graph_ids) if graph_ids is not None else None
+    artifact_ids, finished_ids, in_progress_ids = _review_source_ids_by_state(reviews_dir)
+
+    reviews_not_in_graph: int | None = None
+    finished_not_in_graph: int | None = None
+    in_progress_in_graph: int | None = None
+    in_progress_excluded_from_render: int | None = None
+    graph_sources_without_review: int | None = None
+    source_pages_vs_graph_delta: int | None = None
+    render_stale = False
+    render_stale_reason: str | None = None
+
+    if graph_ids is None:
+        render_stale = True
+        render_stale_reason = "Render graph is missing or unreadable."
+        warnings.append(render_stale_reason)
+    else:
+        reviews_not_in_graph = len(finished_ids - graph_ids)
+        finished_not_in_graph = reviews_not_in_graph
+        in_progress_in_graph = len(in_progress_ids & graph_ids)
+        in_progress_excluded_from_render = len(in_progress_ids)
+        graph_sources_without_review = len(graph_ids - artifact_ids)
+        if finished_not_in_graph > 0:
+            render_stale = True
+            render_stale_reason = (
+                f"{finished_not_in_graph} finished source(s) are not in the last render snapshot."
+            )
+            warnings.append(render_stale_reason)
+        if in_progress_in_graph > 0:
+            warnings.append(
+                f"{in_progress_in_graph} in-progress source(s) still appear in the last render "
+                "snapshot; re-render with finished-only scope to align."
+            )
+        if graph_sources_without_review > 0:
+            warnings.append(
+                f"{graph_sources_without_review} graph source(s) have no matching review artifact."
+            )
+
+    if source_pages is not None and graph_sources is not None:
+        source_pages_vs_graph_delta = source_pages - graph_sources
+        if source_pages_vs_graph_delta != 0:
+            warnings.append(
+                "Vault source pages and render graph source counts differ "
+                f"by {source_pages_vs_graph_delta}."
+            )
+
+    return (
+        PipelineAlignmentStatus(
+            raw_export_pairs=workflow.raw_total,
+            workflow=workflow,
+            review_artifacts=review_artifacts,
+            graph_sources=graph_sources,
+            source_pages=source_pages,
+            reviews_not_in_graph=reviews_not_in_graph,
+            finished_not_in_graph=finished_not_in_graph,
+            in_progress_in_graph=in_progress_in_graph,
+            graph_sources_without_review=graph_sources_without_review,
+            in_progress_excluded_from_render=in_progress_excluded_from_render,
+            source_pages_vs_graph_delta=source_pages_vs_graph_delta,
+            render_stale=render_stale,
+            render_stale_reason=render_stale_reason,
+        ),
+        warnings,
+    )
+
+
 def collect_render_status(
     *,
     wiki_dir: Path,
@@ -368,8 +539,11 @@ def collect_synthesis_status(
     *,
     graph_path: Path,
     synthesis_cache_dir: Path,
+    reviews_dir: Path,
 ) -> tuple[SynthesisStatus, list[str]]:
     """Summarize synthesis cache health and planning counts."""
+    from src.ingest_review.review_scope import finished_source_ids
+
     warnings: list[str] = []
     cache_entries = _count_cache_entries(synthesis_cache_dir)
     empty_plan = SynthesisPlanStatus(
@@ -378,6 +552,7 @@ def collect_synthesis_status(
         unchanged=None,
         skipped_single_source=None,
         skipped_evidence_object=None,
+        skipped_in_progress_source=None,
     )
     if not graph_path.is_file():
         warnings.append(f"render graph missing: {graph_path}")
@@ -408,7 +583,11 @@ def collect_synthesis_status(
             warnings,
         )
     lint_report = lint_synthesis_cache(graph, cache_dir=synthesis_cache_dir)
-    plan = plan_from_graph(graph, cache_dir=synthesis_cache_dir)
+    plan = plan_from_graph(
+        graph,
+        cache_dir=synthesis_cache_dir,
+        finished_source_ids=finished_source_ids(reviews_dir),
+    )
     summary = plan.summary
     return (
         SynthesisStatus(
@@ -423,6 +602,7 @@ def collect_synthesis_status(
                 unchanged=summary.unchanged,
                 skipped_single_source=summary.skipped_single_source,
                 skipped_evidence_object=summary.skipped_evidence_object,
+                skipped_in_progress_source=summary.skipped_in_progress_source,
             ),
         ),
         warnings,
@@ -525,8 +705,23 @@ def build_recommendations(status: OpsStatus) -> list[str]:
         recommendations.append("Refresh stale synthesis entries before final render.")
     elif _synthesis_cache_needs_render_check(status.artifacts):
         recommendations.append("Run hatch run wiki-render --dry-run after synthesis cache changes.")
+    elif status.pipeline is not None and status.pipeline.render_stale:
+        count = status.pipeline.finished_not_in_graph or status.pipeline.reviews_not_in_graph
+        if count:
+            recommendations.append(
+                f"Run wiki-render --dry-run: {count} finished source(s) are not in the "
+                "last render snapshot yet."
+            )
+        elif status.pipeline.render_stale_reason:
+            recommendations.append(
+                f"Run wiki-render --dry-run: {status.pipeline.render_stale_reason}"
+            )
+        else:
+            recommendations.append("Run wiki-render --dry-run to refresh the render snapshot.")
     elif status.render.graph_exists and status.render.manifest_exists:
-        recommendations.append("No render needed.")
+        recommendations.append(
+            "Render snapshot matches current review artifacts; no full render required."
+        )
     else:
         recommendations.append("Run hatch run wiki-render to create graph state.")
     if (
@@ -551,12 +746,84 @@ def build_recommendations(status: OpsStatus) -> list[str]:
         )
     if status.reviews.malformed:
         recommendations.append("Inspect malformed review artifacts under state/reviews/.")
+    if status.vault_hygiene is not None:
+        hygiene = status.vault_hygiene
+        if hygiene.safe_delete_candidates:
+            recommendations.append(
+                f"Review {len(hygiene.safe_delete_candidates)} vault orphan page(s) via wiki-lint."
+            )
+        if hygiene.duplicate_groups:
+            recommendations.append(
+                f"Review {len(hygiene.duplicate_groups)} exact duplicate vault page group(s)."
+            )
     return recommendations
 
 
 def format_text_report(status: OpsStatus) -> str:
     """Render a concise human-readable status report."""
-    lines = ["Wiki Ops Status", ""]
+    lines = [
+        "Wiki Ops Status",
+        "",
+        "How to read this report",
+        "- Raw exports: everything imported from Readwise on disk.",
+        "- Reviews: human review workflow (review.json per source).",
+        "- Render snapshot: output of the last wiki-render (graph + vault source pages).",
+        "- Default render scope is finished reviews only; in-progress stays as local preview.",
+        "- These buckets are related but not equal; use Pipeline alignment below.",
+        "",
+    ]
+    if status.pipeline is not None:
+        pipeline = status.pipeline
+        workflow = pipeline.workflow
+        lines.extend(
+            [
+                "Pipeline alignment",
+                f"- raw export pairs: {pipeline.raw_export_pairs}",
+                (
+                    "- review workflow: "
+                    f"{workflow.finished} finished, "
+                    f"{workflow.in_progress} in progress, "
+                    f"{workflow.not_started} not started, "
+                    f"{workflow.skipped} skipped "
+                    f"(of {workflow.raw_total} total)"
+                ),
+                f"- review artifacts on disk: {pipeline.review_artifacts}",
+            ]
+        )
+        if pipeline.graph_sources is not None:
+            lines.append(f"- last render graph sources: {pipeline.graph_sources}")
+        if pipeline.source_pages is not None:
+            lines.append(f"- vault source pages: {pipeline.source_pages}")
+        if pipeline.reviews_not_in_graph is not None:
+            lines.append(
+                f"- finished sources not yet in last render: {pipeline.reviews_not_in_graph}"
+            )
+        if pipeline.finished_not_in_graph is not None:
+            lines.append(f"- finished but not in last render: {pipeline.finished_not_in_graph}")
+        if pipeline.in_progress_excluded_from_render is not None:
+            lines.append(
+                "- in-progress sources excluded from finished-only render: "
+                f"{pipeline.in_progress_excluded_from_render}"
+            )
+        if pipeline.in_progress_in_graph is not None:
+            lines.append(f"- in progress already in last render: {pipeline.in_progress_in_graph}")
+        if pipeline.graph_sources_without_review is not None:
+            lines.append(
+                f"- graph sources without review artifact: {pipeline.graph_sources_without_review}"
+            )
+        if pipeline.source_pages_vs_graph_delta is not None:
+            if pipeline.source_pages_vs_graph_delta == 0:
+                lines.append("- vault vs graph source pages: in sync")
+            else:
+                lines.append(
+                    f"- vault vs graph source pages: delta {pipeline.source_pages_vs_graph_delta}"
+                )
+        if pipeline.render_stale:
+            reason = pipeline.render_stale_reason or "Render snapshot is stale."
+            lines.append(f"- render status: stale ({reason})")
+        else:
+            lines.append("- render status: current")
+        lines.append("")
     lines.extend(
         [
             "Sources",
@@ -602,6 +869,22 @@ def format_text_report(status: OpsStatus) -> str:
                 "",
             ]
         )
+    if status.vault_hygiene is not None:
+        hygiene = status.vault_hygiene
+        lines.extend(
+            [
+                "Vault Hygiene",
+                f"- manifest paths: {hygiene.manifest_paths}",
+                f"- vault markdown files: {hygiene.vault_markdown_files}",
+                f"- orphan generated pages: {hygiene.orphan_total}",
+                f"- safe delete candidates: {len(hygiene.safe_delete_candidates)}",
+                f"- protected in-progress pages: {len(hygiene.protected_in_progress)}",
+                f"- manual review items: {len(hygiene.manual_review)}",
+                f"- exact duplicate groups: {len(hygiene.duplicate_groups)}",
+                "- recommended action: review orphan report before deletion",
+                "",
+            ]
+        )
     lines.extend(
         [
             "Reviews",
@@ -609,6 +892,10 @@ def format_text_report(status: OpsStatus) -> str:
             f"- finished: {status.reviews.finished}",
             f"- in progress: {status.reviews.in_progress}",
             f"- malformed: {status.reviews.malformed}",
+            (
+                "- note: finished/in progress count only sources with review.json; "
+                "see Pipeline alignment for not started/skipped."
+            ),
             "",
             "Render",
             f"- wiki directory: {_presence_label(status.render.wiki_dir_exists)}",
@@ -632,6 +919,8 @@ def format_text_report(status: OpsStatus) -> str:
         lines.append(f"- changed candidates: {plan.new + (plan.stale or 0)}")
     if plan.skipped_single_source is not None:
         lines.append(f"- skipped single-source: {plan.skipped_single_source}")
+    if plan.skipped_in_progress_source is not None:
+        lines.append(f"- skipped in-progress source pages: {plan.skipped_in_progress_source}")
     if plan.skipped_evidence_object is not None:
         lines.append(f"- skipped evidence objects: {plan.skipped_evidence_object}")
     lines.extend(
@@ -658,6 +947,43 @@ def format_text_report(status: OpsStatus) -> str:
     else:
         lines.append("1. No actions recommended.")
     return "\n".join(lines)
+
+
+def _count_review_artifacts(reviews_dir: Path) -> int:
+    """Return the number of review.json files on disk."""
+    if not reviews_dir.is_dir():
+        return 0
+    return sum(1 for _ in reviews_dir.glob("*/review.json"))
+
+
+def _review_source_ids_by_state(
+    reviews_dir: Path,
+) -> tuple[set[str], set[str], set[str]]:
+    """Return all, finished, and in-progress source ids from review artifacts."""
+    artifact_ids: set[str] = set()
+    finished_ids: set[str] = set()
+    in_progress_ids: set[str] = set()
+    if not reviews_dir.is_dir():
+        return artifact_ids, finished_ids, in_progress_ids
+    for review_path in sorted(reviews_dir.glob("*/review.json")):
+        try:
+            payload = json.loads(review_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        if not isinstance(payload, dict):
+            continue
+        source = payload.get("source")
+        source_id = ""
+        if isinstance(source, dict):
+            source_id = str(source.get("source_id") or "").strip()
+        if not source_id:
+            source_id = review_path.parent.name
+        artifact_ids.add(source_id)
+        if status_from_artifact(payload) == "finished":
+            finished_ids.add(source_id)
+        else:
+            in_progress_ids.add(source_id)
+    return artifact_ids, finished_ids, in_progress_ids
 
 
 def _graph_counts(graph_path: Path) -> tuple[int | None, int | None]:
