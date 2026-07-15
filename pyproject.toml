@@ -11,6 +11,7 @@ installer = "uv"
 skip-install = true
 dependencies = [
   "beautifulsoup4>=4.12.0",
+  "fastapi>=0.116.0",
   "httpx>=0.28.0",
   "openai>=1.59.0",
   "playwright>=1.49.0",
@@ -23,6 +24,7 @@ dependencies = [
   "ruff>=0.11.0",
   "streamlit>=1.38.0",
   "ty>=0.0.1a17",
+  "uvicorn>=0.35.0",
 ]
 
 [tool.hatch.envs.lint]
@@ -55,6 +57,9 @@ ingest-preanalyze = [
 ]
 medium-to-readwise = [
   "python -m src.medium_to_readwise.cli {args}",
+]
+management-api = [
+  "python -m src.management_web.app {args}",
 ]
 readwise-dedupe = [
   "python -m src.readwise.dedupe_cli {args}",

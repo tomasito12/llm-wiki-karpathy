@@ -86,7 +86,7 @@ def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     repo = _repo_root().resolve()
     try:
-        paths = load_paths_for_cli(args)
+        paths = load_paths_for_cli(args, repo_root_override=repo)
     except WikiPathsConfigError as exc:
         LOGGER.error("%s", exc)
         return 2
