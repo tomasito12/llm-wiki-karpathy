@@ -18,6 +18,7 @@ export type EditableEntityGroup =
   | "interview_insights";
 export type EntitySection = "wiki_entities" | "source_specific_insights";
 export type RenderMode = "merged" | "individual";
+export type ReviewTagSource = "registry" | "reviews" | "graph";
 
 export type ManagementWebMode = "write_enabled";
 
@@ -200,4 +201,14 @@ export interface RawSourceResponse {
   available: boolean;
   content: string;
   path: string | null;
+}
+
+export interface ReviewTagChoice {
+  name: string;
+  source: ReviewTagSource;
+  usage_count: number;
+}
+
+export interface ReviewTagsResponse {
+  tags: ReviewTagChoice[];
 }

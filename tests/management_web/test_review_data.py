@@ -18,6 +18,7 @@ from src.management_web.review_data import (
     EntityEditConflictError,
     FinishConflictError,
     build_review_queue,
+    build_review_tag_registry,
     finish_review,
     get_source_detail,
     read_raw_markdown,
@@ -87,9 +88,7 @@ def _review_tree_from_llm_output(llm_output: dict[str, Any]) -> dict[str, Any]:
         items = llm_output.get(artifact_key)
         if isinstance(items, list):
             review[review_key] = [
-                _review_node(cast(dict[str, Any], item))
-                for item in items
-                if isinstance(item, dict)
+                _review_node(cast(dict[str, Any], item)) for item in items if isinstance(item, dict)
             ]
     return review
 
@@ -495,9 +494,10 @@ def test_update_review_entity_updates_description_using_mapped_field(tmp_path: P
     assert artifact["llm_output"]["industry_trends"][0]["trend_description"] == (
         "Better description."
     )
-    assert artifact["review"]["industry_trends"][0]["sections"]["trend_description"][
-        "final_text"
-    ] == "Better description."
+    assert (
+        artifact["review"]["industry_trends"][0]["sections"]["trend_description"]["final_text"]
+        == "Better description."
+    )
 
 
 def test_update_review_entity_updates_normalized_topic_description_field(tmp_path: Path) -> None:
@@ -1438,3 +1438,72 @@ def test_validate_source_id_rejects_path_traversal(source_id: str) -> None:
     """Source IDs must never be interpreted as arbitrary filesystem paths."""
     with pytest.raises(ValueError, match="Invalid source_id"):
         validate_source_id(source_id)
+
+
+def test_build_review_tag_registry_merges_config_and_review_tags(tmp_path: Path) -> None:
+    """Tag registry should include configured tags and tags observed in review artifacts."""
+    paths = _paths(tmp_path)
+    config_dir = paths.repo_root / "config"
+    config_dir.mkdir(parents=True)
+    (config_dir / "review_tags_topics.yaml").write_text("tags:\n- registry-tag\n", encoding="utf-8")
+    _write_artifact(
+        paths,
+        "tagged",
+        {
+            "source": {"title": "Tagged"},
+            "llm_output": {
+                "topics": [{"topic_title": "Topic", "topic_tags": ["review-tag"]}],
+            },
+            "review": {
+                "topics": [
+                    _review_node({"topic_title": "Topic", "topic_tags": ["review-tag"]}),
+                ],
+            },
+        },
+    )
+
+    response = build_review_tag_registry(paths)
+
+    names = [entry.name for entry in response.tags]
+    assert "registry-tag" in names
+    assert "review-tag" in names
+    review_tag = next(entry for entry in response.tags if entry.name == "review-tag")
+    assert review_tag.source == "reviews"
+    assert review_tag.usage_count == 1
+
+
+def test_build_review_tag_registry_sorts_by_usage_then_name(tmp_path: Path) -> None:
+    """Tag registry should sort by usage count descending, then alphabetically."""
+    paths = _paths(tmp_path)
+    config_dir = paths.repo_root / "config"
+    config_dir.mkdir(parents=True)
+    (config_dir / "review_tags_topics.yaml").write_text(
+        "tags:\n- alpha\n- beta\n- gamma\n",
+        encoding="utf-8",
+    )
+    _write_artifact(
+        paths,
+        "one",
+        {
+            "source": {"title": "One"},
+            "llm_output": {"topics": [{"topic_title": "T1", "topic_tags": ["beta", "gamma"]}]},
+            "review": {
+                "topics": [
+                    _review_node({"topic_title": "T1", "topic_tags": ["beta", "gamma"]}),
+                ],
+            },
+        },
+    )
+    _write_artifact(
+        paths,
+        "two",
+        {
+            "source": {"title": "Two"},
+            "llm_output": {"topics": [{"topic_title": "T2", "topic_tags": ["gamma"]}]},
+            "review": {"topics": [_review_node({"topic_title": "T2", "topic_tags": ["gamma"]})]},
+        },
+    )
+
+    response = build_review_tag_registry(paths)
+
+    assert [entry.name for entry in response.tags] == ["gamma", "beta", "alpha"]

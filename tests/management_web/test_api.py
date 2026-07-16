@@ -481,3 +481,94 @@ def test_invalid_source_id_returns_bad_request(tmp_path: Path) -> None:
 
     assert response.status_code == 400
     assert "Invalid source_id" in response.json()["detail"]
+
+
+def test_review_tags_endpoint_returns_registry_and_review_tags(tmp_path: Path) -> None:
+    """Tag registry should merge configured tags with tags observed in review artifacts."""
+    paths = _paths(tmp_path)
+    config_dir = paths.repo_root / "config"
+    config_dir.mkdir(parents=True)
+    (config_dir / "review_tags_topics.yaml").write_text(
+        "tags:\n- registry-tag\n- shared-tag\n",
+        encoding="utf-8",
+    )
+    _write_raw(paths, "api-source")
+    _write_artifact(paths, "api-source")
+    review_dir = paths.reviews_dir / "extra-source"
+    review_dir.mkdir(parents=True)
+    (review_dir / "review.json").write_text(
+        json.dumps(
+            {
+                "source": {"title": "Extra"},
+                "llm_output": {
+                    "topics": [{"topic_title": "Extra Topic", "topic_tags": ["review-only-tag"]}]
+                },
+                "review": {
+                    "topics": [
+                        {
+                            "proposal_status": "approved",
+                            "llm_item": {
+                                "topic_title": "Extra Topic",
+                                "topic_tags": ["review-only-tag"],
+                            },
+                            "sections": {},
+                            "tags": {},
+                        }
+                    ]
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
+    client = TestClient(create_app(paths=paths))
+
+    response = client.get("/api/review/tags")
+
+    assert response.status_code == 200
+    payload = response.json()
+    names = [entry["name"] for entry in payload["tags"]]
+    assert "registry-tag" in names
+    assert "review-only-tag" in names
+    assert "api" in names
+    review_only = next(entry for entry in payload["tags"] if entry["name"] == "review-only-tag")
+    assert review_only["source"] == "reviews"
+    assert review_only["usage_count"] == 1
+    registry_entry = next(entry for entry in payload["tags"] if entry["name"] == "registry-tag")
+    assert registry_entry["source"] == "registry"
+
+
+def test_review_tags_endpoint_is_deterministic(tmp_path: Path) -> None:
+    """Tag registry output should be stable across repeated reads."""
+    paths = _paths(tmp_path)
+    config_dir = paths.repo_root / "config"
+    config_dir.mkdir(parents=True)
+    (config_dir / "review_tags_topics.yaml").write_text(
+        "tags:\n- alpha\n- beta\n",
+        encoding="utf-8",
+    )
+    client = TestClient(create_app(paths=paths))
+
+    first = client.get("/api/review/tags").json()
+    second = client.get("/api/review/tags").json()
+
+    assert first == second
+
+
+def test_review_tags_endpoint_does_not_mutate_raw_or_wiki_files(tmp_path: Path) -> None:
+    """Reading tag registry must not write to raw or wiki files."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "api-source")
+    _write_artifact(paths, "api-source")
+    wiki_dir = paths.wiki_dir
+    wiki_dir.mkdir(parents=True, exist_ok=True)
+    wiki_file = wiki_dir / "note.md"
+    wiki_file.write_text("unchanged", encoding="utf-8")
+    raw_mtime = (paths.raw_dir / "api-source.html").stat().st_mtime_ns
+    wiki_mtime = wiki_file.stat().st_mtime_ns
+    client = TestClient(create_app(paths=paths))
+
+    response = client.get("/api/review/tags")
+
+    assert response.status_code == 200
+    assert (paths.raw_dir / "api-source.html").stat().st_mtime_ns == raw_mtime
+    assert wiki_file.stat().st_mtime_ns == wiki_mtime

@@ -82,6 +82,13 @@ const configPayload = {
   }
 };
 
+const tagRegistryPayload = {
+  tags: [
+    { name: "api", source: "registry", usage_count: 5 },
+    { name: "agent-systems", source: "registry", usage_count: 42 }
+  ]
+};
+
 const queuePayload = {
   counts: {
     total: 1,
@@ -289,6 +296,17 @@ const decisionResponse = {
   backup_path: "/tmp/reviews/api-source/review.before-management-review.20260715T123456Z.json"
 };
 
+const needsAttentionDecisionResponse = {
+  source_id: "api-source",
+  management_review: {
+    status: "needs_attention",
+    reviewed_at: "2026-07-15T12:34:56Z",
+    reviewed_by: "plischke",
+    notes: ""
+  },
+  backup_path: "/tmp/reviews/api-source/review.before-management-review.20260715T123456Z.json"
+};
+
 const finishResponse = {
   source_id: "api-source",
   management_review: approvedSourcePayload.management_review,
@@ -445,6 +463,9 @@ describe("App", () => {
         if (url.includes("/api/config")) {
           return Response.json(configPayload);
         }
+        if (url.includes("/api/review/tags")) {
+          return Response.json(tagRegistryPayload);
+        }
         if (url.includes("/api/review/source/api-source/decision") && init?.method === "PATCH") {
           return Response.json(decisionResponse);
         }
@@ -499,7 +520,8 @@ describe("App", () => {
     expect(await screen.findByText("API Trend")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Previous" })).toBeDisabled();
     expect(screen.getByRole("button", { name: "Next" })).not.toBeDisabled();
-    expect(screen.getByRole("button", { name: "Approve article" })).toBeEnabled();
+    expect(screen.getByRole("button", { name: "Finish as approved" })).toBeEnabled();
+    expect(screen.queryByRole("button", { name: "Approve article" })).not.toBeInTheDocument();
 
     await userEvent.click(screen.getByRole("button", { name: "Show raw source" }));
     expect(await screen.findByText("Raw article text")).toBeInTheDocument();
@@ -583,7 +605,11 @@ describe("App", () => {
 
     expect(screen.getByLabelText("Entity title")).toHaveValue("API Topic");
     expect(screen.getByLabelText("Entity description")).toHaveValue("Topic description");
-    expect(screen.getByLabelText("Entity tags")).toHaveValue("api");
+    expect(screen.getByRole("button", { name: "Remove api" })).toBeInTheDocument();
+    expect(screen.getByLabelText("Search or create tags")).toBeInTheDocument();
+    expect(screen.queryByLabelText("Hidden")).not.toBeInTheDocument();
+    expect(screen.getByText("Change title, description, or tags to save.")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Save entity" })).toBeDisabled();
 
     await userEvent.clear(screen.getByLabelText("Entity title"));
     await userEvent.type(screen.getByLabelText("Entity title"), "Draft title");
@@ -607,8 +633,9 @@ describe("App", () => {
     await userEvent.type(screen.getByLabelText("Entity title"), "Edited topic");
     await userEvent.clear(screen.getByLabelText("Entity description"));
     await userEvent.type(screen.getByLabelText("Entity description"), "Edited description.");
-    await userEvent.clear(screen.getByLabelText("Entity tags"));
-    await userEvent.type(screen.getByLabelText("Entity tags"), "api, edited, api");
+    const tagSearch = await screen.findByLabelText("Search or create tags");
+    await userEvent.type(tagSearch, "edited");
+    await userEvent.click(await screen.findByRole("button", { name: "Create new tag: edited" }));
     await userEvent.click(screen.getByRole("button", { name: "Save entity" }));
 
     await waitFor(() => {
@@ -620,7 +647,7 @@ describe("App", () => {
             index: 0,
             title: "Edited topic",
             description: "Edited description.",
-            tags: ["api", "edited", "api"]
+            tags: ["api", "edited"]
           }),
           method: "PATCH"
         })
@@ -672,7 +699,7 @@ describe("App", () => {
     expect(await screen.findByText(/Entity save failed/)).toBeInTheDocument();
   });
 
-  it("hides entities from the default list and reveals them with show hidden", async () => {
+  it("rejects entities from the default list and reveals them with show rejected", async () => {
     vi.mocked(fetch).mockImplementation(async (input: RequestInfo | URL, init?: RequestInit) => {
       const url = String(input);
       if (url.includes("/api/config")) {
@@ -681,6 +708,9 @@ describe("App", () => {
             capabilities: ["review_decision", "review_entity_edit", "review_finish"],
           paths: { raw_dir: "/tmp/raw", reviews_dir: "/tmp/reviews" }
         });
+      }
+      if (url.includes("/api/review/tags")) {
+        return Response.json(tagRegistryPayload);
       }
       if (url.includes("/api/review/queue")) {
         return Response.json(queuePayload);
@@ -696,18 +726,16 @@ describe("App", () => {
     render(<App />);
 
     await screen.findByText("API summary");
-    await userEvent.click(screen.getByRole("button", { name: "Edit API Topic" }));
-    await userEvent.click(screen.getByLabelText("Hidden"));
-    await userEvent.click(screen.getByRole("button", { name: "Save entity" }));
+    await userEvent.click(screen.getByRole("button", { name: "Reject API Topic" }));
 
     await waitFor(() => expect(screen.queryByText("API Topic")).not.toBeInTheDocument());
-    await userEvent.click(screen.getByLabelText("Show hidden"));
+    await userEvent.click(screen.getByLabelText("Show rejected entities (1)"));
 
     expect(await screen.findByText("API Topic")).toBeInTheDocument();
-    expect(screen.getByText("Hidden")).toBeInTheDocument();
+    expect(screen.getByText("Rejected")).toBeInTheDocument();
   });
 
-  it("omits unchanged empty description fields when hiding an entity", async () => {
+  it("omits unchanged empty description fields when rejecting an entity", async () => {
     vi.mocked(fetch).mockImplementation(async (input: RequestInfo | URL, init?: RequestInit) => {
       const url = String(input);
       if (url.includes("/api/config")) {
@@ -731,9 +759,7 @@ describe("App", () => {
     render(<App />);
 
     await screen.findByText("API summary");
-    await userEvent.click(screen.getByRole("button", { name: "Edit API Topic" }));
-    await userEvent.click(screen.getByLabelText("Hidden"));
-    await userEvent.click(screen.getByRole("button", { name: "Save entity" }));
+    await userEvent.click(screen.getByRole("button", { name: "Reject API Topic" }));
 
     await waitFor(() => {
       expect(vi.mocked(fetch)).toHaveBeenCalledWith(
@@ -746,17 +772,36 @@ describe("App", () => {
     });
   });
 
-  it("writes approve decisions and reloads source and queue state", async () => {
+  it("writes secondary decisions and reloads source and queue state", async () => {
+    vi.mocked(fetch).mockImplementation(async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = String(input);
+      if (url.includes("/api/config")) {
+        return Response.json(configPayload);
+      }
+      if (url.includes("/api/review/tags")) {
+        return Response.json(tagRegistryPayload);
+      }
+      if (url.includes("/api/review/source/api-source/decision") && init?.method === "PATCH") {
+        return Response.json(needsAttentionDecisionResponse);
+      }
+      if (url.includes("/api/review/queue")) {
+        return Response.json(queuePayload);
+      }
+      if (url.includes("/api/review/source/api-source")) {
+        return Response.json(sourcePayload);
+      }
+      return new Response("not found", { status: 404 });
+    });
     render(<App />);
 
     await screen.findByText("API summary");
-    await userEvent.click(screen.getByRole("button", { name: "Approve article" }));
+    await userEvent.click(screen.getByRole("button", { name: "Needs attention" }));
 
     await waitFor(() => {
       expect(vi.mocked(fetch)).toHaveBeenCalledWith(
         "/api/review/source/api-source/decision",
         expect.objectContaining({
-          body: JSON.stringify({ status: "approved", notes: "" }),
+          body: JSON.stringify({ status: "needs_attention", notes: "" }),
           method: "PATCH"
         })
       );
@@ -771,10 +816,10 @@ describe("App", () => {
       expect(queueCalls.length).toBeGreaterThanOrEqual(2);
       expect(sourceCalls.length).toBeGreaterThanOrEqual(2);
     });
-    expect(await screen.findByText("Decision saved: approved")).toBeInTheDocument();
+    expect(await screen.findByText("Decision saved: needs_attention")).toBeInTheDocument();
   });
 
-  it("selects the next undecided source after approving the current source", async () => {
+  it("selects the next undecided source after finishing the current source", async () => {
     let queueCalls = 0;
     vi.mocked(fetch).mockImplementation(async (input: RequestInfo | URL, init?: RequestInit) => {
       const url = String(input);
@@ -785,8 +830,8 @@ describe("App", () => {
           paths: { raw_dir: "/tmp/raw", reviews_dir: "/tmp/reviews" }
         });
       }
-      if (url.includes("/api/review/source/api-source/decision") && init?.method === "PATCH") {
-        return Response.json(decisionResponse);
+      if (url.includes("/api/review/source/api-source/finish") && init?.method === "PATCH") {
+        return Response.json(finishResponse);
       }
       if (url.includes("/api/review/queue")) {
         queueCalls += 1;
@@ -804,14 +849,13 @@ describe("App", () => {
     render(<App />);
 
     expect(await screen.findByText("API summary")).toBeInTheDocument();
-    await userEvent.click(screen.getByRole("button", { name: "Approve article" }));
+    await userEvent.click(screen.getByRole("button", { name: "Finish as approved" }));
 
     expect(await screen.findByRole("heading", { name: "Newer Article" })).toBeInTheDocument();
     expect(await screen.findByText("Newer summary")).toBeInTheDocument();
-    expect(screen.queryByText("Decision saved: approved")).not.toBeInTheDocument();
   });
 
-  it("clears the selected source after approving the last undecided source", async () => {
+  it("clears the selected source after finishing the last undecided source", async () => {
     let queueCalls = 0;
     vi.mocked(fetch).mockImplementation(async (input: RequestInfo | URL, init?: RequestInit) => {
       const url = String(input);
@@ -822,8 +866,8 @@ describe("App", () => {
           paths: { raw_dir: "/tmp/raw", reviews_dir: "/tmp/reviews" }
         });
       }
-      if (url.includes("/api/review/source/api-source/decision") && init?.method === "PATCH") {
-        return Response.json(decisionResponse);
+      if (url.includes("/api/review/source/api-source/finish") && init?.method === "PATCH") {
+        return Response.json(finishResponse);
       }
       if (url.includes("/api/review/queue")) {
         queueCalls += 1;
@@ -841,11 +885,10 @@ describe("App", () => {
     render(<App />);
 
     expect(await screen.findByText("API summary")).toBeInTheDocument();
-    await userEvent.click(screen.getByRole("button", { name: "Approve article" }));
+    await userEvent.click(screen.getByRole("button", { name: "Finish as approved" }));
 
     expect(await screen.findByText("No sources match.")).toBeInTheDocument();
     expect(screen.getByText("Select a source to inspect its review artifact.")).toBeInTheDocument();
-    expect(screen.queryByText("Decision saved: approved")).not.toBeInTheDocument();
   });
 
   it("disables article action buttons while a decision request is pending", async () => {
@@ -875,14 +918,14 @@ describe("App", () => {
     render(<App />);
 
     await screen.findByText("API summary");
-    await userEvent.click(screen.getByRole("button", { name: "Approve article" }));
+    await userEvent.click(screen.getByRole("button", { name: "Needs attention" }));
 
-    expect(screen.getByRole("button", { name: "Approve article" })).toBeDisabled();
+    expect(screen.getByRole("button", { name: "Finish as approved" })).toBeDisabled();
     expect(screen.getByRole("button", { name: "Needs attention" })).toBeDisabled();
     expect(screen.getByRole("button", { name: "Skip" })).toBeDisabled();
     expect(screen.getByRole("button", { name: "Request re-analysis" })).toBeDisabled();
 
-    resolveDecision(Response.json(decisionResponse));
+    resolveDecision(Response.json(needsAttentionDecisionResponse));
   });
 
   it("shows decision write errors", async () => {
@@ -909,7 +952,7 @@ describe("App", () => {
     render(<App />);
 
     await screen.findByText("API summary");
-    await userEvent.click(screen.getByRole("button", { name: "Approve article" }));
+    await userEvent.click(screen.getByRole("button", { name: "Needs attention" }));
 
     expect(await screen.findByText(/Decision failed/)).toBeInTheDocument();
   });
@@ -926,7 +969,7 @@ describe("App", () => {
         });
       }
       if (url.includes("/api/review/source/api-source/decision") && init?.method === "PATCH") {
-        return Response.json(decisionResponse);
+        return Response.json(needsAttentionDecisionResponse);
       }
       if (url.includes("/api/review/queue")) {
         queueCalls += 1;
@@ -943,9 +986,9 @@ describe("App", () => {
     render(<App />);
 
     await screen.findByText("API summary");
-    await userEvent.click(screen.getByRole("button", { name: "Approve article" }));
+    await userEvent.click(screen.getByRole("button", { name: "Needs attention" }));
 
-    expect(await screen.findByText("Decision saved: approved")).toBeInTheDocument();
+    expect(await screen.findByText("Decision saved: needs_attention")).toBeInTheDocument();
     expect(await screen.findByText(/Refresh failed/)).toBeInTheDocument();
     expect(screen.queryByText(/Decision failed/)).not.toBeInTheDocument();
   });
@@ -979,7 +1022,7 @@ describe("App", () => {
     render(<App />);
 
     await screen.findByText("API summary");
-    await userEvent.click(screen.getByRole("button", { name: "Finish review" }));
+    await userEvent.click(screen.getByRole("button", { name: "Finish as approved" }));
 
     await waitFor(() => {
       expect(vi.mocked(fetch)).toHaveBeenCalledWith(
@@ -1020,7 +1063,7 @@ describe("App", () => {
     render(<App />);
 
     await screen.findByText("API summary");
-    await userEvent.click(screen.getByRole("button", { name: "Finish review" }));
+    await userEvent.click(screen.getByRole("button", { name: "Finish as approved" }));
 
     expect(await screen.findByText("No sources match.")).toBeInTheDocument();
     expect(screen.getByText("Select a source to inspect its review artifact.")).toBeInTheDocument();
@@ -1050,7 +1093,7 @@ describe("App", () => {
     render(<App />);
 
     await screen.findByText("API summary");
-    await userEvent.click(screen.getByRole("button", { name: "Finish review" }));
+    await userEvent.click(screen.getByRole("button", { name: "Finish as approved" }));
 
     expect(await screen.findByText(/Finish failed/)).toBeInTheDocument();
     expect(await screen.findByRole("heading", { name: "API Article" })).toBeInTheDocument();
@@ -1227,7 +1270,7 @@ describe("App", () => {
     expect(await screen.findByText("Edited how-to")).toBeInTheDocument();
   });
 
-  it("hides source-specific insights from the default list until show hidden is enabled", async () => {
+  it("hides source-specific insights from the default list until show rejected is enabled", async () => {
     const hiddenInsightPayload = {
       ...sourcePayload,
       entities: buildEntityGroups([
@@ -1268,8 +1311,8 @@ describe("App", () => {
     });
     render(<App />);
 
-    expect(screen.queryByText("Hidden signal")).not.toBeInTheDocument();
-    await userEvent.click(await screen.findByLabelText("Show hidden"));
+    await waitFor(() => expect(screen.queryByText("Hidden signal")).not.toBeInTheDocument());
+    await userEvent.click(await screen.findByLabelText("Show rejected entities (1)"));
     expect(await screen.findByText("Hidden signal")).toBeInTheDocument();
   });
 });

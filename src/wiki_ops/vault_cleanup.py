@@ -269,9 +269,7 @@ def _build_candidates(
 ) -> tuple[VaultCleanupCandidate, ...]:
     """Convert hygiene findings into concrete cleanup candidates."""
     duplicate_removals = set(duplicate_removal_paths(hygiene_status.duplicate_groups))
-    safe_delete_by_path = {
-        item.path: item for item in hygiene_status.safe_delete_candidates
-    }
+    safe_delete_by_path = {item.path: item for item in hygiene_status.safe_delete_candidates}
     candidates: list[VaultCleanupCandidate] = []
     for relative_path in deletable_paths_from_status(hygiene_status):
         if relative_path in duplicate_removals:

@@ -130,11 +130,7 @@ def duplicate_removal_paths(groups: tuple[VaultDuplicateGroup, ...]) -> tuple[st
 def deletable_paths_from_status(status: VaultHygieneStatus) -> tuple[str, ...]:
     """Return all vault-relative paths eligible for automated cleanup."""
     keep_paths = {group.recommended_keep for group in status.duplicate_groups}
-    paths = {
-        item.path
-        for item in status.safe_delete_candidates
-        if item.path not in keep_paths
-    }
+    paths = {item.path for item in status.safe_delete_candidates if item.path not in keep_paths}
     paths.update(duplicate_removal_paths(status.duplicate_groups))
     return tuple(sorted(paths))
 

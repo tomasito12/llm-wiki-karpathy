@@ -5,12 +5,14 @@ from __future__ import annotations
 import json
 import os
 import re
+from collections import Counter
 from collections.abc import Iterable
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any, cast, get_args
 
 from src.ingest_queue.queue import IngestItem, list_ingest_items
+from src.ingest_review.tags import load_tag_list, normalize_tag
 from src.management_web.entity_config import (
     ENTITY_CONFIG_BY_GROUP,
     ENTITY_CONFIGS,
@@ -41,6 +43,9 @@ from src.management_web.models import (
     QueueStatusFilter,
     RawSourceResponse,
     ReviewStatus,
+    ReviewTagChoice,
+    ReviewTagSource,
+    ReviewTagsResponse,
     SourceDetailResponse,
     SourceMetadata,
     SourcePaths,
@@ -327,9 +332,7 @@ def update_review_entity(
     llm_items = _llm_entity_list(artifact, config)
     if request.index < 0 or request.index >= max(len(review_nodes), len(llm_items)):
         raise ValueError(f"Entity index out of range: {request.index}")
-    llm_has_item = request.index < len(llm_items) and isinstance(
-        llm_items[request.index], dict
-    )
+    llm_has_item = request.index < len(llm_items) and isinstance(llm_items[request.index], dict)
     review_has_node = request.index < len(review_nodes) and isinstance(
         review_nodes[request.index], dict
     )
@@ -502,6 +505,31 @@ def collect_tags(artifact: dict[str, Any] | None) -> list[str]:
         for entity in group.items:
             tags.update(entity.tags)
     return sorted(tags)
+
+
+def build_review_tag_registry(paths: WikiPaths) -> ReviewTagsResponse:
+    """Return merged tag choices from config registries and review artifacts.
+
+    Args:
+        paths: Resolved wiki paths.
+
+    Returns:
+        Deterministically sorted tag choices with usage counts.
+    """
+    registry_tags = _load_registry_tags(paths.repo_root)
+    usage_counts = _collect_tag_usage_from_artifacts(paths.reviews_dir)
+    choices: list[ReviewTagChoice] = []
+    for name in sorted(registry_tags | set(usage_counts)):
+        source: ReviewTagSource = "registry" if name in registry_tags else "reviews"
+        choices.append(
+            ReviewTagChoice(
+                name=name,
+                source=source,
+                usage_count=usage_counts.get(name, 0),
+            )
+        )
+    choices.sort(key=lambda choice: (-choice.usage_count, choice.name))
+    return ReviewTagsResponse(tags=choices)
 
 
 def read_raw_markdown(paths: WikiPaths, source_id: str) -> RawSourceResponse:
@@ -876,6 +904,7 @@ def _entity_is_hidden(review_node: dict[str, Any], llm_item: dict[str, Any]) -> 
             return True
     return False
 
+
 def _entity_tags(
     config: EditableEntityConfig,
     review_node: dict[str, Any],
@@ -1177,6 +1206,37 @@ def _normalize_tags(tags: list[str]) -> list[str]:
             seen.add(text)
     return normalized
 
+
+def _load_registry_tags(repo_root: Path) -> set[str]:
+    """Load normalized tags from configured review tag registries."""
+    config_dir = repo_root / "config"
+    tags: set[str] = set()
+    if not config_dir.is_dir():
+        return tags
+    for path in sorted(config_dir.glob("review_tags_*.yaml")):
+        for tag in load_tag_list(path):
+            if tag:
+                tags.add(tag)
+    return tags
+
+
+def _collect_tag_usage_from_artifacts(reviews_dir: Path) -> Counter[str]:
+    """Count tag usage across normalized entities in review artifacts."""
+    counts: Counter[str] = Counter()
+    if not reviews_dir.is_dir():
+        return counts
+    for review_json in sorted(reviews_dir.glob("*/review.json")):
+        artifact = load_review_artifact(review_json)
+        if artifact is None:
+            continue
+        entities = normalize_entities(artifact)
+        for group in entities.groups:
+            for entity in group.items:
+                for tag in entity.tags:
+                    normalized = normalize_tag(tag)
+                    if normalized:
+                        counts[normalized] += 1
+    return counts
 
 
 def _ensure_finish_allowed(artifact: dict[str, Any], *, force: bool) -> None:

@@ -10,6 +10,7 @@ import type {
   QueueResponse,
   QueueStatusFilter,
   RawSourceResponse,
+  ReviewTagsResponse,
   SourceDetailResponse
 } from "./types";
 
@@ -23,6 +24,10 @@ async function fetchJson<T>(path: string, init?: RequestInit): Promise<T> {
 
 export function getConfig(): Promise<ConfigResponse> {
   return fetchJson<ConfigResponse>("/api/config");
+}
+
+export function getReviewTags(): Promise<ReviewTagsResponse> {
+  return fetchJson<ReviewTagsResponse>("/api/review/tags");
 }
 
 export function getReviewQueue(params: {

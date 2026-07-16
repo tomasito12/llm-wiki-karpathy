@@ -50,9 +50,9 @@ knowledge_root = "{knowledge}"
 vault_root = "{vault}"
 wiki_dir = "{wiki}"
 manifest_path = "{manifest}"
-reviews_dir = "{knowledge / 'state' / 'reviews'}"
-raw_dir = "{knowledge / 'raw' / 'readwise'}"
-synthesis_dir = "{knowledge / 'state' / 'synthesis'}"
+reviews_dir = "{knowledge / "state" / "reviews"}"
+raw_dir = "{knowledge / "raw" / "readwise"}"
+synthesis_dir = "{knowledge / "state" / "synthesis"}"
 """.strip(),
         encoding="utf-8",
     )

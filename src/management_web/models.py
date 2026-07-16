@@ -38,6 +38,7 @@ EditableEntityGroup = Literal[
 ]
 EntitySection = Literal["wiki_entities", "source_specific_insights"]
 RenderMode = Literal["merged", "individual"]
+ReviewTagSource = Literal["registry", "reviews", "graph"]
 
 
 class HealthResponse(BaseModel):
@@ -282,3 +283,17 @@ class RawSourceResponse(BaseModel):
     available: bool
     content: str
     path: str | None
+
+
+class ReviewTagChoice(BaseModel):
+    """One selectable tag in the management review tag picker."""
+
+    name: str
+    source: ReviewTagSource
+    usage_count: int = 0
+
+
+class ReviewTagsResponse(BaseModel):
+    """Available tag choices for entity editing."""
+
+    tags: list[ReviewTagChoice]
