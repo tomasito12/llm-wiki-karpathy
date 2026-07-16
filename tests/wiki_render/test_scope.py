@@ -7,7 +7,7 @@ from pathlib import Path
 
 from src.wiki_render.loader import load_review_artifacts
 from src.wiki_render.models import RenderedFile
-from src.wiki_render.scope import protected_prune_paths_for_in_progress
+from src.wiki_render.scope import protected_prune_paths_for_in_progress, render_artifacts
 from src.wiki_render.writer import write_rendered_files
 
 
@@ -134,3 +134,54 @@ def test_protected_prune_paths_for_in_progress_returns_source_page_paths(
     )
 
     assert "sources/pending-b.md" in protected
+
+
+def test_render_artifacts_includes_synthesis_indexes(tmp_path: Path) -> None:
+    """Final renders should include the synthesis index pages referenced by the master index."""
+    repo = tmp_path / "repo"
+    reviews_dir = repo / "state" / "reviews"
+    raw_dir = repo / "raw" / "readwise"
+    wiki_dir = repo / "wiki"
+    raw_dir.mkdir(parents=True)
+    wiki_dir.mkdir()
+    _write_review(reviews_dir, "finished-a", finished=True, title="Finished")
+    (raw_dir / "finished-a.md").write_text("Body\n", encoding="utf-8")
+    artifacts = load_review_artifacts(reviews_dir)
+
+    _graph, rendered = render_artifacts(
+        artifacts,
+        wiki_dir=wiki_dir,
+        raw_dir=raw_dir,
+        repo_root=repo,
+        synthesis_cache_dir=repo / "state" / "synthesis",
+        taxonomy_version="tax-test",
+    )
+    paths = {item.relative_path for item in rendered}
+
+    assert "indexes/needs-synthesis.md" in paths
+    assert "indexes/synthesis-status.md" in paths
+    assert "indexes/tags/ai-engineering.md" in paths
+
+
+def test_in_progress_prune_protection_excludes_synthesis_indexes(tmp_path: Path) -> None:
+    """In-progress prune protection should not preserve operational index pages."""
+    repo = tmp_path / "repo"
+    reviews_dir = repo / "state" / "reviews"
+    raw_dir = repo / "raw" / "readwise"
+    wiki_dir = repo / "wiki"
+    raw_dir.mkdir(parents=True)
+    wiki_dir.mkdir()
+    _write_review(reviews_dir, "pending-b", finished=False, title="Pending")
+    (raw_dir / "pending-b.md").write_text("Body\n", encoding="utf-8")
+
+    protected = protected_prune_paths_for_in_progress(
+        reviews_dir=reviews_dir,
+        wiki_dir=wiki_dir,
+        raw_dir=raw_dir,
+        repo_root=repo,
+        synthesis_cache_dir=repo / "state" / "synthesis",
+        taxonomy_version="tax-test",
+    )
+
+    assert "sources/pending-b.md" in protected
+    assert "indexes/needs-synthesis.md" not in protected

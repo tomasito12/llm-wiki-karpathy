@@ -30,6 +30,7 @@ def render_artifacts(
     repo_root: Path,
     synthesis_cache_dir: Path,
     taxonomy_version: str,
+    include_synthesis_indexes: bool = True,
 ) -> tuple[KnowledgeGraph, list[RenderedFile]]:
     """Build the knowledge graph and rendered files for one artifact set."""
     collected = collect_items(artifacts, wiki_dir)
@@ -44,6 +45,7 @@ def render_artifacts(
         raw_dir=raw_dir,
         repo_root=repo_root,
         synthesis_cache_dir=synthesis_cache_dir,
+        include_synthesis_indexes=include_synthesis_indexes,
     )
     return graph, rendered
 
@@ -73,5 +75,6 @@ def protected_prune_paths_for_in_progress(
         repo_root=repo_root,
         synthesis_cache_dir=synthesis_cache_dir,
         taxonomy_version=taxonomy_version,
+        include_synthesis_indexes=False,
     )
     return {item.relative_path for item in rendered}

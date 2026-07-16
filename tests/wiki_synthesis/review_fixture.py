@@ -22,6 +22,7 @@ def write_paths_config(
     graph_path: Path,
     cache_dir: Path,
     reviews_dir: Path,
+    wiki_dir: Path | None = None,
     preview_dir: Path | None = None,
     run_dir: Path | None = None,
 ) -> Path:
@@ -33,6 +34,8 @@ def write_paths_config(
         f'synthesis_dir = "{cache_dir}"',
         f'reviews_dir = "{reviews_dir}"',
     ]
+    if wiki_dir is not None:
+        lines.append(f'wiki_dir = "{wiki_dir}"')
     if preview_dir is not None:
         lines.append(f'preview_dir = "{preview_dir}"')
     if run_dir is not None:

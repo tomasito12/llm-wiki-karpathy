@@ -2,10 +2,13 @@
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
+from src.wiki_synthesis import indexes_cli
 from src.wiki_synthesis.indexes import render_synthesis_indexes
 from src.wiki_synthesis.planner import plan_from_graph
+from tests.wiki_synthesis.review_fixture import write_finished_review, write_paths_config
 
 
 def test_render_needs_synthesis_index_lists_new_pages(tmp_path: Path) -> None:
@@ -38,6 +41,45 @@ def test_render_tag_hub_groups_human_and_llm_entry_points(tmp_path: Path) -> Non
     assert "[[how-to/evaluation-of-a-rag-system|Evaluation of a RAG System]]" in page.text
     assert "[[sources/source-a|Source A]]" in page.text
     assert "LLM context recipe" in page.text
+
+
+def test_indexes_cli_paths_config_overrides_graph_cache_and_wiki_dir(
+    tmp_path: Path,
+) -> None:
+    """Indexes CLI should write synthesis indexes into the configured vault."""
+    external = tmp_path / "external"
+    graph_path = external / "state" / "wiki_render_graph.json"
+    cache_dir = external / "state" / "synthesis"
+    reviews_dir = external / "state" / "reviews"
+    wiki_dir = external / "vault" / "wiki"
+    graph_path.parent.mkdir(parents=True)
+    cache_dir.mkdir(parents=True)
+    write_finished_review(reviews_dir, "source-a")
+    write_finished_review(reviews_dir, "source-b")
+    write_finished_review(reviews_dir, "source-c")
+    graph_path.write_text(json.dumps(_graph()), encoding="utf-8")
+    config_path = write_paths_config(
+        tmp_path,
+        graph_path=graph_path,
+        cache_dir=cache_dir,
+        reviews_dir=reviews_dir,
+        wiki_dir=wiki_dir,
+    )
+
+    exit_code = indexes_cli.main(
+        [
+            "--paths-config",
+            str(config_path),
+            "--tag",
+            "ai-engineering",
+        ]
+    )
+
+    assert exit_code == 0
+    assert (wiki_dir / "indexes" / "needs-synthesis.md").exists()
+    assert (wiki_dir / "indexes" / "synthesis-status.md").exists()
+    assert (wiki_dir / "indexes" / "tags" / "ai-engineering.md").exists()
+    assert not (tmp_path / "wiki" / "indexes" / "needs-synthesis.md").exists()
 
 
 def _graph() -> dict[str, object]:

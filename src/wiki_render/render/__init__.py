@@ -5,6 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from src.wiki_render import layout
+from src.wiki_render.graph_export import graph_export_payload
 from src.wiki_render.models import KnowledgeGraph, KnowledgePage, RenderedFile
 from src.wiki_render.render.indexes import render_indexes
 from src.wiki_render.render.knowledge import (
@@ -14,6 +15,7 @@ from src.wiki_render.render.knowledge import (
     render_knowledge_page,
 )
 from src.wiki_render.render.source import render_source_page
+from src.wiki_synthesis.planner import plan_from_graph
 
 
 def render_graph(
@@ -23,6 +25,7 @@ def render_graph(
     raw_dir: Path,
     repo_root: Path | None = None,
     synthesis_cache_dir: Path | None = None,
+    include_synthesis_indexes: bool = True,
 ) -> list[RenderedFile]:
     """Render the full graph to markdown files."""
     files: list[RenderedFile] = []
@@ -48,6 +51,17 @@ def render_graph(
     files.extend(render_individual_page(item) for item in graph.insights)
     files.extend(render_implementation_study_page(item) for item in graph.implementation_studies)
     files.extend(render_indexes(graph))
+    if include_synthesis_indexes and synthesis_cache_dir is not None:
+        from src.wiki_synthesis.indexes import render_synthesis_indexes
+
+        graph_payload = graph_export_payload(graph)
+        plan = plan_from_graph(
+            graph_payload,
+            cache_dir=synthesis_cache_dir,
+            include_single_source=False,
+            changed_only=False,
+        )
+        files.extend(render_synthesis_indexes(graph_payload, plan))
     return files
 
 

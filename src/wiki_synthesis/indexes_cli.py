@@ -4,9 +4,16 @@ from __future__ import annotations
 
 import argparse
 import logging
+import sys
 from pathlib import Path
 
-from src.ingest_review.paths import repo_root
+from src.ingest_review.review_scope import finished_source_ids
+from src.wiki_paths.cli_helpers import (
+    add_paths_config_argument,
+    load_paths_for_cli,
+    resolve_cli_path,
+)
+from src.wiki_paths.config import WikiPathsConfigError
 from src.wiki_synthesis.indexes import (
     DEFAULT_TAG_HUBS,
     render_synthesis_indexes,
@@ -19,27 +26,27 @@ LOGGER = logging.getLogger(__name__)
 
 def build_parser() -> argparse.ArgumentParser:
     """Build the wiki-synthesis-indexes argument parser."""
-    root = repo_root()
     parser = argparse.ArgumentParser(
         prog="wiki-synthesis-indexes",
         description="Render Stage 2 operational indexes without making LLM calls.",
     )
+    add_paths_config_argument(parser)
     parser.add_argument(
         "--graph-path",
         type=Path,
-        default=root / "state" / "wiki_render_graph.json",
+        default=None,
         help="Path to the wiki-render graph export.",
     )
     parser.add_argument(
         "--cache-dir",
         type=Path,
-        default=root / "state" / "synthesis",
+        default=None,
         help="Directory containing Stage 2 synthesis cache entries.",
     )
     parser.add_argument(
         "--out-dir",
         type=Path,
-        default=root / "wiki",
+        default=None,
         help="Wiki output directory.",
     )
     parser.add_argument(
@@ -61,21 +68,31 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
     """Render Stage 2 operational indexes."""
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
-    args = build_parser().parse_args()
-    graph = load_graph_export(args.graph_path.resolve())
+    args = build_parser().parse_args(argv)
+    try:
+        paths = load_paths_for_cli(args)
+    except WikiPathsConfigError as exc:
+        LOGGER.error("%s", exc)
+        return 2
+    graph_path = resolve_cli_path(args.graph_path, configured=paths.graph_path)
+    cache_dir = resolve_cli_path(args.cache_dir, configured=paths.synthesis_dir)
+    wiki_dir = resolve_cli_path(args.out_dir, configured=paths.wiki_dir)
+    reviews_dir = resolve_cli_path(None, configured=paths.reviews_dir)
+    graph = load_graph_export(graph_path)
     plan = plan_from_graph(
         graph,
-        cache_dir=args.cache_dir.resolve(),
+        cache_dir=cache_dir,
         include_single_source=False,
         changed_only=False,
+        finished_source_ids=finished_source_ids(reviews_dir),
     )
     tags = args.tag if args.tag else list(DEFAULT_TAG_HUBS)
     files = render_synthesis_indexes(graph, plan, tags=tags)
     planned, written = write_synthesis_indexes(
-        wiki_dir=args.out_dir.resolve(),
+        wiki_dir=wiki_dir,
         files=files,
         dry_run=args.dry_run,
     )
@@ -89,4 +106,4 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    raise SystemExit(main(sys.argv[1:]))
