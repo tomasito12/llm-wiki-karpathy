@@ -19,11 +19,27 @@ from src.management_web.models import (
     ManagementDecisionFilter,
     ManagementDecisionResponse,
     ManagementReviewRequest,
+    OperationDefinitionModel,
+    OperationParameterModel,
+    OperationRunListResponse,
+    OperationRunResponse,
+    OperationsListResponse,
+    OpsStatusResponse,
     QueueResponse,
     QueueStatusFilter,
     RawSourceResponse,
     ReviewTagsResponse,
     SourceDetailResponse,
+    StartOperationRequest,
+    StartOperationResponse,
+)
+from src.management_web.ops import (
+    OperationConflictError,
+    OperationValidationError,
+    OpsRunManager,
+    collect_management_ops_status,
+    format_ops_status_summary,
+    list_operation_definitions,
 )
 from src.management_web.review_data import (
     EntityEditConflictError,
@@ -37,6 +53,40 @@ from src.management_web.review_data import (
     write_management_decision,
 )
 from src.wiki_paths.config import WikiPaths, load_wiki_paths
+
+
+def _utc_timestamp() -> str:
+    from datetime import UTC, datetime
+
+    return datetime.now(tz=UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def _operation_definition_models() -> list[OperationDefinitionModel]:
+    return [
+        OperationDefinitionModel(
+            id=operation.id,
+            label=operation.label,
+            description=operation.description,
+            writes=operation.writes,
+            llm_calls=operation.llm_calls,
+            requires_confirmation=operation.requires_confirmation,
+            parameters=[
+                OperationParameterModel(
+                    name=param.name,
+                    label=param.label,
+                    type=param.type,
+                    default=param.default,
+                    required=param.required,
+                )
+                for param in operation.parameters
+            ],
+        )
+        for operation in list_operation_definitions()
+    ]
+
+
+def _operation_run_response(report: dict[str, object]) -> OperationRunResponse:
+    return OperationRunResponse.model_validate(report)
 
 
 def create_app(
@@ -56,11 +106,13 @@ def create_app(
     resolved_paths = paths or load_wiki_paths(config_path=paths_config)
     app = FastAPI(title="LLM Wiki Management Web", version="0.1.0")
     app.state.paths = resolved_paths
+    app.state.paths_config = paths_config
+    app.state.ops_runs = OpsRunManager(paths=resolved_paths, paths_config=paths_config)
     app.add_middleware(
         CORSMiddleware,
         allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
         allow_credentials=False,
-        allow_methods=["GET", "PATCH"],
+        allow_methods=["GET", "PATCH", "POST"],
         allow_headers=["*"],
     )
 
@@ -190,5 +242,57 @@ def create_app(
             raise HTTPException(status_code=404, detail=str(exc)) from exc
         except OSError as exc:
             raise HTTPException(status_code=500, detail="Failed to finish review") from exc
+
+    @app.get("/api/ops/status", response_model=OpsStatusResponse)
+    def ops_status() -> OpsStatusResponse:
+        """Return current pipeline ops status without writes or LLM calls."""
+        current_paths: WikiPaths = app.state.paths
+        status = collect_management_ops_status(current_paths)
+        return OpsStatusResponse(
+            status=status,
+            collected_at=_utc_timestamp(),
+            summary=format_ops_status_summary(status),
+        )
+
+    @app.get("/api/ops/operations", response_model=OperationsListResponse)
+    def ops_operations() -> OperationsListResponse:
+        """Return allowlisted pipeline operations for the cockpit."""
+        return OperationsListResponse(operations=_operation_definition_models())
+
+    @app.post("/api/ops/runs", response_model=StartOperationResponse)
+    def ops_start_run(request: StartOperationRequest) -> StartOperationResponse:
+        """Start one allowlisted pipeline operation."""
+        manager: OpsRunManager = app.state.ops_runs
+        try:
+            report = manager.start_run(
+                request.operation_id,
+                parameters=request.parameters,
+                confirmed=request.confirmed,
+            )
+        except OperationValidationError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+        except OperationConflictError as exc:
+            raise HTTPException(status_code=409, detail=str(exc)) from exc
+        return StartOperationResponse(
+            run_id=str(report["run_id"]),
+            operation_id=str(report["operation_id"]),
+            status=report["status"],  # type: ignore[arg-type]
+        )
+
+    @app.get("/api/ops/runs", response_model=OperationRunListResponse)
+    def ops_list_runs(limit: int = Query(default=20, ge=1, le=100)) -> OperationRunListResponse:
+        """Return recent management-launched operation runs."""
+        manager: OpsRunManager = app.state.ops_runs
+        runs = [_operation_run_response(report) for report in manager.list_runs(limit=limit)]
+        return OperationRunListResponse(runs=runs)
+
+    @app.get("/api/ops/runs/{run_id}", response_model=OperationRunResponse)
+    def ops_get_run(run_id: str) -> OperationRunResponse:
+        """Return one management-launched operation run."""
+        manager: OpsRunManager = app.state.ops_runs
+        try:
+            return _operation_run_response(manager.get_run(run_id))
+        except FileNotFoundError as exc:
+            raise HTTPException(status_code=404, detail=str(exc)) from exc
 
     return app

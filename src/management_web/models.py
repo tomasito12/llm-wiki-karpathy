@@ -297,3 +297,86 @@ class ReviewTagsResponse(BaseModel):
     """Available tag choices for entity editing."""
 
     tags: list[ReviewTagChoice]
+
+
+OperationRunStatus = Literal["queued", "running", "succeeded", "failed", "cancelled"]
+OperationParameterType = Literal["integer", "boolean", "float"]
+
+
+class OpsStatusResponse(BaseModel):
+    """Current pipeline ops status for the management cockpit."""
+
+    status: dict[str, Any]
+    collected_at: str
+    summary: str
+
+
+class OperationParameterModel(BaseModel):
+    """One exposed operation parameter."""
+
+    name: str
+    label: str
+    type: OperationParameterType
+    default: bool | int | float
+    required: bool = False
+
+
+class OperationDefinitionModel(BaseModel):
+    """Allowlisted operation metadata."""
+
+    id: str
+    label: str
+    description: str
+    writes: bool
+    llm_calls: bool
+    requires_confirmation: bool
+    parameters: list[OperationParameterModel]
+
+
+class OperationsListResponse(BaseModel):
+    """Allowlisted operations exposed to the management web UI."""
+
+    operations: list[OperationDefinitionModel]
+
+
+class StartOperationRequest(BaseModel):
+    """Request body for starting one allowlisted operation."""
+
+    operation_id: str
+    parameters: dict[str, Any] = {}
+    confirmed: bool = False
+
+
+class StartOperationResponse(BaseModel):
+    """Response returned when an operation is queued."""
+
+    run_id: str
+    operation_id: str
+    status: OperationRunStatus
+
+
+class OperationRunResponse(BaseModel):
+    """One management-launched pipeline operation run."""
+
+    run_id: str
+    operation_id: str
+    label: str
+    status: OperationRunStatus
+    parameters: dict[str, Any]
+    command: list[str]
+    cwd: str
+    writes: bool
+    llm_calls: bool
+    started_at: str
+    finished_at: str | None = None
+    duration_seconds: float | None = None
+    exit_code: int | None = None
+    stdout_tail: str = ""
+    stderr_tail: str = ""
+    report_path: str | None = None
+
+
+class OperationRunListResponse(BaseModel):
+    """Recent management-launched operation runs."""
+
+    runs: list[OperationRunResponse]

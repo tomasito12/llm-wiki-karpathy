@@ -572,3 +572,133 @@ def test_review_tags_endpoint_does_not_mutate_raw_or_wiki_files(tmp_path: Path) 
     assert response.status_code == 200
     assert (paths.raw_dir / "api-source.html").stat().st_mtime_ns == raw_mtime
     assert wiki_file.stat().st_mtime_ns == wiki_mtime
+
+
+def test_ops_status_endpoint_returns_json_without_writes(tmp_path: Path) -> None:
+    """Ops status should be read-only JSON with a compact summary."""
+    client = TestClient(create_app(paths=_paths(tmp_path)))
+
+    response = client.get("/api/ops/status")
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert "status" in payload
+    assert "collected_at" in payload
+    assert "summary" in payload
+    assert isinstance(payload["status"], dict)
+
+
+def test_ops_operations_endpoint_returns_allowlisted_operations(tmp_path: Path) -> None:
+    """Operations endpoint should expose the MVP allowlist."""
+    client = TestClient(create_app(paths=_paths(tmp_path)))
+
+    response = client.get("/api/ops/operations")
+
+    assert response.status_code == 200
+    operation_ids = {item["id"] for item in response.json()["operations"]}
+    assert "wiki_lint" in operation_ids
+    assert "wiki_render" in operation_ids
+    assert "synthesis_batch" in operation_ids
+
+
+def test_ops_start_run_rejects_unknown_operation(tmp_path: Path) -> None:
+    """Unknown operation ids should return HTTP 400."""
+    client = TestClient(create_app(paths=_paths(tmp_path)))
+
+    response = client.post(
+        "/api/ops/runs",
+        json={"operation_id": "shell_rm_rf", "parameters": {}, "confirmed": False},
+    )
+
+    assert response.status_code == 400
+
+
+def test_ops_start_run_rejects_invalid_parameter(tmp_path: Path) -> None:
+    """Invalid parameters should return HTTP 400."""
+    client = TestClient(create_app(paths=_paths(tmp_path)))
+
+    response = client.post(
+        "/api/ops/runs",
+        json={"operation_id": "synthesis_select", "parameters": {"limit": 0}, "confirmed": False},
+    )
+
+    assert response.status_code == 400
+
+
+def test_ops_start_write_operation_without_confirmation_returns_409(tmp_path: Path) -> None:
+    """Write operations should require explicit confirmation."""
+    client = TestClient(create_app(paths=_paths(tmp_path)))
+
+    response = client.post(
+        "/api/ops/runs",
+        json={"operation_id": "wiki_render", "parameters": {}, "confirmed": False},
+    )
+
+    assert response.status_code == 409
+
+
+def test_ops_start_llm_operation_without_confirmation_returns_409(tmp_path: Path) -> None:
+    """LLM-capable operations should require explicit confirmation."""
+    client = TestClient(create_app(paths=_paths(tmp_path)))
+
+    response = client.post(
+        "/api/ops/runs",
+        json={"operation_id": "synthesis_batch", "parameters": {}, "confirmed": False},
+    )
+
+    assert response.status_code == 409
+
+
+def test_ops_start_read_only_operation_does_not_require_confirmation(tmp_path: Path) -> None:
+    """Read-only operations should start without confirmation."""
+    from src.management_web.ops import OpsRunManager
+
+    paths = _paths(tmp_path)
+    app = create_app(paths=paths)
+    app.state.ops_runs = OpsRunManager(
+        paths=paths,
+        command_runner=lambda _command, _cwd: (0, "lint ok", ""),
+    )
+    client = TestClient(app)
+
+    response = client.post(
+        "/api/ops/runs",
+        json={"operation_id": "wiki_lint", "parameters": {}, "confirmed": False},
+    )
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["operation_id"] == "wiki_lint"
+    assert payload["status"] == "queued"
+
+
+def test_ops_start_run_rejects_second_concurrent_operation(tmp_path: Path) -> None:
+    """Only one operation may run at a time in MVP."""
+    import time
+
+    from src.management_web.ops import OpsRunManager
+
+    paths = _paths(tmp_path)
+    app = create_app(paths=paths)
+
+    def slow_runner(_command: list[str], _cwd: Path) -> tuple[int, str, str]:
+        time.sleep(0.2)
+        return 0, "", ""
+
+    app.state.ops_runs = OpsRunManager(
+        paths=paths,
+        command_runner=slow_runner,
+    )
+    client = TestClient(app)
+
+    first = client.post(
+        "/api/ops/runs",
+        json={"operation_id": "wiki_lint", "parameters": {}, "confirmed": False},
+    )
+    assert first.status_code == 200
+    second = client.post(
+        "/api/ops/runs",
+        json={"operation_id": "wiki_lint", "parameters": {}, "confirmed": False},
+    )
+
+    assert second.status_code == 409

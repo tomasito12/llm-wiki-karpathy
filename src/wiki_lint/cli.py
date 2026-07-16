@@ -90,6 +90,7 @@ def main(argv: list[str] | None = None) -> int:
         raw_dir=paths.raw_dir,
         repo_root=repo,
         synthesis_cache_dir=paths.synthesis_dir,
+        graph_path=paths.graph_path,
     )
     if args.hygiene_json:
         print(json.dumps(hygiene_status.to_dict(), indent=2, sort_keys=True))

@@ -8,7 +8,9 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any, Literal
 
+from src.ingest_review.review_queue_status import status_from_artifact
 from src.wiki_contract.layout import is_managed_relative_path, is_preserved_wiki_path
+from src.wiki_ops.source_access import load_graph_source_ids
 from src.wiki_render.resolve import taxonomy_version
 from src.wiki_render.scope import protected_prune_paths_for_in_progress
 
@@ -72,6 +74,8 @@ class VaultHygieneStatus:
     manual_root_items: tuple[VaultHygieneItem, ...]
     duplicate_groups: tuple[VaultDuplicateGroup, ...]
     recommended_actions: tuple[str, ...]
+    render_manifest_stale: bool = False
+    render_manifest_stale_reason: str | None = None
 
     @property
     def needs_attention(self) -> bool:
@@ -98,6 +102,8 @@ class VaultHygieneStatus:
             "manual_root_items": [item.to_dict() for item in self.manual_root_items],
             "duplicate_groups": [group.to_dict() for group in self.duplicate_groups],
             "recommended_actions": list(self.recommended_actions),
+            "render_manifest_stale": self.render_manifest_stale,
+            "render_manifest_stale_reason": self.render_manifest_stale_reason,
         }
 
 
@@ -143,6 +149,7 @@ def collect_vault_hygiene_status(
     raw_dir: Path,
     repo_root: Path,
     synthesis_cache_dir: Path,
+    graph_path: Path | None = None,
 ) -> tuple[VaultHygieneStatus, list[str]]:
     """Compare vault markdown files against the render manifest.
 
@@ -181,6 +188,11 @@ def collect_vault_hygiene_status(
 
     vault_paths = {path.relative_to(wiki_dir).as_posix(): path for path in wiki_dir.rglob("*.md")}
     orphans = sorted(set(vault_paths) - manifest_paths)
+    render_manifest_stale_reason = _render_manifest_stale_reason(
+        graph_path=graph_path,
+        reviews_dir=reviews_dir,
+    )
+    render_manifest_stale = render_manifest_stale_reason is not None
 
     protected_paths = protected_prune_paths_for_in_progress(
         reviews_dir=reviews_dir,
@@ -200,6 +212,7 @@ def collect_vault_hygiene_status(
         item = _classify_orphan(
             relpath,
             protected_paths=protected_paths,
+            render_manifest_stale_reason=render_manifest_stale_reason,
         )
         if item.category == "safe_delete_candidate":
             safe_delete.append(item)
@@ -213,6 +226,7 @@ def collect_vault_hygiene_status(
     duplicate_groups = _find_duplicate_groups(vault_paths, manifest_paths=manifest_paths)
     recommended_actions = _recommended_actions(
         manifest_exists=manifest_path.is_file(),
+        render_manifest_stale_reason=render_manifest_stale_reason,
         safe_delete_count=len(safe_delete),
         protected_count=len(protected),
         manual_count=len(manual),
@@ -230,6 +244,8 @@ def collect_vault_hygiene_status(
         manual_root_items=tuple(manual_root),
         duplicate_groups=tuple(duplicate_groups),
         recommended_actions=tuple(recommended_actions),
+        render_manifest_stale=render_manifest_stale,
+        render_manifest_stale_reason=render_manifest_stale_reason,
     )
     warnings.extend(_hygiene_warnings(status))
     return status, warnings
@@ -247,6 +263,9 @@ def format_vault_hygiene_text(status: VaultHygieneStatus) -> str:
         f"- manual review items: {len(status.manual_review)}",
         f"- exact duplicate groups: {len(status.duplicate_groups)}",
     ]
+    if status.render_manifest_stale:
+        reason = status.render_manifest_stale_reason or "render snapshot may be stale"
+        lines.append(f"- render manifest stale: yes ({reason})")
     if status.manual_root_items:
         lines.append(f"- manual root items: {len(status.manual_root_items)}")
     if status.recommended_actions:
@@ -260,6 +279,7 @@ def _classify_orphan(
     relpath: str,
     *,
     protected_paths: set[str],
+    render_manifest_stale_reason: str | None,
 ) -> VaultHygieneItem:
     """Classify one vault path that is absent from the render manifest."""
     if relpath in protected_paths:
@@ -273,6 +293,15 @@ def _classify_orphan(
             path=relpath,
             category="manual_review",
             reason="Manual or preserved vault path outside the managed render manifest.",
+        )
+    if render_manifest_stale_reason and is_managed_relative_path(relpath):
+        return VaultHygieneItem(
+            path=relpath,
+            category="manual_review",
+            reason=(
+                "Render manifest may be stale; run wiki-render before treating this "
+                f"managed orphan as deletable. {render_manifest_stale_reason}"
+            ),
         )
     if is_managed_relative_path(relpath):
         return VaultHygieneItem(
@@ -349,6 +378,7 @@ def _recommended_duplicate_keep(
 def _recommended_actions(
     *,
     manifest_exists: bool,
+    render_manifest_stale_reason: str | None,
     safe_delete_count: int,
     protected_count: int,
     manual_count: int,
@@ -358,6 +388,11 @@ def _recommended_actions(
     actions: list[str] = []
     if not manifest_exists:
         actions.append("Run wiki-render to create a current manifest before deleting orphans.")
+    if render_manifest_stale_reason:
+        actions.append(
+            "Run wiki-render --dry-run, then wiki-render if the plan looks right; "
+            "do not delete orphan candidates while the render manifest is stale.",
+        )
     if safe_delete_count:
         actions.append(
             "Review safe-delete orphan candidates; rerun wiki-render with prune or delete "
@@ -384,6 +419,12 @@ def _recommended_actions(
 def _hygiene_warnings(status: VaultHygieneStatus) -> list[str]:
     """Return top-level warning strings for ops status integration."""
     warnings: list[str] = []
+    if status.render_manifest_stale:
+        reason = status.render_manifest_stale_reason or "render snapshot may be stale"
+        warnings.append(
+            "Render manifest may be stale; orphan candidates are not safe to delete before "
+            f"re-rendering. {reason}",
+        )
     if status.safe_delete_candidates:
         warnings.append(
             f"Vault has {len(status.safe_delete_candidates)} stale generated orphan page(s).",
@@ -397,3 +438,36 @@ def _hygiene_warnings(status: VaultHygieneStatus) -> list[str]:
             f"Vault has {len(status.manual_root_items)} manual root or legacy item(s) to review.",
         )
     return warnings
+
+
+def _render_manifest_stale_reason(
+    *,
+    graph_path: Path | None,
+    reviews_dir: Path,
+) -> str | None:
+    """Return a reason when finished reviews are not represented in the graph."""
+    if graph_path is None:
+        return None
+    graph_ids = load_graph_source_ids(graph_path)
+    if graph_ids is None:
+        return "Render graph is missing or unreadable."
+    finished_ids = _finished_review_source_ids(reviews_dir)
+    missing = sorted(finished_ids - graph_ids)
+    if missing:
+        return f"{len(missing)} finished source(s) are not in the last render snapshot."
+    return None
+
+
+def _finished_review_source_ids(reviews_dir: Path) -> set[str]:
+    """Return review source ids that are marked finished."""
+    if not reviews_dir.is_dir():
+        return set()
+    finished: set[str] = set()
+    for review_path in sorted(reviews_dir.glob("*/review.json")):
+        try:
+            payload = json.loads(review_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        if isinstance(payload, dict) and status_from_artifact(payload) == "finished":
+            finished.add(review_path.parent.name)
+    return finished

@@ -212,3 +212,69 @@ export interface ReviewTagChoice {
 export interface ReviewTagsResponse {
   tags: ReviewTagChoice[];
 }
+
+export type OperationRunStatus = "queued" | "running" | "succeeded" | "failed" | "cancelled";
+export type OperationParameterType = "integer" | "boolean" | "float";
+
+export interface OpsStatusResponse {
+  status: Record<string, unknown>;
+  collected_at: string;
+  summary: string;
+}
+
+export interface OperationParameter {
+  name: string;
+  label: string;
+  type: OperationParameterType;
+  default: boolean | number;
+  required?: boolean;
+}
+
+export interface OperationDefinition {
+  id: string;
+  label: string;
+  description: string;
+  writes: boolean;
+  llm_calls: boolean;
+  requires_confirmation: boolean;
+  parameters: OperationParameter[];
+}
+
+export interface OperationsListResponse {
+  operations: OperationDefinition[];
+}
+
+export interface StartOperationRequest {
+  operation_id: string;
+  parameters?: Record<string, boolean | number>;
+  confirmed?: boolean;
+}
+
+export interface StartOperationResponse {
+  run_id: string;
+  operation_id: string;
+  status: OperationRunStatus;
+}
+
+export interface OperationRun {
+  run_id: string;
+  operation_id: string;
+  label: string;
+  status: OperationRunStatus;
+  parameters: Record<string, boolean | number>;
+  command: string[];
+  cwd: string;
+  writes: boolean;
+  llm_calls: boolean;
+  started_at: string;
+  finished_at: string | null;
+  duration_seconds: number | null;
+  exit_code: number | null;
+  stdout_tail: string;
+  stderr_tail: string;
+  report_path: string | null;
+}
+
+export interface OperationRunListResponse {
+  runs: OperationRun[];
+}

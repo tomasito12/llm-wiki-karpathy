@@ -116,6 +116,49 @@ def test_collect_vault_hygiene_status_flags_stale_orphan(tmp_path: Path) -> None
     assert warnings
 
 
+def test_collect_vault_hygiene_status_does_not_mark_orphans_safe_when_render_stale(
+    tmp_path: Path,
+) -> None:
+    """Managed orphans should not be safe-delete candidates when the render graph is stale."""
+    wiki = tmp_path / "wiki"
+    wiki.mkdir()
+    manifest = tmp_path / "manifest.json"
+    graph = tmp_path / "graph.json"
+    reviews = tmp_path / "reviews"
+    _write_manifest(manifest, ["sources/current.md"])
+    graph.write_text(
+        json.dumps({"sources": [{"source_id": "current"}]}),
+        encoding="utf-8",
+    )
+    review_dir = reviews / "new-source"
+    review_dir.mkdir(parents=True)
+    (review_dir / "review.json").write_text(
+        json.dumps({"review_analytics": {"review_finished_at": "2026-07-16T10:00:00Z"}}),
+        encoding="utf-8",
+    )
+    stale_source = wiki / "sources" / "new-source.md"
+    stale_source.parent.mkdir(parents=True)
+    stale_source.write_text("# new source\n", encoding="utf-8")
+
+    status, warnings = collect_vault_hygiene_status(
+        wiki_dir=wiki,
+        manifest_path=manifest,
+        reviews_dir=reviews,
+        raw_dir=tmp_path / "raw",
+        repo_root=tmp_path / "repo",
+        synthesis_cache_dir=tmp_path / "synthesis",
+        graph_path=graph,
+    )
+
+    assert status.render_manifest_stale is True
+    assert "1 finished source(s)" in str(status.render_manifest_stale_reason)
+    assert status.orphan_total == 1
+    assert not status.safe_delete_candidates
+    assert len(status.manual_review) == 1
+    assert "Render manifest may be stale" in status.manual_review[0].reason
+    assert any("not safe to delete" in warning for warning in warnings)
+
+
 def test_collect_vault_hygiene_status_classifies_manual_legacy_paths(tmp_path: Path) -> None:
     """Preserved manual folders should require review instead of auto-delete."""
     wiki = tmp_path / "wiki"

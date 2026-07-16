@@ -496,6 +496,19 @@ describe("App", () => {
         if (url.includes("/api/review/source/api-source")) {
           return Response.json(sourcePayload);
         }
+        if (url.includes("/api/ops/status")) {
+          return Response.json({
+            status: { recommendations: ["Run wiki-render --dry-run to refresh the render snapshot."] },
+            collected_at: "2026-07-16T10:00:00Z",
+            summary: "1 sources · 0 reviewed · render incomplete"
+          });
+        }
+        if (url.includes("/api/ops/operations")) {
+          return Response.json({ operations: [] });
+        }
+        if (url.includes("/api/ops/runs")) {
+          return Response.json({ runs: [] });
+        }
         return new Response("not found", { status: 404 });
       })
     );
@@ -512,9 +525,10 @@ describe("App", () => {
     expect(await screen.findByText("Review Workspace")).toBeInTheDocument();
     expect(screen.getByText("Write enabled")).toBeInTheDocument();
     expect(await screen.findByRole("heading", { name: "API Article" })).toBeInTheDocument();
-    expect(screen.getAllByText("Ready for review").length).toBeGreaterThan(0);
-    expect(await screen.findByText("API summary")).toBeInTheDocument();
+    expect(screen.getAllByText("Ready to review").length).toBeGreaterThan(0);
     expect(screen.getByRole("heading", { name: "Easy Read" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Extraction overview" })).toBeInTheDocument();
+    expect(await screen.findByText("API summary")).toBeInTheDocument();
     expect(await screen.findByText("API Topic")).toBeInTheDocument();
     expect(await screen.findByText("API Term")).toBeInTheDocument();
     expect(await screen.findByText("API Trend")).toBeInTheDocument();
@@ -576,8 +590,12 @@ describe("App", () => {
 
     render(<App />);
 
-    expect(await screen.findByText("Decision: Approved")).toBeInTheDocument();
-    expect(screen.getByText("Reviewed by plischke")).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: "API Article" })).toBeInTheDocument();
+    expect(
+      within(await screen.findByLabelText("Source list")).getByText("Approved")
+    ).toBeInTheDocument();
+    await userEvent.click(await screen.findByText("Source details"));
+    expect(await screen.findByText("plischke")).toBeInTheDocument();
     expect(screen.getByText("Looks good.")).toBeInTheDocument();
     expect(within(await screen.findByLabelText("Source list")).getByText("Approved")).toBeInTheDocument();
   });
@@ -1192,7 +1210,9 @@ describe("App", () => {
     expect(screen.getByText("Source-specific insights")).toBeInTheDocument();
     expect(screen.getByText("Telecom voicebot study")).toBeInTheDocument();
     expect(screen.getByText("Signal headline")).toBeInTheDocument();
-    expect(screen.getByText(/1 topics · 1 how-tos · 1 tools · 1 studies · 1 signals/)).toBeInTheDocument();
+    expect(screen.getByText("Topics 1")).toBeInTheDocument();
+    expect(screen.getByText("How-tos 1")).toBeInTheDocument();
+    expect(within(await screen.findByLabelText("Source list")).getByText(/5 entities/)).toBeInTheDocument();
   });
 
   it("edits a how-to through the existing entity endpoint", async () => {
@@ -1314,5 +1334,18 @@ describe("App", () => {
     await waitFor(() => expect(screen.queryByText("Hidden signal")).not.toBeInTheDocument());
     await userEvent.click(await screen.findByLabelText("Show rejected entities (1)"));
     expect(await screen.findByText("Hidden signal")).toBeInTheDocument();
+  });
+
+  it("shows Review and Pipeline navigation and opens the pipeline page", async () => {
+    render(<App />);
+
+    expect(await screen.findByRole("navigation", { name: "Main navigation" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Review" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Pipeline" })).toBeInTheDocument();
+
+    await userEvent.click(screen.getByRole("button", { name: "Pipeline" }));
+
+    expect(await screen.findByRole("heading", { name: "Pipeline Cockpit" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Pipeline status" })).toBeInTheDocument();
   });
 });

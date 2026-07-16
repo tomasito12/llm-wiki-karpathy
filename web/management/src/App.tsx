@@ -13,6 +13,7 @@ import {
 } from "./api";
 import "./styles.css";
 import { TagPicker, normalizeTagSlug } from "./TagPicker";
+import PipelineCockpit from "./PipelineCockpit";
 import type {
   ConfigResponse,
   EditableEntityGroup,
@@ -25,10 +26,12 @@ import type {
   ManagementWebMode,
   NormalizedEntity,
   NormalizedEntityGroup,
+  QueueCounts,
   QueueItem,
   QueueResponse,
   QueueStatusFilter,
   RawSourceResponse,
+  ReviewStatus,
   ReviewTagChoice,
   SourceDetailResponse
 } from "./types";
@@ -36,7 +39,7 @@ import type {
 const STATUS_OPTIONS: Array<{ value: QueueStatusFilter; label: string }> = [
   { value: "all", label: "All" },
   { value: "pending", label: "Needs analysis" },
-  { value: "in_progress", label: "Ready for review" },
+  { value: "in_progress", label: "Ready to review" },
   { value: "finished", label: "Finished" },
   { value: "incomplete", label: "Incomplete" }
 ];
@@ -72,6 +75,8 @@ const DECISION_ACTIONS: Array<{ status: ManagementReviewStatus; label: string }>
   { status: "reanalyze_requested", label: "Request re-analysis" }
 ];
 
+type AppView = "review" | "pipeline";
+
 interface EntityEditDraft {
   group: EditableEntityGroup;
   index: number;
@@ -82,6 +87,7 @@ interface EntityEditDraft {
 }
 
 export default function App(): ReactElement {
+  const [activeView, setActiveView] = useState<AppView>("review");
   const [config, setConfig] = useState<ConfigResponse | null>(null);
   const [queue, setQueue] = useState<QueueResponse | null>(null);
   const [source, setSource] = useState<SourceDetailResponse | null>(null);
@@ -361,48 +367,77 @@ export default function App(): ReactElement {
     <div className="app-shell">
       <header className="topbar">
         <div>
-          <h1>Review Workspace</h1>
-          <p>Batch review for pre-analyzed Readwise sources</p>
+          <h1>{activeView === "review" ? "Review Workspace" : "Pipeline Cockpit"}</h1>
+          <p>
+            {activeView === "review"
+              ? "Batch review for pre-analyzed Readwise sources"
+              : "Status, recommendations, and safe pipeline operations"}
+          </p>
+          <nav aria-label="Main navigation" className="app-nav">
+            <button
+              className={activeView === "review" ? "nav-link active" : "nav-link"}
+              onClick={() => setActiveView("review")}
+              type="button"
+            >
+              Review
+            </button>
+            <button
+              className={activeView === "pipeline" ? "nav-link active" : "nav-link"}
+              onClick={() => setActiveView("pipeline")}
+              type="button"
+            >
+              Pipeline
+            </button>
+          </nav>
         </div>
         <div className="mode-pill">{managementModeLabel(config?.mode)}</div>
       </header>
 
+      {activeView === "pipeline" ? <PipelineCockpit /> : null}
+
+      {activeView === "review" ? (
+        <>
       {error ? <div className="error-banner">{error}</div> : null}
 
       <main className="workspace">
         <aside className="queue-panel">
-          <section className="panel-card">
-            <h2>Queue</h2>
-            <label>
-              Status
-              <select
-                value={statusFilter}
-                onChange={(event) => setStatusFilter(event.target.value as QueueStatusFilter)}
-              >
-                {STATUS_OPTIONS.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label>
-              Decision
-              <select
-                value={decisionFilter}
-                onChange={(event) =>
-                  setDecisionFilter(event.target.value as ManagementDecisionFilter)
-                }
-              >
-                {DECISION_FILTER_OPTIONS.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-            </label>
+          <section className="panel-card queue-controls">
+            <div className="queue-controls-header">
+              <h2>Queue</h2>
+              {queue ? <QueueStatusSummary counts={queue.counts} /> : null}
+            </div>
+            <div className="queue-filter-grid">
+              <label>
+                Status
+                <select
+                  value={statusFilter}
+                  onChange={(event) => setStatusFilter(event.target.value as QueueStatusFilter)}
+                >
+                  {STATUS_OPTIONS.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label>
+                Decision
+                <select
+                  value={decisionFilter}
+                  onChange={(event) =>
+                    setDecisionFilter(event.target.value as ManagementDecisionFilter)
+                  }
+                >
+                  {DECISION_FILTER_OPTIONS.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            </div>
             <DecisionCountsSummary queue={queue} decisionFilter={decisionFilter} />
-            <label>
+            <label className="queue-search">
               Search
               <input
                 value={query}
@@ -411,8 +446,6 @@ export default function App(): ReactElement {
               />
             </label>
           </section>
-
-          <QueueCountsCard queue={queue} />
 
           <section className="source-list" aria-label="Source list">
             {queue?.items.map((item) => (
@@ -423,7 +456,10 @@ export default function App(): ReactElement {
               >
                 <span>{item.title}</span>
                 <small>
-                  {item.published_date || "No date"} · {formatEntityCounts(item.entity_counts)}
+                  {item.published_date || "No date"}
+                  {formatQueueEntityTotal(item.entity_counts)
+                    ? ` · ${formatQueueEntityTotal(item.entity_counts)}`
+                    : ""}
                 </small>
                 {item.management_status ? (
                   <small className={`management-badge ${managementStatusClass(item.management_status)}`}>
@@ -459,6 +495,7 @@ export default function App(): ReactElement {
                 onFinish={() => void finishCurrentReview()}
               />
               <SummaryCard source={source} />
+              <ExtractionOverview entities={source.entities} />
               <TagCloud tags={source.tags} />
               <EntitySections
                 availableTags={availableTags}
@@ -478,7 +515,7 @@ export default function App(): ReactElement {
                 onShowRejectedChange={setShowRejected}
                 tagsLoading={tagsLoading}
               />
-              <div className="utility-actions">
+              <div className="utility-actions secondary-utilities">
                 <button onClick={openRawSource}>
                   {rawOpen ? "Hide raw source" : "Show raw source"}
                 </button>
@@ -502,21 +539,23 @@ export default function App(): ReactElement {
           </details>
         </section>
       </main>
+        </>
+      ) : null}
     </div>
   );
 }
 
-function statusLabel(status: QueueStatusFilter): string {
+function sourceReviewStatusLabel(status: ReviewStatus): string {
   if (status === "pending") {
     return "Needs analysis";
   }
   if (status === "in_progress") {
-    return "Ready for review";
+    return "Ready to review";
   }
-  if (status === "all") {
-    return "All";
+  if (status === "finished") {
+    return "Reviewed";
   }
-  return status.charAt(0).toUpperCase() + status.slice(1);
+  return "Incomplete";
 }
 
 function managementStatusLabel(status: ManagementReviewStatus): string {
@@ -578,11 +617,17 @@ function entityKey(group: EditableEntityGroup, index: number): string {
   return `${group}:${index}`;
 }
 
-function formatEntityCounts(counts: EntityCounts): string {
-  const parts = ENTITY_COUNT_LABELS.filter(({ key }) => counts[key] > 0).map(
-    ({ key, label }) => `${counts[key]} ${label}`
-  );
-  return parts.length > 0 ? parts.join(" · ") : "0 entities";
+
+function formatQueueEntityTotal(counts: EntityCounts): string | null {
+  const total = ENTITY_COUNT_LABELS.reduce((sum, { key }) => sum + counts[key], 0);
+  if (total === 0) {
+    return null;
+  }
+  return total === 1 ? "1 entity" : `${total} entities`;
+}
+
+function countVisibleEntities(items: NormalizedEntity[]): number {
+  return items.filter((item) => !item.hidden).length;
 }
 
 function entityGroupItems(entities: EntityGroups, group: EditableEntityGroup): NormalizedEntity[] {
@@ -678,29 +723,17 @@ function DecisionCountsSummary({
   return (
     <p className="decision-counts">
       {queue.decision_counts.not_reviewed} not reviewed · {queue.decision_counts.approved} approved ·{" "}
-      {queue.decision_counts.needs_attention} needs attention · selected {selectedCount}
+      {queue.decision_counts.needs_attention} attention · {selectedCount} shown
     </p>
   );
 }
 
-function QueueCountsCard({ queue }: { queue: QueueResponse | null }): ReactElement {
+function QueueStatusSummary({ counts }: { counts: QueueCounts }): ReactElement {
   return (
-    <section className="counts-grid">
-      <Metric label="Total" value={queue?.counts.total ?? 0} />
-      <Metric label="Needs analysis" value={queue?.counts.pending ?? 0} />
-      <Metric label="Ready for review" value={queue?.counts.in_progress ?? 0} />
-      <Metric label="Finished" value={queue?.counts.finished ?? 0} />
-      <Metric label="Incomplete" value={queue?.counts.incomplete ?? 0} />
-    </section>
-  );
-}
-
-function Metric({ label, value }: { label: string; value: number }): ReactElement {
-  return (
-    <div className="metric">
-      <span>{label}</span>
-      <strong>{value}</strong>
-    </div>
+    <p className="queue-status-summary">
+      {counts.total} total · {counts.in_progress} ready · {counts.pending} needs analysis ·{" "}
+      {counts.finished} reviewed
+    </p>
   );
 }
 
@@ -738,25 +771,34 @@ function SourceHeader({
   onFinish: () => void;
 }): ReactElement {
   return (
-    <section className="source-header">
+    <section className="source-header source-header-compact">
       <div className="source-header-content">
         <p className="eyebrow">{source.metadata.publication || source.metadata.category || "Source"}</p>
         <h2>{source.metadata.title}</h2>
         <p className="source-byline">
-          {source.metadata.author || "Unknown author"} · {source.metadata.published_date || "No date"}
+          {source.metadata.author || "Unknown author"} · {source.metadata.published_date || "No date"} ·{" "}
+          {sourceReviewStatusLabel(source.status)}
         </p>
-        <div className="status-row">
-          <span>{statusLabel(source.status)}</span>
-          <span>{source.stale === null ? "Stale unknown" : source.stale ? "Stale" : "Current"}</span>
-          <span>Readwise {source.metadata.readwise_id || "unknown"}</span>
-        </div>
-        <ManagementDecisionState review={source.management_review} />
+        <details className="source-meta-details">
+          <summary>Source details</summary>
+          <div className="status-row quiet-meta">
+            {source.stale === null ? (
+              <span>Sync unknown</span>
+            ) : source.stale ? (
+              <span>Out of date</span>
+            ) : (
+              <span>Up to date</span>
+            )}
+            <span>Readwise {source.metadata.readwise_id || "unknown"}</span>
+          </div>
+          <ManagementDecisionState review={source.management_review} />
+        </details>
       </div>
       <div className="source-header-actions">
         <span className="queue-position">
           {selectedIndex >= 0 ? `${selectedIndex + 1} / ${visibleTotal}` : "No source"}
         </span>
-        <div className="button-row">
+        <div className="button-row nav-buttons">
           <button disabled={!canMovePrevious} onClick={onMovePrevious}>
             Previous
           </button>
@@ -767,9 +809,10 @@ function SourceHeader({
         <button className="primary-action" disabled={finishPending || decisionPending} onClick={onFinish}>
           Finish as approved
         </button>
-        <div className="decision-actions" aria-label="Article decisions">
+        <div className="decision-actions secondary-actions" aria-label="Article decisions">
           {DECISION_ACTIONS.map((action) => (
             <button
+              className="secondary-action"
               disabled={decisionPending || finishPending}
               key={action.status}
               onClick={() => void onDecision(action.status)}
@@ -778,10 +821,10 @@ function SourceHeader({
             </button>
           ))}
         </div>
-        {finishMessage ? <p className="success-message">{finishMessage}</p> : null}
-        {finishError ? <p className="error-message">{finishError}</p> : null}
-        {decisionMessage ? <p className="success-message">{decisionMessage}</p> : null}
-        {decisionError ? <p className="error-message">{decisionError}</p> : null}
+        {finishMessage ? <p className="action-feedback success-message">{finishMessage}</p> : null}
+        {finishError ? <p className="action-feedback error-message">{finishError}</p> : null}
+        {decisionMessage ? <p className="action-feedback success-message">{decisionMessage}</p> : null}
+        {decisionError ? <p className="action-feedback error-message">{decisionError}</p> : null}
       </div>
     </section>
   );
@@ -793,15 +836,44 @@ function ManagementDecisionState({
   review: ManagementReview | null;
 }): ReactElement {
   if (!review) {
-    return <p className="management-review-state">Decision: Not reviewed</p>;
+    return <p className="management-review-state quiet">Not reviewed yet</p>;
   }
   return (
-    <div className={`management-review-state ${managementStatusClass(review.status)}`}>
-      <strong>Decision: {managementStatusLabel(review.status)}</strong>
-      <span>Reviewed by {review.reviewed_by}</span>
+    <div className={`management-review-state quiet ${managementStatusClass(review.status)}`}>
+      <strong>{managementStatusLabel(review.status)}</strong>
+      <span>{review.reviewed_by}</span>
       <span>{review.reviewed_at}</span>
       {review.notes ? <p>{review.notes}</p> : null}
     </div>
+  );
+}
+
+function ExtractionOverview({ entities }: { entities: EntityGroups }): ReactElement {
+  const chips = entities.groups.map((group) => ({
+    group: group.group,
+    label: group.label,
+    visibleCount: countVisibleEntities(group.items),
+    totalCount: group.items.length
+  }));
+  return (
+    <section className="extraction-overview" aria-label="Extraction overview">
+      <h3>Extraction overview</h3>
+      <div className="extraction-overview-grid">
+        {chips.map((chip) => (
+          <span
+            className={
+              chip.visibleCount === 0
+                ? "extraction-chip extraction-chip-empty"
+                : "extraction-chip"
+            }
+            key={chip.group}
+          >
+            {chip.label} {chip.visibleCount}
+            {chip.totalCount > chip.visibleCount ? ` (${chip.totalCount - chip.visibleCount} rejected)` : ""}
+          </span>
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -826,11 +898,21 @@ function SummaryCard({ source }: { source: SourceDetailResponse }): ReactElement
 }
 
 function TagCloud({ tags }: { tags: string[] }): ReactElement {
+  if (tags.length === 0) {
+    return (
+      <section className="review-section-quiet">
+        <h3>Article tags</h3>
+        <p className="quiet-empty">No article tags.</p>
+      </section>
+    );
+  }
   return (
-    <section className="review-card">
-      <h3>Tags</h3>
-      <div className="tag-cloud">
-        {tags.length > 0 ? tags.map((tag) => <span key={tag}>{tag}</span>) : <p>No tags found.</p>}
+    <section className="review-section-quiet">
+      <h3>Article tags</h3>
+      <div className="tag-cloud quiet">
+        {tags.map((tag) => (
+          <span key={tag}>{tag}</span>
+        ))}
       </div>
     </section>
   );
@@ -1186,17 +1268,17 @@ function EntityCard({
         </div>
       </div>
       {rejected ? <span className="rejected-badge">Rejected</span> : null}
-      {item.description ? <p>{item.description}</p> : null}
-      {entityMessage ? <p className="success-message inline">{entityMessage}</p> : null}
       {item.tags.length > 0 ? (
-        <div className="tag-cloud compact">
+        <div className="tag-cloud compact entity-card-tags">
           {item.tags.map((tag) => (
             <span key={tag}>{tag}</span>
           ))}
         </div>
       ) : null}
+      {item.description ? <EntityDescription text={item.description} /> : null}
+      {entityMessage ? <p className="success-message inline">{entityMessage}</p> : null}
       {item.types.length > 0 ? (
-        <div className="tag-cloud compact">
+        <div className="tag-cloud compact entity-card-types">
           {item.types.map((type) => (
             <span className="type-chip" key={type}>
               {type}
@@ -1223,6 +1305,21 @@ function EntityCard({
         </details>
       ) : null}
     </article>
+  );
+}
+
+function EntityDescription({ text }: { text: string }): ReactElement {
+  const [expanded, setExpanded] = useState(false);
+  const long = text.length > 180 || text.split("\n").length > 3;
+  return (
+    <div className={expanded ? "entity-description expanded" : "entity-description"}>
+      <p>{text}</p>
+      {long ? (
+        <button className="text-button" onClick={() => setExpanded((current) => !current)} type="button">
+          {expanded ? "Show less" : "Show more"}
+        </button>
+      ) : null}
+    </div>
   );
 }
 

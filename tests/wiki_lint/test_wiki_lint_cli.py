@@ -153,10 +153,12 @@ def test_wiki_lint_hygiene_only_reports_orphans(
     repo.mkdir()
     wiki.mkdir()
     manifest = tmp_path / "manifest.json"
+    graph = tmp_path / "graph.json"
     manifest.write_text(
         json.dumps({"files": [{"path": "topics/current.md", "sha256": "abc"}]}),
         encoding="utf-8",
     )
+    graph.write_text(json.dumps({"sources": []}), encoding="utf-8")
     (wiki / "topics").mkdir(parents=True)
     (wiki / "topics" / "current.md").write_text("# current\n", encoding="utf-8")
     (wiki / "topics" / "stale.md").write_text("# stale\n", encoding="utf-8")
@@ -167,6 +169,7 @@ def test_wiki_lint_hygiene_only_reports_orphans(
 vault_root = "{tmp_path / "vault"}"
 wiki_dir = "{wiki}"
 manifest_path = "{manifest}"
+graph_path = "{graph}"
 reviews_dir = "{tmp_path / "reviews"}"
 raw_dir = "{tmp_path / "raw"}"
 synthesis_dir = "{tmp_path / "synthesis"}"
@@ -181,6 +184,61 @@ synthesis_dir = "{tmp_path / "synthesis"}"
     assert exit_code == 1
     assert "safe delete candidates: 1" in output
     assert "topics/stale.md" in output
+
+
+def test_wiki_lint_hygiene_warns_instead_of_safe_delete_when_render_stale(
+    tmp_path: Path,
+    monkeypatch,
+    capsys,
+) -> None:
+    """Stale render snapshots should suppress safe-delete orphan output."""
+    repo = tmp_path / "repo"
+    wiki = tmp_path / "wiki"
+    reviews = tmp_path / "reviews"
+    repo.mkdir()
+    wiki.mkdir()
+    manifest = tmp_path / "manifest.json"
+    graph = tmp_path / "graph.json"
+    manifest.write_text(
+        json.dumps({"files": [{"path": "sources/current.md", "sha256": "abc"}]}),
+        encoding="utf-8",
+    )
+    graph.write_text(
+        json.dumps({"sources": [{"source_id": "current"}]}),
+        encoding="utf-8",
+    )
+    (wiki / "sources").mkdir(parents=True)
+    (wiki / "sources" / "new-source.md").write_text("# new source\n", encoding="utf-8")
+    review_dir = reviews / "new-source"
+    review_dir.mkdir(parents=True)
+    (review_dir / "review.json").write_text(
+        json.dumps({"review_analytics": {"review_finished_at": "2026-07-16T10:00:00Z"}}),
+        encoding="utf-8",
+    )
+    config_path = tmp_path / "wiki_paths.toml"
+    config_path.write_text(
+        f"""
+[paths]
+vault_root = "{tmp_path / "vault"}"
+wiki_dir = "{wiki}"
+manifest_path = "{manifest}"
+graph_path = "{graph}"
+reviews_dir = "{reviews}"
+raw_dir = "{tmp_path / "raw"}"
+synthesis_dir = "{tmp_path / "synthesis"}"
+""".strip(),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(cli, "_repo_root", lambda: repo)
+
+    exit_code = cli.main(["--paths-config", str(config_path), "--hygiene-only"])
+    output = capsys.readouterr().out
+
+    assert exit_code == 0
+    assert "safe delete candidates: 0" in output
+    assert "render manifest stale: yes" in output
+    assert "not safe to delete before re-rendering" in output
+    assert "orphan\tsources/new-source.md" not in output
 
 
 def test_wiki_lint_missing_paths_config_returns_error(

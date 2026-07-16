@@ -7,11 +7,17 @@ import type {
   ManagementDecisionResponse,
   ManagementDecisionFilter,
   ManagementReviewRequest,
+  OperationRun,
+  OperationRunListResponse,
+  OperationsListResponse,
+  OpsStatusResponse,
   QueueResponse,
   QueueStatusFilter,
   RawSourceResponse,
   ReviewTagsResponse,
-  SourceDetailResponse
+  SourceDetailResponse,
+  StartOperationRequest,
+  StartOperationResponse
 } from "./types";
 
 async function fetchJson<T>(path: string, init?: RequestInit): Promise<T> {
@@ -91,4 +97,28 @@ export function finishReview(
     headers: { "Content-Type": "application/json" },
     method: "PATCH"
   });
+}
+
+export function getOpsStatus(): Promise<OpsStatusResponse> {
+  return fetchJson<OpsStatusResponse>("/api/ops/status");
+}
+
+export function getOpsOperations(): Promise<OperationsListResponse> {
+  return fetchJson<OperationsListResponse>("/api/ops/operations");
+}
+
+export function startOperationRun(request: StartOperationRequest): Promise<StartOperationResponse> {
+  return fetchJson<StartOperationResponse>("/api/ops/runs", {
+    body: JSON.stringify(request),
+    headers: { "Content-Type": "application/json" },
+    method: "POST"
+  });
+}
+
+export function getOperationRun(runId: string): Promise<OperationRun> {
+  return fetchJson<OperationRun>(`/api/ops/runs/${encodeURIComponent(runId)}`);
+}
+
+export function listOperationRuns(limit = 20): Promise<OperationRunListResponse> {
+  return fetchJson<OperationRunListResponse>(`/api/ops/runs?limit=${limit}`);
 }
