@@ -454,6 +454,141 @@ const emptyQueuePayload = {
   items: []
 };
 
+const pipelineOperationsPayload = {
+  operations: [
+    {
+      id: "wiki_lint",
+      label: "Wiki lint",
+      description: "Validate generated wiki markdown and vault hygiene without writes.",
+      writes: false,
+      llm_calls: false,
+      requires_confirmation: false,
+      parameters: []
+    },
+    {
+      id: "wiki_render_dry_run",
+      label: "Wiki render dry-run",
+      description: "Preview generated Obsidian wiki pages.",
+      writes: false,
+      llm_calls: false,
+      requires_confirmation: false,
+      parameters: [
+        {
+          name: "require_source_text",
+          label: "Require source text",
+          type: "boolean",
+          default: true
+        }
+      ]
+    },
+    {
+      id: "wiki_render",
+      label: "Wiki render",
+      description: "Write generated Obsidian wiki pages.",
+      writes: true,
+      llm_calls: false,
+      requires_confirmation: true,
+      parameters: [
+        {
+          name: "require_source_text",
+          label: "Require source text",
+          type: "boolean",
+          default: true
+        }
+      ]
+    },
+    {
+      id: "synthesis_select",
+      label: "Synthesis select",
+      description: "Rank changed synthesis candidates without LLM calls.",
+      writes: false,
+      llm_calls: false,
+      requires_confirmation: false,
+      parameters: [
+        {
+          name: "limit",
+          label: "Limit",
+          type: "integer",
+          default: 20
+        }
+      ]
+    },
+    {
+      id: "synthesis_batch_dry_run",
+      label: "Synthesis batch dry-run",
+      description: "Preview a synthesis batch.",
+      writes: false,
+      llm_calls: false,
+      requires_confirmation: false,
+      parameters: [
+        {
+          name: "limit",
+          label: "Limit",
+          type: "integer",
+          default: 5
+        }
+      ]
+    },
+    {
+      id: "synthesis_batch",
+      label: "Synthesis batch",
+      description: "Run a bounded synthesis batch.",
+      writes: true,
+      llm_calls: true,
+      requires_confirmation: true,
+      parameters: [
+        {
+          name: "limit",
+          label: "Limit",
+          type: "integer",
+          default: 5
+        },
+        {
+          name: "between_calls",
+          label: "Pause between calls",
+          type: "integer",
+          default: 300
+        }
+      ]
+    }
+  ]
+};
+
+const pipelineRunsPayload = {
+  runs: [
+    {
+      run_id: "run-failed",
+      operation_id: "wiki_lint",
+      label: "Wiki lint",
+      status: "failed",
+      started_at: "2026-07-16T12:57:28Z",
+      finished_at: "2026-07-16T12:57:30Z",
+      duration_seconds: 2,
+      exit_code: 2,
+      writes: false,
+      llm_calls: false,
+      report_path: null,
+      stdout_tail: "",
+      stderr_tail: "lint failed"
+    },
+    {
+      run_id: "run-ok",
+      operation_id: "synthesis_select",
+      label: "Synthesis select",
+      status: "succeeded",
+      started_at: "2026-07-16T12:55:28Z",
+      finished_at: "2026-07-16T12:55:30Z",
+      duration_seconds: 2,
+      exit_code: 0,
+      writes: false,
+      llm_calls: false,
+      report_path: null,
+      stdout_tail: "select ok",
+      stderr_tail: ""
+    }
+  ]
+};
+
 describe("App", () => {
   beforeEach(() => {
     vi.stubGlobal(
@@ -496,6 +631,17 @@ describe("App", () => {
         if (url.includes("/api/review/source/api-source")) {
           return Response.json(sourcePayload);
         }
+        if (url.includes("/api/ops/workflows/update-wiki/status")) {
+          return Response.json({
+            update_available: true,
+            headline: "Wiki update available",
+            detail_line: "1 sources · 0 reviewed · render incomplete",
+            hints: [],
+            blocking_errors: [],
+            can_start: true,
+            collected_at: "2026-07-16T10:00:00Z"
+          });
+        }
         if (url.includes("/api/ops/status")) {
           return Response.json({
             status: { recommendations: ["Run wiki-render --dry-run to refresh the render snapshot."] },
@@ -504,10 +650,10 @@ describe("App", () => {
           });
         }
         if (url.includes("/api/ops/operations")) {
-          return Response.json({ operations: [] });
+          return Response.json(pipelineOperationsPayload);
         }
         if (url.includes("/api/ops/runs")) {
-          return Response.json({ runs: [] });
+          return Response.json(pipelineRunsPayload);
         }
         return new Response("not found", { status: 404 });
       })
@@ -1346,6 +1492,73 @@ describe("App", () => {
     await userEvent.click(screen.getByRole("button", { name: "Pipeline" }));
 
     expect(await screen.findByRole("heading", { name: "Pipeline Cockpit" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Pipeline status" })).toBeInTheDocument();
+    expect(await screen.findByRole("button", { name: "Update Wiki" })).toBeInTheDocument();
+    expect(screen.getByText("Advanced manual operations")).toBeInTheDocument();
+  });
+
+  it("shows an explicit pipeline backend error instead of empty recommendations", async () => {
+    vi.mocked(fetch).mockImplementation(async (input: RequestInfo | URL) => {
+      const url = String(input);
+      if (url.includes("/api/config")) {
+        return Response.json(configPayload);
+      }
+      if (url.includes("/api/review/tags")) {
+        return Response.json(tagRegistryPayload);
+      }
+      if (url.includes("/api/review/queue")) {
+        return Response.json(queuePayload);
+      }
+      if (url.includes("/api/review/source/api-source")) {
+        return Response.json(sourcePayload);
+      }
+      if (url.includes("/api/ops/status")) {
+        return new Response("offline", { status: 503, statusText: "Service Unavailable" });
+      }
+      if (url.includes("/api/ops/operations")) {
+        return Response.json(pipelineOperationsPayload);
+      }
+      if (url.includes("/api/ops/runs")) {
+        return Response.json(pipelineRunsPayload);
+      }
+      return new Response("not found", { status: 404 });
+    });
+    render(<App />);
+
+    await userEvent.click(await screen.findByRole("button", { name: "Pipeline" }));
+
+    expect(await screen.findByText("Error: Request failed: 404")).toBeInTheDocument();
+    expect(screen.queryByText("No recommendations yet.")).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Refresh status" })).toBeInTheDocument();
+  });
+
+  it("renders the pipeline cockpit with operator-oriented sections and visible run state", async () => {
+    render(<App />);
+
+    await userEvent.click(await screen.findByRole("button", { name: "Pipeline" }));
+    await userEvent.click(await screen.findByText("Advanced manual operations"));
+
+    expect(await screen.findByRole("heading", { name: "Check wiki health" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Preview or publish wiki" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Inspect synthesis candidates" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Run synthesis batch" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Run health check" })).toBeInTheDocument();
+    expect(screen.getAllByRole("button", { name: "Preview render" }).length).toBeGreaterThan(0);
+    expect(screen.getByRole("button", { name: "Write render..." })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Recent runs" })).toBeInTheDocument();
+    expect(screen.getAllByText("Failed").length).toBeGreaterThan(0);
+  });
+
+  it("confirms write and LLM operations with plain-language impact and labeled parameters", async () => {
+    render(<App />);
+
+    await userEvent.click(await screen.findByRole("button", { name: "Pipeline" }));
+    await userEvent.click(await screen.findByRole("button", { name: "Run batch..." }));
+
+    expect(await screen.findByRole("dialog", { name: "Confirm operation" })).toBeInTheDocument();
+    expect(screen.getByText("This operation writes files and may call the LLM API.")).toBeInTheDocument();
+    expect(screen.getByText("Limit: 5")).toBeInTheDocument();
+    expect(screen.getByText("Pause between calls: 300")).toBeInTheDocument();
+    expect(screen.getByText("Expected output: synthesis cache files and an operation run report.")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Confirm and run" })).toBeInTheDocument();
   });
 });

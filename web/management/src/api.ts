@@ -17,7 +17,13 @@ import type {
   ReviewTagsResponse,
   SourceDetailResponse,
   StartOperationRequest,
-  StartOperationResponse
+  StartOperationResponse,
+  StartUpdateWikiRequest,
+  StartUpdateWikiResponse,
+  ConfirmUpdateWikiRequest,
+  UpdateWikiAvailabilityResponse,
+  UpdateWikiWorkflowRun,
+  UpdateWikiWorkflowRunListResponse
 } from "./types";
 
 async function fetchJson<T>(path: string, init?: RequestInit): Promise<T> {
@@ -121,4 +127,58 @@ export function getOperationRun(runId: string): Promise<OperationRun> {
 
 export function listOperationRuns(limit = 20): Promise<OperationRunListResponse> {
   return fetchJson<OperationRunListResponse>(`/api/ops/runs?limit=${limit}`);
+}
+
+export function getUpdateWikiStatus(): Promise<UpdateWikiAvailabilityResponse> {
+  return fetchJson<UpdateWikiAvailabilityResponse>("/api/ops/workflows/update-wiki/status");
+}
+
+export function startUpdateWiki(
+  request: StartUpdateWikiRequest
+): Promise<StartUpdateWikiResponse> {
+  return fetchJson<StartUpdateWikiResponse>("/api/ops/workflows/update-wiki/start", {
+    body: JSON.stringify(request),
+    headers: { "Content-Type": "application/json" },
+    method: "POST"
+  });
+}
+
+export function getUpdateWikiRun(runId: string): Promise<UpdateWikiWorkflowRun> {
+  return fetchJson<UpdateWikiWorkflowRun>(
+    `/api/ops/workflows/update-wiki/${encodeURIComponent(runId)}`
+  );
+}
+
+export function confirmUpdateWikiStep(
+  runId: string,
+  request: ConfirmUpdateWikiRequest
+): Promise<UpdateWikiWorkflowRun> {
+  return fetchJson<UpdateWikiWorkflowRun>(
+    `/api/ops/workflows/update-wiki/${encodeURIComponent(runId)}/confirm`,
+    {
+      body: JSON.stringify(request),
+      headers: { "Content-Type": "application/json" },
+      method: "POST"
+    }
+  );
+}
+
+export function skipUpdateWikiStep(
+  runId: string,
+  request: ConfirmUpdateWikiRequest
+): Promise<UpdateWikiWorkflowRun> {
+  return fetchJson<UpdateWikiWorkflowRun>(
+    `/api/ops/workflows/update-wiki/${encodeURIComponent(runId)}/skip`,
+    {
+      body: JSON.stringify(request),
+      headers: { "Content-Type": "application/json" },
+      method: "POST"
+    }
+  );
+}
+
+export function listUpdateWikiRuns(limit = 10): Promise<UpdateWikiWorkflowRunListResponse> {
+  return fetchJson<UpdateWikiWorkflowRunListResponse>(
+    `/api/ops/workflows/update-wiki/runs?limit=${limit}`
+  );
 }

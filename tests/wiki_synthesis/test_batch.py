@@ -213,7 +213,8 @@ def test_batch_sleeps_between_calls_but_not_after_last(tmp_path: Path) -> None:
     )
 
     assert report.called == 2
-    assert sleeps == [300.0]
+    assert abs(sum(sleeps) - 300.0) < 0.001
+    assert len(sleeps) == 300
 
 
 def test_batch_dry_run_does_not_sleep(tmp_path: Path) -> None:

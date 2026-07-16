@@ -31,6 +31,35 @@ class OperationConflictError(RuntimeError):
     """Raised when confirmation or concurrency rules block a run."""
 
 
+class ManagementRunCoordinator:
+    """Ensure only one manual operation or workflow runs at a time."""
+
+    def __init__(self) -> None:
+        self._lock = threading.Lock()
+        self._active_kind: str | None = None
+        self._active_run_id: str | None = None
+
+    def try_acquire(self, *, kind: str, run_id: str) -> None:
+        """Reserve the single active run slot for one operation or workflow."""
+        with self._lock:
+            if self._active_kind is not None:
+                raise OperationConflictError("Another operation is already running.")
+            self._active_kind = kind
+            self._active_run_id = run_id
+
+    def release(self, run_id: str) -> None:
+        """Release the active run slot when a run finishes."""
+        with self._lock:
+            if self._active_run_id == run_id:
+                self._active_kind = None
+                self._active_run_id = None
+
+    def active_run_id(self) -> str | None:
+        """Return the currently active run id, if any."""
+        with self._lock:
+            return self._active_run_id
+
+
 @dataclass(frozen=True)
 class OperationParameterDefinition:
     """One validated parameter exposed to the management web UI."""
@@ -419,11 +448,12 @@ class OpsRunManager:
         paths: WikiPaths,
         paths_config: Path | None = None,
         command_runner: CommandRunner | None = None,
+        coordinator: ManagementRunCoordinator | None = None,
     ) -> None:
         self._paths = paths
         self._paths_config = paths_config
         self._command_runner = command_runner or _default_command_runner
-        self._lock = threading.Lock()
+        self._coordinator = coordinator or ManagementRunCoordinator()
         self._active_run_id: str | None = None
 
     @property
@@ -457,9 +487,12 @@ class OpsRunManager:
         reports: list[dict[str, Any]] = []
         for path in sorted(runs_dir.glob("*.json"), reverse=True):
             try:
-                reports.append(json.loads(path.read_text(encoding="utf-8")))
+                report = json.loads(path.read_text(encoding="utf-8"))
             except (OSError, json.JSONDecodeError):
                 continue
+            if report.get("workflow_id"):
+                continue
+            reports.append(report)
             if len(reports) >= limit:
                 break
         return reports
@@ -470,13 +503,13 @@ class OpsRunManager:
 
     def active_run(self) -> dict[str, Any] | None:
         """Return the currently active run report, if any."""
-        with self._lock:
-            if self._active_run_id is None:
-                return None
-            try:
-                return self._load_report(self._active_run_id)
-            except FileNotFoundError:
-                return None
+        active_run_id = self._coordinator.active_run_id()
+        if active_run_id is None:
+            return None
+        try:
+            return self._load_report(active_run_id)
+        except FileNotFoundError:
+            return None
 
     def start_run(
         self,
@@ -496,31 +529,29 @@ class OpsRunManager:
             raise OperationConflictError(
                 "Operation requires explicit confirmation before it can run."
             )
-        with self._lock:
-            if self._active_run_id is not None:
-                raise OperationConflictError("Another operation is already running.")
-            started_at = _utc_timestamp()
-            run_id = _run_id(operation.id, _utc_now())
-            report: dict[str, Any] = {
-                "run_id": run_id,
-                "operation_id": operation.id,
-                "label": operation.label,
-                "status": "queued",
-                "parameters": normalized,
-                "command": command,
-                "cwd": str(self._paths.repo_root),
-                "writes": operation.writes,
-                "llm_calls": operation.llm_calls,
-                "started_at": started_at,
-                "finished_at": None,
-                "duration_seconds": None,
-                "exit_code": None,
-                "stdout_tail": "",
-                "stderr_tail": "",
-                "report_path": None,
-            }
-            self._write_report(report)
-            self._active_run_id = run_id
+        started_at = _utc_timestamp()
+        run_id = _run_id(operation.id, _utc_now())
+        report: dict[str, Any] = {
+            "run_id": run_id,
+            "operation_id": operation.id,
+            "label": operation.label,
+            "status": "queued",
+            "parameters": normalized,
+            "command": command,
+            "cwd": str(self._paths.repo_root),
+            "writes": operation.writes,
+            "llm_calls": operation.llm_calls,
+            "started_at": started_at,
+            "finished_at": None,
+            "duration_seconds": None,
+            "exit_code": None,
+            "stdout_tail": "",
+            "stderr_tail": "",
+            "report_path": None,
+        }
+        self._coordinator.try_acquire(kind="operation", run_id=run_id)
+        self._write_report(report)
+        self._active_run_id = run_id
         thread = threading.Thread(
             target=self._execute_run,
             args=(run_id, command),
@@ -547,9 +578,9 @@ class OpsRunManager:
             }
         )
         self._write_report(report)
-        with self._lock:
-            if self._active_run_id == run_id:
-                self._active_run_id = None
+        self._coordinator.release(run_id)
+        if self._active_run_id == run_id:
+            self._active_run_id = None
 
 
 def format_ops_status_summary(status: dict[str, Any]) -> str:
@@ -568,9 +599,7 @@ def format_ops_status_summary(status: dict[str, Any]) -> str:
         render_bits.append("render incomplete")
     if stale:
         render_bits.append(f"{stale} stale syntheses")
-    return (
-        f"{paired} sources · {finished} reviewed · {' · '.join(render_bits)}"
-    )
+    return f"{paired} sources · {finished} reviewed · {' · '.join(render_bits)}"
 
 
 def recommendation_operation_id(recommendation: str) -> str | None:

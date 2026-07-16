@@ -278,3 +278,89 @@ export interface OperationRun {
 export interface OperationRunListResponse {
   runs: OperationRun[];
 }
+
+export type WorkflowRunStatus =
+  | "running"
+  | "waiting_for_confirmation"
+  | "succeeded"
+  | "failed"
+  | "stopped";
+export type WorkflowStepStatus =
+  | "pending"
+  | "running"
+  | "succeeded"
+  | "failed"
+  | "skipped"
+  | "waiting";
+
+export interface WorkflowPendingConfirmation {
+  id: string;
+  title: string;
+  description: string;
+  confirm_label: string;
+  skip_label: string;
+  summary_lines: string[];
+}
+
+export interface WorkflowStep {
+  id: string;
+  label: string;
+  status: WorkflowStepStatus;
+  writes: boolean;
+  llm_calls: boolean;
+  summary_lines: string[];
+  technical_stdout: string;
+  technical_stderr: string;
+  exit_code: number | null;
+  progress_current?: number | null;
+  progress_total?: number | null;
+  progress_message?: string | null;
+  progress_lines?: string[];
+}
+
+export interface UpdateWikiWorkflowRun {
+  run_id: string;
+  workflow_id: string;
+  status: WorkflowRunStatus;
+  current_step: string;
+  headline: string;
+  started_at: string;
+  finished_at: string | null;
+  duration_seconds: number | null;
+  parameters: {
+    synthesis_batch_size: number;
+    synthesis_between_calls_seconds: number;
+  };
+  steps: WorkflowStep[];
+  pending_confirmation: WorkflowPendingConfirmation | null;
+  report_path: string | null;
+}
+
+export interface UpdateWikiAvailabilityResponse {
+  update_available: boolean;
+  headline: string;
+  detail_line: string;
+  hints: string[];
+  blocking_errors: string[];
+  can_start: boolean;
+  collected_at: string;
+}
+
+export interface StartUpdateWikiRequest {
+  synthesis_batch_size: number;
+  synthesis_between_calls_seconds: number;
+}
+
+export interface StartUpdateWikiResponse {
+  run_id: string;
+  workflow_id: string;
+  status: WorkflowRunStatus;
+}
+
+export interface ConfirmUpdateWikiRequest {
+  confirmation_id: string;
+}
+
+export interface UpdateWikiWorkflowRunListResponse {
+  runs: UpdateWikiWorkflowRun[];
+}

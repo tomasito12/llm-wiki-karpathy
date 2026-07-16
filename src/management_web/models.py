@@ -380,3 +380,92 @@ class OperationRunListResponse(BaseModel):
     """Recent management-launched operation runs."""
 
     runs: list[OperationRunResponse]
+
+
+WorkflowRunStatus = Literal["running", "waiting_for_confirmation", "succeeded", "failed", "stopped"]
+WorkflowStepStatus = Literal["pending", "running", "succeeded", "failed", "skipped", "waiting"]
+
+
+class WorkflowPendingConfirmation(BaseModel):
+    """One inline confirmation gate inside a workflow run."""
+
+    id: str
+    title: str
+    description: str
+    confirm_label: str
+    skip_label: str
+    summary_lines: list[str] = []
+
+
+class WorkflowStepModel(BaseModel):
+    """One step in a guided workflow run."""
+
+    id: str
+    label: str
+    status: WorkflowStepStatus
+    writes: bool = False
+    llm_calls: bool = False
+    summary_lines: list[str] = []
+    technical_stdout: str = ""
+    technical_stderr: str = ""
+    exit_code: int | None = None
+    progress_current: int | None = None
+    progress_total: int | None = None
+    progress_message: str | None = None
+    progress_lines: list[str] = []
+
+
+class UpdateWikiWorkflowRunModel(BaseModel):
+    """One Update Wiki workflow run report."""
+
+    run_id: str
+    workflow_id: str
+    status: WorkflowRunStatus
+    current_step: str
+    headline: str
+    started_at: str
+    finished_at: str | None = None
+    duration_seconds: float | None = None
+    parameters: dict[str, Any]
+    steps: list[WorkflowStepModel]
+    pending_confirmation: WorkflowPendingConfirmation | None = None
+    report_path: str | None = None
+
+
+class UpdateWikiAvailabilityResponse(BaseModel):
+    """Availability summary for the Update Wiki workflow."""
+
+    update_available: bool
+    headline: str
+    detail_line: str
+    hints: list[str]
+    blocking_errors: list[str]
+    can_start: bool
+    collected_at: str
+
+
+class StartUpdateWikiRequest(BaseModel):
+    """Request body for starting the Update Wiki workflow."""
+
+    synthesis_batch_size: int = 5
+    synthesis_between_calls_seconds: float = 300.0
+
+
+class StartUpdateWikiResponse(BaseModel):
+    """Response returned when Update Wiki starts."""
+
+    run_id: str
+    workflow_id: str
+    status: WorkflowRunStatus
+
+
+class ConfirmUpdateWikiRequest(BaseModel):
+    """Request body for confirming one workflow step."""
+
+    confirmation_id: str
+
+
+class UpdateWikiWorkflowRunListResponse(BaseModel):
+    """Recent Update Wiki workflow runs."""
+
+    runs: list[UpdateWikiWorkflowRunModel]

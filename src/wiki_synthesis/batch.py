@@ -132,6 +132,10 @@ def run_synthesis_batch(
         if dry_run:
             items.append(_planned_item(selected))
             continue
+        _emit_progress(
+            progress_fn,
+            f"processing {selected.entity_id} index={index + 1} total={len(selection.entries)}",
+        )
         if provider_factory is None:
             msg = "provider_factory is required for real batch runs"
             raise ValueError(msg)
@@ -200,12 +204,14 @@ def run_synthesis_batch(
         finally:
             _close_provider(provider)
         if provider_reached and between_calls > 0 and index < len(selection.entries) - 1:
-            _emit_progress(
+            _wait_between_calls(
                 progress_fn,
-                f"waiting {selected.entity_id} index={index + 1} "
-                f"total={len(selection.entries)} seconds={between_calls}",
+                entity_id=selected.entity_id,
+                index=index + 1,
+                total=len(selection.entries),
+                between_calls=between_calls,
+                sleep_fn=sleep_fn,
             )
-            sleep_fn(between_calls)
 
     remaining_changed_count = count_changed_candidates(
         graph,
@@ -365,6 +371,28 @@ def _emit_progress(progress_fn: Callable[[str], None] | None, message: str) -> N
     """Emit one progress line when a callback is configured."""
     if progress_fn is not None:
         progress_fn(message)
+
+
+def _wait_between_calls(
+    progress_fn: Callable[[str], None] | None,
+    *,
+    entity_id: str,
+    index: int,
+    total: int,
+    between_calls: float,
+    sleep_fn: Callable[[float], None],
+) -> None:
+    """Sleep between batch items and emit countdown progress updates."""
+    remaining = between_calls
+    while remaining > 0:
+        _emit_progress(
+            progress_fn,
+            f"waiting {entity_id} index={index} total={total} "
+            f"seconds={between_calls} remaining={int(remaining)}",
+        )
+        chunk = min(1.0, remaining)
+        sleep_fn(chunk)
+        remaining = round(remaining - chunk, 6)
 
 
 def _timestamp(value: datetime) -> str:

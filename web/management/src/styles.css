@@ -983,7 +983,7 @@ blockquote {
   display: grid;
   gap: 1rem;
   margin: 0 auto;
-  max-width: 1100px;
+  max-width: 1280px;
   padding: 1rem;
 }
 
@@ -1008,6 +1008,68 @@ blockquote {
   margin: 0.35rem 0 0;
 }
 
+.pipeline-state-panel {
+  border-radius: 8px;
+  margin-top: 0.8rem;
+  padding: 0.8rem;
+}
+
+.pipeline-state-panel.error {
+  background: #fff4f4;
+  border: 1px solid #efc2c2;
+  color: #7a2c2c;
+}
+
+.pipeline-state-panel p {
+  margin: 0.35rem 0 0.7rem;
+}
+
+.pipeline-status-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.85rem;
+}
+
+.pipeline-status-chip {
+  align-items: center;
+  background: #f6f8fb;
+  border: 1px solid #e1e6ed;
+  border-radius: 999px;
+  display: inline-flex;
+  gap: 0.35rem;
+  padding: 0.25rem 0.55rem;
+}
+
+.pipeline-status-chip span {
+  color: #687385;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.pipeline-status-chip strong {
+  font-size: 0.82rem;
+}
+
+.pipeline-status-chip.ok {
+  background: #f0f8f3;
+  border-color: #c8e8d2;
+  color: #28623c;
+}
+
+.pipeline-status-chip.warn {
+  background: #fff8ea;
+  border-color: #f0dfbf;
+  color: #7a5718;
+}
+
+.pipeline-status-chip.error {
+  background: #fff4f4;
+  border-color: #efc2c2;
+  color: #8a2f2f;
+}
+
 .pipeline-recommendations {
   display: grid;
   gap: 0.65rem;
@@ -1023,9 +1085,23 @@ blockquote {
   justify-content: space-between;
 }
 
+.pipeline-workbench {
+  align-items: start;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 0.42fr);
+}
+
 .pipeline-operations {
   display: grid;
   gap: 1rem;
+}
+
+.pipeline-side {
+  display: grid;
+  gap: 1rem;
+  position: sticky;
+  top: 1rem;
 }
 
 .operation-card h3 {
@@ -1034,8 +1110,10 @@ blockquote {
 
 .operation-card-body {
   border-top: 1px solid #e8ebf0;
+  align-items: start;
   display: grid;
   gap: 0.75rem;
+  grid-template-columns: minmax(0, 1fr) auto;
   margin-top: 0.75rem;
   padding-top: 0.75rem;
 }
@@ -1053,19 +1131,128 @@ blockquote {
 .operation-parameters {
   display: grid;
   gap: 0.55rem;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(auto-fit, minmax(210px, max-content));
 }
 
-.operation-parameters label {
+.operation-parameter {
   display: grid;
   font-size: 0.85rem;
   gap: 0.25rem;
 }
 
+.operation-parameter.boolean {
+  align-items: center;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.45rem;
+}
+
+.operation-parameter.boolean input {
+  margin: 0;
+}
+
+.operation-parameter input[type="number"] {
+  max-width: 7rem;
+}
+
+.operation-parameter small {
+  color: #687385;
+  font-size: 0.76rem;
+  grid-column: 1 / -1;
+}
+
 .operation-card-actions {
+  align-self: start;
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.operation-result {
+  background: #f8fafc;
+  border: 1px solid #e1e6ed;
+  border-radius: 8px;
+  display: grid;
+  gap: 0.55rem;
+  grid-column: 1 / -1;
+  padding: 0.7rem;
+}
+
+.operation-result-header {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-between;
+}
+
+.operation-result ul,
+.pipeline-readable-output ul {
+  display: grid;
+  gap: 0.3rem;
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.operation-result li,
+.pipeline-readable-output li {
+  color: #3d4652;
+  font-size: 0.84rem;
+}
+
+.operation-technical-details {
+  border-top: 1px solid #e1e6ed;
+  display: grid;
+  gap: 0.55rem;
+  padding-top: 0.55rem;
+}
+
+.operation-technical-facts {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0;
+}
+
+.operation-technical-facts div {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.operation-technical-facts dt {
+  color: #687385;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.operation-technical-facts dd {
+  font-size: 0.78rem;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.operation-technical-details pre {
+  background: #f3f5f8;
+  border-radius: 8px;
+  font-size: 0.76rem;
+  max-height: 220px;
+  overflow: auto;
+  padding: 0.65rem;
+  white-space: pre-wrap;
+}
+
+.text-button {
+  background: transparent;
+  border-color: transparent;
+  color: #31537d;
+  justify-self: start;
+  padding: 0;
+}
+
+.text-button:hover {
+  background: transparent;
+  text-decoration: underline;
 }
 
 .pipeline-run-list {
@@ -1081,9 +1268,15 @@ blockquote {
   background: #fff;
   display: grid;
   gap: 0.35rem;
-  grid-template-columns: 1.4fr 0.7fr 1fr;
+  grid-template-columns: minmax(0, 1fr) auto;
   text-align: left;
   width: 100%;
+}
+
+.pipeline-run-list button span:last-child {
+  color: #687385;
+  font-size: 0.74rem;
+  grid-column: 1 / -1;
 }
 
 .pipeline-run-list button.active {
@@ -1102,6 +1295,25 @@ blockquote {
   background: #fff7e8;
   border: 1px solid #f0dfbf;
   color: #8a6118;
+}
+
+.pipeline-run-badge.succeeded {
+  background: #f0f8f3;
+  border: 1px solid #c8e8d2;
+  color: #28623c;
+}
+
+.pipeline-run-badge.failed {
+  background: #fff4f4;
+  border: 1px solid #efc2c2;
+  color: #8a2f2f;
+}
+
+.pipeline-run-badge.queued,
+.pipeline-run-badge.cancelled {
+  background: #f6f8fb;
+  border: 1px solid #e1e6ed;
+  color: #5b6775;
 }
 
 .pipeline-run-facts {
@@ -1135,6 +1347,19 @@ blockquote {
   white-space: pre-wrap;
 }
 
+.pipeline-readable-output {
+  background: #f8fafc;
+  border: 1px solid #e1e6ed;
+  border-radius: 8px;
+  margin: 0.75rem 0;
+  padding: 0.75rem;
+}
+
+.pipeline-readable-output h3 {
+  font-size: 0.92rem;
+  margin: 0 0 0.5rem;
+}
+
 .pipeline-modal-backdrop {
   align-items: center;
   background: rgba(24, 32, 40, 0.42);
@@ -1161,6 +1386,11 @@ blockquote {
   padding-left: 1.1rem;
 }
 
+.pipeline-confirm-impact {
+  font-weight: 700;
+  margin: 0.5rem 0;
+}
+
 .pipeline-modal-actions {
   display: flex;
   gap: 0.5rem;
@@ -1171,4 +1401,145 @@ blockquote {
   background: #fff4f4;
   border-color: #efc2c2;
   color: #8a2f2f;
+}
+
+.update-wiki-panel h3 {
+  font-size: 0.95rem;
+  margin: 0.75rem 0 0.35rem;
+}
+
+.update-wiki-controls {
+  align-items: end;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.85rem;
+}
+
+.update-wiki-controls label {
+  display: grid;
+  font-size: 0.85rem;
+  gap: 0.25rem;
+}
+
+.update-wiki-hints ul,
+.update-wiki-blockers {
+  margin: 0.65rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.update-wiki-workflow {
+  border-top: 1px solid #e8ebf0;
+  margin-top: 1rem;
+  padding-top: 1rem;
+}
+
+.update-wiki-workflow-header {
+  align-items: center;
+  display: flex;
+  gap: 0.65rem;
+  justify-content: space-between;
+}
+
+.workflow-timeline {
+  display: grid;
+  gap: 0.75rem;
+  list-style: none;
+  margin: 0.85rem 0 0;
+  padding: 0;
+}
+
+.workflow-step {
+  border: 1px solid #e8ebf0;
+  border-radius: 10px;
+  padding: 0.75rem;
+}
+
+.workflow-step-header {
+  align-items: flex-start;
+  display: flex;
+  gap: 0.65rem;
+}
+
+.workflow-step-header p {
+  color: #687385;
+  font-size: 0.85rem;
+  margin: 0.15rem 0 0;
+}
+
+.workflow-step-summary {
+  margin: 0.45rem 0 0 1.5rem;
+  padding-left: 1rem;
+}
+
+.workflow-step-toggle {
+  background: transparent;
+  border: none;
+  color: #31537d;
+  font-size: 0.82rem;
+  margin-top: 0.45rem;
+  padding: 0;
+}
+
+.workflow-step-progress {
+  background: #eef1f6;
+  border-radius: 999px;
+  height: 0.45rem;
+  margin: 0.55rem 0 0 1.5rem;
+  overflow: hidden;
+}
+
+.workflow-step-progress-bar {
+  background: linear-gradient(90deg, #4a7fd4, #31537d);
+  height: 100%;
+  transition: width 0.35s ease;
+}
+
+.workflow-confirmation {
+  background: #f8fafc;
+  border: 1px solid #dde3ea;
+  border-radius: 10px;
+  margin-top: 0.85rem;
+  padding: 0.85rem;
+}
+
+.workflow-confirmation-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  margin-top: 0.65rem;
+}
+
+.advanced-manual-operations {
+  margin-top: 0;
+}
+
+.advanced-manual-operations summary {
+  cursor: pointer;
+  font-weight: 700;
+  list-style: none;
+}
+
+.advanced-manual-operations[open] summary {
+  margin-bottom: 0.75rem;
+}
+
+@media (max-width: 980px) {
+  .pipeline-workbench {
+    grid-template-columns: 1fr;
+  }
+
+  .pipeline-side {
+    position: static;
+  }
+}
+
+@media (max-width: 720px) {
+  .operation-card-body {
+    grid-template-columns: 1fr;
+  }
+
+  .operation-card-actions {
+    justify-content: flex-start;
+  }
 }

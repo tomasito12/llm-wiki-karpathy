@@ -11,6 +11,7 @@ from src.management_web.models import (
     MANAGEMENT_WEB_MODE,
     MANAGEMENT_WEB_WRITE_CAPABILITIES,
     ConfigResponse,
+    ConfirmUpdateWikiRequest,
     EntityEditRequest,
     EntityEditResponse,
     FinishReviewRequest,
@@ -32,8 +33,14 @@ from src.management_web.models import (
     SourceDetailResponse,
     StartOperationRequest,
     StartOperationResponse,
+    StartUpdateWikiRequest,
+    StartUpdateWikiResponse,
+    UpdateWikiAvailabilityResponse,
+    UpdateWikiWorkflowRunListResponse,
+    UpdateWikiWorkflowRunModel,
 )
 from src.management_web.ops import (
+    ManagementRunCoordinator,
     OperationConflictError,
     OperationValidationError,
     OpsRunManager,
@@ -51,6 +58,15 @@ from src.management_web.review_data import (
     read_raw_markdown,
     update_review_entity,
     write_management_decision,
+)
+from src.management_web.update_wiki_workflow import (
+    UPDATE_WIKI_WORKFLOW_ID,
+    UpdateWikiWorkflowManager,
+    WorkflowConflictError,
+    WorkflowValidationError,
+    assess_update_wiki_availability,
+    validate_synthesis_batch_size,
+    validate_synthesis_between_calls_seconds,
 )
 from src.wiki_paths.config import WikiPaths, load_wiki_paths
 
@@ -89,6 +105,10 @@ def _operation_run_response(report: dict[str, object]) -> OperationRunResponse:
     return OperationRunResponse.model_validate(report)
 
 
+def _update_wiki_workflow_run_response(report: dict[str, object]) -> UpdateWikiWorkflowRunModel:
+    return UpdateWikiWorkflowRunModel.model_validate(report)
+
+
 def create_app(
     *,
     paths: WikiPaths | None = None,
@@ -104,10 +124,21 @@ def create_app(
         Configured FastAPI application.
     """
     resolved_paths = paths or load_wiki_paths(config_path=paths_config)
+    coordinator = ManagementRunCoordinator()
     app = FastAPI(title="LLM Wiki Management Web", version="0.1.0")
     app.state.paths = resolved_paths
     app.state.paths_config = paths_config
-    app.state.ops_runs = OpsRunManager(paths=resolved_paths, paths_config=paths_config)
+    app.state.run_coordinator = coordinator
+    app.state.ops_runs = OpsRunManager(
+        paths=resolved_paths,
+        paths_config=paths_config,
+        coordinator=coordinator,
+    )
+    app.state.update_wiki = UpdateWikiWorkflowManager(
+        paths=resolved_paths,
+        paths_config=paths_config,
+        coordinator=coordinator,
+    )
     app.add_middleware(
         CORSMiddleware,
         allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
@@ -294,5 +325,108 @@ def create_app(
             return _operation_run_response(manager.get_run(run_id))
         except FileNotFoundError as exc:
             raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+    @app.get("/api/ops/workflows/update-wiki/status", response_model=UpdateWikiAvailabilityResponse)
+    def update_wiki_status() -> UpdateWikiAvailabilityResponse:
+        """Return whether Update Wiki should be offered right now."""
+        manager: UpdateWikiWorkflowManager = app.state.update_wiki
+        payload = manager.availability()
+        availability = assess_update_wiki_availability(payload["status"])
+        return UpdateWikiAvailabilityResponse(
+            update_available=availability.update_available,
+            headline=availability.headline,
+            detail_line=availability.detail_line,
+            hints=list(availability.hints),
+            blocking_errors=list(availability.blocking_errors),
+            can_start=availability.can_start,
+            collected_at=str(payload["collected_at"]),
+        )
+
+    @app.post("/api/ops/workflows/update-wiki/start", response_model=StartUpdateWikiResponse)
+    def update_wiki_start(request: StartUpdateWikiRequest) -> StartUpdateWikiResponse:
+        """Start the guided Update Wiki workflow."""
+        manager: UpdateWikiWorkflowManager = app.state.update_wiki
+        try:
+            validate_synthesis_batch_size(request.synthesis_batch_size)
+            validate_synthesis_between_calls_seconds(request.synthesis_between_calls_seconds)
+            report = manager.start(
+                synthesis_batch_size=request.synthesis_batch_size,
+                synthesis_between_calls_seconds=request.synthesis_between_calls_seconds,
+            )
+        except WorkflowValidationError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+        except OperationConflictError as exc:
+            raise HTTPException(status_code=409, detail=str(exc)) from exc
+        return StartUpdateWikiResponse(
+            run_id=str(report["run_id"]),
+            workflow_id=UPDATE_WIKI_WORKFLOW_ID,
+            status=report["status"],  # type: ignore[arg-type]
+        )
+
+    @app.post(
+        "/api/ops/workflows/update-wiki/{run_id}/confirm",
+        response_model=UpdateWikiWorkflowRunModel,
+    )
+    def update_wiki_confirm(
+        run_id: str,
+        request: ConfirmUpdateWikiRequest,
+    ) -> UpdateWikiWorkflowRunModel:
+        """Confirm one waiting Update Wiki workflow step."""
+        manager: UpdateWikiWorkflowManager = app.state.update_wiki
+        try:
+            report = manager.confirm(run_id, request.confirmation_id)
+        except WorkflowValidationError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+        except WorkflowConflictError as exc:
+            raise HTTPException(status_code=409, detail=str(exc)) from exc
+        except FileNotFoundError as exc:
+            raise HTTPException(status_code=404, detail=str(exc)) from exc
+        return _update_wiki_workflow_run_response(report)
+
+    @app.post(
+        "/api/ops/workflows/update-wiki/{run_id}/skip",
+        response_model=UpdateWikiWorkflowRunModel,
+    )
+    def update_wiki_skip(
+        run_id: str,
+        request: ConfirmUpdateWikiRequest,
+    ) -> UpdateWikiWorkflowRunModel:
+        """Skip one waiting Update Wiki workflow step."""
+        manager: UpdateWikiWorkflowManager = app.state.update_wiki
+        try:
+            report = manager.skip(run_id, request.confirmation_id)
+        except WorkflowValidationError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+        except WorkflowConflictError as exc:
+            raise HTTPException(status_code=409, detail=str(exc)) from exc
+        except FileNotFoundError as exc:
+            raise HTTPException(status_code=404, detail=str(exc)) from exc
+        return _update_wiki_workflow_run_response(report)
+
+    @app.get(
+        "/api/ops/workflows/update-wiki/{run_id}",
+        response_model=UpdateWikiWorkflowRunModel,
+    )
+    def update_wiki_get_run(run_id: str) -> UpdateWikiWorkflowRunModel:
+        """Return one Update Wiki workflow run."""
+        manager: UpdateWikiWorkflowManager = app.state.update_wiki
+        try:
+            return _update_wiki_workflow_run_response(manager.get_run(run_id))
+        except FileNotFoundError as exc:
+            raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+    @app.get(
+        "/api/ops/workflows/update-wiki/runs",
+        response_model=UpdateWikiWorkflowRunListResponse,
+    )
+    def update_wiki_list_runs(
+        limit: int = Query(default=20, ge=1, le=100),
+    ) -> UpdateWikiWorkflowRunListResponse:
+        """Return recent Update Wiki workflow runs."""
+        manager: UpdateWikiWorkflowManager = app.state.update_wiki
+        runs = [
+            _update_wiki_workflow_run_response(report) for report in manager.list_runs(limit=limit)
+        ]
+        return UpdateWikiWorkflowRunListResponse(runs=runs)
 
     return app

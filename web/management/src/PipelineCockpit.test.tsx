@@ -36,6 +36,24 @@ const operationsPayload: OperationsListResponse = {
       ]
     },
     {
+      id: "synthesis_select",
+      label: "Synthesis select",
+      description: "Rank changed synthesis candidates without LLM calls.",
+      writes: false,
+      llm_calls: false,
+      requires_confirmation: false,
+      parameters: [{ name: "limit", label: "Limit", type: "integer", default: 20 }]
+    },
+    {
+      id: "synthesis_batch_dry_run",
+      label: "Synthesis batch dry-run",
+      description: "Plan a bounded synthesis batch without API calls or cache writes.",
+      writes: false,
+      llm_calls: false,
+      requires_confirmation: false,
+      parameters: [{ name: "limit", label: "Limit", type: "integer", default: 10 }]
+    },
+    {
       id: "synthesis_batch",
       label: "Synthesis batch",
       description: "Run a bounded synthesis batch with OpenAI calls and cache writes.",
@@ -86,6 +104,33 @@ const queuedRun = {
   report_path: "/tmp/knowledge/tmp/management_runs/20260716T100000Z-wiki-lint.json"
 };
 
+const selectRun = {
+  ...queuedRun,
+  run_id: "20260716T100030Z-synthesis-select",
+  operation_id: "synthesis_select",
+  label: "Synthesis select",
+  status: "succeeded" as const,
+  parameters: { limit: 20 },
+  finished_at: "2026-07-16T10:00:31Z",
+  duration_seconds: 1,
+  exit_code: 0,
+  stdout_tail: JSON.stringify({
+    total_changed: 42,
+    shown: 20,
+    entries: [
+      {
+        entity_id: "topic:service-automation",
+        score: 120,
+        source_count: 7,
+        state: "stale",
+        title: "Service Automation"
+      },
+      { entity_id: "tool:cognigy", score: 118, source_count: 4, state: "new", title: "Cognigy" }
+    ]
+  }),
+  stderr_tail: ""
+};
+
 const failedRun = {
   ...queuedRun,
   run_id: "20260716T100100Z-wiki-lint",
@@ -101,6 +146,15 @@ describe("PipelineCockpit", () => {
     vi.mocked(api.getOpsStatus).mockResolvedValue(statusPayload);
     vi.mocked(api.getOpsOperations).mockResolvedValue(operationsPayload);
     vi.mocked(api.listOperationRuns).mockResolvedValue({ runs: [] });
+    vi.mocked(api.getUpdateWikiStatus).mockResolvedValue({
+      update_available: true,
+      headline: "Wiki update available",
+      detail_line: "42 stale syntheses · render needs refresh · no blocking errors",
+      hints: ["42 stale syntheses are ready for the next update."],
+      blocking_errors: [],
+      can_start: true,
+      collected_at: "2026-07-16T10:00:00Z"
+    });
   });
 
   afterEach(() => {
@@ -109,21 +163,26 @@ describe("PipelineCockpit", () => {
     vi.useRealTimers();
   });
 
-  it("loads the status summary and recommendations", async () => {
+  it("prioritizes Update Wiki and keeps manual operations collapsed", async () => {
     render(<PipelineCockpit />);
 
-    expect(await screen.findByText("12 sources · 8 reviewed · render current · 3 stale syntheses")).toBeInTheDocument();
-    expect(screen.getByText("Refresh stale synthesis entries before final render.")).toBeInTheDocument();
-    expect(screen.getByText("Review uncommitted docs and code files before continuing.")).toBeInTheDocument();
+    expect(await screen.findByRole("button", { name: "Update Wiki" })).toBeInTheDocument();
+    expect(screen.getByText("Wiki update available")).toBeInTheDocument();
+    expect(screen.getByText("Hints")).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "Recommended next actions" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Plan synthesis refresh" })).not.toBeInTheDocument();
+    expect(screen.getByText("Advanced manual operations")).toBeInTheDocument();
   });
 
-  it("renders operation cards with safety metadata", async () => {
+  it("renders operation cards with safety metadata inside advanced manual operations", async () => {
     render(<PipelineCockpit />);
+    await screen.findByRole("button", { name: "Update Wiki" });
+    await userEvent.click(screen.getByText("Advanced manual operations"));
 
-    expect(await screen.findByText("read-only · no LLM calls")).toBeInTheDocument();
+    expect((await screen.findAllByText("read-only · no LLM calls")).length).toBeGreaterThan(0);
     expect(screen.getByText("writes files · no LLM calls")).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Run Wiki render…" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Run Synthesis batch…" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Write render..." })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Run batch..." })).toBeInTheDocument();
   });
 
   it("starts a read-only operation without confirmation", async () => {
@@ -135,9 +194,10 @@ describe("PipelineCockpit", () => {
     vi.mocked(api.getOperationRun).mockResolvedValue(queuedRun);
 
     render(<PipelineCockpit />);
-    await screen.findByText("12 sources · 8 reviewed · render current · 3 stale syntheses");
+    await screen.findByRole("button", { name: "Update Wiki" });
+    await userEvent.click(screen.getByText("Advanced manual operations"));
 
-    const lintButtons = screen.getAllByRole("button", { name: "Wiki lint" });
+    const lintButtons = screen.getAllByRole("button", { name: "Run health check" });
     await userEvent.click(lintButtons[lintButtons.length - 1]);
 
     await waitFor(() => {
@@ -147,14 +207,16 @@ describe("PipelineCockpit", () => {
         confirmed: false
       });
     });
-    expect(await screen.findByText("Wiki lint · Queued")).toBeInTheDocument();
+    expect(await screen.findByText("Health check · Queued")).toBeInTheDocument();
+    expect(await screen.findByText("Health check started")).toBeInTheDocument();
   });
 
   it("opens confirmation for write and LLM operations", async () => {
     render(<PipelineCockpit />);
-    await screen.findByText("12 sources · 8 reviewed · render current · 3 stale syntheses");
+    await screen.findByRole("button", { name: "Update Wiki" });
+    await userEvent.click(screen.getByText("Advanced manual operations"));
 
-    await userEvent.click(screen.getByRole("button", { name: "Run Wiki render…" }));
+    await userEvent.click(screen.getByRole("button", { name: "Write render..." }));
 
     const dialog = await screen.findByRole("dialog");
     expect(within(dialog).getByText("Confirm operation")).toBeInTheDocument();
@@ -162,7 +224,7 @@ describe("PipelineCockpit", () => {
     expect(within(dialog).getByText("LLM calls: no")).toBeInTheDocument();
     expect(api.startOperationRun).not.toHaveBeenCalled();
 
-    await userEvent.click(screen.getByRole("button", { name: "Run Synthesis batch…" }));
+    await userEvent.click(screen.getByRole("button", { name: "Run batch..." }));
     expect(await screen.findByText("LLM calls: yes")).toBeInTheDocument();
   });
 
@@ -172,19 +234,22 @@ describe("PipelineCockpit", () => {
     });
 
     render(<PipelineCockpit />);
+    await screen.findByRole("button", { name: "Update Wiki" });
+    await userEvent.click(screen.getByText("Advanced manual operations"));
 
-    expect(await screen.findByText("Wiki lint · Running")).toBeInTheDocument();
+    expect(await screen.findByText("Health check · Running")).toBeInTheDocument();
     expect(screen.getByText("Running. Close terminal/server to interrupt if necessary.")).toBeInTheDocument();
   });
 
   it("refreshes status when the refresh button is clicked", async () => {
     render(<PipelineCockpit />);
-    await screen.findByText("12 sources · 8 reviewed · render current · 3 stale syntheses");
+    await screen.findByRole("button", { name: "Update Wiki" });
 
-    await userEvent.click(screen.getByRole("button", { name: "Refresh status" }));
+    const refreshButtons = screen.getAllByRole("button", { name: "Refresh status" });
+    await userEvent.click(refreshButtons[0]);
 
     await waitFor(() => {
-      expect(api.getOpsStatus).toHaveBeenCalledTimes(2);
+      expect(api.getUpdateWikiStatus).toHaveBeenCalledTimes(2);
     });
   });
 
@@ -192,8 +257,38 @@ describe("PipelineCockpit", () => {
     vi.mocked(api.listOperationRuns).mockResolvedValue({ runs: [failedRun] });
 
     render(<PipelineCockpit />);
+    await screen.findByRole("button", { name: "Update Wiki" });
+    await userEvent.click(screen.getByText("Advanced manual operations"));
 
-    expect(await screen.findByText("lint failed")).toBeInTheDocument();
+    expect((await screen.findAllByText("lint failed")).length).toBeGreaterThan(0);
     expect(screen.getByRole("heading", { name: "Run details" })).toBeInTheDocument();
+  });
+
+  it("shows a readable inline result summary for the operation that was clicked", async () => {
+    vi.mocked(api.startOperationRun).mockResolvedValue({
+      run_id: selectRun.run_id,
+      operation_id: "synthesis_select",
+      status: "succeeded"
+    });
+    vi.mocked(api.getOperationRun).mockResolvedValue(selectRun);
+
+    render(<PipelineCockpit />);
+    await screen.findByRole("button", { name: "Update Wiki" });
+    await userEvent.click(screen.getByText("Advanced manual operations"));
+
+    await userEvent.click(screen.getByRole("button", { name: "Show candidates" }));
+
+    const operation = await screen.findByLabelText("Candidate ranking result");
+    expect(within(operation).getByText("Candidate ranking succeeded")).toBeInTheDocument();
+    expect(within(operation).getByText("42 total · 20 shown")).toBeInTheDocument();
+    expect(within(operation).getByText(/topic:service-automation/)).toBeInTheDocument();
+    expect(within(operation).getByText(/Service Automation/)).toBeInTheDocument();
+    expect(within(operation).getByText(/7 sources/)).toBeInTheDocument();
+    expect(within(operation).queryByText(/"entries"/)).not.toBeInTheDocument();
+
+    await userEvent.click(within(operation).getByRole("button", { name: "Show technical details" }));
+
+    expect(within(operation).getByText("Technical stdout")).toBeInTheDocument();
+    expect(within(operation).getByText(/20260716T100030Z-synthesis-select/)).toBeInTheDocument();
   });
 });
