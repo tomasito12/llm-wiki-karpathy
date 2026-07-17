@@ -1,8 +1,9 @@
-import { useCallback, useEffect, useState } from "react";
-import type { ReactElement } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import type { ReactElement, RefObject } from "react";
 
 import {
   confirmUpdateWikiStep,
+  getActiveUpdateWikiRun,
   getUpdateWikiRun,
   getUpdateWikiStatus,
   skipUpdateWikiStep,
@@ -11,9 +12,15 @@ import {
 import type {
   UpdateWikiAvailabilityResponse,
   UpdateWikiWorkflowRun,
+  WorkflowPendingConfirmation,
   WorkflowStep,
   WorkflowStepStatus
 } from "./types";
+import {
+  clearStoredUpdateWikiRunId,
+  readStoredUpdateWikiRunId,
+  writeStoredUpdateWikiRunId
+} from "./updateWikiSession";
 
 const POLL_INTERVAL_MS = 2500;
 const TERMINAL_STATUSES = new Set(["succeeded", "failed", "stopped"]);
@@ -40,8 +47,10 @@ export default function UpdateWikiPanel(): ReactElement {
   const [workflowRun, setWorkflowRun] = useState<UpdateWikiWorkflowRun | null>(null);
   const [batchSize, setBatchSize] = useState(5);
   const [betweenCallsSeconds, setBetweenCallsSeconds] = useState(300);
+  const [autoConfirm, setAutoConfirm] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const pendingStepRef = useRef<HTMLLIElement>(null);
 
   const refreshAvailability = useCallback(async (): Promise<void> => {
     try {
@@ -53,9 +62,43 @@ export default function UpdateWikiPanel(): ReactElement {
     }
   }, []);
 
+  const applyWorkflowRun = useCallback((run: UpdateWikiWorkflowRun): void => {
+    setWorkflowRun(run);
+    if (TERMINAL_STATUSES.has(run.status)) {
+      clearStoredUpdateWikiRunId();
+    } else {
+      writeStoredUpdateWikiRunId(run.run_id);
+    }
+  }, []);
+
   useEffect(() => {
     void refreshAvailability();
   }, [refreshAvailability]);
+
+  useEffect(() => {
+    async function restoreActiveRun(): Promise<void> {
+      try {
+        const active = await getActiveUpdateWikiRun();
+        if (active.run) {
+          applyWorkflowRun(active.run);
+          return;
+        }
+        const storedRunId = readStoredUpdateWikiRunId();
+        if (!storedRunId) {
+          return;
+        }
+        const run = await getUpdateWikiRun(storedRunId);
+        if (TERMINAL_STATUSES.has(run.status)) {
+          clearStoredUpdateWikiRunId();
+          return;
+        }
+        applyWorkflowRun(run);
+      } catch {
+        clearStoredUpdateWikiRunId();
+      }
+    }
+    void restoreActiveRun();
+  }, [applyWorkflowRun]);
 
   useEffect(() => {
     if (!workflowRun || TERMINAL_STATUSES.has(workflowRun.status)) {
@@ -64,7 +107,7 @@ export default function UpdateWikiPanel(): ReactElement {
     const timer = window.setInterval(() => {
       void getUpdateWikiRun(workflowRun.run_id)
         .then((run) => {
-          setWorkflowRun(run);
+          applyWorkflowRun(run);
           if (TERMINAL_STATUSES.has(run.status)) {
             void refreshAvailability();
           }
@@ -72,7 +115,14 @@ export default function UpdateWikiPanel(): ReactElement {
         .catch((err: unknown) => setError(String(err)));
     }, POLL_INTERVAL_MS);
     return () => window.clearInterval(timer);
-  }, [refreshAvailability, workflowRun]);
+  }, [applyWorkflowRun, refreshAvailability, workflowRun]);
+
+  useEffect(() => {
+    if (!workflowRun?.pending_confirmation || !pendingStepRef.current) {
+      return;
+    }
+    pendingStepRef.current.scrollIntoView?.({ behavior: "smooth", block: "nearest" });
+  }, [workflowRun?.pending_confirmation?.id]);
 
   async function handleStartUpdateWiki(): Promise<void> {
     if (batchSize < 1 || batchSize > 100) {
@@ -88,10 +138,11 @@ export default function UpdateWikiPanel(): ReactElement {
     try {
       const response = await startUpdateWiki({
         synthesis_batch_size: batchSize,
-        synthesis_between_calls_seconds: betweenCallsSeconds
+        synthesis_between_calls_seconds: betweenCallsSeconds,
+        auto_confirm: autoConfirm
       });
       const run = await getUpdateWikiRun(response.run_id);
-      setWorkflowRun(run);
+      applyWorkflowRun(run);
     } catch (err: unknown) {
       setError(String(err));
     } finally {
@@ -108,7 +159,7 @@ export default function UpdateWikiPanel(): ReactElement {
       const run = await confirmUpdateWikiStep(workflowRun.run_id, {
         confirmation_id: workflowRun.pending_confirmation.id
       });
-      setWorkflowRun(run);
+      applyWorkflowRun(run);
     } catch (err: unknown) {
       setError(String(err));
     } finally {
@@ -125,7 +176,7 @@ export default function UpdateWikiPanel(): ReactElement {
       const run = await skipUpdateWikiStep(workflowRun.run_id, {
         confirmation_id: workflowRun.pending_confirmation.id
       });
-      setWorkflowRun(run);
+      applyWorkflowRun(run);
     } catch (err: unknown) {
       setError(String(err));
     } finally {
@@ -193,6 +244,14 @@ export default function UpdateWikiPanel(): ReactElement {
             value={betweenCallsSeconds}
           />
         </label>
+        <label className="update-wiki-auto-confirm">
+          <input
+            checked={autoConfirm}
+            onChange={(event) => setAutoConfirm(event.target.checked)}
+            type="checkbox"
+          />
+          Auto-approve synthesis and render write
+        </label>
         {availability?.update_available ? (
           <button
             disabled={loading || workflowBusy || availability.can_start === false}
@@ -220,42 +279,51 @@ export default function UpdateWikiPanel(): ReactElement {
             <h3>{workflowRun.headline}</h3>
             <span className={`pipeline-run-badge ${workflowRun.status}`}>{workflowRun.status}</span>
           </div>
+          {workflowRun.status === "waiting_for_confirmation" ? (
+            <p className="workflow-attention-banner">
+              Action required: confirm the highlighted step below to continue.
+            </p>
+          ) : null}
           <ol className="workflow-timeline">
             {workflowRun.steps.map((step) => (
-              <WorkflowTimelineStep key={step.id} step={step} />
+              <WorkflowTimelineStep
+                confirmation={
+                  workflowRun.pending_confirmation?.id === step.id
+                    ? workflowRun.pending_confirmation
+                    : null
+                }
+                key={step.id}
+                loading={loading}
+                onConfirm={() => void handleConfirm()}
+                onSkip={() => void handleSkip()}
+                step={step}
+                stepRef={
+                  workflowRun.pending_confirmation?.id === step.id ? pendingStepRef : undefined
+                }
+              />
             ))}
           </ol>
-          {workflowRun.pending_confirmation ? (
-            <div className="workflow-confirmation">
-              <h4>{workflowRun.pending_confirmation.title}</h4>
-              <p>{workflowRun.pending_confirmation.description}</p>
-              <ul>
-                {workflowRun.pending_confirmation.summary_lines.map((line) => (
-                  <li key={line}>{line}</li>
-                ))}
-              </ul>
-              <div className="workflow-confirmation-actions">
-                <button disabled={loading} onClick={() => void handleSkip()} type="button">
-                  {workflowRun.pending_confirmation.skip_label}
-                </button>
-                <button
-                  className="danger-action"
-                  disabled={loading}
-                  onClick={() => void handleConfirm()}
-                  type="button"
-                >
-                  {workflowRun.pending_confirmation.confirm_label}
-                </button>
-              </div>
-            </div>
-          ) : null}
         </div>
       ) : null}
     </section>
   );
 }
 
-function WorkflowTimelineStep({ step }: { step: WorkflowStep }): ReactElement {
+function WorkflowTimelineStep({
+  step,
+  confirmation,
+  loading,
+  onConfirm,
+  onSkip,
+  stepRef
+}: {
+  step: WorkflowStep;
+  confirmation: WorkflowPendingConfirmation | null;
+  loading: boolean;
+  onConfirm: () => void;
+  onSkip: () => void;
+  stepRef?: RefObject<HTMLLIElement | null>;
+}): ReactElement {
   const [expanded, setExpanded] = useState(false);
   const hasTechnicalDetails = Boolean(step.technical_stdout || step.technical_stderr);
   const showProgress =
@@ -271,14 +339,21 @@ function WorkflowTimelineStep({ step }: { step: WorkflowStep }): ReactElement {
   const progressLabel =
     step.progress_message ??
     (showProgress ? `${progressCurrent}/${progressTotal}` : null);
+  const waitingForApproval = step.status === "waiting" && confirmation !== null;
+
   return (
-    <li className={`workflow-step ${step.status}`}>
+    <li
+      className={`workflow-step ${step.status}${waitingForApproval ? " needs-approval" : ""}`}
+      ref={stepRef}
+    >
       <div className="workflow-step-header">
         <span aria-hidden="true">{stepIcon(step.status)}</span>
         <div>
           <strong>{step.label}</strong>
           {progressLabel && step.status === "running" ? <p>{progressLabel}</p> : null}
-          {!progressLabel && step.summary_lines[0] ? <p>{step.summary_lines[0]}</p> : null}
+          {!progressLabel && !confirmation && step.summary_lines[0] ? (
+            <p>{step.summary_lines[0]}</p>
+          ) : null}
         </div>
       </div>
       {showProgress ? (
@@ -293,7 +368,25 @@ function WorkflowTimelineStep({ step }: { step: WorkflowStep }): ReactElement {
           <div className="workflow-step-progress-bar" style={{ width: `${progressPercent}%` }} />
         </div>
       ) : null}
-      {step.summary_lines.length > 1 ? (
+      {confirmation ? (
+        <div className="workflow-step-confirmation">
+          <h4>{confirmation.title}</h4>
+          <p>{confirmation.description}</p>
+          <ul>
+            {confirmation.summary_lines.map((line) => (
+              <li key={line}>{line}</li>
+            ))}
+          </ul>
+          <div className="workflow-confirmation-actions">
+            <button disabled={loading} onClick={onSkip} type="button">
+              {confirmation.skip_label}
+            </button>
+            <button className="danger-action" disabled={loading} onClick={onConfirm} type="button">
+              {confirmation.confirm_label}
+            </button>
+          </div>
+        </div>
+      ) : step.summary_lines.length > 1 ? (
         <ul className="workflow-step-summary">
           {step.summary_lines.slice(1).map((line) => (
             <li key={line}>{line}</li>

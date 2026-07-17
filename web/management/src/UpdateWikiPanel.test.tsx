@@ -26,7 +26,11 @@ const waitingWorkflow = {
   started_at: "2026-07-16T17:00:00Z",
   finished_at: null,
   duration_seconds: null,
-  parameters: { synthesis_batch_size: 5, synthesis_between_calls_seconds: 300 },
+  parameters: {
+    synthesis_batch_size: 5,
+    synthesis_between_calls_seconds: 300,
+    auto_confirm: false
+  },
   steps: [
     {
       id: "status",
@@ -49,6 +53,20 @@ const waitingWorkflow = {
       technical_stdout: "",
       technical_stderr: "",
       exit_code: 0
+    },
+    {
+      id: "synthesis_batch",
+      label: "Synthesis batch",
+      status: "waiting" as const,
+      writes: true,
+      llm_calls: true,
+      summary_lines: [
+        "Run 5 synthesis updates now?",
+        "5 of 42 synthesis candidates will be processed."
+      ],
+      technical_stdout: "",
+      technical_stderr: "",
+      exit_code: null
     }
   ],
   pending_confirmation: {
@@ -65,11 +83,13 @@ const waitingWorkflow = {
 describe("UpdateWikiPanel", () => {
   beforeEach(() => {
     vi.mocked(api.getUpdateWikiStatus).mockResolvedValue(availabilityPayload);
+    vi.mocked(api.getActiveUpdateWikiRun).mockResolvedValue({ run: null });
   });
 
   afterEach(() => {
     cleanup();
     vi.clearAllMocks();
+    sessionStorage.clear();
   });
 
   it("shows the primary Update Wiki action and default batch size", async () => {
@@ -91,7 +111,7 @@ describe("UpdateWikiPanel", () => {
     expect(screen.queryByRole("button", { name: "Plan synthesis refresh" })).not.toBeInTheDocument();
   });
 
-  it("renders workflow timeline and inline synthesis confirmation", async () => {
+  it("renders inline synthesis confirmation on the waiting step", async () => {
     vi.mocked(api.startUpdateWiki).mockResolvedValue({
       run_id: waitingWorkflow.run_id,
       workflow_id: "update_wiki",
@@ -103,11 +123,19 @@ describe("UpdateWikiPanel", () => {
     await screen.findByRole("button", { name: "Update Wiki" });
     await userEvent.click(screen.getByRole("button", { name: "Update Wiki" }));
 
-    expect(await screen.findByText("Run 5 synthesis updates now?")).toBeInTheDocument();
+    expect(await screen.findByText("Action required: confirm the highlighted step below to continue.")).toBeInTheDocument();
+    expect(screen.getByText("Synthesis batch")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Run synthesis" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Skip synthesis for now" })).toBeInTheDocument();
-    expect(screen.getByText("Status check")).toBeInTheDocument();
-    expect(screen.getByText("Candidate planning")).toBeInTheDocument();
+  });
+
+  it("restores an active workflow run on mount", async () => {
+    vi.mocked(api.getActiveUpdateWikiRun).mockResolvedValue({ run: waitingWorkflow });
+
+    render(<UpdateWikiPanel />);
+
+    expect(await screen.findByText("Action required: confirm the highlighted step below to continue.")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Run synthesis" })).toBeInTheDocument();
   });
 
   it("expands technical details within a workflow step", async () => {
@@ -122,7 +150,8 @@ describe("UpdateWikiPanel", () => {
         {
           ...waitingWorkflow.steps[0],
           technical_stdout: "status details"
-        }
+        },
+        ...waitingWorkflow.steps.slice(1)
       ]
     });
 
@@ -155,8 +184,9 @@ describe("UpdateWikiPanel", () => {
     vi.mocked(api.getUpdateWikiRun).mockResolvedValue({
       ...waitingWorkflow,
       status: "running",
+      pending_confirmation: null,
       steps: [
-        ...waitingWorkflow.steps,
+        ...waitingWorkflow.steps.slice(0, 2),
         {
           id: "synthesis_batch",
           label: "Synthesis batch",
@@ -199,7 +229,34 @@ describe("UpdateWikiPanel", () => {
 
     expect(api.startUpdateWiki).toHaveBeenCalledWith({
       synthesis_batch_size: 5,
-      synthesis_between_calls_seconds: 500
+      synthesis_between_calls_seconds: 500,
+      auto_confirm: false
     });
+  });
+
+  it("passes auto_confirm when the checkbox is enabled", async () => {
+    vi.mocked(api.startUpdateWiki).mockResolvedValue({
+      run_id: waitingWorkflow.run_id,
+      workflow_id: "update_wiki",
+      status: "running"
+    });
+    vi.mocked(api.getUpdateWikiRun).mockResolvedValue({
+      ...waitingWorkflow,
+      status: "running",
+      pending_confirmation: null
+    });
+
+    render(<UpdateWikiPanel />);
+    await screen.findByRole("button", { name: "Update Wiki" });
+    await userEvent.click(screen.getByLabelText("Auto-approve synthesis and render write"));
+    await userEvent.click(screen.getByRole("button", { name: "Update Wiki" }));
+
+    await waitFor(() =>
+      expect(api.startUpdateWiki).toHaveBeenCalledWith({
+        synthesis_batch_size: 5,
+        synthesis_between_calls_seconds: 300,
+        auto_confirm: true
+      })
+    );
   });
 });

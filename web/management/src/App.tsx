@@ -393,7 +393,15 @@ export default function App(): ReactElement {
         <div className="mode-pill">{managementModeLabel(config?.mode)}</div>
       </header>
 
-      {activeView === "pipeline" ? <PipelineCockpit /> : null}
+      {activeView === "pipeline" ? (
+        <div className="app-view">
+          <PipelineCockpit />
+        </div>
+      ) : (
+        <div aria-hidden="true" className="app-view app-view-hidden">
+          <PipelineCockpit />
+        </div>
+      )}
 
       {activeView === "review" ? (
         <>

@@ -325,6 +325,7 @@ class UpdateWikiWorkflowManager:
         *,
         synthesis_batch_size: int = DEFAULT_SYNTHESIS_BATCH_SIZE,
         synthesis_between_calls_seconds: float = DEFAULT_SYNTHESIS_BETWEEN_CALLS_SECONDS,
+        auto_confirm: bool = False,
     ) -> dict[str, Any]:
         """Start one Update Wiki workflow run."""
         batch_size = validate_synthesis_batch_size(synthesis_batch_size)
@@ -335,6 +336,7 @@ class UpdateWikiWorkflowManager:
             run_id=run_id,
             batch_size=batch_size,
             between_calls=between_calls,
+            auto_confirm=auto_confirm,
             started_at=started_at,
         )
         self._coordinator.try_acquire(kind="workflow", run_id=run_id)
@@ -429,28 +431,31 @@ class UpdateWikiWorkflowManager:
                         ["No synthesis candidates needed"],
                     )
                 elif not context.get("synthesis_decision"):
-                    self._pause_for_confirmation(
-                        report,
-                        confirmation_id="synthesis_batch",
-                        title=f"Run {min(batch_size, selected_count)} synthesis updates now?",
-                        description=(
-                            "This may call the OpenAI API and will write synthesis cache files."
-                        ),
-                        confirm_label="Run synthesis",
-                        skip_label="Skip synthesis for now",
-                        extra_lines=[
-                            (
-                                f"{min(batch_size, selected_count)} of "
-                                f"{selected_count} synthesis candidates will be processed."
+                    if _auto_confirm_enabled(report):
+                        context["synthesis_decision"] = "confirm"
+                    else:
+                        self._pause_for_confirmation(
+                            report,
+                            confirmation_id="synthesis_batch",
+                            title=f"Run {min(batch_size, selected_count)} synthesis updates now?",
+                            description=(
+                                "This may call the OpenAI API and will write synthesis cache files."
                             ),
-                            (
-                                f"Pause between syntheses: {int(between_calls)}s"
-                                if between_calls > 0
-                                else "No pause between syntheses"
-                            ),
-                        ],
-                    )
-                    return
+                            confirm_label="Run synthesis",
+                            skip_label="Skip synthesis for now",
+                            extra_lines=[
+                                (
+                                    f"{min(batch_size, selected_count)} of "
+                                    f"{selected_count} synthesis candidates will be processed."
+                                ),
+                                (
+                                    f"Pause between syntheses: {int(between_calls)}s"
+                                    if between_calls > 0
+                                    else "No pause between syntheses"
+                                ),
+                            ],
+                        )
+                        return
 
             if not self._step_done(report, "synthesis_batch"):
                 decision = context.get("synthesis_decision")
@@ -473,23 +478,26 @@ class UpdateWikiWorkflowManager:
             if not self._step_done(report, "render_write"):
                 if render_changes_pending(render_stdout):
                     if not context.get("render_decision"):
-                        write_count = _render_write_count(render_stdout)
-                        prune_count = _render_prune_count(render_stdout)
-                        self._pause_for_confirmation(
-                            report,
-                            confirmation_id="render_write",
-                            title="Write generated wiki files?",
-                            description="This writes generated Obsidian wiki output.",
-                            confirm_label="Write render",
-                            skip_label="Stop here",
-                            extra_lines=[
-                                (
-                                    f"{write_count} files will be updated · "
-                                    f"{prune_count} stale files pruned"
-                                )
-                            ],
-                        )
-                        return
+                        if _auto_confirm_enabled(report):
+                            context["render_decision"] = "confirm"
+                        else:
+                            write_count = _render_write_count(render_stdout)
+                            prune_count = _render_prune_count(render_stdout)
+                            self._pause_for_confirmation(
+                                report,
+                                confirmation_id="render_write",
+                                title="Write generated wiki files?",
+                                description="This writes generated Obsidian wiki output.",
+                                confirm_label="Write render",
+                                skip_label="Stop here",
+                                extra_lines=[
+                                    (
+                                        f"{write_count} files will be updated · "
+                                        f"{prune_count} stale files pruned"
+                                    )
+                                ],
+                            )
+                            return
                     if context.get("render_decision") == "skip":
                         self._finish(report, status="stopped", headline="Wiki update stopped")
                         return
@@ -789,6 +797,9 @@ class UpdateWikiWorkflowManager:
             "skip_label": skip_label,
             "summary_lines": extra_lines,
         }
+        step = report["steps"][self._step_index(report, confirmation_id)]
+        step["status"] = "waiting"
+        step["summary_lines"] = [title, *extra_lines]
         self._write_report(report)
 
     def _step_done(self, report: dict[str, Any], step_id: str) -> bool:
@@ -880,11 +891,17 @@ def first_meaningful_lines(text: str, limit: int = 4) -> list[str]:
     return [line.strip() for line in text.splitlines() if line.strip()][:limit]
 
 
+def _auto_confirm_enabled(report: dict[str, Any]) -> bool:
+    """Return whether the workflow should skip manual confirmation gates."""
+    return bool((report.get("parameters") or {}).get("auto_confirm"))
+
+
 def _new_workflow_report(
     *,
     run_id: str,
     batch_size: int,
     between_calls: float,
+    auto_confirm: bool,
     started_at: str,
 ) -> dict[str, Any]:
     return {
@@ -899,6 +916,7 @@ def _new_workflow_report(
         "parameters": {
             "synthesis_batch_size": batch_size,
             "synthesis_between_calls_seconds": between_calls,
+            "auto_confirm": auto_confirm,
         },
         "steps": [_new_step(step_id) for step_id, _ in STEP_DEFINITIONS],
         "pending_confirmation": None,

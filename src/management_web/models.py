@@ -449,6 +449,13 @@ class StartUpdateWikiRequest(BaseModel):
 
     synthesis_batch_size: int = 5
     synthesis_between_calls_seconds: float = 300.0
+    auto_confirm: bool = False
+
+
+class ActiveUpdateWikiWorkflowResponse(BaseModel):
+    """Active Update Wiki workflow run, if any."""
+
+    run: UpdateWikiWorkflowRunModel | None = None
 
 
 class StartUpdateWikiResponse(BaseModel):

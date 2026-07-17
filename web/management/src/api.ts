@@ -20,6 +20,7 @@ import type {
   StartOperationResponse,
   StartUpdateWikiRequest,
   StartUpdateWikiResponse,
+  ActiveUpdateWikiWorkflowResponse,
   ConfirmUpdateWikiRequest,
   UpdateWikiAvailabilityResponse,
   UpdateWikiWorkflowRun,
@@ -141,6 +142,12 @@ export function startUpdateWiki(
     headers: { "Content-Type": "application/json" },
     method: "POST"
   });
+}
+
+export function getActiveUpdateWikiRun(): Promise<ActiveUpdateWikiWorkflowResponse> {
+  return fetchJson<ActiveUpdateWikiWorkflowResponse>(
+    "/api/ops/workflows/update-wiki/active"
+  );
 }
 
 export function getUpdateWikiRun(runId: string): Promise<UpdateWikiWorkflowRun> {

@@ -200,6 +200,56 @@ def test_workflow_pauses_before_synthesis_batch(tmp_path: Path) -> None:
     waiting = manager.get_run(str(report["run_id"]))
     assert waiting["pending_confirmation"]["id"] == "synthesis_batch"
     assert "Run 2 synthesis updates now?" in waiting["pending_confirmation"]["title"]
+    synthesis_step = next(step for step in waiting["steps"] if step["id"] == "synthesis_batch")
+    assert synthesis_step["status"] == "waiting"
+
+
+def test_auto_confirm_skips_synthesis_confirmation_gate(tmp_path: Path) -> None:
+    """Auto-confirm should continue past synthesis without waiting for approval."""
+    coordinator = ManagementRunCoordinator()
+    manager = UpdateWikiWorkflowManager(
+        paths=_paths(tmp_path),
+        coordinator=coordinator,
+        command_runner=_command_router(
+            {
+                "select_cli": (0, _selection_stdout(), ""),
+                "--dry-run": (0, _render_dry_run_stdout(would_write=0), ""),
+                "wiki_lint": (0, _lint_stdout(), ""),
+            }
+        ),
+        synthesis_batch_runner=_batch_runner(),
+    )
+    report = manager.start(synthesis_batch_size=2, auto_confirm=True)
+    _wait_until(
+        lambda: (
+            manager.get_run(str(report["run_id"]))["status"] in {"succeeded", "failed", "stopped"}
+        )
+    )
+    finished = manager.get_run(str(report["run_id"]))
+    assert finished["status"] == "succeeded"
+    synthesis_step = next(step for step in finished["steps"] if step["id"] == "synthesis_batch")
+    assert synthesis_step["status"] == "succeeded"
+    assert finished.get("pending_confirmation") is None
+
+
+def test_active_run_returns_in_progress_workflow(tmp_path: Path) -> None:
+    """Active run lookup should expose a running workflow report."""
+    coordinator = ManagementRunCoordinator()
+    manager = UpdateWikiWorkflowManager(
+        paths=_paths(tmp_path),
+        coordinator=coordinator,
+        command_runner=_command_router({"select_cli": (0, _selection_stdout(), "")}),
+    )
+    report = manager.start(synthesis_batch_size=2)
+    _wait_until(
+        lambda: manager.get_run(str(report["run_id"]))["status"] == "waiting_for_confirmation"
+    )
+
+    active = manager.active_run()
+
+    assert active is not None
+    assert active["run_id"] == report["run_id"]
+    assert active["status"] == "waiting_for_confirmation"
 
 
 def test_workflow_rejects_wrong_confirmation_id(tmp_path: Path) -> None:

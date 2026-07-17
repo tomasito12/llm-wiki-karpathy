@@ -642,6 +642,9 @@ describe("App", () => {
             collected_at: "2026-07-16T10:00:00Z"
           });
         }
+        if (url.includes("/api/ops/workflows/update-wiki/active")) {
+          return Response.json({ run: null });
+        }
         if (url.includes("/api/ops/status")) {
           return Response.json({
             status: { recommendations: ["Run wiki-render --dry-run to refresh the render snapshot."] },

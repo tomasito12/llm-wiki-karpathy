@@ -155,6 +155,7 @@ describe("PipelineCockpit", () => {
       can_start: true,
       collected_at: "2026-07-16T10:00:00Z"
     });
+    vi.mocked(api.getActiveUpdateWikiRun).mockResolvedValue({ run: null });
   });
 
   afterEach(() => {

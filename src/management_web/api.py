@@ -10,6 +10,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from src.management_web.models import (
     MANAGEMENT_WEB_MODE,
     MANAGEMENT_WEB_WRITE_CAPABILITIES,
+    ActiveUpdateWikiWorkflowResponse,
     ConfigResponse,
     ConfirmUpdateWikiRequest,
     EntityEditRequest,
@@ -352,6 +353,7 @@ def create_app(
             report = manager.start(
                 synthesis_batch_size=request.synthesis_batch_size,
                 synthesis_between_calls_seconds=request.synthesis_between_calls_seconds,
+                auto_confirm=request.auto_confirm,
             )
         except WorkflowValidationError as exc:
             raise HTTPException(status_code=400, detail=str(exc)) from exc
@@ -402,6 +404,20 @@ def create_app(
         except FileNotFoundError as exc:
             raise HTTPException(status_code=404, detail=str(exc)) from exc
         return _update_wiki_workflow_run_response(report)
+
+    @app.get(
+        "/api/ops/workflows/update-wiki/active",
+        response_model=ActiveUpdateWikiWorkflowResponse,
+    )
+    def update_wiki_active_run() -> ActiveUpdateWikiWorkflowResponse:
+        """Return the currently active Update Wiki workflow run, if any."""
+        manager: UpdateWikiWorkflowManager = app.state.update_wiki
+        report = manager.active_run()
+        if report is None:
+            return ActiveUpdateWikiWorkflowResponse(run=None)
+        return ActiveUpdateWikiWorkflowResponse(
+            run=_update_wiki_workflow_run_response(report),
+        )
 
     @app.get(
         "/api/ops/workflows/update-wiki/{run_id}",

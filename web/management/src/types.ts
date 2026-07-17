@@ -330,6 +330,7 @@ export interface UpdateWikiWorkflowRun {
   parameters: {
     synthesis_batch_size: number;
     synthesis_between_calls_seconds: number;
+    auto_confirm?: boolean;
   };
   steps: WorkflowStep[];
   pending_confirmation: WorkflowPendingConfirmation | null;
@@ -349,6 +350,11 @@ export interface UpdateWikiAvailabilityResponse {
 export interface StartUpdateWikiRequest {
   synthesis_batch_size: number;
   synthesis_between_calls_seconds: number;
+  auto_confirm: boolean;
+}
+
+export interface ActiveUpdateWikiWorkflowResponse {
+  run: UpdateWikiWorkflowRun | null;
 }
 
 export interface StartUpdateWikiResponse {
