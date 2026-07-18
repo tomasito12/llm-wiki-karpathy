@@ -43,8 +43,9 @@ button:disabled {
 
 .topbar {
   align-items: center;
-  background: rgba(255, 255, 255, 0.86);
+  background: #fff;
   border-bottom: 1px solid #e2e5e9;
+  box-shadow: 0 1px 0 rgba(15, 23, 42, 0.02), 0 8px 22px rgba(15, 23, 42, 0.035);
   color: #1f2933;
   display: flex;
   justify-content: space-between;
@@ -123,7 +124,7 @@ button:disabled {
 }
 
 .queue-controls {
-  padding: 0.85rem;
+  padding: 0.8rem;
 }
 
 .queue-controls-header {
@@ -141,9 +142,11 @@ button:disabled {
 
 .queue-status-summary {
   color: #64748b;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   line-height: 1.35;
   margin: 0;
+  max-width: 16rem;
+  text-align: right;
 }
 
 .queue-filter-grid {
@@ -153,7 +156,23 @@ button:disabled {
 }
 
 .queue-controls label {
+  color: #475569;
+  display: grid;
+  font-size: 0.78rem;
+  gap: 0.35rem;
+  grid-template-rows: 1rem 2.55rem;
   margin-top: 0.55rem;
+}
+
+.queue-filter-grid label {
+  margin-top: 0;
+}
+
+.queue-controls select,
+.queue-controls input {
+  height: 2.55rem;
+  min-width: 0;
+  width: 100%;
 }
 
 .queue-search {
@@ -271,21 +290,12 @@ button:disabled {
   padding: 0.4rem 0.55rem;
 }
 
-.entity-description p {
+.entity-description {
   color: #4b5563;
-  display: -webkit-box;
   font-size: 0.84rem;
   line-height: 1.45;
   margin: 0;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  overflow: hidden;
-}
-
-.entity-description.expanded p {
-  -webkit-line-clamp: unset;
-  display: block;
-  overflow: visible;
+  white-space: pre-wrap;
 }
 
 .text-button {
@@ -442,6 +452,7 @@ textarea {
   gap: 0.2rem;
   line-height: 1.25;
   padding: 0.5rem 0.45rem;
+  position: relative;
   text-align: left;
 }
 
@@ -462,11 +473,22 @@ textarea {
 
 .source-row.active {
   background: #fff;
-  border: 1px solid #9db9f7;
+  border: 1px solid #d8e4fb;
   border-radius: 8px;
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.09);
+  box-shadow: 0 1px 8px rgba(15, 23, 42, 0.045);
   margin: 0.25rem 0;
-  padding: 0.5rem 0.55rem;
+  padding: 0.5rem 0.55rem 0.5rem 0.75rem;
+}
+
+.source-row.active::before {
+  background: #3b6fd8;
+  border-radius: 999px;
+  bottom: 0.55rem;
+  content: "";
+  left: 0.32rem;
+  position: absolute;
+  top: 0.55rem;
+  width: 3px;
 }
 
 .source-row small,
@@ -623,8 +645,17 @@ textarea {
 
 .entity-card-header button,
 .entity-card-actions button {
+  background: #fff;
+  border-color: #e6eaf0;
+  color: #64748b;
   font-size: 0.72rem;
   padding: 0.35rem 0.55rem;
+}
+
+.entity-card-header button:hover,
+.entity-card-actions button:hover {
+  border-color: #cbd5e1;
+  color: #334155;
 }
 
 .entity-editor {
@@ -705,7 +736,7 @@ textarea {
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
   list-style: none;
   margin: 0.35rem 0 0;
-  max-height: 220px;
+  max-height: 320px;
   overflow: auto;
   padding: 0.35rem;
   position: absolute;
@@ -737,6 +768,25 @@ textarea {
   font-weight: 700;
 }
 
+.source-summary-details {
+  margin-top: 0.75rem;
+}
+
+.source-summary-chapters {
+  display: grid;
+  gap: 0.85rem;
+  margin-top: 0.65rem;
+}
+
+.source-summary-chapter h4 {
+  font-size: 0.92rem;
+  margin: 0 0 0.35rem;
+}
+
+.source-summary-body {
+  white-space: pre-wrap;
+}
+
 blockquote {
   border-left: 3px solid #d8dde5;
   color: #475569;
@@ -758,6 +808,7 @@ blockquote {
   color: #64748b;
   font-weight: 700;
   margin: 0;
+  text-align: center;
 }
 
 .decision-counts {
@@ -779,6 +830,7 @@ blockquote {
   border-color: #1f6feb;
   color: #fff;
   font-weight: 700;
+  min-height: 2.6rem;
   width: 100%;
 }
 
@@ -928,6 +980,45 @@ blockquote {
   padding-left: 1.1rem;
 }
 
+.entity-full-extraction {
+  margin-top: 0.55rem;
+}
+
+.entity-full-extraction summary {
+  color: #475569;
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.entity-full-extraction-body {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: 0.55rem;
+}
+
+.entity-full-field h5 {
+  color: #64748b;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin: 0 0 0.25rem;
+  text-transform: uppercase;
+}
+
+.entity-full-field p,
+.entity-full-field ul {
+  color: #334155;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.entity-full-field ul {
+  padding-left: 1.1rem;
+}
+
 @media (max-width: 1100px) {
   .workspace,
   .entity-grid {
@@ -983,12 +1074,12 @@ blockquote {
   display: grid;
   gap: 1rem;
   margin: 0 auto;
-  max-width: 1280px;
+  max-width: 1220px;
   padding: 1rem;
 }
 
 .pipeline-section-header {
-  align-items: flex-start;
+  align-items: center;
   display: flex;
   gap: 1rem;
   justify-content: space-between;
@@ -1113,7 +1204,7 @@ blockquote {
   align-items: start;
   display: grid;
   gap: 0.75rem;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) minmax(9rem, auto);
   margin-top: 0.75rem;
   padding-top: 0.75rem;
 }
@@ -1171,13 +1262,13 @@ blockquote {
 }
 
 .operation-result {
-  background: #f8fafc;
-  border: 1px solid #e1e6ed;
+  background: #fbfcfd;
+  border: 1px solid #edf0f4;
   border-radius: 8px;
   display: grid;
-  gap: 0.55rem;
+  gap: 0.45rem;
   grid-column: 1 / -1;
-  padding: 0.7rem;
+  padding: 0.62rem 0.7rem;
 }
 
 .operation-result-header {
@@ -1185,6 +1276,13 @@ blockquote {
   display: flex;
   gap: 0.5rem;
   justify-content: space-between;
+}
+
+.operation-result-header .pipeline-run-badge.succeeded {
+  background: transparent;
+  border-color: transparent;
+  color: #4c7a5c;
+  padding-right: 0;
 }
 
 .operation-result ul,
@@ -1257,7 +1355,7 @@ blockquote {
 
 .pipeline-run-list {
   display: grid;
-  gap: 0.45rem;
+  gap: 0.2rem;
   list-style: none;
   margin: 0.75rem 0 0;
   padding: 0;
@@ -1265,10 +1363,13 @@ blockquote {
 
 .pipeline-run-list button {
   align-items: center;
-  background: #fff;
+  background: transparent;
+  border-color: transparent;
+  border-radius: 6px;
   display: grid;
-  gap: 0.35rem;
+  gap: 0.2rem 0.45rem;
   grid-template-columns: minmax(0, 1fr) auto;
+  padding: 0.42rem 0.45rem;
   text-align: left;
   width: 100%;
 }
@@ -1280,8 +1381,26 @@ blockquote {
 }
 
 .pipeline-run-list button.active {
-  border-color: #9eb7df;
-  box-shadow: inset 0 0 0 1px #d7e4ff;
+  background: #f8fafc;
+  border-color: #dbe5f4;
+  box-shadow: none;
+}
+
+.pipeline-run-list .pipeline-run-badge.succeeded {
+  background: transparent;
+  border-color: transparent;
+  color: #4c7a5c;
+  font-size: 0;
+  padding: 0.15rem;
+}
+
+.pipeline-run-list .pipeline-run-badge.succeeded::before {
+  background: currentColor;
+  border-radius: 999px;
+  content: "";
+  display: block;
+  height: 0.5rem;
+  width: 0.5rem;
 }
 
 .pipeline-run-badge {
@@ -1410,22 +1529,63 @@ blockquote {
 
 .update-wiki-controls {
   align-items: end;
+  border-top: 1px solid #edf0f4;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding-top: 0.9rem;
+}
+
+.update-wiki-number-controls,
+.update-wiki-action-controls {
+  align-items: end;
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin-top: 0.85rem;
 }
 
 .update-wiki-controls label {
   display: grid;
   font-size: 0.85rem;
   gap: 0.25rem;
+  margin-top: 0;
+}
+
+.update-wiki-number-controls label {
+  grid-template-rows: 2.35rem 2.55rem;
+}
+
+.update-wiki-number-controls input {
+  height: 2.55rem;
+  width: 9rem;
 }
 
 .update-wiki-hints ul,
 .update-wiki-blockers {
-  margin: 0.65rem 0 0;
-  padding-left: 1.1rem;
+  margin: 0.55rem 0 0;
+  padding: 0;
+}
+
+.update-wiki-hints ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  list-style: none;
+}
+
+.update-wiki-hints li {
+  background: #f8fafc;
+  border: 1px solid #e4e8ee;
+  border-radius: 999px;
+  color: #526171;
+  font-size: 0.78rem;
+  padding: 0.18rem 0.5rem;
+}
+
+.update-wiki-blockers {
+  list-style-position: inside;
 }
 
 .update-wiki-workflow {
@@ -1483,9 +1643,24 @@ blockquote {
 
 .update-wiki-auto-confirm {
   align-items: center;
+  color: #5f6d7d;
   display: flex;
   flex-direction: row;
+  font-size: 0.78rem;
+  font-weight: 600;
   gap: 0.45rem;
+  margin: 0;
+  min-height: 2.55rem;
+  white-space: nowrap;
+}
+
+.update-wiki-auto-confirm input {
+  margin: 0;
+}
+
+.update-wiki-primary-button {
+  min-height: 2.55rem;
+  min-width: 8rem;
 }
 
 .app-view-hidden {
@@ -1564,13 +1739,34 @@ blockquote {
 }
 
 .advanced-manual-operations summary {
+  align-items: center;
+  color: #334155;
   cursor: pointer;
+  display: flex;
   font-weight: 700;
+  justify-content: space-between;
   list-style: none;
+}
+
+.advanced-manual-operations summary::after {
+  color: #94a3b8;
+  content: "Show";
+  font-size: 0.76rem;
+  font-weight: 600;
 }
 
 .advanced-manual-operations[open] summary {
   margin-bottom: 0.75rem;
+}
+
+.advanced-manual-operations[open] summary::after {
+  content: "Hide";
+}
+
+.advanced-manual-operations summary:focus-visible {
+  border-radius: 6px;
+  outline: 1px solid #cbd5e1;
+  outline-offset: 3px;
 }
 
 @media (max-width: 980px) {

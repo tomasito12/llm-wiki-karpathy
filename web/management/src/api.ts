@@ -39,8 +39,13 @@ export function getConfig(): Promise<ConfigResponse> {
   return fetchJson<ConfigResponse>("/api/config");
 }
 
-export function getReviewTags(): Promise<ReviewTagsResponse> {
-  return fetchJson<ReviewTagsResponse>("/api/review/tags");
+export function getReviewTags(group?: string): Promise<ReviewTagsResponse> {
+  const search = new URLSearchParams();
+  if (group) {
+    search.set("group", group);
+  }
+  const suffix = search.toString() ? `?${search.toString()}` : "";
+  return fetchJson<ReviewTagsResponse>(`/api/review/tags${suffix}`);
 }
 
 export function getReviewQueue(params: {

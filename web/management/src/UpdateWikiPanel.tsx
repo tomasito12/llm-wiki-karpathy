@@ -220,55 +220,61 @@ export default function UpdateWikiPanel(): ReactElement {
       ) : null}
 
       <div className="update-wiki-controls">
-        <label>
-          Synthesis batch size
-          <input
-            aria-label="Synthesis batch size"
-            max={100}
-            min={1}
-            onChange={(event) => setBatchSize(Number.parseInt(event.target.value, 10))}
-            type="number"
-            value={batchSize}
-          />
-        </label>
-        <label>
-          Pause between syntheses (seconds)
-          <input
-            aria-label="Pause between syntheses (seconds)"
-            max={3600}
-            min={0}
-            onChange={(event) =>
-              setBetweenCallsSeconds(Number.parseInt(event.target.value, 10))
-            }
-            type="number"
-            value={betweenCallsSeconds}
-          />
-        </label>
-        <label className="update-wiki-auto-confirm">
-          <input
-            checked={autoConfirm}
-            onChange={(event) => setAutoConfirm(event.target.checked)}
-            type="checkbox"
-          />
-          Auto-approve synthesis and render write
-        </label>
-        {availability?.update_available ? (
-          <button
-            disabled={loading || workflowBusy || availability.can_start === false}
-            onClick={() => void handleStartUpdateWiki()}
-            type="button"
-          >
-            Update Wiki
-          </button>
-        ) : (
-          <button
-            disabled={loading || workflowBusy}
-            onClick={() => void handleStartUpdateWiki()}
-            type="button"
-          >
-            Run health check
-          </button>
-        )}
+        <div className="update-wiki-number-controls">
+          <label>
+            Synthesis batch size
+            <input
+              aria-label="Synthesis batch size"
+              max={100}
+              min={1}
+              onChange={(event) => setBatchSize(Number.parseInt(event.target.value, 10))}
+              type="number"
+              value={batchSize}
+            />
+          </label>
+          <label>
+            Pause between syntheses (seconds)
+            <input
+              aria-label="Pause between syntheses (seconds)"
+              max={3600}
+              min={0}
+              onChange={(event) =>
+                setBetweenCallsSeconds(Number.parseInt(event.target.value, 10))
+              }
+              type="number"
+              value={betweenCallsSeconds}
+            />
+          </label>
+        </div>
+        <div className="update-wiki-action-controls">
+          <label className="update-wiki-auto-confirm">
+            <input
+              checked={autoConfirm}
+              onChange={(event) => setAutoConfirm(event.target.checked)}
+              type="checkbox"
+            />
+            Auto-approve synthesis and render write
+          </label>
+          {availability?.update_available ? (
+            <button
+              className="update-wiki-primary-button"
+              disabled={loading || workflowBusy || availability.can_start === false}
+              onClick={() => void handleStartUpdateWiki()}
+              type="button"
+            >
+              Update Wiki
+            </button>
+          ) : (
+            <button
+              className="update-wiki-primary-button"
+              disabled={loading || workflowBusy}
+              onClick={() => void handleStartUpdateWiki()}
+              type="button"
+            >
+              Run health check
+            </button>
+          )}
+        </div>
       </div>
 
       {error ? <p className="error-banner inline">{error}</p> : null}

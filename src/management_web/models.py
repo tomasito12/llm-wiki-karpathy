@@ -140,11 +140,21 @@ class SourcePaths(BaseModel):
     review_json: str
 
 
+class SourceSummaryChapter(BaseModel):
+    """One source-summary chapter for on-demand inspection."""
+
+    key: str
+    label: str
+    body: str = ""
+    items: list[str] = []
+
+
 class SourceSummary(BaseModel):
     """Human-readable source summary for the review card."""
 
     short: str
     key_insights: list[str]
+    chapters: list[SourceSummaryChapter] = []
 
 
 class EntityDetailList(BaseModel):
@@ -154,6 +164,15 @@ class EntityDetailList(BaseModel):
 
     label: str
     items: list[str]
+
+
+class EntityDetailScalar(BaseModel):
+    """Read-only supporting scalar field for on-demand full extraction."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    label: str
+    body: str
 
 
 class NormalizedEntity(BaseModel):
@@ -170,6 +189,7 @@ class NormalizedEntity(BaseModel):
     hidden: bool = False
     render_category: str
     render_mode: RenderMode
+    detail_scalars: list[EntityDetailScalar] = []
     detail_lists: list[EntityDetailList] = []
     raw: dict[str, Any]
 

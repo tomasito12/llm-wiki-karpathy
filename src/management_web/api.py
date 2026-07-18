@@ -195,9 +195,14 @@ def create_app(
         )
 
     @app.get("/api/review/tags", response_model=ReviewTagsResponse)
-    def review_tags() -> ReviewTagsResponse:
+    def review_tags(
+        group: str | None = Query(default=None, description="Optional editable entity group."),
+    ) -> ReviewTagsResponse:
         """Return available tag choices for entity editing."""
-        return build_review_tag_registry(app.state.paths)
+        try:
+            return build_review_tag_registry(app.state.paths, group=group)
+        except ValueError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
 
     @app.get("/api/review/source/{source_id}", response_model=SourceDetailResponse)
     def review_source(source_id: str) -> SourceDetailResponse:

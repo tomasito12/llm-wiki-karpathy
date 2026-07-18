@@ -66,7 +66,7 @@ export function TagPicker({
       sortTagOptions(
         availableTags.filter((option) => !tags.includes(option.name)),
         query
-      ).slice(0, 12),
+      ),
     [availableTags, query, tags]
   );
   const canCreate =

@@ -628,6 +628,49 @@ def test_update_review_entity_hides_and_unhides_without_deleting_entity(tmp_path
     assert unhidden_response.source.entities.topics[0].hidden is False
 
 
+def test_rejecting_entity_drops_source_tags_unique_to_that_entity(tmp_path: Path) -> None:
+    """Article tags should recompute from non-rejected entities only."""
+    from src.management_web.review_data import collect_tags
+
+    paths = _paths(tmp_path)
+    _write_raw(paths, "tools-source")
+    llm_output = {
+        "tools": [
+            {
+                "name": "Claude Code",
+                "short_description": "Agentic coding tool.",
+                "proposed_tags": ["claude-code", "devtools"],
+            },
+            {
+                "name": "Cursor",
+                "short_description": "Editor with AI assist.",
+                "proposed_tags": ["devtools", "ides"],
+            },
+        ]
+    }
+    artifact = {
+        "source": {"title": "Tool Roundup", "published_date": "2026-07-01"},
+        "llm_output": llm_output,
+        "review": _review_tree_from_llm_output(llm_output),
+        "review_finished_at": None,
+    }
+    _write_artifact(paths, "tools-source", artifact)
+
+    assert collect_tags(artifact) == ["claude-code", "devtools", "ides"]
+
+    response = update_review_entity(
+        paths,
+        "tools-source",
+        EntityEditRequest(group="tools", index=0, hidden=True),
+    )
+
+    assert response.source.tags == ["devtools", "ides"]
+    assert "claude-code" not in response.source.tags
+    tools = next(group for group in response.source.entities.groups if group.group == "tools")
+    assert tools.items[0].hidden is True
+    assert tools.items[0].tags == ["claude-code", "devtools"]
+
+
 def test_update_review_entity_rejects_invalid_inputs(tmp_path: Path) -> None:
     """Entity edits should reject unsafe paths, missing artifacts, invalid groups, and indexes."""
     paths = _paths(tmp_path)
@@ -1507,3 +1550,229 @@ def test_build_review_tag_registry_sorts_by_usage_then_name(tmp_path: Path) -> N
     response = build_review_tag_registry(paths)
 
     assert [entry.name for entry in response.tags] == ["gamma", "beta", "alpha"]
+
+
+def test_build_review_tag_registry_filters_by_entity_group_allowlist(tmp_path: Path) -> None:
+    """Group-scoped tag registry should use the Streamlit allowlist for that entity."""
+    paths = _paths(tmp_path)
+    config_dir = paths.repo_root / "config"
+    config_dir.mkdir(parents=True)
+    (config_dir / "review_tags_trends.yaml").write_text(
+        "tags:\n- support-automation\n- enterprise-ai\n",
+        encoding="utf-8",
+    )
+    (config_dir / "review_tags_topics.yaml").write_text(
+        "tags:\n- topic-only-tag\n",
+        encoding="utf-8",
+    )
+
+    response = build_review_tag_registry(paths, group="signals")
+
+    names = [entry.name for entry in response.tags]
+    assert names == ["enterprise-ai", "support-automation"]
+    assert "topic-only-tag" not in names
+
+
+def test_build_review_tag_registry_rejects_unknown_group(tmp_path: Path) -> None:
+    """Unknown entity groups should fail closed for tag allowlist lookup."""
+    paths = _paths(tmp_path)
+    with pytest.raises(ValueError, match="Unknown entity group"):
+        build_review_tag_registry(paths, group="not-a-group")
+
+
+def test_normalize_source_summary_includes_full_chapters(tmp_path: Path) -> None:
+    """Source summary should expose full chapters for on-demand inspection."""
+    from src.management_web.review_data import normalize_source_summary
+
+    artifact = {
+        "llm_output": {
+            "source_summary": {
+                "accessible_overview": "Easy overview.",
+                "summary": "Dense summary.",
+                "key_insights": ["Insight one"],
+                "why_it_matters": "It matters.",
+                "limitations_and_open_questions": "Limitations remain.",
+                "contradictions_and_skepticism": "Some skepticism.",
+                "sources": ["https://example.test"],
+            }
+        },
+        "review": {"source_summary": {}},
+    }
+
+    summary = normalize_source_summary(artifact)
+
+    assert summary.short == "Easy overview."
+    assert summary.key_insights == ["Insight one"]
+    by_key = {chapter.key: chapter for chapter in summary.chapters}
+    assert by_key["limitations_and_open_questions"].body == "Limitations remain."
+    assert by_key["contradictions_and_skepticism"].body == "Some skepticism."
+    assert by_key["sources"].items == ["https://example.test"]
+
+
+def test_signal_detail_lists_exclude_destinations_and_mentioned_entities(tmp_path: Path) -> None:
+    """Signal review cards should not elevate destinations/entities into primary details."""
+    from src.management_web.review_data import normalize_entities
+
+    artifact = {
+        "source": {"title": "Signal Source"},
+        "llm_output": {
+            "roundup_signals": [
+                {
+                    "signal_title": "Signal A",
+                    "summary": "Signal summary.",
+                    "suggested_destinations": ["topics/"],
+                    "mentioned_entities": ["OpenAI"],
+                    "evidence_snippets": ["Quote"],
+                    "why_it_matters": "Because it changes operations.",
+                    "operational_relevance": "Affects routing.",
+                }
+            ]
+        },
+        "review": {
+            "roundup_signals": [
+                _review_node(
+                    {
+                        "signal_title": "Signal A",
+                        "summary": "Signal summary.",
+                        "suggested_destinations": ["topics/"],
+                        "mentioned_entities": ["OpenAI"],
+                        "evidence_snippets": ["Quote"],
+                        "why_it_matters": "Because it changes operations.",
+                        "operational_relevance": "Affects routing.",
+                    }
+                )
+            ]
+        },
+    }
+
+    entities = normalize_entities(artifact)
+    signals = next(group for group in entities.groups if group.group == "signals")
+    labels = [entry.label for entry in signals.items[0].detail_lists]
+    assert labels == ["Evidence snippets"]
+    assert "Suggested destinations" not in labels
+    assert "Mentioned entities" not in labels
+    scalar_labels = [entry.label for entry in signals.items[0].detail_scalars]
+    assert "Why it matters" in scalar_labels
+    assert "Operational relevance" in scalar_labels
+
+
+def test_topic_full_extraction_includes_extra_scalar_and_list_fields(tmp_path: Path) -> None:
+    """Topics expose Streamlit-aligned extra fields for on-demand full extraction."""
+    from src.management_web.review_data import normalize_entities
+
+    artifact = {
+        "source": {"title": "Topic Source"},
+        "llm_output": {
+            "topics": [
+                {
+                    "topic_title": "Context Engineering",
+                    "knowledge_summary": "Primary summary.",
+                    "examples": "Prompt prefixes.",
+                    "operational_insight": "Reuse durable context.",
+                    "relevance_note": "Central to agent systems.",
+                    "key_points": ["Point A", "Point B"],
+                    "related_topics": ["rag"],
+                }
+            ]
+        },
+        "review": {
+            "topics": [
+                _review_node(
+                    {
+                        "topic_title": "Context Engineering",
+                        "knowledge_summary": "Primary summary.",
+                        "examples": "Prompt prefixes.",
+                        "operational_insight": "Reuse durable context.",
+                        "relevance_note": "Central to agent systems.",
+                        "key_points": ["Point A", "Point B"],
+                        "related_topics": ["rag"],
+                    }
+                )
+            ]
+        },
+    }
+
+    entities = normalize_entities(artifact)
+    topics = next(group for group in entities.groups if group.group == "topics")
+    item = topics.items[0]
+    assert item.description == "Primary summary."
+    scalar_by_label = {entry.label: entry.body for entry in item.detail_scalars}
+    assert scalar_by_label["Knowledge summary"] == "Primary summary."
+    assert scalar_by_label["Examples"] == "Prompt prefixes."
+    assert scalar_by_label["Operational insight"] == "Reuse durable context."
+    assert scalar_by_label["Relevance note"] == "Central to agent systems."
+    list_by_label = {entry.label: entry.items for entry in item.detail_lists}
+    assert list_by_label["Key points"] == ["Point A", "Point B"]
+    assert list_by_label["Related topics"] == ["rag"]
+
+
+def test_full_extraction_is_populated_for_non_topic_entity_groups(tmp_path: Path) -> None:
+    """Glossary, how-tos, and signals all expose a self-contained Full extraction payload."""
+    from src.management_web.review_data import normalize_entities
+
+    artifact = {
+        "source": {"title": "Mixed Source"},
+        "llm_output": {
+            "glossary": [
+                {
+                    "term": "RAG",
+                    "proposed_definition": "Retrieval-augmented generation.",
+                    "extended_explanation": "Combines search with generation.",
+                    "relevance_note": "Useful for grounded answers.",
+                    "supporting_snippet": "Quote about RAG.",
+                }
+            ],
+            "how_to": [
+                {
+                    "question_title": "How to cache prompts?",
+                    "answer_summary": "Reuse stable prefixes.",
+                    "what_and_problem": "Repeated prefixes waste tokens.",
+                    "caveats": "Cache invalidation still matters.",
+                    "implementation_steps": ["Identify prefix", "Enable cache"],
+                    "prerequisites": ["Provider support"],
+                }
+            ],
+            "roundup_signals": [
+                {
+                    "signal_title": "Agents become products",
+                    "summary": "Short signal summary.",
+                    "why_it_matters": "Changes delivery models.",
+                    "operational_relevance": "Affects support workflows.",
+                    "evidence_snippets": ["Signal quote"],
+                    "suggested_destinations": ["topics/"],
+                    "mentioned_entities": ["OpenAI"],
+                }
+            ],
+        },
+        "review": {},
+    }
+    artifact["review"] = _review_tree_from_llm_output(artifact["llm_output"])
+
+    entities = normalize_entities(artifact)
+    by_group = {group.group: group.items[0] for group in entities.groups if group.items}
+
+    glossary = by_group["glossary"]
+    glossary_labels = [entry.label for entry in glossary.detail_scalars]
+    assert "Definition" in glossary_labels
+    assert "Extended explanation" in glossary_labels
+    assert "Relevance note" in glossary_labels
+    assert "Evidence" in glossary_labels or "Supporting snippet" in glossary_labels
+
+    how_to = by_group["how_to"]
+    how_to_labels = [entry.label for entry in how_to.detail_scalars]
+    assert "Answer summary" in how_to_labels
+    assert "What and problem" in how_to_labels
+    assert "Caveats" in how_to_labels
+    assert [entry.label for entry in how_to.detail_lists] == [
+        "Implementation steps",
+        "Prerequisites",
+    ]
+
+    signal = by_group["signals"]
+    signal_labels = [entry.label for entry in signal.detail_scalars]
+    assert "Summary" in signal_labels
+    assert "Why it matters" in signal_labels
+    assert "Operational relevance" in signal_labels
+    assert [entry.label for entry in signal.detail_lists] == ["Evidence snippets"]
+    assert "Suggested destinations" not in [entry.label for entry in signal.detail_lists]
+    assert "Mentioned entities" not in [entry.label for entry in signal.detail_lists]

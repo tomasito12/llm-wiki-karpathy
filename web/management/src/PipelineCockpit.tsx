@@ -3,7 +3,6 @@ import type { ReactElement } from "react";
 
 import {
   getOpsOperations,
-  getOpsStatus,
   getOperationRun,
   listOperationRuns,
   startOperationRun
@@ -13,8 +12,7 @@ import type {
   OperationDefinition,
   OperationParameter,
   OperationRun,
-  OperationRunStatus,
-  OpsStatusResponse
+  OperationRunStatus
 } from "./types";
 
 type ParameterValues = Record<string, boolean | number>;
@@ -55,49 +53,6 @@ const OPERATION_CARD_GROUPS: OperationCardGroup[] = [
 
 const TERMINAL_STATUSES = new Set<OperationRunStatus>(["succeeded", "failed", "cancelled"]);
 const POLL_INTERVAL_MS = 3000;
-
-function recommendationOperationId(recommendation: string): string | null {
-  const lowered = recommendation.toLowerCase();
-  if (lowered.includes("dry-run") && lowered.includes("synthesis")) {
-    return "synthesis_batch_dry_run";
-  }
-  if (lowered.includes("synthesis") && lowered.includes("batch")) {
-    return "synthesis_batch_dry_run";
-  }
-  if (lowered.includes("synthesis") && (lowered.includes("refresh") || lowered.includes("stale"))) {
-    return "synthesis_batch_dry_run";
-  }
-  if (lowered.includes("render") && lowered.includes("dry-run")) {
-    return "wiki_render_dry_run";
-  }
-  if (lowered.includes("render")) {
-    return "wiki_render";
-  }
-  if (lowered.includes("lint")) {
-    return "wiki_lint";
-  }
-  if (lowered.includes("synthesis") && lowered.includes("select")) {
-    return "synthesis_select";
-  }
-  return null;
-}
-
-function recommendationActionLabel(recommendation: string, operation: OperationDefinition): string {
-  const lowered = recommendation.toLowerCase();
-  if (operation.id === "synthesis_batch_dry_run") {
-    if (lowered.includes("refresh") || lowered.includes("stale")) {
-      return "Plan synthesis refresh";
-    }
-    return "Plan next batch";
-  }
-  if (operation.id === "wiki_render_dry_run") {
-    return "Preview render";
-  }
-  if (operation.id === "wiki_render") {
-    return "Write render...";
-  }
-  return operationActionLabel(operation);
-}
 
 function operationActionLabel(operation: OperationDefinition): string {
   switch (operation.id) {
@@ -202,37 +157,6 @@ function formatSafety(operation: OperationDefinition): string {
     operation.llm_calls ? "LLM calls possible" : "no LLM calls"
   ];
   return bits.join(" · ");
-}
-
-function statusChips(statusPayload: OpsStatusResponse | null): Array<{ label: string; value: string; tone: string }> {
-  if (!statusPayload) {
-    return [];
-  }
-  const status = statusPayload.status;
-  const sources = status.sources as Record<string, unknown> | undefined;
-  const reviews = status.reviews as Record<string, unknown> | undefined;
-  const render = status.render as Record<string, unknown> | undefined;
-  const synthesis = status.synthesis as Record<string, unknown> | undefined;
-  const artifacts = status.artifacts as Record<string, unknown> | undefined;
-  const renderReady = Boolean(render?.manifest_exists) && Boolean(render?.graph_exists);
-  const staleSyntheses = Number(synthesis?.stale ?? 0);
-  const errors = Number(synthesis?.errors ?? 0);
-  const uncommittedDurable = Number(artifacts?.uncommitted_durable_files ?? 0);
-  return [
-    { label: "Sources", value: String(sources?.paired ?? "—"), tone: "neutral" },
-    { label: "Finished reviews", value: String(reviews?.finished ?? "—"), tone: "neutral" },
-    { label: "Render", value: renderReady ? "current" : "incomplete", tone: renderReady ? "ok" : "warn" },
-    {
-      label: "Synthesis",
-      value: errors ? `${errors} errors` : staleSyntheses ? `${staleSyntheses} stale` : "fresh",
-      tone: errors ? "error" : staleSyntheses ? "warn" : "ok"
-    },
-    {
-      label: "Durable changes",
-      value: String(uncommittedDurable),
-      tone: uncommittedDurable ? "warn" : "ok"
-    }
-  ];
 }
 
 function formatDuration(seconds: number | null): string {
@@ -355,7 +279,6 @@ function runFeedbackTitle(run: OperationRun): string {
 }
 
 export default function PipelineCockpit(): ReactElement {
-  const [statusPayload, setStatusPayload] = useState<OpsStatusResponse | null>(null);
   const [operations, setOperations] = useState<OperationDefinition[]>([]);
   const [runs, setRuns] = useState<OperationRun[]>([]);
   const [selectedRunId, setSelectedRunId] = useState<string | null>(null);
@@ -364,8 +287,6 @@ export default function PipelineCockpit(): ReactElement {
   const [busyOperationId, setBusyOperationId] = useState<string | null>(null);
   const [expandedResultRunIds, setExpandedResultRunIds] = useState<Set<string>>(new Set());
   const [actionError, setActionError] = useState<string | null>(null);
-  const [statusError, setStatusError] = useState<string | null>(null);
-  const [statusLoading, setStatusLoading] = useState(false);
 
   const operationsById = useMemo(
     () => Object.fromEntries(operations.map((operation) => [operation.id, operation])),
@@ -390,28 +311,6 @@ export default function PipelineCockpit(): ReactElement {
     return latest;
   }, [runs]);
 
-  const recommendations = useMemo(() => {
-    if (statusError) {
-      return [];
-    }
-    const raw = statusPayload?.status.recommendations;
-    return Array.isArray(raw) ? raw.filter((item): item is string => typeof item === "string") : [];
-  }, [statusError, statusPayload]);
-
-  const refreshStatus = useCallback(async (): Promise<void> => {
-    setStatusLoading(true);
-    try {
-      const payload = await getOpsStatus();
-      setStatusPayload(payload);
-      setStatusError(null);
-    } catch (err: unknown) {
-      const message = String(err);
-      setStatusError(message);
-    } finally {
-      setStatusLoading(false);
-    }
-  }, []);
-
   const refreshRuns = useCallback(async (): Promise<void> => {
     const payload = await listOperationRuns();
     setRuns(payload.runs);
@@ -431,7 +330,6 @@ export default function PipelineCockpit(): ReactElement {
         )
       );
       await refreshRuns();
-      await refreshStatus();
     } catch (err: unknown) {
       setActionError(String(err));
     }
@@ -454,7 +352,6 @@ export default function PipelineCockpit(): ReactElement {
           );
           if (TERMINAL_STATUSES.has(run.status)) {
             await refreshRuns();
-            await refreshStatus();
           }
         } catch (err: unknown) {
           setActionError(String(err));
@@ -462,7 +359,7 @@ export default function PipelineCockpit(): ReactElement {
       })();
     }, POLL_INTERVAL_MS);
     return () => window.clearInterval(timer);
-  }, [refreshRuns, refreshStatus, selectedRun]);
+  }, [refreshRuns, selectedRun]);
 
   function updateParameter(
     operationId: string,

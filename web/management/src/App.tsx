@@ -123,7 +123,7 @@ export default function App(): ReactElement {
       return;
     }
     setTagsLoading(true);
-    getReviewTags()
+    getReviewTags(entityDraft.group)
       .then((response) => setAvailableTags(response.tags))
       .catch((err: unknown) => setEntityError(String(err)))
       .finally(() => setTagsLoading(false));
@@ -887,6 +887,10 @@ function ExtractionOverview({ entities }: { entities: EntityGroups }): ReactElem
 
 function SummaryCard({ source }: { source: SourceDetailResponse }): ReactElement {
   const easyRead = source.summary.short || "No easy read available.";
+  const chapters = source.summary.chapters ?? [];
+  const hasChapters = chapters.some(
+    (chapter) => chapter.body.trim().length > 0 || chapter.items.length > 0
+  );
   return (
     <section className="review-card easy-read-card">
       <h3>Easy Read</h3>
@@ -899,6 +903,32 @@ function SummaryCard({ source }: { source: SourceDetailResponse }): ReactElement
               <li key={insight}>{insight}</li>
             ))}
           </ul>
+        </details>
+      ) : null}
+      {hasChapters ? (
+        <details className="source-summary-details">
+          <summary>Full source summary</summary>
+          <div className="source-summary-chapters">
+            {chapters.map((chapter) => {
+              const empty = !chapter.body.trim() && chapter.items.length === 0;
+              return (
+                <section className="source-summary-chapter" key={chapter.key}>
+                  <h4>{chapter.label}</h4>
+                  {empty ? <p className="quiet-empty">No content.</p> : null}
+                  {chapter.items.length > 0 ? (
+                    <ul>
+                      {chapter.items.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  ) : null}
+                  {chapter.items.length === 0 && chapter.body.trim() ? (
+                    <p className="source-summary-body">{chapter.body}</p>
+                  ) : null}
+                </section>
+              );
+            })}
+          </div>
         </details>
       ) : null}
     </section>
@@ -1283,7 +1313,7 @@ function EntityCard({
           ))}
         </div>
       ) : null}
-      {item.description ? <EntityDescription text={item.description} /> : null}
+      {item.description ? <p className="entity-description">{item.description}</p> : null}
       {entityMessage ? <p className="success-message inline">{entityMessage}</p> : null}
       {item.types.length > 0 ? (
         <div className="tag-cloud compact entity-card-types">
@@ -1294,40 +1324,49 @@ function EntityCard({
           ))}
         </div>
       ) : null}
-      {item.detail_lists.map((detailList) => (
-        <details className="entity-detail-list" key={detailList.label}>
-          <summary>
-            {detailList.label} ({detailList.items.length})
-          </summary>
-          <ul>
-            {detailList.items.map((entry) => (
-              <li key={entry}>{entry}</li>
-            ))}
-          </ul>
-        </details>
-      ))}
-      {item.evidence ? (
-        <details className="evidence-details">
-          <summary>Evidence</summary>
-          <blockquote>{item.evidence}</blockquote>
-        </details>
-      ) : null}
+      <EntityFullExtraction item={item} />
     </article>
   );
 }
 
-function EntityDescription({ text }: { text: string }): ReactElement {
-  const [expanded, setExpanded] = useState(false);
-  const long = text.length > 180 || text.split("\n").length > 3;
+function EntityFullExtraction({ item }: { item: NormalizedEntity }): ReactElement {
+  const scalars = [...(item.detail_scalars ?? [])];
+  const lists = [...(item.detail_lists ?? [])];
+  if (scalars.length === 0 && item.description.trim()) {
+    scalars.push({ label: "Summary", body: item.description });
+  }
+  if (
+    item.evidence.trim() &&
+    !scalars.some((field) => field.body.trim() === item.evidence.trim())
+  ) {
+    scalars.push({ label: "Evidence", body: item.evidence });
+  }
+  const fieldCount = scalars.length + lists.length;
   return (
-    <div className={expanded ? "entity-description expanded" : "entity-description"}>
-      <p>{text}</p>
-      {long ? (
-        <button className="text-button" onClick={() => setExpanded((current) => !current)} type="button">
-          {expanded ? "Show less" : "Show more"}
-        </button>
-      ) : null}
-    </div>
+    <details className="entity-full-extraction">
+      <summary>Full extraction{fieldCount > 0 ? ` (${fieldCount})` : ""}</summary>
+      <div className="entity-full-extraction-body">
+        {fieldCount === 0 ? <p className="quiet-empty">No extraction fields available.</p> : null}
+        {scalars.map((field) => (
+          <section className="entity-full-field" key={field.label}>
+            <h5>{field.label}</h5>
+            <p>{field.body}</p>
+          </section>
+        ))}
+        {lists.map((detailList) => (
+          <section className="entity-full-field" key={detailList.label}>
+            <h5>
+              {detailList.label} ({detailList.items.length})
+            </h5>
+            <ul>
+              {detailList.items.map((entry) => (
+                <li key={entry}>{entry}</li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
+    </details>
   );
 }
 

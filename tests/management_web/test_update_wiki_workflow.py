@@ -14,6 +14,7 @@ from src.management_web.update_wiki_workflow import (
     UpdateWikiWorkflowManager,
     WorkflowValidationError,
     assess_update_wiki_availability,
+    execute_synthesis_batch,
     validate_synthesis_batch_size,
     validate_synthesis_between_calls_seconds,
 )
@@ -146,6 +147,94 @@ def test_validate_synthesis_between_calls_seconds_rejects_out_of_range() -> None
         validate_synthesis_between_calls_seconds(3601)
     assert validate_synthesis_between_calls_seconds(300) == 300.0
     assert validate_synthesis_between_calls_seconds(0) == 0.0
+
+
+def test_execute_synthesis_batch_loads_dotenv_then_reports_missing_key(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    """In-process synthesis loads repo ``.env`` before requiring OPENAI_API_KEY."""
+    load_calls: list[bool] = []
+
+    def _fake_load_repo_dotenv(*, override: bool = False) -> Path:
+        del override
+        load_calls.append(True)
+        return tmp_path
+
+    monkeypatch.setattr(
+        "src.ingest_review.paths.load_repo_dotenv",
+        _fake_load_repo_dotenv,
+    )
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+
+    exit_code, payload, message = execute_synthesis_batch(
+        _paths(tmp_path),
+        limit=1,
+        between_calls=0.0,
+    )
+
+    assert load_calls == [True]
+    assert exit_code == 2
+    assert payload == {}
+    assert "OPENAI_API_KEY is not set" in message
+
+
+def test_execute_synthesis_batch_uses_key_loaded_from_dotenv(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    """After dotenv load, a present OPENAI_API_KEY allows synthesis to proceed."""
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+
+    def _fake_load_repo_dotenv(*, override: bool = False) -> Path:
+        del override
+        monkeypatch.setenv("OPENAI_API_KEY", "test-key-from-dotenv")
+        return tmp_path
+
+    monkeypatch.setattr(
+        "src.ingest_review.paths.load_repo_dotenv",
+        _fake_load_repo_dotenv,
+    )
+    monkeypatch.setattr(
+        "src.wiki_synthesis.planner.load_graph_export",
+        lambda _path: {"pages": []},
+    )
+
+    captured: dict[str, object] = {}
+
+    def _fake_run_synthesis_batch(*_args: object, **kwargs: object) -> object:
+        captured.update(kwargs)
+
+        class _Report:
+            failed = 0
+
+            def to_dict(self) -> dict[str, int]:
+                return {"selected": 0, "attempted": 0, "written": 0, "failed": 0}
+
+        return _Report()
+
+    monkeypatch.setattr(
+        "src.wiki_synthesis.batch.run_synthesis_batch",
+        _fake_run_synthesis_batch,
+    )
+    monkeypatch.setattr(
+        "src.wiki_synthesis.openai_provider.OpenAISynthesisProvider",
+        lambda: object(),
+    )
+    monkeypatch.setattr(
+        "src.ingest_review.review_scope.finished_source_ids",
+        lambda _reviews_dir: set(),
+    )
+
+    exit_code, payload, _stdout = execute_synthesis_batch(
+        _paths(tmp_path),
+        limit=2,
+        between_calls=1.5,
+    )
+
+    assert exit_code == 0
+    assert payload["selected"] == 0
+    assert captured["limit"] == 2
+    assert captured["between_calls"] == 1.5
+    assert captured["dry_run"] is False
 
 
 def test_start_persists_between_calls_parameter(tmp_path: Path) -> None:

@@ -537,6 +537,28 @@ def test_review_tags_endpoint_returns_registry_and_review_tags(tmp_path: Path) -
     assert registry_entry["source"] == "registry"
 
 
+def test_review_tags_endpoint_filters_by_group(tmp_path: Path) -> None:
+    """Tag endpoint should return the entity-group allowlist when group is set."""
+    paths = _paths(tmp_path)
+    config_dir = paths.repo_root / "config"
+    config_dir.mkdir(parents=True)
+    (config_dir / "review_tags_trends.yaml").write_text(
+        "tags:\n- support-automation\n",
+        encoding="utf-8",
+    )
+    (config_dir / "review_tags_topics.yaml").write_text(
+        "tags:\n- topic-only\n",
+        encoding="utf-8",
+    )
+    client = TestClient(create_app(paths=paths))
+
+    response = client.get("/api/review/tags", params={"group": "signals"})
+
+    assert response.status_code == 200
+    names = [entry["name"] for entry in response.json()["tags"]]
+    assert names == ["support-automation"]
+
+
 def test_review_tags_endpoint_is_deterministic(tmp_path: Path) -> None:
     """Tag registry output should be stable across repeated reads."""
     paths = _paths(tmp_path)

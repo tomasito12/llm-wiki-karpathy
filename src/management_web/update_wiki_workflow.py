@@ -117,11 +117,13 @@ def execute_synthesis_batch(
     progress_fn: Callable[[str], None] | None = None,
 ) -> tuple[int, dict[str, Any], str]:
     """Run one real synthesis batch in-process and return exit code plus JSON payload."""
+    from src.ingest_review.paths import load_repo_dotenv
     from src.ingest_review.review_scope import finished_source_ids
     from src.wiki_synthesis.batch import run_synthesis_batch
     from src.wiki_synthesis.openai_provider import OpenAISynthesisProvider
     from src.wiki_synthesis.planner import load_graph_export
 
+    load_repo_dotenv()
     if not os.environ.get("OPENAI_API_KEY"):
         return 2, {}, "OPENAI_API_KEY is not set. Add it to .env or export it."
 

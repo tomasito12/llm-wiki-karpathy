@@ -96,14 +96,27 @@ export interface SourcePaths {
   review_json: string;
 }
 
+export interface SourceSummaryChapter {
+  key: string;
+  label: string;
+  body: string;
+  items: string[];
+}
+
 export interface SourceSummary {
   short: string;
   key_insights: string[];
+  chapters: SourceSummaryChapter[];
 }
 
 export interface EntityDetailList {
   label: string;
   items: string[];
+}
+
+export interface EntityDetailScalar {
+  label: string;
+  body: string;
 }
 
 export interface NormalizedEntity {
@@ -116,6 +129,7 @@ export interface NormalizedEntity {
   hidden: boolean;
   render_category: string;
   render_mode: RenderMode;
+  detail_scalars: EntityDetailScalar[];
   detail_lists: EntityDetailList[];
   raw: Record<string, unknown>;
 }

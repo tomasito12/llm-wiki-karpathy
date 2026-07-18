@@ -7,6 +7,7 @@ from pathlib import Path
 
 import uvicorn
 
+from src.ingest_review.paths import load_repo_dotenv
 from src.management_web.api import create_app
 from src.wiki_paths.cli_helpers import add_paths_config_argument
 
@@ -41,6 +42,7 @@ def main(argv: list[str] | None = None) -> int:
     Returns:
         Process exit code.
     """
+    load_repo_dotenv()
     args = build_parser().parse_args(argv)
     paths_config: Path | None = args.paths_config
     app = create_app(paths_config=paths_config)

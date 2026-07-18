@@ -7,6 +7,15 @@ from typing import Literal
 
 EntitySection = Literal["wiki_entities", "source_specific_insights"]
 RenderMode = Literal["merged", "individual"]
+TagAllowlistKey = Literal[
+    "topic",
+    "glossary",
+    "trend",
+    "howto",
+    "tool",
+    "model",
+    "impl_study",
+]
 
 # Top-level ``llm_output`` keys that are not extractable entity proposal lists.
 LLM_OUTPUT_NON_ENTITY_KEYS: frozenset[str] = frozenset(
@@ -47,6 +56,7 @@ class EditableEntityConfig:
     title_fallback_keys: tuple[str, ...]
     description_key: str
     description_fallback_keys: tuple[str, ...]
+    description_label: str = "Summary"
     tag_keys: tuple[str, ...] = (
         "proposed_tags",
         "primary_tag",
@@ -63,7 +73,12 @@ class EditableEntityConfig:
         "source_quote",
         "supporting_evidence",
     )
+    evidence_label: str = "Evidence"
+    # Extra scalar fields for on-demand "Full extraction" (Streamlit More fields).
+    # Primary description/evidence are prepended/appended separately.
+    detail_scalar_fields: tuple[tuple[str, str], ...] = ()
     detail_list_fields: tuple[tuple[str, str], ...] = ()
+    tag_allowlist: TagAllowlistKey | None = None
 
 
 ENTITY_CONFIGS: tuple[EditableEntityConfig, ...] = (
@@ -84,7 +99,18 @@ ENTITY_CONFIGS: tuple[EditableEntityConfig, ...] = (
             "description",
             "summary",
         ),
-        detail_list_fields=(("key_points", "Key points"),),
+        description_label="Knowledge summary",
+        evidence_label="Supporting snippet",
+        detail_scalar_fields=(
+            ("topic_slug", "Topic slug"),
+            ("examples", "Examples"),
+            ("operational_insight", "Operational insight"),
+            ("relevance_note", "Relevance note"),
+        ),
+        detail_list_fields=(
+            ("key_points", "Key points"),
+            ("related_topics", "Related topics"),
+        ),
         tag_keys=(
             "topic_tags",
             "proposed_tags",
@@ -93,6 +119,7 @@ ENTITY_CONFIGS: tuple[EditableEntityConfig, ...] = (
             "suggested_new_tags",
             "suggested_new_tag",
         ),
+        tag_allowlist="topic",
     ),
     EditableEntityConfig(
         group="glossary",
@@ -111,6 +138,11 @@ ENTITY_CONFIGS: tuple[EditableEntityConfig, ...] = (
             "description",
             "summary",
         ),
+        description_label="Definition",
+        detail_scalar_fields=(
+            ("extended_explanation", "Extended explanation"),
+            ("relevance_note", "Relevance note"),
+        ),
         tag_keys=(
             "tags",
             "glossary_tags",
@@ -120,6 +152,7 @@ ENTITY_CONFIGS: tuple[EditableEntityConfig, ...] = (
             "suggested_new_tags",
             "suggested_new_tag",
         ),
+        tag_allowlist="glossary",
     ),
     EditableEntityConfig(
         group="trends",
@@ -138,6 +171,14 @@ ENTITY_CONFIGS: tuple[EditableEntityConfig, ...] = (
             "description",
             "summary",
         ),
+        description_label="Trend description",
+        evidence_label="Evidence from source",
+        detail_scalar_fields=(
+            ("trend_slug", "Page slug"),
+            ("time_sensitivity", "Time sensitivity"),
+            ("uncertainty_note", "Uncertainty note"),
+        ),
+        detail_list_fields=(("supporting_data_points", "Supporting data points"),),
         tag_keys=(
             "trend_tags",
             "proposed_tags",
@@ -146,6 +187,7 @@ ENTITY_CONFIGS: tuple[EditableEntityConfig, ...] = (
             "suggested_new_tags",
             "suggested_new_tag",
         ),
+        tag_allowlist="trend",
     ),
     EditableEntityConfig(
         group="how_to",
@@ -159,10 +201,17 @@ ENTITY_CONFIGS: tuple[EditableEntityConfig, ...] = (
         title_fallback_keys=("title",),
         description_key="answer_summary",
         description_fallback_keys=("what_and_problem", "description", "summary"),
+        description_label="Answer summary",
+        evidence_label="Supporting snippet",
+        detail_scalar_fields=(
+            ("what_and_problem", "What and problem"),
+            ("caveats", "Caveats"),
+        ),
         detail_list_fields=(
             ("implementation_steps", "Implementation steps"),
             ("prerequisites", "Prerequisites"),
         ),
+        tag_allowlist="howto",
     ),
     EditableEntityConfig(
         group="tools",
@@ -176,10 +225,19 @@ ENTITY_CONFIGS: tuple[EditableEntityConfig, ...] = (
         title_fallback_keys=("title",),
         description_key="short_description",
         description_fallback_keys=("operational_relevance", "description", "summary"),
+        description_label="Short description",
+        evidence_label="Supporting snippet",
+        detail_scalar_fields=(
+            ("operational_relevance", "Operational relevance"),
+            ("strengths", "Strengths"),
+            ("weaknesses_limitations", "Weaknesses / limitations"),
+            ("maturity_signals", "Maturity / adoption signals"),
+        ),
         detail_list_fields=(
             ("core_capabilities", "Core capabilities"),
             ("integration_ecosystem", "Integration ecosystem"),
         ),
+        tag_allowlist="tool",
     ),
     EditableEntityConfig(
         group="models",
@@ -193,11 +251,22 @@ ENTITY_CONFIGS: tuple[EditableEntityConfig, ...] = (
         title_fallback_keys=("title", "name"),
         description_key="operational_profile",
         description_fallback_keys=("deployment_implications", "description", "summary"),
+        description_label="Operational profile",
+        evidence_label="Supporting snippet",
+        detail_scalar_fields=(
+            ("provider", "Provider"),
+            ("deployment_implications", "Deployment implications"),
+            ("weaknesses_limitations", "Weaknesses / limitations"),
+            ("service_automation_implications", "Service automation implications"),
+            ("maturity_signals", "Maturity / adoption signals"),
+            ("pricing_inference_implications", "Pricing / inference implications"),
+        ),
         detail_list_fields=(
             ("core_capabilities", "Core capabilities"),
             ("benchmark_observations", "Benchmark observations"),
             ("comparative_observations", "Comparative observations"),
         ),
+        tag_allowlist="model",
     ),
     EditableEntityConfig(
         group="implementation_studies",
@@ -211,10 +280,26 @@ ENTITY_CONFIGS: tuple[EditableEntityConfig, ...] = (
         title_fallback_keys=(),
         description_key="overview",
         description_fallback_keys=("what_was_implemented", "description", "summary"),
+        description_label="Overview",
+        detail_scalar_fields=(
+            ("company", "Company / organization"),
+            ("industry", "Industry / domain"),
+            ("what_was_implemented", "What was implemented?"),
+            ("business_objective", "Business objective"),
+            ("technical_approach", "Technical approach"),
+            ("deployment_context", "Deployment context"),
+            ("outcome_status", "Outcome / current status"),
+            ("success_or_failure_factors", "Why it succeeded or struggled"),
+            ("operational_constraints", "Operational constraints"),
+            ("ai_model_observations", "AI / model observations"),
+            ("implications_for_service_automation", "Implications for service automation"),
+            ("strategic_signals", "Strategic signals"),
+        ),
         detail_list_fields=(
             ("key_lessons", "Key lessons"),
             ("open_questions", "Open questions"),
         ),
+        tag_allowlist="impl_study",
     ),
     EditableEntityConfig(
         group="signals",
@@ -228,11 +313,20 @@ ENTITY_CONFIGS: tuple[EditableEntityConfig, ...] = (
         title_fallback_keys=("title",),
         description_key="summary",
         description_fallback_keys=("description",),
-        detail_list_fields=(
-            ("suggested_destinations", "Suggested destinations"),
-            ("mentioned_entities", "Mentioned entities"),
-            ("evidence_snippets", "Evidence snippets"),
+        description_label="Summary",
+        detail_scalar_fields=(
+            ("signal_type", "Signal type"),
+            ("why_it_matters", "Why it matters"),
+            ("operational_relevance", "Operational relevance"),
+            ("service_automation_relevance", "Service automation relevance"),
+            ("signal_strength", "Signal strength"),
+            ("time_horizon", "Time horizon"),
+            ("wiki_worthiness", "Wiki-worthiness"),
         ),
+        # Suggested destinations / mentioned entities stay in artifact + render,
+        # but are not primary review-card fields (see management-web review feedback).
+        detail_list_fields=(("evidence_snippets", "Evidence snippets"),),
+        tag_allowlist="trend",
     ),
     EditableEntityConfig(
         group="interview_insights",
@@ -246,11 +340,21 @@ ENTITY_CONFIGS: tuple[EditableEntityConfig, ...] = (
         title_fallback_keys=("title",),
         description_key="summary",
         description_fallback_keys=("description",),
-        detail_list_fields=(
-            ("suggested_destinations", "Suggested destinations"),
-            ("mentioned_entities", "Mentioned entities"),
-            ("evidence_snippets", "Evidence snippets"),
+        description_label="Summary",
+        detail_scalar_fields=(
+            ("insight_type", "Insight type"),
+            ("why_it_matters", "Why it matters"),
+            ("operational_relevance", "Operational relevance"),
+            ("service_automation_relevance", "Service automation relevance"),
+            ("confidence", "Confidence"),
+            ("durability_estimate", "Durability estimate"),
+            ("wiki_worthiness", "Wiki-worthiness"),
         ),
+        detail_list_fields=(
+            ("evidence_snippets", "Evidence snippets"),
+            ("contrarian_or_speculative_claims", "Contrarian or speculative claims"),
+        ),
+        tag_allowlist="topic",
     ),
 )
 

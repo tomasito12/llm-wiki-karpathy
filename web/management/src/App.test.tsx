@@ -11,6 +11,8 @@ function makeEntity(
     description?: string;
     tags?: string[];
     hidden?: boolean;
+    detail_scalars?: Array<{ label: string; body: string }>;
+    detail_lists?: Array<{ label: string; items: string[] }>;
     render_category?: string;
     render_mode?: "merged" | "individual";
     section?: "wiki_entities" | "source_specific_insights";
@@ -26,7 +28,8 @@ function makeEntity(
     hidden: options.hidden ?? false,
     render_category: options.render_category ?? "topic",
     render_mode: options.render_mode ?? "merged",
-    detail_lists: [],
+    detail_scalars: options.detail_scalars ?? [],
+    detail_lists: options.detail_lists ?? [],
     raw: {}
   };
 }
@@ -196,7 +199,8 @@ const sourcePayload = {
   },
   summary: {
     short: "API summary",
-    key_insights: ["API insight"]
+    key_insights: ["API insight"],
+    chapters: []
   },
   tags: ["api"],
   entities: buildEntityGroups([
@@ -251,7 +255,8 @@ const newerSourcePayload = {
   },
   summary: {
     short: "Newer summary",
-    key_insights: []
+    key_insights: [],
+    chapters: []
   }
 };
 
@@ -267,7 +272,8 @@ const finishedSourcePayload = {
   },
   summary: {
     short: "Finished summary",
-    key_insights: []
+    key_insights: [],
+    chapters: []
   },
   tags: ["finished"],
   entities: buildEntityGroups([]),
@@ -1362,6 +1368,119 @@ describe("App", () => {
     expect(screen.getByText("Topics 1")).toBeInTheDocument();
     expect(screen.getByText("How-tos 1")).toBeInTheDocument();
     expect(within(await screen.findByLabelText("Source list")).getByText(/5 entities/)).toBeInTheDocument();
+  });
+
+  it("shows full extraction for glossary and how-to entities", async () => {
+    const multiEntitySource = {
+      ...sourcePayload,
+      entities: buildEntityGroups([
+        {
+          group: "glossary",
+          label: "Glossary",
+          section: "wiki_entities",
+          items: [
+            makeEntity(0, "RAG", {
+              description: "Retrieval-augmented generation.",
+              render_category: "glossary",
+              detail_scalars: [
+                { label: "Definition", body: "Retrieval-augmented generation." },
+                { label: "Extended explanation", body: "Combines search with generation." }
+              ]
+            })
+          ]
+        },
+        {
+          group: "how_to",
+          label: "How-tos",
+          section: "wiki_entities",
+          items: [
+            makeEntity(0, "How to cache prompts", {
+              description: "Reuse stable prefixes.",
+              render_category: "how_to",
+              detail_scalars: [
+                { label: "Answer summary", body: "Reuse stable prefixes." },
+                { label: "Caveats", body: "Cache invalidation still matters." }
+              ],
+              detail_lists: [{ label: "Implementation steps", items: ["Identify prefix"] }]
+            })
+          ]
+        }
+      ])
+    };
+    vi.mocked(fetch).mockImplementation(async (input: RequestInfo | URL) => {
+      const url = String(input);
+      if (url.includes("/api/config")) {
+        return Response.json(configPayload);
+      }
+      if (url.includes("/api/review/queue")) {
+        return Response.json({ ...queuePayload, items: [queuePayload.items[1]] });
+      }
+      if (url.includes("/api/review/source/api-source")) {
+        return Response.json(multiEntitySource);
+      }
+      return new Response("not found", { status: 404 });
+    });
+    render(<App />);
+
+    expect(await screen.findByText("RAG")).toBeInTheDocument();
+    expect(screen.getByText("How to cache prompts")).toBeInTheDocument();
+    expect(screen.getAllByText(/Full extraction/).length).toBeGreaterThanOrEqual(2);
+    expect(screen.getByText("Combines search with generation.")).toBeInTheDocument();
+    expect(screen.getByText("Cache invalidation still matters.")).toBeInTheDocument();
+    expect(screen.getByText("Identify prefix")).toBeInTheDocument();
+  });
+
+  it("shows full entity extraction on demand", async () => {
+    const fullExtractionSource = {
+      ...sourcePayload,
+      entities: buildEntityGroups([
+        {
+          group: "topics",
+          label: "Topics",
+          section: "wiki_entities",
+          items: [
+            makeEntity(0, "API Topic", {
+              description: "Topic description",
+              tags: ["api"],
+              detail_scalars: [
+                { label: "Knowledge summary", body: "Topic description" },
+                { label: "Operational insight", body: "Reuse durable context." },
+                { label: "Relevance note", body: "Central to agent systems." },
+                { label: "Supporting snippet", body: "Quoted evidence." }
+              ],
+              detail_lists: [{ label: "Key points", items: ["Point A", "Point B"] }]
+            })
+          ]
+        }
+      ])
+    };
+    vi.mocked(fetch).mockImplementation(async (input: RequestInfo | URL) => {
+      const url = String(input);
+      if (url.includes("/api/config")) {
+        return Response.json(configPayload);
+      }
+      if (url.includes("/api/review/queue")) {
+        return Response.json({ ...queuePayload, items: [queuePayload.items[1]] });
+      }
+      if (url.includes("/api/review/source/api-source")) {
+        return Response.json(fullExtractionSource);
+      }
+      return new Response("not found", { status: 404 });
+    });
+    render(<App />);
+
+    expect(await screen.findByText("API Topic")).toBeInTheDocument();
+    const summary = screen.getByText("Full extraction (5)");
+    const details = summary.closest("details");
+    expect(details).not.toBeNull();
+    expect(details).not.toHaveAttribute("open");
+    await userEvent.click(summary);
+    expect(details).toHaveAttribute("open");
+    expect(screen.getByText("Reuse durable context.")).toBeInTheDocument();
+    expect(screen.getByText("Central to agent systems.")).toBeInTheDocument();
+    expect(screen.getByText("Quoted evidence.")).toBeInTheDocument();
+    expect(screen.getByText("Point A")).toBeInTheDocument();
+    expect(screen.getByText("Point B")).toBeInTheDocument();
   });
 
   it("edits a how-to through the existing entity endpoint", async () => {

@@ -12,13 +12,31 @@ from pathlib import Path
 from typing import Any, cast, get_args
 
 from src.ingest_queue.queue import IngestItem, list_ingest_items
-from src.ingest_review.tags import load_tag_list, normalize_tag
+from src.ingest_review.dashboard_ui import (
+    CHAPTER_LABELS,
+    SOURCE_CHAPTER_DISPLAY_ORDER,
+    effective_list_chapter_lines,
+    effective_scalar_chapter_text,
+)
+from src.ingest_review.schema import SOURCE_SUMMARY_SCALAR_KEYS
+from src.ingest_review.tags import (
+    load_glossary_tags,
+    load_howto_tags,
+    load_impl_study_tags,
+    load_model_tags,
+    load_tag_list,
+    load_tool_tags,
+    load_topic_tags,
+    load_trend_tags,
+    normalize_tag,
+)
 from src.management_web.entity_config import (
     ENTITY_CONFIG_BY_GROUP,
     ENTITY_CONFIGS,
     LLM_OUTPUT_NON_ENTITY_KEYS,
     SUPPORTED_ARTIFACT_KEYS,
     EditableEntityConfig,
+    TagAllowlistKey,
 )
 from src.management_web.models import (
     DebugPayload,
@@ -26,6 +44,7 @@ from src.management_web.models import (
     EditableEntityGroup,
     EntityCounts,
     EntityDetailList,
+    EntityDetailScalar,
     EntityEditRequest,
     EntityEditResponse,
     EntityGroups,
@@ -50,6 +69,7 @@ from src.management_web.models import (
     SourceMetadata,
     SourcePaths,
     SourceSummary,
+    SourceSummaryChapter,
 )
 from src.pipeline.atomic import atomic_write_json
 from src.wiki_paths.config import WikiPaths
@@ -455,20 +475,157 @@ def normalize_source_summary(artifact: dict[str, Any] | None) -> SourceSummary:
         artifact: Loaded review artifact, when available.
 
     Returns:
-        Source summary response model.
+        Source summary response model including full on-demand chapters.
     """
     llm_output = _dict_value(artifact, "llm_output")
     summary = _dict_value(llm_output, "source_summary")
+    review_summary = _dict_value(_dict_value(artifact, "review"), "source_summary")
     raw_insights = summary.get("key_insights") if isinstance(summary, dict) else []
     insights = (
         [str(item).strip() for item in raw_insights if str(item).strip()]
         if isinstance(raw_insights, list)
         else []
     )
+    chapters = _source_summary_chapters(summary, review_summary)
     return SourceSummary(
         short=_first_string(summary, ("accessible_overview", "summary")),
         key_insights=insights,
+        chapters=chapters,
     )
+
+
+def _source_summary_chapters(
+    llm_summary: dict[str, Any],
+    review_summary: dict[str, Any],
+) -> list[SourceSummaryChapter]:
+    """Build Streamlit-aligned source summary chapters for on-demand inspection."""
+    chapters: list[SourceSummaryChapter] = []
+    for section_key in SOURCE_CHAPTER_DISPLAY_ORDER:
+        label = CHAPTER_LABELS.get(section_key, section_key.replace("_", " ").title())
+        node = review_summary.get(section_key)
+        review_node = node if isinstance(node, dict) else {}
+        if section_key == "sources":
+            items = effective_list_chapter_lines(llm_summary, review_node, "sources")
+            chapters.append(
+                SourceSummaryChapter(
+                    key=section_key,
+                    label=label,
+                    body="\n".join(items),
+                    items=items,
+                )
+            )
+            continue
+        if section_key == "key_insights":
+            items = effective_list_chapter_lines(llm_summary, review_node, section_key)
+            chapters.append(
+                SourceSummaryChapter(
+                    key=section_key,
+                    label=label,
+                    body="\n".join(items),
+                    items=items,
+                )
+            )
+            continue
+        if section_key in SOURCE_SUMMARY_SCALAR_KEYS:
+            body = effective_scalar_chapter_text(llm_summary, review_node, section_key)
+            chapters.append(
+                SourceSummaryChapter(
+                    key=section_key,
+                    label=label,
+                    body=body,
+                    items=[],
+                )
+            )
+    return chapters
+
+
+def collect_tags(artifact: dict[str, Any] | None) -> list[str]:
+    """Collect display tags from supported entity groups in a stable order.
+
+    Rejected/hidden entities do not contribute tags. This matches wiki-render
+    collection, which only unions tags from included proposals.
+
+    Args:
+        artifact: Loaded review artifact, when available.
+
+    Returns:
+        Sorted unique tag strings.
+    """
+    tags: set[str] = set()
+    entities = normalize_entities(artifact)
+    for group in entities.groups:
+        for entity in group.items:
+            if entity.hidden:
+                continue
+            tags.update(entity.tags)
+    return sorted(tags)
+
+
+def build_review_tag_registry(
+    paths: WikiPaths,
+    *,
+    group: str | None = None,
+) -> ReviewTagsResponse:
+    """Return tag choices from config registries and review artifacts.
+
+    When ``group`` is set, return only the Streamlit-aligned allowlist for that
+    entity group (plus observed usage counts for those tags).
+
+    Args:
+        paths: Resolved wiki paths.
+        group: Optional editable entity group slug.
+
+    Returns:
+        Deterministically sorted tag choices with usage counts.
+
+    Raises:
+        ValueError: If ``group`` is unknown.
+    """
+    usage_counts = _collect_tag_usage_from_artifacts(paths.reviews_dir)
+    if group is None:
+        registry_tags = _load_registry_tags(paths.repo_root)
+    else:
+        registry_tags = _load_group_allowlist_tags(paths.repo_root, group)
+    choices: list[ReviewTagChoice] = []
+    for name in sorted(registry_tags | (set(usage_counts) if group is None else set())):
+        if group is not None and name not in registry_tags:
+            continue
+        source: ReviewTagSource = "registry" if name in registry_tags else "reviews"
+        choices.append(
+            ReviewTagChoice(
+                name=name,
+                source=source,
+                usage_count=usage_counts.get(name, 0),
+            )
+        )
+    choices.sort(key=lambda choice: (-choice.usage_count, choice.name))
+    return ReviewTagsResponse(tags=choices)
+
+
+def _load_group_allowlist_tags(repo_root: Path, group: str) -> set[str]:
+    """Load the Streamlit-aligned tag allowlist for one entity group."""
+    config = ENTITY_CONFIG_BY_GROUP.get(group)
+    if config is None:
+        msg = f"Unknown entity group: {group}"
+        raise ValueError(msg)
+    allowlist_key = config.tag_allowlist
+    if allowlist_key is None:
+        return set()
+    return set(_load_allowlist_tags(repo_root, allowlist_key))
+
+
+def _load_allowlist_tags(repo_root: Path, allowlist_key: TagAllowlistKey) -> list[str]:
+    """Load one configured tag allowlist."""
+    loaders: dict[TagAllowlistKey, Any] = {
+        "topic": load_topic_tags,
+        "glossary": load_glossary_tags,
+        "trend": load_trend_tags,
+        "howto": load_howto_tags,
+        "tool": load_tool_tags,
+        "model": load_model_tags,
+        "impl_study": load_impl_study_tags,
+    }
+    return list(loaders[allowlist_key](repo_root))
 
 
 def normalize_entities(artifact: dict[str, Any] | None) -> EntityGroups:
@@ -488,48 +645,6 @@ def normalize_entities(artifact: dict[str, Any] | None) -> EntityGroups:
         trends=by_group["trends"].items,
         groups=groups,
     )
-
-
-def collect_tags(artifact: dict[str, Any] | None) -> list[str]:
-    """Collect display tags from supported entity groups in a stable order.
-
-    Args:
-        artifact: Loaded review artifact, when available.
-
-    Returns:
-        Sorted unique tag strings.
-    """
-    tags: set[str] = set()
-    entities = normalize_entities(artifact)
-    for group in entities.groups:
-        for entity in group.items:
-            tags.update(entity.tags)
-    return sorted(tags)
-
-
-def build_review_tag_registry(paths: WikiPaths) -> ReviewTagsResponse:
-    """Return merged tag choices from config registries and review artifacts.
-
-    Args:
-        paths: Resolved wiki paths.
-
-    Returns:
-        Deterministically sorted tag choices with usage counts.
-    """
-    registry_tags = _load_registry_tags(paths.repo_root)
-    usage_counts = _collect_tag_usage_from_artifacts(paths.reviews_dir)
-    choices: list[ReviewTagChoice] = []
-    for name in sorted(registry_tags | set(usage_counts)):
-        source: ReviewTagSource = "registry" if name in registry_tags else "reviews"
-        choices.append(
-            ReviewTagChoice(
-                name=name,
-                source=source,
-                usage_count=usage_counts.get(name, 0),
-            )
-        )
-    choices.sort(key=lambda choice: (-choice.usage_count, choice.name))
-    return ReviewTagsResponse(tags=choices)
 
 
 def read_raw_markdown(paths: WikiPaths, source_id: str) -> RawSourceResponse:
@@ -792,6 +907,7 @@ def _normalize_entity_item(
             hidden=False,
             render_category=config.render_category,
             render_mode=config.render_mode,
+            detail_scalars=[],
             detail_lists=[],
             raw={"value": llm_item},
         )
@@ -803,16 +919,24 @@ def _normalize_entity_item(
     tags = _entity_tags(config, review_dict, llm_dict)
     types = _entity_types(review_dict, llm_dict)
     hidden = _entity_is_hidden(review_dict, llm_dict)
+    evidence = _entity_evidence(review_dict, llm_dict)
     return NormalizedEntity(
         index=index,
         title=title,
         description=description,
         tags=tags,
         types=types,
-        evidence=_entity_evidence(review_dict, llm_dict),
+        evidence=evidence,
         hidden=hidden,
         render_category=config.render_category,
         render_mode=config.render_mode,
+        detail_scalars=_entity_detail_scalars(
+            config,
+            review_dict,
+            llm_dict,
+            description=description,
+            evidence=evidence,
+        ),
         detail_lists=_entity_detail_lists(config, review_dict, llm_dict),
         raw=llm_dict or review_dict,
     )
@@ -867,6 +991,7 @@ def _entity_detail_lists(
 ) -> list[EntityDetailList]:
     """Return read-only supporting list fields for one entity card."""
     detail_lists: list[EntityDetailList] = []
+    seen_labels: set[str] = set()
     for field_key, label in config.detail_list_fields:
         if review_node:
             items = list_value(review_node, field_key)
@@ -874,7 +999,180 @@ def _entity_detail_lists(
             items = _list_from_llm_item(llm_item, field_key)
         if items:
             detail_lists.append(EntityDetailList(label=label, items=items))
+            seen_labels.add(label)
+    for field_key, items in _leftover_list_fields(config, review_node, llm_item):
+        label = _humanize_field_label(field_key)
+        if not items or label in seen_labels:
+            continue
+        detail_lists.append(EntityDetailList(label=label, items=items))
+        seen_labels.add(label)
     return detail_lists
+
+
+def _entity_detail_scalars(
+    config: EditableEntityConfig,
+    review_node: dict[str, Any],
+    llm_item: dict[str, Any],
+    *,
+    description: str,
+    evidence: str,
+) -> list[EntityDetailScalar]:
+    """Return the full scalar extraction payload for on-demand inspection.
+
+    Includes the primary description and evidence so Full extraction is
+    self-contained (Streamlit-aligned), not only the secondary fields.
+    """
+    detail_scalars: list[EntityDetailScalar] = []
+    description_normalized = description.strip()
+    seen_bodies: set[str] = set()
+    seen_labels: set[str] = set()
+    if description_normalized:
+        detail_scalars.append(
+            EntityDetailScalar(label=config.description_label, body=description_normalized)
+        )
+        seen_bodies.add(description_normalized)
+        seen_labels.add(config.description_label)
+    for field_key, label in config.detail_scalar_fields:
+        if field_key == config.description_key:
+            continue
+        body = _entity_scalar_field(review_node, llm_item, field_key)
+        if not body or body in seen_bodies or label in seen_labels:
+            continue
+        detail_scalars.append(EntityDetailScalar(label=label, body=body))
+        seen_bodies.add(body)
+        seen_labels.add(label)
+    evidence_normalized = evidence.strip()
+    if (
+        evidence_normalized
+        and evidence_normalized not in seen_bodies
+        and config.evidence_label not in seen_labels
+    ):
+        detail_scalars.append(
+            EntityDetailScalar(label=config.evidence_label, body=evidence_normalized)
+        )
+        seen_bodies.add(evidence_normalized)
+        seen_labels.add(config.evidence_label)
+    for field_key, body in _leftover_scalar_fields(config, review_node, llm_item):
+        label = _humanize_field_label(field_key)
+        if not body or body in seen_bodies or label in seen_labels:
+            continue
+        detail_scalars.append(EntityDetailScalar(label=label, body=body))
+        seen_bodies.add(body)
+        seen_labels.add(label)
+    return detail_scalars
+
+
+_FULL_EXTRACTION_SKIP_KEYS: frozenset[str] = frozenset(
+    {
+        "proposed_tags",
+        "suggested_new_tags",
+        "primary_tag",
+        "secondary_tag",
+        "suggested_new_tag",
+        "topic_tags",
+        "glossary_tags",
+        "trend_tags",
+        "tags",
+        "proposed_types",
+        "proposed_new_type",
+        "match_candidates",
+        "confidence",
+        "suggested_action",
+        "value_level",
+        "evidence_type",
+        "review_state",
+        "assessed_as_of",
+        "suggested_destinations",
+        "mentioned_entities",
+    }
+)
+
+
+def _configured_extraction_keys(config: EditableEntityConfig) -> set[str]:
+    """Return field keys already covered by the compact card or configured details."""
+    keys = {
+        config.title_key,
+        config.description_key,
+        *config.title_fallback_keys,
+        *config.evidence_keys,
+        *config.tag_keys,
+        *config.type_keys,
+    }
+    keys.update(field_key for field_key, _label in config.detail_scalar_fields)
+    keys.update(field_key for field_key, _label in config.detail_list_fields)
+    keys.update(_FULL_EXTRACTION_SKIP_KEYS)
+    return keys
+
+
+def _leftover_scalar_fields(
+    config: EditableEntityConfig,
+    review_node: dict[str, Any],
+    llm_item: dict[str, Any],
+) -> list[tuple[str, str]]:
+    """Return nonempty scalar leftovers not covered by configured extraction fields."""
+    known = _configured_extraction_keys(config)
+    leftovers: list[tuple[str, str]] = []
+    source = review_llm_item(review_node) if review_node else {}
+    if not source:
+        source = llm_item
+    for field_key, raw in source.items():
+        if field_key in known or not isinstance(raw, str):
+            continue
+        body = raw.strip()
+        if body:
+            leftovers.append((field_key, body))
+    return leftovers
+
+
+def _leftover_list_fields(
+    config: EditableEntityConfig,
+    review_node: dict[str, Any],
+    llm_item: dict[str, Any],
+) -> list[tuple[str, list[str]]]:
+    """Return nonempty list leftovers not covered by configured extraction fields."""
+    known = _configured_extraction_keys(config)
+    leftovers: list[tuple[str, list[str]]] = []
+    candidate_keys: list[str] = []
+    if review_node:
+        candidate_keys.extend(review_llm_item(review_node))
+    candidate_keys.extend(llm_item)
+    seen_keys: set[str] = set()
+    for field_key in candidate_keys:
+        if field_key in known or field_key in seen_keys:
+            continue
+        seen_keys.add(field_key)
+        if review_node:
+            items = list_value(review_node, field_key)
+            if not items:
+                items = _list_from_llm_item(llm_item, field_key)
+        else:
+            items = _list_from_llm_item(llm_item, field_key)
+        if items:
+            leftovers.append((field_key, items))
+    return leftovers
+
+
+def _humanize_field_label(field_key: str) -> str:
+    """Convert a snake_case extraction key into a short display label."""
+    return field_key.replace("_", " ").strip().capitalize()
+
+
+def _entity_scalar_field(
+    review_node: dict[str, Any],
+    llm_item: dict[str, Any],
+    field_key: str,
+) -> str:
+    """Return one review-first scalar field for full extraction."""
+    if review_node:
+        text = scalar_value(review_node, field_key)
+        if text:
+            return text
+        embedded = review_llm_item(review_node)
+        if embedded:
+            text = _first_string(embedded, (field_key,))
+            if text:
+                return text
+    return _first_string(llm_item, (field_key,))
 
 
 def _entity_evidence(review_node: dict[str, Any], llm_item: dict[str, Any]) -> str:
@@ -1232,6 +1530,8 @@ def _collect_tag_usage_from_artifacts(reviews_dir: Path) -> Counter[str]:
         entities = normalize_entities(artifact)
         for group in entities.groups:
             for entity in group.items:
+                if entity.hidden:
+                    continue
                 for tag in entity.tags:
                     normalized = normalize_tag(tag)
                     if normalized:
