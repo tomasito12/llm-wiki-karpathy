@@ -1,0 +1,51 @@
+# LLM Wiki management app services for the shared Hetzner VM.
+# Public TLS + Basic Auth stay on the existing Music Review Caddy.
+# Do not publish host ports 80/443 from this file.
+#
+# Secrets: use a server-only env file (default path below). Never run
+# `docker compose ... config` without `-q` when that file contains real secrets —
+# Compose prints resolved env values unless quiet mode is used.
+
+services:
+  llm-wiki-api:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.api
+    container_name: llm-wiki-api
+    restart: unless-stopped
+    env_file:
+      # Prefer a dedicated deploy env file so local developer `.env` is not the
+      # default source for Compose interpolation / `config` output.
+      - ${LLM_WIKI_ENV_FILE:-deploy/llm-wiki.env}
+    environment:
+      LLM_WIKI_PATHS_CONFIG: ${LLM_WIKI_PATHS_CONFIG:-/app/config/wiki_paths.server.toml}
+      PYTHONUNBUFFERED: "1"
+    volumes:
+      - /srv/llm-wiki/data:/srv/llm-wiki/data
+      - /srv/llm-wiki/vault-private:/srv/llm-wiki/vault-private
+      # Server-only path config (create from config/wiki_paths.server.example.toml).
+      - ${LLM_WIKI_HOST_PATHS_CONFIG:-./config/wiki_paths.server.toml}:/app/config/wiki_paths.server.toml:ro
+    expose:
+      - "8000"
+    networks:
+      - edge
+
+  llm-wiki-frontend:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.management-ui
+    container_name: llm-wiki-frontend
+    restart: unless-stopped
+    depends_on:
+      - llm-wiki-api
+    expose:
+      - "80"
+    networks:
+      - edge
+
+networks:
+  edge:
+    # Join the existing Music Review compose network so Caddy can resolve
+    # llm-wiki-api / llm-wiki-frontend by container name.
+    name: ${LLM_WIKI_DOCKER_NETWORK:-music-review_default}
+    external: true

@@ -1,0 +1,20 @@
+[paths]
+# Server-primary path example for Hetzner deployment.
+# Copy to a server-only path (for example config/wiki_paths.server.toml or
+# /srv/llm-wiki/secrets/wiki_paths.toml) and keep the real file untracked.
+
+knowledge_root = "/srv/llm-wiki/data"
+vault_root = "/srv/llm-wiki/vault-private"
+
+raw_dir = "{knowledge_root}/raw/readwise"
+reviews_dir = "{knowledge_root}/state/reviews"
+synthesis_dir = "{knowledge_root}/state/synthesis"
+graph_path = "{knowledge_root}/state/wiki_render_graph.json"
+manifest_path = "{knowledge_root}/state/wiki_render_manifest.json"
+release_dir = "{knowledge_root}/state/releases"
+
+preview_dir = "{knowledge_root}/tmp/synthesis_previews"
+run_dir = "{knowledge_root}/tmp/synthesis_runs"
+backup_dir = "{knowledge_root}/tmp/synthesis_backups"
+
+wiki_dir = "{vault_root}/wiki"

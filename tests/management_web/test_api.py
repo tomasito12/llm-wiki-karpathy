@@ -109,6 +109,44 @@ def test_config_endpoint_returns_safe_resolved_paths(tmp_path: Path) -> None:
     assert "OPENAI_API_KEY" not in json.dumps(payload)
 
 
+def test_health_and_config_accept_server_like_paths(tmp_path: Path) -> None:
+    """Health/config should work when create_app receives server-style WikiPaths."""
+    root = tmp_path / "srv" / "llm-wiki"
+    data = root / "data"
+    vault = root / "vault-private"
+    paths = WikiPaths(
+        repo_root=tmp_path / "app",
+        knowledge_root=data,
+        vault_root=vault,
+        raw_dir=data / "raw" / "readwise",
+        reviews_dir=data / "state" / "reviews",
+        synthesis_dir=data / "state" / "synthesis",
+        graph_path=data / "state" / "wiki_render_graph.json",
+        manifest_path=data / "state" / "wiki_render_manifest.json",
+        release_dir=data / "state" / "releases",
+        preview_dir=data / "tmp" / "synthesis_previews",
+        run_dir=data / "tmp" / "synthesis_runs",
+        backup_dir=data / "tmp" / "synthesis_backups",
+        wiki_dir=vault / "wiki",
+        source_pages_dir=vault / "wiki" / "sources" / "full",
+        source_index_path=vault / "wiki" / "sources" / "index.md",
+        indexes_dir=vault / "wiki" / "indexes",
+    )
+    paths.raw_dir.mkdir(parents=True)
+    paths.reviews_dir.mkdir(parents=True)
+    client = TestClient(create_app(paths=paths))
+
+    health = client.get("/api/health")
+    config = client.get("/api/config")
+
+    assert health.status_code == 200
+    assert health.json()["ok"] is True
+    assert config.status_code == 200
+    assert config.json()["paths"]["raw_dir"] == str(paths.raw_dir)
+    assert config.json()["paths"]["wiki_dir"] == str(paths.wiki_dir)
+    assert str(paths.knowledge_root) in config.json()["paths"]["raw_dir"]
+
+
 def test_review_queue_endpoint_returns_counts_and_items(tmp_path: Path) -> None:
     """Queue endpoint should return filtered review items and status counts."""
     paths = _paths(tmp_path)

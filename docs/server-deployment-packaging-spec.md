@@ -155,7 +155,9 @@ READWISE_TOKEN=
 PYTHONUNBUFFERED=1
 ```
 
-The real production env file must remain server-side and untracked.
+The real production env file must remain server-side and untracked
+(`deploy/llm-wiki.env` by default for Compose `env_file`). Do not use a local
+developer `.env` as the Compose env file when it also holds unrelated secrets.
 
 Do not put Basic Auth credentials in this env example. They belong in the
 server Caddy configuration or in a server-only Caddy env file, depending on the
@@ -286,11 +288,11 @@ Illustrative shape:
 
 ```caddyfile
 wiki.plattenradar.de {
-  basicauth {
+  basic_auth {
     {$LLM_WIKI_BASIC_AUTH_USER} {$LLM_WIKI_BASIC_AUTH_HASH}
   }
 
-  handle_path /api/* {
+  handle /api* {
     reverse_proxy llm-wiki-api:8000
   }
 
@@ -353,7 +355,7 @@ Required deploy job:
 - fast-forward the checkout
 - build/restart `llm-wiki-api` and `llm-wiki-frontend`
 - do not touch productive data except through normal container mounts
-- do not overwrite server `.env`
+- do not overwrite server `deploy/llm-wiki.env`
 - do not overwrite server path config
 - run health checks
 
@@ -499,12 +501,19 @@ hatch run test:run
 npm --prefix web/management run lint
 npm --prefix web/management run test -- --run
 npm --prefix web/management run build
-docker compose -f compose.llm-wiki.yml config
+cp deploy/llm-wiki.env.example deploy/llm-wiki.env
+cp config/wiki_paths.server.example.toml config/wiki_paths.server.toml
+# Always use -q. Plain `config` prints resolved secrets from env files.
+docker compose -f compose.llm-wiki.yml config -q
 docker compose -f compose.llm-wiki.yml build
 ```
 
 If Docker is not available locally, Cursor must state that clearly and still run
 the non-Docker checks.
+
+Never run `docker compose ... config` without `-q` when real secrets may be
+present in an env file. Treat any prior non-quiet `config` output as exposed
+and rotate affected tokens.
 
 No command in this implementation should contact OpenAI or Readwise.
 

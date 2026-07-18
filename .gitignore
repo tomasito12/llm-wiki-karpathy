@@ -22,9 +22,11 @@ htmlcov/
 .env
 .env.*
 !.env.example
+deploy/llm-wiki.env
 
 # Local path configuration (machine-specific absolute paths)
 config/wiki_paths.toml
+config/wiki_paths.server.toml
 
 # Temporary files
 *.log

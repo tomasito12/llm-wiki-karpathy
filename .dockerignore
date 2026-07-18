@@ -1,0 +1,55 @@
+# Keep secrets and bulky local artifacts out of the Docker build context.
+.git
+.github
+.hatch
+.venv
+.pytest_cache
+.mypy_cache
+.ruff_cache
+.coverage
+coverage.xml
+htmlcov
+.pre-commit-cache
+.DS_Store
+.idea
+.vscode
+.agents
+.obsidian
+.cursor
+
+# Secrets / local env (never send to the Docker daemon)
+.env
+.env.*
+!.env.example
+deploy/llm-wiki.env
+*.pem
+*.key
+.env.server
+
+# Local path configs with machine-specific absolute paths
+config/wiki_paths.toml
+config/wiki_paths.server.toml
+
+# Node / frontend build artifacts
+**/node_modules
+**/dist
+web/management/dist
+web/management/node_modules
+web/management/tsconfig.tsbuildinfo
+
+# Local / productive data trees (must not enter images)
+raw/
+state/
+wiki/
+sources/
+indexes/
+docs/
+tests/
+agent-transcripts/
+*.log
+*.tmp
+*.swp
+
+# Large optional local trees
+llm-wiki-data/
+llm-wiki-vault-private/

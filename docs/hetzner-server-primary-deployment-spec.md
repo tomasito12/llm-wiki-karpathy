@@ -7,9 +7,14 @@ This document captures the planning state for moving the LLM Wiki system from
 local operation to a server-primary deployment on the user's existing Hetzner
 virtual machine.
 
-It is intentionally a specification and decision log first, not yet a Cursor
-implementation plan. The next step is to complete the remaining interview
-questions, then split implementation into safe technical slices.
+Implementation packaging for v1 lives in:
+
+- `docs/server-deployment-packaging-spec.md`
+- `docs/server-deployment-runbook.md`
+- `docs/superpowers/plans/2026-07-18-server-deployment-packaging.md`
+
+It is intentionally a specification and decision log first. Packaging and deploy
+artifacts are now in-repo; cutover and data migration remain separate steps.
 
 ## 1. Goal
 
@@ -391,7 +396,7 @@ Server backups must protect at least:
 /srv/llm-wiki/data
 /srv/llm-wiki/vault-private
 /srv/llm-wiki/app/config/wiki_paths.server.toml
-/srv/llm-wiki/app/.env or server-side env file
+/srv/llm-wiki/app/deploy/llm-wiki.env
 ```
 
 Secrets should be backed up carefully, but not copied into documentation,
@@ -423,7 +428,7 @@ First deployment:
 - no secrets in frontend bundle
 - OpenAI and Readwise credentials only server-side
 - logs must avoid dumping full article text by default
-- server `.env` must not be overwritten by deployment
+- server `deploy/llm-wiki.env` must not be overwritten by deployment
 
 Future hardening:
 

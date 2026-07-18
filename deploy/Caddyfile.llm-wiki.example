@@ -1,0 +1,27 @@
+# Example site block for the existing Music Review Caddy.
+# Merge this into the Music Review deploy/Caddyfile (or an imported snippet)
+# and reload that Caddy container. Do not start a second public Caddy on 80/443.
+#
+# Before reload:
+# 1. Point DNS for wiki.plattenradar.de at the Hetzner VM.
+# 2. Ensure llm-wiki-api and llm-wiki-frontend are on the same Docker network
+#    as Music Review Caddy (default: music-review_default).
+# 3. Set Basic Auth env vars for Caddy (or replace placeholders with a hash
+#    generated via `caddy hash-password`). Never commit real passwords/hashes.
+#
+# Important: use `handle /api*` (not `handle_path`) so the `/api` prefix is
+# preserved for FastAPI routes such as `/api/health`.
+
+wiki.plattenradar.de {
+	basic_auth {
+		{$LLM_WIKI_BASIC_AUTH_USER} {$LLM_WIKI_BASIC_AUTH_HASH}
+	}
+
+	handle /api* {
+		reverse_proxy llm-wiki-api:8000
+	}
+
+	handle {
+		reverse_proxy llm-wiki-frontend:80
+	}
+}
