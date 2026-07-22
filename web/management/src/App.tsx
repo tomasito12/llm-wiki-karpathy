@@ -7,6 +7,7 @@ import {
   getRawSource,
   getReviewQueue,
   getReviewTags,
+  getReviewTypes,
   getSourceDetail,
   updateReviewEntity,
   writeManagementDecision
@@ -84,6 +85,8 @@ interface EntityEditDraft {
   description: string;
   tags: string[];
   newTagNames: string[];
+  types: string[];
+  newTypeNames: string[];
 }
 
 export default function App(): ReactElement {
@@ -107,7 +110,9 @@ export default function App(): ReactElement {
   const [finishError, setFinishError] = useState<string | null>(null);
   const [showRejected, setShowRejected] = useState(false);
   const [availableTags, setAvailableTags] = useState<ReviewTagChoice[]>([]);
+  const [availableTypes, setAvailableTypes] = useState<ReviewTagChoice[]>([]);
   const [tagsLoading, setTagsLoading] = useState(false);
+  const [typesLoading, setTypesLoading] = useState(false);
   const [entityDraft, setEntityDraft] = useState<EntityEditDraft | null>(null);
   const [entityPending, setEntityPending] = useState(false);
   const [entityMessage, setEntityMessage] = useState<string | null>(null);
@@ -127,6 +132,16 @@ export default function App(): ReactElement {
       .then((response) => setAvailableTags(response.tags))
       .catch((err: unknown) => setEntityError(String(err)))
       .finally(() => setTagsLoading(false));
+    if (entityDraft.group === "tools") {
+      setTypesLoading(true);
+      getReviewTypes("tools")
+        .then((response) => setAvailableTypes(response.types))
+        .catch((err: unknown) => setEntityError(String(err)))
+        .finally(() => setTypesLoading(false));
+    } else {
+      setAvailableTypes([]);
+      setTypesLoading(false);
+    }
   }, [entityDraft?.group, entityDraft?.index]);
 
   useEffect(() => {
@@ -269,7 +284,9 @@ export default function App(): ReactElement {
       title: item.title,
       description: item.description,
       tags: [...item.tags],
-      newTagNames: []
+      newTagNames: [],
+      types: [...item.types],
+      newTypeNames: []
     });
     setEntityMessage(null);
     setEntityMessageKey(null);
@@ -507,6 +524,7 @@ export default function App(): ReactElement {
               <TagCloud tags={source.tags} />
               <EntitySections
                 availableTags={availableTags}
+                availableTypes={availableTypes}
                 editDraft={entityDraft}
                 entityError={entityError}
                 entityMessage={entityMessage}
@@ -522,6 +540,7 @@ export default function App(): ReactElement {
                 showRejected={showRejected}
                 onShowRejectedChange={setShowRejected}
                 tagsLoading={tagsLoading}
+                typesLoading={typesLoading}
               />
               <div className="utility-actions secondary-utilities">
                 <button onClick={openRawSource}>
@@ -665,7 +684,12 @@ function entityDraftError(draft: EntityEditDraft): string | null {
     return "Description cannot be empty.";
   }
   if (draft.tags.some((tag) => normalizeTagSlug(tag) === null)) {
-    return "Tags cannot be empty or contain commas.";
+    return draft.group === "tools"
+      ? "Traits cannot be empty or contain commas."
+      : "Tags cannot be empty or contain commas.";
+  }
+  if (draft.group === "tools" && draft.types.some((typeName) => normalizeTagSlug(typeName) === null)) {
+    return "Tool kinds cannot be empty or contain commas.";
   }
   return null;
 }
@@ -686,6 +710,7 @@ function buildEntityEditPayload(
   title?: string;
   description?: string;
   tags?: string[];
+  types?: string[];
 } {
   const payload: {
     group: EditableEntityGroup;
@@ -693,6 +718,7 @@ function buildEntityEditPayload(
     title?: string;
     description?: string;
     tags?: string[];
+    types?: string[];
   } = {
     group: draft.group,
     index: draft.index
@@ -706,6 +732,9 @@ function buildEntityEditPayload(
   if (!original || !tagsEqual(draft.tags, original.tags)) {
     payload.tags = draft.tags.map((tag) => normalizeTagSlug(tag) ?? tag);
   }
+  if (draft.group === "tools" && (!original || !tagsEqual(draft.types, original.types))) {
+    payload.types = draft.types.map((typeName) => normalizeTagSlug(typeName) ?? typeName);
+  }
   return payload;
 }
 
@@ -713,7 +742,8 @@ function entityDraftUnchanged(draft: EntityEditDraft, item: NormalizedEntity): b
   return (
     draft.title === item.title &&
     draft.description === item.description &&
-    tagsEqual(draft.tags, item.tags)
+    tagsEqual(draft.tags, item.tags) &&
+    tagsEqual(draft.types, item.types)
   );
 }
 
@@ -958,6 +988,7 @@ function TagCloud({ tags }: { tags: string[] }): ReactElement {
 
 function EntitySections({
   availableTags,
+  availableTypes,
   editDraft,
   entityError,
   entityMessage,
@@ -972,9 +1003,11 @@ function EntitySections({
   onStartEdit,
   showRejected,
   onShowRejectedChange,
-  tagsLoading
+  tagsLoading,
+  typesLoading
 }: {
   availableTags: ReviewTagChoice[];
+  availableTypes: ReviewTagChoice[];
   editDraft: EntityEditDraft | null;
   entityError: string | null;
   entityMessage: string | null;
@@ -990,6 +1023,7 @@ function EntitySections({
   showRejected: boolean;
   onShowRejectedChange: (showRejected: boolean) => void;
   tagsLoading: boolean;
+  typesLoading: boolean;
 }): ReactElement {
   const rejectedCount = countRejectedEntities(entities);
   return (
@@ -1007,6 +1041,7 @@ function EntitySections({
       {ENTITY_SECTIONS.map((section) => (
         <EntitySectionBlock
           availableTags={availableTags}
+          availableTypes={availableTypes}
           editDraft={editDraft}
           entityError={entityError}
           entityMessage={entityMessage}
@@ -1023,6 +1058,7 @@ function EntitySections({
           sectionTitle={section.title}
           showRejected={showRejected}
           tagsLoading={tagsLoading}
+          typesLoading={typesLoading}
         />
       ))}
     </section>
@@ -1031,6 +1067,7 @@ function EntitySections({
 
 function EntitySectionBlock({
   availableTags,
+  availableTypes,
   editDraft,
   entityError,
   entityMessage,
@@ -1045,9 +1082,11 @@ function EntitySectionBlock({
   onStartEdit,
   sectionTitle,
   showRejected,
-  tagsLoading
+  tagsLoading,
+  typesLoading
 }: {
   availableTags: ReviewTagChoice[];
+  availableTypes: ReviewTagChoice[];
   editDraft: EntityEditDraft | null;
   entityError: string | null;
   entityMessage: string | null;
@@ -1063,6 +1102,7 @@ function EntitySectionBlock({
   sectionTitle: string;
   showRejected: boolean;
   tagsLoading: boolean;
+  typesLoading: boolean;
 }): ReactElement | null {
   const visibleGroups = groups.filter((group) => {
     const visibleItems = showRejected
@@ -1086,6 +1126,7 @@ function EntitySectionBlock({
         {visibleGroups.map((group) => (
           <EntityGroup
             availableTags={availableTags}
+            availableTypes={availableTypes}
             editDraft={editDraft}
             entityError={entityError}
             entityMessage={entityMessage}
@@ -1103,6 +1144,7 @@ function EntitySectionBlock({
             showRejected={showRejected}
             tagsLoading={tagsLoading}
             title={group.label}
+            typesLoading={typesLoading}
           />
         ))}
       </div>
@@ -1112,6 +1154,7 @@ function EntitySectionBlock({
 
 function EntityGroup({
   availableTags,
+  availableTypes,
   editDraft,
   entityError,
   entityMessage,
@@ -1127,9 +1170,11 @@ function EntityGroup({
   onSaveEdit,
   onStartEdit,
   showRejected,
-  tagsLoading
+  tagsLoading,
+  typesLoading
 }: {
   availableTags: ReviewTagChoice[];
+  availableTypes: ReviewTagChoice[];
   editDraft: EntityEditDraft | null;
   entityError: string | null;
   entityMessage: string | null;
@@ -1146,6 +1191,7 @@ function EntityGroup({
   onStartEdit: (group: EditableEntityGroup, item: NormalizedEntity) => void;
   showRejected: boolean;
   tagsLoading: boolean;
+  typesLoading: boolean;
 }): ReactElement {
   const visibleItems = showRejected ? items : items.filter((item) => !isRejectedEntity(item));
   if (visibleItems.length === 0) {
@@ -1169,6 +1215,7 @@ function EntityGroup({
         return (
           <EntityCard
             availableTags={availableTags}
+            availableTypes={availableTypes}
             editDraft={isEditing ? editDraft : null}
             entityError={isEditing ? entityError : null}
             entityMessage={entityKey(group, item.index) === entityMessageKey ? entityMessage : null}
@@ -1184,6 +1231,7 @@ function EntityGroup({
             onShowRejected={showRejected}
             onStartEdit={onStartEdit}
             tagsLoading={tagsLoading}
+            typesLoading={typesLoading}
           />
         );
       })}
@@ -1193,6 +1241,7 @@ function EntityGroup({
 
 function EntityCard({
   availableTags,
+  availableTypes,
   editDraft,
   entityError,
   entityMessage,
@@ -1206,9 +1255,11 @@ function EntityCard({
   onSaveEdit,
   onShowRejected,
   onStartEdit,
-  tagsLoading
+  tagsLoading,
+  typesLoading
 }: {
   availableTags: ReviewTagChoice[];
+  availableTypes: ReviewTagChoice[];
   editDraft: EntityEditDraft | null;
   entityError: string | null;
   entityMessage: string | null;
@@ -1223,12 +1274,14 @@ function EntityCard({
   onShowRejected: boolean;
   onStartEdit: (group: EditableEntityGroup, item: NormalizedEntity) => void;
   tagsLoading: boolean;
+  typesLoading: boolean;
 }): ReactElement {
-  const rejected = isRejectedEntity(item);
   const entityTitle = item.title || "Untitled entity";
+  const rejected = isRejectedEntity(item);
   if (editDraft) {
     const validationError = entityDraftError(editDraft);
     const unchanged = entityDraftUnchanged(editDraft, item);
+    const isTool = editDraft.group === "tools";
     return (
       <article className="entity-card entity-editor">
         <label>
@@ -1247,15 +1300,45 @@ function EntityCard({
             value={editDraft.description}
           />
         </label>
+        {isTool ? (
+          <TagPicker
+            availableTags={availableTypes}
+            createLabelPrefix="Create new kind"
+            disabled={entityPending}
+            emptyLabel="No tool kind selected"
+            helperText="What kind of product?"
+            label="Tool kind"
+            loading={typesLoading}
+            newTags={editDraft.newTypeNames}
+            onChange={(types, newTypeNames) =>
+              onDraftChange({ ...editDraft, types, newTypeNames })
+            }
+            placeholder="Search tool kinds"
+            searchAriaLabel="Search or create tool kinds"
+            tags={editDraft.types}
+          />
+        ) : null}
         <TagPicker
           availableTags={availableTags}
+          createLabelPrefix={isTool ? "Create new trait" : "Create new tag"}
           disabled={entityPending}
+          emptyLabel={isTool ? "No traits selected" : "No tags selected"}
+          helperText={isTool ? "How it's used or deployed" : undefined}
+          label={isTool ? "Traits" : "Entity tags"}
           loading={tagsLoading}
           newTags={editDraft.newTagNames}
           onChange={(tags, newTagNames) => onDraftChange({ ...editDraft, tags, newTagNames })}
+          placeholder={isTool ? "Search traits" : "Search tags"}
+          searchAriaLabel={isTool ? "Search or create traits" : "Search or create tags"}
           tags={editDraft.tags}
         />
-        {unchanged ? <p className="helper-text">Change title, description, or tags to save.</p> : null}
+        {unchanged ? (
+          <p className="helper-text">
+            {isTool
+              ? "Change title, description, tool kind, or traits to save."
+              : "Change title, description, or tags to save."}
+          </p>
+        ) : null}
         {validationError ? <p className="error-message inline">{validationError}</p> : null}
         {entityError ? <p className="error-message inline">{entityError}</p> : null}
         <div className="button-row">
@@ -1272,6 +1355,7 @@ function EntityCard({
       </article>
     );
   }
+  const isTool = group === "tools";
   return (
     <article className={rejected ? "entity-card rejected-entity" : "entity-card"}>
       <div className="entity-card-header">
@@ -1306,7 +1390,35 @@ function EntityCard({
         </div>
       </div>
       {rejected ? <span className="rejected-badge">Rejected</span> : null}
-      {item.tags.length > 0 ? (
+      {isTool && item.types.length > 0 ? (
+        <div className="entity-meta-block entity-card-kinds">
+          <div className="entity-meta-heading">
+            <span className="entity-meta-label">Tool kind</span>
+            <span className="entity-meta-helper">What kind of product?</span>
+          </div>
+          <div className="tag-cloud compact">
+            {item.types.map((typeName) => (
+              <span className="type-chip" key={typeName}>
+                {typeName}
+              </span>
+            ))}
+          </div>
+        </div>
+      ) : null}
+      {isTool && item.tags.length > 0 ? (
+        <div className="entity-meta-block entity-card-traits">
+          <div className="entity-meta-heading">
+            <span className="entity-meta-label">Traits</span>
+            <span className="entity-meta-helper">How it's used or deployed</span>
+          </div>
+          <div className="tag-cloud compact">
+            {item.tags.map((tag) => (
+              <span key={tag}>{tag}</span>
+            ))}
+          </div>
+        </div>
+      ) : null}
+      {!isTool && item.tags.length > 0 ? (
         <div className="tag-cloud compact entity-card-tags">
           {item.tags.map((tag) => (
             <span key={tag}>{tag}</span>
@@ -1315,11 +1427,11 @@ function EntityCard({
       ) : null}
       {item.description ? <p className="entity-description">{item.description}</p> : null}
       {entityMessage ? <p className="success-message inline">{entityMessage}</p> : null}
-      {item.types.length > 0 ? (
+      {!isTool && item.types.length > 0 ? (
         <div className="tag-cloud compact entity-card-types">
-          {item.types.map((type) => (
-            <span className="type-chip" key={type}>
-              {type}
+          {item.types.map((typeName) => (
+            <span className="type-chip" key={typeName}>
+              {typeName}
             </span>
           ))}
         </div>

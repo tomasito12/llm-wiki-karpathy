@@ -15,6 +15,7 @@ import type {
   QueueStatusFilter,
   RawSourceResponse,
   ReviewTagsResponse,
+  ReviewTypesResponse,
   SourceDetailResponse,
   StartOperationRequest,
   StartOperationResponse,
@@ -46,6 +47,11 @@ export function getReviewTags(group?: string): Promise<ReviewTagsResponse> {
   }
   const suffix = search.toString() ? `?${search.toString()}` : "";
   return fetchJson<ReviewTagsResponse>(`/api/review/tags${suffix}`);
+}
+
+export function getReviewTypes(group: string): Promise<ReviewTypesResponse> {
+  const search = new URLSearchParams({ group });
+  return fetchJson<ReviewTypesResponse>(`/api/review/types?${search.toString()}`);
 }
 
 export function getReviewQueue(params: {

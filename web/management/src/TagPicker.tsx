@@ -43,19 +43,31 @@ function sortTagOptions(options: ReviewTagChoice[], query: string): ReviewTagCho
 
 export interface TagPickerProps {
   availableTags: ReviewTagChoice[];
+  createLabelPrefix?: string;
   disabled?: boolean;
+  emptyLabel?: string;
+  helperText?: string;
+  label?: string;
   loading?: boolean;
   newTags: string[];
   onChange: (tags: string[], newTags: string[]) => void;
+  placeholder?: string;
+  searchAriaLabel?: string;
   tags: string[];
 }
 
 export function TagPicker({
   availableTags,
+  createLabelPrefix = "Create new tag",
   disabled = false,
+  emptyLabel = "No tags selected",
+  helperText,
+  label = "Entity tags",
   loading = false,
   newTags,
   onChange,
+  placeholder = "Search tags",
+  searchAriaLabel = "Search or create tags",
   tags
 }: TagPickerProps): ReactElement {
   const [query, setQuery] = useState("");
@@ -98,9 +110,10 @@ export function TagPicker({
 
   return (
     <label className="tag-picker">
-      Entity tags
+      <span className="tag-picker-label">{label}</span>
+      {helperText ? <span className="tag-picker-helper">{helperText}</span> : null}
       <div className="tag-picker-chips">
-        {tags.length === 0 ? <span className="tag-picker-empty">No tags selected</span> : null}
+        {tags.length === 0 ? <span className="tag-picker-empty">{emptyLabel}</span> : null}
         {tags.map((tag) => (
           <span
             className={newTags.includes(tag) ? "tag-chip tag-chip-new" : "tag-chip"}
@@ -120,7 +133,7 @@ export function TagPicker({
       </div>
       <input
         aria-expanded={open}
-        aria-label="Search or create tags"
+        aria-label={searchAriaLabel}
         disabled={disabled}
         onBlur={() => {
           window.setTimeout(() => setOpen(false), 120);
@@ -130,7 +143,7 @@ export function TagPicker({
           setOpen(true);
         }}
         onFocus={() => setOpen(true)}
-        placeholder={loading ? "Loading tags..." : "Search tags"}
+        placeholder={loading ? "Loading..." : placeholder}
         role="combobox"
         value={query}
       />
@@ -151,7 +164,7 @@ export function TagPicker({
                 onMouseDown={() => addTag(normalizedQuery)}
                 type="button"
               >
-                Create new tag: {normalizedQuery}
+                {createLabelPrefix}: {normalizedQuery}
               </button>
             </li>
           ) : null}

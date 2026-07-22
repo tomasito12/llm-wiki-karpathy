@@ -316,6 +316,42 @@ button:disabled {
   margin-top: 0.35rem;
 }
 
+.entity-meta-block {
+  margin: 0.35rem 0 0.45rem;
+}
+
+.entity-meta-heading {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.55rem;
+  margin-bottom: 0.25rem;
+}
+
+.entity-meta-label {
+  color: #334155;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.entity-meta-helper,
+.tag-picker-helper {
+  color: #64748b;
+  font-size: 0.72rem;
+}
+
+.tag-picker-label {
+  display: block;
+  font-weight: 600;
+}
+
+.tag-picker-helper {
+  display: block;
+  margin: 0.15rem 0 0.35rem;
+}
+
 .entity-card h4 {
   font-size: 0.92rem;
   font-weight: 700;

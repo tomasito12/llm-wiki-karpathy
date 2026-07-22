@@ -597,6 +597,35 @@ def test_review_tags_endpoint_filters_by_group(tmp_path: Path) -> None:
     assert names == ["support-automation"]
 
 
+def test_review_types_endpoint_returns_tool_kinds(tmp_path: Path) -> None:
+    """Types endpoint should return the tool types allowlist for group=tools."""
+    paths = _paths(tmp_path)
+    config_dir = paths.repo_root / "config"
+    config_dir.mkdir(parents=True)
+    (config_dir / "review_tool_types.yaml").write_text(
+        "tags:\n- app\n- terminal\n",
+        encoding="utf-8",
+    )
+    client = TestClient(create_app(paths=paths))
+
+    response = client.get("/api/review/types", params={"group": "tools"})
+
+    assert response.status_code == 200
+    names = [entry["name"] for entry in response.json()["types"]]
+    assert names == ["app", "terminal"]
+
+
+def test_review_types_endpoint_rejects_non_tools(tmp_path: Path) -> None:
+    """Types endpoint should reject non-tool groups."""
+    paths = _paths(tmp_path)
+    client = TestClient(create_app(paths=paths))
+
+    response = client.get("/api/review/types", params={"group": "topics"})
+
+    assert response.status_code == 400
+    assert "tools" in response.json()["detail"]
+
+
 def test_review_tags_endpoint_is_deterministic(tmp_path: Path) -> None:
     """Tag registry output should be stable across repeated reads."""
     paths = _paths(tmp_path)

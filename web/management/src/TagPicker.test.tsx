@@ -34,4 +34,20 @@ describe("TagPicker", () => {
       20
     );
   });
+
+  it("renders a custom label and helper text", () => {
+    render(
+      <TagPicker
+        availableTags={[]}
+        helperText="What kind of product?"
+        label="Tool kind"
+        newTags={[]}
+        onChange={vi.fn()}
+        tags={[]}
+      />
+    );
+
+    expect(screen.getByText("Tool kind")).toBeInTheDocument();
+    expect(screen.getByText("What kind of product?")).toBeInTheDocument();
+  });
 });

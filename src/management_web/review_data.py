@@ -26,6 +26,7 @@ from src.ingest_review.tags import (
     load_model_tags,
     load_tag_list,
     load_tool_tags,
+    load_tool_types,
     load_topic_tags,
     load_trend_tags,
     normalize_tag,
@@ -65,6 +66,7 @@ from src.management_web.models import (
     ReviewTagChoice,
     ReviewTagSource,
     ReviewTagsResponse,
+    ReviewTypesResponse,
     SourceDetailResponse,
     SourceMetadata,
     SourcePaths,
@@ -600,6 +602,42 @@ def build_review_tag_registry(
         )
     choices.sort(key=lambda choice: (-choice.usage_count, choice.name))
     return ReviewTagsResponse(tags=choices)
+
+
+def build_review_type_registry(
+    paths: WikiPaths,
+    *,
+    group: str,
+) -> ReviewTypesResponse:
+    """Return tool-kind choices from the tool types allowlist and review usage.
+
+    Args:
+        paths: Resolved wiki paths.
+        group: Editable entity group slug; only ``tools`` is supported.
+
+    Returns:
+        Deterministically sorted type choices with usage counts.
+
+    Raises:
+        ValueError: If ``group`` is not ``tools``.
+    """
+    if group != "tools":
+        msg = f"Type editing is only supported for tools, not {group!r}"
+        raise ValueError(msg)
+    registry_types = {normalize_tag(name) for name in load_tool_types(paths.repo_root)}
+    registry_types.discard("")
+    usage_counts = _collect_type_usage_from_artifacts(paths.reviews_dir, group="tools")
+    choices: list[ReviewTagChoice] = []
+    for name in sorted(registry_types):
+        choices.append(
+            ReviewTagChoice(
+                name=name,
+                source="registry",
+                usage_count=usage_counts.get(name, 0),
+            )
+        )
+    choices.sort(key=lambda choice: (-choice.usage_count, choice.name))
+    return ReviewTypesResponse(types=choices)
 
 
 def _load_group_allowlist_tags(repo_root: Path, group: str) -> set[str]:
@@ -1377,7 +1415,13 @@ def _validate_entity_edit_request(request: EntityEditRequest) -> None:
     """Validate that at least one well-formed editable field is present."""
     has_field = any(
         value is not None
-        for value in (request.title, request.description, request.tags, request.hidden)
+        for value in (
+            request.title,
+            request.description,
+            request.tags,
+            request.types,
+            request.hidden,
+        )
     )
     if not has_field:
         raise ValueError("At least one editable field must be present")
@@ -1387,6 +1431,10 @@ def _validate_entity_edit_request(request: EntityEditRequest) -> None:
         raise ValueError("Description cannot be empty")
     if request.tags is not None:
         _normalize_tags(request.tags)
+    if request.types is not None:
+        if request.group != "tools":
+            raise ValueError("Type editing is only supported for tools")
+        _normalize_tags(request.types)
 
 
 def _apply_entity_edit(
@@ -1411,6 +1459,11 @@ def _apply_entity_edit(
         _set_review_tags(review_node, tags)
         if llm_entity is not None:
             _set_llm_tags(llm_entity, tags, config)
+    if request.types is not None:
+        types = _normalize_tags(request.types)
+        _set_review_types(review_node, types)
+        if llm_entity is not None:
+            _set_llm_types(llm_entity, types, config)
     if request.hidden is not None:
         _set_review_hidden_state(review_node, request.hidden, reviewed_by=reviewed_by)
         if llm_entity is not None:
@@ -1455,6 +1508,29 @@ def _set_llm_tags(
     llm_entity["proposed_tags"] = tags
     for key in config.tag_keys:
         if key != "proposed_tags":
+            llm_entity.pop(key, None)
+
+
+def _set_review_types(review_node: dict[str, Any], types: list[str]) -> None:
+    """Write reviewed tool kinds into the review tree."""
+    type_node = review_node.get("types")
+    if not isinstance(type_node, dict):
+        type_node = {}
+        review_node["types"] = type_node
+    type_node["approved_types"] = types
+    type_node["reviewer_types_added"] = []
+    type_node["approved_new_types"] = []
+
+
+def _set_llm_types(
+    llm_entity: dict[str, Any],
+    types: list[str],
+    config: EditableEntityConfig,
+) -> None:
+    """Mirror reviewed tool kinds into llm_output for display coherence."""
+    llm_entity["proposed_types"] = types
+    for key in config.type_keys:
+        if key != "proposed_types":
             llm_entity.pop(key, None)
 
 
@@ -1534,6 +1610,33 @@ def _collect_tag_usage_from_artifacts(reviews_dir: Path) -> Counter[str]:
                     continue
                 for tag in entity.tags:
                     normalized = normalize_tag(tag)
+                    if normalized:
+                        counts[normalized] += 1
+    return counts
+
+
+def _collect_type_usage_from_artifacts(
+    reviews_dir: Path,
+    *,
+    group: str,
+) -> Counter[str]:
+    """Count type/kind usage for one entity group across review artifacts."""
+    counts: Counter[str] = Counter()
+    if not reviews_dir.is_dir():
+        return counts
+    for review_json in sorted(reviews_dir.glob("*/review.json")):
+        artifact = load_review_artifact(review_json)
+        if artifact is None:
+            continue
+        entities = normalize_entities(artifact)
+        for entity_group in entities.groups:
+            if entity_group.group != group:
+                continue
+            for entity in entity_group.items:
+                if entity.hidden:
+                    continue
+                for type_name in entity.types:
+                    normalized = normalize_tag(type_name)
                     if normalized:
                         counts[normalized] += 1
     return counts
