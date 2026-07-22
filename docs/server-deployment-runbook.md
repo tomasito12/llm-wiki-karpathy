@@ -5,6 +5,7 @@ Related:
 
 - `docs/server-deployment-packaging-spec.md`
 - `docs/hetzner-server-primary-deployment-spec.md`
+- `docs/server-data-migration-runbook.md` (cutover / data copy; separate step)
 - `docs/superpowers/plans/2026-07-18-server-deployment-packaging.md`
 
 ## 1. What v1 deploys
@@ -114,13 +115,26 @@ cleanup.
 ## 9. Server helper
 
 ```bash
-# local .env.server with DEPLOY_* values
+# Interactive SSH (defaults match Music Review sync env / key)
+hatch run server
+
+# Or via script / optional local .env.server with DEPLOY_* values
 ./scripts/server_llm_wiki.sh status
 ./scripts/server_llm_wiki.sh logs api
 ./scripts/server_llm_wiki.sh compose ps
 ./scripts/server_llm_wiki.sh health
 ./scripts/server_llm_wiki.sh --dry-run compose up
+hatch run server-status
+hatch run server-compose -- ps
+hatch run server-health
 ```
+
+SSH defaults (overridable via env or `.env.server`):
+
+- user: `DEPLOY_USER` / `MUSIC_REVIEW_SYNC_USER` (default `deploy`)
+- host: `DEPLOY_HOST` / `MUSIC_REVIEW_SYNC_HOST`
+- key: `DEPLOY_SSH_KEY` / `MUSIC_REVIEW_SYNC_KEY` (default `~/.ssh/music_review_deploy`)
+- path: `DEPLOY_PATH` (default `/srv/llm-wiki/app`)
 
 ## 10. Local packaging verification
 

@@ -12,11 +12,13 @@ if [[ -f "$ROOT_DIR/.env.server" ]]; then
   set +a
 fi
 
-SERVER_USER="${DEPLOY_USER:-deploy}"
-SERVER_HOST="${DEPLOY_HOST:-}"
+# Prefer DEPLOY_* (GHA / .env.server). Fall back to Music Review sync vars so the
+# same local key/host setup works for both projects.
+SERVER_USER="${DEPLOY_USER:-${MUSIC_REVIEW_SYNC_USER:-deploy}}"
+SERVER_HOST="${DEPLOY_HOST:-${MUSIC_REVIEW_SYNC_HOST:-167.233.138.166}}"
 SERVER_PATH="${DEPLOY_PATH:-/srv/llm-wiki/app}"
-SSH_KEY="${DEPLOY_SSH_KEY:-}"
-SSH_PORT="${DEPLOY_PORT:-22}"
+SSH_KEY="${DEPLOY_SSH_KEY:-${MUSIC_REVIEW_SYNC_KEY:-$HOME/.ssh/music_review_deploy}}"
+SSH_PORT="${DEPLOY_PORT:-${MUSIC_REVIEW_SYNC_PORT:-22}}"
 DRY_RUN="${LLM_WIKI_SERVER_DRY_RUN:-false}"
 COMPOSE_FILE="${LLM_WIKI_COMPOSE_FILE:-compose.llm-wiki.yml}"
 
@@ -40,9 +42,16 @@ Options:
   -h, --help             Show this help
 
 Environment (from .env.server when present):
-  DEPLOY_HOST, DEPLOY_USER, DEPLOY_PATH, DEPLOY_PORT, DEPLOY_SSH_KEY
+  DEPLOY_HOST / MUSIC_REVIEW_SYNC_HOST
+  DEPLOY_USER / MUSIC_REVIEW_SYNC_USER
+  DEPLOY_PATH (default: /srv/llm-wiki/app)
+  DEPLOY_PORT / MUSIC_REVIEW_SYNC_PORT
+  DEPLOY_SSH_KEY / MUSIC_REVIEW_SYNC_KEY
   LLM_WIKI_COMPOSE_FILE   Default: compose.llm-wiki.yml
   LLM_WIKI_SERVER_DRY_RUN=true
+
+Interactive login shortcut:
+  hatch run server
 
 This script never prints secret values from the environment.
 USAGE
@@ -63,7 +72,7 @@ require_host() {
     return 0
   fi
   if [[ -z "$SERVER_HOST" ]]; then
-    fail "DEPLOY_HOST is required (set it in .env.server)."
+    fail "DEPLOY_HOST or MUSIC_REVIEW_SYNC_HOST is required (set it in .env.server)."
   fi
 }
 
