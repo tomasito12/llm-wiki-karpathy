@@ -16,6 +16,7 @@ import type {
 } from "./types";
 
 type ParameterValues = Record<string, boolean | number>;
+type PipelineStage = "intake" | "build" | "advanced";
 
 interface PendingConfirmation {
   operation: OperationDefinition;
@@ -56,6 +57,10 @@ const POLL_INTERVAL_MS = 3000;
 
 function operationActionLabel(operation: OperationDefinition): string {
   switch (operation.id) {
+    case "readwise_sync":
+      return "Sync new documents…";
+    case "ingest_preanalyze":
+      return "Start pre-analysis…";
     case "wiki_lint":
       return "Run health check";
     case "wiki_render_dry_run":
@@ -75,6 +80,10 @@ function operationActionLabel(operation: OperationDefinition): string {
 
 function operationIntentLabelById(operationId: string, fallback: string): string {
   switch (operationId) {
+    case "readwise_sync":
+      return "Readwise sync";
+    case "ingest_preanalyze":
+      return "Pre-analysis";
     case "wiki_lint":
       return "Health check";
     case "wiki_render_dry_run":
@@ -98,6 +107,8 @@ function operationIntentLabel(operation: OperationDefinition): string {
 
 function parameterHelper(parameter: OperationParameter): string | null {
   switch (parameter.name) {
+    case "between_articles":
+      return "Seconds to wait after each document before processing the next one.";
     case "limit":
       return "Maximum number of items for this run.";
     case "between_calls":
@@ -126,6 +137,10 @@ function operationImpact(operation: OperationDefinition): string {
 
 function expectedOutput(operation: OperationDefinition): string {
   switch (operation.id) {
+    case "readwise_sync":
+      return "Expected output: new source exports, an updated Readwise index, and duplicate cleanup.";
+    case "ingest_preanalyze":
+      return "Expected output: review artifacts for pending documents and an operation run report.";
     case "wiki_render":
       return "Expected output: generated Obsidian wiki pages and an operation run report.";
     case "synthesis_batch":
@@ -208,6 +223,31 @@ function firstMeaningfulLines(text: string, limit = 4): string[] {
 }
 
 function runSummaryLines(run: OperationRun): string[] {
+  if (run.operation_id === "readwise_sync") {
+    const sync = run.stdout_tail.match(/sync: examined=(\d+) exported=(\d+) skipped=(\d+)/);
+    const dedupe = run.stdout_tail.match(/dedupe: scanned=\d+ pairs=(\d+) deleted=(\d+)/);
+    const lines: string[] = [];
+    if (sync) {
+      lines.push(`${sync[1]} examined · ${sync[2]} downloaded · ${sync[3]} already local`);
+    }
+    if (dedupe) {
+      lines.push(`${dedupe[1]} duplicate pairs · ${dedupe[2]} removed`);
+    }
+    if (lines.length) {
+      return lines;
+    }
+  }
+  if (run.operation_id === "ingest_preanalyze") {
+    const summary = run.stdout_tail.match(
+      /Pre-analysis complete: selected (\d+), processed (\d+), skipped (\d+), failed (\d+), elapsed ([\d.]+)s\./
+    );
+    if (summary) {
+      return [
+        `${summary[1]} selected · ${summary[2]} processed · ${summary[3]} skipped · ${summary[4]} failed`,
+        `Elapsed ${summary[5]}s`
+      ];
+    }
+  }
   const parsed = parseStdoutJson(run);
   if (parsed) {
     if (run.operation_id === "synthesis_select") {
@@ -279,6 +319,7 @@ function runFeedbackTitle(run: OperationRun): string {
 }
 
 export default function PipelineCockpit(): ReactElement {
+  const [activeStage, setActiveStage] = useState<PipelineStage>("intake");
   const [operations, setOperations] = useState<OperationDefinition[]>([]);
   const [runs, setRuns] = useState<OperationRun[]>([]);
   const [selectedRunId, setSelectedRunId] = useState<string | null>(null);
@@ -423,12 +464,126 @@ export default function PipelineCockpit(): ReactElement {
     });
   }
 
+  function renderIntakeOperation(operationId: "readwise_sync" | "ingest_preanalyze") {
+    const operation = operationsById[operationId];
+    if (!operation) {
+      return null;
+    }
+    const values = parameterValues[operation.id] ?? defaultParameters(operation);
+    const latestRun = latestRunsByOperationId[operation.id];
+    return (
+      <article className="panel-card intake-operation-card">
+        <div className="operation-card-meta">
+          <span className="operation-safety">{formatSafety(operation)}</span>
+          <p>{operation.description}</p>
+        </div>
+        {operation.parameters.length ? (
+          <div className="intake-parameters">
+            {operation.parameters.map((parameter) => (
+              <label key={`${operation.id}-${parameter.name}`}>
+                <span>{parameter.label}</span>
+                <input
+                  aria-label={parameter.label}
+                  max={parameter.maximum ?? undefined}
+                  min={parameter.minimum ?? (parameter.type === "integer" ? 1 : 0)}
+                  onChange={(event) => updateParameter(operation.id, parameter, event.target.value)}
+                  type="number"
+                  value={String(values[parameter.name])}
+                />
+                {parameterHelper(parameter) ? <small>{parameterHelper(parameter)}</small> : null}
+              </label>
+            ))}
+          </div>
+        ) : (
+          <p className="pipeline-muted">
+            Downloads only documents not yet present locally and runs automatic duplicate cleanup.
+          </p>
+        )}
+        <div className="operation-card-actions">
+          <button
+            disabled={Boolean(activeRun) || busyOperationId !== null}
+            onClick={() => void launchOperation(operation)}
+            type="button"
+          >
+            {operationActionLabel(operation)}
+          </button>
+        </div>
+        {latestRun ? (
+          <div aria-label={`${operationIntentLabel(operation)} result`} className="operation-result">
+            <div className="operation-result-header">
+              <strong>{runFeedbackTitle(latestRun)}</strong>
+              <span className={runStatusClass(latestRun.status)}>{statusLabel(latestRun.status)}</span>
+            </div>
+            <ul>
+              {runSummaryLines(latestRun).map((line) => (
+                <li key={line}>{line}</li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+      </article>
+    );
+  }
+
   return (
     <main className="pipeline-page">
       {actionError ? <div className="error-banner">{actionError}</div> : null}
 
-      <UpdateWikiPanel />
+      <nav aria-label="Pipeline stages" className="pipeline-stage-nav">
+        <button
+          aria-pressed={activeStage === "intake"}
+          onClick={() => setActiveStage("intake")}
+          type="button"
+        >
+          Intake &amp; Analysis
+        </button>
+        <button
+          aria-pressed={activeStage === "build"}
+          onClick={() => setActiveStage("build")}
+          type="button"
+        >
+          Build Wiki
+        </button>
+        <button
+          aria-pressed={activeStage === "advanced"}
+          onClick={() => setActiveStage("advanced")}
+          type="button"
+        >
+          Advanced
+        </button>
+      </nav>
 
+      {activeStage === "intake" ? (
+        <section aria-labelledby="source-intake-title" className="pipeline-stage-content">
+          <div className="pipeline-stage-heading">
+            <div>
+              <h2 id="source-intake-title">Source intake</h2>
+              <p>Fetch new Readwise sources, then prepare a bounded batch for review.</p>
+            </div>
+            {activeRun ? (
+              <span className="pipeline-run-badge running">
+                {operationIntentLabelById(activeRun.operation_id, activeRun.label)} · {statusLabel(activeRun.status)}
+              </span>
+            ) : null}
+          </div>
+          <div className="intake-operation-grid">
+            <div>
+              <span className="pipeline-step-label">Step 1 · Sources</span>
+              <h3>Fetch new sources</h3>
+              {renderIntakeOperation("readwise_sync")}
+            </div>
+            <div>
+              <span className="pipeline-step-label">Step 2 · Analysis</span>
+              <h3>Prepare reviews</h3>
+              {renderIntakeOperation("ingest_preanalyze")}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {activeStage === "build" ? <UpdateWikiPanel /> : null}
+
+      {activeStage === "advanced" ? (
       <details className="panel-card advanced-manual-operations">
         <summary>Advanced manual operations</summary>
       <div className="pipeline-workbench">
@@ -667,6 +822,7 @@ export default function PipelineCockpit(): ReactElement {
         </aside>
       </div>
       </details>
+      ) : null}
 
       {pendingConfirmation ? (
         <div className="pipeline-modal-backdrop" role="presentation">
@@ -680,6 +836,17 @@ export default function PipelineCockpit(): ReactElement {
             <p>{operationIntentLabel(pendingConfirmation.operation)}</p>
             <p className="pipeline-confirm-impact">{operationImpact(pendingConfirmation.operation)}</p>
             <p className="pipeline-meta">{expectedOutput(pendingConfirmation.operation)}</p>
+            {pendingConfirmation.operation.id === "readwise_sync" ? (
+              <p className="pipeline-confirm-note">
+                New files and index state will be written; shorter near-duplicates may be removed.
+              </p>
+            ) : null}
+            {pendingConfirmation.operation.id === "ingest_preanalyze" ? (
+              <p className="pipeline-confirm-note">
+                This may analyze up to {String(pendingConfirmation.parameters.limit)} documents
+                with a pause of {String(pendingConfirmation.parameters.between_articles)} seconds.
+              </p>
+            ) : null}
             <ul className="pipeline-confirm-list">
               <li>Writes: {pendingConfirmation.operation.writes ? "yes" : "no"}</li>
               <li>LLM calls: {pendingConfirmation.operation.llm_calls ? "yes" : "no"}</li>

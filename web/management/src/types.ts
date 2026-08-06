@@ -247,6 +247,8 @@ export interface OperationParameter {
   type: OperationParameterType;
   default: boolean | number;
   required?: boolean;
+  minimum?: number | null;
+  maximum?: number | null;
 }
 
 export interface OperationDefinition {

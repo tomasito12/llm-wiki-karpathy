@@ -25,11 +25,11 @@
 - Modify: `src/management_web/ops.py`
 - Test: `tests/management_web/test_ops.py`
 
-- [ ] Add failing tests for `readwise_sync` and `ingest_preanalyze` definitions, defaults, validation, and exact module commands.
-- [ ] Run the focused tests and confirm the new expectations fail.
-- [ ] Add the two operation builders and definitions with confirmation metadata.
-- [ ] Add bounded seconds validation without weakening existing parameter validation.
-- [ ] Run focused backend tests and commit the passing change.
+- [x] Add failing tests for `readwise_sync` and `ingest_preanalyze` definitions, defaults, validation, and exact module commands.
+- [x] Run the focused tests and confirm the new expectations fail.
+- [x] Add the two operation builders and definitions with confirmation metadata.
+- [x] Add bounded seconds validation without weakening existing parameter validation.
+- [x] Run focused backend tests and commit the passing change.
 
 ### Task 2: Add focused Pipeline stage UI
 
@@ -38,12 +38,12 @@
 - Modify: `web/management/src/styles.css`
 - Test: `web/management/src/PipelineCockpit.test.tsx`
 
-- [ ] Add failing tests for the three stages and the default Intake view.
-- [ ] Add failing tests for sync/pre-analysis defaults, confirmation copy, and operation payloads.
-- [ ] Run focused Vitest tests and confirm the expectations fail.
-- [ ] Implement stage navigation and place existing Update Wiki and advanced operations in their assigned stages.
-- [ ] Add concise Intake cards using the existing operation metadata and run feedback.
-- [ ] Run focused frontend tests and commit the passing change.
+- [x] Add failing tests for the three stages and the default Intake view.
+- [x] Add failing tests for sync/pre-analysis defaults, confirmation copy, and operation payloads.
+- [x] Run focused Vitest tests and confirm the expectations fail.
+- [x] Implement stage navigation and place existing Update Wiki and advanced operations in their assigned stages.
+- [x] Add concise Intake cards using the existing operation metadata and run feedback.
+- [x] Run focused frontend tests and commit the passing change.
 
 ### Task 3: Improve ingestion result summaries and integration coverage
 
@@ -52,8 +52,8 @@
 - Test: `web/management/src/PipelineCockpit.test.tsx`
 - Test: `web/management/src/App.test.tsx`
 
-- [ ] Add failing tests for readable Readwise and pre-analysis result summaries and shared busy-state behavior.
-- [ ] Implement only the parsing and labels required by those outputs.
-- [ ] Run frontend tests, lint, and build.
-- [ ] Run Python lint and the complete Python test suite.
-- [ ] Verify the worktree is clean except for intentional commits.
+- [x] Add failing tests for readable Readwise and pre-analysis result summaries and shared busy-state behavior.
+- [x] Implement only the parsing and labels required by those outputs.
+- [x] Run frontend tests, lint, and build.
+- [x] Run Python lint and the complete Python test suite.
+- [x] Verify the worktree is clean except for intentional commits.

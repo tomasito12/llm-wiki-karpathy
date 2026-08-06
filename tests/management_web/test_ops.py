@@ -58,6 +58,9 @@ def test_ingestion_operation_definitions_are_bounded_and_confirmed() -> None:
     assert preanalyze.writes is True
     assert preanalyze.llm_calls is True
     assert preanalyze.requires_confirmation is True
+    limit, pause = preanalyze.parameters
+    assert (limit.minimum, limit.maximum) == (1, 100)
+    assert (pause.minimum, pause.maximum) == (0, 3600)
     assert normalize_operation_parameters(preanalyze, {}) == {
         "limit": 10,
         "between_articles": 300.0,

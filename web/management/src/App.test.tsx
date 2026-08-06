@@ -1614,7 +1614,13 @@ describe("App", () => {
     await userEvent.click(screen.getByRole("button", { name: "Pipeline" }));
 
     expect(await screen.findByRole("heading", { name: "Pipeline Cockpit" })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: "Source intake" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Intake & Analysis" })).toHaveAttribute("aria-pressed", "true");
+
+    await userEvent.click(screen.getByRole("button", { name: "Build Wiki" }));
     expect(await screen.findByRole("button", { name: "Update Wiki" })).toBeInTheDocument();
+
+    await userEvent.click(screen.getByRole("button", { name: "Advanced" }));
     expect(screen.getByText("Advanced manual operations")).toBeInTheDocument();
   });
 
@@ -1647,6 +1653,7 @@ describe("App", () => {
     render(<App />);
 
     await userEvent.click(await screen.findByRole("button", { name: "Pipeline" }));
+    await userEvent.click(screen.getByRole("button", { name: "Build Wiki" }));
 
     expect(await screen.findByText("Error: Request failed: 404")).toBeInTheDocument();
     expect(screen.queryByText("No recommendations yet.")).not.toBeInTheDocument();
@@ -1657,6 +1664,7 @@ describe("App", () => {
     render(<App />);
 
     await userEvent.click(await screen.findByRole("button", { name: "Pipeline" }));
+    await userEvent.click(screen.getByRole("button", { name: "Advanced" }));
     await userEvent.click(await screen.findByText("Advanced manual operations"));
 
     expect(await screen.findByRole("heading", { name: "Check wiki health" })).toBeInTheDocument();
@@ -1674,6 +1682,8 @@ describe("App", () => {
     render(<App />);
 
     await userEvent.click(await screen.findByRole("button", { name: "Pipeline" }));
+    await userEvent.click(screen.getByRole("button", { name: "Advanced" }));
+    await userEvent.click(await screen.findByText("Advanced manual operations"));
     await userEvent.click(await screen.findByRole("button", { name: "Run batch..." }));
 
     expect(await screen.findByRole("dialog", { name: "Confirm operation" })).toBeInTheDocument();

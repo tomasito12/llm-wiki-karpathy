@@ -314,6 +314,8 @@ OPERATION_DEFINITIONS: tuple[OperationDefinition, ...] = (
                 label="Documents",
                 type="integer",
                 default=10,
+                minimum=1,
+                maximum=_MAX_LIMIT,
             ),
             OperationParameterDefinition(
                 name="between_articles",
