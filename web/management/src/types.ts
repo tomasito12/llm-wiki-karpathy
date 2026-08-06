@@ -172,6 +172,7 @@ export interface EntityEditRequest {
   title?: string;
   description?: string;
   tags?: string[];
+  types?: string[];
   hidden?: boolean;
 }
 
@@ -225,6 +226,10 @@ export interface ReviewTagChoice {
 
 export interface ReviewTagsResponse {
   tags: ReviewTagChoice[];
+}
+
+export interface ReviewTypesResponse {
+  types: ReviewTagChoice[];
 }
 
 export type OperationRunStatus = "queued" | "running" | "succeeded" | "failed" | "cancelled";

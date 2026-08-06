@@ -252,6 +252,7 @@ class EntityEditRequest(BaseModel):
     title: str | None = None
     description: str | None = None
     tags: list[str] | None = None
+    types: list[str] | None = None
     hidden: bool | None = None
 
 
@@ -317,6 +318,12 @@ class ReviewTagsResponse(BaseModel):
     """Available tag choices for entity editing."""
 
     tags: list[ReviewTagChoice]
+
+
+class ReviewTypesResponse(BaseModel):
+    """Available type/kind choices for tool entity editing."""
+
+    types: list[ReviewTagChoice]
 
 
 OperationRunStatus = Literal["queued", "running", "succeeded", "failed", "cancelled"]

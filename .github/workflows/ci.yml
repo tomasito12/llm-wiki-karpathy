@@ -1,0 +1,85 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint-test:
+    name: Lint and test
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install Hatch and uv
+        run: python -m pip install --upgrade hatch uv
+
+      - name: Use uv in Hatch
+        run: hatch config set installer uv
+
+      - name: Run lint and type checks
+        run: hatch run lint:check
+
+      - name: Run tests
+        run: hatch run test:run
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: web/management/package-lock.json
+
+      - name: Install frontend dependencies
+        run: npm --prefix web/management ci
+
+      - name: Lint frontend
+        run: npm --prefix web/management run lint
+
+      - name: Test frontend
+        run: npm --prefix web/management run test -- --run
+
+      - name: Build frontend
+        run: npm --prefix web/management run build
+
+  docker-build:
+    name: Docker build smoke test
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    needs:
+      - lint-test
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Create empty CI env files for compose config
+        run: |
+          touch .env
+          cp deploy/llm-wiki.env.example deploy/llm-wiki.env
+          cp config/wiki_paths.server.example.toml config/wiki_paths.server.toml
+
+      - name: Validate compose file
+        # Always use -q: without it, Compose prints resolved env values.
+        run: docker compose -f compose.llm-wiki.yml config -q
+
+      - name: Build LLM Wiki images
+        run: |
+          docker compose -f compose.llm-wiki.yml build llm-wiki-api llm-wiki-frontend

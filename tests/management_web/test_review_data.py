@@ -19,6 +19,7 @@ from src.management_web.review_data import (
     FinishConflictError,
     build_review_queue,
     build_review_tag_registry,
+    build_review_type_registry,
     finish_review,
     get_source_detail,
     read_raw_markdown,
@@ -28,7 +29,12 @@ from src.management_web.review_data import (
     write_management_decision,
 )
 from src.wiki_paths.config import WikiPaths, default_wiki_paths
-from src.wiki_render.resolve import proposal_is_included, reviewed_tags, scalar_value
+from src.wiki_render.resolve import (
+    proposal_is_included,
+    reviewed_tags,
+    reviewed_types,
+    scalar_value,
+)
 
 
 def _paths(tmp_path: Path) -> WikiPaths:
@@ -1306,6 +1312,94 @@ def test_update_review_entity_writes_tools_description_to_review_tree(tmp_path: 
     )
 
 
+def test_update_review_entity_writes_tool_types_to_review_tree(tmp_path: Path) -> None:
+    """Tool kind edits should write approved_types and mirror proposed_types."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "editable")
+    llm_output: dict[str, Any] = {
+        "tools": [
+            {
+                "name": "Ollama",
+                "short_description": "Local model runner.",
+                "proposed_types": ["ai-infrastructure"],
+                "proposed_new_type": "legacy-type",
+                "proposed_tags": ["local-first"],
+            }
+        ]
+    }
+    _write_artifact(
+        paths,
+        "editable",
+        {"llm_output": llm_output, "review": _review_tree_from_llm_output(llm_output)},
+    )
+
+    response = update_review_entity(
+        paths,
+        "editable",
+        EntityEditRequest(
+            group="tools",
+            index=0,
+            types=["terminal", "ai-infrastructure", "terminal"],
+            tags=["local-first", "cli-tool"],
+        ),
+    )
+
+    artifact = json.loads((paths.reviews_dir / "editable" / "review.json").read_text())
+    tool_review = artifact["review"]["tools"][0]
+    tool_llm = artifact["llm_output"]["tools"][0]
+    assert tool_review["types"]["approved_types"] == ["terminal", "ai-infrastructure"]
+    assert tool_review["types"]["reviewer_types_added"] == []
+    assert tool_llm["proposed_types"] == ["terminal", "ai-infrastructure"]
+    assert "proposed_new_type" not in tool_llm
+    assert tool_review["tags"]["final_tags"] == ["local-first", "cli-tool"]
+    assert response.source.entities.groups
+    tool_group = next(g for g in response.source.entities.groups if g.group == "tools")
+    assert tool_group.items[0].types == ["terminal", "ai-infrastructure"]
+    assert tool_group.items[0].tags == ["local-first", "cli-tool"]
+    assert reviewed_types(tool_review) == ["terminal", "ai-infrastructure"]
+    assert reviewed_tags(tool_review) == ["local-first", "cli-tool"]
+
+
+def test_update_review_entity_rejects_types_for_non_tools(tmp_path: Path) -> None:
+    """Type edits are tools-only."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "editable")
+    llm_output: dict[str, Any] = {
+        "topics": [{"topic_title": "Topic A", "knowledge_summary": "Summary."}]
+    }
+    _write_artifact(
+        paths,
+        "editable",
+        {"llm_output": llm_output, "review": _review_tree_from_llm_output(llm_output)},
+    )
+
+    with pytest.raises(ValueError, match="only supported for tools"):
+        update_review_entity(
+            paths,
+            "editable",
+            EntityEditRequest(group="topics", index=0, types=["app"]),
+        )
+
+
+def test_update_review_entity_rejects_empty_types(tmp_path: Path) -> None:
+    """Empty type values are rejected like empty tags."""
+    paths = _paths(tmp_path)
+    _write_raw(paths, "editable")
+    llm_output: dict[str, Any] = {"tools": [{"name": "Tool A", "short_description": "Desc."}]}
+    _write_artifact(
+        paths,
+        "editable",
+        {"llm_output": llm_output, "review": _review_tree_from_llm_output(llm_output)},
+    )
+
+    with pytest.raises(ValueError, match="empty"):
+        update_review_entity(
+            paths,
+            "editable",
+            EntityEditRequest(group="tools", index=0, types=["app", " "]),
+        )
+
+
 def test_update_review_entity_writes_model_tags_to_review_tree(tmp_path: Path) -> None:
     """Model tag edits should write review.tags.final_tags."""
     paths = _paths(tmp_path)
@@ -1578,6 +1672,50 @@ def test_build_review_tag_registry_rejects_unknown_group(tmp_path: Path) -> None
     paths = _paths(tmp_path)
     with pytest.raises(ValueError, match="Unknown entity group"):
         build_review_tag_registry(paths, group="not-a-group")
+
+
+def test_build_review_type_registry_returns_tool_types(tmp_path: Path) -> None:
+    """Type registry for tools should use review_tool_types.yaml and usage counts."""
+    paths = _paths(tmp_path)
+    config_dir = paths.repo_root / "config"
+    config_dir.mkdir(parents=True)
+    (config_dir / "review_tool_types.yaml").write_text(
+        "tags:\n- terminal\n- ai-infrastructure\n",
+        encoding="utf-8",
+    )
+    llm_output: dict[str, Any] = {
+        "tools": [
+            {
+                "name": "Ollama",
+                "short_description": "Local runner.",
+                "proposed_types": ["ai-infrastructure"],
+            }
+        ]
+    }
+    _write_artifact(
+        paths,
+        "typed",
+        {"llm_output": llm_output, "review": _review_tree_from_llm_output(llm_output)},
+    )
+
+    response = build_review_type_registry(paths, group="tools")
+
+    names = [entry.name for entry in response.types]
+    assert names[0] == "ai-infrastructure"
+    assert set(names) == {"ai-infrastructure", "terminal"}
+    infra = next(entry for entry in response.types if entry.name == "ai-infrastructure")
+    assert infra.source == "registry"
+    assert infra.usage_count == 1
+    terminal = next(entry for entry in response.types if entry.name == "terminal")
+    assert terminal.usage_count == 0
+
+
+def test_build_review_type_registry_rejects_non_tools(tmp_path: Path) -> None:
+    """Type registry is tools-only in this slice."""
+    paths = _paths(tmp_path)
+
+    with pytest.raises(ValueError, match="only supported for tools"):
+        build_review_type_registry(paths, group="models")
 
 
 def test_normalize_source_summary_includes_full_chapters(tmp_path: Path) -> None:

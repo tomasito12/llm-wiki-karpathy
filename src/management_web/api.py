@@ -31,6 +31,7 @@ from src.management_web.models import (
     QueueStatusFilter,
     RawSourceResponse,
     ReviewTagsResponse,
+    ReviewTypesResponse,
     SourceDetailResponse,
     StartOperationRequest,
     StartOperationResponse,
@@ -54,6 +55,7 @@ from src.management_web.review_data import (
     FinishConflictError,
     build_review_queue,
     build_review_tag_registry,
+    build_review_type_registry,
     finish_review,
     get_source_detail,
     read_raw_markdown,
@@ -201,6 +203,16 @@ def create_app(
         """Return available tag choices for entity editing."""
         try:
             return build_review_tag_registry(app.state.paths, group=group)
+        except ValueError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    @app.get("/api/review/types", response_model=ReviewTypesResponse)
+    def review_types(
+        group: str = Query(..., description="Editable entity group; only tools is supported."),
+    ) -> ReviewTypesResponse:
+        """Return available tool-kind choices for entity editing."""
+        try:
+            return build_review_type_registry(app.state.paths, group=group)
         except ValueError as exc:
             raise HTTPException(status_code=400, detail=str(exc)) from exc
 
