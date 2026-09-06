@@ -69,6 +69,8 @@ class OperationParameterDefinition:
     type: ParameterType
     default: bool | int | float
     required: bool = False
+    minimum: int | float | None = None
+    maximum: int | float | None = None
 
 
 @dataclass(frozen=True)
@@ -250,7 +252,35 @@ def _build_synthesis_batch_command(
     return _python_command("src.wiki_synthesis.batch_cli", *args)
 
 
+def _build_readwise_sync_command(
+    paths: WikiPaths,
+    paths_config: Path | None,
+    parameters: dict[str, Any],
+) -> list[str]:
+    """Build the normal incremental Readwise sync command with automatic dedupe."""
+    _ = parameters
+    return _python_command("src.readwise", *_paths_config_args(paths, paths_config))
+
+
+def _build_ingest_preanalyze_command(
+    paths: WikiPaths,
+    paths_config: Path | None,
+    parameters: dict[str, Any],
+) -> list[str]:
+    """Build a bounded pre-analysis command for pending source documents."""
+    return _python_command(
+        "src.ingest_batch.cli",
+        *_paths_config_args(paths, paths_config),
+        "--limit",
+        str(int(parameters["limit"])),
+        "--between-articles",
+        str(float(parameters["between_articles"])),
+    )
+
+
 _OPERATION_BUILDERS: dict[str, Callable[[WikiPaths, Path | None, dict[str, Any]], list[str]]] = {
+    "readwise_sync": _build_readwise_sync_command,
+    "ingest_preanalyze": _build_ingest_preanalyze_command,
     "wiki_lint": _build_wiki_lint_command,
     "wiki_render_dry_run": _build_wiki_render_dry_run_command,
     "wiki_render": _build_wiki_render_command,
@@ -261,6 +291,43 @@ _OPERATION_BUILDERS: dict[str, Callable[[WikiPaths, Path | None, dict[str, Any]]
 
 
 OPERATION_DEFINITIONS: tuple[OperationDefinition, ...] = (
+    OperationDefinition(
+        id="readwise_sync",
+        label="Readwise sync",
+        description="Download new processed Readwise documents and remove near-duplicates.",
+        writes=True,
+        llm_calls=False,
+        requires_confirmation=True,
+        parameters=(),
+        module="src.readwise",
+    ),
+    OperationDefinition(
+        id="ingest_preanalyze",
+        label="Ingest pre-analysis",
+        description="Pre-analyze a bounded batch of pending documents with OpenAI.",
+        writes=True,
+        llm_calls=True,
+        requires_confirmation=True,
+        parameters=(
+            OperationParameterDefinition(
+                name="limit",
+                label="Documents",
+                type="integer",
+                default=10,
+                minimum=1,
+                maximum=_MAX_LIMIT,
+            ),
+            OperationParameterDefinition(
+                name="between_articles",
+                label="Pause between documents (seconds)",
+                type="float",
+                default=300.0,
+                minimum=0,
+                maximum=3600,
+            ),
+        ),
+        module="src.ingest_batch.cli",
+    ),
     OperationDefinition(
         id="wiki_lint",
         label="Wiki lint",
@@ -395,8 +462,16 @@ def _coerce_parameter(
         return raw_value
     if isinstance(raw_value, bool) or not isinstance(raw_value, (int, float)):
         raise OperationValidationError(f"Parameter {definition.name} must be a number.")
-    if raw_value < 0:
-        raise OperationValidationError(f"Parameter {definition.name} must be zero or greater.")
+    minimum = definition.minimum if definition.minimum is not None else 0
+    maximum = definition.maximum
+    if raw_value < minimum or (maximum is not None and raw_value > maximum):
+        if maximum is not None:
+            raise OperationValidationError(
+                f"Parameter {definition.name} must be between {minimum} and {maximum}."
+            )
+        raise OperationValidationError(
+            f"Parameter {definition.name} must be {minimum} or greater."
+        )
     return float(raw_value)
 
 

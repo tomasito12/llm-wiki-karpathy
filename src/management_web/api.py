@@ -96,6 +96,8 @@ def _operation_definition_models() -> list[OperationDefinitionModel]:
                     type=param.type,
                     default=param.default,
                     required=param.required,
+                    minimum=param.minimum,
+                    maximum=param.maximum,
                 )
                 for param in operation.parameters
             ],

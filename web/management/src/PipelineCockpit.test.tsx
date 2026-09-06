@@ -11,6 +11,41 @@ vi.mock("./api");
 const operationsPayload: OperationsListResponse = {
   operations: [
     {
+      id: "readwise_sync",
+      label: "Readwise sync",
+      description: "Download new processed Readwise documents and remove near-duplicates.",
+      writes: true,
+      llm_calls: false,
+      requires_confirmation: true,
+      parameters: []
+    },
+    {
+      id: "ingest_preanalyze",
+      label: "Ingest pre-analysis",
+      description: "Pre-analyze a bounded batch of pending documents with OpenAI.",
+      writes: true,
+      llm_calls: true,
+      requires_confirmation: true,
+      parameters: [
+        {
+          name: "limit",
+          label: "Documents",
+          type: "integer",
+          default: 10,
+          minimum: 1,
+          maximum: 100
+        },
+        {
+          name: "between_articles",
+          label: "Pause between documents (seconds)",
+          type: "float",
+          default: 300,
+          minimum: 0,
+          maximum: 3600
+        }
+      ]
+    },
+    {
       id: "wiki_lint",
       label: "Wiki lint",
       description: "Validate generated wiki markdown and vault hygiene without writes.",
@@ -141,6 +176,12 @@ const failedRun = {
   stderr_tail: "lint failed"
 };
 
+async function openAdvancedOperations(): Promise<void> {
+  await screen.findByRole("heading", { name: "Source intake" });
+  await userEvent.click(screen.getByRole("button", { name: "Advanced" }));
+  await userEvent.click(screen.getByText("Advanced manual operations"));
+}
+
 describe("PipelineCockpit", () => {
   beforeEach(() => {
     vi.mocked(api.getOpsStatus).mockResolvedValue(statusPayload);
@@ -164,20 +205,157 @@ describe("PipelineCockpit", () => {
     vi.useRealTimers();
   });
 
-  it("prioritizes Update Wiki and keeps manual operations collapsed", async () => {
+  it("opens Intake and Analysis by default and keeps the other stages focused", async () => {
     render(<PipelineCockpit />);
+
+    expect(await screen.findByRole("heading", { name: "Source intake" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Intake & Analysis" })).toHaveAttribute(
+      "aria-pressed",
+      "true"
+    );
+    expect(screen.getByRole("button", { name: "Build Wiki" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Advanced" })).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Update Wiki" })).not.toBeInTheDocument();
+    expect(screen.queryByText("Advanced manual operations")).not.toBeInTheDocument();
+
+    await userEvent.click(screen.getByRole("button", { name: "Build Wiki" }));
 
     expect(await screen.findByRole("button", { name: "Update Wiki" })).toBeInTheDocument();
     expect(screen.getByText("Wiki update available")).toBeInTheDocument();
     expect(screen.getByText("Hints")).toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "Recommended next actions" })).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "Plan synthesis refresh" })).not.toBeInTheDocument();
-    expect(screen.getByText("Advanced manual operations")).toBeInTheDocument();
+  });
+
+  it("starts Readwise sync only after confirming automatic duplicate cleanup", async () => {
+    vi.mocked(api.startOperationRun).mockResolvedValue({
+      run_id: "20260806T120000Z-readwise-sync",
+      operation_id: "readwise_sync",
+      status: "queued"
+    });
+    vi.mocked(api.getOperationRun).mockResolvedValue({
+      ...queuedRun,
+      run_id: "20260806T120000Z-readwise-sync",
+      operation_id: "readwise_sync",
+      label: "Readwise sync"
+    });
+
+    render(<PipelineCockpit />);
+    await userEvent.click(await screen.findByRole("button", { name: "Sync new documents…" }));
+
+    const dialog = await screen.findByRole("dialog");
+    expect(within(dialog).getByText(/shorter near-duplicates may be removed/i)).toBeInTheDocument();
+    expect(api.startOperationRun).not.toHaveBeenCalled();
+
+    await userEvent.click(within(dialog).getByRole("button", { name: "Confirm and run" }));
+    await waitFor(() =>
+      expect(api.startOperationRun).toHaveBeenCalledWith({
+        operation_id: "readwise_sync",
+        parameters: {},
+        confirmed: true
+      })
+    );
+  });
+
+  it("starts pre-analysis with editable batch size and pause defaults", async () => {
+    vi.mocked(api.startOperationRun).mockResolvedValue({
+      run_id: "20260806T120100Z-ingest-preanalyze",
+      operation_id: "ingest_preanalyze",
+      status: "queued"
+    });
+    vi.mocked(api.getOperationRun).mockResolvedValue({
+      ...queuedRun,
+      run_id: "20260806T120100Z-ingest-preanalyze",
+      operation_id: "ingest_preanalyze",
+      label: "Ingest pre-analysis"
+    });
+
+    render(<PipelineCockpit />);
+    const documents = await screen.findByLabelText("Documents");
+    const pause = screen.getByLabelText("Pause between documents (seconds)");
+    expect(documents).toHaveValue(10);
+    expect(documents).toHaveAttribute("min", "1");
+    expect(documents).toHaveAttribute("max", "100");
+    expect(pause).toHaveValue(300);
+
+    await userEvent.clear(documents);
+    await userEvent.type(documents, "6");
+    await userEvent.clear(pause);
+    await userEvent.type(pause, "450");
+    await userEvent.click(screen.getByRole("button", { name: "Start pre-analysis…" }));
+
+    const dialog = await screen.findByRole("dialog");
+    expect(within(dialog).getByText(/up to 6 documents/i)).toBeInTheDocument();
+    expect(within(dialog).getByText(/450 seconds/i)).toBeInTheDocument();
+    await userEvent.click(within(dialog).getByRole("button", { name: "Confirm and run" }));
+
+    await waitFor(() =>
+      expect(api.startOperationRun).toHaveBeenCalledWith({
+        operation_id: "ingest_preanalyze",
+        parameters: { limit: 6, between_articles: 450 },
+        confirmed: true
+      })
+    );
+  });
+
+  it("summarizes Readwise sync and duplicate cleanup results", async () => {
+    vi.mocked(api.listOperationRuns).mockResolvedValue({
+      runs: [
+        {
+          ...queuedRun,
+          run_id: "20260806T130000Z-readwise-sync",
+          operation_id: "readwise_sync",
+          label: "Readwise sync",
+          status: "succeeded",
+          finished_at: "2026-08-06T13:00:04Z",
+          duration_seconds: 4,
+          exit_code: 0,
+          stdout_tail:
+            "sync: examined=12 exported=3 skipped=9\n" +
+            "dedupe: scanned=509 pairs=2 deleted=1\n  Deleted: shorter-copy"
+        }
+      ]
+    });
+
+    render(<PipelineCockpit />);
+
+    const result = await screen.findByLabelText("Readwise sync result");
+    expect(within(result).getByText("12 examined · 3 downloaded · 9 already local")).toBeInTheDocument();
+    expect(within(result).getByText("2 duplicate pairs · 1 removed")).toBeInTheDocument();
+    expect(within(result).queryByText(/Deleted: shorter-copy/)).not.toBeInTheDocument();
+  });
+
+  it("summarizes pre-analysis progress without showing raw progress lines", async () => {
+    vi.mocked(api.listOperationRuns).mockResolvedValue({
+      runs: [
+        {
+          ...queuedRun,
+          run_id: "20260806T130100Z-ingest-preanalyze",
+          operation_id: "ingest_preanalyze",
+          label: "Ingest pre-analysis",
+          status: "succeeded",
+          finished_at: "2026-08-06T13:00:43Z",
+          duration_seconds: 42.5,
+          exit_code: 0,
+          stdout_tail:
+            "[1/10] processing: source-a\n" +
+            "Pre-analysis complete: selected 10, processed 8, skipped 1, failed 1, elapsed 42.5s."
+        }
+      ]
+    });
+
+    render(<PipelineCockpit />);
+
+    const result = await screen.findByLabelText("Pre-analysis result");
+    expect(within(result).getByText("10 selected · 8 processed · 1 skipped · 1 failed")).toBeInTheDocument();
+    expect(within(result).getByText("Elapsed 42.5s")).toBeInTheDocument();
+    expect(within(result).queryByText(/processing: source-a/)).not.toBeInTheDocument();
   });
 
   it("renders operation cards with safety metadata inside advanced manual operations", async () => {
     render(<PipelineCockpit />);
-    await screen.findByRole("button", { name: "Update Wiki" });
+    await screen.findByRole("heading", { name: "Source intake" });
+    await userEvent.click(screen.getByRole("button", { name: "Advanced" }));
     await userEvent.click(screen.getByText("Advanced manual operations"));
 
     expect((await screen.findAllByText("read-only · no LLM calls")).length).toBeGreaterThan(0);
@@ -195,8 +373,7 @@ describe("PipelineCockpit", () => {
     vi.mocked(api.getOperationRun).mockResolvedValue(queuedRun);
 
     render(<PipelineCockpit />);
-    await screen.findByRole("button", { name: "Update Wiki" });
-    await userEvent.click(screen.getByText("Advanced manual operations"));
+    await openAdvancedOperations();
 
     const lintButtons = screen.getAllByRole("button", { name: "Run health check" });
     await userEvent.click(lintButtons[lintButtons.length - 1]);
@@ -214,8 +391,7 @@ describe("PipelineCockpit", () => {
 
   it("opens confirmation for write and LLM operations", async () => {
     render(<PipelineCockpit />);
-    await screen.findByRole("button", { name: "Update Wiki" });
-    await userEvent.click(screen.getByText("Advanced manual operations"));
+    await openAdvancedOperations();
 
     await userEvent.click(screen.getByRole("button", { name: "Write render..." }));
 
@@ -235,8 +411,9 @@ describe("PipelineCockpit", () => {
     });
 
     render(<PipelineCockpit />);
-    await screen.findByRole("button", { name: "Update Wiki" });
-    await userEvent.click(screen.getByText("Advanced manual operations"));
+    expect(await screen.findByRole("button", { name: "Sync new documents…" })).toBeDisabled();
+    expect(screen.getByRole("button", { name: "Start pre-analysis…" })).toBeDisabled();
+    await openAdvancedOperations();
 
     expect(await screen.findByText("Health check · Running")).toBeInTheDocument();
     expect(screen.getByText("Running. Close terminal/server to interrupt if necessary.")).toBeInTheDocument();
@@ -244,6 +421,8 @@ describe("PipelineCockpit", () => {
 
   it("refreshes status when the refresh button is clicked", async () => {
     render(<PipelineCockpit />);
+    await screen.findByRole("heading", { name: "Source intake" });
+    await userEvent.click(screen.getByRole("button", { name: "Build Wiki" }));
     await screen.findByRole("button", { name: "Update Wiki" });
 
     const refreshButtons = screen.getAllByRole("button", { name: "Refresh status" });
@@ -258,8 +437,7 @@ describe("PipelineCockpit", () => {
     vi.mocked(api.listOperationRuns).mockResolvedValue({ runs: [failedRun] });
 
     render(<PipelineCockpit />);
-    await screen.findByRole("button", { name: "Update Wiki" });
-    await userEvent.click(screen.getByText("Advanced manual operations"));
+    await openAdvancedOperations();
 
     expect((await screen.findAllByText("lint failed")).length).toBeGreaterThan(0);
     expect(screen.getByRole("heading", { name: "Run details" })).toBeInTheDocument();
@@ -274,8 +452,7 @@ describe("PipelineCockpit", () => {
     vi.mocked(api.getOperationRun).mockResolvedValue(selectRun);
 
     render(<PipelineCockpit />);
-    await screen.findByRole("button", { name: "Update Wiki" });
-    await userEvent.click(screen.getByText("Advanced manual operations"));
+    await openAdvancedOperations();
 
     await userEvent.click(screen.getByRole("button", { name: "Show candidates" }));
 

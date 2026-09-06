@@ -35,12 +35,35 @@ def test_list_operation_definitions_returns_allowlisted_mvp_operations() -> None
     operation_ids = {operation.id for operation in list_operation_definitions()}
 
     assert operation_ids == {
+        "ingest_preanalyze",
+        "readwise_sync",
         "wiki_lint",
         "wiki_render_dry_run",
         "wiki_render",
         "synthesis_select",
         "synthesis_batch_dry_run",
         "synthesis_batch",
+    }
+
+
+def test_ingestion_operation_definitions_are_bounded_and_confirmed() -> None:
+    """Ingestion operations should expose safe defaults and require confirmation."""
+    readwise_sync = get_operation_definition("readwise_sync")
+    preanalyze = get_operation_definition("ingest_preanalyze")
+
+    assert readwise_sync.writes is True
+    assert readwise_sync.llm_calls is False
+    assert readwise_sync.requires_confirmation is True
+    assert readwise_sync.parameters == ()
+    assert preanalyze.writes is True
+    assert preanalyze.llm_calls is True
+    assert preanalyze.requires_confirmation is True
+    limit, pause = preanalyze.parameters
+    assert (limit.minimum, limit.maximum) == (1, 100)
+    assert (pause.minimum, pause.maximum) == (0, 3600)
+    assert normalize_operation_parameters(preanalyze, {}) == {
+        "limit": 10,
+        "between_articles": 300.0,
     }
 
 
@@ -111,6 +134,44 @@ def test_build_operation_command_for_synthesis_batch(tmp_path: Path) -> None:
     assert "--limit" in command
     assert "--between-calls" in command
     assert "--continue-on-error" in command
+
+
+def test_build_operation_command_for_readwise_sync_keeps_automatic_dedupe(
+    tmp_path: Path,
+) -> None:
+    """Readwise sync should use the normal CLI path without disabling dedupe."""
+    paths = _paths(tmp_path)
+
+    _, normalized, command = build_operation_command(paths, None, "readwise_sync", {})
+
+    assert normalized == {}
+    assert command[1:3] == ["-m", "src.readwise"]
+    assert "--no-dedupe" not in command
+
+
+def test_build_operation_command_for_ingest_preanalyze(tmp_path: Path) -> None:
+    """Pre-analysis should pass the selected limit and between-article pause."""
+    paths = _paths(tmp_path)
+
+    _, normalized, command = build_operation_command(
+        paths,
+        None,
+        "ingest_preanalyze",
+        {"limit": 7, "between_articles": 450},
+    )
+
+    assert normalized == {"limit": 7, "between_articles": 450.0}
+    assert command[1:3] == ["-m", "src.ingest_batch.cli"]
+    assert command[command.index("--limit") + 1] == "7"
+    assert command[command.index("--between-articles") + 1] == "450.0"
+
+
+def test_ingest_preanalyze_rejects_pause_above_one_hour() -> None:
+    """The management UI should not allow an accidental unbounded pause."""
+    operation = get_operation_definition("ingest_preanalyze")
+
+    with pytest.raises(OperationValidationError, match="between 0 and 3600"):
+        normalize_operation_parameters(operation, {"between_articles": 3601})
 
 
 def test_ops_run_manager_starts_read_only_operation_without_confirmation(tmp_path: Path) -> None:

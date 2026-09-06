@@ -346,6 +346,8 @@ class OperationParameterModel(BaseModel):
     type: OperationParameterType
     default: bool | int | float
     required: bool = False
+    minimum: int | float | None = None
+    maximum: int | float | None = None
 
 
 class OperationDefinitionModel(BaseModel):

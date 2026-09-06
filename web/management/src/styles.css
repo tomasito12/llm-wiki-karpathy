@@ -1114,6 +1114,120 @@ blockquote {
   padding: 1rem;
 }
 
+.pipeline-stage-nav {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.pipeline-stage-nav button {
+  background: transparent;
+  border: 1px solid #dfe5ec;
+  border-radius: 999px;
+  color: #5b6775;
+  font-weight: 600;
+  padding: 0.45rem 0.8rem;
+}
+
+.pipeline-stage-nav button[aria-pressed="true"] {
+  background: #eef4ff;
+  border-color: #cbdcf8;
+  color: #31537d;
+}
+
+.pipeline-stage-content {
+  display: grid;
+  gap: 1rem;
+}
+
+.pipeline-stage-heading {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.pipeline-stage-heading h2,
+.pipeline-stage-heading p,
+.intake-operation-grid h3 {
+  margin: 0;
+}
+
+.pipeline-stage-heading p {
+  color: #687385;
+  margin-top: 0.3rem;
+}
+
+.intake-operation-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.pipeline-step-label {
+  color: #687385;
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+}
+
+.intake-operation-card {
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 0.65rem;
+}
+
+.intake-operation-card p {
+  margin: 0;
+}
+
+.intake-parameters {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.intake-parameters label {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.intake-parameters label > span {
+  color: #536173;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.intake-parameters input {
+  border: 1px solid #d8dee7;
+  border-radius: 6px;
+  font: inherit;
+  padding: 0.5rem 0.6rem;
+  width: 100%;
+}
+
+.intake-parameters small,
+.pipeline-confirm-note {
+  color: #687385;
+  font-size: 0.78rem;
+}
+
+@media (max-width: 820px) {
+  .intake-operation-grid,
+  .intake-parameters {
+    grid-template-columns: 1fr;
+  }
+
+  .pipeline-stage-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
 .pipeline-section-header {
   align-items: center;
   display: flex;
